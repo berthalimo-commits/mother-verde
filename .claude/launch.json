@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mother-verde-dev",
+      "runtimeExecutable": "C:\\Users\\User\\Desktop\\Cannapp\\dev-server.cmd",
+      "runtimeArgs": [],
+      "port": 5173
+    }
+  ]
+}
