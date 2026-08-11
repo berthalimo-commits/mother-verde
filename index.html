@@ -2511,22 +2511,41 @@
     <div class="eyebrow" data-i18n="cuentaEyebrow">Tu cuenta</div>
     <h2 class="title" data-i18n="cuentaTitle">Perfil</h2>
 
-    <div class="card-block" id="cuentaEstadoCard">
-      <h3 data-i18n="cuentaEstadoTitle">Estado de suscripción</h3>
-      <p id="cuentaEstadoTexto" style="margin-bottom:14px;"></p>
-      <button class="btn btn-primary" id="cuentaBtnAccion"></button>
-      <div style="display:flex; align-items:center; gap:6px; margin-top:12px; font-size:11px; color:var(--ink-soft);">
-        <svg viewBox="0 0 14 16" width="11" height="13"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/></svg>
-        <span data-i18n="cuentaPagoSeguroNote">Tus pagos se procesan por App Store, Google Play o Stripe. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
+    <div class="card-block" id="cuentaAuthCard">
+      <div id="authTabs" style="display:flex; gap:8px; margin-bottom:18px;">
+        <button type="button" class="sub-pill on" data-auth-tab="login" data-i18n="authTabLogin">Iniciar sesión</button>
+        <button type="button" class="sub-pill" data-auth-tab="signup" data-i18n="authTabSignup">Crear cuenta</button>
       </div>
+      <form id="authForm" style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authPasswordLabel">Contraseña</label><input type="password" id="authPasswordInput" required minlength="8" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <button type="submit" class="btn btn-primary" id="authSubmitBtn" data-i18n="authLoginBtn">Entrar</button>
+        <div id="authMsg" style="font-size:12.5px; min-height:16px;"></div>
+        <span id="authSwitchLink" style="cursor:pointer; font-size:12.5px; color:var(--moss-deep); text-decoration:underline;" data-i18n="authSwitchToSignup">¿No tienes cuenta? Crear una</span>
+      </form>
     </div>
 
-    <div class="card-block">
-      <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
-      <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaNombreLabel">Nombre</label><input type="text" data-i18n-ph="cuentaNombrePh" placeholder="Tu nombre" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo</label><input type="email" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaPaisLabel">País</label><input type="text" data-i18n-ph="cuentaPaisPh" placeholder="Para ajustar precios y ofrecerte tu estatus legal más rápido" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+    <div id="cuentaLoggedInOnly">
+      <div class="card-block" id="cuentaEstadoCard">
+        <h3 data-i18n="cuentaEstadoTitle">Estado de suscripción</h3>
+        <p id="cuentaEstadoTexto" style="margin-bottom:14px;"></p>
+        <button class="btn btn-primary" id="cuentaBtnAccion"></button>
+        <div style="display:flex; align-items:center; gap:6px; margin-top:12px; font-size:11px; color:var(--ink-soft);">
+          <svg viewBox="0 0 14 16" width="11" height="13"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/></svg>
+          <span data-i18n="cuentaPagoSeguroNote">Tus pagos se procesan de forma segura. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
+        </div>
+        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
+          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
+        <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaNombreLabel">Nombre</label><input type="text" id="cuentaNombreInput" data-i18n-ph="cuentaNombrePh" placeholder="Tu nombre" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
+        </div>
       </div>
     </div>
 
@@ -2709,5 +2728,6 @@
 
 
 <script src="/main.js"></script>
+<script type="module" src="/src/auth.js"></script>
 </body>
 </html>
