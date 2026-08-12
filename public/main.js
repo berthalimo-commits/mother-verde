@@ -565,6 +565,7 @@ const translations = {
     gtSeguridadDesc:'Profundización científica completa — estudios adicionales, mecanismos y contexto extendido — disponible con Premium.',
     gtDiagTeaserTitle:'Viste 2 de 11', gtDiagTeaserDesc:'Desbloquea las 9 fichas restantes con Premium.',
     gtPapersTeaserTitle:'Viste 1 de 26', gtPapersTeaserDesc:'Desbloquea la biblioteca completa de papers con Premium.',
+    legalTeaserVisto:'Viste', legalTeaserDe:'de', legalTeaserDesbloquea:'Desbloquea los 50 países con Premium.',
     gtCannaTeaserTitle:'Viste 2 de 6', gtCannaTeaserDesc:'Desbloquea los 4 cannabinoides restantes con Premium.',
     gtTerpTeaserTitle:'Viste 2 de 8', gtTerpTeaserDesc:'Desbloquea los 6 perfiles restantes con Premium.',
     gtFlavTeaserTitle:'Viste 2 de 5', gtFlavTeaserDesc:'Desbloquea los 5 perfiles de flavonoides con Premium.',
@@ -659,7 +660,7 @@ const translations = {
     ob1Title:'Bienvenida a Mother Verde', ob1Body:'El codex global del cannabis — cultivo, elaboración, marco legal por país, y la ciencia detrás de todo, en un solo lugar.',
     ob2Title:'Así está organizada', ob2Body:'Cultivo, Elaboración, Legal & Viajero y Ciencia son los 4 mundos principales. Variedades, Calculadoras y tu Bitácora son herramientas que puedes usar todos los días.',
     ob3Title:'Antes de empezar', ob3Body:'Toca la lupa (o Ctrl+K) para buscar cualquier cosa al instante. Cada zona tiene una probadita gratis — Premium desbloquea todo por $19.99/año, con actualizaciones de contenido cada seis meses.',
-    ob4Title:'Hay más de lo que ves a primera vista', ob4Body:'Buscadores reales de médicos (12 países), veterinarios (8) y universidades (7) que estudian cannabis. El mapa legal cubre 50 países. Y toda la sección de Seguridad —interacciones con medicamentos, embarazo, mascotas, deporte, salud mental— es gratis siempre, sin importar tu plan.',
+    ob4Title:'Hay más de lo que ves a primera vista', ob4Body:'Buscadores reales de médicos (12 países), veterinarios (8) y universidades (7) que estudian cannabis. El mapa legal cubre 50 países. Y la sección de Seguridad —interacciones con medicamentos, embarazo, mascotas, deporte, salud mental— tiene una buena parte gratis siempre; el resto se desbloquea con Premium.',
     cmSecSistemas:'Sistemas de cultivo', cm01h4:'Indoor', cm01sci:'Control ambiental total', cm01desc:'Control total de luz, temperatura y humedad. Mayor costo energético, mayor precisión y rendimiento por m².', cm01src:'Fuente: extensión agrícola, Univ. de Cornell',
     cm02h4:'Outdoor', cm02sci:'A cielo abierto', cm02desc:'Depende del clima estacional y la luz solar directa. Menor costo, plantas más grandes, un ciclo por año en climas templados.', cm02src:'Fuente: guía de cultivo, USDA',
     cm03h4:'Invernadero', cm03sci:'Light deprivation', cm03desc:'Combina luz solar con control parcial: mantas de oscurecimiento para inducir floración fuera de temporada. Reduce el costo frente al indoor puro.', cm03src:'Fuente: Wageningen University &amp; Research',
@@ -755,7 +756,7 @@ const translations = {
     gnSecLandrace:'Genética por continente: las landraces', gnLandraceIntro:'Antes de que la industria moderna mezclara genéticas hasta perder el rastro, cada landrace se adaptó durante siglos a su región específica — clima, altitud, suelo. Son el origen real de casi todo lo que hoy se cultiva, y llevan el nombre de su lugar de origen, no de un efecto prometido — el mismo principio detrás de lo que ya viste con la Dra. Vergara.',
     gnL1sci:'Afganistán, Pakistán', gnL1desc:'Adaptada a las montañas Hindu Kush — planta compacta y resinosa, protección natural contra frío y sol. Base genética de gran parte del hachís tradicional de la región.',
     gnL2sci:'Durban, Sudáfrica', gnL2desc:'De las sativas puras de floración más rápida que existen (8–9 semanas), inusual para su tipo. Perfil dulce y anisado, rico en terpinoleno.',
-    gnL3sci:'Malaui', gnL3desc:'Planta alta de tierras altas africanas, flores doradas. Una de las pocas landraces con licencia de cultivo formal hoy (ver <a onclick="goToCountry(&#39;Malaui&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600;">c.name===&#39;Malaui&#39;))&quot; style=&quot;color:var(--teal); cursor:pointer; font-weight:600;&quot;>Legal → Malaui</a>).',
+    gnL3sci:'Malaui', gnL3desc:'Planta alta de tierras altas africanas, flores doradas. Una de las pocas landraces con licencia de cultivo formal hoy (ver <a onclick="goToCountry(&#39;Malaui&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600;">Legal → Malaui</a>).',
     gnL4sci:'Acapulco, México', gnL4desc:'Sativa pura de reflejos dorados, cada vez más difícil de encontrar en su forma original por décadas de cruces.',
     gnL5sci:'Santa Marta, Colombia', gnL5desc:'Prima cercana del Acapulco Gold, mismo reflejo dorado característico, originaria de la Sierra Nevada de Santa Marta.',
     gnL6sci:'Tailandia', gnL6desc:'Sativa alta de floración larga, popularizada en Occidente por soldados estadounidenses estacionados en el sudeste asiático.',
@@ -1224,7 +1225,10 @@ const translations = {
     authErrGeneric:'Algo salió mal. Intenta de nuevo.', authErrInvalidCredentials:'Correo o contraseña incorrectos.',
     authErrEmailTaken:'Ese correo ya tiene una cuenta — intenta iniciar sesión.', authErrWeakPassword:'La contraseña debe tener al menos 8 caracteres.',
     authErrInvalidEmail:'Ese correo no es válido.', authSignupSuccess:'¡Cuenta creada! Ya iniciaste sesión.',
-    authSignupCheckEmail:'¡Casi listo! Revisa tu correo para confirmar la cuenta.'},
+    authSignupCheckEmail:'¡Casi listo! Revisa tu correo para confirmar la cuenta.',
+    adSlotText:'Espacio publicitario disponible', adInquiryTitle:'Anunciar en Mother Verde', adInquiryIntro:'Cuéntanos sobre tu marca o negocio — revisamos cada solicitud manualmente antes de aprobarla.',
+    adInquiryNombreLabel:'Nombre', adInquiryEmpresaLabel:'Empresa', adInquiryCorreoLabel:'Correo', adInquiryMensajeLabel:'Mensaje', adInquirySubmitBtn:'Enviar',
+    adInquiryEnviando:'Enviando…', adInquiryOk:'✓ Recibido — te contactaremos pronto.', adInquiryError:'No se pudo enviar. Intenta de nuevo.'},
   en:{brandSub:'Global codex · medical &amp; recreational cannabis', navHome:'Home', navCultivo:'Growing', navElaboracion:'Making', navLegal:'Legal', navCiencia:'Science',
     gateUnlockBtn:'Unlock with Premium',
     gtDliTitle:'DLI Calculator', gtDliDesc:'The daily light integral is a Premium tool.',
@@ -1346,7 +1350,7 @@ const translations = {
     ob1Title:'Welcome to Mother Verde', ob1Body:'The global cannabis codex — growing, making, legal status by country, and the science behind it all, in one place.',
     ob2Title:'How it is organized', ob2Body:'Growing, Making, Legal & Travel, and Science are the 4 main worlds. Varieties, Calculators and your Grow journal are tools you can use every day.',
     ob3Title:'Before you start', ob3Body:'Tap the magnifying glass (or Ctrl+K) to search anything instantly. Every zone has a free taste — Premium unlocks everything for $19.99/year, with content updates every six months.',
-    ob4Title:'There\u2019s more than meets the eye', ob4Body:'Real finders for doctors (12 countries), veterinarians (8), and universities (7) studying cannabis. The legal map covers 50 countries. And the entire Safety section — drug interactions, pregnancy, pets, sports, mental health — is always free, no matter your plan.',
+    ob4Title:'There\u2019s more than meets the eye', ob4Body:'Real finders for doctors (12 countries), veterinarians (8), and universities (7) studying cannabis. The legal map covers 50 countries. And the Safety section — drug interactions, pregnancy, pets, sports, mental health — has a solid free portion always available; the rest unlocks with Premium.',
     cmSecSistemas:'Growing systems', cm01h4:'Indoor', cm01sci:'Full environmental control', cm01desc:'Full control of light, temperature and humidity. Higher energy cost, greater precision and yield per m².', cm01src:'Source: agricultural extension, Cornell Univ.',
     cm02h4:'Outdoor', cm02sci:'Open sky', cm02desc:'Depends on seasonal climate and direct sunlight. Lower cost, bigger plants, one cycle per year in temperate climates.', cm02src:'Source: growing guide, USDA',
     cm03h4:'Greenhouse', cm03sci:'Light deprivation', cm03desc:'Combines sunlight with partial control: blackout tarps to induce off-season flowering. Cheaper than pure indoor.', cm03src:'Source: Wageningen University &amp; Research',
@@ -1911,7 +1915,10 @@ const translations = {
     authErrGeneric:'Something went wrong. Try again.', authErrInvalidCredentials:'Incorrect email or password.',
     authErrEmailTaken:'That email already has an account — try logging in.', authErrWeakPassword:'Password must be at least 8 characters.',
     authErrInvalidEmail:"That email isn't valid.", authSignupSuccess:'Account created! You are signed in.',
-    authSignupCheckEmail:'Almost done! Check your email to confirm your account.'},
+    authSignupCheckEmail:'Almost done! Check your email to confirm your account.',
+    adSlotText:'Advertising space available', adInquiryTitle:'Advertise on Mother Verde', adInquiryIntro:'Tell us about your brand or business — we review every request manually before approving it.',
+    adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Company', adInquiryCorreoLabel:'Email', adInquiryMensajeLabel:'Message', adInquirySubmitBtn:'Send',
+    adInquiryEnviando:'Sending…', adInquiryOk:'✓ Received — we’ll be in touch soon.', adInquiryError:'Could not send. Please try again.'},
   de:{brandSub:'Globaler Codex · medizinisches &amp; Freizeit-Cannabis', navHome:'Start', navCultivo:'Anbau', navElaboracion:'Verarbeitung', navLegal:'Recht', navCiencia:'Wissenschaft',
     gateUnlockBtn:'Mit Premium freischalten',
     gtDliTitle:'DLI-Rechner', gtDliDesc:'Das tägliche Lichtintegral ist ein Premium-Werkzeug.',
@@ -2032,7 +2039,7 @@ const translations = {
     ob1Title:'Willkommen bei Mother Verde', ob1Body:'Der globale Cannabis-Codex — Anbau, Verarbeitung, Rechtsstatus je Land und die Wissenschaft dahinter, alles an einem Ort.',
     ob2Title:'So ist sie aufgebaut', ob2Body:'Anbau, Verarbeitung, Recht & Reisen und Wissenschaft sind die 4 Hauptwelten. Sorten, Rechner und dein Anbau-Tagebuch sind Werkzeuge, die du täglich nutzen kannst.',
     ob3Title:'Bevor es losgeht', ob3Body:'Tippe auf die Lupe (oder Strg+K), um sofort alles zu durchsuchen. Jeder Bereich hat eine kostenlose Kostprobe — Premium schaltet alles frei für 19,99 $/Jahr, mit Inhaltsaktualisierungen alle sechs Monate.',
-    ob4Title:'Es gibt mehr, als man auf den ersten Blick sieht', ob4Body:'Echte Suchfunktionen für Ärzte (12 Länder), Tierärzte (8) und Universitäten (7), die Cannabis erforschen. Die Rechtslandkarte deckt 50 Länder ab. Und der gesamte Bereich Sicherheit — Medikamentenwechselwirkungen, Schwangerschaft, Haustiere, Sport, psychische Gesundheit — ist immer kostenlos, unabhängig von deinem Plan.',
+    ob4Title:'Es gibt mehr, als man auf den ersten Blick sieht', ob4Body:'Echte Suchfunktionen für Ärzte (12 Länder), Tierärzte (8) und Universitäten (7), die Cannabis erforschen. Die Rechtslandkarte deckt 50 Länder ab. Und der Bereich Sicherheit — Medikamentenwechselwirkungen, Schwangerschaft, Haustiere, Sport, psychische Gesundheit — hat einen soliden, immer kostenlosen Teil; der Rest wird mit Premium freigeschaltet.',
     cmSecSistemas:'Anbausysteme', cm01h4:'Indoor', cm01sci:'Volle Umweltkontrolle', cm01desc:'Volle Kontrolle über Licht, Temperatur und Luftfeuchtigkeit. Höhere Energiekosten, mehr Präzision und Ertrag pro m².', cm01src:'Quelle: landwirtschaftliche Beratung, Cornell Univ.',
     cm02h4:'Outdoor', cm02sci:'Unter freiem Himmel', cm02desc:'Abhängig von saisonalem Klima und direktem Sonnenlicht. Geringere Kosten, größere Pflanzen, ein Zyklus pro Jahr in gemäßigtem Klima.', cm02src:'Quelle: Anbauleitfaden, USDA',
     cm03h4:'Gewächshaus', cm03sci:'Lichtausschluss', cm03desc:'Kombiniert Sonnenlicht mit teilweiser Kontrolle: Verdunkelungsplanen, um die Blüte außerhalb der Saison auszulösen. Günstiger als reines Indoor.', cm03src:'Quelle: Wageningen University &amp; Research',
@@ -2597,7 +2604,10 @@ const translations = {
     authErrGeneric:'Etwas ist schiefgelaufen. Versuch es erneut.', authErrInvalidCredentials:'Falsche E-Mail oder Passwort.',
     authErrEmailTaken:'Diese E-Mail hat bereits ein Konto — versuche dich anzumelden.', authErrWeakPassword:'Das Passwort muss mindestens 8 Zeichen haben.',
     authErrInvalidEmail:'Diese E-Mail ist ungültig.', authSignupSuccess:'Konto erstellt! Du bist angemeldet.',
-    authSignupCheckEmail:'Fast fertig! Bestätige dein Konto per E-Mail.'},
+    authSignupCheckEmail:'Fast fertig! Bestätige dein Konto per E-Mail.',
+    adSlotText:'Werbefläche verfügbar', adInquiryTitle:'Bei Mother Verde werben', adInquiryIntro:'Erzähl uns von deiner Marke oder deinem Unternehmen — wir prüfen jede Anfrage manuell, bevor wir sie freigeben.',
+    adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Unternehmen', adInquiryCorreoLabel:'E-Mail', adInquiryMensajeLabel:'Nachricht', adInquirySubmitBtn:'Senden',
+    adInquiryEnviando:'Wird gesendet…', adInquiryOk:'✓ Erhalten — wir melden uns bald.', adInquiryError:'Konnte nicht gesendet werden. Versuch es erneut.'},
   fr:{brandSub:'Codex mondial · cannabis médical &amp; récréatif', navHome:'Accueil', navCultivo:'Culture', navElaboracion:'Élaboration', navLegal:'Légal', navCiencia:'Science',
     gateUnlockBtn:'Débloquer avec Premium',
     gtDliTitle:'Calculateur de DLI', gtDliDesc:"L'intégrale de lumière quotidienne est un outil Premium.",
@@ -2718,7 +2728,7 @@ const translations = {
     ob1Title:'Bienvenue sur Mother Verde', ob1Body:"Le codex mondial du cannabis — culture, élaboration, statut légal par pays, et la science derrière tout ça, en un seul endroit.",
     ob2Title:"Comment c'est organisé", ob2Body:'Culture, Élaboration, Légal & Voyage et Science sont les 4 mondes principaux. Variétés, Calculateurs et ton Journal de culture sont des outils que tu peux utiliser tous les jours.',
     ob3Title:'Avant de commencer', ob3Body:"Touche la loupe (ou Ctrl+K) pour rechercher instantanément n'importe quoi. Chaque zone a un aperçu gratuit — Premium débloque tout pour 19,99 $/an, avec des mises à jour de contenu tous les six mois.",
-    ob4Title:'Il y a plus que ce que l\u2019on voit au premier regard', ob4Body:'De véritables outils de recherche pour médecins (12 pays), vétérinaires (8) et universités (7) qui étudient le cannabis. La carte légale couvre 50 pays. Et toute la section Sécurité — interactions médicamenteuses, grossesse, animaux de compagnie, sport, santé mentale — est toujours gratuite, quel que soit ton forfait.',
+    ob4Title:'Il y a plus que ce que l\u2019on voit au premier regard', ob4Body:'De véritables outils de recherche pour médecins (12 pays), vétérinaires (8) et universités (7) qui étudient le cannabis. La carte légale couvre 50 pays. Et toute la section Sécurité — interactions médicamenteuses, grossesse, animaux de compagnie, sport, santé mentale — a une bonne partie toujours gratuite ; le reste se débloque avec Premium.',
     cmSecSistemas:'Systèmes de culture', cm01h4:'Intérieur', cm01sci:'Contrôle environnemental total', cm01desc:"Contrôle total de la lumière, de la température et de l'humidité. Coût énergétique plus élevé, plus de précision et de rendement par m².", cm01src:'Source : vulgarisation agricole, Univ. Cornell',
     cm02h4:'Extérieur', cm02sci:'À ciel ouvert', cm02desc:'Dépend du climat saisonnier et de la lumière solaire directe. Coût moindre, plantes plus grandes, un cycle par an en climat tempéré.', cm02src:'Source : guide de culture, USDA',
     cm03h4:'Serre', cm03sci:'Light deprivation', cm03desc:"Combine la lumière solaire avec un contrôle partiel : bâches d'occultation pour induire une floraison hors saison. Moins cher que l'intérieur pur.", cm03src:'Source : Wageningen University &amp; Research',
@@ -3283,7 +3293,10 @@ const translations = {
     authErrGeneric:'Une erreur s’est produite. Réessaie.', authErrInvalidCredentials:'E-mail ou mot de passe incorrect.',
     authErrEmailTaken:'Cet e-mail a déjà un compte — essaie de te connecter.', authErrWeakPassword:'Le mot de passe doit contenir au moins 8 caractères.',
     authErrInvalidEmail:'Cet e-mail n’est pas valide.', authSignupSuccess:'Compte créé ! Tu es connecté(e).',
-    authSignupCheckEmail:'Presque terminé ! Vérifie ton e-mail pour confirmer ton compte.'}
+    authSignupCheckEmail:'Presque terminé ! Vérifie ton e-mail pour confirmer ton compte.',
+    adSlotText:'Espace publicitaire disponible', adInquiryTitle:'Faire de la publicité sur Mother Verde', adInquiryIntro:'Parle-nous de ta marque ou de ton entreprise — nous examinons chaque demande manuellement avant de l’approuver.',
+    adInquiryNombreLabel:'Nom', adInquiryEmpresaLabel:'Entreprise', adInquiryCorreoLabel:'E-mail', adInquiryMensajeLabel:'Message', adInquirySubmitBtn:'Envoyer',
+    adInquiryEnviando:'Envoi…', adInquiryOk:'✓ Reçu — on te recontacte bientôt.', adInquiryError:'Échec de l’envoi. Réessaie.'}
 };
 
 let currentLang = 'es';
@@ -3321,7 +3334,7 @@ function renderGrid(filter){
   if(!isPremium && filtered.length>3){
     const teaser = document.createElement('div');
     teaser.className = 'teaser-card';
-    teaser.innerHTML = `${LOCK_SVG}<h4>Viste 3 de ${filtered.length}</h4><p>Desbloquea los 190+ países con Premium.</p>`;
+    teaser.innerHTML = `${LOCK_SVG}<h4>${t('legalTeaserVisto')} 3 ${t('legalTeaserDe')} ${filtered.length}</h4><p>${t('legalTeaserDesbloquea')}</p>`;
     grid.appendChild(teaser);
   }
 }
@@ -3442,7 +3455,7 @@ window.setIsPremium = function(value){ isPremium = !!value; applyTier(); };
 const LOCK_SVG = '<svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>';
 
 // FILOSOFÍA DE CONTENIDO GRATIS VS. PREMIUM (decisión de producto, no accidente):
-// GRATIS a propósito: toda Seguridad (info de seguridad nunca se paga), Diagnóstico de plantas
+// GRATIS a propósito: la mayor parte de Seguridad (ver FULL_GATES para las subsecciones Premium), Diagnóstico de plantas
 // (emergencia = ayuda inmediata), Impacto ambiental (conciencia, no ventaja competitiva),
 // <a onclick="showSub(&#39;ciencia&#39;,&#39;papers&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600;">Ciencia → Papers</a>/Cannabinoides menores/Terpenos/Mitos (educación general, gancho de calidad),
 // Legal y Variedades (teaser de 3 gratis, resto Premium — ver renderGrid/renderCultivars).
@@ -3669,6 +3682,44 @@ applyTier();
 /* ===================== PREMIUM MODAL ===================== */
 function openPremium(){ document.getElementById('premiumModal').classList.add('active'); }
 function closePremium(){ document.getElementById('premiumModal').classList.remove('active'); }
+
+/* ===================== ESPACIO PUBLICITARIO (formulario de contacto) ===================== */
+function openAdInquiry(){ document.getElementById('adInquiryModal').classList.add('active'); }
+function closeAdInquiry(){ document.getElementById('adInquiryModal').classList.remove('active'); }
+document.getElementById('adInquiryForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('adInquirySubmitBtn');
+  const msgEl = document.getElementById('adInquiryMsg');
+  const honeypot = document.querySelector('#adInquiryForm input[name="_hp"]').value;
+  const payload = {
+    honeypot,
+    nombre: document.getElementById('adInquiryNombre').value.trim(),
+    empresa: document.getElementById('adInquiryEmpresa').value.trim(),
+    correo: document.getElementById('adInquiryCorreo').value.trim(),
+    mensaje: document.getElementById('adInquiryMensaje').value.trim(),
+    lang: currentLang
+  };
+  btn.disabled = true;
+  msgEl.style.color = 'var(--ink-soft)';
+  msgEl.textContent = t('adInquiryEnviando');
+  try{
+    const res = await fetch('/api/ad-inquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error('request failed');
+    msgEl.style.color = 'var(--moss-deep)';
+    msgEl.textContent = t('adInquiryOk');
+    document.getElementById('adInquiryForm').reset();
+    setTimeout(closeAdInquiry, 2500);
+  }catch(err){
+    msgEl.style.color = 'var(--clay)';
+    msgEl.textContent = t('adInquiryError');
+  }finally{
+    btn.disabled = false;
+  }
+});
 
 /* ===================== BÚSQUEDA GLOBAL ===================== */
 function buildSearchIndex(){

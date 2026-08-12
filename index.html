@@ -158,10 +158,10 @@
     </div>
 
     <div class="stat-row">
-      <div class="stat"><div class="n">190+</div><div class="l" data-i18n="statCountries">Países mapeados</div></div>
+      <div class="stat"><div class="n">50</div><div class="l" data-i18n="statCountries">Países mapeados</div></div>
       <div class="stat"><div class="n">6</div><div class="l" data-i18n="statMetodos">Métodos de cultivo</div></div>
       <div class="stat"><div class="n">80+</div><div class="l" data-i18n="statSources">Fuentes oficiales</div></div>
-      <div class="stat"><div class="n">1900–hoy</div><div class="l" data-i18n="statHistory">Cobertura histórica</div></div>
+      <div class="stat"><div class="n">12,000 años</div><div class="l" data-i18n="statHistory">Cobertura histórica</div></div>
     </div>
 
     <div class="module-grid">
@@ -223,7 +223,7 @@
       </g></svg>
     </div>
 
-    <div class="ad-slot" id="adHome"><span>●</span> Publicidad — se oculta con Premium</div>
+    <div class="ad-slot" id="adHome" onclick="openAdInquiry()" style="cursor:pointer;"><span>●</span> <span data-i18n="adSlotText">Espacio publicitario disponible</span></div>
   </section>
 
   <!-- ============ CULTIVO ============ -->
@@ -662,7 +662,7 @@
         <div class="specimen"><h4>Durban Poison</h4><div class="sci" data-i18n="gnL2sci">Durban, Sudáfrica</div>
           <p class="method-desc" data-i18n="gnL2desc">De las sativas puras de floración más rápida que existen (8–9 semanas), inusual para su tipo. Perfil dulce y anisado, rico en terpinoleno.</p></div>
         <div class="specimen"><h4>Malawi Gold</h4><div class="sci" data-i18n="gnL3sci">Malaui</div>
-          <p class="method-desc" data-i18n="gnL3desc">Planta alta de tierras altas africanas, flores doradas. Una de las pocas landraces con licencia de cultivo formal hoy (ver <a onclick="goToCountry(&#39;Malaui&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600;">c.name===&#39;Malaui&#39;))&quot; style=&quot;color:var(--teal); cursor:pointer; font-weight:600;&quot;>Legal → Malaui</a>).</p></div>
+          <p class="method-desc" data-i18n="gnL3desc">Planta alta de tierras altas africanas, flores doradas. Una de las pocas landraces con licencia de cultivo formal hoy (ver <a onclick="goToCountry(&#39;Malaui&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600;">Legal → Malaui</a>).</p></div>
         <div class="specimen"><h4>Acapulco Gold</h4><div class="sci" data-i18n="gnL4sci">Acapulco, México</div>
           <p class="method-desc" data-i18n="gnL4desc">Sativa pura de reflejos dorados, cada vez más difícil de encontrar en su forma original por décadas de cruces.</p></div>
         <div class="specimen"><h4>Colombian Gold</h4><div class="sci" data-i18n="gnL5sci">Santa Marta, Colombia</div>
@@ -2806,6 +2806,25 @@
   </div>
 
   <!-- ============ SEARCH MODAL ============ -->
+  <div class="premium-modal" id="adInquiryModal">
+    <div class="premium-sheet" style="max-width:460px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <div class="eyebrow" style="margin-bottom:0;" data-i18n="adInquiryTitle">Anunciar en Mother Verde</div>
+        <span onclick="closeAdInquiry()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
+      </div>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-bottom:18px;" data-i18n="adInquiryIntro">Cuéntanos sobre tu marca o negocio — revisamos cada solicitud manualmente antes de aprobarla.</p>
+      <form id="adInquiryForm" style="display:flex; flex-direction:column; gap:12px;">
+        <input type="text" name="_hp" style="position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryNombreLabel">Nombre</label><input type="text" id="adInquiryNombre" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryEmpresaLabel">Empresa</label><input type="text" id="adInquiryEmpresa" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryCorreoLabel">Correo</label><input type="email" id="adInquiryCorreo" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryMensajeLabel">Mensaje</label><textarea id="adInquiryMensaje" required style="width:100%; min-height:80px; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></textarea></div>
+        <button type="submit" class="btn btn-primary" id="adInquirySubmitBtn" data-i18n="adInquirySubmitBtn">Enviar</button>
+        <div id="adInquiryMsg" style="font-size:12.5px; min-height:16px;"></div>
+      </form>
+    </div>
+  </div>
+
   <div class="premium-modal" id="searchModal">
     <div class="premium-sheet" style="max-width:560px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -2831,7 +2850,7 @@
         <span style="width:64px; text-align:center;">Gratis</span>
         <span style="width:64px; text-align:center; color:var(--moss-deep); font-weight:700;">Premium</span>
       </div>
-      <div class="pm-row"><span class="feat">Explorador legal (190+ países)</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
+      <div class="pm-row"><span class="feat">Explorador legal (50 países)</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
       <div class="pm-row"><span class="feat">Diagnóstico de plagas</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
       <div class="pm-row"><span class="feat">Cultivo completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
       <div class="pm-row"><span class="feat">Elaboración completa</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
