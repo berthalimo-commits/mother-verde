@@ -641,6 +641,10 @@ const translations = {
     bitEyebrow:'Tu registro personal', bitTitle:'Bitácora de cultivo', bitSub:'Tus entradas se guardan de verdad entre sesiones — no se pierden al cerrar la app. Solo tú puedes verlas.', bitNewEntry:'Nueva entrada', bitFechaLabel:'Fecha', bitEtapaLabel:'Etapa', etapaGerm:'Germinación', etapaVeg:'Vegetativo', etapaFlo:'Floración', etapaCosecha:'Cosecha', etapaSecado:'Secado / curado', bitNotaPlaceholder:'Qué pasó hoy — riego, entrenamiento, algo que notaste...', bitSaveBtn:'Guardar entrada', bitHistorial:'Historial',
     bitPhLabel:'pH sustrato', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humedad (%)', bitAtajosLabel:'Atajos mientras registras:', bitAtajoVpd:'Calcular VPD →', bitAtajoDosis:'Calcular mezcla de nutrientes →',
     bitStatDias:'Días de ciclo', bitStatEntradas:'Entradas totales', bitStatEtapa:'Etapa actual', bitGraficoTitle:'pH y EC a lo largo del tiempo', bitGraficoVacio:'Registra pH o EC en al menos 2 entradas para ver el gráfico de tendencia aquí.',
+    bitAuthGateH3:'Inicia sesión para llevar tu bitácora', bitAuthGateP:'Tus entradas quedan guardadas en tu cuenta, privadas — solo tú puedes verlas. Necesitas iniciar sesión o crear una cuenta primero.', bitAuthGateBtn:'Ir a Cuenta',
+    bitPdfBtn:'Descargar PDF', bitPdfLockedMsg:'Descargar en PDF es una función Premium — desbloquéala',
+    bitErrSinNota:'Escribe una nota antes de guardar.', bitGuardadoOk:'✓ Guardado', bitErrGuardar:'No se pudo guardar — intenta de nuevo.',
+    bitSinFecha:'sin fecha', bitEliminar:'Eliminar', bitSinNotas:'(sin notas)', bitVacio:'Todavía no hay entradas — agrega la primera arriba.',
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
     cuentaEyebrow:'Tu cuenta', cuentaTitle:'Perfil', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaAlertasVer:'— ver →', cuentaOnboardLabel:'Ver el recorrido de bienvenida', cuentaNote:'Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.',
     cuentaPremiumActivo:'✓ Premium activo — acceso completo a las 10 zonas, sin publicidad, descargas ilimitadas.', cuentaGestionarBtn:'Gestionar suscripción', cuentaGestionarAlert:'En la app real, esto abriría la gestión de suscripción de Apple/Google.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', cuentaSuscribirBtn:'Obtener Premium — $19.99/año',
@@ -1323,6 +1327,10 @@ const translations = {
     bitEyebrow:'Your personal log', bitTitle:'Grow journal', bitSub:'Your entries are truly saved across sessions — they are not lost when you close the app. Only you can see them.', bitNewEntry:'New entry', bitFechaLabel:'Date', bitEtapaLabel:'Stage', etapaGerm:'Germination', etapaVeg:'Vegetative', etapaFlo:'Flowering', etapaCosecha:'Harvest', etapaSecado:'Drying / curing', bitNotaPlaceholder:'What happened today — watering, training, something you noticed...', bitSaveBtn:'Save entry', bitHistorial:'History',
     bitPhLabel:'Substrate pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidity (%)', bitAtajosLabel:'Shortcuts while logging:', bitAtajoVpd:'Calculate VPD →', bitAtajoDosis:'Calculate nutrient mix →',
     bitStatDias:'Days into cycle', bitStatEntradas:'Total entries', bitStatEtapa:'Current stage', bitGraficoTitle:'pH and EC over time', bitGraficoVacio:'Log pH or EC in at least 2 entries to see the trend chart here.',
+    bitAuthGateH3:'Log in to keep your grow journal', bitAuthGateP:'Your entries are saved to your account, private — only you can see them. You need to log in or create an account first.', bitAuthGateBtn:'Go to Account',
+    bitPdfBtn:'Download PDF', bitPdfLockedMsg:'PDF download is a Premium feature — unlock it',
+    bitErrSinNota:'Write a note before saving.', bitGuardadoOk:'✓ Saved', bitErrGuardar:'Could not save — try again.',
+    bitSinFecha:'no date', bitEliminar:'Delete', bitSinNotas:'(no notes)', bitVacio:'No entries yet — add the first one above.',
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
     cuentaEyebrow:'Your account', cuentaTitle:'Profile', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaAlertasVer:'— view →', cuentaOnboardLabel:'View the welcome walkthrough', cuentaNote:'Your account and data are saved for real and securely. The subscription status above comes straight from your account.',
     cuentaPremiumActivo:'✓ Premium active — full access to all 10 zones, no ads, unlimited downloads.', cuentaGestionarBtn:'Manage subscription', cuentaGestionarAlert:'In the real app, this would open Apple/Google subscription management.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', cuentaSuscribirBtn:'Get Premium — $19.99/year',
@@ -2005,6 +2013,10 @@ const translations = {
     bitEyebrow:'Dein persönliches Protokoll', bitTitle:'Anbau-Tagebuch', bitSub:'Deine Einträge werden wirklich sitzungsübergreifend gespeichert — sie gehen beim Schließen der App nicht verloren. Nur du kannst sie sehen.', bitNewEntry:'Neuer Eintrag', bitFechaLabel:'Datum', bitEtapaLabel:'Phase', etapaGerm:'Keimung', etapaVeg:'Vegetativ', etapaFlo:'Blüte', etapaCosecha:'Ernte', etapaSecado:'Trocknung / Reifung', bitNotaPlaceholder:'Was heute passiert ist — Bewässerung, Training, etwas, das dir aufgefallen ist...', bitSaveBtn:'Eintrag speichern', bitHistorial:'Verlauf',
     bitPhLabel:'Substrat-pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Luftfeuchtigkeit (%)', bitAtajosLabel:'Abkürzungen beim Protokollieren:', bitAtajoVpd:'VPD berechnen →', bitAtajoDosis:'Nährstoffmischung berechnen →',
     bitStatDias:'Tage im Zyklus', bitStatEntradas:'Einträge insgesamt', bitStatEtapa:'Aktuelle Phase', bitGraficoTitle:'pH und EC im Zeitverlauf', bitGraficoVacio:'Erfasse pH oder EC in mindestens 2 Einträgen, um hier das Trenddiagramm zu sehen.',
+    bitAuthGateH3:'Melde dich an, um dein Anbau-Tagebuch zu führen', bitAuthGateP:'Deine Einträge werden privat in deinem Konto gespeichert — nur du kannst sie sehen. Du musst dich zuerst anmelden oder ein Konto erstellen.', bitAuthGateBtn:'Zum Konto',
+    bitPdfBtn:'PDF herunterladen', bitPdfLockedMsg:'PDF-Download ist eine Premium-Funktion — jetzt freischalten',
+    bitErrSinNota:'Schreibe eine Notiz, bevor du speicherst.', bitGuardadoOk:'✓ Gespeichert', bitErrGuardar:'Konnte nicht gespeichert werden — versuch es erneut.',
+    bitSinFecha:'kein Datum', bitEliminar:'Löschen', bitSinNotas:'(keine Notizen)', bitVacio:'Noch keine Einträge — füge oben den ersten hinzu.',
     bitFotoLabel:'Foto (optional)', bitFotoNota:'Wird automatisch komprimiert, um Speicherplatz zu sparen. Bei vielen Einträgen mit Foto kann der Speicherplatz des Prototyps voll werden — in der Produktion würde dies auf einem echten Server ohne dieses Limit liegen.',
     cuentaEyebrow:'Dein Konto', cuentaTitle:'Profil', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaAlertasVer:'— ansehen →', cuentaOnboardLabel:'Begrüßungstour erneut ansehen', cuentaNote:'Dein Konto und deine Daten werden echt und sicher gespeichert. Der Abo-Status oben kommt direkt aus deinem Konto.',
     cuentaPremiumActivo:'✓ Premium aktiv — voller Zugriff auf alle 10 Bereiche, werbefrei, unbegrenzte Downloads.', cuentaGestionarBtn:'Abo verwalten', cuentaGestionarAlert:'In der echten App würde dies die Abo-Verwaltung von Apple/Google öffnen.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', cuentaSuscribirBtn:'Premium holen — 19,99 $/Jahr',
@@ -2685,7 +2697,11 @@ const translations = {
     calcNote:"Ces calculateurs sont des outils de référence éducatifs — ils ne remplacent pas un test de laboratoire certifié pour l'étiquetage réel d'un produit.",
     bitEyebrow:'Ton registre personnel', bitTitle:'Journal de culture', bitSub:"Tes entrées sont vraiment sauvegardées entre les sessions — elles ne se perdent pas en fermant l'app. Toi seul peux les voir.", bitNewEntry:'Nouvelle entrée', bitFechaLabel:'Date', bitEtapaLabel:'Stade', etapaGerm:'Germination', etapaVeg:'Végétatif', etapaFlo:'Floraison', etapaCosecha:'Récolte', etapaSecado:'Séchage / affinage', bitNotaPlaceholder:"Ce qui s'est passé aujourd'hui — arrosage, entraînement, quelque chose que tu as remarqué...", bitSaveBtn:"Enregistrer l'entrée", bitHistorial:'Historique',
     bitPhLabel:'pH du substrat', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidité (%)', bitAtajosLabel:"Raccourcis pendant l'enregistrement :", bitAtajoVpd:'Calculer le VPD →', bitAtajoDosis:'Calculer le mélange de nutriments →',
-    bitStatDias:'Jours de cycle', bitStatEntradas:'Entrées totales', bitStatEtapa:'Stade actuel', bitGraficoTitle:'pH et EC dans le temps', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
+    bitStatDias:'Jours de cycle', bitStatEntradas:'Entrées totales', bitStatEtapa:'Stade actuel', bitGraficoTitle:'pH et EC dans le temps',
+    bitAuthGateH3:'Connecte-toi pour tenir ton journal de culture', bitAuthGateP:'Tes entrées sont enregistrées dans ton compte, en privé — toi seul(e) peux les voir. Tu dois d’abord te connecter ou créer un compte.', bitAuthGateBtn:'Aller à Compte',
+    bitPdfBtn:'Télécharger le PDF', bitPdfLockedMsg:'Le téléchargement PDF est une fonctionnalité Premium — débloque-la',
+    bitErrSinNota:'Écris une note avant d’enregistrer.', bitGuardadoOk:'✓ Enregistré', bitErrGuardar:'Impossible d’enregistrer — réessaie.',
+    bitSinFecha:'sans date', bitEliminar:'Supprimer', bitSinNotas:'(sans notes)', bitVacio:'Pas encore d’entrées — ajoute la première ci-dessus.', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
     bitFotoLabel:'Photo (facultatif)', bitFotoNota:'Automatiquement compressée pour économiser de l\u2019espace. Avec de nombreuses entrées avec photo, l\u2019espace de stockage du prototype peut se remplir — en production, cela vivrait sur un vrai serveur, sans cette limite.',
     cuentaEyebrow:'Ton compte', cuentaTitle:'Profil', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaAlertasVer:'— voir →', cuentaOnboardLabel:'Revoir la visite de bienvenue', cuentaNote:'Ton compte et tes données sont enregistrés pour de vrai, en toute sécurité. Le statut d’abonnement ci-dessus vient directement de ton compte.',
     cuentaPremiumActivo:'✓ Premium actif — accès complet aux 10 zones, sans publicité, téléchargements illimités.', cuentaGestionarBtn:"Gérer l'abonnement", cuentaGestionarAlert:"Dans l'app réelle, ceci ouvrirait la gestion d'abonnement d'Apple/Google.", cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', cuentaSuscribirBtn:'Obtenir Premium — 19,99 $/an',
@@ -3267,6 +3283,7 @@ const translations = {
 };
 
 let currentLang = 'es';
+window.getCurrentLang = function(){ return currentLang; };
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -3631,6 +3648,7 @@ function applyTier(){
   applySourceLinks();
   renderCultivars(document.querySelector('.chip[data-cf].on')?.dataset.cf || 'all');
   if(document.getElementById('cuenta')?.classList.contains('active')) renderCuenta();
+  renderBitacoraGate();
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
 }
 
@@ -4337,19 +4355,42 @@ document.getElementById('breedP1')?.addEventListener('change', computeCross);
 document.getElementById('breedP2')?.addEventListener('change', computeCross);
 if(document.getElementById('breedP1')) computeCross();
 
-/* ===================== BITÁCORA DE CULTIVO (persistente) ===================== */
+/* ===================== BITÁCORA DE CULTIVO (Supabase, por cuenta) ===================== */
+let lastBitEntries = [];
+window.getBitEntries = function(){ return lastBitEntries; };
+function renderBitacoraGate(){
+  const gateEl = document.getElementById('bitAuthGate');
+  const loggedInEl = document.getElementById('bitLoggedInOnly');
+  if(!gateEl || !loggedInEl) return;
+  const user = window.mvCurrentUser;
+  gateEl.style.display = user ? 'none' : '';
+  loggedInEl.style.display = user ? '' : 'none';
+  const pdfBtn = document.getElementById('bitPdfBtn');
+  const pdfLocked = document.getElementById('bitPdfLocked');
+  if(pdfBtn) pdfBtn.style.display = (user && isPremium) ? 'inline-block' : 'none';
+  if(pdfLocked) pdfLocked.style.display = (user && !isPremium) ? 'inline-flex' : 'none';
+}
+window.renderBitacoraGate = renderBitacoraGate;
 async function loadBitEntries(){
   const listEl = document.getElementById('bitList');
   const resumenEl = document.getElementById('bitResumen');
   const graficoEl = document.getElementById('bitGrafico');
   if(!listEl) return;
+  renderBitacoraGate();
+  if(!window.mvCurrentUser) return;
   let entries = [];
   try{
-    const res = await window.storage.get('bitacora-entries', false);
-    if(res && res.value) entries = JSON.parse(res.value);
+    const { data, error } = await window.mvSupabase
+      .from('bitacora_entries')
+      .select('*')
+      .eq('user_id', window.mvCurrentUser.id)
+      .order('entry_date', { ascending: false });
+    if(error) throw error;
+    entries = (data || []).map(r => ({ id: r.id, fecha: r.entry_date, etapa: r.etapa, nota: r.nota, ph: r.ph, ec: r.ec, temp: r.temp, hum: r.hum, foto: r.foto_url }));
   }catch(e){ entries = []; }
+  lastBitEntries = entries;
   if(entries.length===0){
-    listEl.innerHTML = '<p class="bit-empty">Todavía no hay entradas — agrega la primera arriba.</p>';
+    listEl.innerHTML = `<p class="bit-empty">${t('bitVacio')}</p>`;
     if(resumenEl) resumenEl.innerHTML = '';
     if(graficoEl) graficoEl.innerHTML = '';
     return;
@@ -4419,12 +4460,12 @@ async function loadBitEntries(){
     return `
     <div class="bit-entry">
       <div class="bit-entry-head">
-        <span class="bit-entry-meta">${e.fecha || 'sin fecha'} · ${e.etapa}</span>
-        <span class="bit-entry-del" onclick="deleteBitEntry('${e.id}')">Eliminar</span>
+        <span class="bit-entry-meta">${e.fecha || t('bitSinFecha')} · ${e.etapa}</span>
+        <span class="bit-entry-del" onclick="deleteBitEntry('${e.id}')">${t('bitEliminar')}</span>
       </div>
       ${e.foto ? `<img src="${e.foto}" onclick="window.open('${e.foto}','_blank')" style="max-width:120px; border-radius:6px; border:1px solid var(--line-strong); display:block; margin-bottom:8px; cursor:pointer;">` : ''}
       ${datos.length ? `<div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--teal); margin-bottom:4px;">${datos.join(' · ')}</div>` : ''}
-      <div style="font-size:13.5px; color:var(--ink-soft);">${e.nota || '(sin notas)'}</div>
+      <div style="font-size:13.5px; color:var(--ink-soft);">${e.nota || t('bitSinNotas')}</div>
     </div>`;}).join('');
 }
 let currentBitFoto = null;
@@ -4451,6 +4492,7 @@ function handleBitFoto(input){
   reader.readAsDataURL(file);
 }
 async function addBitEntry(){
+  if(!window.mvCurrentUser) return;
   const fecha = document.getElementById('bitFecha').value;
   const etapa = document.getElementById('bitEtapa').value;
   const nota = document.getElementById('bitNota').value.trim();
@@ -4459,16 +4501,17 @@ async function addBitEntry(){
   const temp = document.getElementById('bitTemp').value;
   const hum = document.getElementById('bitHum').value;
   const statusEl = document.getElementById('bitStatus');
-  if(!nota){ statusEl.textContent = 'Escribe una nota antes de guardar.'; return; }
-  let entries = [];
+  if(!nota){ statusEl.textContent = t('bitErrSinNota'); return; }
   try{
-    const res = await window.storage.get('bitacora-entries', false);
-    if(res && res.value) entries = JSON.parse(res.value);
-  }catch(e){ entries = []; }
-  entries.push({ id: Date.now().toString(), fecha, etapa, nota, ph, ec, temp, hum, foto: currentBitFoto });
-  try{
-    await window.storage.set('bitacora-entries', JSON.stringify(entries), false);
-    statusEl.textContent = '✓ Guardado';
+    const { error } = await window.mvSupabase.from('bitacora_entries').insert({
+      user_id: window.mvCurrentUser.id,
+      entry_date: fecha || null,
+      etapa, nota,
+      ph: ph || null, ec: ec || null, temp: temp || null, hum: hum || null,
+      foto_url: currentBitFoto
+    });
+    if(error) throw error;
+    statusEl.textContent = t('bitGuardadoOk');
     document.getElementById('bitNota').value = '';
     document.getElementById('bitPh').value = '';
     document.getElementById('bitEc').value = '';
@@ -4478,17 +4521,13 @@ async function addBitEntry(){
     document.getElementById('bitFotoPreview').innerHTML = '';
     currentBitFoto = null;
     loadBitEntries();
-  }catch(e){ statusEl.textContent = 'No se pudo guardar — intenta de nuevo.'; }
+  }catch(e){ statusEl.textContent = t('bitErrGuardar'); }
 }
 async function deleteBitEntry(id){
-  let entries = [];
+  if(!window.mvCurrentUser) return;
   try{
-    const res = await window.storage.get('bitacora-entries', false);
-    if(res && res.value) entries = JSON.parse(res.value);
-  }catch(e){ entries = []; }
-  entries = entries.filter(e=>e.id!==id);
-  try{
-    await window.storage.set('bitacora-entries', JSON.stringify(entries), false);
+    const { error } = await window.mvSupabase.from('bitacora_entries').delete().eq('id', id);
+    if(error) throw error;
     loadBitEntries();
   }catch(e){}
 }

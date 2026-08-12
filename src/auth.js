@@ -27,6 +27,8 @@ async function refreshAuthState(){
   window.mvCurrentProfile = window.mvCurrentUser ? await loadProfile(window.mvCurrentUser.id) : null;
   window.setIsPremium?.(computeIsPremium(window.mvCurrentProfile));
   window.renderCuenta?.();
+  window.renderBitacoraGate?.();
+  if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
 }
 
 supabase.auth.onAuthStateChange(() => { refreshAuthState(); });
