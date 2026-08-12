@@ -7,6 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#324A2C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mother Verde">
 </head>
 <body>
 <div class="premium-modal active" id="ageGateModal" style="z-index:500;">
@@ -2851,5 +2858,10 @@
 <script src="/main.js"></script>
 <script type="module" src="/src/auth.js"></script>
 <script type="module" src="/src/pdf.js"></script>
+<script>
+  if('serviceWorker' in navigator && location.hostname !== 'localhost'){
+    window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'));
+  }
+</script>
 </body>
 </html>
