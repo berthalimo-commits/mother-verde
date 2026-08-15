@@ -567,6 +567,12 @@ const translations = {
     ilPpfH4:'PPF', ilPpfSci:'Flujo de Fotones Fotosintéticos', ilPpfDesc:'La cantidad total de fotones PAR que emite una lámpara por segundo (μmol/s) — la cifra real de potencia lumínica de un equipo, más útil que los vatios nominales de la caja.',
     ilPpeH4:'PPE', ilPpeSci:'Eficiencia Fotosintética', ilPpeDesc:'Cuántos μmol de luz produce el equipo por cada vatio consumido (μmol/J) — los LED modernos alcanzan 2.6–3.1 μmol/J, muy por encima de tecnologías anteriores.',
     ilCalcH3:'Un ejemplo trabajado: cuánta potencia real necesitas', ilCalcP:'Para cubrir 1m² a 800 μmol/m²/s de PPFD necesitas un PPF total de 800 μmol/s. Dividiendo por la PPE del equipo: con un LED de 2.7 μmol/J, se necesitan <b>~296W reales</b>; con un HPS de 1.3 μmol/J, se necesitan <b>~615W reales</b> — más del doble de consumo eléctrico para exactamente el mismo resultado de luz sobre la planta.',
+    ilLuzCalcH3:'Calculadora: potencia de luz necesaria', ilLuzCalcP:'Calcula el PPF total, la potencia real en vatios y el DLI resultante según tu espacio, tu objetivo de PPFD y el tipo de luz que uses.',
+    ilLuzAreaLabel:'Área de cultivo (m²)', ilLuzPpfdLabel:'PPFD objetivo (μmol/m²/s)', ilLuzTipoLabel:'Tipo de luz',
+    ilLuzOptLed:'LED (2.7 μmol/J)', ilLuzOptHps:'HPS (1.3 μmol/J)', ilLuzOptCmh:'CMH (~1.8 μmol/J)',
+    ilLuzHorasLabel:'Horas de luz/día',
+    ilLuzSugerencia:'<b>Sugerencia según etapa:</b> 300–600 vegetativo · 600–1,000 floración · 1,000–1,500+ con CO2 suplementario.',
+    ilLuzResPpf:'PPF total necesario', ilLuzResWatts:'Potencia real requerida', ilLuzResDli:'DLI resultante',
     ilTermicoNote:'Gestión térmica, un detalle que casi nadie ajusta: las salas con LED necesitan una temperatura ambiente más alta (26–29°C) que las salas con HPS (23–25°C) para lograr el mismo resultado en la planta — el LED emite mucha menos radiación infrarroja directa sobre las hojas, lo que reduce la tasa de transpiración si no se compensa con más calor ambiental.',
     ilSecColor:'Efecto según el color de la luz',
     ilAzulH4:'Azul', ilAzulSci:'Clave en vegetativo', ilAzulDesc:'Produce tallos gruesos e internodos cortos, evitando el estiramiento excesivo de la planta — por eso domina las recetas de espectro en vegetativo.',
@@ -1313,6 +1319,12 @@ const translations = {
     ilPpfH4:'PPF', ilPpfSci:'Photosynthetic Photon Flux', ilPpfDesc:'The total amount of PAR photons a fixture emits per second (μmol/s) — the real measure of a fixture’s light output, more useful than the nominal wattage on the box.',
     ilPpeH4:'PPE', ilPpeSci:'Photosynthetic Photon Efficacy', ilPpeDesc:'How many μmol of light the fixture produces per watt consumed (μmol/J) — modern LEDs reach 2.6–3.1 μmol/J, well above older technologies.',
     ilCalcH3:'A worked example: how much real power you actually need', ilCalcP:'To cover 1m² at 800 μmol/m²/s of PPFD you need a total PPF of 800 μmol/s. Dividing by the fixture’s PPE: with an LED at 2.7 μmol/J, you need <b>~296W real draw</b>; with an HPS at 1.3 μmol/J, you need <b>~615W real draw</b> — more than double the electricity for the exact same amount of light on the plant.',
+    ilLuzCalcH3:'Calculator: light power needed', ilLuzCalcP:'Calculate the total PPF, the real wattage, and the resulting DLI based on your space, your PPFD target, and the type of light you use.',
+    ilLuzAreaLabel:'Grow area (m²)', ilLuzPpfdLabel:'Target PPFD (μmol/m²/s)', ilLuzTipoLabel:'Light type',
+    ilLuzOptLed:'LED (2.7 μmol/J)', ilLuzOptHps:'HPS (1.3 μmol/J)', ilLuzOptCmh:'CMH (~1.8 μmol/J)',
+    ilLuzHorasLabel:'Light hours/day',
+    ilLuzSugerencia:'<b>Suggestion by stage:</b> 300–600 vegetative · 600–1,000 flowering · 1,000–1,500+ with supplemental CO2.',
+    ilLuzResPpf:'Total PPF needed', ilLuzResWatts:'Real power required', ilLuzResDli:'Resulting DLI',
     ilTermicoNote:'Thermal management, a detail almost no one adjusts for: LED rooms need a higher ambient temperature (26–29°C) than HPS rooms (23–25°C) to achieve the same result in the plant — LEDs emit far less direct infrared radiation onto the leaves, which lowers the transpiration rate unless compensated with more ambient heat.',
     ilSecColor:'Effect by light color',
     ilAzulH4:'Blue', ilAzulSci:'Key in vegetative', ilAzulDesc:'Produces thick stems and short internodes, preventing excessive plant stretch — which is why it dominates vegetative spectrum recipes.',
@@ -2057,6 +2069,12 @@ const translations = {
     ilPpfH4:'PPF', ilPpfSci:'Photosynthetischer Photonenfluss', ilPpfDesc:'Die Gesamtmenge an PAR-Photonen, die eine Leuchte pro Sekunde abgibt (μmol/s) — der eigentliche Maßstab für die Lichtleistung eines Geräts, aussagekräftiger als die nominale Wattzahl auf der Verpackung.',
     ilPpeH4:'PPE', ilPpeSci:'Photosynthetische Photoneneffizienz', ilPpeDesc:'Wie viele μmol Licht das Gerät pro verbrauchtem Watt erzeugt (μmol/J) — moderne LEDs erreichen 2,6–3,1 μmol/J, weit über älteren Technologien.',
     ilCalcH3:'Ein Rechenbeispiel: wie viel reale Leistung wirklich nötig ist', ilCalcP:'Um 1m² mit 800 μmol/m²/s PPFD abzudecken, braucht man einen PPF von insgesamt 800 μmol/s. Geteilt durch die PPE des Geräts: bei einer LED mit 2,7 μmol/J werden <b>~296W reale Leistung</b> benötigt; bei einer HPS mit 1,3 μmol/J werden <b>~615W reale Leistung</b> benötigt — mehr als das Doppelte an Stromverbrauch für exakt dieselbe Lichtmenge auf der Pflanze.',
+    ilLuzCalcH3:'Rechner: benötigte Lichtleistung', ilLuzCalcP:'Berechne den gesamten PPF, die reale Wattzahl und den daraus resultierenden DLI anhand deiner Fläche, deines PPFD-Ziels und des verwendeten Lichttyps.',
+    ilLuzAreaLabel:'Anbaufläche (m²)', ilLuzPpfdLabel:'Ziel-PPFD (μmol/m²/s)', ilLuzTipoLabel:'Lichttyp',
+    ilLuzOptLed:'LED (2,7 μmol/J)', ilLuzOptHps:'HPS (1,3 μmol/J)', ilLuzOptCmh:'CMH (~1,8 μmol/J)',
+    ilLuzHorasLabel:'Lichtstunden/Tag',
+    ilLuzSugerencia:'<b>Empfehlung nach Phase:</b> 300–600 vegetativ · 600–1.000 Blüte · 1.000–1.500+ mit zusätzlichem CO2.',
+    ilLuzResPpf:'Benötigter Gesamt-PPF', ilLuzResWatts:'Benötigte reale Leistung', ilLuzResDli:'Resultierender DLI',
     ilTermicoNote:'Thermomanagement, ein Detail, das kaum jemand anpasst: LED-Räume brauchen eine höhere Umgebungstemperatur (26–29°C) als HPS-Räume (23–25°C), um das gleiche Ergebnis an der Pflanze zu erzielen — LEDs strahlen viel weniger direkte Infrarotstrahlung auf die Blätter ab, was die Transpirationsrate senkt, wenn nicht mit mehr Umgebungswärme ausgeglichen wird.',
     ilSecColor:'Wirkung je nach Lichtfarbe',
     ilAzulH4:'Blau', ilAzulSci:'Schlüssel in der Vegetationsphase', ilAzulDesc:'Erzeugt dicke Stängel und kurze Internodien und verhindert übermäßiges Strecken der Pflanze — deshalb dominiert es Spektrumrezepte in der Vegetationsphase.',
@@ -2800,6 +2818,12 @@ const translations = {
     ilPpfH4:'PPF', ilPpfSci:'Flux de photons photosynthétiques', ilPpfDesc:'La quantité totale de photons PAR qu’émet une lampe par seconde (μmol/s) — la véritable mesure de puissance lumineuse d’un équipement, plus utile que la puissance nominale indiquée sur la boîte.',
     ilPpeH4:'PPE', ilPpeSci:'Efficacité photosynthétique', ilPpeDesc:'Le nombre de μmol de lumière produits par l’équipement pour chaque watt consommé (μmol/J) — les LED modernes atteignent 2,6–3,1 μmol/J, bien au-delà des technologies précédentes.',
     ilCalcH3:'Un exemple concret : quelle puissance réelle est vraiment nécessaire', ilCalcP:'Pour couvrir 1m² à 800 μmol/m²/s de PPFD, il faut un PPF total de 800 μmol/s. En divisant par la PPE de l’équipement : avec une LED à 2,7 μmol/J, il faut <b>~296W réels</b> ; avec une HPS à 1,3 μmol/J, il faut <b>~615W réels</b> — plus du double de consommation électrique pour exactement le même résultat lumineux sur la plante.',
+    ilLuzCalcH3:'Calculateur : puissance lumineuse nécessaire', ilLuzCalcP:'Calcule le PPF total, la puissance réelle en watts et le DLI résultant selon ton espace, ton objectif de PPFD et le type de lumière utilisé.',
+    ilLuzAreaLabel:'Surface de culture (m²)', ilLuzPpfdLabel:'PPFD cible (μmol/m²/s)', ilLuzTipoLabel:'Type de lumière',
+    ilLuzOptLed:'LED (2,7 μmol/J)', ilLuzOptHps:'HPS (1,3 μmol/J)', ilLuzOptCmh:'CMH (~1,8 μmol/J)',
+    ilLuzHorasLabel:'Heures de lumière/jour',
+    ilLuzSugerencia:'<b>Suggestion par étape :</b> 300–600 végétatif · 600–1 000 floraison · 1 000–1 500+ avec CO2 supplémentaire.',
+    ilLuzResPpf:'PPF total nécessaire', ilLuzResWatts:'Puissance réelle requise', ilLuzResDli:'DLI résultant',
     ilTermicoNote:'Gestion thermique, un détail que presque personne n’ajuste : les salles en LED ont besoin d’une température ambiante plus élevée (26–29°C) que les salles en HPS (23–25°C) pour obtenir le même résultat sur la plante — la LED émet beaucoup moins de rayonnement infrarouge direct sur les feuilles, ce qui réduit le taux de transpiration si ce n’est pas compensé par plus de chaleur ambiante.',
     ilSecColor:'Effet selon la couleur de la lumière',
     ilAzulH4:'Bleu', ilAzulSci:'Clé en végétatif', ilAzulDesc:'Produit des tiges épaisses et des entre-nœuds courts, évitant un étirement excessif de la plante — c’est pourquoi il domine les recettes de spectre en végétatif.',
@@ -4581,6 +4605,31 @@ function updateSnCalc(){
   if(el) el.addEventListener('input', updateSnCalc);
 });
 if(document.getElementById('snCalcTotal')) updateSnCalc();
+function updateIlCalcLuz(){
+  const areaEl = document.getElementById('ilLuzArea');
+  const ppfdEl = document.getElementById('ilLuzPPFD');
+  const tipoEl = document.getElementById('ilLuzTipo');
+  const horasEl = document.getElementById('ilLuzHoras');
+  const resultEl = document.getElementById('ilLuzResult');
+  if(!areaEl || !resultEl) return;
+  const area = parseFloat(areaEl.value) || 0;
+  const ppfd = parseFloat(ppfdEl.value) || 0;
+  const ppe = parseFloat(tipoEl.value) || 2.7;
+  const horas = parseFloat(horasEl.value) || 0;
+  const ppfTotal = ppfd * area;
+  const watts = ppe > 0 ? ppfTotal / ppe : 0;
+  const dli = ppfd * horas * 0.0036;
+  resultEl.innerHTML = `
+    <div style="display:flex; justify-content:space-between;"><span>${t('ilLuzResPpf')}</span><span style="color:var(--moss-deep); font-weight:600;">${ppfTotal.toFixed(0)} μmol/s</span></div>
+    <div style="display:flex; justify-content:space-between;"><span>${t('ilLuzResWatts')}</span><span style="color:var(--moss-deep); font-weight:600;">${watts.toFixed(0)} W</span></div>
+    <div style="display:flex; justify-content:space-between;"><span>${t('ilLuzResDli')}</span><span style="color:var(--moss-deep); font-weight:600;">${dli.toFixed(1)} mol/m²/día</span></div>
+  `;
+}
+['ilLuzArea','ilLuzPPFD','ilLuzTipo','ilLuzHoras'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateIlCalcLuz); el.addEventListener('change', updateIlCalcLuz); }
+});
+if(document.getElementById('ilLuzArea')) updateIlCalcLuz();
 ['cmDoseMg','cmDoseServings'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.addEventListener('input', updateDoseComestibles);
