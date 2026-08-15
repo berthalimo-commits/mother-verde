@@ -451,6 +451,21 @@
         <p data-i18n="dsP2">Lo más honesto del estudio: identifica explícitamente qué todavía NO se entiende bien — cómo se adaptan las raíces específicamente, la regulación mediada por ARN, y el control epigenético. Con el cambio climático aumentando la frecuencia de sequías, cerrar estos vacíos es cada vez más urgente para la sostenibilidad del cultivo.</p>
         <div class="spec-source"><a href="https://doi.org/10.3389/fpls.2026.1890092" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.3389/fpls.2026.1890092</a></div>
       </div>
+
+      <div class="card-block">
+        <h3 data-i18n="waterStressH3">Por qué "más estrés = más cannabinoides" no es una regla universal</h3>
+        <p data-i18n="waterStressP">Una revisión de 2025 (Horticulturae) analizó cómo el estrés por falta de agua afecta el desarrollo de la planta y la producción de metabolitos secundarios. El estrés hídrico puede reducir crecimiento y rendimiento, pero la respuesta en cannabinoides y terpenos depende de la intensidad del estrés, el momento, la duración, el genotipo y las condiciones ambientales — no existe una regla simple de "más estrés siempre produce más cannabinoides".</p>
+        <div class="spec-source"><a href="https://doi.org/10.3390/horticulturae11060646" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.3390/horticulturae11060646</a></div>
+        <div class="specimen-grid" style="margin-top:16px;">
+          <div class="specimen"><div class="tag-index">1</div><h4 data-i18n="waterF1h4">Intensidad</h4><p class="method-desc" data-i18n="waterF1desc">Qué tan severo es el déficit hídrico.</p></div>
+          <div class="specimen"><div class="tag-index">2</div><h4 data-i18n="waterF2h4">Momento</h4><p class="method-desc" data-i18n="waterF2desc">En qué etapa del ciclo se aplica el estrés.</p></div>
+          <div class="specimen"><div class="tag-index">3</div><h4 data-i18n="waterF3h4">Duración</h4><p class="method-desc" data-i18n="waterF3desc">Cuánto tiempo se mantiene el déficit.</p></div>
+          <div class="specimen"><div class="tag-index">4</div><h4 data-i18n="waterF4h4">Genotipo</h4><p class="method-desc" data-i18n="waterF4desc">Cada cultivar responde de forma distinta.</p></div>
+          <div class="specimen"><div class="tag-index">5</div><h4 data-i18n="waterF5h4">Condiciones ambientales</h4><p class="method-desc" data-i18n="waterF5desc">Temperatura, humedad y luz durante el estrés.</p></div>
+        </div>
+        <div class="note-box" style="margin-top:14px;" data-i18n="waterStressNote">No hay una fórmula: la propia revisión concluye que estos 5 factores interactúan entre sí, y ninguno por separado predice el resultado en cannabinoides.</div>
+      </div>
+
       <div class="section-title" data-i18n="snSecTipos">Tipos de sustrato</div>
       <div class="specimen-grid">
         <div class="specimen"><h4 data-i18n="sn01h4">Tierra / mezcla orgánica</h4><div class="sci" data-i18n="sn01sci">La más forgiving</div>
@@ -838,6 +853,30 @@
       </div>
 
       <div class="card-block">
+        <h3 data-i18n="trichStudyH3">La maduración de tricomas, cuantificada científicamente</h3>
+        <p data-i18n="trichStudyP">Un estudio de 2023 siguió 4 cultivares comerciales durante 8 semanas de floración usando fotografía macro, fluorescencia UV y análisis automatizado de imágenes — demostrando que los cambios de fenotipo de los tricomas sí pueden cuantificarse científicamente durante el desarrollo floral.</p>
+        <div class="note-box" data-i18n="trichStudyNote">El matiz honesto: esto no valida automáticamente reglas simplificadas como "ámbar = máximo THC" o "lechoso = máximo efecto" — correlacionar color con cannabinoides reales requiere considerar también terpenos, genética y momento de desarrollo en conjunto.</div>
+        <div class="spec-source"><a href="https://www.sciencedirect.com/science/article/pii/S2772375522000764" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">sciencedirect.com/science/article/pii/S2772375522000764</a></div>
+      </div>
+
+      <div class="card-block" id="trich-log-card">
+        <h3 data-i18n="trichLogH3">Registro de tricomas: construye tu propia curva</h3>
+        <p style="margin-bottom:14px;" data-i18n="trichLogP">En vez de una sola foto de referencia, registra el porcentaje aproximado que observás en distintos días de floración — y mirá cómo avanza tu propia planta, no un promedio genérico.</p>
+        <div id="trichLogGate" class="note-box" data-i18n="trichLogAuthMsg">Inicia sesión para guardar tu registro de tricomas — tus datos quedan privados en tu cuenta. <a onclick="showScreen('cuenta')" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ir a Cuenta</a></div>
+        <div id="trichLogLoggedIn" style="display:none;">
+          <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:12px;">
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogFechaLabel">Fecha</label><input type="date" id="trichLogFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogClearLabel">% Transparente</label><input type="number" id="trichLogClear" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogMilkyLabel">% Lechoso</label><input type="number" id="trichLogMilky" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogAmberLabel">% Ámbar</label><input type="number" id="trichLogAmber" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          </div>
+          <button onclick="addTrichLogEntry()" style="padding:10px 20px; background:var(--moss-deep); color:white; border:none; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12.5px;" data-i18n="trichLogGuardar">Guardar registro</button>
+          <div id="trichLogStatus" style="margin-top:8px; font-size:12px; color:var(--ink-soft);"></div>
+          <div id="trichLogChart" style="margin-top:16px;"></div>
+        </div>
+      </div>
+
+      <div class="card-block">
         <h3 data-i18n="coCheckH3">Checklist: ¿está lista para cosechar?</h3>
         <p style="margin-bottom:14px;" data-i18n="coCheckP">El color de los tricomas bajo lupa o microscopio de mano es el indicador más confiable — mucho más que contar días desde la floración.</p>
         <div id="harvestChecklist"></div>
@@ -849,6 +888,25 @@
         <p data-i18n="coSciP1">Un estudio de 2022 en <em>Horticulturae</em> comparó dos cultivares de cáñamo (Cherry Wine y BaOx) y encontró que el pico de THC llegó en días completamente distintos: día 63 de floración para uno, día 75 para el otro — que ni siquiera llegó a estabilizarse en los 84 días que duró el estudio. La conclusión es clara: <b>el momento óptimo depende del cultivar, no existe un número universal de semanas</b> que sirva para todos.</p>
         <p data-i18n="coSciP2">Un dato que casi nadie revisa: un estudio de la Universidad de Hohenheim (Alemania, 2022) midió la concentración de CBD en distintas alturas de la misma planta y encontró diferencias reales — 9.9% en los cogollos superiores, 8.2% en los del medio, 7.7% en los inferiores. La posición en la planta importa, no solo el momento del corte.</p>
         <div class="note-box" data-i18n="coSciNote">Otro hallazgo reciente (2025, <em>Plant and Cell Physiology</em>): los tricomas de las variedades modernas son entre 22% y 25% más grandes que los de variedades tradicionales, con mayor densidad de metabolitos — resultado de décadas de selección genética, y parte de por qué el cannabis actual suele ser más potente que el de hace 30 años. Y un mito que puedes descartar tranquila: cosechar según las fases lunares no tiene ningún respaldo científico — ninguna investigación lo confirma, aunque tampoco hay evidencia de que perjudique.</div>
+      </div>
+
+      <div class="card-block">
+        <h3 data-i18n="finolaH3">Momento de cosecha: otro genotipo, mismo patrón con un matiz honesto</h3>
+        <p data-i18n="finolaP">Un estudio de 2022 (Royal Society Open Science) con la variedad de cáñamo Finola encontró que cannabinoides y aceites esenciales en las inflorescencias aumentaron hasta la floración completa, y luego disminuyeron al llegar la madurez de la semilla.</p>
+        <div class="note-box" data-i18n="finolaNote">El matiz honesto: esto no significa que exista "la semana ideal universal" — es un genotipo específico, y no debe extrapolarse directamente a otros cultivares, como ya vimos con el estudio de BaOx/Cherry Wine arriba.</div>
+        <div class="spec-source"><a href="https://doi.org/10.1098/rsos.211699" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1098/rsos.211699</a></div>
+        <div style="margin-top:18px;">
+          <svg viewBox="0 0 320 130" width="100%" style="max-width:420px; display:block; margin:0 auto;">
+            <line x1="30" y1="105" x2="300" y2="105" stroke="var(--line-strong)" stroke-width="1.3"/>
+            <line x1="30" y1="105" x2="30" y2="15" stroke="var(--line-strong)" stroke-width="1.3"/>
+            <path d="M30,95 Q90,28 165,20 Q230,18 280,72" fill="none" stroke="var(--moss-deep)" stroke-width="2.4"/>
+            <circle cx="165" cy="20" r="3" fill="var(--resin)"/>
+            <text x="165" y="12" text-anchor="middle" font-size="8" font-family="'IBM Plex Mono',monospace" fill="var(--ink-soft)" data-i18n="finolaChartPeak">Pico: floración completa</text>
+            <text x="30" y="119" text-anchor="middle" font-size="7.5" font-family="'IBM Plex Mono',monospace" fill="var(--ink-soft)" data-i18n="finolaChartInicio">Inicio floración</text>
+            <text x="280" y="119" text-anchor="middle" font-size="7.5" font-family="'IBM Plex Mono',monospace" fill="var(--ink-soft)" data-i18n="finolaChartMadurez">Madurez de semilla</text>
+          </svg>
+          <p style="font-size:11px; color:var(--ink-soft); text-align:center; margin-top:4px;" data-i18n="finolaChartCaption">Eje vertical: cannabinoides y aceites esenciales (relativo). Curva ilustrativa basada en el patrón de Finola — la forma exacta varía según el cultivar.</p>
+        </div>
       </div>
 
       <div class="section-title" data-i18n="coSecCorte">El corte: dos formas de hacerlo</div>
@@ -1058,6 +1116,41 @@
           <div class="spec-source" data-i18n="ep04src">Fuente: guía GMP floricultura, EMA</div></div>
       </div>
       <div class="note-box" data-i18n="epNote">En producción, cada SOP sería descargable como plantilla editable (PDF/Word) para que una operación la adapte a su instalación.</div>
+
+      <div class="card-block">
+        <h3 data-i18n="freezeDryH3">Liofilización vs. secado tradicional: un trade-off real, no una solución perfecta</h3>
+        <p data-i18n="freezeDryP">Un estudio de 2024 (Analytical and Bioanalytical Chemistry) comparó liofilización (freeze-drying) contra secado tradicional en bandeja (tray-drying). Hallazgo: la liofilización preservó mejor los cannabinoides y redujo la descarboxilación de las formas ácidas — pero eso no significa que sea mejor en general: se observaron pérdidas reales de compuestos de aroma bajo ese mismo método. El almacenamiento en vidrio mostró ventaja para conservar el perfil aromático inicial, aunque con más conversión hacia formas neutras de cannabinoides.</p>
+        <div class="note-box" data-i18n="freezeDryNote">No existe todavía un método que optimice simultáneamente cannabinoides, aroma y estabilidad — sigue siendo un trade-off real.</div>
+        <div class="spec-source"><a href="https://doi.org/10.1007/s00216-024-05321-w" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1007/s00216-024-05321-w</a></div>
+        <div style="overflow-x:auto; margin-top:16px;">
+          <table style="width:100%; border-collapse:collapse; font-size:12.5px; min-width:520px;">
+            <thead><tr style="border-bottom:2px solid var(--line-strong);">
+              <th style="text-align:left; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:11px;" data-i18n="freezeTblMetodo">Método</th>
+              <th style="text-align:left; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:11px;" data-i18n="freezeTblCannab">Preservación de cannabinoides</th>
+              <th style="text-align:left; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:11px;" data-i18n="freezeTblAroma">Preservación de aroma</th>
+              <th style="text-align:left; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:11px;" data-i18n="freezeTblEquipo">Equipo necesario</th>
+              <th style="text-align:left; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:11px;" data-i18n="freezeTblDomestico">Accesible cultivo doméstico</th>
+            </tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line);">
+                <td style="padding:8px 10px; font-weight:600;" data-i18n="freezeTblRow1Metodo">Liofilización (freeze-drying)</td>
+                <td style="padding:8px 10px; color:var(--moss-deep);" data-i18n="freezeTblRow1Cannab">Alta — menos descarboxilación</td>
+                <td style="padding:8px 10px; color:var(--clay);" data-i18n="freezeTblRow1Aroma">Menor — pérdida real de terpenos</td>
+                <td style="padding:8px 10px;" data-i18n="freezeTblRow1Equipo">Liofilizador (costoso)</td>
+                <td style="padding:8px 10px; color:var(--clay);" data-i18n="freezeTblRow1Domestico">Baja</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 10px; font-weight:600;" data-i18n="freezeTblRow2Metodo">Secado tradicional (tray-drying)</td>
+                <td style="padding:8px 10px; color:var(--clay);" data-i18n="freezeTblRow2Cannab">Menor — más descarboxilación</td>
+                <td style="padding:8px 10px; color:var(--moss-deep);" data-i18n="freezeTblRow2Aroma">Mayor — mejor perfil aromático inicial</td>
+                <td style="padding:8px 10px;" data-i18n="freezeTblRow2Equipo">Malla/rejilla, espacio ventilado</td>
+                <td style="padding:8px 10px; color:var(--moss-deep);" data-i18n="freezeTblRow2Domestico">Alta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="epCtaH3">¿Necesitas SOPs diseñados para tu operación específica?</h3>
         <p data-i18n="epCtaP">Cada instalación tiene requisitos distintos según su escala y jurisdicción. Podemos ayudarte a pensar procedimientos reales, no genéricos.</p>
@@ -1077,6 +1170,36 @@
         <h3 data-i18n="alSmokabilityH3">El dato más preciso: 0.65 de actividad de agua, no solo "humedad relativa"</h3>
         <p data-i18n="alSmokabilityP1">Un estudio de 2025 (<em>Cannabis Science and Technology</em>, con la Dra. Riley Kirk como coautora) midió algo más específico que la humedad relativa del ambiente: la <b>actividad de agua</b> (aW) dentro de la propia flor — usando máquinas de fumar de laboratorio reales y paneles de consumidores pagados, no solo opinión. Probaron 3 niveles: 0.45, 0.65 y 0.85 aW.</p>
         <p data-i18n="alSmokabilityP2">El resultado fue claro: <b>0.65 aW dio el mejor resultado</b> — el mayor contenido de terpenos, con una entrega de cannabinoides comparable a 0.45 aW. En cambio, 0.85 aW (flor más húmeda) entregó solo el <b>30% del contenido de cannabinoides</b> en el humo comparado con el nivel óptimo. Los panelistas de consumidores notaron que 0.45 aW resultaba más áspero e irritante, mientras que 0.65 aW dio la experiencia menos irritante de las tres.</p>
+      </div>
+      <div class="card-block">
+        <h3 data-i18n="alZamengoH3">El estudio de 4 años que cambia cómo entendemos el envejecimiento del cannabis</h3>
+        <p data-i18n="alZamengoP">Un estudio real de 4 años (Zamengo et al., Forensic Science International, 2019) almacenó 6 productos de cannabis de alta potencia bajo 4 condiciones distintas de luz y temperatura, midiendo THC, CBN y CBD cada 100 días aproximadamente. El hallazgo: bajo condiciones de temperatura ambiente, se observó una degradación de casi 100% del THC después de 4 años, con formación proporcional de CBN. La luz aceleró tanto la velocidad como la forma química de esa conversión.</p>
+        <div class="note-box" data-i18n="alZamengoNote">El dato honesto e importante: este estudio mide degradación y vida útil, NO curado — no debe usarse para sugerir que el cannabis "necesita 4 años de curado", eso sería una lectura incorrecta del hallazgo real.</div>
+        <div class="spec-source"><a href="https://doi.org/10.1016/j.forsciint.2019.02.058" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1016/j.forsciint.2019.02.058</a></div>
+      </div>
+      <div class="card-block" id="calc-degrad-card">
+        <h3 data-i18n="degradCalcH3">Calculadora: riesgo de degradación por almacenamiento</h3>
+        <p style="margin-bottom:14px;" data-i18n="degradCalcP">Guía orientativa basada en el patrón general del estudio de Zamengo — no es un cálculo exacto (el estudio no publica constantes cinéticas precisas), sino una categoría de riesgo aproximada según cuánto tiempo llevas guardando y en qué condición.</p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="degradTiempoLabel">Tiempo almacenado</label>
+            <select id="degradTiempo" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+              <option value="weeks" data-i18n="degradOptSemanas">Semanas (menos de 2 meses)</option>
+              <option value="months" data-i18n="degradOptMeses">Meses (2–12 meses)</option>
+              <option value="1-2y" data-i18n="degradOpt1a2">1–2 años</option>
+              <option value="3-4y" data-i18n="degradOpt3a4">3–4 años</option>
+              <option value="4y+" data-i18n="degradOpt4mas">Más de 4 años</option>
+            </select>
+          </div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="degradCondLabel">Condición de almacenamiento</label>
+            <select id="degradCond" style="width:230px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+              <option value="light-room" data-i18n="degradOptLuzAmb">Con luz, temperatura ambiente</option>
+              <option value="dark-room" data-i18n="degradOptOscAmb">Oscuridad, temperatura ambiente</option>
+              <option value="fridge" data-i18n="degradOptRefri">Refrigerado (~4°C)</option>
+              <option value="freezer" data-i18n="degradOptCong">Congelado</option>
+            </select>
+          </div>
+        </div>
+        <div id="degradResult" style="font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
       </div>
       <div class="card-block">
         <h3 data-i18n="alPracticaH3">Cómo guardar en la práctica</h3>

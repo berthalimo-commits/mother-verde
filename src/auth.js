@@ -29,6 +29,7 @@ async function refreshAuthState(){
   window.renderCuenta?.();
   window.renderBitacoraGate?.();
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
+  window.loadTrichLog?.();
 }
 
 supabase.auth.onAuthStateChange(() => { refreshAuthState(); });

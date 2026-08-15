@@ -731,6 +731,13 @@ const translations = {
     ssP2:'El hallazgo específico: suelo de mala calidad tiende a producir más THC, mientras que suelo de mejor calidad tiende a producir más CBG (el cannabinoide precursor). Esto significa que los cultivadores tienen más control sobre el perfil de cannabinoides del que se pensaba — no solo eligiendo semillas, sino manejando el suelo mismo.',
     dsH3:'Estrés hídrico: lo que sabemos y lo que aún no', dsP1:'Una revisión publicada el 27 de julio de 2026 en <em>Frontiers in Plant Science</em> —muy reciente, con coautoría del Instituto de Investigación de Cannabis de Colorado State University-Pueblo (la misma universidad de nuestro buscador de Educación)— integra todo lo que se sabe hasta ahora sobre cómo el cannabis responde a la falta de agua: cambios coordinados en crecimiento, fisiología, metabolismo secundario, regulación molecular, e interacciones con los microorganismos de la raíz.',
     dsP2:'Lo más honesto del estudio: identifica explícitamente qué todavía NO se entiende bien — cómo se adaptan las raíces específicamente, la regulación mediada por ARN, y el control epigenético. Con el cambio climático aumentando la frecuencia de sequías, cerrar estos vacíos es cada vez más urgente para la sostenibilidad del cultivo.',
+    waterStressH3:'Por qué "más estrés = más cannabinoides" no es una regla universal', waterStressP:'Una revisión de 2025 (Horticulturae) analizó cómo el estrés por falta de agua afecta el desarrollo de la planta y la producción de metabolitos secundarios. El estrés hídrico puede reducir crecimiento y rendimiento, pero la respuesta en cannabinoides y terpenos depende de la intensidad del estrés, el momento, la duración, el genotipo y las condiciones ambientales — no existe una regla simple de "más estrés siempre produce más cannabinoides".',
+    waterStressNote:'No hay una fórmula: la propia revisión concluye que estos 5 factores interactúan entre sí, y ninguno por separado predice el resultado en cannabinoides.',
+    waterF1h4:'Intensidad', waterF1desc:'Qué tan severo es el déficit hídrico.',
+    waterF2h4:'Momento', waterF2desc:'En qué etapa del ciclo se aplica el estrés.',
+    waterF3h4:'Duración', waterF3desc:'Cuánto tiempo se mantiene el déficit.',
+    waterF4h4:'Genotipo', waterF4desc:'Cada cultivar responde de forma distinta.',
+    waterF5h4:'Condiciones ambientales', waterF5desc:'Temperatura, humedad y luz durante el estrés.',
     snSecTipos:'Tipos de sustrato', sn01h4:'Tierra / mezcla orgánica', sn01sci:'La más forgiving', sn01desc:'Buen amortiguador de errores de riego y nutrición; más lenta de reaccionar a ajustes.',
     sn02h4:'Fibra de coco (coco coir)', sn02sci:'Intermedio', sn02desc:'Retiene humedad de forma más pareja que la tierra, con mejor oxigenación radicular; requiere fertilización desde el inicio (no tiene nutrientes propios).',
     sn03h4:'Lana de roca (rockwool)', sn03sci:'Hidropónico inerte', sn03desc:'Sustrato inerte estándar en hidroponía comercial — control total de la solución nutritiva, sin margen de error de pH.',
@@ -839,6 +846,10 @@ const translations = {
     coSciH3:'Lo que dice la ciencia, no solo la tradición', coSciP1:'Un estudio de 2022 en <em>Horticulturae</em> comparó dos cultivares de cáñamo (Cherry Wine y BaOx) y encontró que el pico de THC llegó en días completamente distintos: día 63 de floración para uno, día 75 para el otro — que ni siquiera llegó a estabilizarse en los 84 días que duró el estudio. La conclusión es clara: <b>el momento óptimo depende del cultivar, no existe un número universal de semanas</b> que sirva para todos.',
     coSciP2:'Un dato que casi nadie revisa: un estudio de la Universidad de Hohenheim (Alemania, 2022) midió la concentración de CBD en distintas alturas de la misma planta y encontró diferencias reales — 9.9% en los cogollos superiores, 8.2% en los del medio, 7.7% en los inferiores. La posición en la planta importa, no solo el momento del corte.',
     coSciNote:'Otro hallazgo reciente (2025, <em>Plant and Cell Physiology</em>): los tricomas de las variedades modernas son entre 22% y 25% más grandes que los de variedades tradicionales, con mayor densidad de metabolitos — resultado de décadas de selección genética, y parte de por qué el cannabis actual suele ser más potente que el de hace 30 años. Y un mito que puedes descartar tranquila: cosechar según las fases lunares no tiene ningún respaldo científico — ninguna investigación lo confirma, aunque tampoco hay evidencia de que perjudique.',
+    finolaH3:'Momento de cosecha: otro genotipo, mismo patrón con un matiz honesto', finolaP:'Un estudio de 2022 (Royal Society Open Science) con la variedad de cáñamo Finola encontró que cannabinoides y aceites esenciales en las inflorescencias aumentaron hasta la floración completa, y luego disminuyeron al llegar la madurez de la semilla.',
+    finolaNote:'El matiz honesto: esto no significa que exista "la semana ideal universal" — es un genotipo específico, y no debe extrapolarse directamente a otros cultivares, como ya vimos con el estudio de BaOx/Cherry Wine arriba.',
+    finolaChartPeak:'Pico: floración completa', finolaChartInicio:'Inicio floración', finolaChartMadurez:'Madurez de semilla',
+    finolaChartCaption:'Eje vertical: cannabinoides y aceites esenciales (relativo). Curva ilustrativa basada en el patrón de Finola — la forma exacta varía según el cultivar.',
     coSecCorte:'El corte: dos formas de hacerlo', coC1h4:'Planta entera colgada', coC1sci:'El método más común', coC1desc:'Se corta el tallo principal a ras del sustrato y se cuelga la planta completa boca abajo. El secado es más lento y parejo, y las ramas más finas ayudan a sostener la humedad de los cogollos densos por más tiempo.',
     coC2h4:'Rama por rama', coC2sci:'Para espacios reducidos', coC2desc:'Se cortan y cuelgan ramas individuales en vez de la planta completa. Ahorra espacio y seca más rápido — útil cuando el cuarto de secado es pequeño o la humedad ambiente ya es alta.',
     coSecTrim:'La decisión que más se pregunta: trim húmedo vs. trim seco', coT1h4:'Trim húmedo', coT1sci:'Recortar antes de secar', coT1desc:'Se retiran las hojas grandes justo después de cortar la planta, mientras todavía está fresca y pegajosa. Es más fácil ver la estructura del cogollo y las tijeras cortan más limpio, pero el trabajo es más pegajoso y el secado resultante es más rápido (con más riesgo de perder terpenos si se apura).',
@@ -850,6 +861,11 @@ const translations = {
     ep03h4:'Trimming', ep03sci:'Espacio de trabajo', epTempSala2:'Temp. sala', epSuperficie:'Superficie', epSuperficieVal:'Acero inox. / lavable', ep03src:'Fuente: manual de instalaciones, BfArM',
     ep04h4:'Vestimenta del personal', ep04sci:'Bioseguridad', epCofia:'Cofia / gorro', epObligatorio:'Obligatorio', epGuantes:'Guantes', epGuantesVal:'Nitrilo, cambio por lote', ep04src:'Fuente: guía GMP floricultura, EMA',
     epNote:'En producción, cada SOP sería descargable como plantilla editable (PDF/Word) para que una operación la adapte a su instalación.',
+    freezeDryH3:'Liofilización vs. secado tradicional: un trade-off real, no una solución perfecta', freezeDryP:'Un estudio de 2024 (Analytical and Bioanalytical Chemistry) comparó liofilización (freeze-drying) contra secado tradicional en bandeja (tray-drying). Hallazgo: la liofilización preservó mejor los cannabinoides y redujo la descarboxilación de las formas ácidas — pero eso no significa que sea mejor en general: se observaron pérdidas reales de compuestos de aroma bajo ese mismo método. El almacenamiento en vidrio mostró ventaja para conservar el perfil aromático inicial, aunque con más conversión hacia formas neutras de cannabinoides.',
+    freezeDryNote:'No existe todavía un método que optimice simultáneamente cannabinoides, aroma y estabilidad — sigue siendo un trade-off real.',
+    freezeTblMetodo:'Método', freezeTblCannab:'Preservación de cannabinoides', freezeTblAroma:'Preservación de aroma', freezeTblEquipo:'Equipo necesario', freezeTblDomestico:'Accesible cultivo doméstico',
+    freezeTblRow1Metodo:'Liofilización (freeze-drying)', freezeTblRow1Cannab:'Alta — menos descarboxilación', freezeTblRow1Aroma:'Menor — pérdida real de terpenos', freezeTblRow1Equipo:'Liofilizador (costoso)', freezeTblRow1Domestico:'Baja',
+    freezeTblRow2Metodo:'Secado tradicional (tray-drying)', freezeTblRow2Cannab:'Menor — más descarboxilación', freezeTblRow2Aroma:'Mayor — mejor perfil aromático inicial', freezeTblRow2Equipo:'Malla/rejilla, espacio ventilado', freezeTblRow2Domestico:'Alta',
     epCtaH3:'¿Necesitas SOPs diseñados para tu operación específica?', epCtaP:'Cada instalación tiene requisitos distintos según su escala y jurisdicción. Podemos ayudarte a pensar procedimientos reales, no genéricos.',
     ccIntro:'Un recorrido mundial por las técnicas de extracción, organizado como lo hace el propio rubro: sin solvente y con solvente. Cada ficha incluye su origen documentado.', ccSecSin:'Sin solvente',
     ccOrigen:'Origen', ccOrigen2:'Origen', ccOrigen3:'Origen', ccOrigen4:'Origen', ccOrigen5:'Origen', ccOrigen6:'Origen', ccOrigen7:'Origen', ccOrigen8:'Origen', ccOrigen9:'Origen', ccOrigen10:'Origen', ccOrigen11:'Origen',
@@ -1215,6 +1231,16 @@ const translations = {
     alSmokabilityP2:'El resultado fue claro: <b>0.65 aW dio el mejor resultado</b> — el mayor contenido de terpenos, con una entrega de cannabinoides comparable a 0.45 aW. En cambio, 0.85 aW (flor más húmeda) entregó solo el <b>30% del contenido de cannabinoides</b> en el humo comparado con el nivel óptimo. Los panelistas de consumidores notaron que 0.45 aW resultaba más áspero e irritante, mientras que 0.65 aW dio la experiencia menos irritante de las tres.',
     alPracticaH3:'Cómo guardar en la práctica', alPracticaP:'Frasco de vidrio hermético, de un tamaño acorde a la cantidad guardada — ni con mucho aire vacío de más, ni tan apretado que restrinja el flujo de aire. Lugar oscuro y fresco (un cajón o alacena, nunca luz directa ni cerca de una fuente de calor). Evita abrir el frasco con frecuencia — cada apertura introduce oxígeno nuevo. Congelar <b>no siempre</b> es mejor: puede dañar los tricomas si la protección contra humedad y luz no es perfecta. La refrigeración (~4°C) sí funciona bien para conservación de varios meses o años, con ese matiz en mente.',
     alEstudioNote:'Un estudio de dos años (Reason et al., 2022) confirmó que el frío y la oscuridad ralentizan de forma medible la degradación del THC. Otro estudio, en cambio, encontró que a temperatura ambiente casi no queda THC después de 4 años. La diferencia entre guardar bien y guardar mal, medida en años, es enorme — no es un detalle cosmético.',
+    alZamengoH3:'El estudio de 4 años que cambia cómo entendemos el envejecimiento del cannabis', alZamengoP:'Un estudio real de 4 años (Zamengo et al., Forensic Science International, 2019) almacenó 6 productos de cannabis de alta potencia bajo 4 condiciones distintas de luz y temperatura, midiendo THC, CBN y CBD cada 100 días aproximadamente. El hallazgo: bajo condiciones de temperatura ambiente, se observó una degradación de casi 100% del THC después de 4 años, con formación proporcional de CBN. La luz aceleró tanto la velocidad como la forma química de esa conversión.',
+    alZamengoNote:'El dato honesto e importante: este estudio mide degradación y vida útil, NO curado — no debe usarse para sugerir que el cannabis "necesita 4 años de curado", eso sería una lectura incorrecta del hallazgo real.',
+    degradCalcH3:'Calculadora: riesgo de degradación por almacenamiento', degradCalcP:'Guía orientativa basada en el patrón general del estudio de Zamengo — no es un cálculo exacto (el estudio no publica constantes cinéticas precisas), sino una categoría de riesgo aproximada según cuánto tiempo llevas guardando y en qué condición.',
+    degradTiempoLabel:'Tiempo almacenado', degradCondLabel:'Condición de almacenamiento',
+    degradOptSemanas:'Semanas (menos de 2 meses)', degradOptMeses:'Meses (2–12 meses)', degradOpt1a2:'1–2 años', degradOpt3a4:'3–4 años', degradOpt4mas:'Más de 4 años',
+    degradOptLuzAmb:'Con luz, temperatura ambiente', degradOptOscAmb:'Oscuridad, temperatura ambiente', degradOptRefri:'Refrigerado (~4°C)', degradOptCong:'Congelado',
+    degradRiesgoBajo:'Riesgo bajo', degradRiesgoMedio:'Riesgo medio', degradRiesgoAlto:'Riesgo alto',
+    degradMsgBajo:'Con este tiempo y condición, el patrón general del estudio sugiere una degradación todavía limitada. Sigue siendo una guía orientativa, no una medición real de tu producto.',
+    degradMsgMedio:'El patrón general del estudio sugiere una degradación moderada de THC y formación de CBN en este rango — considera pasar a refrigeración si vas a guardar por más tiempo.',
+    degradMsgAlto:'El patrón general del estudio sugiere una degradación significativa de THC con formación proporcional de CBN en este rango — especialmente si hubo exposición a luz.',
     flH3:'Más allá del consumo: fibra de cáñamo en manufactura 3D', flP1:'Investigadores franceses y libaneses están estudiando cómo combinar fibras de cáñamo con subproductos agrícolas para crear materiales compuestos ecológicos, con aplicaciones reales en vehículos de transporte y otras industrias — una colaboración internacional real (julio 2026), fuera del circuito habitual de consumo.',
     vrFloracion:'Floración',
     cpToggleH3:'⚖️ Comparar dos cultivares lado a lado', cpToggleP:'Elige dos y ve las diferencias reales de un vistazo — potencia, terpenos, floración y más.',
@@ -1269,6 +1295,14 @@ const translations = {
     trichVisH3:'Cómo se ven en la lupa, en las 4 etapas', trichVisP:'Cada tricoma es como un hongo diminuto: un tallo fino con una cabeza redonda de resina. El color de esa cabeza es lo que cambia con la madurez.',
     trichVisClear:'Transparente', trichVisMilky:'Lechoso', trichVisMix:'Mezcla', trichVisAmber:'Ámbar',
     trichVisNote:'Estas son ilustraciones esquemáticas para orientarte — bajo una lupa real de 60x el tricoma se ve más como una gota de vidrio sobre un tallo, pero el color relativo entre etapas es el mismo que verás aquí.',
+    trichStudyH3:'La maduración de tricomas, cuantificada científicamente', trichStudyP:'Un estudio de 2023 siguió 4 cultivares comerciales durante 8 semanas de floración usando fotografía macro, fluorescencia UV y análisis automatizado de imágenes — demostrando que los cambios de fenotipo de los tricomas sí pueden cuantificarse científicamente durante el desarrollo floral.',
+    trichStudyNote:'El matiz honesto: esto no valida automáticamente reglas simplificadas como "ámbar = máximo THC" o "lechoso = máximo efecto" — correlacionar color con cannabinoides reales requiere considerar también terpenos, genética y momento de desarrollo en conjunto.',
+    trichLogH3:'Registro de tricomas: construye tu propia curva', trichLogP:'En vez de una sola foto de referencia, registra el porcentaje aproximado que observás en distintos días de floración — y mirá cómo avanza tu propia planta, no un promedio genérico.',
+    trichLogAuthMsg:'Inicia sesión para guardar tu registro de tricomas — tus datos quedan privados en tu cuenta. <a onclick="showScreen(&#39;cuenta&#39;)" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ir a Cuenta</a>',
+    trichLogFechaLabel:'Fecha', trichLogClearLabel:'% Transparente', trichLogMilkyLabel:'% Lechoso', trichLogAmberLabel:'% Ámbar',
+    trichLogGuardar:'Guardar registro', trichLogErrDatos:'Ingresa una fecha y al menos un porcentaje.', trichLogGuardadoOk:'Registro guardado.', trichLogErrGuardar:'Error al guardar — intenta de nuevo.',
+    trichLogEtapaTag:'Seguimiento de tricomas', trichLogNotaAuto:'Registro de maduración de tricomas',
+    trichLogChartVacio:'Registra al menos 2 días para ver tu curva de maduración.', trichLogChartTitle:'Tu curva de maduración de tricomas',
     ilEspectroNote:'Las barras de color de arriba son una representación simplificada del espectro de cada fuente — el LED cubre casi todo el arcoíris visible, el HPS se concentra en tonos cálidos, y el CMH se inclina hacia tonos fríos y blancos, más parecido a la luz del día.',
     snSecCaK:'Dos deficiencias que casi nadie explica bien: calcio y potasio',
     snCaH4:'Deficiencia de calcio', snCaSci:'Afecta primero al crecimiento nuevo', snCaDesc:'A diferencia del magnesio, el calcio no se mueve dentro de la planta — por eso los síntomas aparecen primero en las hojas jóvenes y las puntas de crecimiento, no en las hojas viejas: bordes distorsionados o curvados, quemadura en la punta, manchas marrones pequeñas.', snCaSrc:'Fuente: Cannabis Business Times, 2026',
@@ -1482,6 +1516,13 @@ const translations = {
     ssP2:'The specific finding: poor-quality soil tends to produce more THC, while higher-quality soil tends to produce more CBG (the precursor cannabinoid). This means growers have more control over cannabinoid profile than previously thought — not just by choosing seeds, but by managing the soil itself.',
     dsH3:'Drought stress: what we know and what we still do not', dsP1:'A review published on July 27, 2026 in <em>Frontiers in Plant Science</em> — very recent, co-authored by the Institute of Cannabis Research at Colorado State University-Pueblo (the same university in our Education finder) — integrates everything currently known about how cannabis responds to water limitation: coordinated changes in growth, physiology, secondary metabolism, molecular regulation, and root-microbe interactions.',
     dsP2:'The most honest part of the study: it explicitly identifies what is still NOT well understood — how roots specifically adapt, RNA-mediated regulation, and epigenetic control. With climate change increasing drought frequency, closing these gaps is increasingly urgent for cultivation sustainability.',
+    waterStressH3:'Why "more stress = more cannabinoids" is not a universal rule', waterStressP:'A 2025 review (Horticulturae) analyzed how water-deficit stress affects plant development and secondary metabolite production. Water stress can reduce growth and yield, but the response in cannabinoids and terpenes depends on stress intensity, timing, duration, genotype, and environmental conditions — there is no simple rule that "more stress always produces more cannabinoids."',
+    waterStressNote:'There is no formula: the review itself concludes that these 5 factors interact with each other, and none of them alone predicts the cannabinoid outcome.',
+    waterF1h4:'Intensity', waterF1desc:'How severe the water deficit is.',
+    waterF2h4:'Timing', waterF2desc:'What stage of the cycle the stress is applied at.',
+    waterF3h4:'Duration', waterF3desc:'How long the deficit is maintained.',
+    waterF4h4:'Genotype', waterF4desc:'Each cultivar responds differently.',
+    waterF5h4:'Environmental conditions', waterF5desc:'Temperature, humidity, and light during the stress.',
     snSecTipos:'Substrate types', sn01h4:'Soil / organic mix', sn01sci:'The most forgiving', sn01desc:'Good buffer against watering and feeding mistakes; slower to react to adjustments.',
     sn02h4:'Coco coir', sn02sci:'Intermediate', sn02desc:'Retains moisture more evenly than soil, with better root oxygenation; requires fertilizing from the start (it has no nutrients of its own).',
     sn03h4:'Rockwool', sn03sci:'Inert hydroponic medium', sn03desc:'Standard inert substrate in commercial hydroponics — total control of the nutrient solution, with no margin for pH error.',
@@ -1590,6 +1631,10 @@ const translations = {
     coSciH3:'What the science says, not just tradition', coSciP1:'A 2022 study in <em>Horticulturae</em> compared two hemp cultivars (Cherry Wine and BaOx) and found that peak THC arrived on completely different days: day 63 of flowering for one, day 75 for the other — which had not even stabilized within the 84 days the study lasted. The conclusion is clear: <b>the optimal moment depends on the cultivar, there is no universal number of weeks</b> that works for all of them.',
     coSciP2:'Something almost nobody checks: a study from the University of Hohenheim (Germany, 2022) measured CBD concentration at different heights on the same plant and found real differences — 9.9% in the top buds, 8.2% in the middle ones, 7.7% in the lower ones. Position on the plant matters, not just the timing of the cut.',
     coSciNote:'Another recent finding (2025, <em>Plant and Cell Physiology</em>): trichomes on modern cultivars are 22-25% larger than those on traditional varieties, with higher metabolite density — the result of decades of genetic selection, and part of why today\u2019s cannabis tends to be stronger than it was 30 years ago. And a myth you can safely drop: harvesting by lunar phases has no scientific backing at all — no research confirms it, though there is no evidence it hurts either.',
+    finolaH3:'Harvest timing: a different genotype, same pattern with an honest caveat', finolaP:'A 2022 study (Royal Society Open Science) with the hemp variety Finola found that cannabinoids and essential oils in the inflorescences increased up to full flowering, then decreased once seed maturity was reached.',
+    finolaNote:'The honest nuance: this doesn’t mean there’s a "universal ideal week" — it’s a specific genotype, and shouldn’t be extrapolated directly to other cultivars, as we already saw with the BaOx/Cherry Wine study above.',
+    finolaChartPeak:'Peak: full flowering', finolaChartInicio:'Start of flowering', finolaChartMadurez:'Seed maturity',
+    finolaChartCaption:'Vertical axis: cannabinoids and essential oils (relative). Illustrative curve based on the Finola pattern — the exact shape varies by cultivar.',
     coSecCorte:'The cut: two ways to do it', coC1h4:'Whole plant, hung', coC1sci:'The most common method', coC1desc:'The main stem is cut at the base and the whole plant is hung upside down. Drying is slower and more even, and the thinner branches help hold moisture in dense buds for longer.',
     coC2h4:'Branch by branch', coC2sci:'For tight spaces', coC2desc:'Individual branches are cut and hung instead of the whole plant. It saves space and dries faster — useful when the drying room is small or ambient humidity is already high.',
     coSecTrim:'The most-asked decision: wet trim vs. dry trim', coT1h4:'Wet trim', coT1sci:'Trim before drying', coT1desc:'Large leaves are removed right after cutting the plant, while it is still fresh and sticky. It is easier to see the bud structure and scissors cut more cleanly, but the work is stickier and the resulting dry is faster (with more risk of losing terpenes if rushed).',
@@ -1601,6 +1646,11 @@ const translations = {
     ep03h4:'Trimming', ep03sci:'Work space', epTempSala2:'Room temp.', epSuperficie:'Surface', epSuperficieVal:'Stainless steel / washable', ep03src:'Source: facility manual, BfArM',
     ep04h4:'Staff attire', ep04sci:'Biosecurity', epCofia:'Cap / hairnet', epObligatorio:'Mandatory', epGuantes:'Gloves', epGuantesVal:'Nitrile, changed per batch', ep04src:'Source: floriculture GMP guide, EMA',
     epNote:'In production, each SOP would be downloadable as an editable template (PDF/Word) for an operation to adapt to its own facility.',
+    freezeDryH3:'Freeze-drying vs. traditional drying: a real trade-off, not a perfect solution', freezeDryP:'A 2024 study (Analytical and Bioanalytical Chemistry) compared freeze-drying against traditional tray-drying. Finding: freeze-drying better preserved cannabinoids and reduced decarboxylation of the acidic forms — but that doesn’t mean it’s better overall: real losses of aroma compounds were observed under that same method. Glass storage showed an advantage for preserving the initial aromatic profile, though with more conversion toward neutral cannabinoid forms.',
+    freezeDryNote:'There is still no method that simultaneously optimizes cannabinoids, aroma, and stability — it remains a real trade-off.',
+    freezeTblMetodo:'Method', freezeTblCannab:'Cannabinoid preservation', freezeTblAroma:'Aroma preservation', freezeTblEquipo:'Equipment needed', freezeTblDomestico:'Accessible for home growing',
+    freezeTblRow1Metodo:'Freeze-drying', freezeTblRow1Cannab:'High — less decarboxylation', freezeTblRow1Aroma:'Lower — real terpene loss', freezeTblRow1Equipo:'Freeze-dryer (expensive)', freezeTblRow1Domestico:'Low',
+    freezeTblRow2Metodo:'Traditional drying (tray-drying)', freezeTblRow2Cannab:'Lower — more decarboxylation', freezeTblRow2Aroma:'Higher — better initial aromatic profile', freezeTblRow2Equipo:'Mesh/rack, ventilated space', freezeTblRow2Domestico:'High',
     epCtaH3:'Need SOPs designed for your specific operation?', epCtaP:'Every facility has different requirements depending on its scale and jurisdiction. We can help you think through real procedures, not generic ones.',
     ccIntro:'A world tour of extraction techniques, organized the way the industry itself does it: solventless and solvent-based. Each entry includes its documented origin.', ccSecSin:'Solventless',
     ccOrigen:'Origin', ccOrigen2:'Origin', ccOrigen3:'Origin', ccOrigen4:'Origin', ccOrigen5:'Origin', ccOrigen6:'Origin', ccOrigen7:'Origin', ccOrigen8:'Origin', ccOrigen9:'Origin', ccOrigen10:'Origin', ccOrigen11:'Origin',
@@ -1965,6 +2015,16 @@ const translations = {
     alSmokabilityP2:'The result was clear: <b>0.65 aW performed best</b> — the highest terpene content, with cannabinoid delivery comparable to 0.45 aW. By contrast, 0.85 aW (wetter flower) delivered only <b>30% of the cannabinoid content</b> in the smoke compared to the optimal level. Consumer panelists noted that 0.45 aW felt harsher and more irritating, while 0.65 aW gave the least irritating experience of the three.',
     alPracticaH3:'How to store it in practice', alPracticaP:'An airtight glass jar, sized to match the amount stored — not with too much empty air space, but not packed so tight it restricts airflow either. A cool, dark place (a drawer or cabinet, never direct light or near a heat source). Avoid opening the jar often — every opening introduces fresh oxygen. Freezing is <b>not always</b> better: it can damage trichomes unless moisture and light protection are perfect. Refrigeration (~4°C) does work well for preservation over several months or years, with that caveat in mind.',
     alEstudioNote:'A two-year study (Reason et al., 2022) confirmed that cold and darkness measurably slow THC degradation. Another study, by contrast, found that at room temperature almost no THC remained after 4 years. The difference between storing well and storing poorly, measured in years, is enormous — not a cosmetic detail.',
+    alZamengoH3:'The 4-year study that changes how we understand cannabis aging', alZamengoP:'A real 4-year study (Zamengo et al., Forensic Science International, 2019) stored 6 high-potency cannabis products under 4 different light and temperature conditions, measuring THC, CBN, and CBD roughly every 100 days. The finding: under ambient-temperature conditions, near-100% degradation of THC was observed after 4 years, with proportional CBN formation. Light accelerated both the speed and the chemical form of that conversion.',
+    alZamengoNote:'The honest, important caveat: this study measures degradation and shelf life, NOT curing — it shouldn’t be used to suggest cannabis "needs 4 years of curing," that would be a misreading of the actual finding.',
+    degradCalcH3:'Calculator: storage degradation risk', degradCalcP:'An orientative guide based on the general pattern of the Zamengo study — not an exact calculation (the study doesn’t publish precise kinetic constants), just an approximate risk category based on how long you’ve been storing and under what condition.',
+    degradTiempoLabel:'Time stored', degradCondLabel:'Storage condition',
+    degradOptSemanas:'Weeks (under 2 months)', degradOptMeses:'Months (2–12 months)', degradOpt1a2:'1–2 years', degradOpt3a4:'3–4 years', degradOpt4mas:'More than 4 years',
+    degradOptLuzAmb:'Light, room temperature', degradOptOscAmb:'Dark, room temperature', degradOptRefri:'Refrigerated (~4°C)', degradOptCong:'Frozen',
+    degradRiesgoBajo:'Low risk', degradRiesgoMedio:'Medium risk', degradRiesgoAlto:'High risk',
+    degradMsgBajo:'With this time and condition, the study’s general pattern suggests degradation is still limited. It remains an orientative guide, not an actual measurement of your product.',
+    degradMsgMedio:'The study’s general pattern suggests moderate THC degradation and CBN formation in this range — consider switching to refrigeration if you’ll be storing longer.',
+    degradMsgAlto:'The study’s general pattern suggests significant THC degradation with proportional CBN formation in this range — especially if there was light exposure.',
     flH3:'Beyond consumption: hemp fiber in 3D manufacturing', flP1:'French and Lebanese researchers are studying how to combine hemp fibers with agricultural byproducts to create eco-friendly composite materials, with real applications in transport vehicles and other industries — a real international collaboration (July 2026), outside the usual consumption circuit.',
     vrFloracion:'Flowering time',
     cpToggleH3:'⚖️ Compare two cultivars side by side', cpToggleP:'Pick two and see the real differences at a glance — potency, terpenes, flowering time, and more.',
@@ -2019,6 +2079,22 @@ const translations = {
     trichVisH3:'What they look like under the loupe, at each of the 4 stages', trichVisP:'Each trichome is like a tiny mushroom: a thin stalk with a round head of resin. The color of that head is what changes with maturity.',
     trichVisClear:'Clear', trichVisMilky:'Milky', trichVisMix:'Mixed', trichVisAmber:'Amber',
     trichVisNote:'These are schematic illustrations to guide you — under a real 60x loupe, a trichome looks more like a glass droplet on a stalk, but the relative color between stages is the same as what you see here.',
+    trichStudyH3:'Trichome maturation, quantified scientifically', trichStudyP:'A 2023 study followed 4 commercial cultivars over 8 weeks of flowering using macro photography, UV fluorescence, and automated image analysis — showing that trichome phenotype changes can indeed be quantified scientifically during floral development.',
+    trichStudyNote:'The honest nuance: this doesn’t automatically validate simplified rules like "amber = maximum THC" or "milky = maximum effect" — correlating color with actual cannabinoids requires also considering terpenes, genetics, and developmental timing together.',
+    trichLogH3:'Trichome log: build your own curve', trichLogP:'Instead of a single reference photo, log the approximate percentage you observe on different days during flowering — and watch how your own plant progresses, not a generic average.',
+    trichLogAuthMsg:'Log in to save your trichome record — your data stays private in your account. <a onclick="showScreen(&#39;cuenta&#39;)" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Go to Account</a>',
+    trichLogFechaLabel:'Date', trichLogClearLabel:'% Clear', trichLogMilkyLabel:'% Milky', trichLogAmberLabel:'% Amber',
+    trichLogGuardar:'Save record', trichLogErrDatos:'Enter a date and at least one percentage.', trichLogGuardadoOk:'Record saved.', trichLogErrGuardar:'Error saving — try again.',
+    trichLogEtapaTag:'Trichome tracking', trichLogNotaAuto:'Trichome maturation record',
+    trichLogChartVacio:'Log at least 2 days to see your maturation curve.', trichLogChartTitle:'Your trichome maturation curve',
+    trichStudyH3:'Trichome maturation, quantified scientifically', trichStudyP:'A 2023 study followed 4 commercial cultivars over 8 weeks of flowering using macro photography, UV fluorescence, and automated image analysis — showing that trichome phenotype changes can indeed be quantified scientifically during floral development.',
+    trichStudyNote:'The honest nuance: this doesn’t automatically validate simplified rules like "amber = maximum THC" or "milky = maximum effect" — correlating color with actual cannabinoids requires also considering terpenes, genetics, and developmental timing together.',
+    trichLogH3:'Trichome log: build your own curve', trichLogP:'Instead of a single reference photo, log the approximate percentage you observe on different days during flowering — and watch how your own plant progresses, not a generic average.',
+    trichLogAuthMsg:'Log in to save your trichome record — your data stays private in your account. <a onclick="showScreen(&#39;cuenta&#39;)" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Go to Account</a>',
+    trichLogFechaLabel:'Date', trichLogClearLabel:'% Clear', trichLogMilkyLabel:'% Milky', trichLogAmberLabel:'% Amber',
+    trichLogGuardar:'Save record', trichLogErrDatos:'Enter a date and at least one percentage.', trichLogGuardadoOk:'Record saved.', trichLogErrGuardar:'Error saving — try again.',
+    trichLogEtapaTag:'Trichome tracking', trichLogNotaAuto:'Trichome maturation record',
+    trichLogChartVacio:'Log at least 2 days to see your maturation curve.', trichLogChartTitle:'Your trichome maturation curve',
     ilEspectroNote:'The color bars above are a simplified representation of each source\u2019s spectrum — LED covers almost the whole visible rainbow, HPS is concentrated in warm tones, and CMH leans toward cool, white tones, closer to daylight.',
     snSecCaK:'Two deficiencies almost nobody explains well: calcium and potassium',
     snCaH4:'Calcium deficiency', snCaSci:'Affects new growth first', snCaDesc:'Unlike magnesium, calcium does not move within the plant — that is why symptoms appear first on young leaves and growth tips, not on old leaves: distorted or curled edges, tip burn, small brown spots.', snCaSrc:'Source: Cannabis Business Times, 2026',
@@ -2231,6 +2307,13 @@ const translations = {
     ssP2:'Der spezifische Befund: minderwertiger Boden neigt dazu, mehr THC zu produzieren, während hochwertigerer Boden eher mehr CBG (das Vorläufer-Cannabinoid) produziert. Das bedeutet, dass Anbauer mehr Kontrolle über das Cannabinoidprofil haben als bisher angenommen — nicht nur durch die Wahl der Samen, sondern durch die Bewirtschaftung des Bodens selbst.',
     dsH3:'Trockenstress: was wir wissen und was noch nicht', dsP1:'Eine am 27. Juli 2026 veröffentlichte Übersichtsarbeit in <em>Frontiers in Plant Science</em> — sehr aktuell, mitverfasst vom Institute of Cannabis Research der Colorado State University-Pueblo (dieselbe Universität aus unserem Bildungs-Finder) — fasst alles zusammen, was derzeit bekannt ist, wie Cannabis auf Wassermangel reagiert: koordinierte Veränderungen in Wachstum, Physiologie, Sekundärstoffwechsel, molekularer Regulation und Wurzel-Mikroben-Interaktionen.',
     dsP2:'Der ehrlichste Teil der Studie: sie benennt explizit, was noch NICHT gut verstanden ist — wie sich die Wurzeln genau anpassen, RNA-vermittelte Regulation und epigenetische Kontrolle. Da der Klimawandel die Häufigkeit von Dürren erhöht, wird das Schließen dieser Lücken zunehmend dringlicher für die Nachhaltigkeit des Anbaus.',
+    waterStressH3:'Warum "mehr Stress = mehr Cannabinoide" keine universelle Regel ist', waterStressP:'Eine 2025er Übersichtsarbeit (Horticulturae) untersuchte, wie Wassermangel-Stress die Pflanzenentwicklung und die Produktion von Sekundärmetaboliten beeinflusst. Wasserstress kann Wachstum und Ertrag verringern, aber die Reaktion bei Cannabinoiden und Terpenen hängt von der Intensität des Stresses, dem Zeitpunkt, der Dauer, dem Genotyp und den Umweltbedingungen ab — es gibt keine einfache Regel, dass "mehr Stress immer mehr Cannabinoide erzeugt".',
+    waterStressNote:'Es gibt keine Formel: die Übersichtsarbeit selbst kommt zu dem Schluss, dass diese 5 Faktoren miteinander interagieren, und keiner allein das Ergebnis bei Cannabinoiden vorhersagt.',
+    waterF1h4:'Intensität', waterF1desc:'Wie stark das Wasserdefizit ist.',
+    waterF2h4:'Zeitpunkt', waterF2desc:'In welcher Zyklusphase der Stress angewendet wird.',
+    waterF3h4:'Dauer', waterF3desc:'Wie lange das Defizit aufrechterhalten wird.',
+    waterF4h4:'Genotyp', waterF4desc:'Jeder Cultivar reagiert unterschiedlich.',
+    waterF5h4:'Umweltbedingungen', waterF5desc:'Temperatur, Luftfeuchtigkeit und Licht während des Stresses.',
     snSecTipos:'Substrattypen', sn01h4:'Erde / Bio-Mischung', sn01sci:'Am verzeihendsten', sn01desc:'Guter Puffer gegen Gieß- und Düngefehler; reagiert langsamer auf Anpassungen.',
     sn02h4:'Kokosfaser (Coco Coir)', sn02sci:'Mittelstufe', sn02desc:'Hält Feuchtigkeit gleichmäßiger als Erde, mit besserer Wurzelsauerstoffversorgung; erfordert Düngung von Anfang an (hat keine eigenen Nährstoffe).',
     sn03h4:'Steinwolle (Rockwool)', sn03sci:'Inertes Hydroponik-Medium', sn03desc:'Standard-Inertsubstrat in der kommerziellen Hydroponik — volle Kontrolle über die Nährlösung, ohne Spielraum für pH-Fehler.',
@@ -2339,6 +2422,10 @@ const translations = {
     coSciH3:'Was die Wissenschaft sagt, nicht nur die Tradition', coSciP1:'Eine Studie von 2022 in <em>Horticulturae</em> verglich zwei Hanf-Kultivare (Cherry Wine und BaOx) und fand heraus, dass der THC-Höhepunkt an völlig unterschiedlichen Tagen eintrat: Tag 63 der Blüte bei einem, Tag 75 beim anderen — der sich innerhalb der 84 Tage der Studie nicht einmal stabilisierte. Die Schlussfolgerung ist klar: <b>der optimale Zeitpunkt hängt vom Kultivar ab, es gibt keine universelle Wochenzahl</b>, die für alle passt.',
     coSciP2:'Etwas, das fast niemand prüft: eine Studie der Universität Hohenheim (Deutschland, 2022) maß die CBD-Konzentration in verschiedenen Höhen derselben Pflanze und fand echte Unterschiede — 9,9 % in den oberen Blüten, 8,2 % in den mittleren, 7,7 % in den unteren. Die Position an der Pflanze spielt eine Rolle, nicht nur der Zeitpunkt des Schnitts.',
     coSciNote:'Ein weiterer aktueller Befund (2025, <em>Plant and Cell Physiology</em>): Trichome moderner Kultivare sind 22–25 % größer als die traditioneller Sorten, mit höherer Metabolitendichte — Ergebnis jahrzehntelanger genetischer Selektion, und ein Grund, warum heutiges Cannabis meist stärker ist als vor 30 Jahren. Und ein Mythos, den du getrost verwerfen kannst: die Ernte nach Mondphasen hat keinerlei wissenschaftliche Grundlage — keine Forschung bestätigt sie, auch wenn es keine Hinweise auf Schaden gibt.',
+    finolaH3:'Erntezeitpunkt: ein anderer Genotyp, gleiches Muster mit einem ehrlichen Vorbehalt', finolaP:'Eine 2022er Studie (Royal Society Open Science) mit der Hanfsorte Finola fand, dass Cannabinoide und ätherische Öle in den Blütenständen bis zur Vollblüte anstiegen und dann mit Erreichen der Samenreife abnahmen.',
+    finolaNote:'Der ehrliche Vorbehalt: das bedeutet nicht, dass es "die universelle Idealwoche" gibt — es handelt sich um einen spezifischen Genotyp, der nicht direkt auf andere Cultivare übertragen werden sollte, wie wir bereits bei der BaOx/Cherry-Wine-Studie oben gesehen haben.',
+    finolaChartPeak:'Höhepunkt: Vollblüte', finolaChartInicio:'Beginn der Blüte', finolaChartMadurez:'Samenreife',
+    finolaChartCaption:'Vertikale Achse: Cannabinoide und ätherische Öle (relativ). Illustrative Kurve basierend auf dem Finola-Muster — die genaue Form variiert je nach Cultivar.',
     coSecCorte:'Der Schnitt: zwei Vorgehensweisen', coC1h4:'Ganze Pflanze aufgehängt', coC1sci:'Die häufigste Methode', coC1desc:'Der Hauptstängel wird bodennah abgeschnitten und die ganze Pflanze kopfüber aufgehängt. Die Trocknung ist langsamer und gleichmäßiger, und die dünneren Äste helfen, die Feuchtigkeit in dichten Blüten länger zu halten.',
     coC2h4:'Ast für Ast', coC2sci:'Für begrenzten Platz', coC2desc:'Einzelne Äste werden statt der ganzen Pflanze geschnitten und aufgehängt. Spart Platz und trocknet schneller — nützlich, wenn der Trockenraum klein ist oder die Umgebungsfeuchtigkeit bereits hoch ist.',
     coSecTrim:'Die meistgestellte Frage: Nasstrimmen vs. Trockentrimmen', coT1h4:'Nasstrimmen', coT1sci:'Trimmen vor dem Trocknen', coT1desc:'Große Blätter werden direkt nach dem Schneiden der Pflanze entfernt, während sie noch frisch und klebrig ist. Die Blütenstruktur ist leichter zu erkennen und die Schere schneidet sauberer, aber die Arbeit ist klebriger und die anschließende Trocknung schneller (mit größerem Risiko, Terpene zu verlieren, wenn man es überstürzt).',
@@ -2350,6 +2437,11 @@ const translations = {
     ep03h4:'Trimmen', ep03sci:'Arbeitsraum', epTempSala2:'Raumtemp.', epSuperficie:'Oberfläche', epSuperficieVal:'Edelstahl / abwaschbar', ep03src:'Quelle: Anlagenhandbuch, BfArM',
     ep04h4:'Arbeitskleidung des Personals', ep04sci:'Biosicherheit', epCofia:'Haube / Kopfbedeckung', epObligatorio:'Pflicht', epGuantes:'Handschuhe', epGuantesVal:'Nitril, Wechsel pro Charge', ep04src:'Quelle: GMP-Leitfaden Zierpflanzenbau, EMA',
     epNote:'In der Produktion wäre jedes SOP als bearbeitbare Vorlage (PDF/Word) herunterladbar, damit ein Betrieb es an seine eigene Anlage anpassen kann.',
+    freezeDryH3:'Gefriertrocknung vs. traditionelle Trocknung: ein echter Kompromiss, keine perfekte Lösung', freezeDryP:'Eine 2024er Studie (Analytical and Bioanalytical Chemistry) verglich Gefriertrocknung (freeze-drying) mit traditioneller Trocknung auf Gestellen (tray-drying). Befund: die Gefriertrocknung bewahrte Cannabinoide besser und reduzierte die Decarboxylierung der sauren Formen — das bedeutet aber nicht, dass sie generell besser ist: bei derselben Methode wurden reale Verluste an Aromastoffen beobachtet. Die Lagerung in Glas zeigte einen Vorteil bei der Bewahrung des ursprünglichen Aromaprofils, allerdings mit mehr Umwandlung in neutrale Cannabinoidformen.',
+    freezeDryNote:'Es gibt noch keine Methode, die Cannabinoide, Aroma und Stabilität gleichzeitig optimiert — es bleibt ein echter Kompromiss.',
+    freezeTblMetodo:'Methode', freezeTblCannab:'Cannabinoid-Erhalt', freezeTblAroma:'Aroma-Erhalt', freezeTblEquipo:'Benötigte Ausrüstung', freezeTblDomestico:'Zugänglich für Heimanbau',
+    freezeTblRow1Metodo:'Gefriertrocknung (freeze-drying)', freezeTblRow1Cannab:'Hoch — weniger Decarboxylierung', freezeTblRow1Aroma:'Geringer — realer Terpenverlust', freezeTblRow1Equipo:'Gefriertrockner (teuer)', freezeTblRow1Domestico:'Niedrig',
+    freezeTblRow2Metodo:'Traditionelle Trocknung (tray-drying)', freezeTblRow2Cannab:'Geringer — mehr Decarboxylierung', freezeTblRow2Aroma:'Höher — besseres ursprüngliches Aromaprofil', freezeTblRow2Equipo:'Gitter/Gestell, belüfteter Raum', freezeTblRow2Domestico:'Hoch',
     epCtaH3:'Brauchst du SOPs, die auf deinen spezifischen Betrieb zugeschnitten sind?', epCtaP:'Jede Anlage hat unterschiedliche Anforderungen je nach Größe und Rechtsprechung. Wir können dir helfen, echte Verfahren durchzudenken, keine generischen.',
     ccIntro:'Eine Weltreise durch Extraktionstechniken, organisiert so, wie es die Branche selbst tut: lösungsmittelfrei und mit Lösungsmittel. Jeder Eintrag enthält seinen dokumentierten Ursprung.', ccSecSin:'Ohne Lösungsmittel',
     ccOrigen:'Ursprung', ccOrigen2:'Ursprung', ccOrigen3:'Ursprung', ccOrigen4:'Ursprung', ccOrigen5:'Ursprung', ccOrigen6:'Ursprung', ccOrigen7:'Ursprung', ccOrigen8:'Ursprung', ccOrigen9:'Ursprung', ccOrigen10:'Ursprung', ccOrigen11:'Ursprung',
@@ -2714,6 +2806,16 @@ const translations = {
     alSmokabilityP2:'Das Ergebnis war eindeutig: <b>0,65 aW schnitt am besten ab</b> — der höchste Terpengehalt, bei einer Cannabinoid-Abgabe vergleichbar mit 0,45 aW. Im Gegensatz dazu lieferte 0,85 aW (feuchtere Blüte) nur <b>30 % des Cannabinoidgehalts</b> im Rauch verglichen mit dem optimalen Niveau. Verbraucher-Panelisten empfanden 0,45 aW als schärfer und reizender, während 0,65 aW das am wenigsten reizende Erlebnis der drei Stufen bot.',
     alPracticaH3:'Wie man es in der Praxis lagert', alPracticaP:'Ein luftdichtes Glasgefäß, in der Größe passend zur gelagerten Menge — weder mit zu viel leerem Luftraum, noch so eng gepackt, dass der Luftstrom eingeschränkt wird. Ein kühler, dunkler Ort (eine Schublade oder ein Schrank, nie direktes Licht oder in der Nähe einer Wärmequelle). Vermeide es, das Glas häufig zu öffnen — jedes Öffnen bringt neuen Sauerstoff hinein. Einfrieren ist <b>nicht immer</b> besser: es kann die Trichome beschädigen, wenn der Feuchtigkeits- und Lichtschutz nicht perfekt ist. Kühlung (~4 °C) funktioniert gut für eine Konservierung über mehrere Monate oder Jahre, mit diesem Vorbehalt im Kopf.',
     alEstudioNote:'Eine zweijährige Studie (Reason et al., 2022) bestätigte, dass Kälte und Dunkelheit den THC-Abbau messbar verlangsamen. Eine andere Studie fand dagegen, dass bei Raumtemperatur nach 4 Jahren fast kein THC mehr übrig war. Der Unterschied zwischen guter und schlechter Lagerung, gemessen in Jahren, ist enorm — kein kosmetisches Detail.',
+    alZamengoH3:'Die 4-Jahres-Studie, die verändert, wie wir das Altern von Cannabis verstehen', alZamengoP:'Eine reale 4-Jahres-Studie (Zamengo et al., Forensic Science International, 2019) lagerte 6 hochpotente Cannabisprodukte unter 4 verschiedenen Licht- und Temperaturbedingungen und maß THC, CBN und CBD etwa alle 100 Tage. Der Befund: unter Raumtemperaturbedingungen wurde nach 4 Jahren ein Abbau von fast 100% des THC beobachtet, mit proportionaler CBN-Bildung. Licht beschleunigte sowohl die Geschwindigkeit als auch die chemische Form dieser Umwandlung.',
+    alZamengoNote:'Der ehrliche, wichtige Punkt: diese Studie misst Abbau und Haltbarkeit, NICHT Curing — sie sollte nicht dazu verwendet werden, nahezulegen, dass Cannabis "4 Jahre Curing braucht", das wäre eine falsche Lesart des tatsächlichen Befunds.',
+    degradCalcH3:'Rechner: Abbaurisiko durch Lagerung', degradCalcP:'Eine orientierende Anleitung basierend auf dem allgemeinen Muster der Zamengo-Studie — keine exakte Berechnung (die Studie veröffentlicht keine präzisen kinetischen Konstanten), sondern eine ungefähre Risikokategorie je nachdem, wie lange und unter welcher Bedingung gelagert wird.',
+    degradTiempoLabel:'Lagerzeit', degradCondLabel:'Lagerbedingung',
+    degradOptSemanas:'Wochen (unter 2 Monaten)', degradOptMeses:'Monate (2–12 Monate)', degradOpt1a2:'1–2 Jahre', degradOpt3a4:'3–4 Jahre', degradOpt4mas:'Mehr als 4 Jahre',
+    degradOptLuzAmb:'Licht, Raumtemperatur', degradOptOscAmb:'Dunkelheit, Raumtemperatur', degradOptRefri:'Gekühlt (~4°C)', degradOptCong:'Gefroren',
+    degradRiesgoBajo:'Geringes Risiko', degradRiesgoMedio:'Mittleres Risiko', degradRiesgoAlto:'Hohes Risiko',
+    degradMsgBajo:'Bei dieser Zeit und Bedingung deutet das allgemeine Muster der Studie auf einen noch begrenzten Abbau hin. Es bleibt eine orientierende Anleitung, keine tatsächliche Messung deines Produkts.',
+    degradMsgMedio:'Das allgemeine Muster der Studie deutet in diesem Bereich auf einen moderaten THC-Abbau und CBN-Bildung hin — erwäge, auf Kühlung umzusteigen, wenn du länger lagern wirst.',
+    degradMsgAlto:'Das allgemeine Muster der Studie deutet in diesem Bereich auf einen deutlichen THC-Abbau mit proportionaler CBN-Bildung hin — besonders bei Lichteinwirkung.',
     flH3:'Jenseits des Konsums: Hanffaser in der 3D-Fertigung', flP1:'Französische und libanesische Forscher untersuchen, wie sich Hanffasern mit landwirtschaftlichen Nebenprodukten kombinieren lassen, um umweltfreundliche Verbundwerkstoffe herzustellen, mit realen Anwendungen in Transportfahrzeugen und anderen Branchen — eine echte internationale Zusammenarbeit (Juli 2026), außerhalb des üblichen Konsumkreislaufs.',
     vrFloracion:'Blütezeit',
     cpToggleH3:'⚖️ Zwei Kultivare nebeneinander vergleichen', cpToggleP:'Wähle zwei aus und sieh die echten Unterschiede auf einen Blick — Potenz, Terpene, Blütezeit und mehr.',
@@ -2768,6 +2870,14 @@ const translations = {
     trichVisH3:'Wie sie unter der Lupe aussehen, in den 4 Stufen', trichVisP:'Jedes Trichom ist wie ein winziger Pilz: ein dünner Stiel mit einem runden Harzkopf. Die Farbe dieses Kopfes ist das, was sich mit der Reife verändert.',
     trichVisClear:'Klar', trichVisMilky:'Milchig', trichVisMix:'Gemischt', trichVisAmber:'Bernstein',
     trichVisNote:'Dies sind schematische Illustrationen zur Orientierung — unter einer echten 60x-Lupe sieht ein Trichom eher wie ein Glastropfen auf einem Stiel aus, aber die relative Farbe zwischen den Stufen ist dieselbe wie hier gezeigt.',
+    trichStudyH3:'Trichom-Reifung, wissenschaftlich quantifiziert', trichStudyP:'Eine 2023er Studie begleitete 4 kommerzielle Cultivare über 8 Wochen der Blütephase mittels Makrofotografie, UV-Fluoreszenz und automatisierter Bildanalyse — und zeigte, dass sich Veränderungen im Trichom-Phänotyp während der Blütenentwicklung tatsächlich wissenschaftlich quantifizieren lassen.',
+    trichStudyNote:'Der ehrliche Nuance-Punkt: dies validiert nicht automatisch vereinfachte Regeln wie "Bernstein = maximales THC" oder "milchig = maximale Wirkung" — Farbe mit tatsächlichen Cannabinoiden zu korrelieren erfordert auch die gemeinsame Betrachtung von Terpenen, Genetik und Entwicklungszeitpunkt.',
+    trichLogH3:'Trichom-Protokoll: baue deine eigene Kurve', trichLogP:'Statt eines einzelnen Referenzfotos protokollierst du den ungefähren Prozentsatz, den du an verschiedenen Tagen der Blütephase beobachtest — und siehst, wie sich deine eigene Pflanze entwickelt, nicht ein generischer Durchschnitt.',
+    trichLogAuthMsg:'Melde dich an, um dein Trichom-Protokoll zu speichern — deine Daten bleiben privat in deinem Konto. <a onclick="showScreen(&#39;cuenta&#39;)" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Zum Konto</a>',
+    trichLogFechaLabel:'Datum', trichLogClearLabel:'% Transparent', trichLogMilkyLabel:'% Milchig', trichLogAmberLabel:'% Bernstein',
+    trichLogGuardar:'Eintrag speichern', trichLogErrDatos:'Gib ein Datum und mindestens einen Prozentsatz ein.', trichLogGuardadoOk:'Eintrag gespeichert.', trichLogErrGuardar:'Fehler beim Speichern — versuche es erneut.',
+    trichLogEtapaTag:'Trichom-Verfolgung', trichLogNotaAuto:'Trichom-Reifungseintrag',
+    trichLogChartVacio:'Protokolliere mindestens 2 Tage, um deine Reifungskurve zu sehen.', trichLogChartTitle:'Deine Trichom-Reifungskurve',
     ilEspectroNote:'Die Farbbalken oben sind eine vereinfachte Darstellung des Spektrums jeder Quelle — LED deckt fast den gesamten sichtbaren Regenbogen ab, HPS konzentriert sich auf warme Töne, und CMH neigt zu kühlen, weißen Tönen, näher am Tageslicht.',
     snSecCaK:'Zwei Mangelerscheinungen, die fast niemand gut erklärt: Kalzium und Kalium',
     snCaH4:'Kalziummangel', snCaSci:'Betrifft zuerst neues Wachstum', snCaDesc:'Anders als Magnesium bewegt sich Kalzium nicht innerhalb der Pflanze — deshalb treten Symptome zuerst an jungen Blättern und Wachstumsspitzen auf, nicht an alten Blättern: verzogene oder gekräuselte Ränder, Spitzenverbrennung, kleine braune Flecken.', snCaSrc:'Quelle: Cannabis Business Times, 2026',
@@ -2980,6 +3090,13 @@ const translations = {
     ssP2:'La découverte spécifique : un sol de mauvaise qualité tend à produire plus de THC, tandis qu\u2019un sol de meilleure qualité tend à produire plus de CBG (le cannabinoïde précurseur). Cela signifie que les cultivateurs ont plus de contrôle sur le profil cannabinoïde qu\u2019on ne le pensait — pas seulement en choisissant les graines, mais en gérant le sol lui-même.',
     dsH3:'Stress hydrique : ce que l\u2019on sait, et ce qu\u2019on ne sait pas encore', dsP1:'Une revue publiée le 27 juillet 2026 dans <em>Frontiers in Plant Science</em> — très récente, coécrite par l\u2019Institut de recherche sur le cannabis de Colorado State University-Pueblo (la même université que dans notre outil de recherche Éducation) — synthétise tout ce que l\u2019on sait actuellement sur la façon dont le cannabis réagit au manque d\u2019eau : changements coordonnés de croissance, de physiologie, de métabolisme secondaire, de régulation moléculaire et d\u2019interactions racines-microbes.',
     dsP2:'La partie la plus honnête de l\u2019étude : elle identifie explicitement ce qui n\u2019est PAS encore bien compris — comment les racines s\u2019adaptent précisément, la régulation médiée par l\u2019ARN, et le contrôle épigénétique. Avec le changement climatique augmentant la fréquence des sécheresses, combler ces lacunes devient de plus en plus urgent pour la durabilité de la culture.',
+    waterStressH3:'Pourquoi "plus de stress = plus de cannabinoïdes" n’est pas une règle universelle', waterStressP:'Une revue de 2025 (Horticulturae) a analysé comment le stress dû au manque d’eau affecte le développement de la plante et la production de métabolites secondaires. Le stress hydrique peut réduire la croissance et le rendement, mais la réponse en cannabinoïdes et terpènes dépend de l’intensité du stress, du moment, de la durée, du génotype et des conditions environnementales — il n’existe pas de règle simple selon laquelle "plus de stress produit toujours plus de cannabinoïdes".',
+    waterStressNote:'Il n’y a pas de formule : la revue elle-même conclut que ces 5 facteurs interagissent entre eux, et qu’aucun d’entre eux, pris isolément, ne prédit le résultat en cannabinoïdes.',
+    waterF1h4:'Intensité', waterF1desc:'À quel point le déficit hydrique est sévère.',
+    waterF2h4:'Moment', waterF2desc:'À quelle étape du cycle le stress est appliqué.',
+    waterF3h4:'Durée', waterF3desc:'Combien de temps le déficit est maintenu.',
+    waterF4h4:'Génotype', waterF4desc:'Chaque cultivar répond différemment.',
+    waterF5h4:'Conditions environnementales', waterF5desc:'Température, humidité et lumière pendant le stress.',
     snSecTipos:'Types de substrat', sn01h4:'Terre / mélange biologique', sn01sci:'Le plus indulgent', sn01desc:"Bon amortisseur des erreurs d'arrosage et de nutrition ; réagit plus lentement aux ajustements.",
     sn02h4:'Fibre de coco (coco coir)', sn02sci:'Intermédiaire', sn02desc:"Retient l'humidité de façon plus régulière que la terre, avec une meilleure oxygénation racinaire ; nécessite une fertilisation dès le départ (il n'a pas de nutriments propres).",
     sn03h4:'Laine de roche (rockwool)', sn03sci:'Milieu hydroponique inerte', sn03desc:"Substrat inerte standard en hydroponie commerciale — contrôle total de la solution nutritive, sans marge d'erreur de pH.",
@@ -3088,7 +3205,11 @@ const translations = {
     coSciH3:'Ce que dit la science, pas seulement la tradition', coSciP1:'Une étude de 2022 publiée dans <em>Horticulturae</em> a comparé deux cultivars de chanvre (Cherry Wine et BaOx) et a constaté que le pic de THC survenait à des jours complètement différents : jour 63 de floraison pour l’un, jour 75 pour l’autre — qui ne s’était même pas stabilisé au bout des 84 jours de l’étude. La conclusion est claire : <b>le moment optimal dépend du cultivar, il n’existe pas de nombre de semaines universel</b> qui convienne à tous.',
     coSciP2:'Un détail que presque personne ne vérifie : une étude de l’Université de Hohenheim (Allemagne, 2022) a mesuré la concentration de CBD à différentes hauteurs d’une même plante et a trouvé de vraies différences — 9,9 % dans les têtes supérieures, 8,2 % dans celles du milieu, 7,7 % dans les inférieures. La position sur la plante compte, pas seulement le moment de la coupe.',
     coSciNote:'Une autre découverte récente (2025, <em>Plant and Cell Physiology</em>) : les trichomes des cultivars modernes sont 22 à 25 % plus grands que ceux des variétés traditionnelles, avec une densité de métabolites plus élevée — résultat de décennies de sélection génétique, et une partie de la raison pour laquelle le cannabis actuel est généralement plus puissant qu’il y a 30 ans. Et un mythe que tu peux écarter sereinement : récolter selon les phases lunaires n’a aucun fondement scientifique — aucune recherche ne le confirme, même s’il n’y a pas non plus de preuve que cela nuise.',
-    coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspendue', coC1sci:'La méthode la plus courante', coC1desc:'La tige principale est coupée au ras du substrat et la plante entière est suspendue tête en bas. Le séchage est plus lent et plus régulier, et les branches plus fines aident à retenir l’humidité des têtes denses plus longtemps.',
+        finolaH3:'Moment de la récolte : un autre génotype, même schéma avec une nuance honnête', finolaP:'Une étude de 2022 (Royal Society Open Science) avec la variété de chanvre Finola a trouvé que les cannabinoïdes et huiles essentielles dans les inflorescences augmentaient jusqu’à la pleine floraison, puis diminuaient à l’arrivée de la maturité des graines.',
+    finolaNote:'La nuance honnête : cela ne signifie pas qu’il existe "la semaine idéale universelle" — c’est un génotype spécifique, et cela ne doit pas être extrapolé directement à d’autres cultivars, comme on l’a déjà vu avec l’étude BaOx/Cherry Wine ci-dessus.',
+    finolaChartPeak:'Pic : pleine floraison', finolaChartInicio:'Début de la floraison', finolaChartMadurez:'Maturité des graines',
+    finolaChartCaption:'Axe vertical : cannabinoïdes et huiles essentielles (relatif). Courbe illustrative basée sur le schéma de Finola — la forme exacte varie selon le cultivar.',
+coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspendue', coC1sci:'La méthode la plus courante', coC1desc:'La tige principale est coupée au ras du substrat et la plante entière est suspendue tête en bas. Le séchage est plus lent et plus régulier, et les branches plus fines aident à retenir l’humidité des têtes denses plus longtemps.',
     coC2h4:'Branche par branche', coC2sci:'Pour les espaces réduits', coC2desc:'Des branches individuelles sont coupées et suspendues au lieu de la plante entière. Cela économise de l’espace et sèche plus vite — utile quand la salle de séchage est petite ou que l’humidité ambiante est déjà élevée.',
     coSecTrim:'La question la plus posée : trim humide vs. trim sec', coT1h4:'Trim humide', coT1sci:'Tailler avant de sécher', coT1desc:'Les grandes feuilles sont retirées juste après avoir coupé la plante, pendant qu’elle est encore fraîche et collante. Il est plus facile de voir la structure de la tête et les ciseaux coupent plus proprement, mais le travail est plus collant et le séchage qui suit est plus rapide (avec plus de risque de perdre des terpènes si on se précipite).',
     coT2h4:'Trim sec', coT2sci:'Tailler après le séchage', coT2desc:'La plante est suspendue entière avec les feuilles encore en place, et la taille se fait après le séchage complet. Les feuilles protègent la tête pendant le séchage (plus lent et plus régulier) et les ciseaux restent beaucoup moins collants, mais les feuilles déjà sèches sont plus fragiles et se cassent plus facilement à la manipulation.',
@@ -3099,6 +3220,11 @@ const translations = {
     ep03h4:'Trimming', ep03sci:'Espace de travail', epTempSala2:'Temp. de la salle', epSuperficie:'Surface', epSuperficieVal:'Acier inoxydable / lavable', ep03src:'Source : manuel des installations, BfArM',
     ep04h4:'Tenue du personnel', ep04sci:'Biosécurité', epCofia:'Charlotte / coiffe', epObligatorio:'Obligatoire', epGuantes:'Gants', epGuantesVal:'Nitrile, changés par lot', ep04src:'Source : guide BPF horticulture, EMA',
     epNote:'En production, chaque SOP serait téléchargeable sous forme de modèle modifiable (PDF/Word) pour qu’une exploitation l’adapte à son installation.',
+    freezeDryH3:'Lyophilisation vs. séchage traditionnel : un compromis réel, pas une solution parfaite', freezeDryP:'Une étude de 2024 (Analytical and Bioanalytical Chemistry) a comparé la lyophilisation (freeze-drying) au séchage traditionnel sur claies (tray-drying). Résultat : la lyophilisation a mieux préservé les cannabinoïdes et réduit la décarboxylation des formes acides — mais cela ne veut pas dire qu’elle est meilleure en général : de réelles pertes de composés aromatiques ont été observées avec cette même méthode. Le stockage en verre a montré un avantage pour préserver le profil aromatique initial, bien qu’avec davantage de conversion vers des formes neutres de cannabinoïdes.',
+    freezeDryNote:'Il n’existe pas encore de méthode qui optimise simultanément cannabinoïdes, arôme et stabilité — cela reste un compromis réel.',
+    freezeTblMetodo:'Méthode', freezeTblCannab:'Préservation des cannabinoïdes', freezeTblAroma:'Préservation de l’arôme', freezeTblEquipo:'Équipement nécessaire', freezeTblDomestico:'Accessible en culture domestique',
+    freezeTblRow1Metodo:'Lyophilisation (freeze-drying)', freezeTblRow1Cannab:'Élevée — moins de décarboxylation', freezeTblRow1Aroma:'Moindre — réelle perte de terpènes', freezeTblRow1Equipo:'Lyophilisateur (coûteux)', freezeTblRow1Domestico:'Faible',
+    freezeTblRow2Metodo:'Séchage traditionnel (tray-drying)', freezeTblRow2Cannab:'Moindre — plus de décarboxylation', freezeTblRow2Aroma:'Plus élevée — meilleur profil aromatique initial', freezeTblRow2Equipo:'Grille/claie, espace ventilé', freezeTblRow2Domestico:'Élevée',
     epCtaH3:'Besoin de SOP conçus pour ton exploitation spécifique ?', epCtaP:'Chaque installation a des exigences différentes selon son échelle et sa juridiction. Nous pouvons t\u2019aider à réfléchir à de vraies procédures, pas génériques.',
     ccIntro:'Un tour du monde des techniques d’extraction, organisé comme le fait le secteur lui-même : sans solvant et avec solvant. Chaque fiche inclut son origine documentée.', ccSecSin:'Sans solvant',
     ccOrigen:'Origine', ccOrigen2:'Origine', ccOrigen3:'Origine', ccOrigen4:'Origine', ccOrigen5:'Origine', ccOrigen6:'Origine', ccOrigen7:'Origine', ccOrigen8:'Origine', ccOrigen9:'Origine', ccOrigen10:'Origine', ccOrigen11:'Origine',
@@ -3463,6 +3589,16 @@ const translations = {
     alSmokabilityP2:'Le résultat était clair : <b>0,65 aW a donné le meilleur résultat</b> — la teneur en terpènes la plus élevée, avec une délivrance de cannabinoïdes comparable à 0,45 aW. En revanche, 0,85 aW (fleur plus humide) n\u2019a délivré que <b>30 % de la teneur en cannabinoïdes</b> dans la fumée par rapport au niveau optimal. Les panelistes ont noté que 0,45 aW semblait plus rêche et irritant, tandis que 0,65 aW offrait l\u2019expérience la moins irritante des trois.',
     alPracticaH3:'Comment le conserver en pratique', alPracticaP:'Un bocal en verre hermétique, dont la taille correspond à la quantité stockée — ni avec trop d\u2019air vide en trop, ni tassé au point de restreindre la circulation d\u2019air. Un endroit frais et sombre (un tiroir ou un placard, jamais en lumière directe ni près d\u2019une source de chaleur). Évite d\u2019ouvrir le bocal souvent — chaque ouverture introduit de l\u2019oxygène frais. Congeler n\u2019est <b>pas toujours</b> préférable : cela peut endommager les trichomes si la protection contre l\u2019humidité et la lumière n\u2019est pas parfaite. La réfrigération (~4 °C) fonctionne bien pour une conservation de plusieurs mois ou années, avec cette nuance en tête.',
     alEstudioNote:'Une étude de deux ans (Reason et al., 2022) a confirmé que le froid et l\u2019obscurité ralentissent de façon mesurable la dégradation du THC. Une autre étude, en revanche, a trouvé qu\u2019à température ambiante il ne restait presque plus de THC après 4 ans. La différence entre bien conserver et mal conserver, mesurée en années, est énorme — ce n\u2019est pas un détail cosmétique.',
+    alZamengoH3:'L’étude de 4 ans qui change notre compréhension du vieillissement du cannabis', alZamengoP:'Une véritable étude de 4 ans (Zamengo et al., Forensic Science International, 2019) a stocké 6 produits de cannabis à haute puissance sous 4 conditions différentes de lumière et de température, en mesurant le THC, le CBN et le CBD environ tous les 100 jours. Résultat : dans des conditions de température ambiante, une dégradation de près de 100% du THC a été observée après 4 ans, avec une formation proportionnelle de CBN. La lumière a accéléré à la fois la vitesse et la forme chimique de cette conversion.',
+    alZamengoNote:'Le point honnête et important : cette étude mesure la dégradation et la durée de conservation, PAS le curing — elle ne doit pas être utilisée pour suggérer que le cannabis "a besoin de 4 ans de curing", ce serait une mauvaise lecture du résultat réel.',
+    degradCalcH3:'Calculateur : risque de dégradation lié au stockage', degradCalcP:'Un guide indicatif basé sur le schéma général de l’étude de Zamengo — ce n’est pas un calcul exact (l’étude ne publie pas de constantes cinétiques précises), mais une catégorie de risque approximative selon la durée et la condition de stockage.',
+    degradTiempoLabel:'Durée de stockage', degradCondLabel:'Condition de stockage',
+    degradOptSemanas:'Semaines (moins de 2 mois)', degradOptMeses:'Mois (2–12 mois)', degradOpt1a2:'1–2 ans', degradOpt3a4:'3–4 ans', degradOpt4mas:'Plus de 4 ans',
+    degradOptLuzAmb:'Lumière, température ambiante', degradOptOscAmb:'Obscurité, température ambiante', degradOptRefri:'Réfrigéré (~4°C)', degradOptCong:'Congelé',
+    degradRiesgoBajo:'Risque faible', degradRiesgoMedio:'Risque moyen', degradRiesgoAlto:'Risque élevé',
+    degradMsgBajo:'Avec cette durée et cette condition, le schéma général de l’étude suggère une dégradation encore limitée. Cela reste un guide indicatif, pas une mesure réelle de ton produit.',
+    degradMsgMedio:'Le schéma général de l’étude suggère une dégradation modérée du THC et une formation de CBN dans cette plage — envisage de passer à la réfrigération si le stockage doit durer plus longtemps.',
+    degradMsgAlto:'Le schéma général de l’étude suggère une dégradation significative du THC avec une formation proportionnelle de CBN dans cette plage — surtout en cas d’exposition à la lumière.',
     flH3:'Au-delà de la consommation : la fibre de chanvre dans la fabrication 3D', flP1:'Des chercheurs français et libanais étudient comment combiner des fibres de chanvre avec des sous-produits agricoles pour créer des matériaux composites écologiques, avec des applications réelles dans les véhicules de transport et d\u2019autres industries — une véritable collaboration internationale (juillet 2026), hors du circuit habituel de consommation.',
     vrFloracion:'Floraison',
     cpToggleH3:'⚖️ Comparer deux cultivars côte à côte', cpToggleP:'Choisis-en deux et vois les vraies différences en un coup d\u2019œil — puissance, terpènes, floraison et plus.',
@@ -3517,6 +3653,14 @@ const translations = {
     trichVisH3:'À quoi ils ressemblent à la loupe, aux 4 étapes', trichVisP:'Chaque trichome est comme un minuscule champignon : une fine tige avec une tête ronde de résine. C\u2019est la couleur de cette tête qui change avec la maturité.',
     trichVisClear:'Transparent', trichVisMilky:'Laiteux', trichVisMix:'Mélange', trichVisAmber:'Ambré',
     trichVisNote:'Ce sont des illustrations schématiques pour t\u2019orienter — sous une vraie loupe 60x, un trichome ressemble plus à une goutte de verre sur une tige, mais la couleur relative entre les étapes est la même que ce que tu vois ici.',
+    trichStudyH3:'La maturation des trichomes, quantifiée scientifiquement', trichStudyP:'Une étude de 2023 a suivi 4 cultivars commerciaux pendant 8 semaines de floraison en utilisant la macrophotographie, la fluorescence UV et l’analyse d’images automatisée — démontrant que les changements de phénotype des trichomes peuvent bel et bien être quantifiés scientifiquement pendant le développement floral.',
+    trichStudyNote:'La nuance honnête : cela ne valide pas automatiquement des règles simplifiées comme "ambre = THC maximal" ou "laiteux = effet maximal" — corréler la couleur avec les cannabinoïdes réels nécessite aussi de considérer ensemble les terpènes, la génétique et le moment du développement.',
+    trichLogH3:'Journal des trichomes : construis ta propre courbe', trichLogP:'Au lieu d’une seule photo de référence, note le pourcentage approximatif que tu observes à différents jours de la floraison — et regarde comment ta propre plante progresse, pas une moyenne générique.',
+    trichLogAuthMsg:'Connecte-toi pour enregistrer ton journal des trichomes — tes données restent privées dans ton compte. <a onclick="showScreen(&#39;cuenta&#39;)" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Aller au compte</a>',
+    trichLogFechaLabel:'Date', trichLogClearLabel:'% Transparent', trichLogMilkyLabel:'% Laiteux', trichLogAmberLabel:'% Ambre',
+    trichLogGuardar:'Enregistrer', trichLogErrDatos:'Indique une date et au moins un pourcentage.', trichLogGuardadoOk:'Entrée enregistrée.', trichLogErrGuardar:'Erreur lors de l’enregistrement — réessaie.',
+    trichLogEtapaTag:'Suivi des trichomes', trichLogNotaAuto:'Entrée de maturation des trichomes',
+    trichLogChartVacio:'Enregistre au moins 2 jours pour voir ta courbe de maturation.', trichLogChartTitle:'Ta courbe de maturation des trichomes',
     ilEspectroNote:'Les barres de couleur ci-dessus sont une représentation simplifiée du spectre de chaque source — le LED couvre presque tout l\u2019arc-en-ciel visible, le HPS se concentre sur des tons chauds, et le CMH penche vers des tons frais et blancs, plus proches de la lumière du jour.',
     snSecCaK:'Deux carences que presque personne n\u2019explique bien : le calcium et le potassium',
     snCaH4:'Carence en calcium', snCaSci:'Affecte d\u2019abord la nouvelle croissance', snCaDesc:'Contrairement au magnésium, le calcium ne circule pas dans la plante — c\u2019est pourquoi les symptômes apparaissent d\u2019abord sur les jeunes feuilles et les pointes de croissance, pas sur les vieilles feuilles : bords déformés ou recourbés, brûlure des pointes, petites taches brunes.', snCaSrc:'Source : Cannabis Business Times, 2026',
@@ -4630,6 +4774,28 @@ function updateIlCalcLuz(){
   if(el){ el.addEventListener('input', updateIlCalcLuz); el.addEventListener('change', updateIlCalcLuz); }
 });
 if(document.getElementById('ilLuzArea')) updateIlCalcLuz();
+const DEGRAD_TIME_LEVEL = { weeks:0.5, months:1, '1-2y':2, '3-4y':3.5, '4y+':5 };
+const DEGRAD_COND_FACTOR = { 'light-room':1.5, 'dark-room':1.0, fridge:0.5, freezer:0.25 };
+function updateDegradCalc(){
+  const tiempoEl = document.getElementById('degradTiempo');
+  const condEl = document.getElementById('degradCond');
+  const resultEl = document.getElementById('degradResult');
+  if(!tiempoEl || !resultEl) return;
+  const score = (DEGRAD_TIME_LEVEL[tiempoEl.value]||0) * (DEGRAD_COND_FACTOR[condEl.value]||1);
+  let level, color, msgKey;
+  if(score < 1.5){ level = t('degradRiesgoBajo'); color = 'var(--moss-deep)'; msgKey = 'degradMsgBajo'; }
+  else if(score < 3.5){ level = t('degradRiesgoMedio'); color = 'var(--resin)'; msgKey = 'degradMsgMedio'; }
+  else { level = t('degradRiesgoAlto'); color = 'var(--clay)'; msgKey = 'degradMsgAlto'; }
+  resultEl.innerHTML = `
+    <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:500; color:${color};">${level}</div>
+    <p style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;">${t(msgKey)}</p>
+  `;
+}
+['degradTiempo','degradCond'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateDegradCalc); el.addEventListener('change', updateDegradCalc); }
+});
+if(document.getElementById('degradTiempo')) updateDegradCalc();
 ['cmDoseMg','cmDoseServings'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.addEventListener('input', updateDoseComestibles);
@@ -4865,6 +5031,92 @@ async function deleteBitEntry(id){
     loadBitEntries();
   }catch(e){}
 }
+
+/* ===================== REGISTRO DE TRICOMAS (conectado a bitacora_entries) ===================== */
+function renderTrichLogGate(){
+  const gateEl = document.getElementById('trichLogGate');
+  const loggedInEl = document.getElementById('trichLogLoggedIn');
+  if(!gateEl || !loggedInEl) return;
+  const user = window.mvCurrentUser;
+  gateEl.style.display = user ? 'none' : '';
+  loggedInEl.style.display = user ? '' : 'none';
+}
+window.renderTrichLogGate = renderTrichLogGate;
+async function addTrichLogEntry(){
+  if(!window.mvCurrentUser) return;
+  const fecha = document.getElementById('trichLogFecha').value;
+  const clear = document.getElementById('trichLogClear').value;
+  const milky = document.getElementById('trichLogMilky').value;
+  const amber = document.getElementById('trichLogAmber').value;
+  const statusEl = document.getElementById('trichLogStatus');
+  if(!fecha || (!clear && !milky && !amber)){ statusEl.textContent = t('trichLogErrDatos'); return; }
+  try{
+    const { error } = await window.mvSupabase.from('bitacora_entries').insert({
+      user_id: window.mvCurrentUser.id,
+      entry_date: fecha,
+      etapa: t('trichLogEtapaTag'),
+      nota: t('trichLogNotaAuto'),
+      trich_clear: clear || null,
+      trich_milky: milky || null,
+      trich_amber: amber || null
+    });
+    if(error) throw error;
+    statusEl.textContent = t('trichLogGuardadoOk');
+    document.getElementById('trichLogClear').value = '';
+    document.getElementById('trichLogMilky').value = '';
+    document.getElementById('trichLogAmber').value = '';
+    loadTrichLog();
+    if(document.getElementById('bitacora')?.classList.contains('active')) loadBitEntries();
+  }catch(e){ statusEl.textContent = t('trichLogErrGuardar'); }
+}
+window.addTrichLogEntry = addTrichLogEntry;
+async function loadTrichLog(){
+  const chartEl = document.getElementById('trichLogChart');
+  if(!chartEl) return;
+  renderTrichLogGate();
+  if(!window.mvCurrentUser) return;
+  let entries = [];
+  try{
+    const { data, error } = await window.mvSupabase
+      .from('bitacora_entries')
+      .select('entry_date, trich_clear, trich_milky, trich_amber')
+      .eq('user_id', window.mvCurrentUser.id)
+      .not('trich_clear', 'is', null)
+      .order('entry_date', { ascending: true });
+    if(error) throw error;
+    entries = (data || []).filter(e => e.entry_date);
+  }catch(e){ entries = []; }
+  if(entries.length < 2){
+    chartEl.innerHTML = `<div class="note-box">${t('trichLogChartVacio')}</div>`;
+    return;
+  }
+  const w = 600, h = 140, pad = 30;
+  const stepX = (w - pad*2) / (entries.length - 1);
+  const scaleY = v => h - pad - (v/100)*(h-pad*2);
+  const line = (key, color) => {
+    const pts = entries.map((e,i) => {
+      const v = parseFloat(e[key]); if(isNaN(v)) return null;
+      return `${pad + i*stepX},${scaleY(v)}`;
+    }).filter(Boolean).join(' ');
+    return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2"/>`;
+  };
+  chartEl.innerHTML = `<div class="card-block" style="margin-top:0;">
+    <h3 style="font-size:15px;">${t('trichLogChartTitle')}</h3>
+    <svg viewBox="0 0 ${w} ${h}" style="width:100%; height:auto; margin-top:8px;">
+      <line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="var(--line-strong)" stroke-width="1"/>
+      ${line('trich_clear','var(--ink-soft)')}
+      ${line('trich_milky','var(--teal)')}
+      ${line('trich_amber','var(--resin)')}
+    </svg>
+    <div style="display:flex; gap:16px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft); margin-top:6px; flex-wrap:wrap;">
+      <span><span style="display:inline-block; width:10px; height:2px; background:var(--ink-soft); vertical-align:middle;"></span> ${t('trichVisClear')}</span>
+      <span><span style="display:inline-block; width:10px; height:2px; background:var(--teal); vertical-align:middle;"></span> ${t('trichVisMilky')}</span>
+      <span><span style="display:inline-block; width:10px; height:2px; background:var(--resin); vertical-align:middle;"></span> ${t('trichVisAmber')}</span>
+    </div>
+  </div>`;
+}
+window.loadTrichLog = loadTrichLog;
+if(document.getElementById('trichLogGate')){ renderTrichLogGate(); loadTrichLog(); }
 
 /* ===================== CHECKLIST PRE-VIAJE ===================== */
 const travelChecklistItems = [
