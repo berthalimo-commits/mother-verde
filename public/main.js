@@ -3823,6 +3823,7 @@ function renderGlosario(query){
 }
 
 function showSub(screen, sub){
+  showScreen(screen);
   document.querySelectorAll('#'+screen+' .subview').forEach(v=>v.classList.remove('active'));
   document.getElementById(screen+'-'+sub).classList.add('active');
   document.querySelectorAll('#'+screen+' .sub-pill').forEach(p=>p.classList.remove('on'));
