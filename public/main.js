@@ -4152,7 +4152,7 @@ async function onboardFinish(){
 }
 async function ageGateConfirm(isAdult){
   if(isAdult){
-    try{ await window.storage.set('age-verified', 'true'); }catch(e){}
+    try{ localStorage.setItem('age-verified', 'true'); }catch(e){}
     document.getElementById('ageGateModal').classList.remove('active');
     maybeShowOnboarding();
   } else {
@@ -4162,8 +4162,7 @@ async function ageGateConfirm(isAdult){
 }
 async function checkAgeGate(){
   try{
-    const res = await window.storage.get('age-verified', false);
-    if(res && res.value === 'true'){
+    if(localStorage.getItem('age-verified') === 'true'){
       document.getElementById('ageGateModal').classList.remove('active');
       maybeShowOnboarding();
       return;
