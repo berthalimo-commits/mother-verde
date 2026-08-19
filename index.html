@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mother Verde — Codex Global</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
@@ -25,13 +25,13 @@
       <button onclick="document.querySelector('#langSwitch button[data-lang=fr]').click(); this.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity=.5); this.style.opacity=1;" style="padding:6px 12px; border:1px solid var(--line-strong); border-radius:20px; background:transparent; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; opacity:.5;">FR</button>
     </div>
     <svg viewBox="0 0 60 70" width="44" height="52" style="margin:0 auto 18px; display:block;"><path d="M30,8 C36,16 40,26 37,36 C34,45 30,52 25,55 C20,51 17,44 19,35 C21,25 25,15 30,8 Z" fill="var(--moss)" stroke="var(--moss-deep)" stroke-width="1.5"/></svg>
-    <h2 style="font-family:'Fraunces',serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Verificación de edad</h2>
+    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Verificación de edad</h2>
     <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:26px;" data-i18n="agBody">Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.</p>
     <button class="btn btn-primary" style="width:100%; padding:13px; margin-bottom:10px;" onclick="ageGateConfirm(true)" data-i18n="agYes">Sí, tengo 18 años o más</button>
     <button class="btn" style="width:100%; padding:13px; background:transparent; border:1px solid var(--line-strong); color:var(--ink-soft);" onclick="ageGateConfirm(false)" data-i18n="agNo">No, soy menor de 18</button>
   </div>
   <div class="premium-sheet" style="max-width:420px; text-align:center; display:none;" id="ageGateBlocked">
-    <h2 style="font-family:'Fraunces',serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agBlockedTitle">Acceso no disponible</h2>
+    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agBlockedTitle">Acceso no disponible</h2>
     <p style="font-size:14px; color:var(--ink-soft); line-height:1.6;" data-i18n="agBlockedBody">Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.</p>
   </div>
 </div>
@@ -362,16 +362,16 @@
         <h3 data-i18n="ilLuzCalcH3">Calculadora: potencia de luz necesaria</h3>
         <p style="margin-bottom:14px;" data-i18n="ilLuzCalcP">Calcula el PPF total, la potencia real en vatios y el DLI resultante según tu espacio, tu objetivo de PPFD y el tipo de luz que uses.</p>
         <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:10px;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzAreaLabel">Área de cultivo (m²)</label><input type="number" id="ilLuzArea" value="1" step="0.1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzPpfdLabel">PPFD objetivo (μmol/m²/s)</label><input type="number" id="ilLuzPPFD" value="800" step="10" style="width:130px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzAreaLabel">Área de cultivo (m²)</label><input type="number" id="ilLuzArea" value="1" step="0.1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzPpfdLabel">PPFD objetivo (μmol/m²/s)</label><input type="number" id="ilLuzPPFD" value="800" step="10" style="width:130px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzTipoLabel">Tipo de luz</label>
-            <select id="ilLuzTipo" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+            <select id="ilLuzTipo" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
               <option value="2.7" data-i18n="ilLuzOptLed">LED (2.7 μmol/J)</option>
               <option value="1.3" data-i18n="ilLuzOptHps">HPS (1.3 μmol/J)</option>
               <option value="1.8" data-i18n="ilLuzOptCmh">CMH (~1.8 μmol/J)</option>
             </select>
           </div>
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzHorasLabel">Horas de luz/día</label><input type="number" id="ilLuzHoras" value="12" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzHorasLabel">Horas de luz/día</label><input type="number" id="ilLuzHoras" value="12" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         </div>
         <p style="font-size:11px; color:var(--ink-soft); margin-bottom:14px;" data-i18n="ilLuzSugerencia"><b>Sugerencia según etapa:</b> 300–600 vegetativo · 600–1,000 floración · 1,000–1,500+ con CO2 suplementario.</p>
         <div id="ilLuzResult" style="display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
@@ -534,9 +534,9 @@
         <h3 data-i18n="snRecetaH3">El "fertilizante orgánico completo" clásico, adaptado a cannabis</h3>
         <p data-i18n="snRecetaP">Esta proporción base —4:1:1:1— viene de las fórmulas clásicas de fertilizante orgánico completo usadas en horticultura orgánica desde hace décadas, y se arma con harinas y minerales secos, sin ningún proceso de riesgo: solo pesar y mezclar.</p>
         <div style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:8px; padding:18px; margin-top:16px;">
-          <h4 style="font-family:'Fraunces',serif; font-size:15px; font-weight:500; margin-bottom:4px;" data-i18n="snCalcTitle">Calculadora: arma tu lote</h4>
+          <h4 style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:500; margin-bottom:4px;" data-i18n="snCalcTitle">Calculadora: arma tu lote</h4>
           <p style="font-size:11.5px; color:var(--ink-soft); margin-bottom:12px;" data-i18n="snCalcDesc">Ingresa cuánto quieres preparar en total, en la unidad que prefieras (tazas, kg, litros) — la proporción 4:1:1:1 se mantiene igual.</p>
-          <div style="margin-bottom:14px;"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="snCalcTotalLabel">Cantidad total del lote</label><input type="number" id="snCalcTotal" value="7" step="0.1" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div style="margin-bottom:14px;"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="snCalcTotalLabel">Cantidad total del lote</label><input type="number" id="snCalcTotal" value="7" step="0.1" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div id="snCalcResult" style="display:flex; flex-direction:column; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
         </div>
       </div>
@@ -556,7 +556,7 @@
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="snCtaH3">¿Necesitas una fórmula de nutrición diseñada para tu cultivo?</h3>
         <p data-i18n="snCtaP">Cada sustrato, clima y etapa tiene necesidades distintas. Podemos ayudarte a pensar una fórmula real, ajustada a tu operación específica.</p>
-        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:white; border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
+        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
       </div>
     </div>
 
@@ -724,7 +724,7 @@
         <p data-i18n="gnBreederP">El quimiotipo se hereda por un único gen (locus <b>B</b>), con dos alelos codominantes: B<sub>T</sub> (produce THCA-sintasa) y B<sub>D</sub> (produce CBDA-sintasa). Tipo I es homocigoto B<sub>T</sub>/B<sub>T</sub>, Tipo III es homocigoto B<sub>D</sub>/B<sub>D</sub>, y Tipo II es el heterocigoto B<sub>D</sub>/B<sub>T</sub>. Existe un tercer alelo, B<sub>0</sub> ("nulo" — sin síntesis funcional), identificado con marcador molecular en 2021: cuando un individuo es homocigoto B<sub>0</sub>/B<sub>0</sub>, ninguna enzima convierte el CBGA, y este se acumula sin transformarse — es el Tipo IV, CBG dominante. Elige el quimiotipo de cada progenitor para predecir la distribución real de la descendencia F1.</p>
         <div style="display:flex; gap:16px; flex-wrap:wrap; margin:16px 0;">
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="gnProg1">Progenitor 1</label>
-            <select id="breedP1" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+            <select id="breedP1" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
               <option value="I" data-i18n="gnOptI">Tipo I (B_T/B_T)</option>
               <option value="II" data-i18n="gnOptII">Tipo II (B_D/B_T)</option>
               <option value="III" data-i18n="gnOptIII">Tipo III (B_D/B_D)</option>
@@ -732,7 +732,7 @@
             </select>
           </div>
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="gnProg2">Progenitor 2</label>
-            <select id="breedP2" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+            <select id="breedP2" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
               <option value="I" data-i18n="gnOptI2">Tipo I (B_T/B_T)</option>
               <option value="II" data-i18n="gnOptII2">Tipo II (B_D/B_T)</option>
               <option value="III" selected data-i18n="gnOptIII2">Tipo III (B_D/B_D)</option>
@@ -865,12 +865,12 @@
         <div id="trichLogGate" class="note-box" data-i18n="trichLogAuthMsg">Inicia sesión para guardar tu registro de tricomas — tus datos quedan privados en tu cuenta. <a onclick="showScreen('cuenta')" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ir a Cuenta</a></div>
         <div id="trichLogLoggedIn" style="display:none;">
           <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:12px;">
-            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogFechaLabel">Fecha</label><input type="date" id="trichLogFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogClearLabel">% Transparente</label><input type="number" id="trichLogClear" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogMilkyLabel">% Lechoso</label><input type="number" id="trichLogMilky" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogAmberLabel">% Ámbar</label><input type="number" id="trichLogAmber" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogFechaLabel">Fecha</label><input type="date" id="trichLogFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogClearLabel">% Transparente</label><input type="number" id="trichLogClear" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogMilkyLabel">% Lechoso</label><input type="number" id="trichLogMilky" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="trichLogAmberLabel">% Ámbar</label><input type="number" id="trichLogAmber" min="0" max="100" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           </div>
-          <button onclick="addTrichLogEntry()" style="padding:10px 20px; background:var(--moss-deep); color:white; border:none; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12.5px;" data-i18n="trichLogGuardar">Guardar registro</button>
+          <button onclick="addTrichLogEntry()" style="padding:10px 20px; background:var(--moss-deep); color:var(--paper); border:none; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12.5px;" data-i18n="trichLogGuardar">Guardar registro</button>
           <div id="trichLogStatus" style="margin-top:8px; font-size:12px; color:var(--ink-soft);"></div>
           <div id="trichLogChart" style="margin-top:16px;"></div>
         </div>
@@ -1069,7 +1069,7 @@
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="eqCtaH3">¿Buscas un sistema diseñado a tu medida?</h3>
         <p data-i18n="eqCtaP">Si tu operación tiene necesidades específicas de equipo — desde una instalación completa hasta un flujo de trabajo de procesamiento a tu escala — podemos ayudarte a pensarlo.</p>
-        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:white; border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
+        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
       </div>
     </div>
   </section>
@@ -1154,7 +1154,7 @@
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="epCtaH3">¿Necesitas SOPs diseñados para tu operación específica?</h3>
         <p data-i18n="epCtaP">Cada instalación tiene requisitos distintos según su escala y jurisdicción. Podemos ayudarte a pensar procedimientos reales, no genéricos.</p>
-        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:white; border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
+        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
       </div>
 
       <div class="section-title" data-i18n="alSecTitle">Almacenamiento: conservar la potencia real</div>
@@ -1182,7 +1182,7 @@
         <p style="margin-bottom:14px;" data-i18n="degradCalcP">Guía orientativa basada en el patrón general del estudio de Zamengo — no es un cálculo exacto (el estudio no publica constantes cinéticas precisas), sino una categoría de riesgo aproximada según cuánto tiempo llevas guardando y en qué condición.</p>
         <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="degradTiempoLabel">Tiempo almacenado</label>
-            <select id="degradTiempo" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+            <select id="degradTiempo" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
               <option value="weeks" data-i18n="degradOptSemanas">Semanas (menos de 2 meses)</option>
               <option value="months" data-i18n="degradOptMeses">Meses (2–12 meses)</option>
               <option value="1-2y" data-i18n="degradOpt1a2">1–2 años</option>
@@ -1191,7 +1191,7 @@
             </select>
           </div>
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="degradCondLabel">Condición de almacenamiento</label>
-            <select id="degradCond" style="width:230px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+            <select id="degradCond" style="width:230px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
               <option value="light-room" data-i18n="degradOptLuzAmb">Con luz, temperatura ambiente</option>
               <option value="dark-room" data-i18n="degradOptOscAmb">Oscuridad, temperatura ambiente</option>
               <option value="fridge" data-i18n="degradOptRefri">Refrigerado (~4°C)</option>
@@ -1373,7 +1373,7 @@
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="ttCtaH3">¿Necesitas una fórmula de dosificación real para tu producto?</h3>
         <p data-i18n="ttCtaP">Tinturas, cápsulas o parches con dosis precisa y consistente por lote requieren cálculos específicos. Podemos ayudarte a pensarlo para tu operación.</p>
-        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:white; border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
+        <a href="mailto:hello@motherverdeny.com" style="display:inline-block; margin-top:10px; padding:12px 24px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:13px;">hello@motherverdeny.com</a>
       </div>
     </div>
 
@@ -1428,13 +1428,13 @@
         <p data-i18n="cmDecarbP2">La reacción sigue una <b>cinética de primer orden</b> confirmada por varios estudios independientes (Wang et al., 2016; Perrotin-Brunel et al., modelado molecular). Pero THCA y CBDA no se comportan igual: la conversión de THCA es limpia, casi estequiométrica 1:1, sin subproductos relevantes. La de CBDA es más desordenada, con pérdidas de 18–53% por reacciones secundarias no del todo explicadas — es decir, <b>decarboxilar un producto dominante en CBD es química más difícil que decarboxilar uno dominante en THC</b>, algo que casi ningún sitio de consumo menciona. Un estudio de optimización comercial bajo normas GMP (<em>Industrial &amp; Engineering Chemistry Research</em>, ACS, 2022) encontró condiciones óptimas distintas para cada uno: flor dominante en THC cerca de 137 °C por 57 min, flor dominante en CBD cerca de 149 °C por 41 min.</p>
         <div class="note-box" data-i18n="cmDecarbNote">Otro factor que casi nunca se menciona: la presencia de oxígeno acelera la degradación. Los procesos hechos en ambiente cerrado o con poco oxígeno conservan más cannabinoide que el mismo proceso al aire libre — un detalle real de la química, no una preferencia de marca.</div>
         <div style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:8px; padding:18px; margin-top:16px;">
-          <h4 style="font-family:'Fraunces',serif; font-size:15px; font-weight:500; margin-bottom:4px;" data-i18n="cmDecarbCalcTitle">Calculadora: THCA de la planta → THC activado</h4>
+          <h4 style="font-family:'Manrope',sans-serif; font-size:15px; font-weight:500; margin-bottom:4px;" data-i18n="cmDecarbCalcTitle">Calculadora: THCA de la planta → THC activado</h4>
           <p style="font-size:11.5px; color:var(--ink-soft); margin-bottom:12px;" data-i18n="cmDecarbCalcDesc">Usa el factor estequiométrico real (~0.877) por la pérdida de peso molecular al liberar CO2 durante la decarboxilación — no es una regla de bolsillo.</p>
           <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
-            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmDecarbGramosLabel">Peso de la flor (g)</label><input type="number" id="cmDecarbGramos" value="10" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmDecarbPctLabel">% THCA (del COA)</label><input type="number" id="cmDecarbPct" value="20" step="0.1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmDecarbGramosLabel">Peso de la flor (g)</label><input type="number" id="cmDecarbGramos" value="10" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+            <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmDecarbPctLabel">% THCA (del COA)</label><input type="number" id="cmDecarbPct" value="20" step="0.1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           </div>
-          <div id="cmDecarbResult" style="font-family:'Fraunces',serif; font-size:24px; font-weight:500;">— mg de THC</div>
+          <div id="cmDecarbResult" style="font-family:'Manrope',sans-serif; font-size:24px; font-weight:500;">— mg de THC</div>
           <div style="font-size:11px; color:var(--ink-soft); margin-top:6px;" data-i18n="cmDecarbCalcNote">Esto es el máximo teórico — el rendimiento real siempre es menor por pérdidas de manejo, tiempo/temperatura no ideal, y (si aplica) el comportamiento más desordenado del CBDA que ya viste arriba.</div>
         </div>
       </div>
@@ -1442,10 +1442,10 @@
         <h3 data-i18n="cmPotenciaH3">Cálculo de potencia por porción</h3>
         <p data-i18n="cmPotenciaP">Es matemática de manufactura, no de consumo: <em>(mg totales de THC en el lote) ÷ (número de porciones) = mg por porción</em>. Este cálculo es el corazón del cumplimiento normativo — un error aquí es la causa más común de retiro de producto del mercado en jurisdicciones reguladas.</p>
         <div style="display:flex; gap:16px; flex-wrap:wrap; margin:16px 0;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseMg">mg totales de THC en el lote</label><input type="number" id="cmDoseMg" value="600" style="width:140px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseServings">Número de porciones</label><input type="number" id="cmDoseServings" value="20" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseMg">mg totales de THC en el lote</label><input type="number" id="cmDoseMg" value="600" style="width:140px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseServings">Número de porciones</label><input type="number" id="cmDoseServings" value="20" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         </div>
-        <div id="cmDoseResult" style="font-family:'Fraunces',serif; font-size:26px; font-weight:500;">— mg / porción</div>
+        <div id="cmDoseResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mg / porción</div>
       </div>
       <div class="card-block">
         <h3 data-i18n="cmBebidasH3">Bebidas infusionadas: la categoría de más rápido crecimiento</h3>
@@ -1519,8 +1519,8 @@
           <text x="22" y="55" font-size="7.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">LOTE #4471-A · 12/03/2026</text>
           <rect x="22" y="63" width="296" height="34" rx="3" fill="var(--paper-raised)"/>
           <text x="30" y="76" font-size="7" fill="var(--ink)" font-family="'IBM Plex Mono',monospace" font-weight="600">CANNABINOIDES</text>
-          <text x="30" y="90" font-size="9" fill="var(--moss-deep)" font-family="'Fraunces',serif" font-weight="600">THC 22.4%</text>
-          <text x="120" y="90" font-size="9" fill="var(--teal)" font-family="'Fraunces',serif" font-weight="600">CBD 0.8%</text>
+          <text x="30" y="90" font-size="9" fill="var(--moss-deep)" font-family="'Manrope',sans-serif" font-weight="600">THC 22.4%</text>
+          <text x="120" y="90" font-size="9" fill="var(--teal)" font-family="'Manrope',sans-serif" font-weight="600">CBD 0.8%</text>
           <g font-size="7.5" font-family="'IBM Plex Mono',monospace" fill="var(--ink-soft)">
             <text x="22" y="112">PESTICIDAS (58 compuestos)</text><text x="308" y="112" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="118" x2="318" y2="118" stroke="var(--line)" stroke-width="0.5"/>
@@ -1868,10 +1868,10 @@
         <p data-i18n="mdEspecialistaIntro">En vez de que esta app mantenga su propia lista de nombres (que se desactualiza y que nadie puede verificar de forma continua), te conectamos con organizaciones profesionales reales que ya hacen ese trabajo de verificación de forma activa — mantienen sus propios directorios actualizados, con licencias y especialidades confirmadas.</p>
         <div style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:8px; padding:18px; margin:16px 0;">
           <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:8px;" data-i18n="mdBuscarLabel">Escribe tu condición o síntoma</label>
-          <input type="text" id="mdBuscarInput" data-i18n-ph="mdBuscarPh" placeholder="Ej: dolor muscular severo" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif; margin-bottom:10px;" onkeydown="if(event.key==='Enter') buscarEspecialista()">
+          <input type="text" id="mdBuscarInput" data-i18n-ph="mdBuscarPh" placeholder="Ej: dolor muscular severo" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; margin-bottom:10px;" onkeydown="if(event.key==='Enter') buscarEspecialista()">
           <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:8px;" data-i18n="mdBuscarPaisLabel">Tu país (para priorizar médicos cerca de ti)</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <select id="mdBuscarPaisInput" style="flex:1; min-width:180px; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></select>
+            <select id="mdBuscarPaisInput" style="flex:1; min-width:180px; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select>
             <button class="btn btn-primary" style="padding:10px 18px;" onclick="buscarEspecialista()" data-i18n="mdBuscarBtn">Buscar médico especializado</button>
           </div>
           <div id="mdBuscarResultado" style="margin-top:14px;"></div>
@@ -2133,7 +2133,7 @@
     </div>
 
     <div class="subview" id="ciencia-mitos">
-      <svg viewBox="0 0 60 40" width="100%" style="max-width:110px; display:block; margin:0 auto 16px;"><path d="M4,4 L28,4 Q32,4 32,8 L32,20 Q32,24 28,24 L14,24 L6,32 L8,24 Q4,24 4,20 Z" fill="none" stroke="var(--clay)" stroke-width="1.5" opacity="0.6"/><text x="18" y="17" text-anchor="middle" font-size="12" fill="var(--clay)" font-family="'Fraunces',serif" font-weight="700">?</text><circle cx="46" cy="20" r="11" fill="none" stroke="var(--moss-deep)" stroke-width="1.6"/><path d="M41,20 L44,24 L52,14" stroke="var(--moss-deep)" stroke-width="2" fill="none"/></svg>
+      <svg viewBox="0 0 60 40" width="100%" style="max-width:110px; display:block; margin:0 auto 16px;"><path d="M4,4 L28,4 Q32,4 32,8 L32,20 Q32,24 28,24 L14,24 L6,32 L8,24 Q4,24 4,20 Z" fill="none" stroke="var(--clay)" stroke-width="1.5" opacity="0.6"/><text x="18" y="17" text-anchor="middle" font-size="12" fill="var(--clay)" font-family="'Manrope',sans-serif" font-weight="700">?</text><circle cx="46" cy="20" r="11" fill="none" stroke="var(--moss-deep)" stroke-width="1.6"/><path d="M41,20 L44,24 L52,14" stroke="var(--moss-deep)" stroke-width="2" fill="none"/></svg>
       <div class="myth-row">
         <div class="myth-col claim"><div class="myth-label" data-i18n="mySeDice">Se dice</div><p data-i18n="my1claim">"Indica te relaja, sativa te activa — siempre."</p></div>
         <div class="myth-col fact"><div class="myth-label" data-i18n="myEvidencia">Evidencia</div><p data-i18n="my1fact">Esos nombres describen morfología de la planta, no efecto. La evidencia de Vergara et al. (2021) no encuentra relación con la composición química. El efecto depende del perfil de cannabinoides y terpenos.</p></div>
@@ -2217,7 +2217,7 @@
         <p data-i18n="pmEncontrarIntro">Igual que con médicos humanos, preferimos conectarte con organizaciones reales que verifican a su propio equipo, en vez de una lista nuestra difícil de mantener actualizada.</p>
         <div style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:8px; padding:18px; margin:16px 0;">
           <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:8px;" data-i18n="pmBuscarPaisLabel">Tu país (para priorizar veterinarios cerca de ti)</label>
-          <select id="pmBuscarPaisInput" onchange="buscarVeterinario()" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></select>
+          <select id="pmBuscarPaisInput" onchange="buscarVeterinario()" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select>
           <div id="pmBuscarResultado" style="margin-top:14px;"></div>
         </div>
         <div class="spec-row"><span><b>Veterinary Cannabis Society</b></span><span></span></div>
@@ -2543,7 +2543,7 @@
       </div>
       <div class="card-block">
         <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="eduFiltroPaisLabel">País</label><select id="eduFiltroPais" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;" onchange="filterEducacion()">
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="eduFiltroPaisLabel">País</label><select id="eduFiltroPais" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;" onchange="filterEducacion()">
             <option value="" data-i18n="eduCualquiera">Cualquiera</option>
             <option value="EEUU" data-i18n="eduPaisEEUU">Estados Unidos</option>
             <option value="Canada" data-i18n="eduPaisCanada">Canadá</option>
@@ -2553,7 +2553,7 @@
             <option value="Chile" data-i18n="eduPaisChile">Chile</option>
             <option value="Argentina" data-i18n="eduPaisArgentina">Argentina</option>
           </select></div>
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="eduFiltroEspLabel">Especialidad</label><select id="eduFiltroEsp" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;" onchange="filterEducacion()">
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="eduFiltroEspLabel">Especialidad</label><select id="eduFiltroEsp" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;" onchange="filterEducacion()">
             <option value="" data-i18n="eduCualquiera">Cualquiera</option>
             <option value="cultivo" data-i18n="eduEspCultivo">Cultivo &amp; horticultura</option>
             <option value="ciencia" data-i18n="eduEspCiencia">Ciencia &amp; química</option>
@@ -2630,11 +2630,11 @@
     <div class="card-block">
       <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyNombreLabel">Nombre o apodo</label><input type="text" id="cmyNombreInput" data-i18n-ph="cmyNombrePh" placeholder="Cómo quieres que te vean" maxlength="30" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCorreoLabel">Correo <span style="text-transform:none; opacity:0.7;" data-i18n="cmyCorreoPrivado">(privado, no se muestra)</span></label><input type="email" id="cmyCorreoInput" data-i18n-ph="cmyCorreoPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyPaisLabel">País</label><select id="cmyPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></select></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyNombreLabel">Nombre o apodo</label><input type="text" id="cmyNombreInput" data-i18n-ph="cmyNombrePh" placeholder="Cómo quieres que te vean" maxlength="30" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCorreoLabel">Correo <span style="text-transform:none; opacity:0.7;" data-i18n="cmyCorreoPrivado">(privado, no se muestra)</span></label><input type="email" id="cmyCorreoInput" data-i18n-ph="cmyCorreoPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyPaisLabel">País</label><select id="cmyPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyTipoLabel">¿Qué te describe mejor?</label>
-          <select id="cmyTipoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+          <select id="cmyTipoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
             <option value="cultivador" data-i18n="cmyTipoCultivador">Cultivador/a</option>
             <option value="negocio" data-i18n="cmyTipoNegocio">Dueño/a de negocio</option>
             <option value="entusiasta" data-i18n="cmyTipoEntusiasta">Consumidor/a — entusiasta</option>
@@ -2655,8 +2655,8 @@
     <div class="card-block">
       <p data-i18n="cmyViajeroIntro">Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.</p>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroPaisLabel">País donde viajaste</label><select id="cmyViajeroPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroTextoLabel">Tu experiencia</label><textarea id="cmyViajeroTextoInput" data-i18n-ph="cmyViajeroTextoPh" placeholder="Qué pasó en la frontera o aduana, sin datos personales" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif; resize:vertical;"></textarea></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroPaisLabel">País donde viajaste</label><select id="cmyViajeroPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroTextoLabel">Tu experiencia</label><textarea id="cmyViajeroTextoInput" data-i18n-ph="cmyViajeroTextoPh" placeholder="Qué pasó en la frontera o aduana, sin datos personales" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
         <button class="btn btn-primary" style="padding:12px;" onclick="submitTravelerReport()" data-i18n="cmyViajeroBtn">Compartir experiencia</button>
         <div id="cmyViajeroMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyViajeroExito">¡Gracias! Tu experiencia ya está en la lista de abajo.</div>
       </div>
@@ -2667,10 +2667,10 @@
     <div class="card-block">
       <p data-i18n="cmyCultivoIntro">Bitácoras cortas ligadas a un método específico, para cruzar experiencia real contra la ficha oficial de Cultivo.</p>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoMetodoLabel">Método que usaste</label><select id="cmyCultivoMetodoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoMetodoLabel">Método que usaste</label><select id="cmyCultivoMetodoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
           <option>Indoor</option><option>Outdoor</option><option>Invernadero</option><option>Hidroponía</option><option>Suelo vivo</option><option>Aeroponía</option>
         </select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoTextoLabel">Tu experiencia</label><textarea id="cmyCultivoTextoInput" data-i18n-ph="cmyCultivoTextoPh" placeholder="Qué te funcionó o qué no, con ese método" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif; resize:vertical;"></textarea></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoTextoLabel">Tu experiencia</label><textarea id="cmyCultivoTextoInput" data-i18n-ph="cmyCultivoTextoPh" placeholder="Qué te funcionó o qué no, con ese método" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
         <button class="btn btn-primary" style="padding:12px;" onclick="submitGrowReport()" data-i18n="cmyCultivoBtn">Compartir reporte</button>
         <div id="cmyCultivoMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyCultivoExito">¡Gracias! Tu reporte ya está en la lista de abajo.</div>
       </div>
@@ -2681,10 +2681,10 @@
     <div class="card-block">
       <p data-i18n="cmyDiagIntro">El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>.</p>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagProblemaLabel">Qué tuviste</label><select id="cmyDiagProblemaInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagProblemaLabel">Qué tuviste</label><select id="cmyDiagProblemaInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
           <option>Oídio (mildiu polvoso)</option><option>Botrytis (bud rot)</option><option>Ácaros / araña roja</option><option>Deficiencia de nitrógeno</option><option>Exceso de riego</option><option>Deficiencia de magnesio</option><option>Viroide latente del lúpulo (HLVd)</option><option>Pulgones (áfidos)</option><option>Trips</option><option>Mosca blanca</option><option>Pythium (pudrición de raíz)</option>
         </select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagTextoLabel">Qué te funcionó</label><textarea id="cmyDiagTextoInput" data-i18n-ph="cmyDiagTextoPh" placeholder="Qué hiciste y cómo te fue" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif; resize:vertical;"></textarea></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagTextoLabel">Qué te funcionó</label><textarea id="cmyDiagTextoInput" data-i18n-ph="cmyDiagTextoPh" placeholder="Qué hiciste y cómo te fue" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
         <button class="btn btn-primary" style="padding:12px;" onclick="submitDiagConfirmation()" data-i18n="cmyDiagBtn">Compartir confirmación</button>
         <div id="cmyDiagMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyDiagExito">¡Gracias! Tu confirmación ya está en la lista de abajo.</div>
       </div>
@@ -2695,7 +2695,7 @@
     <div class="card-block">
       <div class="note-box" data-i18n="cmyPreguntasNota">Aquí solo se publican preguntas, no respuestas — responder de forma segura necesita moderación real, que todavía no existe. Por ahora, esto es un lugar para ver qué se pregunta la comunidad.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <textarea id="cmyPreguntaInput" data-i18n-ph="cmyPreguntaPh" placeholder="Tu pregunta para la comunidad" maxlength="200" rows="2" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif; resize:vertical;"></textarea>
+        <textarea id="cmyPreguntaInput" data-i18n-ph="cmyPreguntaPh" placeholder="Tu pregunta para la comunidad" maxlength="200" rows="2" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea>
         <button class="btn btn-primary" style="padding:12px;" onclick="submitQuestion()" data-i18n="cmyPreguntaBtn">Publicar pregunta</button>
         <div id="cmyPreguntaMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyPreguntaExito">¡Listo! Tu pregunta ya está en la lista de abajo.</div>
       </div>
@@ -2759,16 +2759,16 @@
       <h3 data-i18n="calcVpdTitle">Calculadora de VPD</h3>
       <p style="margin-bottom:14px;" data-i18n="calcVpdDesc">Déficit de presión de vapor — la métrica real detrás de "¿está muy húmedo o muy seco?".</p>
       <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcVpdTemp">Temp. aire (°C)</label><input type="number" id="vpdTemp" value="25" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcVpdRH">Humedad rel. (%)</label><input type="number" id="vpdRH" value="55" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcVpdTemp">Temp. aire (°C)</label><input type="number" id="vpdTemp" value="25" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcVpdRH">Humedad rel. (%)</label><input type="number" id="vpdRH" value="55" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcVpdStage">Etapa</label>
-          <select id="vpdStage" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+          <select id="vpdStage" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
             <option value="0.9" data-i18n="calcVpdVeg">Vegetativo (0.8–1.0 kPa)</option>
             <option value="1.2" data-i18n="calcVpdFlo">Floración (1.0–1.5 kPa)</option>
           </select>
         </div>
       </div>
-      <div id="vpdResult" style="font-family:'Fraunces',serif; font-size:26px; font-weight:500;">— kPa</div>
+      <div id="vpdResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— kPa</div>
       <div id="vpdVerdict" style="font-family:'IBM Plex Mono',monospace; font-size:12px; margin-top:4px;"></div>
     </div>
 
@@ -2776,20 +2776,20 @@
       <h3 data-i18n="calcDliTitle">Calculadora de DLI</h3>
       <p style="margin-bottom:14px;" data-i18n="calcDliDesc">Integral de luz diaria — cuánta luz acumula tu cultivo en 24 h, no solo la intensidad de un instante.</p>
       <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliPPFD">PPFD (μmol/m²/s)</label><input type="number" id="dliPPFD" value="600" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliHours">Horas de luz/día</label><input type="number" id="dliHours" value="18" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliPPFD">PPFD (μmol/m²/s)</label><input type="number" id="dliPPFD" value="600" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliHours">Horas de luz/día</label><input type="number" id="dliHours" value="18" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
       </div>
-      <div id="dliResult" style="font-family:'Fraunces',serif; font-size:26px; font-weight:500;">— mol/m²/día</div>
+      <div id="dliResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mol/m²/día</div>
     </div>
 
     <div class="card-block" id="calc-dose-card">
       <h3 data-i18n="calcDoseTitle">Dosis por porción (comestibles)</h3>
       <p style="margin-bottom:14px;" data-i18n="calcDoseDesc">La matemática de cumplimiento normativo que ya viste en Elaboración — ahora calculada al instante.</p>
       <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseMg">mg totales de THC en el lote</label><input type="number" id="doseMg" value="600" style="width:140px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseServings">Número de porciones</label><input type="number" id="doseServings" value="20" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseMg">mg totales de THC en el lote</label><input type="number" id="doseMg" value="600" style="width:140px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDoseServings">Número de porciones</label><input type="number" id="doseServings" value="20" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
       </div>
-      <div id="doseResult" style="font-family:'Fraunces',serif; font-size:26px; font-weight:500;">— mg / porción</div>
+      <div id="doseResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mg / porción</div>
     </div>
     <div class="note-box" data-i18n="calcNote">Estas calculadoras son herramientas de referencia educativa — no reemplazan una prueba de laboratorio certificada para etiquetado real de producto.</div>
   </section>
@@ -2811,23 +2811,23 @@
     <div class="card-block">
       <h3 data-i18n="bitNewEntry">Nueva entrada</h3>
       <div style="display:flex; gap:14px; flex-wrap:wrap; margin:14px 0;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="bitFechaLabel">Fecha</label><input type="date" id="bitFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="bitFechaLabel">Fecha</label><input type="date" id="bitFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="bitEtapaLabel">Etapa</label>
-          <select id="bitEtapa" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;">
+          <select id="bitEtapa" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
             <option data-i18n="etapaGerm">Germinación</option><option data-i18n="etapaVeg">Vegetativo</option><option data-i18n="etapaFlo">Floración</option><option data-i18n="etapaCosecha">Cosecha</option><option data-i18n="etapaSecado">Secado / curado</option>
           </select>
         </div>
       </div>
       <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitPhLabel">pH sustrato</label><input type="number" step="0.1" id="bitPh" placeholder="6.0" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitEcLabel">EC (mS/cm)</label><input type="number" step="0.1" id="bitEc" placeholder="1.6" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitTempLabel">Temp. (°C)</label><input type="number" step="0.5" id="bitTemp" placeholder="24" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitHumLabel">Humedad (%)</label><input type="number" step="1" id="bitHum" placeholder="55" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitPhLabel">pH sustrato</label><input type="number" step="0.1" id="bitPh" placeholder="6.0" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitEcLabel">EC (mS/cm)</label><input type="number" step="0.1" id="bitEc" placeholder="1.6" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitTempLabel">Temp. (°C)</label><input type="number" step="0.5" id="bitTemp" placeholder="24" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:10px; display:block; margin-bottom:5px; color:var(--ink-soft);" data-i18n="bitHumLabel">Humedad (%)</label><input type="number" step="1" id="bitHum" placeholder="55" style="width:80px; padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
       </div>
-      <textarea id="bitNota" data-i18n-ph="bitNotaPlaceholder" placeholder="Qué pasó hoy — riego, entrenamiento, algo que notaste..." style="width:100%; min-height:70px; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif; margin-bottom:12px;"></textarea>
+      <textarea id="bitNota" data-i18n-ph="bitNotaPlaceholder" placeholder="Qué pasó hoy — riego, entrenamiento, algo que notaste..." style="width:100%; min-height:70px; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; margin-bottom:12px;"></textarea>
       <div style="margin-bottom:12px;">
         <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="bitFotoLabel">Foto (opcional)</label>
-        <input type="file" accept="image/*" id="bitFotoInput" onchange="handleBitFoto(this)" style="font-family:'Inter',sans-serif; font-size:13px;">
+        <input type="file" accept="image/*" id="bitFotoInput" onchange="handleBitFoto(this)" style="font-family:'Manrope',sans-serif; font-size:13px;">
         <div style="font-size:11px; color:var(--ink-soft); margin-top:4px;" data-i18n="bitFotoNota">Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.</div>
         <div id="bitFotoPreview" style="margin-top:8px;"></div>
       </div>
@@ -2858,7 +2858,7 @@
     <div class="eyebrow" data-i18n="glEyebrow">Referencia rápida</div>
     <h2 class="title" data-i18n="glTitle">Glosario</h2>
     <p class="subhead" data-i18n="glSub">Los términos técnicos que aparecen en toda la app, explicados en un solo lugar.</p>
-    <input type="text" id="glSearchInput" class="search-input" data-i18n-ph="glBuscarPh" placeholder="Buscar un término..." style="width:100%; margin:16px 0 20px; padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:#fff; font-family:'Inter',sans-serif; font-size:14px;" oninput="renderGlosario(this.value)">
+    <input type="text" id="glSearchInput" class="search-input" data-i18n-ph="glBuscarPh" placeholder="Buscar un término..." style="width:100%; margin:16px 0 20px; padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:var(--paper-raised); color:var(--ink); font-family:'Manrope',sans-serif; font-size:14px;" oninput="renderGlosario(this.value)">
     <div id="glosarioList"></div>
   </section>
 
@@ -2943,8 +2943,8 @@
         <button type="button" class="sub-pill" data-auth-tab="signup" data-i18n="authTabSignup">Crear cuenta</button>
       </div>
       <form id="authForm" style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authPasswordLabel">Contraseña</label><input type="password" id="authPasswordInput" required minlength="8" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authPasswordLabel">Contraseña</label><input type="password" id="authPasswordInput" required minlength="8" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <button type="submit" class="btn btn-primary" id="authSubmitBtn" data-i18n="authLoginBtn">Entrar</button>
         <div id="authMsg" style="font-size:12.5px; min-height:16px;"></div>
         <span id="authSwitchLink" style="cursor:pointer; font-size:12.5px; color:var(--moss-deep); text-decoration:underline;" data-i18n="authSwitchToSignup">¿No tienes cuenta? Crear una</span>
@@ -2968,8 +2968,8 @@
       <div class="card-block">
         <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaNombreLabel">Nombre</label><input type="text" id="cuentaNombreInput" data-i18n-ph="cuentaNombrePh" placeholder="Tu nombre" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaNombreLabel">Nombre</label><input type="text" id="cuentaNombreInput" data-i18n-ph="cuentaNombrePh" placeholder="Tu nombre" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
         </div>
       </div>
@@ -3112,10 +3112,10 @@
       <p style="font-size:12.5px; color:var(--ink-soft); margin-bottom:18px;" data-i18n="adInquiryIntro">Cuéntanos sobre tu marca o negocio — revisamos cada solicitud manualmente antes de aprobarla.</p>
       <form id="adInquiryForm" style="display:flex; flex-direction:column; gap:12px;">
         <input type="text" name="_hp" style="position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryNombreLabel">Nombre</label><input type="text" id="adInquiryNombre" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryEmpresaLabel">Empresa</label><input type="text" id="adInquiryEmpresa" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryCorreoLabel">Correo</label><input type="email" id="adInquiryCorreo" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryMensajeLabel">Mensaje</label><textarea id="adInquiryMensaje" required style="width:100%; min-height:80px; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Inter',sans-serif;"></textarea></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryNombreLabel">Nombre</label><input type="text" id="adInquiryNombre" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryEmpresaLabel">Empresa</label><input type="text" id="adInquiryEmpresa" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryCorreoLabel">Correo</label><input type="email" id="adInquiryCorreo" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryMensajeLabel">Mensaje</label><textarea id="adInquiryMensaje" required style="width:100%; min-height:80px; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></textarea></div>
         <button type="submit" class="btn btn-primary" id="adInquirySubmitBtn" data-i18n="adInquirySubmitBtn">Enviar</button>
         <div id="adInquiryMsg" style="font-size:12.5px; min-height:16px;"></div>
       </form>
@@ -3128,7 +3128,7 @@
         <div class="eyebrow" style="margin-bottom:0;" data-i18n="searchModalTitle">Buscar en toda la app</div>
         <span onclick="closeSearch()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
       </div>
-      <input type="text" id="searchInput" data-i18n-ph="searchPlaceholder" placeholder="País, cultivar, plaga, terpeno, paper..." style="width:100%; padding:12px 14px; border:1px solid var(--line-strong); border-radius:6px; font-family:'Inter',sans-serif; font-size:15px; margin-bottom:16px;" autocomplete="off">
+      <input type="text" id="searchInput" data-i18n-ph="searchPlaceholder" placeholder="País, cultivar, plaga, terpeno, paper..." style="width:100%; padding:12px 14px; border:1px solid var(--line-strong); border-radius:6px; font-family:'Manrope',sans-serif; font-size:15px; margin-bottom:16px;" autocomplete="off">
       <div id="searchResults" style="max-height:400px; overflow-y:auto;"></div>
     </div>
   </div>
@@ -3140,7 +3140,7 @@
         <div class="eyebrow" style="margin-bottom:6px;">Mother Verde Premium</div>
         <span onclick="closePremium()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
       </div>
-      <h2 style="font-family:'Fraunces',serif; font-weight:500; font-size:26px; margin-bottom:6px;">Todo el codex, sin límites.</h2>
+      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:26px; margin-bottom:6px;">Todo el codex, sin límites.</h2>
       <p style="font-size:13px; color:var(--ink-soft); margin-bottom:22px;">Cancela cuando quieras. Precio ajustado automáticamente según tu país.</p>
 
       <div style="display:flex; justify-content:flex-end; gap:18px; padding:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; color:var(--ink-soft);">
@@ -3159,7 +3159,7 @@
       <div class="pm-row"><span class="feat">Sin publicidad</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
 
       <div style="margin-top:26px; text-align:center;">
-        <div style="font-family:'Fraunces',serif; font-size:30px; font-weight:500;">$19.99<span style="font-size:14px; color:var(--ink-soft); font-family:'Inter',sans-serif;" data-i18n="pmPagoAnual"> · por año</span></div>
+        <div style="font-family:'Manrope',sans-serif; font-size:30px; font-weight:500;">$19.99<span style="font-size:14px; color:var(--ink-soft); font-family:'Manrope',sans-serif;" data-i18n="pmPagoAnual"> · por año</span></div>
         <div style="font-size:12px; color:var(--ink-soft); margin-top:4px;" data-i18n="pmActualizaciones">Incluye actualizaciones de contenido cada seis meses</div>
         <button class="btn btn-primary" style="width:100%; margin-top:14px; padding:14px;" onclick="closePremium()" data-i18n="pmComprarBtn">Comprar Premium — $19.99/año</button>
         <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:12px; font-size:11px; color:var(--ink-soft);">

@@ -3735,7 +3735,7 @@ function showDetail(c){
   const el = document.getElementById('detailContent');
   el.innerHTML = `
     <div class="detail-head">
-      <div class="big-stamp" style="--status-color:${c.color}; color:${c.color};"><div style="font-family:'Fraunces',serif; font-style:italic; font-size:15px;">${c.name}</div><span>${statusLabel(c.status)}</span></div>
+      <div class="big-stamp" style="--status-color:${c.color}; color:${c.color};"><div style="font-family:'Manrope',sans-serif; font-style:italic; font-size:15px;">${c.name}</div><span>${statusLabel(c.status)}</span></div>
       <div>
         <h2>${flagImg(c.flag, 28)} ${c.name}</h2>
         <div class="status-line" style="color:${c.color}">${statusLabel(c.status)} · ${regionNames[c.region][currentLang]}</div>
@@ -3817,7 +3817,7 @@ function renderGlosario(query){
   }
   el.innerHTML = filtered.map(g=>`
     <div class="card-block" style="padding:14px 18px;">
-      <h4 style="margin:0 0 6px; font-family:'Fraunces',serif; font-size:15px; color:var(--moss-deep);">${g.term[currentLang]||g.term.es}</h4>
+      <h4 style="margin:0 0 6px; font-family:'Manrope',sans-serif; font-size:15px; color:var(--moss-deep);">${g.term[currentLang]||g.term.es}</h4>
       <p style="margin:0; font-size:13px; color:var(--ink-soft);">${g.def[currentLang]||g.def.es}</p>
     </div>`).join('');
 }
@@ -4138,7 +4138,7 @@ function getOnboardSlides(){
 let onboardStep = 0;
 function renderOnboardSlide(){
   const s = getOnboardSlides()[onboardStep];
-  document.getElementById('onboardSlides').innerHTML = `<h2 style="font-family:'Fraunces',serif; font-weight:500; font-size:24px; margin-bottom:12px;">${s.title}</h2><p style="font-size:14px; color:var(--ink-soft); line-height:1.6;">${s.body}</p>`;
+  document.getElementById('onboardSlides').innerHTML = `<h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:24px; margin-bottom:12px;">${s.title}</h2><p style="font-size:14px; color:var(--ink-soft); line-height:1.6;">${s.body}</p>`;
   document.querySelectorAll('.ob-dot').forEach((d,i)=> d.classList.toggle('on', i===onboardStep));
   document.getElementById('onboardNextBtn').textContent = onboardStep===3 ? t('obEmpezar') : t('obSiguiente');
 }
@@ -4779,7 +4779,7 @@ function updateDegradCalc(){
   else if(score < 3.5){ level = t('degradRiesgoMedio'); color = 'var(--resin)'; msgKey = 'degradMsgMedio'; }
   else { level = t('degradRiesgoAlto'); color = 'var(--clay)'; msgKey = 'degradMsgAlto'; }
   resultEl.innerHTML = `
-    <div style="font-family:'Fraunces',serif; font-size:22px; font-weight:500; color:${color};">${level}</div>
+    <div style="font-family:'Manrope',sans-serif; font-size:22px; font-weight:500; color:${color};">${level}</div>
     <p style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;">${t(msgKey)}</p>
   `;
 }
@@ -4835,7 +4835,7 @@ function computeCross(){
     const pct = Math.round(counts[t]/4*100);
     if(pct>0){
       const seg = document.createElement('div');
-      seg.style.cssText = `background:${colors[t]}; flex:${pct}; padding:16px 8px; text-align:center; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:12px;`;
+      seg.style.cssText = `background:${colors[t]}; flex:${pct}; padding:16px 8px; text-align:center; color:var(--paper); font-family:'IBM Plex Mono',monospace; font-size:12px;`;
       seg.innerHTML = `${labels[t]}<br><b style="font-size:16px;">${pct}%</b>`;
       resultEl.appendChild(seg);
     }
