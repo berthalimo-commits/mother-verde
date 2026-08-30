@@ -2792,6 +2792,115 @@
       </div>
       <div id="doseResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mg / porción</div>
     </div>
+
+    <div class="section-title" data-i18n="calcNuevasTitle">Herramientas nuevas</div>
+
+    <div class="card-block" id="calc-ecp-card">
+      <h3 data-i18n="ecpTitle">Conversor EC ↔ PPM/TDS</h3>
+      <p style="margin-bottom:14px;" data-i18n="ecpDesc">Resuelve la confusión real entre medidores: el mismo EC da un número de PPM distinto según la escala (500 o 700) que use tu medidor.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ecpDireccionLabel">Dirección</label>
+          <select id="ecpDireccion" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="ec-ppm" data-i18n="ecpOptEcPpm">EC (mS/cm) → PPM</option>
+            <option value="ppm-ec" data-i18n="ecpOptPpmEc">PPM → EC (mS/cm)</option>
+          </select>
+        </div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" id="ecpInputLabel" data-i18n="ecpValorEcLabel">Valor de EC (mS/cm)</label><input type="number" id="ecpValor" value="1.6" step="0.1" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div id="ecpEscalaWrap"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ecpEscalaLabel">Escala del medidor</label>
+          <select id="ecpEscala" style="width:130px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="500">500</option>
+            <option value="700">700</option>
+          </select>
+        </div>
+      </div>
+      <div id="ecpResult" style="display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
+    </div>
+
+    <div class="card-block" id="calc-lux-card">
+      <h3 data-i18n="luxTitle">Conversor Lux → PAR/PPFD</h3>
+      <p style="margin-bottom:14px;" data-i18n="luxDesc">Complementa la calculadora de potencia de luz de Cultivo → Iluminación: aquí partes de una lectura de luxómetro para estimar el PPFD.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:10px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="luxValorLabel">Lectura del luxómetro (lux)</label><input type="number" id="luxValor" value="20000" step="100" style="width:130px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="luxTipoLabel">Fuente de luz</label>
+          <select id="luxTipo" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="0.0185" data-i18n="luxOptLed">LED de espectro completo</option>
+            <option value="0.0122" data-i18n="luxOptHps">HPS</option>
+            <option value="0.0139" data-i18n="luxOptCmh">CMH / Halogenuro metálico</option>
+            <option value="0.0185" data-i18n="luxOptSol">Luz solar directa</option>
+          </select>
+        </div>
+      </div>
+      <div id="luxResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— μmol/m²/s</div>
+      <p style="font-size:11px; color:var(--ink-soft); margin-top:6px;" data-i18n="luxNota">Estimación aproximada: los luxómetros miden respuesta fotópica (visión humana), no PAR — para decisiones críticas de cultivo, un medidor PAR/PPFD real sigue siendo más preciso.</p>
+    </div>
+
+    <div class="card-block" id="calc-yld-card">
+      <h3 data-i18n="yldTitle">Estimador de rendimiento (Yield)</h3>
+      <p style="margin-bottom:14px;" data-i18n="yldDesc">Basado en GPW o en rendimiento por planta — con tu propia relación seco/húmedo, porque en la práctica varía bastante (12–25%).</p>
+      <div style="margin-bottom:14px;">
+        <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="yldModoLabel">Modo de estimación</label>
+        <select id="yldModo" style="width:220px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+          <option value="gpw" data-i18n="yldOptGpw">GPW (gramos por watt)</option>
+          <option value="planta" data-i18n="yldOptPlanta">Por planta</option>
+        </select>
+      </div>
+      <div id="yldGpwWrap" style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="yldWattsLabel">Potencia total (W)</label><input type="number" id="yldWatts" value="300" style="width:110px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="yldGpwLabel">GPW estimado (g/W)</label><input type="number" id="yldGpw" value="1.0" step="0.1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      </div>
+      <div id="yldPlantaWrap" style="display:none; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="yldPlantasLabel">Número de plantas</label><input type="number" id="yldPlantas" value="4" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="yldGxPlantaLabel">Gramos húmedos por planta</label><input type="number" id="yldGxPlanta" value="50" style="width:110px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      </div>
+      <div style="margin-bottom:14px;"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="yldRatioLabel">Relación seco/húmedo estimada (%)</label><input type="number" id="yldRatio" value="20" step="1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      <div id="yldResult" style="display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
+    </div>
+
+    <div class="card-block" id="calc-sub-card">
+      <h3 data-i18n="subTitle">Calculadora de volumen de sustrato</h3>
+      <p style="margin-bottom:14px;" data-i18n="subDesc">Calcula los litros de sustrato según las dimensiones reales de tu maceta.</p>
+      <div style="margin-bottom:14px;">
+        <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="subFormaLabel">Forma de la maceta</label>
+        <select id="subForma" style="width:190px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+          <option value="redonda" data-i18n="subOptRedonda">Redonda</option>
+          <option value="cuadrada" data-i18n="subOptCuadrada">Cuadrada / rectangular</option>
+        </select>
+      </div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div id="subRedondaWrap"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="subDiametroLabel">Diámetro (cm)</label><input type="number" id="subDiametro" value="30" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div id="subCuadradaWrap" style="display:none; gap:16px; flex-wrap:wrap;">
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="subLargoLabel">Largo (cm)</label><input type="number" id="subLargo" value="30" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="subAnchoLabel">Ancho (cm)</label><input type="number" id="subAncho" value="30" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        </div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="subAlturaLabel">Altura (cm)</label><input type="number" id="subAltura" value="30" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      </div>
+      <div id="subResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— L</div>
+    </div>
+
+    <div class="card-block" id="calc-sec-card">
+      <h3 data-i18n="secTitle">Temporizador de secado y curado</h3>
+      <p style="margin-bottom:14px;" data-i18n="secDesc">Checkpoints calculados desde tu fecha de cosecha, basados en el estándar ASTM D8197 (actividad de agua) — sin duplicar la calculadora de riesgo de degradación por almacenamiento de largo plazo (Elaboración → Almacenamiento), que es un tema distinto.</p>
+      <div style="margin-bottom:14px;"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="secFechaLabel">Fecha de cosecha</label><input type="date" id="secFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      <div id="secResult" style="display:flex; flex-direction:column; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
+    </div>
+
+    <div class="card-block" id="calc-cnc-card">
+      <h3 data-i18n="cncTitle">Calculadora de dosis para concentrados</h3>
+      <p style="margin-bottom:14px;" data-i18n="cncDesc">Complementa la calculadora de comestibles: mismo principio de mg de THC por uso, aplicado a dabs y vapes.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cncTipoLabel">Tipo de producto</label>
+          <select id="cncTipo" style="width:160px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="dab" data-i18n="cncOptDab">Dab</option>
+            <option value="vape" data-i18n="cncOptVape">Vape</option>
+          </select>
+        </div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" id="cncPesoLabel" data-i18n="cncPesoLabelDab">Tamaño del dab (mg)</label><input type="number" id="cncPeso" value="25" style="width:110px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cncPotenciaLabel">Potencia (% THC)</label><input type="number" id="cncPotencia" value="70" step="1" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      </div>
+      <div id="cncResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mg THC</div>
+      <div id="cncVerdict" style="font-family:'IBM Plex Mono',monospace; font-size:12px; margin-top:4px;"></div>
+    </div>
+
     <div class="note-box" data-i18n="calcNote">Estas calculadoras son herramientas de referencia educativa — no reemplazan una prueba de laboratorio certificada para etiquetado real de producto.</div>
   </section>
 

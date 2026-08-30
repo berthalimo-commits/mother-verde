@@ -1544,6 +1544,13 @@ const translations = {
     calcDliTitle:'Calculadora de DLI', calcDliDesc:'Integral de luz diaria — cuánta luz acumula tu cultivo en 24 h, no solo la intensidad de un instante.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Horas de luz/día',
     calcDoseTitle:'Dosis por porción (comestibles)', calcDoseDesc:'La matemática de cumplimiento normativo que ya viste en Elaboración — ahora calculada al instante.', calcDoseMg:'mg totales de THC en el lote', calcDoseServings:'Número de porciones',
     calcNote:'Estas calculadoras son herramientas de referencia educativa — no reemplazan una prueba de laboratorio certificada para etiquetado real de producto.',
+    calcNuevasTitle:'Herramientas nuevas',
+    ecpTitle:'Conversor EC ↔ PPM/TDS', ecpDesc:'Resuelve la confusión real entre medidores: el mismo EC da un número de PPM distinto según la escala (500 o 700) que use tu medidor.', ecpDireccionLabel:'Dirección', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'Valor de EC (mS/cm)', ecpValorPpmLabel:'Valor de PPM', ecpEscalaLabel:'Escala del medidor', ecpResPpm500:'PPM (escala 500)', ecpResPpm700:'PPM (escala 700)', ecpResEc:'EC (mS/cm)',
+    luxTitle:'Conversor Lux → PAR/PPFD', luxDesc:'Complementa la calculadora de potencia de luz de Cultivo → Iluminación: aquí partes de una lectura de luxómetro para estimar el PPFD.', luxValorLabel:'Lectura del luxómetro (lux)', luxTipoLabel:'Fuente de luz', luxOptLed:'LED de espectro completo', luxOptHps:'HPS', luxOptCmh:'CMH / Halogenuro metálico', luxOptSol:'Luz solar directa', luxNota:'Estimación aproximada: los luxómetros miden respuesta fotópica (visión humana), no PAR — para decisiones críticas de cultivo, un medidor PAR/PPFD real sigue siendo más preciso.',
+    yldTitle:'Estimador de rendimiento (Yield)', yldDesc:'Basado en GPW o en rendimiento por planta — con tu propia relación seco/húmedo, porque en la práctica varía bastante (12–25%).', yldModoLabel:'Modo de estimación', yldOptGpw:'GPW (gramos por watt)', yldOptPlanta:'Por planta', yldWattsLabel:'Potencia total (W)', yldGpwLabel:'GPW estimado (g/W)', yldPlantasLabel:'Número de plantas', yldGxPlantaLabel:'Gramos húmedos por planta', yldRatioLabel:'Relación seco/húmedo estimada (%)', yldResHumedo:'Rendimiento húmedo estimado', yldResSeco:'Rendimiento seco estimado',
+    subTitle:'Calculadora de volumen de sustrato', subDesc:'Calcula los litros de sustrato según las dimensiones reales de tu maceta.', subFormaLabel:'Forma de la maceta', subOptRedonda:'Redonda', subOptCuadrada:'Cuadrada / rectangular', subDiametroLabel:'Diámetro (cm)', subLargoLabel:'Largo (cm)', subAnchoLabel:'Ancho (cm)', subAlturaLabel:'Altura (cm)',
+    secTitle:'Temporizador de secado y curado', secDesc:'Checkpoints calculados desde tu fecha de cosecha, basados en el estándar ASTM D8197 (actividad de agua) — sin duplicar la calculadora de riesgo de degradación por almacenamiento de largo plazo (Elaboración → Almacenamiento), que es un tema distinto.', secFechaLabel:'Fecha de cosecha', secChkSecado:'Ventana de secado inicial', secChkSecadoDesc:'Prueba del chasquido: el tallo pequeño se rompe, no se dobla.', secChkCurado:'Inicio de curado en frascos', secChkCuradoDesc:'Frascos herméticos con burping diario durante la primera semana.', secChkAw:'Ventana objetivo de actividad de agua', secChkAwDesc:'0.55–0.65 aw (ASTM D8197) — verifica con higrómetro o tiras de aw, no solo con humedad relativa ambiental.', secChkExtendido:'Curado extendido (opcional)', secChkExtendidoHasta:'hasta', secChkExtendidoDesc:'4–8+ semanas adicionales para desarrollo máximo de sabor. Para riesgo de degradación en almacenamiento de largo plazo después de esto, revisa Elaboración → Almacenamiento.',
+    cncTitle:'Calculadora de dosis para concentrados', cncDesc:'Complementa la calculadora de comestibles: mismo principio de mg de THC por uso, aplicado a dabs y vapes.', cncTipoLabel:'Tipo de producto', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Tamaño del dab (mg)', cncPesoLabelVape:'mg de concentrado consumido', cncPotenciaLabel:'Potencia (% THC)', cncDosisBaja:'Dosis baja', cncDosisModerada:'Dosis moderada', cncDosisAlta:'Dosis alta',
     bitEyebrow:'Tu registro personal', bitTitle:'Bitácora de cultivo', bitSub:'Tus entradas se guardan de verdad entre sesiones — no se pierden al cerrar la app. Solo tú puedes verlas.', bitNewEntry:'Nueva entrada', bitFechaLabel:'Fecha', bitEtapaLabel:'Etapa', etapaGerm:'Germinación', etapaVeg:'Vegetativo', etapaFlo:'Floración', etapaCosecha:'Cosecha', etapaSecado:'Secado / curado', bitNotaPlaceholder:'Qué pasó hoy — riego, entrenamiento, algo que notaste...', bitSaveBtn:'Guardar entrada', bitHistorial:'Historial',
     bitPhLabel:'pH sustrato', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humedad (%)', bitAtajosLabel:'Atajos mientras registras:', bitAtajoVpd:'Calcular VPD →', bitAtajoDosis:'Calcular mezcla de nutrientes →',
     bitStatDias:'Días de ciclo', bitStatEntradas:'Entradas totales', bitStatEtapa:'Etapa actual', bitGraficoTitle:'pH y EC a lo largo del tiempo', bitGraficoVacio:'Registra pH o EC en al menos 2 entradas para ver el gráfico de tendencia aquí.',
@@ -2329,6 +2336,13 @@ const translations = {
     calcDliTitle:'DLI Calculator', calcDliDesc:'Daily light integral — how much light your grow accumulates in 24 h, not just the intensity of one instant.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Hours of light/day',
     calcDoseTitle:'Dose per serving (edibles)', calcDoseDesc:'The compliance math you already saw in Making — now calculated instantly.', calcDoseMg:'Total mg THC in the batch', calcDoseServings:'Number of servings',
     calcNote:'These calculators are educational reference tools — they do not replace a certified lab test for real product labeling.',
+    calcNuevasTitle:'New tools',
+    ecpTitle:'EC ↔ PPM/TDS Converter', ecpDesc:'Solves the real confusion between meters: the same EC gives a different PPM number depending on the scale (500 or 700) your meter uses.', ecpDireccionLabel:'Direction', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'EC value (mS/cm)', ecpValorPpmLabel:'PPM value', ecpEscalaLabel:'Meter scale', ecpResPpm500:'PPM (500 scale)', ecpResPpm700:'PPM (700 scale)', ecpResEc:'EC (mS/cm)',
+    luxTitle:'Lux → PAR/PPFD Converter', luxDesc:'Complements the light-power calculator in Growing → Lighting: here you start from a lux-meter reading to estimate PPFD.', luxValorLabel:'Lux meter reading (lux)', luxTipoLabel:'Light source', luxOptLed:'Full-spectrum LED', luxOptHps:'HPS', luxOptCmh:'CMH / Metal halide', luxOptSol:'Direct sunlight', luxNota:'Approximate estimate: lux meters measure photopic response (human vision), not PAR — for critical growing decisions, a real PAR/PPFD meter is still more accurate.',
+    yldTitle:'Yield Estimator', yldDesc:'Based on GPW or on yield per plant — with your own dry-to-wet ratio, since in practice it varies quite a bit (12–25%).', yldModoLabel:'Estimation mode', yldOptGpw:'GPW (grams per watt)', yldOptPlanta:'Per plant', yldWattsLabel:'Total power (W)', yldGpwLabel:'Estimated GPW (g/W)', yldPlantasLabel:'Number of plants', yldGxPlantaLabel:'Wet grams per plant', yldRatioLabel:'Estimated dry-to-wet ratio (%)', yldResHumedo:'Estimated wet yield', yldResSeco:'Estimated dry yield',
+    subTitle:'Substrate Volume Calculator', subDesc:'Calculates liters of substrate needed based on your pot\'s real dimensions.', subFormaLabel:'Pot shape', subOptRedonda:'Round', subOptCuadrada:'Square / rectangular', subDiametroLabel:'Diameter (cm)', subLargoLabel:'Length (cm)', subAnchoLabel:'Width (cm)', subAlturaLabel:'Height (cm)',
+    secTitle:'Drying & Curing Timer', secDesc:'Checkpoints calculated from your harvest date, based on the ASTM D8197 standard (water activity) — without duplicating the long-term storage degradation-risk calculator (Making → Storage), which is a different topic.', secFechaLabel:'Harvest date', secChkSecado:'Initial drying window', secChkSecadoDesc:'Snap test: the small stem breaks, it doesn\'t bend.', secChkCurado:'Start of jar curing', secChkCuradoDesc:'Airtight jars with daily burping during the first week.', secChkAw:'Target water-activity window', secChkAwDesc:'0.55–0.65 aw (ASTM D8197) — check with a hygrometer or aw strips, not just ambient relative humidity.', secChkExtendido:'Extended cure (optional)', secChkExtendidoHasta:'through', secChkExtendidoDesc:'4–8+ additional weeks for maximum flavor development. For long-term storage degradation risk after this, see Making → Storage.',
+    cncTitle:'Concentrate Dosing Calculator', cncDesc:'Complements the edibles calculator: same mg-of-THC-per-use principle, applied to dabs and vapes.', cncTipoLabel:'Product type', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Dab size (mg)', cncPesoLabelVape:'mg of concentrate consumed', cncPotenciaLabel:'Potency (% THC)', cncDosisBaja:'Low dose', cncDosisModerada:'Moderate dose', cncDosisAlta:'High dose',
     bitEyebrow:'Your personal log', bitTitle:'Grow journal', bitSub:'Your entries are truly saved across sessions — they are not lost when you close the app. Only you can see them.', bitNewEntry:'New entry', bitFechaLabel:'Date', bitEtapaLabel:'Stage', etapaGerm:'Germination', etapaVeg:'Vegetative', etapaFlo:'Flowering', etapaCosecha:'Harvest', etapaSecado:'Drying / curing', bitNotaPlaceholder:'What happened today — watering, training, something you noticed...', bitSaveBtn:'Save entry', bitHistorial:'History',
     bitPhLabel:'Substrate pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidity (%)', bitAtajosLabel:'Shortcuts while logging:', bitAtajoVpd:'Calculate VPD →', bitAtajoDosis:'Calculate nutrient mix →',
     bitStatDias:'Days into cycle', bitStatEntradas:'Total entries', bitStatEtapa:'Current stage', bitGraficoTitle:'pH and EC over time', bitGraficoVacio:'Log pH or EC in at least 2 entries to see the trend chart here.',
@@ -3113,6 +3127,13 @@ const translations = {
     calcDliTitle:'DLI-Rechner', calcDliDesc:'Tägliches Lichtintegral — wie viel Licht dein Anbau in 24 Std. sammelt, nicht nur die Intensität eines Moments.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Lichtstunden/Tag',
     calcDoseTitle:'Dosis pro Portion (essbare Produkte)', calcDoseDesc:'Die Compliance-Mathematik, die du schon in Verarbeitung gesehen hast — jetzt sofort berechnet.', calcDoseMg:'Gesamt-mg THC in der Charge', calcDoseServings:'Anzahl der Portionen',
     calcNote:'Diese Rechner sind pädagogische Referenzwerkzeuge — sie ersetzen keinen zertifizierten Labortest für echte Produktkennzeichnung.',
+    calcNuevasTitle:'Neue Werkzeuge',
+    ecpTitle:'EC ↔ PPM/TDS-Umrechner', ecpDesc:'Löst die echte Verwirrung zwischen Messgeräten: derselbe EC-Wert ergibt je nach Skala (500 oder 700) deines Messgeräts eine andere PPM-Zahl.', ecpDireccionLabel:'Richtung', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'EC-Wert (mS/cm)', ecpValorPpmLabel:'PPM-Wert', ecpEscalaLabel:'Skala des Messgeräts', ecpResPpm500:'PPM (Skala 500)', ecpResPpm700:'PPM (Skala 700)', ecpResEc:'EC (mS/cm)',
+    luxTitle:'Lux → PAR/PPFD-Umrechner', luxDesc:'Ergänzt den Lichtleistungs-Rechner unter Anbau → Beleuchtung: hier gehst du von einer Luxmeter-Ablesung aus, um den PPFD zu schätzen.', luxValorLabel:'Luxmeter-Ablesung (Lux)', luxTipoLabel:'Lichtquelle', luxOptLed:'Vollspektrum-LED', luxOptHps:'HPS', luxOptCmh:'CMH / Metallhalogenid', luxOptSol:'Direktes Sonnenlicht', luxNota:'Näherungsschätzung: Luxmeter messen die photopische Reaktion (menschliches Sehen), nicht PAR — für kritische Anbauentscheidungen bleibt ein echtes PAR/PPFD-Messgerät genauer.',
+    yldTitle:'Ertragsschätzer (Yield)', yldDesc:'Basierend auf GPW oder auf Ertrag pro Pflanze — mit deinem eigenen Trocken-Nass-Verhältnis, da dieses in der Praxis stark variiert (12–25%).', yldModoLabel:'Schätzmodus', yldOptGpw:'GPW (Gramm pro Watt)', yldOptPlanta:'Pro Pflanze', yldWattsLabel:'Gesamtleistung (W)', yldGpwLabel:'Geschätztes GPW (g/W)', yldPlantasLabel:'Anzahl der Pflanzen', yldGxPlantaLabel:'Nassgewicht pro Pflanze (g)', yldRatioLabel:'Geschätztes Trocken-Nass-Verhältnis (%)', yldResHumedo:'Geschätzter Nassertrag', yldResSeco:'Geschätzter Trockenertrag',
+    subTitle:'Substratvolumen-Rechner', subDesc:'Berechnet die benötigten Liter Substrat anhand der tatsächlichen Abmessungen deines Topfes.', subFormaLabel:'Topfform', subOptRedonda:'Rund', subOptCuadrada:'Quadratisch / rechteckig', subDiametroLabel:'Durchmesser (cm)', subLargoLabel:'Länge (cm)', subAnchoLabel:'Breite (cm)', subAlturaLabel:'Höhe (cm)',
+    secTitle:'Trocknungs- und Reifetimer', secDesc:'Checkpoints berechnet ab deinem Erntedatum, basierend auf dem ASTM-D8197-Standard (Wasseraktivität) — ohne den Rechner für Abbaurisiko bei Langzeitlagerung (Verarbeitung → Lagerung) zu duplizieren, der ein anderes Thema ist.', secFechaLabel:'Erntedatum', secChkSecado:'Fenster der Anfangstrocknung', secChkSecadoDesc:'Knacktest: der dünne Stängel bricht, statt sich zu biegen.', secChkCurado:'Beginn der Glasreifung', secChkCuradoDesc:'Luftdichte Gläser mit täglichem Lüften in der ersten Woche.', secChkAw:'Ziel-Fenster für Wasseraktivität', secChkAwDesc:'0,55–0,65 aw (ASTM D8197) — mit Hygrometer oder aw-Streifen prüfen, nicht nur mit der Umgebungsluftfeuchtigkeit.', secChkExtendido:'Erweiterte Reifung (optional)', secChkExtendidoHasta:'bis', secChkExtendidoDesc:'4–8+ zusätzliche Wochen für maximale Geschmacksentwicklung. Für das Abbaurisiko bei Langzeitlagerung danach siehe Verarbeitung → Lagerung.',
+    cncTitle:'Dosierungsrechner für Konzentrate', cncDesc:'Ergänzt den Rechner für essbare Produkte: gleiches Prinzip von mg THC pro Anwendung, angewendet auf Dabs und Vapes.', cncTipoLabel:'Produktart', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Dab-Größe (mg)', cncPesoLabelVape:'mg konsumiertes Konzentrat', cncPotenciaLabel:'Potenz (% THC)', cncDosisBaja:'Niedrige Dosis', cncDosisModerada:'Moderate Dosis', cncDosisAlta:'Hohe Dosis',
     bitEyebrow:'Dein persönliches Protokoll', bitTitle:'Anbau-Tagebuch', bitSub:'Deine Einträge werden wirklich sitzungsübergreifend gespeichert — sie gehen beim Schließen der App nicht verloren. Nur du kannst sie sehen.', bitNewEntry:'Neuer Eintrag', bitFechaLabel:'Datum', bitEtapaLabel:'Phase', etapaGerm:'Keimung', etapaVeg:'Vegetativ', etapaFlo:'Blüte', etapaCosecha:'Ernte', etapaSecado:'Trocknung / Reifung', bitNotaPlaceholder:'Was heute passiert ist — Bewässerung, Training, etwas, das dir aufgefallen ist...', bitSaveBtn:'Eintrag speichern', bitHistorial:'Verlauf',
     bitPhLabel:'Substrat-pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Luftfeuchtigkeit (%)', bitAtajosLabel:'Abkürzungen beim Protokollieren:', bitAtajoVpd:'VPD berechnen →', bitAtajoDosis:'Nährstoffmischung berechnen →',
     bitStatDias:'Tage im Zyklus', bitStatEntradas:'Einträge insgesamt', bitStatEtapa:'Aktuelle Phase', bitGraficoTitle:'pH und EC im Zeitverlauf', bitGraficoVacio:'Erfasse pH oder EC in mindestens 2 Einträgen, um hier das Trenddiagramm zu sehen.',
@@ -3896,6 +3917,13 @@ const translations = {
     calcDliTitle:'Calculateur de DLI', calcDliDesc:"Intégrale de lumière journalière — combien de lumière ta culture accumule en 24 h, pas seulement l'intensité d'un instant.", calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Heures de lumière/jour',
     calcDoseTitle:'Dose par portion (comestibles)', calcDoseDesc:"Les mathématiques de conformité que tu as déjà vues dans Élaboration — maintenant calculées à l'instant.", calcDoseMg:'mg totaux de THC dans le lot', calcDoseServings:'Nombre de portions',
     calcNote:"Ces calculateurs sont des outils de référence éducatifs — ils ne remplacent pas un test de laboratoire certifié pour l'étiquetage réel d'un produit.",
+    calcNuevasTitle:'Nouveaux outils',
+    ecpTitle:'Convertisseur EC ↔ PPM/TDS', ecpDesc:"Résout la vraie confusion entre appareils de mesure : le même EC donne un nombre de PPM différent selon l'échelle (500 ou 700) utilisée par ton appareil.", ecpDireccionLabel:'Direction', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'Valeur EC (mS/cm)', ecpValorPpmLabel:'Valeur PPM', ecpEscalaLabel:"Échelle de l'appareil", ecpResPpm500:'PPM (échelle 500)', ecpResPpm700:'PPM (échelle 700)', ecpResEc:'EC (mS/cm)',
+    luxTitle:'Convertisseur Lux → PAR/PPFD', luxDesc:"Complète le calculateur de puissance lumineuse de Culture → Éclairage : ici tu pars d'une lecture de luxmètre pour estimer le PPFD.", luxValorLabel:'Lecture du luxmètre (lux)', luxTipoLabel:'Source lumineuse', luxOptLed:'LED spectre complet', luxOptHps:'HPS', luxOptCmh:'CMH / Halogénure métallique', luxOptSol:'Lumière solaire directe', luxNota:"Estimation approximative : les luxmètres mesurent la réponse photopique (vision humaine), pas le PAR — pour les décisions critiques de culture, un vrai capteur PAR/PPFD reste plus précis.",
+    yldTitle:'Estimateur de rendement (Yield)', yldDesc:'Basé sur le GPW ou sur le rendement par plante — avec ton propre rapport sec/humide, car en pratique il varie pas mal (12–25%).', yldModoLabel:"Mode d'estimation", yldOptGpw:'GPW (grammes par watt)', yldOptPlanta:'Par plante', yldWattsLabel:'Puissance totale (W)', yldGpwLabel:'GPW estimé (g/W)', yldPlantasLabel:'Nombre de plantes', yldGxPlantaLabel:'Grammes humides par plante', yldRatioLabel:'Rapport sec/humide estimé (%)', yldResHumedo:'Rendement humide estimé', yldResSeco:'Rendement sec estimé',
+    subTitle:'Calculateur de volume de substrat', subDesc:'Calcule les litres de substrat nécessaires selon les dimensions réelles de ton pot.', subFormaLabel:'Forme du pot', subOptRedonda:'Rond', subOptCuadrada:'Carré / rectangulaire', subDiametroLabel:'Diamètre (cm)', subLargoLabel:'Longueur (cm)', subAnchoLabel:'Largeur (cm)', subAlturaLabel:'Hauteur (cm)',
+    secTitle:'Minuteur de séchage et affinage', secDesc:"Points de contrôle calculés à partir de ta date de récolte, basés sur la norme ASTM D8197 (activité de l'eau) — sans dupliquer le calculateur de risque de dégradation en stockage long terme (Élaboration → Stockage), qui est un sujet différent.", secFechaLabel:'Date de récolte', secChkSecado:'Fenêtre de séchage initial', secChkSecadoDesc:'Test du claquement : la petite tige casse, elle ne plie pas.', secChkCurado:"Début de l'affinage en bocaux", secChkCuradoDesc:'Bocaux hermétiques avec aération quotidienne pendant la première semaine.', secChkAw:"Fenêtre cible d'activité de l'eau", secChkAwDesc:"0,55–0,65 aw (ASTM D8197) — vérifie avec un hygromètre ou des bandelettes aw, pas seulement l'humidité relative ambiante.", secChkExtendido:'Affinage prolongé (optionnel)', secChkExtendidoHasta:"jusqu'au", secChkExtendidoDesc:'4 à 8+ semaines supplémentaires pour un développement maximal des arômes. Pour le risque de dégradation en stockage long terme après cela, voir Élaboration → Stockage.',
+    cncTitle:'Calculateur de dosage pour concentrés', cncDesc:'Complète le calculateur de comestibles : même principe de mg de THC par prise, appliqué aux dabs et vapes.', cncTipoLabel:'Type de produit', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Taille du dab (mg)', cncPesoLabelVape:'mg de concentré consommé', cncPotenciaLabel:'Puissance (% THC)', cncDosisBaja:'Dose faible', cncDosisModerada:'Dose modérée', cncDosisAlta:'Dose élevée',
     bitEyebrow:'Ton registre personnel', bitTitle:'Journal de culture', bitSub:"Tes entrées sont vraiment sauvegardées entre les sessions — elles ne se perdent pas en fermant l'app. Toi seul peux les voir.", bitNewEntry:'Nouvelle entrée', bitFechaLabel:'Date', bitEtapaLabel:'Stade', etapaGerm:'Germination', etapaVeg:'Végétatif', etapaFlo:'Floraison', etapaCosecha:'Récolte', etapaSecado:'Séchage / affinage', bitNotaPlaceholder:"Ce qui s'est passé aujourd'hui — arrosage, entraînement, quelque chose que tu as remarqué...", bitSaveBtn:"Enregistrer l'entrée", bitHistorial:'Historique',
     bitPhLabel:'pH du substrat', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidité (%)', bitAtajosLabel:"Raccourcis pendant l'enregistrement :", bitAtajoVpd:'Calculer le VPD →', bitAtajoDosis:'Calculer le mélange de nutriments →',
     bitStatDias:'Jours de cycle', bitStatEntradas:'Entrées totales', bitStatEtapa:'Stade actuel', bitGraficoTitle:'pH et EC dans le temps',
@@ -4632,6 +4660,18 @@ function applyLang(){
   if(document.getElementById('harvestChecklist')) renderHarvestChecklist();
   if(document.getElementById('glosarioList')) renderGlosario(document.getElementById('glSearchInput')?.value || '');
   if(comparadorOpen && isPremium) renderComparador();
+  if(document.getElementById('vpdTemp')){ updateVPD(); updateDLI(); updateDose(); }
+  if(document.getElementById('cmDoseMg')) updateDoseComestibles();
+  if(document.getElementById('cmDecarbGramos')) updateDecarbCalc();
+  if(document.getElementById('snCalcTotal')) updateSnCalc();
+  if(document.getElementById('ilLuzArea')) updateIlCalcLuz();
+  if(document.getElementById('degradTiempo')) updateDegradCalc();
+  if(document.getElementById('ecpValor')) updateEcp();
+  if(document.getElementById('luxValor')) updateLux();
+  if(document.getElementById('yldModo')) updateYld();
+  if(document.getElementById('subForma')) updateSub();
+  if(document.getElementById('secFecha')) updateSec();
+  if(document.getElementById('cncTipo')) updateCnc();
   applySourceLinks();
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
@@ -5667,6 +5707,181 @@ if(document.getElementById('cmDoseMg')) updateDoseComestibles();
   if(el) el.addEventListener('input', updateDose);
 });
 if(document.getElementById('vpdTemp')){ updateVPD(); updateDLI(); updateDose(); }
+
+/* ===================== HERRAMIENTAS NUEVAS: EC/PPM, Lux/PPFD, Yield, Sustrato, Secado/Curado, Concentrados ===================== */
+function updateEcp(){
+  const dirEl = document.getElementById('ecpDireccion');
+  const valorEl = document.getElementById('ecpValor');
+  const escalaEl = document.getElementById('ecpEscala');
+  const escalaWrap = document.getElementById('ecpEscalaWrap');
+  const labelEl = document.getElementById('ecpInputLabel');
+  const resultEl = document.getElementById('ecpResult');
+  if(!dirEl || !valorEl || !resultEl) return;
+  const dir = dirEl.value;
+  const valor = parseFloat(valorEl.value) || 0;
+  const escala = parseFloat(escalaEl.value) || 500;
+  if(labelEl) labelEl.textContent = dir === 'ec-ppm' ? t('ecpValorEcLabel') : t('ecpValorPpmLabel');
+  if(escalaWrap) escalaWrap.style.display = dir === 'ec-ppm' ? 'none' : '';
+  if(dir === 'ec-ppm'){
+    const ppm500 = valor * 500;
+    const ppm700 = valor * 700;
+    resultEl.innerHTML = `
+      <div style="display:flex; justify-content:space-between;"><span>${t('ecpResPpm500')}</span><span style="color:var(--moss-deep); font-weight:600;">${ppm500.toFixed(0)}</span></div>
+      <div style="display:flex; justify-content:space-between;"><span>${t('ecpResPpm700')}</span><span style="color:var(--moss-deep); font-weight:600;">${ppm700.toFixed(0)}</span></div>
+    `;
+  } else {
+    const ec = escala > 0 ? valor / escala : 0;
+    const otherScale = escala === 500 ? 700 : 500;
+    const otherPpm = ec * otherScale;
+    resultEl.innerHTML = `
+      <div style="display:flex; justify-content:space-between;"><span>${t('ecpResEc')}</span><span style="color:var(--moss-deep); font-weight:600;">${ec.toFixed(2)}</span></div>
+      <div style="display:flex; justify-content:space-between;"><span>${otherScale===500?t('ecpResPpm500'):t('ecpResPpm700')}</span><span style="color:var(--moss-deep); font-weight:600;">${otherPpm.toFixed(0)}</span></div>
+    `;
+  }
+}
+['ecpDireccion','ecpValor','ecpEscala'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateEcp); el.addEventListener('change', updateEcp); }
+});
+if(document.getElementById('ecpValor')) updateEcp();
+
+function updateLux(){
+  const luxEl = document.getElementById('luxValor');
+  const tipoEl = document.getElementById('luxTipo');
+  const resultEl = document.getElementById('luxResult');
+  if(!luxEl || !resultEl) return;
+  const lux = parseFloat(luxEl.value) || 0;
+  const factor = parseFloat(tipoEl.value) || 0.0185;
+  const ppfd = lux * factor;
+  resultEl.textContent = ppfd.toFixed(0) + ' μmol/m²/s';
+}
+['luxValor','luxTipo'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateLux); el.addEventListener('change', updateLux); }
+});
+if(document.getElementById('luxValor')) updateLux();
+
+function updateYld(){
+  const modoEl = document.getElementById('yldModo');
+  const gpwWrap = document.getElementById('yldGpwWrap');
+  const plantaWrap = document.getElementById('yldPlantaWrap');
+  const resultEl = document.getElementById('yldResult');
+  if(!modoEl || !resultEl) return;
+  const modo = modoEl.value;
+  if(gpwWrap) gpwWrap.style.display = modo === 'gpw' ? 'flex' : 'none';
+  if(plantaWrap) plantaWrap.style.display = modo === 'planta' ? 'flex' : 'none';
+  let wetYield = 0;
+  if(modo === 'gpw'){
+    const watts = parseFloat(document.getElementById('yldWatts').value) || 0;
+    const gpw = parseFloat(document.getElementById('yldGpw').value) || 0;
+    wetYield = watts * gpw;
+  } else {
+    const plantas = parseFloat(document.getElementById('yldPlantas').value) || 0;
+    const gxPlanta = parseFloat(document.getElementById('yldGxPlanta').value) || 0;
+    wetYield = plantas * gxPlanta;
+  }
+  const ratio = parseFloat(document.getElementById('yldRatio').value) || 0;
+  const dryYield = wetYield * (ratio/100);
+  resultEl.innerHTML = `
+    <div style="display:flex; justify-content:space-between;"><span>${t('yldResHumedo')}</span><span style="color:var(--moss-deep); font-weight:600;">${wetYield.toFixed(0)} g</span></div>
+    <div style="display:flex; justify-content:space-between;"><span>${t('yldResSeco')}</span><span style="color:var(--moss-deep); font-weight:600;">${dryYield.toFixed(0)} g</span></div>
+  `;
+}
+['yldModo','yldWatts','yldGpw','yldPlantas','yldGxPlanta','yldRatio'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateYld); el.addEventListener('change', updateYld); }
+});
+if(document.getElementById('yldModo')) updateYld();
+
+function updateSub(){
+  const formaEl = document.getElementById('subForma');
+  const redondaWrap = document.getElementById('subRedondaWrap');
+  const cuadradaWrap = document.getElementById('subCuadradaWrap');
+  const resultEl = document.getElementById('subResult');
+  if(!formaEl || !resultEl) return;
+  const forma = formaEl.value;
+  if(redondaWrap) redondaWrap.style.display = forma === 'redonda' ? '' : 'none';
+  if(cuadradaWrap) cuadradaWrap.style.display = forma === 'cuadrada' ? 'flex' : 'none';
+  const altura = parseFloat(document.getElementById('subAltura').value) || 0;
+  let volumeCm3 = 0;
+  if(forma === 'redonda'){
+    const diametro = parseFloat(document.getElementById('subDiametro').value) || 0;
+    const radio = diametro / 2;
+    volumeCm3 = Math.PI * radio * radio * altura;
+  } else {
+    const largo = parseFloat(document.getElementById('subLargo').value) || 0;
+    const ancho = parseFloat(document.getElementById('subAncho').value) || 0;
+    volumeCm3 = largo * ancho * altura;
+  }
+  const litros = volumeCm3 / 1000;
+  resultEl.textContent = litros.toFixed(1) + ' L';
+}
+['subForma','subDiametro','subLargo','subAncho','subAltura'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateSub); el.addEventListener('change', updateSub); }
+});
+if(document.getElementById('subForma')) updateSub();
+
+function updateSec(){
+  const fechaEl = document.getElementById('secFecha');
+  const resultEl = document.getElementById('secResult');
+  if(!fechaEl || !resultEl) return;
+  if(!fechaEl.value){ resultEl.innerHTML = ''; return; }
+  const base = new Date(fechaEl.value + 'T00:00:00');
+  const addDays = (d, days) => { const r = new Date(d); r.setDate(r.getDate()+days); return r; };
+  const localeMap = { es:'es-ES', en:'en-US', de:'de-DE', fr:'fr-FR' };
+  const fmt = d => d.toLocaleDateString(localeMap[currentLang] || 'es-ES', {day:'numeric', month:'short', year:'numeric'});
+  const dryStart = fmt(addDays(base,7));
+  const dryEnd = fmt(addDays(base,14));
+  const curStart = fmt(addDays(base,14));
+  const awStart = fmt(addDays(base,28));
+  const awEnd = fmt(addDays(base,42));
+  const extEnd = fmt(addDays(base,98));
+  resultEl.innerHTML = `
+    <div><b>${t('secChkSecado')}</b><br><span style="color:var(--ink-soft);">${dryStart} – ${dryEnd}</span> — ${t('secChkSecadoDesc')}</div>
+    <div><b>${t('secChkCurado')}</b><br><span style="color:var(--ink-soft);">${curStart}</span> — ${t('secChkCuradoDesc')}</div>
+    <div><b>${t('secChkAw')}</b><br><span style="color:var(--ink-soft);">${awStart} – ${awEnd}</span> — ${t('secChkAwDesc')}</div>
+    <div><b>${t('secChkExtendido')}</b><br><span style="color:var(--ink-soft);">${t('secChkExtendidoHasta')} ${extEnd}</span> — ${t('secChkExtendidoDesc')}</div>
+  `;
+}
+(function initSecFecha(){
+  const fechaEl = document.getElementById('secFecha');
+  if(fechaEl && !fechaEl.value){
+    const now = new Date();
+    fechaEl.value = now.toISOString().slice(0,10);
+  }
+})();
+['secFecha'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateSec); el.addEventListener('change', updateSec); }
+});
+if(document.getElementById('secFecha')) updateSec();
+
+function updateCnc(){
+  const tipoEl = document.getElementById('cncTipo');
+  const pesoEl = document.getElementById('cncPeso');
+  const potEl = document.getElementById('cncPotencia');
+  const pesoLabelEl = document.getElementById('cncPesoLabel');
+  const resultEl = document.getElementById('cncResult');
+  const verdictEl = document.getElementById('cncVerdict');
+  if(!tipoEl || !pesoEl || !resultEl) return;
+  const tipo = tipoEl.value;
+  if(pesoLabelEl) pesoLabelEl.textContent = tipo === 'dab' ? t('cncPesoLabelDab') : t('cncPesoLabelVape');
+  const peso = parseFloat(pesoEl.value) || 0;
+  const pot = parseFloat(potEl.value) || 0;
+  const mgThc = peso * (pot/100);
+  resultEl.textContent = mgThc.toFixed(1) + ' mg THC';
+  let level, color;
+  if(mgThc <= 5){ level = t('cncDosisBaja'); color = 'var(--moss-deep)'; }
+  else if(mgThc <= 15){ level = t('cncDosisModerada'); color = 'var(--resin)'; }
+  else { level = t('cncDosisAlta'); color = 'var(--clay)'; }
+  if(verdictEl){ verdictEl.textContent = level; verdictEl.style.color = color; }
+}
+['cncTipo','cncPeso','cncPotencia'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateCnc); el.addEventListener('change', updateCnc); }
+});
+if(document.getElementById('cncTipo')) updateCnc();
 
 /* ===================== PREDICTOR DE CRUCES (locus B, de Meijer 2003; alelo nulo, Onofri et al. 2021) ===================== */
 function getAlleles(type){
