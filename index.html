@@ -2941,6 +2941,24 @@
       <div id="cncVerdict" style="font-family:'IBM Plex Mono',monospace; font-size:12px; margin-top:4px;"></div>
     </div>
 
+    <div class="card-block" id="calc-hvw-card">
+      <h3 data-i18n="hvwTitle">Predictor de ventana de cosecha</h3>
+      <p style="margin-bottom:14px;" data-i18n="hvwDesc">Una estimación honesta según el tipo de semilla — no un sustituto de mirar tus propios tricomas.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="hvwTipoLabel">Tipo de semilla</label>
+          <select id="hvwTipo" style="width:220px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="auto" data-i18n="hvwOptAuto">Autofloreciente</option>
+            <option value="foto" data-i18n="hvwOptFoto">Regular o feminizada (fotoperiódica)</option>
+            <option value="landrace" data-i18n="hvwOptLandrace">Landrace</option>
+          </select>
+        </div>
+        <div id="hvwFechaWrap"><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" id="hvwFechaLabel" data-i18n="hvwFechaGermLabel">Fecha de germinación</label><input type="date" id="hvwFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      </div>
+      <div id="hvwResult" style="margin-bottom:14px;"></div>
+      <div class="note-box" data-i18n="hvwDisclaimer">Esta es una ventana estimada, no una fecha exacta — el momento real depende del genotipo específico.</div>
+      <button onclick="goToTrichCheck()" style="margin-top:12px; padding:10px 20px; background:var(--moss-deep); color:var(--paper); border:none; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12.5px;" data-i18n="hvwBtnTricomas">Ir al registro de tricomas</button>
+    </div>
+
     <div class="note-box" data-i18n="calcNote">Estas calculadoras son herramientas de referencia educativa — no reemplazan una prueba de laboratorio certificada para etiquetado real de producto.</div>
   </section>
 

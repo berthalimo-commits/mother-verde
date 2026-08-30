@@ -1552,6 +1552,7 @@ const translations = {
     subTitle:'Calculadora de volumen de sustrato', subDesc:'Calcula los litros de sustrato según las dimensiones reales de tu maceta.', subFormaLabel:'Forma de la maceta', subOptRedonda:'Redonda', subOptCuadrada:'Cuadrada / rectangular', subDiametroLabel:'Diámetro (cm)', subLargoLabel:'Largo (cm)', subAnchoLabel:'Ancho (cm)', subAlturaLabel:'Altura (cm)',
     secTitle:'Temporizador de secado y curado', secDesc:'Checkpoints calculados desde tu fecha de cosecha, basados en el estándar ASTM D8197 (actividad de agua) — sin duplicar la calculadora de riesgo de degradación por almacenamiento de largo plazo (Elaboración → Almacenamiento), que es un tema distinto.', secFechaLabel:'Fecha de cosecha', secChkSecado:'Ventana de secado inicial', secChkSecadoDesc:'Prueba del chasquido: el tallo pequeño se rompe, no se dobla.', secChkCurado:'Inicio de curado en frascos', secChkCuradoDesc:'Frascos herméticos con burping diario durante la primera semana.', secChkAw:'Ventana objetivo de actividad de agua', secChkAwDesc:'0.55–0.65 aw (ASTM D8197) — verifica con higrómetro o tiras de aw, no solo con humedad relativa ambiental.', secChkExtendido:'Curado extendido (opcional)', secChkExtendidoHasta:'hasta', secChkExtendidoDesc:'4–8+ semanas adicionales para desarrollo máximo de sabor. Para riesgo de degradación en almacenamiento de largo plazo después de esto, revisa Elaboración → Almacenamiento.',
     cncTitle:'Calculadora de dosis para concentrados', cncDesc:'Complementa la calculadora de comestibles: mismo principio de mg de THC por uso, aplicado a dabs y vapes.', cncTipoLabel:'Tipo de producto', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Tamaño del dab (mg)', cncPesoLabelVape:'mg de concentrado consumido', cncPotenciaLabel:'Potencia (% THC)', cncDosisBaja:'Dosis baja', cncDosisModerada:'Dosis moderada', cncDosisAlta:'Dosis alta',
+    hvwTitle:'Predictor de ventana de cosecha', hvwDesc:'Una estimación honesta según el tipo de semilla — no un sustituto de mirar tus propios tricomas.', hvwTipoLabel:'Tipo de semilla', hvwOptAuto:'Autofloreciente', hvwOptFoto:'Regular o feminizada (fotoperiódica)', hvwOptLandrace:'Landrace', hvwFechaGermLabel:'Fecha de germinación', hvwFechaFloraLabel:'Fecha de cambio a floración (12/12)', hvwNotaIndicaSativa:'Este rango varía según la predominancia indica/sativa dentro del tipo — las de predominancia sativa suelen tardar más en estar listas.', hvwLandraceWarning:'Las landrace son las más variables de todas — no existe un rango numérico confiable para ellas. Tu mejor guía es el registro de tricomas, no el calendario.', hvwDisclaimer:'Esta es una ventana estimada, no una fecha exacta — el momento real depende del genotipo específico.', hvwBtnTricomas:'Ir al registro de tricomas',
     bitEyebrow:'Tu registro personal', bitTitle:'Bitácora de cultivo', bitSub:'Tus entradas se guardan de verdad entre sesiones — no se pierden al cerrar la app. Solo tú puedes verlas.', bitNewEntry:'Nueva entrada', bitFechaLabel:'Fecha', bitEtapaLabel:'Etapa', etapaGerm:'Germinación', etapaVeg:'Vegetativo', etapaFlo:'Floración', etapaCosecha:'Cosecha', etapaSecado:'Secado / curado', bitNotaPlaceholder:'Qué pasó hoy — riego, entrenamiento, algo que notaste...', bitSaveBtn:'Guardar entrada', bitHistorial:'Historial',
     bitPhLabel:'pH sustrato', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humedad (%)', bitAtajosLabel:'Atajos mientras registras:', bitAtajoVpd:'Calcular VPD →', bitAtajoDosis:'Calcular mezcla de nutrientes →',
     bitStatDias:'Días de ciclo', bitStatEntradas:'Entradas totales', bitStatEtapa:'Etapa actual', bitGraficoTitle:'pH y EC a lo largo del tiempo', bitGraficoVacio:'Registra pH o EC en al menos 2 entradas para ver el gráfico de tendencia aquí.',
@@ -2352,6 +2353,7 @@ const translations = {
     subTitle:'Substrate Volume Calculator', subDesc:'Calculates liters of substrate needed based on your pot\'s real dimensions.', subFormaLabel:'Pot shape', subOptRedonda:'Round', subOptCuadrada:'Square / rectangular', subDiametroLabel:'Diameter (cm)', subLargoLabel:'Length (cm)', subAnchoLabel:'Width (cm)', subAlturaLabel:'Height (cm)',
     secTitle:'Drying & Curing Timer', secDesc:'Checkpoints calculated from your harvest date, based on the ASTM D8197 standard (water activity) — without duplicating the long-term storage degradation-risk calculator (Making → Storage), which is a different topic.', secFechaLabel:'Harvest date', secChkSecado:'Initial drying window', secChkSecadoDesc:'Snap test: the small stem breaks, it doesn\'t bend.', secChkCurado:'Start of jar curing', secChkCuradoDesc:'Airtight jars with daily burping during the first week.', secChkAw:'Target water-activity window', secChkAwDesc:'0.55–0.65 aw (ASTM D8197) — check with a hygrometer or aw strips, not just ambient relative humidity.', secChkExtendido:'Extended cure (optional)', secChkExtendidoHasta:'through', secChkExtendidoDesc:'4–8+ additional weeks for maximum flavor development. For long-term storage degradation risk after this, see Making → Storage.',
     cncTitle:'Concentrate Dosing Calculator', cncDesc:'Complements the edibles calculator: same mg-of-THC-per-use principle, applied to dabs and vapes.', cncTipoLabel:'Product type', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Dab size (mg)', cncPesoLabelVape:'mg of concentrate consumed', cncPotenciaLabel:'Potency (% THC)', cncDosisBaja:'Low dose', cncDosisModerada:'Moderate dose', cncDosisAlta:'High dose',
+    hvwTitle:'Harvest Window Predictor', hvwDesc:'An honest estimate based on seed type — not a substitute for looking at your own trichomes.', hvwTipoLabel:'Seed type', hvwOptAuto:'Autoflower', hvwOptFoto:'Regular or feminized (photoperiod)', hvwOptLandrace:'Landrace', hvwFechaGermLabel:'Germination date', hvwFechaFloraLabel:'Date switched to flowering (12/12)', hvwNotaIndicaSativa:'This range varies depending on indica/sativa predominance within the type — sativa-dominant ones usually take longer to be ready.', hvwLandraceWarning:'Landraces are the most variable of all — there is no reliable numeric range for them. Your best guide is the trichome log, not the calendar.', hvwDisclaimer:'This is an estimated window, not an exact date — the real timing depends on the specific genotype.', hvwBtnTricomas:'Go to the trichome log',
     bitEyebrow:'Your personal log', bitTitle:'Grow journal', bitSub:'Your entries are truly saved across sessions — they are not lost when you close the app. Only you can see them.', bitNewEntry:'New entry', bitFechaLabel:'Date', bitEtapaLabel:'Stage', etapaGerm:'Germination', etapaVeg:'Vegetative', etapaFlo:'Flowering', etapaCosecha:'Harvest', etapaSecado:'Drying / curing', bitNotaPlaceholder:'What happened today — watering, training, something you noticed...', bitSaveBtn:'Save entry', bitHistorial:'History',
     bitPhLabel:'Substrate pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidity (%)', bitAtajosLabel:'Shortcuts while logging:', bitAtajoVpd:'Calculate VPD →', bitAtajoDosis:'Calculate nutrient mix →',
     bitStatDias:'Days into cycle', bitStatEntradas:'Total entries', bitStatEtapa:'Current stage', bitGraficoTitle:'pH and EC over time', bitGraficoVacio:'Log pH or EC in at least 2 entries to see the trend chart here.',
@@ -3151,6 +3153,7 @@ const translations = {
     subTitle:'Substratvolumen-Rechner', subDesc:'Berechnet die benötigten Liter Substrat anhand der tatsächlichen Abmessungen deines Topfes.', subFormaLabel:'Topfform', subOptRedonda:'Rund', subOptCuadrada:'Quadratisch / rechteckig', subDiametroLabel:'Durchmesser (cm)', subLargoLabel:'Länge (cm)', subAnchoLabel:'Breite (cm)', subAlturaLabel:'Höhe (cm)',
     secTitle:'Trocknungs- und Reifetimer', secDesc:'Checkpoints berechnet ab deinem Erntedatum, basierend auf dem ASTM-D8197-Standard (Wasseraktivität) — ohne den Rechner für Abbaurisiko bei Langzeitlagerung (Verarbeitung → Lagerung) zu duplizieren, der ein anderes Thema ist.', secFechaLabel:'Erntedatum', secChkSecado:'Fenster der Anfangstrocknung', secChkSecadoDesc:'Knacktest: der dünne Stängel bricht, statt sich zu biegen.', secChkCurado:'Beginn der Glasreifung', secChkCuradoDesc:'Luftdichte Gläser mit täglichem Lüften in der ersten Woche.', secChkAw:'Ziel-Fenster für Wasseraktivität', secChkAwDesc:'0,55–0,65 aw (ASTM D8197) — mit Hygrometer oder aw-Streifen prüfen, nicht nur mit der Umgebungsluftfeuchtigkeit.', secChkExtendido:'Erweiterte Reifung (optional)', secChkExtendidoHasta:'bis', secChkExtendidoDesc:'4–8+ zusätzliche Wochen für maximale Geschmacksentwicklung. Für das Abbaurisiko bei Langzeitlagerung danach siehe Verarbeitung → Lagerung.',
     cncTitle:'Dosierungsrechner für Konzentrate', cncDesc:'Ergänzt den Rechner für essbare Produkte: gleiches Prinzip von mg THC pro Anwendung, angewendet auf Dabs und Vapes.', cncTipoLabel:'Produktart', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Dab-Größe (mg)', cncPesoLabelVape:'mg konsumiertes Konzentrat', cncPotenciaLabel:'Potenz (% THC)', cncDosisBaja:'Niedrige Dosis', cncDosisModerada:'Moderate Dosis', cncDosisAlta:'Hohe Dosis',
+    hvwTitle:'Erntefenster-Vorhersage', hvwDesc:'Eine ehrliche Schätzung je nach Samentyp — kein Ersatz dafür, deine eigenen Trichome zu betrachten.', hvwTipoLabel:'Samentyp', hvwOptAuto:'Autoflowering', hvwOptFoto:'Regulär oder feminisiert (photoperiodisch)', hvwOptLandrace:'Landrasse', hvwFechaGermLabel:'Keimungsdatum', hvwFechaFloraLabel:'Datum der Umstellung auf Blüte (12/12)', hvwNotaIndicaSativa:'Dieser Bereich variiert je nach Indica-/Sativa-Dominanz innerhalb des Typs — sativadominante Pflanzen brauchen meist länger, bis sie bereit sind.', hvwLandraceWarning:'Landrassen sind von allen am variabelsten — für sie gibt es keinen verlässlichen Zahlenbereich. Dein bester Anhaltspunkt ist das Trichom-Protokoll, nicht der Kalender.', hvwDisclaimer:'Dies ist ein geschätztes Fenster, kein exaktes Datum — der tatsächliche Zeitpunkt hängt vom spezifischen Genotyp ab.', hvwBtnTricomas:'Zum Trichom-Protokoll',
     bitEyebrow:'Dein persönliches Protokoll', bitTitle:'Anbau-Tagebuch', bitSub:'Deine Einträge werden wirklich sitzungsübergreifend gespeichert — sie gehen beim Schließen der App nicht verloren. Nur du kannst sie sehen.', bitNewEntry:'Neuer Eintrag', bitFechaLabel:'Datum', bitEtapaLabel:'Phase', etapaGerm:'Keimung', etapaVeg:'Vegetativ', etapaFlo:'Blüte', etapaCosecha:'Ernte', etapaSecado:'Trocknung / Reifung', bitNotaPlaceholder:'Was heute passiert ist — Bewässerung, Training, etwas, das dir aufgefallen ist...', bitSaveBtn:'Eintrag speichern', bitHistorial:'Verlauf',
     bitPhLabel:'Substrat-pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Luftfeuchtigkeit (%)', bitAtajosLabel:'Abkürzungen beim Protokollieren:', bitAtajoVpd:'VPD berechnen →', bitAtajoDosis:'Nährstoffmischung berechnen →',
     bitStatDias:'Tage im Zyklus', bitStatEntradas:'Einträge insgesamt', bitStatEtapa:'Aktuelle Phase', bitGraficoTitle:'pH und EC im Zeitverlauf', bitGraficoVacio:'Erfasse pH oder EC in mindestens 2 Einträgen, um hier das Trenddiagramm zu sehen.',
@@ -3949,6 +3952,7 @@ const translations = {
     subTitle:'Calculateur de volume de substrat', subDesc:'Calcule les litres de substrat nécessaires selon les dimensions réelles de ton pot.', subFormaLabel:'Forme du pot', subOptRedonda:'Rond', subOptCuadrada:'Carré / rectangulaire', subDiametroLabel:'Diamètre (cm)', subLargoLabel:'Longueur (cm)', subAnchoLabel:'Largeur (cm)', subAlturaLabel:'Hauteur (cm)',
     secTitle:'Minuteur de séchage et affinage', secDesc:"Points de contrôle calculés à partir de ta date de récolte, basés sur la norme ASTM D8197 (activité de l'eau) — sans dupliquer le calculateur de risque de dégradation en stockage long terme (Élaboration → Stockage), qui est un sujet différent.", secFechaLabel:'Date de récolte', secChkSecado:'Fenêtre de séchage initial', secChkSecadoDesc:'Test du claquement : la petite tige casse, elle ne plie pas.', secChkCurado:"Début de l'affinage en bocaux", secChkCuradoDesc:'Bocaux hermétiques avec aération quotidienne pendant la première semaine.', secChkAw:"Fenêtre cible d'activité de l'eau", secChkAwDesc:"0,55–0,65 aw (ASTM D8197) — vérifie avec un hygromètre ou des bandelettes aw, pas seulement l'humidité relative ambiante.", secChkExtendido:'Affinage prolongé (optionnel)', secChkExtendidoHasta:"jusqu'au", secChkExtendidoDesc:'4 à 8+ semaines supplémentaires pour un développement maximal des arômes. Pour le risque de dégradation en stockage long terme après cela, voir Élaboration → Stockage.',
     cncTitle:'Calculateur de dosage pour concentrés', cncDesc:'Complète le calculateur de comestibles : même principe de mg de THC par prise, appliqué aux dabs et vapes.', cncTipoLabel:'Type de produit', cncOptDab:'Dab', cncOptVape:'Vape', cncPesoLabelDab:'Taille du dab (mg)', cncPesoLabelVape:'mg de concentré consommé', cncPotenciaLabel:'Puissance (% THC)', cncDosisBaja:'Dose faible', cncDosisModerada:'Dose modérée', cncDosisAlta:'Dose élevée',
+    hvwTitle:'Prédicteur de fenêtre de récolte', hvwDesc:'Une estimation honnête selon le type de graine — pas un substitut à l’observation de tes propres trichomes.', hvwTipoLabel:'Type de graine', hvwOptAuto:'Autofloraison', hvwOptFoto:'Régulière ou féminisée (photopériodique)', hvwOptLandrace:'Landrace', hvwFechaGermLabel:'Date de germination', hvwFechaFloraLabel:'Date de passage en floraison (12/12)', hvwNotaIndicaSativa:'Cette fourchette varie selon la prédominance indica/sativa au sein du type — les variétés à prédominance sativa mettent généralement plus de temps à être prêtes.', hvwLandraceWarning:'Les landrace sont les plus variables de toutes — il n’existe pas de fourchette numérique fiable pour elles. Ton meilleur guide est le suivi des trichomes, pas le calendrier.', hvwDisclaimer:'Ceci est une fenêtre estimée, pas une date exacte — le moment réel dépend du génotype spécifique.', hvwBtnTricomas:'Aller au suivi des trichomes',
     bitEyebrow:'Ton registre personnel', bitTitle:'Journal de culture', bitSub:"Tes entrées sont vraiment sauvegardées entre les sessions — elles ne se perdent pas en fermant l'app. Toi seul peux les voir.", bitNewEntry:'Nouvelle entrée', bitFechaLabel:'Date', bitEtapaLabel:'Stade', etapaGerm:'Germination', etapaVeg:'Végétatif', etapaFlo:'Floraison', etapaCosecha:'Récolte', etapaSecado:'Séchage / affinage', bitNotaPlaceholder:"Ce qui s'est passé aujourd'hui — arrosage, entraînement, quelque chose que tu as remarqué...", bitSaveBtn:"Enregistrer l'entrée", bitHistorial:'Historique',
     bitPhLabel:'pH du substrat', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidité (%)', bitAtajosLabel:"Raccourcis pendant l'enregistrement :", bitAtajoVpd:'Calculer le VPD →', bitAtajoDosis:'Calculer le mélange de nutriments →',
     bitStatDias:'Jours de cycle', bitStatEntradas:'Entrées totales', bitStatEtapa:'Stade actuel', bitGraficoTitle:'pH et EC dans le temps',
@@ -4704,6 +4708,7 @@ function applyLang(){
   if(document.getElementById('subForma')) updateSub();
   if(document.getElementById('secFecha')) updateSec();
   if(document.getElementById('cncTipo')) updateCnc();
+  if(document.getElementById('hvwTipo')) updateHvw();
   applySourceLinks();
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
@@ -5916,6 +5921,54 @@ function updateCnc(){
   if(el){ el.addEventListener('input', updateCnc); el.addEventListener('change', updateCnc); }
 });
 if(document.getElementById('cncTipo')) updateCnc();
+
+function goToTrichCheck(){
+  showSub('cultivo','cosecha');
+  setTimeout(()=>{
+    const el = document.getElementById('harvestChecklist');
+    if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 50);
+}
+function updateHvw(){
+  const tipoEl = document.getElementById('hvwTipo');
+  const fechaWrap = document.getElementById('hvwFechaWrap');
+  const fechaLabelEl = document.getElementById('hvwFechaLabel');
+  const fechaEl = document.getElementById('hvwFecha');
+  const resultEl = document.getElementById('hvwResult');
+  if(!tipoEl || !resultEl) return;
+  const tipo = tipoEl.value;
+  if(tipo === 'landrace'){
+    if(fechaWrap) fechaWrap.style.display = 'none';
+    resultEl.innerHTML = `<div class="note-box">${t('hvwLandraceWarning')}</div>`;
+    return;
+  }
+  if(fechaWrap) fechaWrap.style.display = '';
+  if(fechaLabelEl) fechaLabelEl.textContent = tipo === 'auto' ? t('hvwFechaGermLabel') : t('hvwFechaFloraLabel');
+  if(!fechaEl.value){ resultEl.innerHTML = ''; return; }
+  const base = new Date(fechaEl.value + 'T00:00:00');
+  const addDays = (d, days) => { const r = new Date(d); r.setDate(r.getDate()+days); return r; };
+  const localeMap = { es:'es-ES', en:'en-US', de:'de-DE', fr:'fr-FR' };
+  const fmt = d => d.toLocaleDateString(localeMap[currentLang] || 'es-ES', {day:'numeric', month:'short', year:'numeric'});
+  const minDays = tipo === 'auto' ? 56 : 56;
+  const maxDays = tipo === 'auto' ? 98 : 84;
+  const start = fmt(addDays(base, minDays));
+  const end = fmt(addDays(base, maxDays));
+  resultEl.innerHTML = `
+    <div style="font-family:'Manrope',sans-serif; font-size:22px; font-weight:500; color:var(--moss-deep);">${start} – ${end}</div>
+    <p style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;">${t('hvwNotaIndicaSativa')}</p>
+  `;
+}
+(function initHvwFecha(){
+  const fechaEl = document.getElementById('hvwFecha');
+  if(fechaEl && !fechaEl.value){
+    fechaEl.value = new Date().toISOString().slice(0,10);
+  }
+})();
+['hvwTipo','hvwFecha'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateHvw); el.addEventListener('change', updateHvw); }
+});
+if(document.getElementById('hvwTipo')) updateHvw();
 
 /* ===================== PREDICTOR DE CRUCES (locus B, de Meijer 2003; alelo nulo, Onofri et al. 2021) ===================== */
 function getAlleles(type){
