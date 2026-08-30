@@ -284,6 +284,55 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .avatar-photo{position:relative; border-radius:50%; overflow:hidden; flex-shrink:0; background:var(--paper-raised); box-shadow:inset 0 0 0 1px var(--glow-border);}
 .avatar-photo img{width:100%; height:100%; object-fit:cover; object-position:50% 9%; display:block;}
 
+/* ===================== BRILLO NEÓN (cursor / touch) ===================== */
+.cursor-glow{
+  position:fixed; top:0; left:0; width:260px; height:260px; margin:-130px 0 0 -130px;
+  border-radius:50%; pointer-events:none; z-index:40; opacity:0;
+  background:radial-gradient(circle, var(--glow-border-strong) 0%, var(--glow-border) 35%, rgba(42,235,175,0) 70%);
+  filter:blur(6px); mix-blend-mode:screen; transition:opacity .4s ease;
+  will-change:transform, opacity;
+}
+.cursor-glow.is-active{opacity:1;}
+
+.touch-ripple{
+  position:fixed; top:0; left:0; width:140px; height:140px; margin:-70px 0 0 -70px;
+  border-radius:50%; pointer-events:none; z-index:40;
+  background:radial-gradient(circle, var(--glow-border-strong) 0%, var(--glow-border) 40%, rgba(42,235,175,0) 72%);
+  filter:blur(4px); mix-blend-mode:screen;
+  transform:scale(0.2); opacity:0.9;
+  animation:touchRipple .6s ease-out forwards;
+}
+@keyframes touchRipple{
+  0%{transform:scale(0.2); opacity:0.85;}
+  100%{transform:scale(1.15); opacity:0;}
+}
+
+/* ===================== EASTER EGG: MINI CIENTÍFICO ===================== */
+.mini-scientist{
+  position:fixed; top:22%; left:-80px; width:64px; height:64px; z-index:40;
+  pointer-events:none; opacity:0;
+}
+.mini-scientist.is-flying{
+  animation:miniScientistFly 6.5s ease-in-out forwards;
+}
+.mini-scientist svg{width:100%; height:100%; display:block;}
+.mini-scientist .ms-bob{animation:miniScientistBob 1.1s ease-in-out infinite;}
+@keyframes miniScientistFly{
+  0%{opacity:0; transform:translate(0, 0) rotate(-6deg);}
+  8%{opacity:1;}
+  50%{transform:translate(calc(50vw - 32px), -18vh) rotate(4deg);}
+  92%{opacity:1;}
+  100%{opacity:0; transform:translate(calc(100vw + 80px), -6vh) rotate(-4deg);}
+}
+@keyframes miniScientistBob{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .cursor-glow, .touch-ripple, .mini-scientist{display:none !important;}
+}
+
 @media (max-width:760px){
   .hero{grid-template-columns:1fr; gap:28px; padding-bottom:36px;}
   .hero h1{font-size:32px;}

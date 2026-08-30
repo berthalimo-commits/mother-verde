@@ -6058,3 +6058,112 @@ function renderSymptomPicker(){
    not just index.html's inline Spanish — keeps static/dynamic content from drifting
    apart again like it did earlier in this project. */
 applyLang();
+
+/* ===================== BRILLO NEÓN: CURSOR (escritorio) ===================== */
+(function initCursorGlow(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  glow.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(glow);
+
+  let targetX = 0, targetY = 0, raf = null, hideTimer = null;
+
+  function render(){
+    glow.style.transform = `translate3d(${targetX}px, ${targetY}px, 0)`;
+    raf = null;
+  }
+
+  window.addEventListener('pointermove', (e)=>{
+    if(e.pointerType && e.pointerType !== 'mouse') return;
+    targetX = e.clientX; targetY = e.clientY;
+    glow.classList.add('is-active');
+    if(!raf) raf = requestAnimationFrame(render);
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(()=> glow.classList.remove('is-active'), 1200);
+  }, {passive:true});
+
+  window.addEventListener('blur', ()=> glow.classList.remove('is-active'));
+})();
+
+/* ===================== BRILLO NEÓN: TOUCH (móvil) ===================== */
+(function initTouchGlow(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.addEventListener('touchstart', (e)=>{
+    for(const touch of e.changedTouches){
+      const ripple = document.createElement('div');
+      ripple.className = 'touch-ripple';
+      ripple.setAttribute('aria-hidden', 'true');
+      ripple.style.left = touch.clientX + 'px';
+      ripple.style.top = touch.clientY + 'px';
+      document.body.appendChild(ripple);
+      ripple.addEventListener('animationend', ()=> ripple.remove(), {once:true});
+    }
+  }, {passive:true});
+})();
+
+/* ===================== EASTER EGG: MINI CIENTÍFICO ===================== */
+(function initMiniScientist(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const STORE_KEY = 'mv_scientist_state';
+  const FIRST_MIN_MS = 60000;    // 1 min de uso activo
+  const FIRST_MAX_MS = 300000;   // 5 min de uso activo
+  const REPEAT_MS = 1800000;     // 30 min de uso activo
+  const TICK_MS = 5000;          // resolución del contador
+
+  function loadState(){
+    try{
+      const raw = sessionStorage.getItem(STORE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return { activeMs: 0, targetMs: FIRST_MIN_MS + Math.random() * (FIRST_MAX_MS - FIRST_MIN_MS) };
+  }
+  function saveState(state){
+    try{ sessionStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  const state = loadState();
+
+  function createMiniScientist(){
+    const wrap = document.createElement('div');
+    wrap.className = 'mini-scientist';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">'
+      + '<g class="ms-bob">'
+      + '<ellipse cx="10" cy="46" rx="7" ry="3" fill="var(--moss-deep)" opacity="0.35"/>'
+      + '<ellipse cx="18" cy="40" rx="5" ry="2.4" fill="var(--moss-deep)" opacity="0.5"/>'
+      + '<path d="M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z" fill="var(--moss)" opacity="0.92"/>'
+      + '<path d="M26 24 Q34 20 40 30 Q42 40 34 48" fill="none" stroke="var(--moss-deep)" stroke-width="1.2" opacity="0.6"/>'
+      + '<circle cx="40" cy="24" r="9" fill="var(--paper-raised)" stroke="var(--line-strong)" stroke-width="1"/>'
+      + '<circle cx="37" cy="23" r="2.6" fill="var(--teal)" opacity="0.9"/>'
+      + '<circle cx="43" cy="23" r="2.6" fill="var(--teal)" opacity="0.9"/>'
+      + '<path d="M35 20 Q40 17 45 20" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>'
+      + '<path d="M32 30 Q40 34 48 28" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>'
+      + '</g></svg>';
+    return wrap;
+  }
+
+  function flyAcross(){
+    const el = createMiniScientist();
+    el.style.top = (14 + Math.random() * 30) + '%';
+    document.body.appendChild(el);
+    requestAnimationFrame(()=> el.classList.add('is-flying'));
+    el.addEventListener('animationend', ()=> el.remove(), {once:true});
+  }
+
+  setInterval(()=>{
+    if(document.visibilityState !== 'visible') return;
+    state.activeMs += TICK_MS;
+    if(state.activeMs >= state.targetMs){
+      flyAcross();
+      state.activeMs = 0;
+      state.targetMs = REPEAT_MS;
+    }
+    saveState(state);
+  }, TICK_MS);
+})();
