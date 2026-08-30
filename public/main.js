@@ -6326,9 +6326,8 @@ applyLang();
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const STORE_KEY = 'mv_scientist_state';
-  const FIRST_MIN_MS = 60000;    // 1 min de uso activo
-  const FIRST_MAX_MS = 300000;   // 5 min de uso activo
-  const REPEAT_MS = 1800000;     // 30 min de uso activo
+  const FIRST_MS = 120000;       // 2 min de uso activo
+  const REPEAT_MS = 960000;      // 16 min de uso activo
   const TICK_MS = 5000;          // resolución del contador
 
   function loadState(){
@@ -6336,7 +6335,7 @@ applyLang();
       const raw = sessionStorage.getItem(STORE_KEY);
       if(raw) return JSON.parse(raw);
     }catch(e){}
-    return { activeMs: 0, targetMs: FIRST_MIN_MS + Math.random() * (FIRST_MAX_MS - FIRST_MIN_MS) };
+    return { activeMs: 0, targetMs: FIRST_MS };
   }
   function saveState(state){
     try{ sessionStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
@@ -6363,12 +6362,25 @@ applyLang();
     return wrap;
   }
 
+  function spawnSmokePuff(el){
+    const rect = el.getBoundingClientRect();
+    const puff = document.createElement('div');
+    puff.className = 'ms-smoke';
+    puff.setAttribute('aria-hidden', 'true');
+    puff.style.left = (rect.left + rect.width * 0.18) + 'px';
+    puff.style.top = (rect.top + rect.height * 0.62) + 'px';
+    document.body.appendChild(puff);
+    requestAnimationFrame(()=> puff.classList.add('is-fading'));
+    puff.addEventListener('animationend', ()=> puff.remove(), {once:true});
+  }
+
   function flyAcross(){
     const el = createMiniScientist();
     el.style.top = (14 + Math.random() * 30) + '%';
     document.body.appendChild(el);
     requestAnimationFrame(()=> el.classList.add('is-flying'));
-    el.addEventListener('animationend', ()=> el.remove(), {once:true});
+    const smokeTimer = setInterval(()=> spawnSmokePuff(el), 220);
+    el.addEventListener('animationend', ()=>{ clearInterval(smokeTimer); el.remove(); }, {once:true});
   }
 
   setInterval(()=>{

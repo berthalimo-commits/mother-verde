@@ -329,8 +329,22 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
   50%{transform:translateY(-5px);}
 }
 
+.ms-smoke{
+  position:fixed; width:9px; height:9px; border-radius:50%;
+  background:radial-gradient(circle, var(--ink-soft) 0%, rgba(159,184,174,0) 70%);
+  opacity:0.3; pointer-events:none; z-index:39;
+  transform:translate(-50%,-50%) scale(0.5);
+}
+.ms-smoke.is-fading{
+  animation:msSmokeFade 0.8s ease-out forwards;
+}
+@keyframes msSmokeFade{
+  0%{opacity:0.3; transform:translate(-50%,-50%) scale(0.5);}
+  100%{opacity:0; transform:translate(-65%,-25%) scale(1.5);}
+}
+
 @media (prefers-reduced-motion: reduce){
-  .cursor-glow, .touch-ripple, .mini-scientist{display:none !important;}
+  .cursor-glow, .touch-ripple, .mini-scientist, .ms-smoke{display:none !important;}
 }
 
 @media (max-width:760px){
