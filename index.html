@@ -373,9 +373,14 @@
             </select>
           </div>
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzHorasLabel">Horas de luz/día</label><input type="number" id="ilLuzHoras" value="12" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ilLuzPrecioLabel">Precio electricidad ($/kWh, opcional)</label><input type="number" id="ilLuzPrecio" value="" step="0.01" placeholder="0.15" style="width:140px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         </div>
         <p style="font-size:11px; color:var(--ink-soft); margin-bottom:14px;" data-i18n="ilLuzSugerencia"><b>Sugerencia según etapa:</b> 300–600 vegetativo · 600–1,000 floración · 1,000–1,500+ con CO2 suplementario.</p>
         <div id="ilLuzResult" style="display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
+        <div id="ilLuzCostoWrap" style="display:none; margin-top:16px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;" data-i18n="ilLuzCostoTitle">Costo eléctrico mensual estimado (LED vs. HPS vs. CMH)</div>
+          <div id="ilLuzCostoResult" style="display:flex; flex-direction:column; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:13px;"></div>
+        </div>
       </div>
       <div class="specimen-grid">
         <div class="specimen"><h4 data-i18n="ilPlantulaH4">Plántula</h4><div class="sci" data-i18n="ilPlantulaSci">Primeras semanas</div>
@@ -1553,6 +1558,29 @@
         <div class="note-box" data-i18n="coaNdNote">Un matiz técnico real: "ND" (No Detectado) no siempre significa cero absoluto. Significa que el laboratorio no encontró el compuesto por encima de su límite de detección — cada equipo y método tiene un umbral mínimo de lo que puede medir con precisión (LOD/LOQ). No es solo una cuestión semántica.</div>
         <div class="note-box" data-i18n="coaUspNote">La USP (United States Pharmacopeia), la organización que publica los estándares oficiales de calidad de medicamentos en EE. UU., formó un Panel de Expertos en Cannabis que en 2020 definió los atributos de calidad necesarios: identidad, contenido de cannabinoides/terpenos, y límites de contaminantes. Recomendaron oficialmente la misma <a onclick="showSub('cultivo','genetica')" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">clasificación de 3 quimiotipos que ya usamos en Genética</a> — una validación externa real de esa categorización. El dato honesto: hasta ese momento no existía una Monografía USP oficial de Cannabis, el estándar más formal posible, aunque sí existen monografías nacionales como la Farmacopea Alemana (DAB).</div>
       </div>
+
+      <div class="card-block">
+        <h3 data-i18n="etChkH3">Checklist interactivo: etiqueta y COA</h3>
+        <p style="margin-bottom:14px;" data-i18n="etChkP">Convierte lo de arriba en una lista marcable. Genérico e ilustrativo — no es un listado oficial por país, esa información específica siempre debe confirmarse con tu regulador local. Tus marcas se guardan en este navegador.</p>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.04em; margin-bottom:8px;" data-i18n="etChkGrupoEtiqueta">En la etiqueta</div>
+        <div style="display:flex; flex-direction:column; gap:2px; margin-bottom:16px;">
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk1" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem1">THC total declarado</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk2" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem2">CBD total declarado</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk3" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem3">Número de lote</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk4" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem4">Fecha de cosecha</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk5" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem5">Licencia del productor verificable</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk6" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem6">Advertencia sanitaria obligatoria</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk7" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem7">Código de trazabilidad (QR)</span></label>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.04em; margin-bottom:8px;" data-i18n="etChkGrupoCoa">En el COA</div>
+        <div style="display:flex; flex-direction:column; gap:2px; margin-bottom:8px;">
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk8" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem8">Fecha del COA de menos de 6 meses</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk9" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem9">Número de lote coincide con el del empaque</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk10" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem10">Información de contacto del laboratorio visible</span></label>
+          <label style="display:flex; align-items:center; gap:10px; padding:8px 4px; cursor:pointer; font-size:13.5px;"><input type="checkbox" id="etChk11" style="width:16px; height:16px; accent-color:var(--moss-deep); cursor:pointer;"><span data-i18n="etChkItem11">Acreditación ISO/IEC 17025 visible</span></label>
+        </div>
+        <div class="note-box" data-i18n="etChkDisclaimer">Esta lista es genérica e ilustrativa, basada en prácticas comunes en mercados regulados — no reemplaza los requisitos legales específicos de tu país, que debes confirmar con tu regulador local.</div>
+      </div>
     </div>
   </section>
 
@@ -2685,6 +2713,20 @@
         <div class="note-box" data-i18n="tplDisclaimer">Esta es una ayuda de organización personal — no reemplaza el sistema oficial de trazabilidad de tu jurisdicción (Metrc en EE. UU., CTLS en Canadá, IRCCA en Uruguay, o el equivalente en tu país).</div>
         <a id="tplChecklistLink" href="/downloads/checklist-primeros-pasos-es.xlsx" download style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8,1 L8,10 M4,7 L8,11 L12,7 M2,13 L14,13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="tplDescargarBtn">Descargar plantilla (.xlsx)</span></a>
       </div>
+
+      <div class="card-block">
+        <h3 data-i18n="tplCalH3">Calendario de Cumplimiento</h3>
+        <p data-i18n="tplCalP">Tareas típicas de cualquier licencia regulada (renovaciones, testing, reportes) con su frecuencia general — agrega tus propias fechas reales.</p>
+        <div class="note-box" data-i18n="tplCalDisclaimer">Esta plantilla es una ayuda de organización genérica — no conoce las fechas, frecuencias, ni requisitos reales de tu licencia. Confirma siempre las fechas y obligaciones exactas con tu regulador local.</div>
+        <a id="tplCalendarioLink" href="/downloads/calendario-cumplimiento-es.xlsx" download style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8,1 L8,10 M4,7 L8,11 L12,7 M2,13 L14,13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="tplDescargarBtn">Descargar plantilla (.xlsx)</span></a>
+      </div>
+
+      <div class="card-block">
+        <h3 data-i18n="tplSopH3">Plantillas de SOP en blanco</h3>
+        <p data-i18n="tplSopP">Un solo archivo con 4 pestañas de estructura fija (limpieza de herramientas, cosecha, secado y curado, recepción de insumos) — no generadas por IA, tú completas cada procedimiento con tus propios detalles reales.</p>
+        <div class="note-box" data-i18n="tplSopDisclaimer">Esta es una plantilla de estructura en blanco — no un procedimiento pre-escrito ni asesoría de cumplimiento. Completa cada sección con tus propios procesos reales, verificados contra los requisitos de tu jurisdicción.</div>
+        <a id="tplSopLink" href="/downloads/plantillas-sop-es.xlsx" download style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8,1 L8,10 M4,7 L8,11 L12,7 M2,13 L14,13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="tplDescargarBtn">Descargar plantilla (.xlsx)</span></a>
+      </div>
     </div>
   </section>
 
@@ -3015,6 +3057,51 @@
       <div class="spec-source">
         <div>Ross, S.A. &amp; ElSohly, M.A. (1997). "CBN and Δ9-THC concentration ratio as an indicator of the age of stored marijuana samples." <i>UN Bulletin on Narcotics</i>, 1997, Issue 1 — <a href="https://www.unodc.org/unodc/en/data-and-analysis/bulletin/bulletin_1997-01-01_1_page008.html" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">unodc.org</a></div>
         <div style="margin-top:4px;">Zamengo et al. (2019), <i>Forensic Science International</i> — <a href="https://doi.org/10.1016/j.forsciint.2019.02.058" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1016/j.forsciint.2019.02.058</a></div>
+      </div>
+    </div>
+
+    <div class="card-block" id="calc-coa-card">
+      <h3 data-i18n="coaToolH3">Cómo leer tu COA</h3>
+      <p style="margin-bottom:14px;" data-i18n="coaToolP">Ingresa los valores de TU propio Certificado de Análisis y te explicamos en lenguaje simple qué significa cada uno. No procesamos archivos PDF ni hacemos análisis automático — solo interpretación educativa de los números que tú ingresas manualmente. Ver también <a onclick="showScreen('elaboracion'); showSub('elaboracion','etiquetado');" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Elaboración → Etiquetado</a> para la guía completa de cómo leer un COA.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="coaThcLabel">THC total (%)</label><input type="number" id="coaThc" step="0.1" placeholder="22.4" style="width:110px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="coaCbdLabel">CBD total (%)</label><input type="number" id="coaCbd" step="0.1" placeholder="0.8" style="width:110px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:6px 0; border-bottom:1px solid var(--line);"><label style="font-size:13px;" data-i18n="coaLabelPest">Pesticidas</label><select id="coaPest" class="coa-cont-select" style="padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"><option value="nd" data-i18n="coaOptNd">No Detectado (ND)</option><option value="det" data-i18n="coaOptDet">Detectado</option></select></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:6px 0; border-bottom:1px solid var(--line);"><label style="font-size:13px;" data-i18n="coaLabelMetales">Metales pesados</label><select id="coaMetales" class="coa-cont-select" style="padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"><option value="nd" data-i18n="coaOptNd">No Detectado (ND)</option><option value="det" data-i18n="coaOptDet">Detectado</option></select></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:6px 0; border-bottom:1px solid var(--line);"><label style="font-size:13px;" data-i18n="coaLabelMicotox">Micotoxinas</label><select id="coaMicotox" class="coa-cont-select" style="padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"><option value="nd" data-i18n="coaOptNd">No Detectado (ND)</option><option value="det" data-i18n="coaOptDet">Detectado</option></select></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:6px 0; border-bottom:1px solid var(--line);"><label style="font-size:13px;" data-i18n="coaLabelSolv">Solventes residuales</label><select id="coaSolv" class="coa-cont-select" style="padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"><option value="nd" data-i18n="coaOptNd">No Detectado (ND)</option><option value="det" data-i18n="coaOptDet">Detectado</option></select></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:6px 0;"><label style="font-size:13px;" data-i18n="coaLabelMicrob">Análisis microbiológico</label><select id="coaMicrob" class="coa-cont-select" style="padding:7px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"><option value="nd" data-i18n="coaOptNd">No Detectado (ND)</option><option value="det" data-i18n="coaOptDet">Detectado</option></select></div>
+      </div>
+      <div id="coaToolResult" style="display:flex; flex-direction:column; gap:10px;"></div>
+      <div class="note-box" data-i18n="coaToolDisclaimer">Esta es una interpretación educativa de los números que ingresaste, no un análisis de laboratorio ni una determinación de seguridad. Los límites de contaminantes permitidos varían por país — para saber si un resultado "Detectado" cumple con la norma de tu jurisdicción, consulta directamente al laboratorio, al punto de venta, o a tu regulador local.</div>
+    </div>
+
+    <div class="card-block" id="calc-costoinicial-card">
+      <h3 data-i18n="ciH3">Estimador de costos iniciales</h3>
+      <p style="margin-bottom:14px;" data-i18n="ciP">Un rango orientativo de costos típicos de la industria — no una cotización ni una proyección financiera de tu proyecto específico.</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ciTipoLabel">Tipo de cultivo</label>
+          <select id="ciTipo" style="width:180px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="indoor" data-i18n="ciOptIndoor">Indoor</option>
+            <option value="invernadero" data-i18n="ciOptInvernadero">Invernadero</option>
+            <option value="outdoor" data-i18n="ciOptOutdoor">Outdoor</option>
+          </select>
+        </div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ciTamanoLabel">Tamaño aproximado</label>
+          <select id="ciTamano" style="width:220px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="pequeno" data-i18n="ciOptPequeno">Pequeño (10–50 m²)</option>
+            <option value="mediano" data-i18n="ciOptMediano">Mediano (100–300 m²)</option>
+            <option value="grande" data-i18n="ciOptGrande">Grande (500–2,000 m²)</option>
+          </select>
+        </div>
+      </div>
+      <div id="ciResult" style="display:flex; flex-direction:column; gap:8px; font-family:'IBM Plex Mono',monospace; font-size:13px; margin-bottom:14px;"></div>
+      <div class="note-box" data-i18n="ciDisclaimer">Esto es solo orientativo, basado en rangos generales reportados por la industria — no es una proyección financiera real de tu proyecto, ni asesoría de inversión. Los costos reales varían enormemente según país, escala, proveedor, y normativa local.</div>
+      <div class="spec-source">
+        <div>MJBizDaily — <a href="https://mjbizdaily.com/chart-startup-costs-wholesale-marijuana-cultivators/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">chart-startup-costs-wholesale-marijuana-cultivators</a></div>
+        <div style="margin-top:4px;">Northstar Financial Advisory (2025) — <a href="https://nstarfinance.com/resources/cost-to-start-a-grow-operation" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cost-to-start-a-grow-operation</a></div>
       </div>
     </div>
 
