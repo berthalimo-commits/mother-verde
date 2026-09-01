@@ -2305,6 +2305,7 @@ const translations = {
     calcVpdTitle:'Calculadora de VPD', calcVpdDesc:'Déficit de presión de vapor — la métrica real detrás de "¿está muy húmedo o muy seco?".', calcVpdTemp:'Temp. aire (°C)', calcVpdRH:'Humedad rel. (%)', calcVpdStage:'Etapa', calcVpdVeg:'Vegetativo (0.8–1.0 kPa)', calcVpdFlo:'Floración (1.0–1.5 kPa)',
     calcDliTitle:'Calculadora de DLI', calcDliDesc:'Integral de luz diaria — cuánta luz acumula tu cultivo en 24 h, no solo la intensidad de un instante.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Horas de luz/día',
     calcDoseTitle:'Dosis por porción (comestibles)', calcDoseDesc:'La matemática de cumplimiento normativo que ya viste en Elaboración — ahora calculada al instante.', calcDoseMg:'mg totales de THC en el lote', calcDoseServings:'Número de porciones',
+    cbnCalcH3:'Calculadora: degradación estimada de THC a CBN', cbnCalcP:'Distinta de la calculadora de riesgo de más arriba: esta da un porcentaje aproximado de THC degradado según el tiempo y la condición de almacenamiento, usando los puntos de referencia reales de Ross & ElSohly (1997).', cbnTiempoLabel:'Tiempo de almacenamiento', cbnUnidadMeses:'Meses', cbnUnidadAnios:'Años', cbnCondLabel:'Condición de almacenamiento', cbnCondLuz:'Con luz, temperatura ambiente', cbnCondOscuridad:'Oscuridad, temperatura ambiente', cbnCondRefri:'Refrigerado (~4°C)', cbnCondCong:'Congelado', cbnResultLabel:'THC degradado estimado', cbnDisclaimer:'Esta es una estimación aproximada de degradación de THC, basada en patrones documentados en estudios de almacenamiento — no un cálculo exacto de laboratorio. Importante: la cantidad de THC perdido no equivale directamente a la cantidad de CBN formado — parte de la degradación sigue otras rutas químicas no completamente entendidas. Para conocer la potencia real de un producto, un análisis de laboratorio (COA) es la única fuente confiable.',
     calcNote:'Estas calculadoras son herramientas de referencia educativa — no reemplazan una prueba de laboratorio certificada para etiquetado real de producto.',
     calcNuevasTitle:'Herramientas nuevas',
     ecpTitle:'Conversor EC ↔ PPM/TDS', ecpDesc:'Resuelve la confusión real entre medidores: el mismo EC da un número de PPM distinto según la escala (500 o 700) que use tu medidor.', ecpDireccionLabel:'Dirección', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'Valor de EC (mS/cm)', ecpValorPpmLabel:'Valor de PPM', ecpEscalaLabel:'Escala del medidor', ecpResPpm500:'PPM (escala 500)', ecpResPpm700:'PPM (escala 700)', ecpResEc:'EC (mS/cm)',
@@ -3101,6 +3102,7 @@ const translations = {
     calcVpdTitle:'VPD Calculator', calcVpdDesc:'Vapor pressure deficit — the real metric behind "is it too humid or too dry?".', calcVpdTemp:'Air temp. (°C)', calcVpdRH:'Relative humidity (%)', calcVpdStage:'Stage', calcVpdVeg:'Vegetative (0.8–1.0 kPa)', calcVpdFlo:'Flowering (1.0–1.5 kPa)',
     calcDliTitle:'DLI Calculator', calcDliDesc:'Daily light integral — how much light your grow accumulates in 24 h, not just the intensity of one instant.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Hours of light/day',
     calcDoseTitle:'Dose per serving (edibles)', calcDoseDesc:'The compliance math you already saw in Making — now calculated instantly.', calcDoseMg:'Total mg THC in the batch', calcDoseServings:'Number of servings',
+    cbnCalcH3:'Calculator: estimated THC-to-CBN degradation', cbnCalcP:'Different from the risk calculator above: this gives an approximate percentage of THC degraded based on storage time and condition, using the real reference points from Ross & ElSohly (1997).', cbnTiempoLabel:'Storage time', cbnUnidadMeses:'Months', cbnUnidadAnios:'Years', cbnCondLabel:'Storage condition', cbnCondLuz:'With light, room temperature', cbnCondOscuridad:'Darkness, room temperature', cbnCondRefri:'Refrigerated (~4°C)', cbnCondCong:'Frozen', cbnResultLabel:'Estimated THC degraded', cbnDisclaimer:'This is an approximate estimate of THC degradation, based on patterns documented in storage studies — not an exact laboratory calculation. Important: the amount of THC lost does not directly equal the amount of CBN formed — part of the degradation follows other chemical pathways that aren’t fully understood. To know a product’s real potency, a laboratory analysis (COA) is the only reliable source.',
     calcNote:'These calculators are educational reference tools — they do not replace a certified lab test for real product labeling.',
     calcNuevasTitle:'New tools',
     ecpTitle:'EC ↔ PPM/TDS Converter', ecpDesc:'Solves the real confusion between meters: the same EC gives a different PPM number depending on the scale (500 or 700) your meter uses.', ecpDireccionLabel:'Direction', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'EC value (mS/cm)', ecpValorPpmLabel:'PPM value', ecpEscalaLabel:'Meter scale', ecpResPpm500:'PPM (500 scale)', ecpResPpm700:'PPM (700 scale)', ecpResEc:'EC (mS/cm)',
@@ -3896,6 +3898,7 @@ const translations = {
     calcVpdTitle:'VPD-Rechner', calcVpdDesc:'Dampfdruckdefizit — die echte Kennzahl hinter "ist es zu feucht oder zu trocken?".', calcVpdTemp:'Lufttemp. (°C)', calcVpdRH:'Relative Luftfeuchtigkeit (%)', calcVpdStage:'Phase', calcVpdVeg:'Vegetativ (0,8–1,0 kPa)', calcVpdFlo:'Blüte (1,0–1,5 kPa)',
     calcDliTitle:'DLI-Rechner', calcDliDesc:'Tägliches Lichtintegral — wie viel Licht dein Anbau in 24 Std. sammelt, nicht nur die Intensität eines Moments.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Lichtstunden/Tag',
     calcDoseTitle:'Dosis pro Portion (essbare Produkte)', calcDoseDesc:'Die Compliance-Mathematik, die du schon in Verarbeitung gesehen hast — jetzt sofort berechnet.', calcDoseMg:'Gesamt-mg THC in der Charge', calcDoseServings:'Anzahl der Portionen',
+    cbnCalcH3:'Rechner: geschätzter THC-zu-CBN-Abbau', cbnCalcP:'Anders als der Risikorechner oben: Dieser liefert einen ungefähren Prozentsatz des abgebauten THC basierend auf Lagerzeit und -bedingung, unter Verwendung der realen Referenzwerte von Ross & ElSohly (1997).', cbnTiempoLabel:'Lagerzeit', cbnUnidadMeses:'Monate', cbnUnidadAnios:'Jahre', cbnCondLabel:'Lagerbedingung', cbnCondLuz:'Mit Licht, Raumtemperatur', cbnCondOscuridad:'Dunkelheit, Raumtemperatur', cbnCondRefri:'Gekühlt (~4°C)', cbnCondCong:'Gefroren', cbnResultLabel:'Geschätztes abgebautes THC', cbnDisclaimer:'Dies ist eine ungefähre Schätzung des THC-Abbaus, basierend auf in Lagerungsstudien dokumentierten Mustern — keine exakte Laborberechnung. Wichtig: Die Menge des verlorenen THC entspricht nicht direkt der Menge des gebildeten CBN — ein Teil des Abbaus folgt anderen chemischen Wegen, die nicht vollständig verstanden sind. Um die tatsächliche Potenz eines Produkts zu kennen, ist eine Laboranalyse (COA) die einzig verlässliche Quelle.',
     calcNote:'Diese Rechner sind pädagogische Referenzwerkzeuge — sie ersetzen keinen zertifizierten Labortest für echte Produktkennzeichnung.',
     calcNuevasTitle:'Neue Werkzeuge',
     ecpTitle:'EC ↔ PPM/TDS-Umrechner', ecpDesc:'Löst die echte Verwirrung zwischen Messgeräten: derselbe EC-Wert ergibt je nach Skala (500 oder 700) deines Messgeräts eine andere PPM-Zahl.', ecpDireccionLabel:'Richtung', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'EC-Wert (mS/cm)', ecpValorPpmLabel:'PPM-Wert', ecpEscalaLabel:'Skala des Messgeräts', ecpResPpm500:'PPM (Skala 500)', ecpResPpm700:'PPM (Skala 700)', ecpResEc:'EC (mS/cm)',
@@ -4690,6 +4693,7 @@ const translations = {
     calcVpdTitle:'Calculateur de VPD', calcVpdDesc:'Déficit de pression de vapeur — la métrique réelle derrière « est-ce trop humide ou trop sec ? ».', calcVpdTemp:'Temp. air (°C)', calcVpdRH:'Humidité rel. (%)', calcVpdStage:'Stade', calcVpdVeg:'Végétatif (0,8–1,0 kPa)', calcVpdFlo:'Floraison (1,0–1,5 kPa)',
     calcDliTitle:'Calculateur de DLI', calcDliDesc:"Intégrale de lumière journalière — combien de lumière ta culture accumule en 24 h, pas seulement l'intensité d'un instant.", calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Heures de lumière/jour',
     calcDoseTitle:'Dose par portion (comestibles)', calcDoseDesc:"Les mathématiques de conformité que tu as déjà vues dans Élaboration — maintenant calculées à l'instant.", calcDoseMg:'mg totaux de THC dans le lot', calcDoseServings:'Nombre de portions',
+    cbnCalcH3:'Calculateur : dégradation estimée du THC en CBN', cbnCalcP:'Différent du calculateur de risque ci-dessus : celui-ci donne un pourcentage approximatif de THC dégradé selon le temps et la condition de stockage, en utilisant les points de référence réels de Ross & ElSohly (1997).', cbnTiempoLabel:'Durée de stockage', cbnUnidadMeses:'Mois', cbnUnidadAnios:'Années', cbnCondLabel:'Condition de stockage', cbnCondLuz:'Avec lumière, température ambiante', cbnCondOscuridad:'Obscurité, température ambiante', cbnCondRefri:'Réfrigéré (~4°C)', cbnCondCong:'Congelé', cbnResultLabel:'THC dégradé estimé', cbnDisclaimer:"Ceci est une estimation approximative de la dégradation du THC, basée sur des schémas documentés dans des études de stockage — pas un calcul de laboratoire exact. Important : la quantité de THC perdue n'équivaut pas directement à la quantité de CBN formée — une partie de la dégradation suit d'autres voies chimiques qui ne sont pas entièrement comprises. Pour connaître la puissance réelle d'un produit, une analyse de laboratoire (COA) est la seule source fiable.",
     calcNote:"Ces calculateurs sont des outils de référence éducatifs — ils ne remplacent pas un test de laboratoire certifié pour l'étiquetage réel d'un produit.",
     calcNuevasTitle:'Nouveaux outils',
     ecpTitle:'Convertisseur EC ↔ PPM/TDS', ecpDesc:"Résout la vraie confusion entre appareils de mesure : le même EC donne un nombre de PPM différent selon l'échelle (500 ou 700) utilisée par ton appareil.", ecpDireccionLabel:'Direction', ecpOptEcPpm:'EC (mS/cm) → PPM', ecpOptPpmEc:'PPM → EC (mS/cm)', ecpValorEcLabel:'Valeur EC (mS/cm)', ecpValorPpmLabel:'Valeur PPM', ecpEscalaLabel:"Échelle de l'appareil", ecpResPpm500:'PPM (échelle 500)', ecpResPpm700:'PPM (échelle 700)', ecpResEc:'EC (mS/cm)',
@@ -5451,6 +5455,7 @@ function applyLang(){
   if(document.getElementById('secFecha')) updateSec();
   if(document.getElementById('cncTipo')) updateCnc();
   if(document.getElementById('hvwTipo')) updateHvw();
+  if(document.getElementById('cbnTiempo')) updateCbnDegrad();
   applySourceLinks();
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
@@ -6681,6 +6686,50 @@ function updateHvw(){
   if(el){ el.addEventListener('input', updateHvw); el.addEventListener('change', updateHvw); }
 });
 if(document.getElementById('hvwTipo')) updateHvw();
+
+/* ===================== DEGRADACIÓN THC → CBN (% estimado) ===================== */
+/* Curva base: Ross & ElSohly (1997), UN Bulletin on Narcotics — % de THC degradado
+   en muestras almacenadas a temperatura ambiente, interpolación lineal por tramos
+   entre los puntos publicados (0,0)(1,16.6)(2,26.8)(3,34.5)(4,41.4); más allá del
+   año 4 se extrapola linealmente con la pendiente del último tramo (6.9%/año).
+   Los factores por condición son ajustes direccionales aproximados (no constantes
+   cinéticas publicadas) consistentes con el patrón confirmado en Zamengo et al.
+   (2019): la luz y el calor aceleran la degradación; frío y oscuridad la retrasan. */
+const CBN_COND_FACTOR = { 'luz-ambiente':1.00, 'oscuridad-ambiente':0.70, 'refrigerado':0.35, 'congelado':0.15 };
+function cbnBaseCurveYears(years){
+  const pts = [[0,0],[1,16.6],[2,26.8],[3,34.5],[4,41.4]];
+  if(years <= 0) return 0;
+  if(years >= 4){
+    const slope = pts[4][1] - pts[3][1];
+    return Math.min(100, pts[4][1] + slope * (years - 4));
+  }
+  for(let i=0;i<pts.length-1;i++){
+    const [y0,p0] = pts[i], [y1,p1] = pts[i+1];
+    if(years >= y0 && years <= y1) return p0 + (p1-p0) * (years-y0)/(y1-y0);
+  }
+  return 0;
+}
+function updateCbnDegrad(){
+  const tiempoEl = document.getElementById('cbnTiempo');
+  const unidadEl = document.getElementById('cbnUnidad');
+  const condEl = document.getElementById('cbnCond');
+  const resultEl = document.getElementById('cbnResult');
+  if(!tiempoEl || !resultEl) return;
+  const val = parseFloat(tiempoEl.value) || 0;
+  const years = unidadEl.value === 'meses' ? val/12 : val;
+  const base = cbnBaseCurveYears(years);
+  const factor = CBN_COND_FACTOR[condEl.value] ?? 1;
+  const pct = Math.min(100, Math.max(0, base * factor));
+  resultEl.innerHTML = `
+    <div style="font-family:'Manrope',sans-serif; font-size:32px; font-weight:600; color:var(--moss-deep);">≈ ${pct.toFixed(1)}%</div>
+    <p style="font-size:12.5px; color:var(--ink-soft); margin-top:4px;">${t('cbnResultLabel')}</p>
+  `;
+}
+['cbnTiempo','cbnUnidad','cbnCond'].forEach(id=>{
+  const el = document.getElementById(id);
+  if(el){ el.addEventListener('input', updateCbnDegrad); el.addEventListener('change', updateCbnDegrad); }
+});
+if(document.getElementById('cbnTiempo')) updateCbnDegrad();
 
 /* ===================== PREDICTOR DE CRUCES (locus B, de Meijer 2003; alelo nulo, Onofri et al. 2021) ===================== */
 function getAlleles(type){

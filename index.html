@@ -2959,6 +2959,36 @@
       <button onclick="goToTrichCheck()" style="margin-top:12px; padding:10px 20px; background:var(--moss-deep); color:var(--paper); border:none; border-radius:6px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12.5px;" data-i18n="hvwBtnTricomas">Ir al registro de tricomas</button>
     </div>
 
+    <div class="card-block" id="calc-cbn-card">
+      <h3 data-i18n="cbnCalcH3">Calculadora: degradación estimada de THC a CBN</h3>
+      <p style="margin-bottom:14px;" data-i18n="cbnCalcP">Distinta de la calculadora de riesgo de más arriba: esta da un porcentaje aproximado de THC degradado según el tiempo y la condición de almacenamiento, usando los puntos de referencia reales de Ross &amp; ElSohly (1997).</p>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cbnTiempoLabel">Tiempo de almacenamiento</label>
+          <div style="display:flex; gap:8px;">
+            <input type="number" id="cbnTiempo" value="1" min="0" step="0.5" style="width:90px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <select id="cbnUnidad" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+              <option value="meses" data-i18n="cbnUnidadMeses">Meses</option>
+              <option value="anios" selected data-i18n="cbnUnidadAnios">Años</option>
+            </select>
+          </div>
+        </div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cbnCondLabel">Condición de almacenamiento</label>
+          <select id="cbnCond" style="width:230px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="luz-ambiente" data-i18n="cbnCondLuz">Con luz, temperatura ambiente</option>
+            <option value="oscuridad-ambiente" data-i18n="cbnCondOscuridad">Oscuridad, temperatura ambiente</option>
+            <option value="refrigerado" data-i18n="cbnCondRefri">Refrigerado (~4°C)</option>
+            <option value="congelado" data-i18n="cbnCondCong">Congelado</option>
+          </select>
+        </div>
+      </div>
+      <div id="cbnResult"></div>
+      <div class="note-box" data-i18n="cbnDisclaimer">Esta es una estimación aproximada de degradación de THC, basada en patrones documentados en estudios de almacenamiento — no un cálculo exacto de laboratorio. Importante: la cantidad de THC perdido no equivale directamente a la cantidad de CBN formado — parte de la degradación sigue otras rutas químicas no completamente entendidas. Para conocer la potencia real de un producto, un análisis de laboratorio (COA) es la única fuente confiable.</div>
+      <div class="spec-source">
+        <div>Ross, S.A. &amp; ElSohly, M.A. (1997). "CBN and Δ9-THC concentration ratio as an indicator of the age of stored marijuana samples." <i>UN Bulletin on Narcotics</i>, 1997, Issue 1.</div>
+        <div style="margin-top:4px;">Zamengo et al. (2019), <i>Forensic Science International</i> — <a href="https://doi.org/10.1016/j.forsciint.2019.02.058" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1016/j.forsciint.2019.02.058</a></div>
+      </div>
+    </div>
+
     <div class="note-box" data-i18n="calcNote">Estas calculadoras son herramientas de referencia educativa — no reemplazan una prueba de laboratorio certificada para etiquetado real de producto.</div>
   </section>
 
