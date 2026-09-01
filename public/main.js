@@ -9,6 +9,188 @@ const regionNames = {
   'Oriente Medio':{es:'Oriente Medio', en:'Middle East', de:'Naher Osten', fr:'Moyen-Orient'},
   'Oceanía':{es:'Oceanía', en:'Oceania', de:'Ozeanien', fr:'Océanie'}
 };
+const countryNamesI18n = {
+  ae:{es:'Emiratos Árabes Unidos', en:'United Arab Emirates', de:'Vereinigte Arabische Emirate', fr:'Émirats arabes unis'},
+  af:{es:'Afganistán', en:'Afghanistan', de:'Afghanistan', fr:'Afghanistan'},
+  al:{es:'Albania', en:'Albania', de:'Albanien', fr:'Albanie'},
+  am:{es:'Armenia', en:'Armenia', de:'Armenien', fr:'Arménie'},
+  ao:{es:'Angola', en:'Angola', de:'Angola', fr:'Angola'},
+  ar:{es:'Argentina', en:'Argentina', de:'Argentinien', fr:'Argentine'},
+  at:{es:'Austria', en:'Austria', de:'Österreich', fr:'Autriche'},
+  au:{es:'Australia', en:'Australia', de:'Australien', fr:'Australie'},
+  az:{es:'Azerbaiyán', en:'Azerbaijan', de:'Aserbaidschan', fr:'Azerbaïdjan'},
+  ba:{es:'Bosnia y Herzegovina', en:'Bosnia and Herzegovina', de:'Bosnien und Herzegowina', fr:'Bosnie-Herzégovine'},
+  bd:{es:'Bangladés', en:'Bangladesh', de:'Bangladesch', fr:'Bangladesh'},
+  be:{es:'Bélgica', en:'Belgium', de:'Belgien', fr:'Belgique'},
+  bf:{es:'Burkina Faso', en:'Burkina Faso', de:'Burkina Faso', fr:'Burkina Faso'},
+  bg:{es:'Bulgaria', en:'Bulgaria', de:'Bulgarien', fr:'Bulgarie'},
+  bi:{es:'Burundi', en:'Burundi', de:'Burundi', fr:'Burundi'},
+  bj:{es:'Benín', en:'Benin', de:'Benin', fr:'Bénin'},
+  bn:{es:'Brunéi', en:'Brunei', de:'Brunei', fr:'Brunei'},
+  bo:{es:'Bolivia', en:'Bolivia', de:'Bolivien', fr:'Bolivie'},
+  br:{es:'Brasil', en:'Brazil', de:'Brasilien', fr:'Brésil'},
+  bs:{es:'Bahamas', en:'Bahamas', de:'Bahamas', fr:'Bahamas'},
+  bt:{es:'Bután', en:'Bhutan', de:'Bhutan', fr:'Bhoutan'},
+  bw:{es:'Botsuana', en:'Botswana', de:'Botswana', fr:'Botswana'},
+  by:{es:'Bielorrusia', en:'Belarus', de:'Weißrussland', fr:'Biélorussie'},
+  bz:{es:'Belice', en:'Belize', de:'Belize', fr:'Belize'},
+  ca:{es:'Canadá', en:'Canada', de:'Kanada', fr:'Canada'},
+  cd:{es:'República Democrática del Congo', en:'Democratic Republic of the Congo', de:'Demokratische Republik Kongo', fr:'République démocratique du Congo'},
+  cf:{es:'República Centroafricana', en:'Central African Republic', de:'Zentralafrikanische Republik', fr:'République centrafricaine'},
+  cg:{es:'Congo (Brazzaville)', en:'Congo (Brazzaville)', de:'Kongo (Brazzaville)', fr:'Congo (Brazzaville)'},
+  ch:{es:'Suiza', en:'Switzerland', de:'Schweiz', fr:'Suisse'},
+  ci:{es:'Costa de Marfil', en:'Ivory Coast', de:'Elfenbeinküste', fr:'Côte d’Ivoire'},
+  cl:{es:'Chile', en:'Chile', de:'Chile', fr:'Chili'},
+  cm:{es:'Camerún', en:'Cameroon', de:'Kamerun', fr:'Cameroun'},
+  cn:{es:'China', en:'China', de:'China', fr:'Chine'},
+  co:{es:'Colombia', en:'Colombia', de:'Kolumbien', fr:'Colombie'},
+  cr:{es:'Costa Rica', en:'Costa Rica', de:'Costa Rica', fr:'Costa Rica'},
+  cu:{es:'Cuba', en:'Cuba', de:'Kuba', fr:'Cuba'},
+  cv:{es:'Cabo Verde', en:'Cape Verde', de:'Kap Verde', fr:'Cap-Vert'},
+  cy:{es:'Chipre', en:'Cyprus', de:'Zypern', fr:'Chypre'},
+  cz:{es:'República Checa', en:'Czech Republic', de:'Tschechien', fr:'République tchèque'},
+  de:{es:'Alemania', en:'Germany', de:'Deutschland', fr:'Allemagne'},
+  dj:{es:'Yibuti', en:'Djibouti', de:'Dschibuti', fr:'Djibouti'},
+  dk:{es:'Dinamarca', en:'Denmark', de:'Dänemark', fr:'Danemark'},
+  dm:{es:'Dominica', en:'Dominica', de:'Dominica', fr:'Dominique'},
+  do:{es:'República Dominicana', en:'Dominican Republic', de:'Dominikanische Republik', fr:'République dominicaine'},
+  dz:{es:'Argelia', en:'Algeria', de:'Algerien', fr:'Algérie'},
+  ec:{es:'Ecuador', en:'Ecuador', de:'Ecuador', fr:'Équateur'},
+  ee:{es:'Estonia', en:'Estonia', de:'Estland', fr:'Estonie'},
+  eg:{es:'Egipto', en:'Egypt', de:'Ägypten', fr:'Égypte'},
+  er:{es:'Eritrea', en:'Eritrea', de:'Eritrea', fr:'Érythrée'},
+  es:{es:'España', en:'Spain', de:'Spanien', fr:'Espagne'},
+  et:{es:'Etiopía', en:'Ethiopia', de:'Äthiopien', fr:'Éthiopie'},
+  fi:{es:'Finlandia', en:'Finland', de:'Finnland', fr:'Finlande'},
+  fk:{es:'Islas Malvinas', en:'Falkland Islands', de:'Falklandinseln', fr:'Îles Malouines'},
+  fr:{es:'Francia', en:'France', de:'Frankreich', fr:'France'},
+  ga:{es:'Gabón', en:'Gabon', de:'Gabun', fr:'Gabon'},
+  gb:{es:'Reino Unido', en:'United Kingdom', de:'Vereinigtes Königreich', fr:'Royaume-Uni'},
+  ge:{es:'Georgia', en:'Georgia', de:'Georgien', fr:'Géorgie'},
+  gh:{es:'Ghana', en:'Ghana', de:'Ghana', fr:'Ghana'},
+  gl:{es:'Groenlandia', en:'Greenland', de:'Grönland', fr:'Groenland'},
+  gm:{es:'Gambia', en:'Gambia', de:'Gambia', fr:'Gambie'},
+  gn:{es:'Guinea', en:'Guinea', de:'Guinea', fr:'Guinée'},
+  gq:{es:'Guinea Ecuatorial', en:'Equatorial Guinea', de:'Äquatorialguinea', fr:'Guinée équatoriale'},
+  gr:{es:'Grecia', en:'Greece', de:'Griechenland', fr:'Grèce'},
+  gt:{es:'Guatemala', en:'Guatemala', de:'Guatemala', fr:'Guatemala'},
+  gw:{es:'Guinea-Bisáu', en:'Guinea-Bissau', de:'Guinea-Bissau', fr:'Guinée-Bissau'},
+  gy:{es:'Guyana', en:'Guyana', de:'Guyana', fr:'Guyana'},
+  hn:{es:'Honduras', en:'Honduras', de:'Honduras', fr:'Honduras'},
+  hr:{es:'Croacia', en:'Croatia', de:'Kroatien', fr:'Croatie'},
+  ht:{es:'Haití', en:'Haiti', de:'Haiti', fr:'Haïti'},
+  hu:{es:'Hungría', en:'Hungary', de:'Ungarn', fr:'Hongrie'},
+  id:{es:'Indonesia', en:'Indonesia', de:'Indonesien', fr:'Indonésie'},
+  ie:{es:'Irlanda', en:'Ireland', de:'Irland', fr:'Irlande'},
+  il:{es:'Israel', en:'Israel', de:'Israel', fr:'Israël'},
+  in:{es:'India', en:'India', de:'Indien', fr:'Inde'},
+  iq:{es:'Irak', en:'Iraq', de:'Irak', fr:'Irak'},
+  ir:{es:'Irán', en:'Iran', de:'Iran', fr:'Iran'},
+  is:{es:'Islandia', en:'Iceland', de:'Island', fr:'Islande'},
+  it:{es:'Italia', en:'Italy', de:'Italien', fr:'Italie'},
+  jm:{es:'Jamaica', en:'Jamaica', de:'Jamaika', fr:'Jamaïque'},
+  jo:{es:'Jordania', en:'Jordan', de:'Jordanien', fr:'Jordanie'},
+  jp:{es:'Japón', en:'Japan', de:'Japan', fr:'Japon'},
+  ke:{es:'Kenia', en:'Kenya', de:'Kenia', fr:'Kenya'},
+  kg:{es:'Kirguistán', en:'Kyrgyzstan', de:'Kirgisistan', fr:'Kirghizistan'},
+  kh:{es:'Camboya', en:'Cambodia', de:'Kambodscha', fr:'Cambodge'},
+  km:{es:'Comoras', en:'Comoros', de:'Komoren', fr:'Comores'},
+  kp:{es:'Corea del Norte', en:'North Korea', de:'Nordkorea', fr:'Corée du Nord'},
+  kr:{es:'Corea del Sur', en:'South Korea', de:'Südkorea', fr:'Corée du Sud'},
+  kw:{es:'Kuwait', en:'Kuwait', de:'Kuwait', fr:'Koweït'},
+  kz:{es:'Kazajistán', en:'Kazakhstan', de:'Kasachstan', fr:'Kazakhstan'},
+  la:{es:'Laos', en:'Laos', de:'Laos', fr:'Laos'},
+  lb:{es:'Líbano', en:'Lebanon', de:'Libanon', fr:'Liban'},
+  lc:{es:'Santa Lucía', en:'Saint Lucia', de:'St. Lucia', fr:'Sainte-Lucie'},
+  lk:{es:'Sri Lanka', en:'Sri Lanka', de:'Sri Lanka', fr:'Sri Lanka'},
+  lr:{es:'Liberia', en:'Liberia', de:'Liberia', fr:'Libéria'},
+  ls:{es:'Lesotho', en:'Lesotho', de:'Lesotho', fr:'Lesotho'},
+  lt:{es:'Lituania', en:'Lithuania', de:'Litauen', fr:'Lituanie'},
+  lu:{es:'Luxemburgo', en:'Luxembourg', de:'Luxemburg', fr:'Luxembourg'},
+  lv:{es:'Letonia', en:'Latvia', de:'Lettland', fr:'Lettonie'},
+  ly:{es:'Libia', en:'Libya', de:'Libyen', fr:'Libye'},
+  ma:{es:'Marruecos', en:'Morocco', de:'Marokko', fr:'Maroc'},
+  md:{es:'Moldavia', en:'Moldova', de:'Moldau', fr:'Moldavie'},
+  me:{es:'Montenegro', en:'Montenegro', de:'Montenegro', fr:'Monténégro'},
+  mg:{es:'Madagascar', en:'Madagascar', de:'Madagaskar', fr:'Madagascar'},
+  mk:{es:'Macedonia del Norte', en:'North Macedonia', de:'Nordmazedonien', fr:'Macédoine du Nord'},
+  ml:{es:'Malí', en:'Mali', de:'Mali', fr:'Mali'},
+  mm:{es:'Myanmar', en:'Myanmar', de:'Myanmar', fr:'Myanmar'},
+  mn:{es:'Mongolia', en:'Mongolia', de:'Mongolei', fr:'Mongolie'},
+  mr:{es:'Mauritania', en:'Mauritania', de:'Mauretanien', fr:'Mauritanie'},
+  mt:{es:'Malta', en:'Malta', de:'Malta', fr:'Malte'},
+  mu:{es:'Mauricio', en:'Mauritius', de:'Mauritius', fr:'Maurice'},
+  mv:{es:'Maldivas', en:'Maldives', de:'Malediven', fr:'Maldives'},
+  mw:{es:'Malaui', en:'Malawi', de:'Malawi', fr:'Malawi'},
+  mx:{es:'México', en:'Mexico', de:'Mexiko', fr:'Mexique'},
+  my:{es:'Malasia', en:'Malaysia', de:'Malaysia', fr:'Malaisie'},
+  mz:{es:'Mozambique', en:'Mozambique', de:'Mosambik', fr:'Mozambique'},
+  na:{es:'Namibia', en:'Namibia', de:'Namibia', fr:'Namibie'},
+  nc:{es:'Nueva Caledonia', en:'New Caledonia', de:'Neukaledonien', fr:'Nouvelle-Calédonie'},
+  ne:{es:'Níger', en:'Niger', de:'Niger', fr:'Niger'},
+  ng:{es:'Nigeria', en:'Nigeria', de:'Nigeria', fr:'Nigeria'},
+  ni:{es:'Nicaragua', en:'Nicaragua', de:'Nicaragua', fr:'Nicaragua'},
+  nl:{es:'Países Bajos', en:'Netherlands', de:'Niederlande', fr:'Pays-Bas'},
+  no:{es:'Noruega', en:'Norway', de:'Norwegen', fr:'Norvège'},
+  np:{es:'Nepal', en:'Nepal', de:'Nepal', fr:'Népal'},
+  nz:{es:'Nueva Zelanda', en:'New Zealand', de:'Neuseeland', fr:'Nouvelle-Zélande'},
+  om:{es:'Omán', en:'Oman', de:'Oman', fr:'Oman'},
+  pa:{es:'Panamá', en:'Panama', de:'Panama', fr:'Panama'},
+  pe:{es:'Perú', en:'Peru', de:'Peru', fr:'Pérou'},
+  pg:{es:'Papúa Nueva Guinea', en:'Papua New Guinea', de:'Papua-Neuguinea', fr:'Papouasie-Nouvelle-Guinée'},
+  ph:{es:'Filipinas', en:'Philippines', de:'Philippinen', fr:'Philippines'},
+  pk:{es:'Pakistán', en:'Pakistan', de:'Pakistan', fr:'Pakistan'},
+  pl:{es:'Polonia', en:'Poland', de:'Polen', fr:'Pologne'},
+  pr:{es:'Puerto Rico', en:'Puerto Rico', de:'Puerto Rico', fr:'Porto Rico'},
+  pt:{es:'Portugal', en:'Portugal', de:'Portugal', fr:'Portugal'},
+  py:{es:'Paraguay', en:'Paraguay', de:'Paraguay', fr:'Paraguay'},
+  qa:{es:'Catar', en:'Qatar', de:'Katar', fr:'Qatar'},
+  ro:{es:'Rumania', en:'Romania', de:'Rumänien', fr:'Roumanie'},
+  rs:{es:'Serbia', en:'Serbia', de:'Serbien', fr:'Serbie'},
+  ru:{es:'Rusia', en:'Russia', de:'Russland', fr:'Russie'},
+  rw:{es:'Ruanda', en:'Rwanda', de:'Ruanda', fr:'Rwanda'},
+  sa:{es:'Arabia Saudita', en:'Saudi Arabia', de:'Saudi-Arabien', fr:'Arabie saoudite'},
+  sb:{es:'Islas Salomón', en:'Solomon Islands', de:'Salomonen', fr:'Îles Salomon'},
+  sc:{es:'Seychelles', en:'Seychelles', de:'Seychellen', fr:'Seychelles'},
+  sd:{es:'Sudán', en:'Sudan', de:'Sudan', fr:'Soudan'},
+  se:{es:'Suecia', en:'Sweden', de:'Schweden', fr:'Suède'},
+  sg:{es:'Singapur', en:'Singapore', de:'Singapur', fr:'Singapour'},
+  si:{es:'Eslovenia', en:'Slovenia', de:'Slowenien', fr:'Slovénie'},
+  sk:{es:'Eslovaquia', en:'Slovakia', de:'Slowakei', fr:'Slovaquie'},
+  sl:{es:'Sierra Leona', en:'Sierra Leone', de:'Sierra Leone', fr:'Sierra Leone'},
+  sn:{es:'Senegal', en:'Senegal', de:'Senegal', fr:'Sénégal'},
+  so:{es:'Somalia', en:'Somalia', de:'Somalia', fr:'Somalie'},
+  sr:{es:'Surinam', en:'Suriname', de:'Suriname', fr:'Suriname'},
+  ss:{es:'Sudán del Sur', en:'South Sudan', de:'Südsudan', fr:'Soudan du Sud'},
+  st:{es:'Santo Tomé y Príncipe', en:'São Tomé and Príncipe', de:'São Tomé und Príncipe', fr:'Sao Tomé-et-Principe'},
+  sv:{es:'El Salvador', en:'El Salvador', de:'El Salvador', fr:'Salvador'},
+  sy:{es:'Siria', en:'Syria', de:'Syrien', fr:'Syrie'},
+  sz:{es:'Esuatini', en:'Eswatini', de:'Eswatini', fr:'Eswatini'},
+  td:{es:'Chad', en:'Chad', de:'Tschad', fr:'Tchad'},
+  tg:{es:'Togo', en:'Togo', de:'Togo', fr:'Togo'},
+  th:{es:'Tailandia', en:'Thailand', de:'Thailand', fr:'Thaïlande'},
+  tj:{es:'Tayikistán', en:'Tajikistan', de:'Tadschikistan', fr:'Tadjikistan'},
+  tm:{es:'Turkmenistán', en:'Turkmenistan', de:'Turkmenistan', fr:'Turkménistan'},
+  tn:{es:'Túnez', en:'Tunisia', de:'Tunesien', fr:'Tunisie'},
+  tr:{es:'Turquía', en:'Turkey', de:'Türkei', fr:'Turquie'},
+  tt:{es:'Trinidad y Tobago', en:'Trinidad and Tobago', de:'Trinidad und Tobago', fr:'Trinité-et-Tobago'},
+  tw:{es:'Taiwán', en:'Taiwan', de:'Taiwan', fr:'Taïwan'},
+  tz:{es:'Tanzania', en:'Tanzania', de:'Tansania', fr:'Tanzanie'},
+  ua:{es:'Ucrania', en:'Ukraine', de:'Ukraine', fr:'Ukraine'},
+  ug:{es:'Uganda', en:'Uganda', de:'Uganda', fr:'Ouganda'},
+  us:{es:'Estados Unidos', en:'United States', de:'Vereinigte Staaten', fr:'États-Unis'},
+  uy:{es:'Uruguay', en:'Uruguay', de:'Uruguay', fr:'Uruguay'},
+  uz:{es:'Uzbekistán', en:'Uzbekistan', de:'Usbekistan', fr:'Ouzbékistan'},
+  vc:{es:'San Vicente y las Granadinas', en:'Saint Vincent and the Grenadines', de:'St. Vincent und die Grenadinen', fr:'Saint-Vincent-et-les-Grenadines'},
+  ve:{es:'Venezuela', en:'Venezuela', de:'Venezuela', fr:'Venezuela'},
+  vn:{es:'Vietnam', en:'Vietnam', de:'Vietnam', fr:'Vietnam'},
+  vu:{es:'Vanuatu', en:'Vanuatu', de:'Vanuatu', fr:'Vanuatu'},
+  ye:{es:'Yemen', en:'Yemen', de:'Jemen', fr:'Yémen'},
+  za:{es:'Sudáfrica', en:'South Africa', de:'Südafrika', fr:'Afrique du Sud'},
+  zm:{es:'Zambia', en:'Zambia', de:'Sambia', fr:'Zambie'},
+  zw:{es:'Zimbabue', en:'Zimbabwe', de:'Simbabwe', fr:'Zimbabwe'},
+  _somaliland:{es:'Somalilandia', en:'Somaliland', de:'Somaliland', fr:'Somaliland'}
+};
 const countries = [
   /* Norteamérica */
   {name:'Canadá', flag:'🇨🇦', region:'Norteamérica', status:'legal', color:'#4A6741',
@@ -798,6 +980,34 @@ function isoFromFlag(flagEmoji){
   return String.fromCharCode(...codePoints);
 }
 let legalMapRendered = false;
+let mapTooltipEl = null;
+let mapTooltipArmedIso = null;
+let mapTooltipArmedTimer = null;
+let mapTooltipTouchStart = null;
+function ensureMapTooltipEl(){
+  if(mapTooltipEl) return mapTooltipEl;
+  mapTooltipEl = document.createElement('div');
+  mapTooltipEl.className = 'map-tooltip';
+  document.body.appendChild(mapTooltipEl);
+  return mapTooltipEl;
+}
+function getMapTooltipName(iso){
+  const n = countryNamesI18n[iso];
+  if(!n) return null;
+  return n[currentLang] || n.es;
+}
+function showMapTooltip(iso, x, y){
+  const name = getMapTooltipName(iso);
+  if(!name) return;
+  const el = ensureMapTooltipEl();
+  el.textContent = name;
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  el.classList.add('show');
+}
+function hideMapTooltip(){
+  if(mapTooltipEl) mapTooltipEl.classList.remove('show');
+}
 function renderLegalMap(){
   const holder = document.getElementById('legalMapSvgHolder');
   if(!holder) return;
@@ -812,7 +1022,7 @@ function renderLegalMap(){
   svgEl.style.display = 'block';
   const isoToCountry = {};
   countries.forEach(c => { const iso = isoFromFlag(c.flag); if(iso) isoToCountry[iso] = c; });
-  const applyStyle = (path, c) => {
+  const applyStyle = (path, c, iso) => {
     if(c){
       path.style.fill = c.color;
       path.style.cursor = 'pointer';
@@ -826,6 +1036,37 @@ function renderLegalMap(){
       path.onclick = null;
       path.style.cursor = 'default';
     }
+    if(iso && countryNamesI18n[iso]){
+      path.onmouseenter = (e) => showMapTooltip(iso, e.clientX, e.clientY);
+      path.onmousemove = (e) => showMapTooltip(iso, e.clientX, e.clientY);
+      path.onmouseleave = () => hideMapTooltip();
+      path.ontouchstart = (e) => {
+        if(e.touches && e.touches.length === 1){
+          mapTooltipTouchStart = {x: e.touches[0].clientX, y: e.touches[0].clientY};
+        }
+      };
+      path.ontouchend = (e) => {
+        if(!mapTooltipTouchStart) return;
+        const t = e.changedTouches && e.changedTouches[0];
+        if(!t){ mapTooltipTouchStart = null; return; }
+        const dx = Math.abs(t.clientX - mapTooltipTouchStart.x);
+        const dy = Math.abs(t.clientY - mapTooltipTouchStart.y);
+        mapTooltipTouchStart = null;
+        if(dx > 10 || dy > 10) return; // fue un scroll/arrastre, no un toque
+        if(mapTooltipArmedIso === iso){
+          // segundo toque sobre el mismo país: deja pasar el click (abre ficha si aplica)
+          hideMapTooltip();
+          mapTooltipArmedIso = null;
+          clearTimeout(mapTooltipArmedTimer);
+          return;
+        }
+        e.preventDefault();
+        showMapTooltip(iso, t.clientX, t.clientY);
+        mapTooltipArmedIso = iso;
+        clearTimeout(mapTooltipArmedTimer);
+        mapTooltipArmedTimer = setTimeout(() => { hideMapTooltip(); mapTooltipArmedIso = null; }, 1600);
+      };
+    }
   };
   // Elementos <path> con id directo (países de forma simple)
   const allPaths = svgEl.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'path');
@@ -833,7 +1074,7 @@ function renderLegalMap(){
     if(path.closest('g[id]')) return; // se maneja abajo, vía el grupo padre
     const iso = path.getAttribute('id');
     const c = iso ? isoToCountry[iso] : null;
-    applyStyle(path, c);
+    applyStyle(path, c, iso);
   });
   // Elementos <g id="xx"> con múltiples <path> internos (países con islas/territorios)
   const allGroups = svgEl.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'g');
@@ -841,7 +1082,7 @@ function renderLegalMap(){
     const iso = g.getAttribute('id');
     const c = iso ? isoToCountry[iso] : null;
     const innerPaths = g.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'path');
-    Array.prototype.forEach.call(innerPaths, path => applyStyle(path, c));
+    Array.prototype.forEach.call(innerPaths, path => applyStyle(path, c, iso));
   });
 }
 function setLegalView(mode){

@@ -7,6 +7,8 @@
   --glow-border:rgba(42,235,175,0.28); --glow-border-strong:rgba(42,235,175,0.55);
   --ink-on-accent:#04140F;
 }
+.map-tooltip{position:fixed; z-index:9999; pointer-events:none; background:var(--paper-raised); color:var(--ink); border:1px solid var(--line-strong); border-radius:6px; padding:5px 10px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:500; letter-spacing:0.02em; white-space:nowrap; opacity:0; transform:translate(-50%,-100%) translateY(-8px) scale(0.96); transition:opacity .12s ease, transform .12s ease; box-shadow:0 4px 14px rgba(0,0,0,0.35);}
+.map-tooltip.show{opacity:1; transform:translate(-50%,-100%) translateY(-12px) scale(1);}
 .brand-mark{background:var(--moss-deep) !important;}
 .brand-mark svg g{stroke:var(--paper) !important;}
 .bg-pattern{opacity:0.06;}
