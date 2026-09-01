@@ -3146,7 +3146,6 @@
     <div class="card-block">
       <h3 data-i18n="cuentaPrefTitle">Preferencias</h3>
       <div class="spec-row"><span data-i18n="cuentaIdiomaLabel">Idioma de la interfaz</span><span id="cuentaIdiomaActual">Español</span></div>
-      <div class="spec-row" style="cursor:pointer;" onclick="onboardStep=0; renderOnboardSlide(); document.getElementById('onboardModal').classList.add('active');"><span data-i18n="cuentaOnboardLabel">Ver el recorrido de bienvenida</span><span data-i18n="cuentaAlertasVer">— ver →</span></div>
     </div>
 
     <div class="card-block">
@@ -3220,7 +3219,7 @@
 
     <div class="card-block">
       <h3 data-i18n="ppv1H3">1. Qué información recopilamos</h3>
-      <p data-i18n="ppv1P">La App puede almacenar: tu confirmación de edad, tu idioma preferido, si completaste el recorrido de bienvenida, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.</p>
+      <p data-i18n="ppv1P">La App puede almacenar: tu confirmación de edad, tu idioma preferido, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="ppv2H3">2. Dónde se almacena tu información</h3>
@@ -3229,7 +3228,7 @@
     </div>
     <div class="card-block">
       <h3 data-i18n="ppv3H3">3. Cómo usamos tu información</h3>
-      <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu progreso de bienvenida, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
+      <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="ppv4H3">4. Servicios de terceros y pagos</h3>
@@ -3257,18 +3256,6 @@
   
 </div>
 <div class="app-footer" data-i18n="footerCopy">© 2026 Mother Verde LLC. Todos los derechos reservados.</div>
-
-  <!-- ============ ONBOARDING ============ -->
-  <div class="premium-modal" id="onboardModal">
-    <div class="premium-sheet" style="max-width:460px; text-align:center;">
-      <div id="onboardSlides"></div>
-      <div style="display:flex; justify-content:center; gap:6px; margin:20px 0;">
-        <span class="ob-dot" data-i="0"></span><span class="ob-dot" data-i="1"></span><span class="ob-dot" data-i="2"></span><span class="ob-dot" data-i="3"></span>
-      </div>
-      <button class="btn btn-primary" id="onboardNextBtn" style="width:100%; padding:13px;" onclick="onboardNext()">Siguiente</button>
-      <div onclick="onboardFinish()" style="margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); cursor:pointer;" data-i18n="obSaltar">Saltar</div>
-    </div>
-  </div>
 
   <!-- ============ SEARCH MODAL ============ -->
   <div class="premium-modal" id="adInquiryModal">

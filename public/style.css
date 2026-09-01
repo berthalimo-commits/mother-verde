@@ -145,8 +145,6 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .search-result-title{font-family:'Manrope',sans-serif; font-size:14.5px; font-weight:500;}
 .search-result-cat{font-family:'IBM Plex Mono',monospace; font-size:9.5px; text-transform:uppercase; color:var(--moss-deep); background:rgba(42,235,160,0.12); padding:3px 8px; border-radius:100px; white-space:nowrap; margin-left:10px;}
 .search-empty{font-size:13px; color:var(--ink-soft); padding:20px 10px; text-align:center;}
-.ob-dot{width:7px; height:7px; border-radius:50%; background:var(--line-strong); display:inline-block;}
-.ob-dot.on{background:var(--moss-deep);}
 
 /* ---------- SPECIMEN CARDS (cultivo / procesos) ---------- */
 .specimen-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;}
