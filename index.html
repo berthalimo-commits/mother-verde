@@ -2472,6 +2472,7 @@
       <div class="sub-pill" data-sub="directorio" onclick="showSub(&#39;negocio&#39;,&#39;directorio&#39;)" data-i18n="subDirectorio">Directorio</div>
       <div class="sub-pill" data-sub="carreras" onclick="showSub(&#39;negocio&#39;,&#39;carreras&#39;)" data-i18n="subCarreras">Carreras</div>
       <div class="sub-pill" data-sub="educacion" onclick="showSub(&#39;negocio&#39;,&#39;educacion&#39;)" data-i18n="subEducacion">Dónde educarme</div>
+      <div class="sub-pill" data-sub="plantillas" onclick="showSub(&#39;negocio&#39;,&#39;plantillas&#39;)" data-i18n="subPlantillas">Plantillas</div>
     </div>
 
     <div class="subview active" id="negocio-licencias">
@@ -2656,6 +2657,34 @@
           <p class="method-desc" data-i18n="eduUnajP">Diplomatura Superior en Cannabis y sus Usos Medicinales — con un cuerpo docente que incluye a la Dra. Gabriela Reyes Valenzuela, neuróloga infantil y epileptóloga del Hospital Garrahan, el hospital pediátrico de referencia nacional en Argentina.</p></div>
       </div>
       <div class="note-box" data-i18n="eduNota">Esta es una muestra verificada, no un directorio completo — sabemos que existen más programas académicos reales en otros países que todavía no investigamos a fondo.</div>
+    </div>
+
+    <div class="subview" id="negocio-plantillas">
+      <div class="card-block">
+        <h3 data-i18n="tplIntroH3">Plantillas para tu negocio</h3>
+        <p data-i18n="tplIntroP">Tres documentos descargables en Excel — funcionan igual si los subes a Google Sheets. Edítalos libremente, son tuyos.</p>
+      </div>
+
+      <div class="card-block">
+        <h3 data-i18n="tplInvH3">Registro de Inventario Básico</h3>
+        <p data-i18n="tplInvP">Fecha, categoría, cantidad de apertura, agregada, retirada y de cierre (esta última se calcula sola), y ubicación. La columna de cierre trae una fórmula lista — solo llena las demás.</p>
+        <div class="note-box" data-i18n="tplDisclaimer">Esta es una ayuda de organización personal — no reemplaza el sistema oficial de trazabilidad de tu jurisdicción (Metrc en EE. UU., CTLS en Canadá, IRCCA en Uruguay, o el equivalente en tu país).</div>
+        <a id="tplInventarioLink" href="/downloads/inventario-basico-es.xlsx" download style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8,1 L8,10 M4,7 L8,11 L12,7 M2,13 L14,13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="tplDescargarBtn">Descargar plantilla (.xlsx)</span></a>
+      </div>
+
+      <div class="card-block">
+        <h3 data-i18n="tplCostH3">Calculadora Simple de Costos</h3>
+        <p data-i18n="tplCostP">Basada en los conceptos de COGS y margen bruto que ya viste en el <a onclick="showScreen('glosario')" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Glosario</a>. Celdas editables, sin moneda fija — úsala en la tuya.</p>
+        <div class="note-box" data-i18n="tplDisclaimer">Esta es una ayuda de organización personal — no reemplaza el sistema oficial de trazabilidad de tu jurisdicción (Metrc en EE. UU., CTLS en Canadá, IRCCA en Uruguay, o el equivalente en tu país).</div>
+        <a id="tplCostosLink" href="/downloads/calculadora-costos-es.xlsx" download style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8,1 L8,10 M4,7 L8,11 L12,7 M2,13 L14,13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="tplDescargarBtn">Descargar plantilla (.xlsx)</span></a>
+      </div>
+
+      <div class="card-block">
+        <h3 data-i18n="tplChkH3">Checklist: Primeros pasos con tu licencia nueva</h3>
+        <p data-i18n="tplChkP">Genérico a propósito — identifica tu sistema oficial de trazabilidad, define dónde vas a guardar tus SOP y registros de lote, y confirma con tu regulador local los requisitos específicos de tu jurisdicción.</p>
+        <div class="note-box" data-i18n="tplDisclaimer">Esta es una ayuda de organización personal — no reemplaza el sistema oficial de trazabilidad de tu jurisdicción (Metrc en EE. UU., CTLS en Canadá, IRCCA en Uruguay, o el equivalente en tu país).</div>
+        <a id="tplChecklistLink" href="/downloads/checklist-primeros-pasos-es.xlsx" download style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:11px 20px; background:var(--moss-deep); color:var(--paper); border-radius:6px; text-decoration:none; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:600;"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8,1 L8,10 M4,7 L8,11 L12,7 M2,13 L14,13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="tplDescargarBtn">Descargar plantilla (.xlsx)</span></a>
+      </div>
     </div>
   </section>
 

@@ -2904,7 +2904,7 @@ const translations = {
     glEyebrow:'Referencia rápida', glTitle:'Glosario', glSub:'Los términos técnicos que aparecen en toda la app, explicados en un solo lugar.',
     glBuscarPh:'Buscar un término...', glSinResultados:'No se encontró ningún término con ese texto.',
     eyNegocio:'Negocio e industria', negocioTitle:'Para quienes operan en el rubro', negocioSub:'Licencias, trazabilidad, proveedores y carreras — el lado operativo de la industria.',
-    subLicencias:'Licencias', subTrazabilidad:'Trazabilidad', subDirectorio:'Directorio', subCarreras:'Carreras', subEducacion:'Dónde educarme',
+    subLicencias:'Licencias', subTrazabilidad:'Trazabilidad', subDirectorio:'Directorio', subCarreras:'Carreras', subEducacion:'Dónde educarme', subPlantillas:'Plantillas',
     eduIntroH3:'Universidades reales que enseñan esto — no todas son iguales', eduIntroP:'Existe una diferencia real entre una universidad acreditada que ofrece un título en cannabis, y una plataforma privada de "certificación" sin acreditación académica tradicional. Aquí solo incluimos instituciones académicas verificadas — con su acreditación real, no solo su propia palabra.',
     eduFiltroPaisLabel:'País', eduCualquiera:'Cualquiera', eduPaisEEUU:'Estados Unidos', eduPaisCanada:'Canadá',
     eduFiltroEspLabel:'Especialidad', eduEspCultivo:'Cultivo &amp; horticultura', eduEspCiencia:'Ciencia &amp; química', eduEspMedicina:'Medicina &amp; farmacia', eduEspNegocio:'Negocio &amp; industria', eduResultados:'resultado(s)',
@@ -2926,6 +2926,12 @@ const translations = {
     eduUndecP:'Diplomatura Superior en Producción e Industrialización del Cannabis para Usos Medicinales e Industriales, de su Escuela de Posgrado. 8 módulos (6 virtuales, 2 prácticos presenciales), un año de duración, ya en su segunda cohorte.',
     eduUnajP:'Diplomatura Superior en Cannabis y sus Usos Medicinales — con un cuerpo docente que incluye a la Dra. Gabriela Reyes Valenzuela, neuróloga infantil y epileptóloga del Hospital Garrahan, el hospital pediátrico de referencia nacional en Argentina.',
     eduNota:'Esta es una muestra verificada, no un directorio completo — sabemos que existen más programas académicos reales en otros países que todavía no investigamos a fondo.',
+    tplIntroH3:'Plantillas para tu negocio', tplIntroP:'Tres documentos descargables en Excel — funcionan igual si los subes a Google Sheets. Edítalos libremente, son tuyos.',
+    tplInvH3:'Registro de Inventario Básico', tplInvP:'Fecha, categoría, cantidad de apertura, agregada, retirada y de cierre (esta última se calcula sola), y ubicación. La columna de cierre trae una fórmula lista — solo llena las demás.',
+    tplCostH3:'Calculadora Simple de Costos', tplCostP:'Basada en los conceptos de COGS y margen bruto que ya viste en el <a onclick="showScreen(\'glosario\')" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Glosario</a>. Celdas editables, sin moneda fija — úsala en la tuya.',
+    tplChkH3:'Checklist: Primeros pasos con tu licencia nueva', tplChkP:'Genérico a propósito — identifica tu sistema oficial de trazabilidad, define dónde vas a guardar tus SOP y registros de lote, y confirma con tu regulador local los requisitos específicos de tu jurisdicción.',
+    tplDisclaimer:'Esta es una ayuda de organización personal — no reemplaza el sistema oficial de trazabilidad de tu jurisdicción (Metrc en EE. UU., CTLS en Canadá, IRCCA en Uruguay, o el equivalente en tu país).',
+    tplDescargarBtn:'Descargar plantilla (.xlsx)',
     trichVisH3:'Cómo se ven en la lupa, en las 4 etapas', trichVisP:'Cada tricoma es como un hongo diminuto: un tallo fino con una cabeza redonda de resina. El color de esa cabeza es lo que cambia con la madurez.',
     trichVisClear:'Transparente', trichVisMilky:'Lechoso', trichVisMix:'Mezcla', trichVisAmber:'Ámbar',
     trichVisNote:'Estas son ilustraciones esquemáticas para orientarte — bajo una lupa real de 60x el tricoma se ve más como una gota de vidrio sobre un tallo, pero el color relativo entre etapas es el mismo que verás aquí.',
@@ -3700,7 +3706,7 @@ const translations = {
     glEyebrow:'Quick reference', glTitle:'Glossary', glSub:'The technical terms that appear throughout the app, explained in one place.',
     glBuscarPh:'Search a term...', glSinResultados:'No term found matching that text.',
     eyNegocio:'Business & industry', negocioTitle:'For those operating in the industry', negocioSub:'Licenses, traceability, suppliers, and careers — the operational side of the industry.',
-    subLicencias:'Licenses', subTrazabilidad:'Traceability', subDirectorio:'Directory', subCarreras:'Careers', subEducacion:'Where to study',
+    subLicencias:'Licenses', subTrazabilidad:'Traceability', subDirectorio:'Directory', subCarreras:'Careers', subEducacion:'Where to study', subPlantillas:'Templates',
     eduIntroH3:'Real universities that teach this — not all the same', eduIntroP:'There is a real difference between an accredited university offering a cannabis degree, and a private "certification" platform without traditional academic accreditation. Here we only include verified academic institutions — with real accreditation, not just their own word.',
     eduFiltroPaisLabel:'Country', eduCualquiera:'Any', eduPaisEEUU:'United States', eduPaisCanada:'Canada',
     eduFiltroEspLabel:'Specialty', eduEspCultivo:'Growing &amp; horticulture', eduEspCiencia:'Science &amp; chemistry', eduEspMedicina:'Medicine &amp; pharmacy', eduEspNegocio:'Business &amp; industry', eduResultados:'result(s)',
@@ -3722,6 +3728,12 @@ const translations = {
     eduUndecP:'Advanced Diploma in Cannabis Production and Industrialization for Medicinal and Industrial Uses, from its Graduate School. 8 modules (6 virtual, 2 in-person practical), one year long, already in its second cohort.',
     eduUnajP:'Advanced Diploma in Cannabis and Its Medicinal Uses — with a teaching staff that includes Dr. Gabriela Reyes Valenzuela, a pediatric neurologist and epileptologist at Garrahan Hospital, Argentina\u2019s national reference pediatric hospital.',
     eduNota:'This is a verified sample, not a complete directory — we know there are more real academic programs in other countries we have not yet researched in depth.',
+    tplIntroH3:'Templates for your business', tplIntroP:'Three downloadable Excel documents — they work the same if you upload them to Google Sheets. Edit them freely, they\'re yours.',
+    tplInvH3:'Basic Inventory Log', tplInvP:'Date, category, opening quantity, added, removed, and closing quantity (the last one calculates itself), and location. The closing column already has a formula in it — just fill in the rest.',
+    tplCostH3:'Simple Cost Calculator', tplCostP:'Based on the COGS and gross margin concepts you already saw in the <a onclick="showScreen(\'glosario\')" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Glossary</a>. Editable cells, no fixed currency — use your own.',
+    tplChkH3:'Checklist: First Steps with Your New License', tplChkP:'Deliberately generic — identify your official traceability system, decide where you\'ll keep your SOPs and batch records, and confirm your jurisdiction\'s specific requirements with your local regulator.',
+    tplDisclaimer:'This is a personal organization aid — it does not replace your jurisdiction\'s official traceability system (Metrc in the US, CTLS in Canada, IRCCA in Uruguay, or your country\'s equivalent).',
+    tplDescargarBtn:'Download template (.xlsx)',
     trichVisH3:'What they look like under the loupe, at each of the 4 stages', trichVisP:'Each trichome is like a tiny mushroom: a thin stalk with a round head of resin. The color of that head is what changes with maturity.',
     trichVisClear:'Clear', trichVisMilky:'Milky', trichVisMix:'Mixed', trichVisAmber:'Amber',
     trichVisNote:'These are schematic illustrations to guide you — under a real 60x loupe, a trichome looks more like a glass droplet on a stalk, but the relative color between stages is the same as what you see here.',
@@ -4495,7 +4507,7 @@ const translations = {
     glEyebrow:'Schnellreferenz', glTitle:'Glossar', glSub:'Die Fachbegriffe, die in der gesamten App vorkommen, an einem Ort erklärt.',
     glBuscarPh:'Einen Begriff suchen...', glSinResultados:'Kein Begriff mit diesem Text gefunden.',
     eyNegocio:'Geschäft & Industrie', negocioTitle:'Für alle, die in der Branche tätig sind', negocioSub:'Lizenzen, Rückverfolgbarkeit, Lieferanten und Karrieren — die operative Seite der Branche.',
-    subLicencias:'Lizenzen', subTrazabilidad:'Rückverfolgbarkeit', subDirectorio:'Verzeichnis', subCarreras:'Karrieren', subEducacion:'Wo ich mich weiterbilden kann',
+    subLicencias:'Lizenzen', subTrazabilidad:'Rückverfolgbarkeit', subDirectorio:'Verzeichnis', subCarreras:'Karrieren', subEducacion:'Wo ich mich weiterbilden kann', subPlantillas:'Vorlagen',
     eduIntroH3:'Echte Universitäten, die das lehren — nicht alle sind gleich', eduIntroP:'Es gibt einen echten Unterschied zwischen einer akkreditierten Universität, die einen Cannabis-Abschluss anbietet, und einer privaten "Zertifizierungs"-Plattform ohne traditionelle akademische Akkreditierung. Hier sind nur verifizierte akademische Institutionen aufgeführt — mit echter Akkreditierung, nicht nur ihrem eigenen Wort.',
     eduFiltroPaisLabel:'Land', eduCualquiera:'Beliebig', eduPaisEEUU:'USA', eduPaisCanada:'Kanada',
     eduFiltroEspLabel:'Fachgebiet', eduEspCultivo:'Anbau &amp; Gartenbau', eduEspCiencia:'Wissenschaft &amp; Chemie', eduEspMedicina:'Medizin &amp; Pharmazie', eduEspNegocio:'Wirtschaft &amp; Industrie', eduResultados:'Ergebnis(se)',
@@ -4517,6 +4529,12 @@ const translations = {
     eduUndecP:'Höheres Diplom in Cannabisproduktion und -industrialisierung für medizinische und industrielle Zwecke, ihrer Graduiertenschule. 8 Module (6 virtuell, 2 praktisch vor Ort), ein Jahr Dauer, bereits in der zweiten Kohorte.',
     eduUnajP:'Höheres Diplom in Cannabis und seinen medizinischen Anwendungen — mit einem Lehrkörper, der Dr. Gabriela Reyes Valenzuela einschließt, eine pädiatrische Neurologin und Epileptologin am Garrahan-Krankenhaus, Argentiniens nationalem Referenz-Kinderkrankenhaus.',
     eduNota:'Dies ist eine verifizierte Stichprobe, kein vollständiges Verzeichnis — wir wissen, dass es weitere echte akademische Programme in anderen Ländern gibt, die wir noch nicht gründlich recherchiert haben.',
+    tplIntroH3:'Vorlagen für dein Unternehmen', tplIntroP:'Drei herunterladbare Excel-Dokumente — sie funktionieren genauso, wenn du sie zu Google Sheets hochlädst. Bearbeite sie frei, sie gehören dir.',
+    tplInvH3:'Einfaches Inventarprotokoll', tplInvP:'Datum, Kategorie, Anfangsbestand, hinzugefügte, entnommene und Schlussmenge (letztere berechnet sich von selbst), und Standort. Die Schlussspalte enthält bereits eine Formel — fülle nur den Rest aus.',
+    tplCostH3:'Einfacher Kostenrechner', tplCostP:'Basierend auf den COGS- und Bruttomarge-Konzepten, die du bereits im <a onclick="showScreen(\'glosario\')" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Glossar</a> gesehen hast. Bearbeitbare Zellen, keine feste Währung — verwende deine eigene.',
+    tplChkH3:'Checkliste: Erste Schritte mit deiner neuen Lizenz', tplChkP:'Absichtlich allgemein gehalten — identifiziere dein offizielles Rückverfolgbarkeitssystem, lege fest, wo du deine SOPs und Chargenprotokolle aufbewahrst, und bestätige mit deiner lokalen Aufsichtsbehörde die spezifischen Anforderungen deiner Jurisdiktion.',
+    tplDisclaimer:'Dies ist eine persönliche Organisationshilfe — sie ersetzt nicht das offizielle Rückverfolgbarkeitssystem deiner Jurisdiktion (Metrc in den USA, CTLS in Kanada, IRCCA in Uruguay, oder das Äquivalent in deinem Land).',
+    tplDescargarBtn:'Vorlage herunterladen (.xlsx)',
     trichVisH3:'Wie sie unter der Lupe aussehen, in den 4 Stufen', trichVisP:'Jedes Trichom ist wie ein winziger Pilz: ein dünner Stiel mit einem runden Harzkopf. Die Farbe dieses Kopfes ist das, was sich mit der Reife verändert.',
     trichVisClear:'Klar', trichVisMilky:'Milchig', trichVisMix:'Gemischt', trichVisAmber:'Bernstein',
     trichVisNote:'Dies sind schematische Illustrationen zur Orientierung — unter einer echten 60x-Lupe sieht ein Trichom eher wie ein Glastropfen auf einem Stiel aus, aber die relative Farbe zwischen den Stufen ist dieselbe wie hier gezeigt.',
@@ -5290,7 +5308,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     glEyebrow:'Référence rapide', glTitle:'Glossaire', glSub:'Les termes techniques qui apparaissent dans toute l\u2019app, expliqués en un seul endroit.',
     glBuscarPh:'Rechercher un terme...', glSinResultados:'Aucun terme trouvé avec ce texte.',
     eyNegocio:'Affaires &amp; industrie', negocioTitle:'Pour ceux qui opèrent dans le secteur', negocioSub:'Licences, traçabilité, fournisseurs et carrières — le côté opérationnel de l\u2019industrie.',
-    subLicencias:'Licences', subTrazabilidad:'Traçabilité', subDirectorio:'Annuaire', subCarreras:'Carrières', subEducacion:'Où me former',
+    subLicencias:'Licences', subTrazabilidad:'Traçabilité', subDirectorio:'Annuaire', subCarreras:'Carrières', subEducacion:'Où me former', subPlantillas:'Modèles',
     eduIntroH3:'De vraies universités qui enseignent cela — pas toutes égales', eduIntroP:'Il existe une vraie différence entre une université accréditée offrant un diplôme en cannabis, et une plateforme privée de « certification » sans accréditation académique traditionnelle. Ici, nous n\u2019incluons que des institutions académiques vérifiées — avec une véritable accréditation, pas seulement leur propre parole.',
     eduFiltroPaisLabel:'Pays', eduCualquiera:'N\u2019importe lequel', eduPaisEEUU:'États-Unis', eduPaisCanada:'Canada',
     eduFiltroEspLabel:'Spécialité', eduEspCultivo:'Culture &amp; horticulture', eduEspCiencia:'Science &amp; chimie', eduEspMedicina:'Médecine &amp; pharmacie', eduEspNegocio:'Commerce &amp; industrie', eduResultados:'résultat(s)',
@@ -5312,6 +5330,12 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     eduUndecP:'Diplôme supérieur en production et industrialisation du cannabis à usages médicinaux et industriels, de son école doctorale. 8 modules (6 virtuels, 2 pratiques en présentiel), un an de durée, déjà à sa deuxième cohorte.',
     eduUnajP:'Diplôme supérieur en cannabis et ses usages médicinaux — avec un corps enseignant incluant la Dre Gabriela Reyes Valenzuela, neurologue pédiatrique et épileptologue à l\u2019hôpital Garrahan, l\u2019hôpital pédiatrique de référence nationale en Argentine.',
     eduNota:'Ceci est un échantillon vérifié, pas un annuaire complet — nous savons qu\u2019il existe d\u2019autres programmes académiques réels dans d\u2019autres pays que nous n\u2019avons pas encore recherchés en profondeur.',
+    tplIntroH3:'Modèles pour ton entreprise', tplIntroP:"Trois documents téléchargeables en Excel — ils fonctionnent pareil si tu les importes dans Google Sheets. Modifie-les librement, ils sont à toi.",
+    tplInvH3:'Registre d’inventaire de base', tplInvP:"Date, catégorie, quantité d'ouverture, ajoutée, retirée et de clôture (cette dernière se calcule toute seule), et emplacement. La colonne de clôture contient déjà une formule — remplis simplement le reste.",
+    tplCostH3:'Calculateur de coûts simple', tplCostP:'Basé sur les concepts de COGS et de marge brute que tu as déjà vus dans le <a onclick="showScreen(\'glosario\')" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Glossaire</a>. Cellules modifiables, sans devise fixe — utilise la tienne.',
+    tplChkH3:'Checklist : premiers pas avec ta nouvelle licence', tplChkP:"Volontairement générique — identifie ton système officiel de traçabilité, définis où tu vas conserver tes SOP et tes registres de lot, et confirme avec ton régulateur local les exigences spécifiques de ta juridiction.",
+    tplDisclaimer:"Ceci est une aide à l'organisation personnelle — elle ne remplace pas le système officiel de traçabilité de ta juridiction (Metrc aux États-Unis, CTLS au Canada, IRCCA en Uruguay, ou l'équivalent dans ton pays).",
+    tplDescargarBtn:'Télécharger le modèle (.xlsx)',
     trichVisH3:'À quoi ils ressemblent à la loupe, aux 4 étapes', trichVisP:'Chaque trichome est comme un minuscule champignon : une fine tige avec une tête ronde de résine. C\u2019est la couleur de cette tête qui change avec la maturité.',
     trichVisClear:'Transparent', trichVisMilky:'Laiteux', trichVisMix:'Mélange', trichVisAmber:'Ambré',
     trichVisNote:'Ce sont des illustrations schématiques pour t\u2019orienter — sous une vraie loupe 60x, un trichome ressemble plus à une goutte de verre sur une tige, mais la couleur relative entre les étapes est la même que ce que tu vois ici.',
@@ -5456,6 +5480,7 @@ function applyLang(){
   if(document.getElementById('cncTipo')) updateCnc();
   if(document.getElementById('hvwTipo')) updateHvw();
   if(document.getElementById('cbnTiempo')) updateCbnDegrad();
+  updateTplLinks();
   applySourceLinks();
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
@@ -6730,6 +6755,16 @@ function updateCbnDegrad(){
   if(el){ el.addEventListener('input', updateCbnDegrad); el.addEventListener('change', updateCbnDegrad); }
 });
 if(document.getElementById('cbnTiempo')) updateCbnDegrad();
+
+/* ===================== PLANTILLAS PARA TU NEGOCIO (descargas .xlsx por idioma) ===================== */
+const TPL_LINKS = { tplInventarioLink:'inventario-basico', tplCostosLink:'calculadora-costos', tplChecklistLink:'checklist-primeros-pasos' };
+function updateTplLinks(){
+  Object.entries(TPL_LINKS).forEach(([id, base]) => {
+    const el = document.getElementById(id);
+    if(el) el.href = `/downloads/${base}-${currentLang}.xlsx`;
+  });
+}
+updateTplLinks();
 
 /* ===================== PREDICTOR DE CRUCES (locus B, de Meijer 2003; alelo nulo, Onofri et al. 2021) ===================== */
 function getAlleles(type){
