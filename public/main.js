@@ -1021,7 +1021,11 @@ function renderLegalMap(){
   svgEl.style.height = 'auto';
   svgEl.style.display = 'block';
   const isoToCountry = {};
-  countries.forEach(c => { const iso = isoFromFlag(c.flag); if(iso) isoToCountry[iso] = c; });
+  const activeMapFilter = document.querySelector('.chip.on')?.dataset.f || 'all';
+  countries.forEach(c => {
+    if(activeMapFilter !== 'all' && c.status !== activeMapFilter) return;
+    const iso = isoFromFlag(c.flag); if(iso) isoToCountry[iso] = c;
+  });
   const applyStyle = (path, c, iso) => {
     if(c){
       path.style.fill = c.color;
@@ -5404,6 +5408,7 @@ document.querySelectorAll('.chip').forEach(chip=>{
     document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
     chip.classList.add('on');
     renderGrid(chip.dataset.f);
+    renderLegalMap();
   };
 });
 
