@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mv-shell-v1';
+const CACHE_NAME = 'mv-shell-v2';
 const SHELL_ASSETS = ['/', '/style.css', '/main.js', '/manifest.webmanifest'];
 
 self.addEventListener('install', (event) => {

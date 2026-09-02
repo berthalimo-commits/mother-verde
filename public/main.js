@@ -6013,11 +6013,12 @@ async function ageGateConfirm(isAdult){
   }
 }
 async function checkAgeGate(){
-  try{
-    if(localStorage.getItem('age-verified') === 'true'){
-      document.getElementById('ageGateModal').classList.remove('active');
-    }
-  }catch(e){}
+  const modal = document.getElementById('ageGateModal');
+  if(!modal) return;
+  let verified = false;
+  try{ verified = localStorage.getItem('age-verified') === 'true'; }catch(e){}
+  if(verified) modal.classList.remove('active');
+  else modal.classList.add('active');
 }
 checkAgeGate();
 populateBuscarPaisSelect();
@@ -6032,6 +6033,11 @@ function renderCuenta(){
   const user = window.mvCurrentUser;
   if(authCard) authCard.style.display = user ? 'none' : '';
   if(loggedInWrap) loggedInWrap.style.display = user ? '' : 'none';
+  const idiomaEl = document.getElementById('cuentaIdiomaActual');
+  if(idiomaEl){
+    const nombres = {es:'Español', en:'English', de:'Deutsch', fr:'Français'};
+    idiomaEl.textContent = nombres[currentLang];
+  }
   if(!user) return;
   if(isPremium){
     estadoEl.innerHTML = `<b style="color:var(--moss-deep);">${t('cuentaPremiumActivo')}</b>`;
@@ -6047,11 +6053,6 @@ function renderCuenta(){
   const correoEl = document.getElementById('cuentaCorreoInput');
   if(nombreEl && document.activeElement !== nombreEl) nombreEl.value = profile?.display_name || '';
   if(correoEl && document.activeElement !== correoEl) correoEl.value = profile?.contact_email || '';
-  const idiomaEl = document.getElementById('cuentaIdiomaActual');
-  if(idiomaEl){
-    const nombres = {es:'Español', en:'English', de:'Deutsch', fr:'Français'};
-    idiomaEl.textContent = nombres[currentLang];
-  }
 }
 
 /* ===================== DIRECTORIO DE COMUNIDAD (real, compartido) ===================== */
