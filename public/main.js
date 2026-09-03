@@ -2824,7 +2824,7 @@ const translations = {
     cmy5porque:'Por qué este es el único que sigue en plan: sin moderación real, alguien podría escribir algo que suene a consejo médico específico sin que nadie lo revise antes de publicarse — es justo el que más necesita supervisión antes de abrirse.',
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
-    cmyUnirmeBtn:'Unirme al directorio', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
+    cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
     cmySecTipos:'Lo único que sigue en plan, no construido',
     cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', cmy1p:'Bitácoras tipo diario, ligadas a un método específico, para cruzar experiencia real contra la ficha oficial.',
     cmy2h4:'Confirmaciones de diagnóstico', cmy2sci:'Se conecta con <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>', cmy2p:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de plaga o enfermedad.',
@@ -3652,7 +3652,7 @@ const translations = {
     cmy5porque:'Why this is the only one still in plan: without real moderation, someone could write something that sounds like specific medical advice without anyone reviewing it before it is published — it is exactly the one that most needs oversight before opening up.',
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
-    cmyUnirmeBtn:'Join the directory', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
+    cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
     cmySecTipos:'The only one still in plan, not built',
     cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', cmy1p:'Diary-style logs, tied to a specific method, to cross-check real experience against the official card.',
     cmy2h4:'Diagnosis confirmations', cmy2sci:'Connects with <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis</a>', cmy2p:'The most valuable of all: "I had exactly this and this worked for me," linked to a real pest or disease card.',
@@ -4478,7 +4478,7 @@ const translations = {
     cmy5porque:'Warum das der einzige ist, der noch geplant bleibt: ohne echte Moderation könnte jemand etwas schreiben, das wie ein spezifischer medizinischer Rat klingt, ohne dass es jemand vor der Veröffentlichung prüft — genau das braucht am meisten Aufsicht, bevor es geöffnet wird.',
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
-    cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
+    cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
     cmySecTipos:'Das Einzige, das noch geplant ist, nicht gebaut',
     cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', cmy1p:'Tagebuchartige Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Karte abzugleichen.',
     cmy2h4:'Diagnosebestätigungen', cmy2sci:'Verbindet sich mit <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>', cmy2p:'Der wertvollste von allen: "ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten Schädlings- oder Krankheitskarte.',
@@ -5304,7 +5304,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmy5porque:'Pourquoi c\u2019est le seul qui reste au stade de plan : sans modération réelle, quelqu\u2019un pourrait écrire quelque chose qui ressemble à un conseil médical précis sans que personne ne le révise avant publication — c\u2019est justement celui qui a le plus besoin de supervision avant d\u2019être ouvert.',
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
-    cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
+    cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
     cmySecTipos:'La seule chose qui reste au stade de plan, pas construite',
     cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', cmy1p:'Journaux type carnet, liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle.',
     cmy2h4:'Confirmations de diagnostic', cmy2sci:'Se connecte à <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>', cmy2p:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a marché pour moi », lié à une vraie fiche de nuisible ou de maladie.',
@@ -6055,11 +6055,11 @@ function renderCuenta(){
   if(correoEl && document.activeElement !== correoEl) correoEl.value = profile?.contact_email || '';
 }
 
-/* ===================== DIRECTORIO DE COMUNIDAD (real, compartido) ===================== */
+/* ===================== DIRECTORIO DE COMUNIDAD (Supabase: community_members) ===================== */
 async function loadCommunityMembers(){
   try{
-    const res = await window.storage.get('community-directory', true);
-    return (res && res.value) ? JSON.parse(res.value) : [];
+    if(!window.mvCommunity) return [];
+    return await window.mvCommunity.listMembers({ limit: 200 });
   }catch(e){ return []; }
 }
 const specialtyKeywords = {
@@ -6213,10 +6213,13 @@ async function renderComunidadScreen(){
     viajeroSelectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
   }
   const members = await loadCommunityMembers();
+  const esc = window.mvCommunity ? window.mvCommunity.escapeHtml : (s => s);
   const tipoLabels = {cultivador:t('cmyTipoCultivador'), negocio:t('cmyTipoNegocio'), entusiasta:t('cmyTipoEntusiasta'), salud:t('cmyTipoSalud'), aprendiendo:t('cmyTipoAprendiendo'), otro:t('cmyTipoOtro')};
+  // listMembers() already returns newest-first.
   listEl.innerHTML = members.length === 0
     ? `<p class="bit-empty">${t('cmyVacioMsg')}</p>`
-    : members.slice().reverse().map(m => `<div class="spec-row"><span><b>${m.name}</b> · ${m.country}</span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${tipoLabels[m.type] || m.type}</span></div>`).join('');
+    : members.map(m => `<div class="spec-row"><span><b>${esc(m.display_name)}</b> · ${esc(m.country || '')}</span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(tipoLabels[m.profile_type] || m.profile_type || '')}</span></div>`).join('');
+  prefillCommunityJoinForm();
   await renderTravelerReports();
   await renderGrowReports();
   await renderDiagConfirmations();
@@ -6324,6 +6327,23 @@ async function submitQuestion(){
   setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
   renderCommunityQuestions();
 }
+// Prefill the join form from the current user's existing directory row, if any,
+// so "Unirme" doubles as "edit my entry".
+async function prefillCommunityJoinForm(){
+  if(!window.mvCommunity || !window.mvCurrentUser) return;
+  const nameEl = document.getElementById('cmyNombreInput');
+  const paisEl = document.getElementById('cmyPaisInput');
+  const tipoEl = document.getElementById('cmyTipoInput');
+  if(!nameEl) return;
+  let mine = null;
+  try{ mine = await window.mvCommunity.getMyMemberProfile(); }catch(e){ return; }
+  if(!mine) return;
+  if(document.activeElement !== nameEl) nameEl.value = mine.display_name || '';
+  if(paisEl && mine.country) paisEl.value = mine.country;
+  if(tipoEl && mine.profile_type) tipoEl.value = mine.profile_type;
+  const btnEl = document.querySelector('#comunidad button[onclick="joinCommunity()"]');
+  if(btnEl) btnEl.textContent = t('cmyActualizarBtn');
+}
 async function joinCommunity(){
   const nameEl = document.getElementById('cmyNombreInput');
   const correoEl = document.getElementById('cmyCorreoInput');
@@ -6332,14 +6352,31 @@ async function joinCommunity(){
   const msgEl = document.getElementById('cmyJoinMsg');
   const name = nameEl.value.trim();
   if(!name){ nameEl.focus(); return; }
-  const members = await loadCommunityMembers();
-  members.push({name: name.slice(0,30), country: paisEl.value, type: tipoEl.value, joinedAt: Date.now()});
-  try{ await window.storage.set('community-directory', JSON.stringify(members), true); }catch(e){}
-  if(correoEl.value.trim()){
-    try{ await window.storage.set('my-community-email', correoEl.value.trim(), false); }catch(e){}
+  if(!window.mvCurrentUser){
+    msgEl.textContent = t('cmyJoinNeedsAccount');
+    msgEl.style.color = 'var(--clay)';
+    msgEl.style.display = 'block';
+    return;
   }
-  nameEl.value = '';
+  try{
+    await window.mvCommunity.upsertMyMemberProfile({
+      display_name: name.slice(0,30),
+      country: paisEl.value,
+      profile_type: tipoEl.value,
+    });
+    const correo = correoEl.value.trim();
+    if(correo){
+      await window.mvSupabase.from('profiles').update({ contact_email: correo }).eq('id', window.mvCurrentUser.id);
+    }
+  }catch(e){
+    msgEl.textContent = t('authErrGeneric');
+    msgEl.style.color = 'var(--clay)';
+    msgEl.style.display = 'block';
+    return;
+  }
   correoEl.value = '';
+  msgEl.textContent = t('cmyJoinExito');
+  msgEl.style.color = 'var(--moss-deep)';
   msgEl.style.display = 'block';
   setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
   renderComunidadScreen();
