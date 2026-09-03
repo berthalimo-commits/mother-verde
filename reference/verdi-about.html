@@ -1,0 +1,440 @@
+<title>Verdi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --void:#070b0a;
+    --void-raised:#0d1714;
+    --void-deep:#040706;
+    --glass:rgba(230,245,238,0.045);
+    --glass-border:rgba(180,255,222,0.14);
+    --glass-border-hover:rgba(180,255,222,0.32);
+    --verdi:#33e2a0;
+    --verdi-soft:#8bf0c4;
+    --verdi-deep:#12463a;
+    --resin:#e3a75f;
+    --bone:#edf6f1;
+    --mist:#9fb6ae;
+    --mist-dim:#69847c;
+    --hairline:rgba(180,255,222,0.09);
+    --font-display:'Bricolage Grotesque', 'Sora', system-ui, sans-serif;
+    --font-body:'Manrope', 'Segoe UI', system-ui, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--void);}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--bone);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--verdi-deep); color:var(--bone); }
+
+  a{ color:inherit; }
+
+  .bg-canvas{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+  .bg-glow{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(38rem 28rem at 14% 8%, rgba(51,226,160,0.16), transparent 60%),
+      radial-gradient(34rem 30rem at 88% 24%, rgba(227,167,95,0.08), transparent 62%),
+      radial-gradient(46rem 40rem at 50% 96%, rgba(18,70,58,0.35), transparent 65%);
+  }
+
+  .shell{ position:relative; z-index:1; }
+
+  header.topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1180px; margin:0 auto; padding:28px 32px 0;
+  }
+  .wordmark{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:var(--font-display); font-weight:600; font-size:19px; letter-spacing:-0.01em;
+  }
+  .wordmark .dot{ color:var(--verdi); font-size:22px; line-height:0; }
+  .wordmark .prev{
+    font-family:var(--font-mono); font-weight:400; font-size:10.5px; color:var(--mist-dim);
+    letter-spacing:.06em; text-transform:uppercase; border-left:1px solid var(--hairline);
+    padding-left:10px; margin-left:2px;
+  }
+  header.topbar nav{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--mist-dim);
+  }
+
+  main{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:min(88vh, 780px);
+    display:flex; flex-direction:column; justify-content:center;
+    padding:clamp(60px,12vh,140px) 0 clamp(40px,8vh,90px);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; width:fit-content;
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--verdi-soft); margin-bottom:26px;
+    opacity:0; animation:rise .9s cubic-bezier(.16,1,.3,1) .15s forwards;
+  }
+  .eyebrow::before{
+    content:''; width:6px; height:6px; border-radius:50%; background:var(--verdi);
+    box-shadow:0 0 12px 2px rgba(51,226,160,0.7);
+  }
+  h1.thesis{
+    font-family:var(--font-display); font-weight:340; font-size:clamp(2.5rem,5.6vw,4.6rem);
+    line-height:1.04; letter-spacing:-0.02em; margin:0 0 26px; max-width:15ch;
+    text-wrap:balance; color:var(--bone);
+    opacity:0; animation:rise 1s cubic-bezier(.16,1,.3,1) .3s forwards;
+  }
+  h1.thesis em{
+    font-style:normal; color:var(--verdi-soft);
+    background:linear-gradient(180deg, var(--verdi-soft), var(--verdi));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero p.lede{
+    font-size:clamp(15.5px,1.6vw,18px); line-height:1.7; color:var(--mist);
+    max-width:52ch; margin:0 0 40px;
+    opacity:0; animation:rise 1s cubic-bezier(.16,1,.3,1) .48s forwards;
+  }
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap;
+    opacity:0; animation:rise 1s cubic-bezier(.16,1,.3,1) .64s forwards;
+  }
+  .hero-meta div{ font-family:var(--font-mono); font-size:11px; color:var(--mist-dim); }
+  .hero-meta b{ display:block; color:var(--bone); font-family:var(--font-body); font-weight:600; font-size:14.5px; margin-bottom:3px; }
+
+  @keyframes rise{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{ padding:clamp(70px,10vw,120px) 0; border-top:1px solid var(--hairline); }
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .kicker{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--mist-dim); margin-bottom:14px; display:block;
+  }
+  .kicker .n{ color:var(--verdi-soft); }
+  h2{
+    font-family:var(--font-display); font-weight:380; font-size:clamp(1.7rem,3vw,2.4rem);
+    letter-spacing:-0.015em; margin:0; color:var(--bone); text-wrap:balance;
+  }
+
+  /* ---------- ORIGIN ---------- */
+  .origin-panel{
+    position:relative; border-radius:18px; padding:clamp(28px,4vw,52px);
+    background:var(--glass); border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    display:grid; grid-template-columns:1fr; gap:28px;
+    transition:border-color .4s ease;
+  }
+  .origin-panel:hover{ border-color:var(--glass-border-hover); }
+  .origin-panel p{ font-size:16px; line-height:1.8; color:var(--mist); margin:0 0 16px; max-width:66ch; }
+  .origin-panel p:last-child{ margin-bottom:0; }
+  .origin-panel strong{ color:var(--bone); font-weight:600; }
+  .rename-row{
+    display:flex; align-items:center; gap:16px; margin-top:8px;
+    font-family:var(--font-mono); font-size:12.5px; color:var(--mist-dim);
+  }
+  .rename-row .old{ text-decoration:line-through; text-decoration-color:var(--mist-dim); opacity:.6; }
+  .rename-row .arrow{ color:var(--verdi); }
+  .rename-row .new{ color:var(--verdi-soft); font-weight:500; }
+
+  /* ---------- PILLARS ---------- */
+  .pillars-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--hairline); border:1px solid var(--hairline); border-radius:18px; overflow:hidden;
+  }
+  .pillar{
+    background:var(--void-raised); padding:28px 24px; min-height:168px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:background .4s ease;
+  }
+  .pillar:hover{ background:#101d18; }
+  .pillar .tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--verdi-soft); }
+  .pillar .stat{ font-family:var(--font-display); font-weight:400; font-size:26px; color:var(--bone); margin:14px 0 8px; letter-spacing:-0.01em; }
+  .pillar .desc{ font-size:12.5px; line-height:1.55; color:var(--mist-dim); }
+
+  /* ---------- MISION / VISION ---------- */
+  .mv-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .mv-card{
+    position:relative; border-radius:18px; padding:clamp(30px,3.4vw,44px) clamp(26px,3vw,38px);
+    background:var(--glass); border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    overflow:hidden;
+    transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .4s ease, box-shadow .5s ease;
+  }
+  .mv-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--glass-border-hover);
+    box-shadow:0 24px 60px -20px rgba(51,226,160,0.22);
+  }
+  .mv-card::before{
+    content:''; position:absolute; top:-40%; right:-30%; width:70%; height:70%;
+    background:radial-gradient(circle, rgba(51,226,160,0.16), transparent 68%);
+    pointer-events:none;
+  }
+  .mv-card.vision::before{ background:radial-gradient(circle, rgba(227,167,95,0.13), transparent 68%); }
+  .mv-icon{ width:34px; height:34px; margin-bottom:22px; position:relative; }
+  .mv-label{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--mist-dim); margin-bottom:12px; position:relative;
+  }
+  .mv-card h3{
+    font-family:var(--font-display); font-weight:400; font-size:clamp(1.3rem,2vw,1.65rem);
+    color:var(--bone); margin:0 0 18px; letter-spacing:-0.01em; text-wrap:balance; position:relative;
+  }
+  .mv-card p{ font-size:15px; line-height:1.75; color:var(--mist); margin:0; position:relative; max-width:44ch; }
+  .mv-card .accent{ color:var(--verdi-soft); font-weight:600; }
+  .mv-card.vision .accent{ color:var(--resin); }
+
+  /* ---------- CLOSING ---------- */
+  .closing{ text-align:left; }
+  .closing-inner{ display:flex; flex-direction:column; align-items:flex-start; gap:24px; }
+  .closing p.statement{
+    font-family:var(--font-display); font-weight:320; font-size:clamp(1.5rem,3.2vw,2.3rem);
+    line-height:1.25; letter-spacing:-0.015em; color:var(--bone); max-width:20ch; text-wrap:balance; margin:0;
+  }
+  .closing .sig{ font-family:var(--font-mono); font-size:11.5px; color:var(--mist-dim); letter-spacing:.04em; }
+
+  footer{
+    border-top:1px solid var(--hairline); padding:32px; margin-top:20px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    font-family:var(--font-mono); font-size:10.5px; color:var(--mist-dim); letter-spacing:.04em;
+    max-width:1180px; margin-left:auto; margin-right:auto;
+  }
+
+  @media (max-width:820px){
+    .pillars-grid{ grid-template-columns:repeat(2,1fr); }
+    .mv-grid{ grid-template-columns:1fr; }
+    header.topbar nav{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .eyebrow, h1.thesis, .hero p.lede, .hero-meta, .reveal{ animation:none !important; opacity:1 !important; transform:none !important; }
+    .mv-card:hover, .origin-panel:hover{ transform:none; }
+  }
+</style>
+
+<div class="bg-glow"></div>
+<canvas class="bg-canvas" id="veins"></canvas>
+
+<div class="shell">
+  <header class="topbar">
+    <div class="wordmark"><span class="dot">◆</span>Verdi<span class="prev">antes Mother Verde</span></div>
+    <nav>Quiénes somos · Misión · Visión</nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Identidad 2026</span>
+      <h1 class="thesis">La ciencia del cannabis, <em>con la superficie que merece</em>.</h1>
+      <p class="lede">Verdi es la nueva forma de Mother Verde: el mismo codex global de cultivo, ciencia, elaboración y legislación cannábica — ahora construido para verse tan riguroso como la evidencia que documenta.</p>
+      <div class="hero-meta">
+        <div><b>ES · EN · DE · FR</b>Cuatro idiomas, una sola fuente</div>
+        <div><b>Gratis + Premium</b>El mismo rigor, dos profundidades</div>
+        <div><b>Cultivo → Legal</b>De la genética a la normativa</div>
+      </div>
+    </section>
+
+    <section id="origen">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="n">01</span> · Quiénes somos</span>
+        <h2>De un codex de cultivo a una plataforma con nombre propio</h2>
+      </div>
+      <div class="origin-panel reveal">
+        <p>Mother Verde empezó como un recorrido exhaustivo por el cannabis — cultivo, extracción, ciencia, negocio y marco legal, país por país, papel por papel. Fue creciendo hasta convertirse en algo más grande de lo que su nombre original podía cargar: un <strong>codex vivo</strong>, citado y verificable, que un cultivador, un paciente o un regulador pueden abrir con la misma confianza.</p>
+        <p>Verdi es ese mismo trabajo con identidad propia. No cambiamos lo que documentamos — cambiamos cómo se siente usarlo: más cercano al laboratorio y al estudio de diseño que al foro de cultivo de hace veinte años.</p>
+        <div class="rename-row"><span class="old">Mother Verde</span><span class="arrow">→</span><span class="new">Verdi</span></div>
+      </div>
+    </section>
+
+    <section id="pilares">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="n">02</span> · En números</span>
+        <h2>Lo que no cambia con el nombre</h2>
+      </div>
+      <div class="pillars-grid reveal">
+        <div class="pillar">
+          <span class="tag">Idiomas</span>
+          <span class="stat">ES·EN·DE·FR</span>
+          <span class="desc">Contenido pensado por idioma, no traducido a último momento.</span>
+        </div>
+        <div class="pillar">
+          <span class="tag">Cobertura</span>
+          <span class="stat">Semilla → Ley</span>
+          <span class="desc">Cultivo, elaboración, ciencia, negocio y legislación, conectados entre sí.</span>
+        </div>
+        <div class="pillar">
+          <span class="tag">Acceso</span>
+          <span class="stat">Gratis / Premium</span>
+          <span class="desc">La capa gratuita ya es rigurosa; Premium suma profundidad, no exclusividad artificial.</span>
+        </div>
+        <div class="pillar">
+          <span class="tag">Mirada</span>
+          <span class="stat">Global, sin acento único</span>
+          <span class="desc">Marcos regulatorios y voces de decenas de países, no solo el mercado angloparlante.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="mision-vision">
+      <div class="section-head reveal">
+        <span class="kicker"><span class="n">03</span> · Para dónde vamos</span>
+        <h2>Misión y visión</h2>
+      </div>
+      <div class="mv-grid reveal">
+        <div class="mv-card mission">
+          <svg class="mv-icon" viewBox="0 0 34 34" fill="none"><path d="M17 3C20 9 23 14 21 21C19 27 17 30 14 31C11 28.5 9.5 25 10.5 20C11.5 15 14 8 17 3Z" stroke="#8bf0c4" stroke-width="1.3"/><path d="M17 31V17" stroke="#8bf0c4" stroke-width="1.3" stroke-dasharray="1 3.2"/></svg>
+          <span class="mv-label">Misión</span>
+          <h3>Traducir la evidencia en <span class="accent">criterio propio</span>.</h3>
+          <p>Tomar papers, dosis clínicas, protocolos de cultivo y marcos legales dispersos en decenas de fuentes, y convertirlos en algo que una persona real pueda usar para decidir — sin diluir la ciencia ni esconderla detrás de jerga.</p>
+        </div>
+        <div class="mv-card vision">
+          <svg class="mv-icon" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="10.5" stroke="#e3a75f" stroke-width="1.3"/><circle cx="17" cy="17" r="3.4" fill="#e3a75f" opacity=".85"/></svg>
+          <span class="mv-label">Visión</span>
+          <h3>La fuente que <span class="accent">se cita</span>, no la que hay que verificar.</h3>
+          <p>Que Verdi sea, en cada idioma que hablamos, el primer lugar al que vuelve un cultivador, un paciente o un regulador — porque ya sabe que ahí la información está actualizada, referenciada y sin agenda comercial.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing reveal" id="cierre">
+      <div class="closing-inner">
+        <p class="statement">Un nombre nuevo. El mismo estándar de evidencia.</p>
+        <span class="sig">— El equipo de Verdi, antes Mother Verde</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Verdi © 2026</span>
+    <span>Prototipo de dirección visual — página de presentación</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Generative background: drifting mycelial veins + spores
+  var canvas = document.getElementById('veins');
+  var ctx = canvas.getContext('2d');
+  var w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize(){
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Build a sparse branching network from a few origin points
+  function buildNetwork(){
+    var nodes = [];
+    var origins = [
+      {x:w*0.08,y:h*0.12},{x:w*0.92,y:h*0.28},{x:w*0.5,y:h*1.02},{x:w*0.02,y:h*0.75}
+    ];
+    origins.forEach(function(o){ grow(o, Math.random()*Math.PI*2, 0, null); });
+    function grow(pos, angle, depth, parent){
+      if(depth > 6) return;
+      var len = 60 + Math.random()*90 * (1 - depth/7);
+      var next = { x: pos.x + Math.cos(angle)*len, y: pos.y + Math.sin(angle)*len };
+      var node = {a:pos, b:next, depth:depth, phase:Math.random()*Math.PI*2};
+      nodes.push(node);
+      var branches = depth < 2 ? 2 : (Math.random() < 0.55 ? 1 : 0);
+      for(var i=0;i<branches;i++){
+        grow(next, angle + (Math.random()-0.5)*1.5, depth+1, node);
+      }
+    }
+    return nodes;
+  }
+  var network = buildNetwork();
+
+  var particles = [];
+  var pCount = Math.min(46, Math.floor(w*h/38000));
+  for(var i=0;i<pCount;i++){
+    particles.push({
+      x: Math.random()*w, y: Math.random()*h,
+      r: 0.6 + Math.random()*1.6,
+      spd: 0.08 + Math.random()*0.18,
+      drift: (Math.random()-0.5)*0.12,
+      phase: Math.random()*Math.PI*2
+    });
+  }
+
+  var t = 0;
+  function frame(){
+    t += 0.01;
+    ctx.clearRect(0,0,w,h);
+
+    // veins
+    ctx.lineCap = 'round';
+    network.forEach(function(n){
+      var pulse = 0.10 + 0.09 * (0.5 + 0.5*Math.sin(t*0.7 + n.phase));
+      ctx.strokeStyle = 'rgba(51,226,160,' + pulse.toFixed(3) + ')';
+      ctx.lineWidth = Math.max(0.6, 1.6 - n.depth*0.18);
+      ctx.beginPath();
+      ctx.moveTo(n.a.x, n.a.y);
+      var mx = (n.a.x+n.b.x)/2 + Math.sin(t*0.3+n.phase)*6;
+      var my = (n.a.y+n.b.y)/2 + Math.cos(t*0.3+n.phase)*6;
+      ctx.quadraticCurveTo(mx,my,n.b.x,n.b.y);
+      ctx.stroke();
+    });
+
+    // spores
+    particles.forEach(function(p){
+      p.y -= p.spd;
+      p.x += p.drift + Math.sin(t + p.phase)*0.06;
+      if(p.y < -10){ p.y = h + 10; p.x = Math.random()*w; }
+      var o = 0.18 + 0.16*(0.5+0.5*Math.sin(t*1.4+p.phase));
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(139,240,196,' + o.toFixed(3) + ')';
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+
+    if(!reduceMotion){ requestAnimationFrame(frame); }
+  }
+
+  if(reduceMotion){
+    // draw one static, calmer frame
+    network.forEach(function(n){
+      ctx.strokeStyle = 'rgba(51,226,160,0.12)';
+      ctx.lineWidth = Math.max(0.6, 1.6 - n.depth*0.18);
+      ctx.beginPath(); ctx.moveTo(n.a.x,n.a.y); ctx.lineTo(n.b.x,n.b.y); ctx.stroke();
+    });
+  } else {
+    requestAnimationFrame(frame);
+  }
+})();
+</script>
