@@ -2803,55 +2803,50 @@
     <div class="section-title" data-i18n="cmySecMiembros">Miembros de la comunidad</div>
     <div id="cmyDirectoryList"></div>
 
-    <div class="section-title" data-i18n="cmySecViajeroReal">Reportes de viajero — esto también ya es real</div>
-    <div class="card-block">
+    <div class="section-title" data-i18n="cmySecViajeroReal">Reportes de viajero</div>
+    <div class="card-block wip-block">
+      <div class="note-box" data-i18n="cmyEnDesarrollo">🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.</div>
       <p data-i18n="cmyViajeroIntro">Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.</p>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroPaisLabel">País donde viajaste</label><select id="cmyViajeroPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroTextoLabel">Tu experiencia</label><textarea id="cmyViajeroTextoInput" data-i18n-ph="cmyViajeroTextoPh" placeholder="Qué pasó en la frontera o aduana, sin datos personales" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
-        <button class="btn btn-primary" style="padding:12px;" onclick="submitTravelerReport()" data-i18n="cmyViajeroBtn">Compartir experiencia</button>
-        <div id="cmyViajeroMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyViajeroExito">¡Gracias! Tu experiencia ya está en la lista de abajo.</div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroPaisLabel">País donde viajaste</label><select id="cmyViajeroPaisInput" disabled style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyViajeroTextoLabel">Tu experiencia</label><textarea id="cmyViajeroTextoInput" disabled data-i18n-ph="cmyViajeroTextoPh" placeholder="Qué pasó en la frontera o aduana, sin datos personales" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
+        <button class="btn btn-primary" style="padding:12px;" disabled data-i18n="cmyViajeroBtn">Compartir experiencia</button>
       </div>
-      <div id="cmyViajeroList" style="margin-top:18px;"></div>
     </div>
 
-    <div class="section-title" data-i18n="cmySecCultivoReal">Reportes de cultivo — también real</div>
-    <div class="card-block">
+    <div class="section-title" data-i18n="cmySecCultivoReal">Reportes de cultivo</div>
+    <div class="card-block wip-block">
+      <div class="note-box" data-i18n="cmyEnDesarrollo">🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.</div>
       <p data-i18n="cmyCultivoIntro">Bitácoras cortas ligadas a un método específico, para cruzar experiencia real contra la ficha oficial de Cultivo.</p>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoMetodoLabel">Método que usaste</label><select id="cmyCultivoMetodoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoMetodoLabel">Método que usaste</label><select id="cmyCultivoMetodoInput" disabled style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
           <option>Indoor</option><option>Outdoor</option><option>Invernadero</option><option>Hidroponía</option><option>Suelo vivo</option><option>Aeroponía</option>
         </select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoTextoLabel">Tu experiencia</label><textarea id="cmyCultivoTextoInput" data-i18n-ph="cmyCultivoTextoPh" placeholder="Qué te funcionó o qué no, con ese método" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
-        <button class="btn btn-primary" style="padding:12px;" onclick="submitGrowReport()" data-i18n="cmyCultivoBtn">Compartir reporte</button>
-        <div id="cmyCultivoMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyCultivoExito">¡Gracias! Tu reporte ya está en la lista de abajo.</div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCultivoTextoLabel">Tu experiencia</label><textarea id="cmyCultivoTextoInput" disabled data-i18n-ph="cmyCultivoTextoPh" placeholder="Qué te funcionó o qué no, con ese método" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
+        <button class="btn btn-primary" style="padding:12px;" disabled data-i18n="cmyCultivoBtn">Compartir reporte</button>
       </div>
-      <div id="cmyCultivoList" style="margin-top:18px;"></div>
     </div>
 
-    <div class="section-title" data-i18n="cmySecDiagReal">Confirmaciones de diagnóstico — también real</div>
-    <div class="card-block">
+    <div class="section-title" data-i18n="cmySecDiagReal">Confirmaciones de diagnóstico</div>
+    <div class="card-block wip-block">
+      <div class="note-box" data-i18n="cmyEnDesarrollo">🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.</div>
       <p data-i18n="cmyDiagIntro">El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>.</p>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagProblemaLabel">Qué tuviste</label><select id="cmyDiagProblemaInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagProblemaLabel">Qué tuviste</label><select id="cmyDiagProblemaInput" disabled style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
           <option>Oídio (mildiu polvoso)</option><option>Botrytis (bud rot)</option><option>Ácaros / araña roja</option><option>Deficiencia de nitrógeno</option><option>Exceso de riego</option><option>Deficiencia de magnesio</option><option>Viroide latente del lúpulo (HLVd)</option><option>Pulgones (áfidos)</option><option>Trips</option><option>Mosca blanca</option><option>Pythium (pudrición de raíz)</option>
         </select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagTextoLabel">Qué te funcionó</label><textarea id="cmyDiagTextoInput" data-i18n-ph="cmyDiagTextoPh" placeholder="Qué hiciste y cómo te fue" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
-        <button class="btn btn-primary" style="padding:12px;" onclick="submitDiagConfirmation()" data-i18n="cmyDiagBtn">Compartir confirmación</button>
-        <div id="cmyDiagMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyDiagExito">¡Gracias! Tu confirmación ya está en la lista de abajo.</div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyDiagTextoLabel">Qué te funcionó</label><textarea id="cmyDiagTextoInput" disabled data-i18n-ph="cmyDiagTextoPh" placeholder="Qué hiciste y cómo te fue" maxlength="280" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea></div>
+        <button class="btn btn-primary" style="padding:12px;" disabled data-i18n="cmyDiagBtn">Compartir confirmación</button>
       </div>
-      <div id="cmyDiagList" style="margin-top:18px;"></div>
     </div>
 
-    <div class="section-title" data-i18n="cmySecPreguntasReal">Preguntas abiertas — también real, sin respuestas todavía</div>
-    <div class="card-block">
-      <div class="note-box" data-i18n="cmyPreguntasNota">Aquí solo se publican preguntas, no respuestas — responder de forma segura necesita moderación real, que todavía no existe. Por ahora, esto es un lugar para ver qué se pregunta la comunidad.</div>
+    <div class="section-title" data-i18n="cmySecPreguntasReal">Preguntas abiertas</div>
+    <div class="card-block wip-block">
+      <div class="note-box" data-i18n="cmyEnDesarrollo">🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:440px; margin-top:14px;">
-        <textarea id="cmyPreguntaInput" data-i18n-ph="cmyPreguntaPh" placeholder="Tu pregunta para la comunidad" maxlength="200" rows="2" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea>
-        <button class="btn btn-primary" style="padding:12px;" onclick="submitQuestion()" data-i18n="cmyPreguntaBtn">Publicar pregunta</button>
-        <div id="cmyPreguntaMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyPreguntaExito">¡Listo! Tu pregunta ya está en la lista de abajo.</div>
+        <textarea id="cmyPreguntaInput" disabled data-i18n-ph="cmyPreguntaPh" placeholder="Tu pregunta para la comunidad" maxlength="200" rows="2" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical;"></textarea>
+        <button class="btn btn-primary" style="padding:12px;" disabled data-i18n="cmyPreguntaBtn">Publicar pregunta</button>
       </div>
-      <div id="cmyPreguntaList" style="margin-top:18px;"></div>
     </div>
 
     <div class="section-title" data-i18n="cmySecTipos">Lo único que sigue en plan, no construido</div>

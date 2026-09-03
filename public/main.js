@@ -2816,18 +2816,18 @@ const translations = {
     cmyEyebrow:'Comunidad — próximamente', cmyTitle:'Reportes de campo, verificados', cmySub:'Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.',
     cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.',
     cmyCorreoLabel:'Correo', cmyCorreoPrivado:'(privado, no se muestra)', cmyCorreoPh:'tu@correo.com',
-    cmySecViajeroReal:'Reportes de viajero — esto también ya es real', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
+    cmyEnDesarrollo:'🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.', cmySecViajeroReal:'Reportes de viajero', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
     cmyViajeroPaisLabel:'País donde viajaste', cmyViajeroTextoLabel:'Tu experiencia', cmyViajeroTextoPh:'Qué pasó en la frontera o aduana, sin datos personales', cmyViajeroBtn:'Compartir experiencia', cmyViajeroExito:'¡Gracias! Tu experiencia ya está en la lista de abajo.', cmyViajeroVacio:'Todavía no hay experiencias compartidas — sé la primera persona.',
-    cmySecCultivoReal:'Reportes de cultivo — también real', cmyCultivoIntro:'Bitácoras cortas ligadas a un método específico, para cruzar experiencia real contra la ficha oficial de Cultivo.', cmyCultivoMetodoLabel:'Método que usaste', cmyCultivoTextoLabel:'Tu experiencia', cmyCultivoTextoPh:'Qué te funcionó o qué no, con ese método', cmyCultivoBtn:'Compartir reporte', cmyCultivoExito:'¡Gracias! Tu reporte ya está en la lista de abajo.', cmyCultivoVacio:'Todavía no hay reportes — sé la primera persona.',
-    cmySecDiagReal:'Confirmaciones de diagnóstico — también real', cmyDiagIntro:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>.', cmyDiagProblemaLabel:'Qué tuviste', cmyDiagTextoLabel:'Qué te funcionó', cmyDiagTextoPh:'Qué hiciste y cómo te fue', cmyDiagBtn:'Compartir confirmación', cmyDiagExito:'¡Gracias! Tu confirmación ya está en la lista de abajo.', cmyDiagVacio:'Todavía no hay confirmaciones — sé la primera persona.',
-    cmySecPreguntasReal:'Preguntas abiertas — también real, sin respuestas todavía', cmyPreguntasNota:'Aquí solo se publican preguntas, no respuestas — responder de forma segura necesita moderación real, que todavía no existe. Por ahora, esto es un lugar para ver qué se pregunta la comunidad.', cmyPreguntaPh:'Tu pregunta para la comunidad', cmyPreguntaBtn:'Publicar pregunta', cmyPreguntaExito:'¡Listo! Tu pregunta ya está en la lista de abajo.', cmyPreguntaVacio:'Todavía no hay preguntas — sé la primera persona.',
-    cmy5porque:'Por qué este es el único que sigue en plan: sin moderación real, alguien podría escribir algo que suene a consejo médico específico sin que nadie lo revise antes de publicarse — es justo el que más necesita supervisión antes de abrirse.',
+    cmySecCultivoReal:'Reportes de cultivo', cmyCultivoIntro:'Bitácoras cortas ligadas a un método específico, para cruzar experiencia real contra la ficha oficial de Cultivo.', cmyCultivoMetodoLabel:'Método que usaste', cmyCultivoTextoLabel:'Tu experiencia', cmyCultivoTextoPh:'Qué te funcionó o qué no, con ese método', cmyCultivoBtn:'Compartir reporte', cmyCultivoExito:'¡Gracias! Tu reporte ya está en la lista de abajo.', cmyCultivoVacio:'Todavía no hay reportes — sé la primera persona.',
+    cmySecDiagReal:'Confirmaciones de diagnóstico', cmyDiagIntro:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>.', cmyDiagProblemaLabel:'Qué tuviste', cmyDiagTextoLabel:'Qué te funcionó', cmyDiagTextoPh:'Qué hiciste y cómo te fue', cmyDiagBtn:'Compartir confirmación', cmyDiagExito:'¡Gracias! Tu confirmación ya está en la lista de abajo.', cmyDiagVacio:'Todavía no hay confirmaciones — sé la primera persona.',
+    cmySecPreguntasReal:'Preguntas abiertas', cmyPreguntasNota:'Aquí solo se publican preguntas, no respuestas — responder de forma segura necesita moderación real, que todavía no existe. Por ahora, esto es un lugar para ver qué se pregunta la comunidad.', cmyPreguntaPh:'Tu pregunta para la comunidad', cmyPreguntaBtn:'Publicar pregunta', cmyPreguntaExito:'¡Listo! Tu pregunta ya está en la lista de abajo.', cmyPreguntaVacio:'Todavía no hay preguntas — sé la primera persona.',
+    cmy5porque:'Por qué este necesita más cuidado que el resto: sin moderación real, alguien podría escribir algo que suene a consejo médico específico sin que nadie lo revise antes de publicarse — es justo el que más necesita supervisión antes de abrirse.',
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
     cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
-    cmySecTipos:'Lo único que sigue en plan, no construido',
+    cmySecTipos:'La función que más supervisión necesita antes de abrirse',
     cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', cmy1p:'Bitácoras tipo diario, ligadas a un método específico, para cruzar experiencia real contra la ficha oficial.',
     cmy2h4:'Confirmaciones de diagnóstico', cmy2sci:'Se conecta con <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>', cmy2p:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de plaga o enfermedad.',
     cmy3h4:'Reportes de viajero', cmy3sci:'Se conecta con Legal &amp; Viajero', cmy3p:'Experiencias reales en fronteras y aduanas por país — las leyes cambian más rápido de lo que cualquier app actualiza sola.',
@@ -3646,18 +3646,18 @@ const translations = {
     cmyEyebrow:'Community — coming soon', cmyTitle:'Field reports, verified', cmySub:'What follows below (reports, confirmed diagnoses, moderated questions) needs user accounts and real moderation (backend) — it is the build plan, not a simulation. But the basic directory right below is real: it actually saves, and anyone using the app can see it.',
     cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, and profile type are real and stay visible to everyone using the app. Your email <b>is not shown publicly</b> — it is stored separately, only so Mother Verde can reach you if there is ever important news. Never share a full last name, phone number, or exact grow location here.',
     cmyCorreoLabel:'Email', cmyCorreoPrivado:'(private, not shown)', cmyCorreoPh:'you@email.com',
-    cmySecViajeroReal:'Traveler reports — this is real too', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
+    cmyEnDesarrollo:'🚧 This feature is in development — you can\'t submit or see reports here yet. It\'s on the build list, not a simulation.', cmySecViajeroReal:'Traveler reports', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
     cmyViajeroPaisLabel:'Country you traveled to', cmyViajeroTextoLabel:'Your experience', cmyViajeroTextoPh:'What happened at the border or customs, no personal details', cmyViajeroBtn:'Share experience', cmyViajeroExito:'Thanks! Your experience is now in the list below.', cmyViajeroVacio:'No experiences shared yet — be the first.',
-    cmySecCultivoReal:'Grow reports — also real', cmyCultivoIntro:'Short logs tied to a specific method, to cross-check real experience against the official Growing card.', cmyCultivoMetodoLabel:'Method you used', cmyCultivoTextoLabel:'Your experience', cmyCultivoTextoPh:'What worked or did not, with that method', cmyCultivoBtn:'Share report', cmyCultivoExito:'Thanks! Your report is now in the list below.', cmyCultivoVacio:'No reports yet — be the first.',
-    cmySecDiagReal:'Diagnosis confirmations — also real', cmyDiagIntro:'The most valuable of all: "I had exactly this and this worked for me," linked to a real <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis card</a>.', cmyDiagProblemaLabel:'What you had', cmyDiagTextoLabel:'What worked for you', cmyDiagTextoPh:'What you did and how it went', cmyDiagBtn:'Share confirmation', cmyDiagExito:'Thanks! Your confirmation is now in the list below.', cmyDiagVacio:'No confirmations yet — be the first.',
-    cmySecPreguntasReal:'Open questions — also real, no answers yet', cmyPreguntasNota:'Only questions are posted here, not answers — answering safely needs real moderation, which does not exist yet. For now, this is a place to see what the community is asking.', cmyPreguntaPh:'Your question for the community', cmyPreguntaBtn:'Post question', cmyPreguntaExito:'Done! Your question is now in the list below.', cmyPreguntaVacio:'No questions yet — be the first.',
-    cmy5porque:'Why this is the only one still in plan: without real moderation, someone could write something that sounds like specific medical advice without anyone reviewing it before it is published — it is exactly the one that most needs oversight before opening up.',
+    cmySecCultivoReal:'Grow reports', cmyCultivoIntro:'Short logs tied to a specific method, to cross-check real experience against the official Growing card.', cmyCultivoMetodoLabel:'Method you used', cmyCultivoTextoLabel:'Your experience', cmyCultivoTextoPh:'What worked or did not, with that method', cmyCultivoBtn:'Share report', cmyCultivoExito:'Thanks! Your report is now in the list below.', cmyCultivoVacio:'No reports yet — be the first.',
+    cmySecDiagReal:'Diagnosis confirmations', cmyDiagIntro:'The most valuable of all: "I had exactly this and this worked for me," linked to a real <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis card</a>.', cmyDiagProblemaLabel:'What you had', cmyDiagTextoLabel:'What worked for you', cmyDiagTextoPh:'What you did and how it went', cmyDiagBtn:'Share confirmation', cmyDiagExito:'Thanks! Your confirmation is now in the list below.', cmyDiagVacio:'No confirmations yet — be the first.',
+    cmySecPreguntasReal:'Open questions', cmyPreguntasNota:'Only questions are posted here, not answers — answering safely needs real moderation, which does not exist yet. For now, this is a place to see what the community is asking.', cmyPreguntaPh:'Your question for the community', cmyPreguntaBtn:'Post question', cmyPreguntaExito:'Done! Your question is now in the list below.', cmyPreguntaVacio:'No questions yet — be the first.',
+    cmy5porque:'Why this one needs more care than the rest: without real moderation, someone could write something that sounds like specific medical advice without anyone reviewing it before it is published — it is exactly the one that most needs oversight before opening up.',
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
     cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
-    cmySecTipos:'The only one still in plan, not built',
+    cmySecTipos:'The feature that needs the most oversight before opening',
     cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', cmy1p:'Diary-style logs, tied to a specific method, to cross-check real experience against the official card.',
     cmy2h4:'Diagnosis confirmations', cmy2sci:'Connects with <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis</a>', cmy2p:'The most valuable of all: "I had exactly this and this worked for me," linked to a real pest or disease card.',
     cmy3h4:'Traveler reports', cmy3sci:'Connects with Legal &amp; Travel', cmy3p:'Real border and customs experiences by country — laws change faster than any app can update alone.',
@@ -4474,18 +4474,18 @@ const translations = {
     cmyEyebrow:'Community — demnächst', cmyTitle:'Felderfahrungen, verifiziert', cmySub:'Was unten folgt (Berichte, bestätigte Diagnosen, moderierte Fragen) benötigt Nutzerkonten und echte Moderation (Backend) — das ist der Bauplan, keine Simulation. Aber das grundlegende Verzeichnis direkt unten ist echt: es wird tatsächlich gespeichert, und jeder, der die App nutzt, kann es sehen.',
     cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Dein Name, Land und Profiltyp sind echt und bleiben für alle sichtbar, die die App nutzen. Deine E-Mail wird <b>nicht öffentlich angezeigt</b> — sie wird separat gespeichert, nur damit Mother Verde dich kontaktieren kann, falls es einmal wichtige Neuigkeiten gibt. Teile hier niemals einen vollständigen Nachnamen, Telefonnummer oder genaue Anbauadresse.',
     cmyCorreoLabel:'E-Mail', cmyCorreoPrivado:'(privat, nicht angezeigt)', cmyCorreoPh:'du@email.com',
-    cmySecViajeroReal:'Reiseberichte — auch das ist bereits echt', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
+    cmyEnDesarrollo:'🚧 Diese Funktion ist in Entwicklung — du kannst hier noch keine Berichte senden oder sehen. Sie steht auf der To-do-Liste, ist keine Simulation.', cmySecViajeroReal:'Reiseberichte', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
     cmyViajeroPaisLabel:'Land, in das du gereist bist', cmyViajeroTextoLabel:'Deine Erfahrung', cmyViajeroTextoPh:'Was an der Grenze oder beim Zoll passiert ist, ohne persönliche Daten', cmyViajeroBtn:'Erfahrung teilen', cmyViajeroExito:'Danke! Deine Erfahrung steht jetzt in der Liste unten.', cmyViajeroVacio:'Noch keine Erfahrungen geteilt — sei die erste Person.',
-    cmySecCultivoReal:'Anbauberichte — ebenfalls echt', cmyCultivoIntro:'Kurze Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Anbau-Karte abzugleichen.', cmyCultivoMetodoLabel:'Verwendete Methode', cmyCultivoTextoLabel:'Deine Erfahrung', cmyCultivoTextoPh:'Was mit dieser Methode funktioniert hat oder nicht', cmyCultivoBtn:'Bericht teilen', cmyCultivoExito:'Danke! Dein Bericht steht jetzt in der Liste unten.', cmyCultivoVacio:'Noch keine Berichte — sei die erste Person.',
-    cmySecDiagReal:'Diagnosebestätigungen — ebenfalls echt', cmyDiagIntro:'Das Wertvollste von allem: "Ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>-Karte.', cmyDiagProblemaLabel:'Was du hattest', cmyDiagTextoLabel:'Was bei dir funktioniert hat', cmyDiagTextoPh:'Was du getan hast und wie es lief', cmyDiagBtn:'Bestätigung teilen', cmyDiagExito:'Danke! Deine Bestätigung steht jetzt in der Liste unten.', cmyDiagVacio:'Noch keine Bestätigungen — sei die erste Person.',
-    cmySecPreguntasReal:'Offene Fragen — ebenfalls echt, noch ohne Antworten', cmyPreguntasNota:'Hier werden nur Fragen veröffentlicht, keine Antworten — sicheres Antworten braucht echte Moderation, die es noch nicht gibt. Vorerst ist dies ein Ort, um zu sehen, was die Community fragt.', cmyPreguntaPh:'Deine Frage an die Community', cmyPreguntaBtn:'Frage veröffentlichen', cmyPreguntaExito:'Fertig! Deine Frage steht jetzt in der Liste unten.', cmyPreguntaVacio:'Noch keine Fragen — sei die erste Person.',
-    cmy5porque:'Warum das der einzige ist, der noch geplant bleibt: ohne echte Moderation könnte jemand etwas schreiben, das wie ein spezifischer medizinischer Rat klingt, ohne dass es jemand vor der Veröffentlichung prüft — genau das braucht am meisten Aufsicht, bevor es geöffnet wird.',
+    cmySecCultivoReal:'Anbauberichte', cmyCultivoIntro:'Kurze Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Anbau-Karte abzugleichen.', cmyCultivoMetodoLabel:'Verwendete Methode', cmyCultivoTextoLabel:'Deine Erfahrung', cmyCultivoTextoPh:'Was mit dieser Methode funktioniert hat oder nicht', cmyCultivoBtn:'Bericht teilen', cmyCultivoExito:'Danke! Dein Bericht steht jetzt in der Liste unten.', cmyCultivoVacio:'Noch keine Berichte — sei die erste Person.',
+    cmySecDiagReal:'Diagnosebestätigungen', cmyDiagIntro:'Das Wertvollste von allem: "Ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>-Karte.', cmyDiagProblemaLabel:'Was du hattest', cmyDiagTextoLabel:'Was bei dir funktioniert hat', cmyDiagTextoPh:'Was du getan hast und wie es lief', cmyDiagBtn:'Bestätigung teilen', cmyDiagExito:'Danke! Deine Bestätigung steht jetzt in der Liste unten.', cmyDiagVacio:'Noch keine Bestätigungen — sei die erste Person.',
+    cmySecPreguntasReal:'Offene Fragen', cmyPreguntasNota:'Hier werden nur Fragen veröffentlicht, keine Antworten — sicheres Antworten braucht echte Moderation, die es noch nicht gibt. Vorerst ist dies ein Ort, um zu sehen, was die Community fragt.', cmyPreguntaPh:'Deine Frage an die Community', cmyPreguntaBtn:'Frage veröffentlichen', cmyPreguntaExito:'Fertig! Deine Frage steht jetzt in der Liste unten.', cmyPreguntaVacio:'Noch keine Fragen — sei die erste Person.',
+    cmy5porque:'Warum das mehr Sorgfalt braucht als der Rest: ohne echte Moderation könnte jemand etwas schreiben, das wie ein spezifischer medizinischer Rat klingt, ohne dass es jemand vor der Veröffentlichung prüft — genau das braucht am meisten Aufsicht, bevor es geöffnet wird.',
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
     cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
-    cmySecTipos:'Das Einzige, das noch geplant ist, nicht gebaut',
+    cmySecTipos:'Die Funktion, die vor der Öffnung am meisten Aufsicht braucht',
     cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', cmy1p:'Tagebuchartige Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Karte abzugleichen.',
     cmy2h4:'Diagnosebestätigungen', cmy2sci:'Verbindet sich mit <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>', cmy2p:'Der wertvollste von allen: "ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten Schädlings- oder Krankheitskarte.',
     cmy3h4:'Reiseberichte', cmy3sci:'Verbindet sich mit Recht &amp; Reisen', cmy3p:'Echte Erfahrungen an Grenzen und im Zoll nach Land — Gesetze ändern sich schneller, als jede App allein aktualisieren kann.',
@@ -5302,18 +5302,18 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmyEyebrow:'Communauté — bientôt', cmyTitle:'Rapports de terrain, vérifiés', cmySub:'Ce qui suit ci-dessous (rapports, diagnostics confirmés, questions modérées) nécessite des comptes utilisateurs et une modération réelle (backend) — c\u2019est le plan de construction, pas une simulation. Mais l\u2019annuaire de base juste en dessous est réel : il est vraiment enregistré, et toute personne utilisant l\u2019app peut le voir.',
     cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays et ton type de profil sont réels et restent visibles pour toutes les personnes utilisant l\u2019app. Ton e-mail <b>n\u2019est pas affiché publiquement</b> — il est stocké séparément, uniquement pour que Mother Verde puisse te contacter s\u2019il y a un jour des nouvelles importantes. Ne partage jamais ici de nom de famille complet, de téléphone, ni d\u2019emplacement exact de culture.',
     cmyCorreoLabel:'E-mail', cmyCorreoPrivado:'(privé, non affiché)', cmyCorreoPh:'toi@email.com',
-    cmySecViajeroReal:'Rapports de voyageurs — ceci aussi est déjà réel', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
+    cmyEnDesarrollo:'🚧 Cette fonctionnalité est en cours de développement — tu ne peux pas encore envoyer ni voir de rapports ici. C’est prévu, ce n’est pas une simulation.', cmySecViajeroReal:'Rapports de voyageurs', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
     cmyViajeroPaisLabel:'Pays où tu as voyagé', cmyViajeroTextoLabel:'Ton expérience', cmyViajeroTextoPh:'Ce qui s\u2019est passé à la frontière ou à la douane, sans données personnelles', cmyViajeroBtn:'Partager l\u2019expérience', cmyViajeroExito:'Merci ! Ton expérience est maintenant dans la liste ci-dessous.', cmyViajeroVacio:'Aucune expérience partagée pour l\u2019instant — sois la première personne.',
-    cmySecCultivoReal:'Rapports de culture — également réel', cmyCultivoIntro:'De courts journaux liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle de Culture.', cmyCultivoMetodoLabel:'Méthode utilisée', cmyCultivoTextoLabel:'Ton expérience', cmyCultivoTextoPh:'Ce qui a fonctionné ou non avec cette méthode', cmyCultivoBtn:'Partager le rapport', cmyCultivoExito:'Merci ! Ton rapport est maintenant dans la liste ci-dessous.', cmyCultivoVacio:'Aucun rapport pour l\u2019instant — sois la première personne.',
-    cmySecDiagReal:'Confirmations de diagnostic — également réel', cmyDiagIntro:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a fonctionné pour moi », lié à une véritable fiche <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>.', cmyDiagProblemaLabel:'Ce que tu as eu', cmyDiagTextoLabel:'Ce qui a fonctionné pour toi', cmyDiagTextoPh:'Ce que tu as fait et comment ça s\u2019est passé', cmyDiagBtn:'Partager la confirmation', cmyDiagExito:'Merci ! Ta confirmation est maintenant dans la liste ci-dessous.', cmyDiagVacio:'Aucune confirmation pour l\u2019instant — sois la première personne.',
-    cmySecPreguntasReal:'Questions ouvertes — également réel, sans réponses pour l\u2019instant', cmyPreguntasNota:'Seules les questions sont publiées ici, pas les réponses — répondre en toute sécurité nécessite une vraie modération, qui n\u2019existe pas encore. Pour l\u2019instant, c\u2019est un endroit pour voir ce que la communauté se demande.', cmyPreguntaPh:'Ta question pour la communauté', cmyPreguntaBtn:'Publier la question', cmyPreguntaExito:'C\u2019est fait ! Ta question est maintenant dans la liste ci-dessous.', cmyPreguntaVacio:'Aucune question pour l\u2019instant — sois la première personne.',
-    cmy5porque:'Pourquoi c\u2019est le seul qui reste au stade de plan : sans modération réelle, quelqu\u2019un pourrait écrire quelque chose qui ressemble à un conseil médical précis sans que personne ne le révise avant publication — c\u2019est justement celui qui a le plus besoin de supervision avant d\u2019être ouvert.',
+    cmySecCultivoReal:'Rapports de culture', cmyCultivoIntro:'De courts journaux liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle de Culture.', cmyCultivoMetodoLabel:'Méthode utilisée', cmyCultivoTextoLabel:'Ton expérience', cmyCultivoTextoPh:'Ce qui a fonctionné ou non avec cette méthode', cmyCultivoBtn:'Partager le rapport', cmyCultivoExito:'Merci ! Ton rapport est maintenant dans la liste ci-dessous.', cmyCultivoVacio:'Aucun rapport pour l\u2019instant — sois la première personne.',
+    cmySecDiagReal:'Confirmations de diagnostic', cmyDiagIntro:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a fonctionné pour moi », lié à une véritable fiche <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>.', cmyDiagProblemaLabel:'Ce que tu as eu', cmyDiagTextoLabel:'Ce qui a fonctionné pour toi', cmyDiagTextoPh:'Ce que tu as fait et comment ça s\u2019est passé', cmyDiagBtn:'Partager la confirmation', cmyDiagExito:'Merci ! Ta confirmation est maintenant dans la liste ci-dessous.', cmyDiagVacio:'Aucune confirmation pour l\u2019instant — sois la première personne.',
+    cmySecPreguntasReal:'Questions ouvertes', cmyPreguntasNota:'Seules les questions sont publiées ici, pas les réponses — répondre en toute sécurité nécessite une vraie modération, qui n\u2019existe pas encore. Pour l\u2019instant, c\u2019est un endroit pour voir ce que la communauté se demande.', cmyPreguntaPh:'Ta question pour la communauté', cmyPreguntaBtn:'Publier la question', cmyPreguntaExito:'C\u2019est fait ! Ta question est maintenant dans la liste ci-dessous.', cmyPreguntaVacio:'Aucune question pour l\u2019instant — sois la première personne.',
+    cmy5porque:'Pourquoi celle-ci demande plus de soin que les autres : sans modération réelle, quelqu\u2019un pourrait écrire quelque chose qui ressemble à un conseil médical précis sans que personne ne le révise avant publication — c\u2019est justement celui qui a le plus besoin de supervision avant d\u2019être ouvert.',
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
     cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
-    cmySecTipos:'La seule chose qui reste au stade de plan, pas construite',
+    cmySecTipos:'La fonctionnalité qui demande le plus de supervision avant ouverture',
     cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', cmy1p:'Journaux type carnet, liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle.',
     cmy2h4:'Confirmations de diagnostic', cmy2sci:'Se connecte à <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>', cmy2p:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a marché pour moi », lié à une vraie fiche de nuisible ou de maladie.',
     cmy3h4:'Rapports de voyageurs', cmy3sci:'Se connecte à Légal &amp; Voyage', cmy3p:'Expériences réelles aux frontières et à la douane par pays — les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule.',
@@ -6230,10 +6230,6 @@ async function renderComunidadScreen(){
   prefillCommunityJoinForm();
   renderDescubrir();
   renderFeed();
-  await renderTravelerReports();
-  await renderGrowReports();
-  await renderDiagConfirmations();
-  await renderCommunityQuestions();
 }
 
 /* ===================== DESCUBRIR (swipe sobre community_members) ===================== */
@@ -6516,108 +6512,10 @@ async function submitComment(postId){
   }
 }
 
-async function loadTravelerReports(){
-  try{
-    const res = await window.storage.get('traveler-reports', true);
-    return (res && res.value) ? JSON.parse(res.value) : [];
-  }catch(e){ return []; }
-}
-async function renderTravelerReports(){
-  const listEl = document.getElementById('cmyViajeroList');
-  if(!listEl) return;
-  const reports = await loadTravelerReports();
-  listEl.innerHTML = reports.length === 0
-    ? `<p class="bit-empty">${t('cmyViajeroVacio')}</p>`
-    : reports.slice().reverse().slice(0,20).map(r => `<div class="note-box" style="margin-top:10px;"><b style="color:var(--teal);">${r.country}</b><br>${r.text}</div>`).join('');
-}
-async function submitTravelerReport(){
-  const paisEl = document.getElementById('cmyViajeroPaisInput');
-  const textoEl = document.getElementById('cmyViajeroTextoInput');
-  const msgEl = document.getElementById('cmyViajeroMsg');
-  const text = textoEl.value.trim();
-  if(!text){ textoEl.focus(); return; }
-  const reports = await loadTravelerReports();
-  reports.push({country: paisEl.value, text: text.slice(0,280), postedAt: Date.now()});
-  try{ await window.storage.set('traveler-reports', JSON.stringify(reports), true); }catch(e){}
-  textoEl.value = '';
-  msgEl.style.display = 'block';
-  setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
-  renderTravelerReports();
-}
-async function loadGrowReports(){
-  try{ const res = await window.storage.get('grow-reports', true); return (res && res.value) ? JSON.parse(res.value) : []; }catch(e){ return []; }
-}
-async function renderGrowReports(){
-  const listEl = document.getElementById('cmyCultivoList');
-  if(!listEl) return;
-  const reports = await loadGrowReports();
-  listEl.innerHTML = reports.length === 0
-    ? `<p class="bit-empty">${t('cmyCultivoVacio')}</p>`
-    : reports.slice().reverse().slice(0,20).map(r => `<div class="note-box" style="margin-top:10px;"><b style="color:var(--moss-deep);">${r.method}</b><br>${r.text}</div>`).join('');
-}
-async function submitGrowReport(){
-  const metodoEl = document.getElementById('cmyCultivoMetodoInput');
-  const textoEl = document.getElementById('cmyCultivoTextoInput');
-  const msgEl = document.getElementById('cmyCultivoMsg');
-  const text = textoEl.value.trim();
-  if(!text){ textoEl.focus(); return; }
-  const reports = await loadGrowReports();
-  reports.push({method: metodoEl.value, text: text.slice(0,280), postedAt: Date.now()});
-  try{ await window.storage.set('grow-reports', JSON.stringify(reports), true); }catch(e){}
-  textoEl.value = '';
-  msgEl.style.display = 'block';
-  setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
-  renderGrowReports();
-}
-async function loadDiagConfirmations(){
-  try{ const res = await window.storage.get('diagnosis-confirmations', true); return (res && res.value) ? JSON.parse(res.value) : []; }catch(e){ return []; }
-}
-async function renderDiagConfirmations(){
-  const listEl = document.getElementById('cmyDiagList');
-  if(!listEl) return;
-  const items = await loadDiagConfirmations();
-  listEl.innerHTML = items.length === 0
-    ? `<p class="bit-empty">${t('cmyDiagVacio')}</p>`
-    : items.slice().reverse().slice(0,20).map(r => `<div class="note-box" style="margin-top:10px;"><b style="color:var(--clay);">${r.problem}</b><br>${r.text}</div>`).join('');
-}
-async function submitDiagConfirmation(){
-  const problemaEl = document.getElementById('cmyDiagProblemaInput');
-  const textoEl = document.getElementById('cmyDiagTextoInput');
-  const msgEl = document.getElementById('cmyDiagMsg');
-  const text = textoEl.value.trim();
-  if(!text){ textoEl.focus(); return; }
-  const items = await loadDiagConfirmations();
-  items.push({problem: problemaEl.value, text: text.slice(0,280), postedAt: Date.now()});
-  try{ await window.storage.set('diagnosis-confirmations', JSON.stringify(items), true); }catch(e){}
-  textoEl.value = '';
-  msgEl.style.display = 'block';
-  setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
-  renderDiagConfirmations();
-}
-async function loadCommunityQuestions(){
-  try{ const res = await window.storage.get('community-questions', true); return (res && res.value) ? JSON.parse(res.value) : []; }catch(e){ return []; }
-}
-async function renderCommunityQuestions(){
-  const listEl = document.getElementById('cmyPreguntaList');
-  if(!listEl) return;
-  const items = await loadCommunityQuestions();
-  listEl.innerHTML = items.length === 0
-    ? `<p class="bit-empty">${t('cmyPreguntaVacio')}</p>`
-    : items.slice().reverse().slice(0,20).map(r => `<div class="note-box" style="margin-top:10px;">${r.text}</div>`).join('');
-}
-async function submitQuestion(){
-  const textoEl = document.getElementById('cmyPreguntaInput');
-  const msgEl = document.getElementById('cmyPreguntaMsg');
-  const text = textoEl.value.trim();
-  if(!text){ textoEl.focus(); return; }
-  const items = await loadCommunityQuestions();
-  items.push({text: text.slice(0,200), postedAt: Date.now()});
-  try{ await window.storage.set('community-questions', JSON.stringify(items), true); }catch(e){}
-  textoEl.value = '';
-  msgEl.style.display = 'block';
-  setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
-  renderCommunityQuestions();
-}
+// Traveler / grow / diagnosis / question reports: the old handlers wrote to a
+// window.storage that never existed and faked a success message. Removed. The
+// four sections now show a static "in development" note and their inputs are
+// disabled in index.html. They will come back as post types in the feed.
 // Prefill the join form from the current user's existing directory row, if any,
 // so "Unirme" doubles as "edit my entry".
 async function prefillCommunityJoinForm(){
