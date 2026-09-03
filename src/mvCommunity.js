@@ -31,6 +31,67 @@ function escapeHtml(s){
   ));
 }
 
+/* ---------------------- Translation (Fase 2) ---------------------- */
+// Posts and comments are translated into all four platform languages at
+// publish time by the community-translate Edge Function (Azure AI Translator),
+// and the four versions are stored on the row. Readers get their own language.
+
+const PLATFORM_LANGS = ['es', 'en', 'de', 'fr'];
+const POST_MAX_LEN = 2000;
+const COMMENT_MAX_LEN = 500;
+
+function normalizeLang(lang){
+  return PLATFORM_LANGS.includes(lang) ? lang : 'es';
+}
+
+// Ask the Edge Function for { source_lang, body_i18n, status }. Throws on any
+// failure so callers can decide whether to publish with the original only.
+async function translateForPublish(text, sourceHint){
+  const { data, error } = await sb().functions.invoke('community-translate', {
+    body: { text, sourceHint: normalizeLang(sourceHint) },
+  });
+  if(error) throw error;
+  if(!data || !data.body_i18n) throw new Error('community-translate: bad response');
+  return data;
+}
+
+// Build the insert/update fields for a translatable body. Never throws — if the
+// provider is unavailable the row still publishes with the original text in the
+// author's language and translation_status 'failed' for the backfill job.
+async function translatedFields(text, sourceHint){
+  const hint = normalizeLang(sourceHint);
+  try{
+    const r = await translateForPublish(text, hint);
+    return {
+      body_i18n: r.body_i18n,
+      source_lang: normalizeLang(r.source_lang),
+      translation_status: r.status === 'skipped' ? 'skipped' : 'done',
+    };
+  }catch(e){
+    return {
+      body_i18n: { [hint]: text },
+      source_lang: hint,
+      translation_status: 'failed',
+    };
+  }
+}
+
+// Pick the best available version of a post/comment body for a reader's language.
+function localizeBody(row, lang){
+  if(!row) return '';
+  const want = normalizeLang(lang);
+  const map = row.body_i18n || null;
+  if(map && map[want]) return map[want];
+  if(map && row.source_lang && map[row.source_lang]) return map[row.source_lang];
+  return row.body || (map ? Object.values(map)[0] : '') || '';
+}
+
+// True if the reader is seeing an auto-translation rather than the original.
+function isTranslated(row, lang){
+  if(!row || !row.source_lang) return false;
+  return normalizeLang(lang) !== row.source_lang && row.translation_status !== 'failed';
+}
+
 /* ---------------------- Directory profiles ---------------------- */
 // community_members holds one public row per account: display_name, country,
 // profile_type, plus cover_photo_url + bio added by the redesign migration.
@@ -186,15 +247,40 @@ async function listUserPosts(userId, { limit = 30 } = {}){
 }
 
 // Create a text or photo post. Pass a File in photoFile to upload it first.
-async function createPost({ body = null, photoFile = null } = {}){
+// A non-empty body is translated into all four languages before the insert.
+async function createPost({ body = null, photoFile = null, sourceHint = 'es' } = {}){
   const me = requireUser();
   let photo_url = null;
   if(photoFile) photo_url = await uploadCommunityPhoto(photoFile, 'posts');
   const kind = photo_url ? 'photo' : 'text';
   const trimmed = body ? body.trim() : null;
   if(kind === 'text' && !trimmed) throw new Error('mvCommunity.createPost: empty post');
+  if(trimmed && trimmed.length > POST_MAX_LEN){
+    throw new Error('mvCommunity.createPost: body exceeds ' + POST_MAX_LEN + ' chars');
+  }
+  const row = { user_id: me, kind, body: trimmed, photo_url };
+  if(trimmed){
+    Object.assign(row, await translatedFields(trimmed, sourceHint));
+  } else {
+    row.translation_status = 'skipped';
+  }
   const { data, error } = await sb().from('community_posts')
-    .insert({ user_id: me, kind, body: trimmed, photo_url }).select().single();
+    .insert(row).select().single();
+  if(error) throw error;
+  return data;
+}
+
+// Edit a post's text. Re-translates the new body.
+async function updatePost(id, { body = null, sourceHint = 'es' } = {}){
+  requireUser();
+  const trimmed = body ? body.trim() : null;
+  if(!trimmed) throw new Error('mvCommunity.updatePost: empty body');
+  if(trimmed.length > POST_MAX_LEN){
+    throw new Error('mvCommunity.updatePost: body exceeds ' + POST_MAX_LEN + ' chars');
+  }
+  const row = { body: trimmed, ...(await translatedFields(trimmed, sourceHint)) };
+  const { data, error } = await sb().from('community_posts')
+    .update(row).eq('id', id).select().single();
   if(error) throw error;
   return data;
 }
@@ -217,12 +303,19 @@ async function listComments(postId){
   return data || [];
 }
 
-async function addComment(postId, body){
+async function addComment(postId, body, { sourceHint = 'es' } = {}){
   const me = requireUser();
   const text = (body || '').trim();
   if(!text) throw new Error('mvCommunity.addComment: empty comment');
+  if(text.length > COMMENT_MAX_LEN){
+    throw new Error('mvCommunity.addComment: comment exceeds ' + COMMENT_MAX_LEN + ' chars');
+  }
+  const row = {
+    post_id: postId, user_id: me, body: text,
+    ...(await translatedFields(text, sourceHint)),
+  };
   const { data, error } = await sb().from('community_comments')
-    .insert({ post_id: postId, user_id: me, body: text }).select().single();
+    .insert(row).select().single();
   if(error) throw error;
   return data;
 }
@@ -272,10 +365,12 @@ async function uploadCommunityPhoto(file, folder = 'misc'){
 
 window.mvCommunity = {
   escapeHtml,
+  PLATFORM_LANGS, POST_MAX_LEN, COMMENT_MAX_LEN,
+  localizeBody, isTranslated,
   listMembers, getMemberProfile, getMyMemberProfile, upsertMyMemberProfile,
   follow, unfollow, getFollowing, getFollowers, isMutual, canView,
   getSwipedIds, getSwipeCandidates, recordSwipe,
-  listFeedPosts, listUserPosts, createPost, deletePost,
+  listFeedPosts, listUserPosts, createPost, updatePost, deletePost,
   listComments, addComment, deleteComment,
   submitReport, uploadCommunityPhoto,
 };
