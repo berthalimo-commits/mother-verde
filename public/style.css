@@ -373,3 +373,21 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .discover-bio{font-size:13.5px; line-height:1.6; color:var(--ink-soft); white-space:pre-wrap;}
 .discover-bio.empty{color:var(--ink-soft); opacity:.6; font-style:italic;}
 .discover-controls{display:flex; gap:12px; justify-content:center; margin-top:18px;}
+
+/* ---- Community feed (posts + comments) ---- */
+.cmy-post-tools{display:flex; align-items:center; gap:12px; margin-top:10px; flex-wrap:wrap;}
+.cmy-count{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft); margin-left:auto;}
+.cmy-post{border:1px solid var(--line); background:var(--paper-raised); border-radius:8px; padding:16px 18px; margin-bottom:12px;}
+.cmy-post-head{display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-size:13px;}
+.cmy-post-time{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft);}
+.cmy-post-body{font-size:14px; line-height:1.6; color:var(--ink); margin:10px 0 0; white-space:pre-wrap;}
+.cmy-post-photo{display:block; margin-top:12px; max-width:100%; border-radius:6px; border:1px solid var(--line-strong);}
+.cmy-post-foot{margin-top:12px;}
+.cmy-translated, .cmy-comment-toggle, .cmy-del{background:none; border:none; padding:0; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss-deep);}
+.cmy-translated{margin-top:6px; display:inline-block;}
+.cmy-del{color:var(--clay);}
+.cmy-thread{margin-top:12px; padding-top:12px; border-top:1px solid var(--line);}
+.cmy-comment{font-size:13px; line-height:1.55; color:var(--ink-soft); padding:8px 0; border-bottom:1px solid var(--line);}
+.cmy-comment b{color:var(--ink);}
+.cmy-comment-composer{display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.cmy-comment-composer .btn-pill{align-self:flex-start;}

@@ -2763,6 +2763,21 @@
       </div>
     </div>
 
+    <div class="section-title" data-i18n="cmySecFeed">Publicaciones</div>
+    <p class="subhead" data-i18n="cmyFeedIntro">El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.</p>
+    <div id="cmyFeedGate" class="note-box" style="display:none;" data-i18n="cmyFeedGate">Inicia sesión para publicar y ver el feed.</div>
+    <div class="card-block" id="cmyFeedComposer" style="display:none;">
+      <textarea id="cmyPostInput" data-i18n-ph="cmyPostPh" placeholder="¿Qué quieres compartir con la comunidad?" maxlength="2000" rows="3" oninput="updatePostCount()" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical; background:var(--paper);"></textarea>
+      <div id="cmyPostFotoPreview" style="margin-top:10px;"></div>
+      <div class="cmy-post-tools">
+        <label class="btn-pill ghost sm" style="cursor:pointer;">📷 <span data-i18n="cmyPostFoto">Foto</span><input type="file" id="cmyPostFotoInput" accept="image/*" onchange="handlePostFoto(this)" style="display:none;"></label>
+        <span id="cmyPostCount" class="cmy-count">0 / 2000</span>
+        <button class="btn-pill" onclick="submitPost()" data-i18n="cmyPostBtn">Publicar</button>
+      </div>
+      <div id="cmyPostMsg" style="font-size:12px; margin-top:8px; display:none;"></div>
+    </div>
+    <div id="cmyFeedList"></div>
+
     <div class="section-title" data-i18n="cmySecUnirse">Únete a la comunidad más grande del mundo</div>
     <div class="card-block">
       <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>

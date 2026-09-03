@@ -2825,6 +2825,7 @@ const translations = {
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
+    cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
     cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
     cmySecTipos:'Lo único que sigue en plan, no construido',
     cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', cmy1p:'Bitácoras tipo diario, ligadas a un método específico, para cruzar experiencia real contra la ficha oficial.',
@@ -3654,6 +3655,7 @@ const translations = {
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
+    cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
     cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
     cmySecTipos:'The only one still in plan, not built',
     cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', cmy1p:'Diary-style logs, tied to a specific method, to cross-check real experience against the official card.',
@@ -4481,6 +4483,7 @@ const translations = {
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
+    cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
     cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
     cmySecTipos:'Das Einzige, das noch geplant ist, nicht gebaut',
     cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', cmy1p:'Tagebuchartige Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Karte abzugleichen.',
@@ -5308,6 +5311,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
+    cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
     cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
     cmySecTipos:'La seule chose qui reste au stade de plan, pas construite',
     cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', cmy1p:'Journaux type carnet, liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle.',
@@ -6225,6 +6229,7 @@ async function renderComunidadScreen(){
     : members.map(m => `<div class="spec-row"><span><b>${esc(m.display_name)}</b> · ${esc(m.country || '')}</span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(tipoLabels[m.profile_type] || m.profile_type || '')}</span></div>`).join('');
   prefillCommunityJoinForm();
   renderDescubrir();
+  renderFeed();
   await renderTravelerReports();
   await renderGrowReports();
   await renderDiagConfirmations();
@@ -6300,6 +6305,217 @@ async function discoverSwipe(direction){
     discoverBusy = false;
   }, 280);
 }
+
+/* ===================== FEED DE PUBLICACIONES (community_posts + community_comments) ===================== */
+let pendingPostPhoto = null;
+let feedAuthorNames = {};      // user_id -> display_name
+let feedMutual = new Set();    // user_ids I mutually follow (comments unlocked)
+const openCommentThreads = new Set();
+
+function cmyFmtDate(iso){
+  try{ return new Date(iso).toLocaleDateString(currentLang, { day:'numeric', month:'short' }); }
+  catch(e){ return ''; }
+}
+function updatePostCount(){
+  const el = document.getElementById('cmyPostInput');
+  const countEl = document.getElementById('cmyPostCount');
+  if(el && countEl) countEl.textContent = `${el.value.length} / 2000`;
+}
+
+// Resize to <=1200px wide, JPEG, and hand back a File for Storage upload.
+function handlePostFoto(input){
+  const file = input.files && input.files[0];
+  const previewEl = document.getElementById('cmyPostFotoPreview');
+  if(!file){ pendingPostPhoto = null; if(previewEl) previewEl.innerHTML = ''; return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, 1200 / img.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(blob => {
+        if(!blob) return;
+        pendingPostPhoto = new File([blob], 'post.jpg', { type: 'image/jpeg' });
+        if(previewEl) previewEl.innerHTML = `<img src="${URL.createObjectURL(blob)}" style="max-width:200px; border-radius:6px; border:1px solid var(--line-strong); display:block;">`;
+      }, 'image/jpeg', 0.8);
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function submitPost(){
+  if(!window.mvCurrentUser || !window.mvCommunity) return;
+  const inputEl = document.getElementById('cmyPostInput');
+  const msgEl = document.getElementById('cmyPostMsg');
+  const body = inputEl.value.trim();
+  if(!body && !pendingPostPhoto){ inputEl.focus(); return; }
+  const show = (text, ok) => { msgEl.textContent = text; msgEl.style.color = ok ? 'var(--moss-deep)' : 'var(--clay)'; msgEl.style.display = 'block'; };
+  show(t('cmyPostEnviando'), true);
+  try{
+    await window.mvCommunity.createPost({ body: body || null, photoFile: pendingPostPhoto, sourceHint: currentLang });
+    inputEl.value = '';
+    pendingPostPhoto = null;
+    document.getElementById('cmyPostFotoInput').value = '';
+    document.getElementById('cmyPostFotoPreview').innerHTML = '';
+    updatePostCount();
+    show(t('cmyPostExito'), true);
+    setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
+    renderFeed();
+  }catch(e){
+    show(t('authErrGeneric'), false);
+  }
+}
+
+async function renderFeed(){
+  const listEl = document.getElementById('cmyFeedList');
+  const gateEl = document.getElementById('cmyFeedGate');
+  const composerEl = document.getElementById('cmyFeedComposer');
+  if(!listEl) return;
+  if(!window.mvCommunity || !window.mvCurrentUser){
+    if(gateEl) gateEl.style.display = 'block';
+    if(composerEl) composerEl.style.display = 'none';
+    listEl.innerHTML = '';
+    return;
+  }
+  if(gateEl) gateEl.style.display = 'none';
+  if(composerEl) composerEl.style.display = 'block';
+
+  let posts = [];
+  try{
+    const [p, members, following, followers] = await Promise.all([
+      window.mvCommunity.listFeedPosts({ limit: 40 }),
+      window.mvCommunity.listMembers({ limit: 500 }),
+      window.mvCommunity.getFollowing(),
+      window.mvCommunity.getFollowers(),
+    ]);
+    posts = p;
+    feedAuthorNames = {};
+    members.forEach(m => { feedAuthorNames[m.user_id] = m.display_name; });
+    const followerSet = new Set(followers);
+    feedMutual = new Set(following.filter(id => followerSet.has(id)));
+  }catch(e){ posts = []; }
+
+  if(posts.length === 0){
+    listEl.innerHTML = `<p class="bit-empty">${t('cmyFeedVacio')}</p>`;
+    return;
+  }
+  listEl.innerHTML = posts.map(renderPostCard).join('');
+  // Re-open any comment threads the user had expanded before this refresh.
+  openCommentThreads.forEach(id => {
+    const el = document.getElementById('cmyThread-' + id);
+    if(el){ el.style.display = 'block'; loadCommentThread(id); }
+    else openCommentThreads.delete(id);
+  });
+}
+
+function renderPostCard(post){
+  const esc = window.mvCommunity.escapeHtml;
+  const myId = window.mvCurrentUser.id;
+  const name = feedAuthorNames[post.user_id] || t('cmyMiembroDesconocido');
+  const localized = window.mvCommunity.localizeBody(post, currentLang);
+  const translated = window.mvCommunity.isTranslated(post, currentLang);
+  const canComment = post.user_id === myId || feedMutual.has(post.user_id);
+  const photo = post.photo_url
+    ? `<img class="cmy-post-photo" src="${esc(post.photo_url)}" alt="" loading="lazy">` : '';
+  const bodyBlock = localized
+    ? `<p class="cmy-post-body" id="cmyBody-${post.id}" data-localized="${esc(localized)}" data-original="${esc(post.body || localized)}">${esc(localized)}</p>
+       ${translated ? `<button class="cmy-translated" onclick="togglePostOriginal('${post.id}')" data-orig="0">${t('cmyVerOriginal')}</button>` : ''}`
+    : '';
+  const del = post.user_id === myId
+    ? `<button class="cmy-del" onclick="deletePostStep(this,'${post.id}')">${t('cmyEliminar')}</button>` : '';
+  return `
+    <div class="cmy-post" id="cmyPost-${post.id}">
+      <div class="cmy-post-head">
+        <span><b>${esc(name)}</b> · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span>
+        ${del}
+      </div>
+      ${bodyBlock}
+      ${photo}
+      <div class="cmy-post-foot">
+        <button class="cmy-comment-toggle" onclick="toggleComments('${post.id}')">💬 ${t('cmyComentarios')}</button>
+      </div>
+      <div class="cmy-thread" id="cmyThread-${post.id}" style="display:none;" data-can-comment="${canComment ? '1' : '0'}"></div>
+    </div>`;
+}
+
+function togglePostOriginal(postId){
+  const btn = document.querySelector(`#cmyPost-${postId} .cmy-translated`);
+  const bodyEl = document.getElementById('cmyBody-' + postId);
+  if(!btn || !bodyEl) return;
+  const showingOrig = btn.dataset.orig === '1';
+  bodyEl.textContent = showingOrig ? bodyEl.dataset.localized : bodyEl.dataset.original;
+  btn.textContent = showingOrig ? t('cmyVerOriginal') : t('cmyVerTraduccion');
+  btn.dataset.orig = showingOrig ? '0' : '1';
+}
+
+async function deletePostStep(btn, postId){
+  if(btn.dataset.armed !== '1'){
+    btn.dataset.armed = '1';
+    btn.textContent = t('cmyConfirmar');
+    setTimeout(() => { if(btn){ btn.dataset.armed = '0'; btn.textContent = t('cmyEliminar'); } }, 4000);
+    return;
+  }
+  try{
+    await window.mvCommunity.deletePost(postId);
+    document.getElementById('cmyPost-' + postId)?.remove();
+  }catch(e){}
+}
+
+function toggleComments(postId){
+  const threadEl = document.getElementById('cmyThread-' + postId);
+  if(!threadEl) return;
+  const open = threadEl.style.display !== 'none';
+  if(open){
+    threadEl.style.display = 'none';
+    openCommentThreads.delete(postId);
+  }else{
+    threadEl.style.display = 'block';
+    openCommentThreads.add(postId);
+    loadCommentThread(postId);
+  }
+}
+
+async function loadCommentThread(postId){
+  const threadEl = document.getElementById('cmyThread-' + postId);
+  if(!threadEl) return;
+  const esc = window.mvCommunity.escapeHtml;
+  const canComment = threadEl.dataset.canComment === '1';
+  let comments = [];
+  try{ comments = await window.mvCommunity.listComments(postId); }catch(e){ comments = []; }
+  const list = comments.length === 0
+    ? `<p class="bit-empty" style="margin:8px 0;">${t('cmyComentariosVacio')}</p>`
+    : comments.map(c => {
+        const name = feedAuthorNames[c.user_id] || t('cmyMiembroDesconocido');
+        const body = window.mvCommunity.localizeBody(c, currentLang);
+        return `<div class="cmy-comment"><b>${esc(name)}</b> <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div>`;
+      }).join('');
+  const composer = canComment
+    ? `<div class="cmy-comment-composer">
+         <textarea id="cmyCommentInput-${postId}" maxlength="500" rows="2" data-i18n-ph="cmyComentarioPh" placeholder="Escribe un comentario…" style="width:100%; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; background:var(--paper); resize:vertical;"></textarea>
+         <button class="btn-pill sm" onclick="submitComment('${postId}')">${t('cmyComentarBtn')}</button>
+       </div>`
+    : `<div class="note-box" style="margin-top:8px;">${t('cmyComentarioBloqueado')}</div>`;
+  threadEl.innerHTML = list + composer;
+}
+
+async function submitComment(postId){
+  const inputEl = document.getElementById('cmyCommentInput-' + postId);
+  if(!inputEl) return;
+  const text = inputEl.value.trim();
+  if(!text) return;
+  try{
+    await window.mvCommunity.addComment(postId, text, { sourceHint: currentLang });
+    inputEl.value = '';
+    loadCommentThread(postId);
+  }catch(e){
+    inputEl.style.borderColor = 'var(--clay)';
+  }
+}
+
 async function loadTravelerReports(){
   try{
     const res = await window.storage.get('traveler-reports', true);
