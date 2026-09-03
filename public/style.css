@@ -360,3 +360,16 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
   .topbar{flex-direction:column; align-items:flex-start;}
   .traveler-banner{flex-direction:column; align-items:flex-start;}
 }
+
+/* ---- Descubrir (community swipe) ---- */
+.discover-stack{position:relative; min-height:340px;}
+.discover-card{border:1px solid var(--line-strong); background:var(--paper); border-radius:10px; overflow:hidden; transition:transform .28s ease, opacity .28s ease;}
+.discover-card.leaving-left{transform:translateX(-120%) rotate(-8deg); opacity:0;}
+.discover-card.leaving-right{transform:translateX(120%) rotate(8deg); opacity:0;}
+.discover-cover{height:150px; background:linear-gradient(135deg, var(--moss-deep), var(--teal)); background-size:cover; background-position:center;}
+.discover-body{padding:16px 18px 20px;}
+.discover-body h3{font-family:'Manrope',sans-serif; font-weight:600; font-size:19px; margin:0 0 4px;}
+.discover-meta{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss); text-transform:uppercase; letter-spacing:.04em; margin-bottom:10px;}
+.discover-bio{font-size:13.5px; line-height:1.6; color:var(--ink-soft); white-space:pre-wrap;}
+.discover-bio.empty{color:var(--ink-soft); opacity:.6; font-style:italic;}
+.discover-controls{display:flex; gap:12px; justify-content:center; margin-top:18px;}

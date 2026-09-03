@@ -2824,6 +2824,7 @@ const translations = {
     cmy5porque:'Por qué este es el único que sigue en plan: sin moderación real, alguien podría escribir algo que suene a consejo médico específico sin que nadie lo revise antes de publicarse — es justo el que más necesita supervisión antes de abrirse.',
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
+    cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
     cmySecTipos:'Lo único que sigue en plan, no construido',
     cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', cmy1p:'Bitácoras tipo diario, ligadas a un método específico, para cruzar experiencia real contra la ficha oficial.',
@@ -3652,6 +3653,7 @@ const translations = {
     cmy5porque:'Why this is the only one still in plan: without real moderation, someone could write something that sounds like specific medical advice without anyone reviewing it before it is published — it is exactly the one that most needs oversight before opening up.',
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
+    cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
     cmySecTipos:'The only one still in plan, not built',
     cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', cmy1p:'Diary-style logs, tied to a specific method, to cross-check real experience against the official card.',
@@ -4478,6 +4480,7 @@ const translations = {
     cmy5porque:'Warum das der einzige ist, der noch geplant bleibt: ohne echte Moderation könnte jemand etwas schreiben, das wie ein spezifischer medizinischer Rat klingt, ohne dass es jemand vor der Veröffentlichung prüft — genau das braucht am meisten Aufsicht, bevor es geöffnet wird.',
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
+    cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
     cmySecTipos:'Das Einzige, das noch geplant ist, nicht gebaut',
     cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', cmy1p:'Tagebuchartige Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Karte abzugleichen.',
@@ -5304,6 +5307,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmy5porque:'Pourquoi c\u2019est le seul qui reste au stade de plan : sans modération réelle, quelqu\u2019un pourrait écrire quelque chose qui ressemble à un conseil médical précis sans que personne ne le révise avant publication — c\u2019est justement celui qui a le plus besoin de supervision avant d\u2019être ouvert.',
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
+    cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
     cmySecTipos:'La seule chose qui reste au stade de plan, pas construite',
     cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', cmy1p:'Journaux type carnet, liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle.',
@@ -6220,10 +6224,81 @@ async function renderComunidadScreen(){
     ? `<p class="bit-empty">${t('cmyVacioMsg')}</p>`
     : members.map(m => `<div class="spec-row"><span><b>${esc(m.display_name)}</b> · ${esc(m.country || '')}</span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(tipoLabels[m.profile_type] || m.profile_type || '')}</span></div>`).join('');
   prefillCommunityJoinForm();
+  renderDescubrir();
   await renderTravelerReports();
   await renderGrowReports();
   await renderDiagConfirmations();
   await renderCommunityQuestions();
+}
+
+/* ===================== DESCUBRIR (swipe sobre community_members) ===================== */
+let discoverQueue = [];
+let discoverBusy = false;
+async function renderDescubrir(){
+  const stackEl = document.getElementById('cmyDescubrirStack');
+  const gateEl = document.getElementById('cmyDescubrirGate');
+  const emptyEl = document.getElementById('cmyDescubrirEmpty');
+  const controlsEl = document.getElementById('cmyDescubrirControls');
+  if(!stackEl) return;
+  const hide = el => { if(el) el.style.display = 'none'; };
+  hide(gateEl); hide(emptyEl); hide(controlsEl);
+  stackEl.innerHTML = '';
+  if(!window.mvCommunity || !window.mvCurrentUser){
+    if(gateEl) gateEl.style.display = 'block';
+    return;
+  }
+  try{
+    discoverQueue = await window.mvCommunity.getSwipeCandidates({ limit: 20 });
+  }catch(e){ discoverQueue = []; }
+  paintDiscoverTop();
+}
+function paintDiscoverTop(){
+  const stackEl = document.getElementById('cmyDescubrirStack');
+  const emptyEl = document.getElementById('cmyDescubrirEmpty');
+  const controlsEl = document.getElementById('cmyDescubrirControls');
+  if(!stackEl) return;
+  const esc = window.mvCommunity.escapeHtml;
+  const m = discoverQueue[0];
+  if(!m){
+    stackEl.innerHTML = '';
+    if(emptyEl) emptyEl.style.display = 'block';
+    if(controlsEl) controlsEl.style.display = 'none';
+    return;
+  }
+  if(emptyEl) emptyEl.style.display = 'none';
+  if(controlsEl) controlsEl.style.display = 'flex';
+  const tipoLabels = {cultivador:t('cmyTipoCultivador'), negocio:t('cmyTipoNegocio'), entusiasta:t('cmyTipoEntusiasta'), salud:t('cmyTipoSalud'), aprendiendo:t('cmyTipoAprendiendo'), otro:t('cmyTipoOtro')};
+  const cover = m.cover_photo_url
+    ? ` style="background-image:url('${esc(m.cover_photo_url)}')"` : '';
+  const metaBits = [m.country, tipoLabels[m.profile_type] || m.profile_type].filter(Boolean).map(esc).join(' · ');
+  const bio = m.bio && m.bio.trim()
+    ? `<p class="discover-bio">${esc(m.bio)}</p>`
+    : `<p class="discover-bio empty">${esc(t('cmyDescubrirSinBio'))}</p>`;
+  stackEl.innerHTML = `
+    <div class="discover-card" id="cmyDescubrirActive">
+      <div class="discover-cover"${cover}></div>
+      <div class="discover-body">
+        <h3>${esc(m.display_name)}</h3>
+        <div class="discover-meta">${metaBits}</div>
+        ${bio}
+      </div>
+    </div>`;
+}
+async function discoverSwipe(direction){
+  if(discoverBusy) return;
+  const m = discoverQueue[0];
+  if(!m || !window.mvCommunity) return;
+  discoverBusy = true;
+  const cardEl = document.getElementById('cmyDescubrirActive');
+  if(cardEl) cardEl.classList.add(direction === 'right' ? 'leaving-right' : 'leaving-left');
+  try{
+    await window.mvCommunity.recordSwipe(m.user_id, direction);
+  }catch(e){ /* duplicate / offline — advance anyway */ }
+  setTimeout(() => {
+    discoverQueue.shift();
+    paintDiscoverTop();
+    discoverBusy = false;
+  }, 280);
 }
 async function loadTravelerReports(){
   try{

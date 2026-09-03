@@ -2751,6 +2751,18 @@
     <svg viewBox="0 0 70 40" width="100%" style="max-width:130px; display:block; margin:6px auto 16px;"><circle cx="20" cy="14" r="7" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><path d="M20,21 Q9,21 8,34" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><circle cx="50" cy="14" r="7" fill="none" stroke="var(--teal)" stroke-width="1.5"/><path d="M50,21 Q61,21 62,34" fill="none" stroke="var(--teal)" stroke-width="1.5"/><circle cx="35" cy="8" r="6" fill="none" stroke="var(--resin)" stroke-width="1.5"/><path d="M35,14 Q24,15 23,28 M35,14 Q46,15 47,28" fill="none" stroke="var(--resin)" stroke-width="1.5"/></svg>
     <p class="subhead" data-i18n="cmySub">Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.</p>
 
+    <div class="section-title" data-i18n="cmySecDescubrir">Descubrir</div>
+    <p class="subhead" data-i18n="cmyDescubrirIntro">Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.</p>
+    <div class="card-block" id="cmyDescubrirCard">
+      <div id="cmyDescubrirGate" class="note-box" style="display:none;" data-i18n="cmyDescubrirGate">Inicia sesión para usar Descubrir.</div>
+      <div id="cmyDescubrirEmpty" class="bit-empty" style="display:none;" data-i18n="cmyDescubrirEmpty">No hay más perfiles por ahora. Vuelve más tarde.</div>
+      <div id="cmyDescubrirStack" class="discover-stack"></div>
+      <div id="cmyDescubrirControls" class="discover-controls" style="display:none;">
+        <button class="btn-pill ghost" onclick="discoverSwipe('left')" data-i18n="cmyDescubrirPasar">✕ Pasar</button>
+        <button class="btn-pill" onclick="discoverSwipe('right')" data-i18n="cmyDescubrirSeguir">Seguir ✓</button>
+      </div>
+    </div>
+
     <div class="section-title" data-i18n="cmySecUnirse">Únete a la comunidad más grande del mundo</div>
     <div class="card-block">
       <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
