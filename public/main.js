@@ -5656,6 +5656,11 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     document.querySelectorAll('#langSwitch button').forEach(x=>x.classList.remove('lang-on'));
     b.classList.add('lang-on');
     applyLang();
+    // applyLang() only re-applies data-i18n text; it doesn't touch the community
+    // feed, which bakes localized post/comment text straight into HTML at render
+    // time. Re-render it so posts, "Eliminar"/etc., and any comment thread
+    // already open pick up the new language immediately, same as opening it fresh.
+    if(document.getElementById('comunidad')?.classList.contains('active')) renderFeed();
   };
 });
 
