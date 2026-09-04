@@ -2825,6 +2825,7 @@ const translations = {
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmyAvatarBtn:'Foto de perfil', cmyAvatarNeedsName:'Escribe primero tu nombre o apodo.', cmyAvatarSubiendo:'Subiendo foto…', cmyAvatarListo:'¡Listo! Ya tienes foto de perfil.',
+    cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Viajero', cmyTipoPostCultivo:'Cultivo', cmyTipoPostDiagnostico:'Diagnóstico', cmyTipoPostPregunta:'Pregunta',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
     cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
@@ -3656,6 +3657,7 @@ const translations = {
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmyAvatarBtn:'Profile photo', cmyAvatarNeedsName:'Enter your name or nickname first.', cmyAvatarSubiendo:'Uploading photo…', cmyAvatarListo:'Done! Your profile photo is set.',
+    cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Traveler', cmyTipoPostCultivo:'Grow', cmyTipoPostDiagnostico:'Diagnosis', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
     cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
@@ -4485,6 +4487,7 @@ const translations = {
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmyAvatarBtn:'Profilfoto', cmyAvatarNeedsName:'Gib zuerst deinen Namen oder Spitznamen ein.', cmyAvatarSubiendo:'Foto wird hochgeladen…', cmyAvatarListo:'Fertig! Dein Profilfoto ist eingerichtet.',
+    cmyTipoPostGeneral:'Allgemein', cmyTipoPostViajero:'Reise', cmyTipoPostCultivo:'Anbau', cmyTipoPostDiagnostico:'Diagnose', cmyTipoPostPregunta:'Frage',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
     cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
@@ -5314,6 +5317,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmyAvatarBtn:'Photo de profil', cmyAvatarNeedsName:'\u00c9cris d\u2019abord ton nom ou pseudo.', cmyAvatarSubiendo:'Envoi de la photo\u2026', cmyAvatarListo:'C\u2019est fait ! Ta photo de profil est en place.',
+    cmyTipoPostGeneral:'G\u00e9n\u00e9ral', cmyTipoPostViajero:'Voyage', cmyTipoPostCultivo:'Culture', cmyTipoPostDiagnostico:'Diagnostic', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
     cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
@@ -6321,9 +6325,9 @@ async function renderComunidadScreen(){
   if(selectEl.options.length === 0){
     selectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
   }
-  const viajeroSelectEl = document.getElementById('cmyViajeroPaisInput');
-  if(viajeroSelectEl && viajeroSelectEl.options.length === 0){
-    viajeroSelectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  const postViajeroSelectEl = document.getElementById('cmyPostViajeroPaisInput');
+  if(postViajeroSelectEl && postViajeroSelectEl.options.length === 0){
+    postViajeroSelectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
   }
   const members = await loadCommunityMembers();
   const esc = window.mvCommunity ? window.mvCommunity.escapeHtml : (s => s);
@@ -6423,6 +6427,51 @@ function updatePostCount(){
   if(el && countEl) countEl.textContent = `${el.value.length} / 2000`;
 }
 
+// Traveler / grow / diagnosis / question reports as post types inside the
+// same feed: each carries its own emoji, accent color (reusing the avatar
+// palette), and the one extra dropdown it needs. General posts (today's
+// default) have none of that.
+const POST_TYPE_INFO = {
+  general:     { emoji: '',   color: null,             metaKey: null,      labelKey: 'cmyTipoPostGeneral',     helpKey: null,               phKey: 'cmyPostPh' },
+  viajero:     { emoji: '🧳', color: 'var(--teal)',      metaKey: 'country', labelKey: 'cmyTipoPostViajero',     helpKey: 'cmyViajeroIntro',   phKey: 'cmyViajeroTextoPh' },
+  cultivo:     { emoji: '🌱', color: 'var(--moss-deep)', metaKey: 'method',  labelKey: 'cmyTipoPostCultivo',     helpKey: 'cmyCultivoIntro',   phKey: 'cmyCultivoTextoPh' },
+  diagnostico: { emoji: '🩺', color: 'var(--clay)',      metaKey: 'problem', labelKey: 'cmyTipoPostDiagnostico', helpKey: 'cmyDiagIntro',      phKey: 'cmyDiagTextoPh' },
+  pregunta:    { emoji: '❓', color: 'var(--resin)',     metaKey: null,      labelKey: 'cmyTipoPostPregunta',    helpKey: 'cmyPreguntasNota',  phKey: 'cmyPreguntaPh' },
+};
+let currentPostType = 'general';
+function selectPostType(type){
+  currentPostType = POST_TYPE_INFO[type] ? type : 'general';
+  document.querySelectorAll('#cmyPostTypePills .cmy-type-pill').forEach(b => b.classList.toggle('on', b.dataset.type === currentPostType));
+  const fieldByType = {
+    viajero: 'cmyPostViajeroPaisInput',
+    cultivo: 'cmyPostCultivoMetodoInput',
+    diagnostico: 'cmyPostDiagProblemaInput',
+  };
+  Object.values(fieldByType).forEach(id => { const el = document.getElementById(id); if(el) el.style.display = 'none'; });
+  const activeFieldEl = fieldByType[currentPostType] && document.getElementById(fieldByType[currentPostType]);
+  if(activeFieldEl) activeFieldEl.style.display = 'block';
+  const info = POST_TYPE_INFO[currentPostType];
+  const helpEl = document.getElementById('cmyPostTypeHelp');
+  if(helpEl){
+    if(info.helpKey){ helpEl.innerHTML = t(info.helpKey); helpEl.style.display = 'block'; }
+    else helpEl.style.display = 'none';
+  }
+  const inputEl = document.getElementById('cmyPostInput');
+  if(inputEl) inputEl.placeholder = t(info.phKey);
+}
+window.selectPostType = selectPostType;
+function currentPostMeta(){
+  const info = POST_TYPE_INFO[currentPostType];
+  if(!info || !info.metaKey) return null;
+  const fieldByType = {
+    viajero: 'cmyPostViajeroPaisInput',
+    cultivo: 'cmyPostCultivoMetodoInput',
+    diagnostico: 'cmyPostDiagProblemaInput',
+  };
+  const el = document.getElementById(fieldByType[currentPostType]);
+  return el ? { [info.metaKey]: el.value } : null;
+}
+
 // Resize to <=1200px wide, JPEG, and hand back a File for Storage upload.
 function handlePostFoto(input){
   const file = input.files && input.files[0];
@@ -6457,12 +6506,16 @@ async function submitPost(){
   const show = (text, ok) => { msgEl.textContent = text; msgEl.style.color = ok ? 'var(--moss-deep)' : 'var(--clay)'; msgEl.style.display = 'block'; };
   show(t('cmyPostEnviando'), true);
   try{
-    await window.mvCommunity.createPost({ body: body || null, photoFile: pendingPostPhoto, sourceHint: currentLang });
+    await window.mvCommunity.createPost({
+      body: body || null, photoFile: pendingPostPhoto, sourceHint: currentLang,
+      post_type: currentPostType, meta: currentPostMeta(),
+    });
     inputEl.value = '';
     pendingPostPhoto = null;
     document.getElementById('cmyPostFotoInput').value = '';
     document.getElementById('cmyPostFotoPreview').innerHTML = '';
     updatePostCount();
+    selectPostType('general');
     show(t('cmyPostExito'), true);
     setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
     renderFeed();
@@ -6528,8 +6581,15 @@ function renderPostCard(post){
     : '';
   const del = post.user_id === myId
     ? `<button class="cmy-del" onclick="deletePostStep(this,'${post.id}')">${t('cmyEliminar')}</button>` : '';
+  const typeInfo = POST_TYPE_INFO[post.post_type];
+  const cardStyle = typeInfo && typeInfo.color ? ` style="border-left:3px solid ${typeInfo.color};"` : '';
+  const typeExtra = typeInfo && typeInfo.metaKey && post.meta && post.meta[typeInfo.metaKey]
+    ? ` · ${esc(post.meta[typeInfo.metaKey])}` : '';
+  const typeTag = typeInfo && typeInfo.color
+    ? `<div class="cmy-post-tag" style="color:${typeInfo.color}; border-color:${typeInfo.color};">${typeInfo.emoji} ${esc(t(typeInfo.labelKey))}${typeExtra}</div>` : '';
   return `
-    <div class="cmy-post" id="cmyPost-${post.id}">
+    <div class="cmy-post" id="cmyPost-${post.id}"${cardStyle}>
+      ${typeTag}
       <div class="cmy-post-head">
         <span style="display:flex; align-items:center; gap:8px;">${mvAvatarHtml(author, 32)}<span><b>${esc(author.display_name)}</b> · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span></span>
         ${del}

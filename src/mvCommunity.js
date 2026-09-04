@@ -246,9 +246,14 @@ async function listUserPosts(userId, { limit = 30 } = {}){
   return data || [];
 }
 
+const POST_TYPES = ['general', 'viajero', 'cultivo', 'diagnostico', 'pregunta'];
+
 // Create a text or photo post. Pass a File in photoFile to upload it first.
 // A non-empty body is translated into all four languages before the insert.
-async function createPost({ body = null, photoFile = null, sourceHint = 'es' } = {}){
+// post_type + meta turn a post into a traveler/grow/diagnosis/question report
+// (meta holds that type's one extra field, e.g. { country: 'Perú' }) — plain
+// posts leave both at their defaults.
+async function createPost({ body = null, photoFile = null, sourceHint = 'es', post_type = 'general', meta = null } = {}){
   const me = requireUser();
   let photo_url = null;
   if(photoFile) photo_url = await uploadCommunityPhoto(photoFile, 'posts');
@@ -258,7 +263,11 @@ async function createPost({ body = null, photoFile = null, sourceHint = 'es' } =
   if(trimmed && trimmed.length > POST_MAX_LEN){
     throw new Error('mvCommunity.createPost: body exceeds ' + POST_MAX_LEN + ' chars');
   }
-  const row = { user_id: me, kind, body: trimmed, photo_url };
+  const row = {
+    user_id: me, kind, body: trimmed, photo_url,
+    post_type: POST_TYPES.includes(post_type) ? post_type : 'general',
+    meta: meta || null,
+  };
   if(trimmed){
     Object.assign(row, await translatedFields(trimmed, sourceHint));
   } else {
@@ -384,7 +393,7 @@ async function uploadAvatar(fileOrBlob){
 
 window.mvCommunity = {
   escapeHtml,
-  PLATFORM_LANGS, POST_MAX_LEN, COMMENT_MAX_LEN,
+  PLATFORM_LANGS, POST_MAX_LEN, COMMENT_MAX_LEN, POST_TYPES,
   localizeBody, isTranslated,
   listMembers, getMemberProfile, getMyMemberProfile, upsertMyMemberProfile,
   uploadAvatar,
