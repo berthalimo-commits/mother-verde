@@ -126,6 +126,15 @@ async function upsertMyMemberProfile(fields = {}){
   const allowed = ['display_name', 'country', 'profile_type', 'bio', 'cover_photo_url', 'avatar_url'];
   const row = { user_id: id };
   for(const k of allowed) if(k in fields) row[k] = fields[k];
+  if(!('display_name' in row)){
+    // Postgres validates NOT NULL on the candidate INSERT row even when the
+    // conflict makes this a no-op UPDATE (e.g. saving just an avatar_url for
+    // someone who already joined) — so display_name must always be present.
+    // Carry over the existing value; a genuinely new row still requires the
+    // caller to supply one, exactly as before.
+    const existing = await getMemberProfile(id);
+    row.display_name = existing ? existing.display_name : null;
+  }
   const { data, error } = await sb().from('community_members')
     .upsert(row, { onConflict: 'user_id' }).select().single();
   if(error) throw error;
