@@ -395,3 +395,7 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 /* ---- "In development" sections (traveler / grow / diagnosis / questions) ---- */
 .wip-block [disabled]{opacity:0.45; cursor:not-allowed;}
 .wip-block .note-box{border-style:solid; border-color:var(--resin); background:rgba(227,167,95,0.12); color:var(--ink); margin-bottom:14px;}
+
+/* ---- Avatars (photo, or a colored initial when none is set) ---- */
+.mv-avatar{border-radius:50%; object-fit:cover; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center;}
+.mv-avatar-initial{color:var(--ink-on-accent); font-family:'Manrope',sans-serif; font-weight:700; line-height:1;}

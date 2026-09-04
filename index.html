@@ -68,7 +68,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
         <span id="searchBtnLabel" data-i18n="searchBtnLabel">Buscar</span>
       </button>
-      <button onclick="showScreen('cuenta')" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft);">
+      <button id="accountBtn" onclick="showScreen('cuenta')" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>
       </button>
       <nav class="tabs">
@@ -2782,6 +2782,13 @@
     <div class="card-block">
       <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div id="cmyAvatarPreview"></div>
+          <label class="btn-pill ghost sm" style="cursor:pointer;">📷 <span data-i18n="cmyAvatarBtn">Foto de perfil</span>
+            <input type="file" accept="image/*" onchange="handleAvatarUpload(this)" style="display:none;">
+          </label>
+        </div>
+        <div id="cmyAvatarMsg" style="font-size:12px; display:none;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyNombreLabel">Nombre o apodo</label><input type="text" id="cmyNombreInput" data-i18n-ph="cmyNombrePh" placeholder="Cómo quieres que te vean" maxlength="30" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCorreoLabel">Correo <span style="text-transform:none; opacity:0.7;" data-i18n="cmyCorreoPrivado">(privado, no se muestra)</span></label><input type="email" id="cmyCorreoInput" data-i18n-ph="cmyCorreoPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyPaisLabel">País</label><select id="cmyPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>

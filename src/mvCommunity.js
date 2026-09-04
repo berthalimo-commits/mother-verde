@@ -123,7 +123,7 @@ async function getMyMemberProfile(){
 // display_name is NOT NULL in the table — include it on first insert.
 async function upsertMyMemberProfile(fields = {}){
   const id = requireUser();
-  const allowed = ['display_name', 'country', 'profile_type', 'bio', 'cover_photo_url'];
+  const allowed = ['display_name', 'country', 'profile_type', 'bio', 'cover_photo_url', 'avatar_url'];
   const row = { user_id: id };
   for(const k of allowed) if(k in fields) row[k] = fields[k];
   const { data, error } = await sb().from('community_members')
@@ -363,11 +363,31 @@ async function uploadCommunityPhoto(file, folder = 'misc'){
   return sb().storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
 }
 
+// Avatar: unlike post photos, one fixed path per user (<uid>/avatar/avatar.jpg)
+// so re-uploading replaces the old file instead of accumulating orphans. The
+// caller resizes the image client-side first. Returns a cache-busted URL
+// (?v=timestamp) so a re-upload under the same path isn't served stale from
+// the browser cache; does NOT touch community_members — call
+// upsertMyMemberProfile({ avatar_url }) after, same as any other field.
+async function uploadAvatar(fileOrBlob){
+  const me = requireUser();
+  const path = `${me}/avatar/avatar.jpg`;
+  const { error } = await sb().storage.from(BUCKET).upload(path, fileOrBlob, {
+    cacheControl: '3600',
+    upsert: true,
+    contentType: 'image/jpeg',
+  });
+  if(error) throw error;
+  const base = sb().storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  return `${base}?v=${Date.now()}`;
+}
+
 window.mvCommunity = {
   escapeHtml,
   PLATFORM_LANGS, POST_MAX_LEN, COMMENT_MAX_LEN,
   localizeBody, isTranslated,
   listMembers, getMemberProfile, getMyMemberProfile, upsertMyMemberProfile,
+  uploadAvatar,
   follow, unfollow, getFollowing, getFollowers, isMutual, canView,
   getSwipedIds, getSwipeCandidates, recordSwipe,
   listFeedPosts, listUserPosts, createPost, updatePost, deletePost,
