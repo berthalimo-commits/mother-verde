@@ -77,6 +77,20 @@
         <button data-screen="elaboracion" data-i18n="navElaboracion">Elaboración</button>
         <button data-screen="legal" data-i18n="navLegal">Legal</button>
         <button data-screen="ciencia" data-i18n="navCiencia">Ciencia</button>
+        <div class="tabs-more" id="tabsMore">
+          <button type="button" id="tabsMoreBtn" onclick="toggleMoreMenu(event)"><span data-i18n="navMas">Más</span> ▾</button>
+          <div class="tabs-more-menu" id="tabsMoreMenu" hidden>
+            <button type="button" onclick="goMore('comunidad')" data-i18n="modComunidadTitle">Comunidad</button>
+            <div class="tabs-more-sep"></div>
+            <button type="button" onclick="goMore('seguridad')" data-i18n="modSegTitle">Seguridad</button>
+            <button type="button" onclick="goMore('historia')" data-i18n="modHistTitle">Historia global</button>
+            <button type="button" onclick="goMore('glosario')" data-i18n="modGlosTitle">Glosario</button>
+            <button type="button" onclick="goMore('calculadoras')" data-i18n="modCalcTitle">Calculadoras</button>
+            <button type="button" onclick="goMore('bitacora')" data-i18n="modBitacoraTitle">Bitácora de cultivo</button>
+            <button type="button" onclick="goMore('variedades')" data-i18n="modVariedadesTitle">Variedades &amp; cultivares</button>
+            <button type="button" onclick="goMore('negocio')" data-i18n="modNegocioTitle">Negocio</button>
+          </div>
+        </div>
       </nav>
       <div class="lang-switch" id="langSwitch">
         <button data-lang="es" class="lang-on">ES</button>
@@ -3368,8 +3382,8 @@
   <!-- ============ CUENTA ============ -->
   <section class="screen" id="cuenta">
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
-    <div class="eyebrow" data-i18n="cuentaEyebrow">Tu cuenta</div>
-    <h2 class="title" data-i18n="cuentaTitle">Perfil</h2>
+    <div class="eyebrow" data-i18n="cuentaEyebrow">Ajustes</div>
+    <h2 class="title" data-i18n="cuentaTitle">Tu cuenta</h2>
 
     <div class="card-block" id="cuentaAuthCard">
       <div id="authTabs" style="display:flex; gap:8px; margin-bottom:18px;">
@@ -3402,9 +3416,11 @@
       <div class="card-block">
         <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaNombreLabel">Nombre</label><input type="text" id="cuentaNombreInput" data-i18n-ph="cuentaNombrePh" placeholder="Tu nombre" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
+        </div>
+        <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+          <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>
         </div>
       </div>
     </div>

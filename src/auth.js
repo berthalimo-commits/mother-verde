@@ -114,10 +114,9 @@ document.getElementById('authLogoutBtn')?.addEventListener('click', async () => 
 
 document.getElementById('cuentaGuardarBtn')?.addEventListener('click', async () => {
   if(!window.mvCurrentUser) return;
-  const display_name = document.getElementById('cuentaNombreInput').value.trim();
   const contact_email = document.getElementById('cuentaCorreoInput').value.trim();
   const statusEl = document.getElementById('cuentaGuardarStatus');
-  const { error } = await supabase.from('profiles').update({ display_name, contact_email }).eq('id', window.mvCurrentUser.id);
+  const { error } = await supabase.from('profiles').update({ contact_email }).eq('id', window.mvCurrentUser.id);
   if(statusEl) statusEl.textContent = error ? window.t('authErrGeneric') : window.t('authProfileSaved');
   if(!error) window.mvCurrentProfile = await loadProfile(window.mvCurrentUser.id);
 });

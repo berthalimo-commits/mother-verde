@@ -2216,7 +2216,7 @@ const searchIndexStatic = [
 ];
 
 const translations = {
-  es:{brandSub:'Codex global · cannabis medicinal &amp; recreacional', navHome:'Inicio', navCultivo:'Cultivo', navElaboracion:'Elaboración', navLegal:'Legal', navCiencia:'Ciencia',
+  es:{brandSub:'Codex global · cannabis medicinal &amp; recreacional', navHome:'Inicio', navCultivo:'Cultivo', navElaboracion:'Elaboración', navLegal:'Legal', navCiencia:'Ciencia', navMas:'Más',
     gateUnlockBtn:'Desbloquear con Premium',
     gtDliTitle:'Calculadora de DLI', gtDliDesc:'La integral de luz diaria es una herramienta Premium.',
     gtDoseTitle:'Dosis por porción', gtDoseDesc:'La calculadora de cumplimiento normativo es una herramienta Premium.',
@@ -2379,7 +2379,7 @@ const translations = {
     bitErrSinNota:'Escribe una nota antes de guardar.', bitGuardadoOk:'✓ Guardado', bitErrGuardar:'No se pudo guardar — intenta de nuevo.',
     bitSinFecha:'sin fecha', bitEliminar:'Eliminar', bitSinNotas:'(sin notas)', bitVacio:'Todavía no hay entradas — agrega la primera arriba.',
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
-    cuentaEyebrow:'Tu cuenta', cuentaTitle:'Perfil', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.',
+    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.',
     cuentaPremiumActivo:'✓ Premium activo — acceso completo a las 10 zonas, sin publicidad, descargas ilimitadas.', cuentaGestionarBtn:'Gestionar suscripción', cuentaGestionarAlert:'En la app real, esto abriría la gestión de suscripción de Apple/Google.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', cuentaSuscribirBtn:'Obtener Premium — $7.99/mes',
     pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', pmComprarBtn:'Comprar Premium — $7.99/mes',
     pmPagoSeguroNote:'Pago procesado de forma segura por App Store / Google Play / Stripe — Mother Verde nunca ve ni guarda tu número de tarjeta.',
@@ -3051,7 +3051,7 @@ const translations = {
     adSlotText:'Espacio publicitario disponible', adInquiryTitle:'Anunciar en Mother Verde', adInquiryIntro:'Cuéntanos sobre tu marca o negocio — revisamos cada solicitud manualmente antes de aprobarla.',
     adInquiryNombreLabel:'Nombre', adInquiryEmpresaLabel:'Empresa', adInquiryCorreoLabel:'Correo', adInquiryMensajeLabel:'Mensaje', adInquirySubmitBtn:'Enviar',
     adInquiryEnviando:'Enviando…', adInquiryOk:'✓ Recibido — te contactaremos pronto.', adInquiryError:'No se pudo enviar. Intenta de nuevo.'},
-  en:{brandSub:'Global codex · medical &amp; recreational cannabis', navHome:'Home', navCultivo:'Growing', navElaboracion:'Making', navLegal:'Legal', navCiencia:'Science',
+  en:{brandSub:'Global codex · medical &amp; recreational cannabis', navHome:'Home', navCultivo:'Growing', navElaboracion:'Making', navLegal:'Legal', navCiencia:'Science', navMas:'More',
     gateUnlockBtn:'Unlock with Premium',
     gtDliTitle:'DLI Calculator', gtDliDesc:'The daily light integral is a Premium tool.',
     gtDoseTitle:'Dose per serving', gtDoseDesc:'The regulatory compliance calculator is a Premium tool.',
@@ -3213,7 +3213,7 @@ const translations = {
     bitErrSinNota:'Write a note before saving.', bitGuardadoOk:'✓ Saved', bitErrGuardar:'Could not save — try again.',
     bitSinFecha:'no date', bitEliminar:'Delete', bitSinNotas:'(no notes)', bitVacio:'No entries yet — add the first one above.',
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
-    cuentaEyebrow:'Your account', cuentaTitle:'Profile', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and data are saved for real and securely. The subscription status above comes straight from your account.',
+    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and data are saved for real and securely. The subscription status above comes straight from your account.',
     cuentaPremiumActivo:'✓ Premium active — full access to all 10 zones, no ads, unlimited downloads.', cuentaGestionarBtn:'Manage subscription', cuentaGestionarAlert:'In the real app, this would open Apple/Google subscription management.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', cuentaSuscribirBtn:'Get Premium — $7.99/month',
     pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', pmComprarBtn:'Buy Premium — $7.99/month',
     pmPagoSeguroNote:'Payment securely processed by the App Store / Google Play / Stripe — Mother Verde never sees or stores your card number.',
@@ -3884,7 +3884,7 @@ const translations = {
     adSlotText:'Advertising space available', adInquiryTitle:'Advertise on Mother Verde', adInquiryIntro:'Tell us about your brand or business — we review every request manually before approving it.',
     adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Company', adInquiryCorreoLabel:'Email', adInquiryMensajeLabel:'Message', adInquirySubmitBtn:'Send',
     adInquiryEnviando:'Sending…', adInquiryOk:'✓ Received — we’ll be in touch soon.', adInquiryError:'Could not send. Please try again.'},
-  de:{brandSub:'Globaler Codex · medizinisches &amp; Freizeit-Cannabis', navHome:'Start', navCultivo:'Anbau', navElaboracion:'Verarbeitung', navLegal:'Recht', navCiencia:'Wissenschaft',
+  de:{brandSub:'Globaler Codex · medizinisches &amp; Freizeit-Cannabis', navHome:'Start', navCultivo:'Anbau', navElaboracion:'Verarbeitung', navLegal:'Recht', navCiencia:'Wissenschaft', navMas:'Mehr',
     gateUnlockBtn:'Mit Premium freischalten',
     gtDliTitle:'DLI-Rechner', gtDliDesc:'Das tägliche Lichtintegral ist ein Premium-Werkzeug.',
     gtDoseTitle:'Dosis pro Portion', gtDoseDesc:'Der Rechner für regulatorische Konformität ist ein Premium-Werkzeug.',
@@ -4046,7 +4046,7 @@ const translations = {
     bitErrSinNota:'Schreibe eine Notiz, bevor du speicherst.', bitGuardadoOk:'✓ Gespeichert', bitErrGuardar:'Konnte nicht gespeichert werden — versuch es erneut.',
     bitSinFecha:'kein Datum', bitEliminar:'Löschen', bitSinNotas:'(keine Notizen)', bitVacio:'Noch keine Einträge — füge oben den ersten hinzu.',
     bitFotoLabel:'Foto (optional)', bitFotoNota:'Wird automatisch komprimiert, um Speicherplatz zu sparen. Bei vielen Einträgen mit Foto kann der Speicherplatz des Prototyps voll werden — in der Produktion würde dies auf einem echten Server ohne dieses Limit liegen.',
-    cuentaEyebrow:'Dein Konto', cuentaTitle:'Profil', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden echt und sicher gespeichert. Der Abo-Status oben kommt direkt aus deinem Konto.',
+    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden echt und sicher gespeichert. Der Abo-Status oben kommt direkt aus deinem Konto.',
     cuentaPremiumActivo:'✓ Premium aktiv — voller Zugriff auf alle 10 Bereiche, werbefrei, unbegrenzte Downloads.', cuentaGestionarBtn:'Abo verwalten', cuentaGestionarAlert:'In der echten App würde dies die Abo-Verwaltung von Apple/Google öffnen.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', cuentaSuscribirBtn:'Premium holen — 7,99 $/Monat',
     pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', pmComprarBtn:'Premium kaufen — 7,99 $/Monat',
     pmPagoSeguroNote:'Zahlung sicher abgewickelt über App Store / Google Play / Stripe — Mother Verde sieht oder speichert deine Kartennummer niemals.',
@@ -4716,7 +4716,7 @@ const translations = {
     adSlotText:'Werbefläche verfügbar', adInquiryTitle:'Bei Mother Verde werben', adInquiryIntro:'Erzähl uns von deiner Marke oder deinem Unternehmen — wir prüfen jede Anfrage manuell, bevor wir sie freigeben.',
     adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Unternehmen', adInquiryCorreoLabel:'E-Mail', adInquiryMensajeLabel:'Nachricht', adInquirySubmitBtn:'Senden',
     adInquiryEnviando:'Wird gesendet…', adInquiryOk:'✓ Erhalten — wir melden uns bald.', adInquiryError:'Konnte nicht gesendet werden. Versuch es erneut.'},
-  fr:{brandSub:'Codex mondial · cannabis médical &amp; récréatif', navHome:'Accueil', navCultivo:'Culture', navElaboracion:'Élaboration', navLegal:'Légal', navCiencia:'Science',
+  fr:{brandSub:'Codex mondial · cannabis médical &amp; récréatif', navHome:'Accueil', navCultivo:'Culture', navElaboracion:'Élaboration', navLegal:'Légal', navCiencia:'Science', navMas:'Plus',
     gateUnlockBtn:'Débloquer avec Premium',
     gtDliTitle:'Calculateur de DLI', gtDliDesc:"L'intégrale de lumière quotidienne est un outil Premium.",
     gtDoseTitle:'Dose par portion', gtDoseDesc:'Le calculateur de conformité réglementaire est un outil Premium.',
@@ -4878,7 +4878,7 @@ const translations = {
     bitErrSinNota:'Écris une note avant d’enregistrer.', bitGuardadoOk:'✓ Enregistré', bitErrGuardar:'Impossible d’enregistrer — réessaie.',
     bitSinFecha:'sans date', bitEliminar:'Supprimer', bitSinNotas:'(sans notes)', bitVacio:'Pas encore d’entrées — ajoute la première ci-dessus.', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
     bitFotoLabel:'Photo (facultatif)', bitFotoNota:'Automatiquement compressée pour économiser de l\u2019espace. Avec de nombreuses entrées avec photo, l\u2019espace de stockage du prototype peut se remplir — en production, cela vivrait sur un vrai serveur, sans cette limite.',
-    cuentaEyebrow:'Ton compte', cuentaTitle:'Profil', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés pour de vrai, en toute sécurité. Le statut d’abonnement ci-dessus vient directement de ton compte.',
+    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés pour de vrai, en toute sécurité. Le statut d’abonnement ci-dessus vient directement de ton compte.',
     cuentaPremiumActivo:'✓ Premium actif — accès complet aux 10 zones, sans publicité, téléchargements illimités.', cuentaGestionarBtn:"Gérer l'abonnement", cuentaGestionarAlert:"Dans l'app réelle, ceci ouvrirait la gestion d'abonnement d'Apple/Google.", cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', cuentaSuscribirBtn:'Obtenir Premium — 7,99 $/mois',
     pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', pmComprarBtn:'Acheter Premium — 7,99 $/mois',
     pmPagoSeguroNote:'Paiement traité en toute sécurité par l\u2019App Store / Google Play / Stripe — Mother Verde ne voit ni ne stocke jamais ton numéro de carte.',
@@ -5680,12 +5680,30 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
   };
 });
 
+// Screens reachable only from the "Más ▾" menu (not their own top-bar tab).
+const MORE_SCREENS = ['comunidad', 'seguridad', 'historia', 'glosario', 'calculadoras', 'bitacora', 'variedades', 'negocio'];
+function toggleMoreMenu(e){
+  if(e) e.stopPropagation();
+  const menu = document.getElementById('tabsMoreMenu');
+  if(menu) menu.hidden = !menu.hidden;
+}
+function closeMoreMenu(){
+  const menu = document.getElementById('tabsMoreMenu');
+  if(menu) menu.hidden = true;
+}
+function goMore(id){ closeMoreMenu(); showScreen(id); }
+document.addEventListener('click', e => { if(!e.target.closest('#tabsMore')) closeMoreMenu(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMoreMenu(); });
+
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>b.classList.remove('active'));
   const navBtn = document.querySelector(`nav.tabs button[data-screen="${id}"]`);
   if(navBtn) navBtn.classList.add('active');
+  const moreBtn = document.getElementById('tabsMoreBtn');
+  if(moreBtn) moreBtn.classList.toggle('on', MORE_SCREENS.includes(id));
+  closeMoreMenu();
   if(id === 'bitacora') loadBitEntries();
   if(id === 'cuenta') renderCuenta();
   if(id === 'glosario') renderGlosario('');
@@ -5694,7 +5712,7 @@ function showScreen(id){
   if(id === 'legal') renderLegalMap();
   window.scrollTo(0,0);
 }
-document.querySelectorAll('nav.tabs button').forEach(b=>{
+document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>{
   b.onclick = ()=> showScreen(b.dataset.screen);
 });
 
@@ -6080,9 +6098,7 @@ function renderCuenta(){
     btnEl.onclick = openPremium;
   }
   const profile = window.mvCurrentProfile;
-  const nombreEl = document.getElementById('cuentaNombreInput');
   const correoEl = document.getElementById('cuentaCorreoInput');
-  if(nombreEl && document.activeElement !== nombreEl) nombreEl.value = profile?.display_name || '';
   if(correoEl && document.activeElement !== correoEl) correoEl.value = profile?.contact_email || '';
 }
 
