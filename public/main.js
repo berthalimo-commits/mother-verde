@@ -5570,6 +5570,296 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     adInquiryEnviando:'Envoi…', adInquiryOk:'✓ Reçu — on te recontacte bientôt.', adInquiryError:'Échec de l’envoi. Réessaie.'}
 };
 
+/* Subscription / free-trial strings (appended so overrides win). */
+translations.es = Object.assign(translations.es, {
+  "cuentaEstadoTitle": "Suscripción",
+  "cuentaPagoSeguroNote": "Tus pagos los procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.",
+  "pmPagoSeguroNote": "El pago lo procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.",
+  "pmH2": "Todo el codex, sin límites.",
+  "pmSubhead": "Prueba 3 días gratis. Cancela cuando quieras, tú misma, desde Cuenta.",
+  "pmTrialTag": "Prueba gratis de 3 días",
+  "pmTrialDisclosure": "Después de 3 días, se cobrará automáticamente <b>$7.10/mes</b> a la tarjeta que ingreses, salvo que canceles antes.",
+  "pmPriceRowLabel": "Precio",
+  "pmPriceRowValue": "$7.10 / mes",
+  "pmTrialEndsLabel": "Fin de la prueba",
+  "pmFirstChargeLabel": "Primer cobro",
+  "pmTrialCancelInfo": "Puedes cancelar en cualquier momento desde Cuenta → Suscripción, tú misma, sin escribir a nadie. Si cancelas durante la prueba, no se te cobra nada.",
+  "pmCardPending": "Los campos de tarjeta se activarán cuando se conecte el procesador de pagos (Payment Nerds). Por ahora, en pruebas, la prueba gratis se activa sin tarjeta.",
+  "pmConsentLabel": "Entiendo que, si no cancelo antes, al terminar la prueba de 3 días se me cobrará $7.10 cada mes de forma automática hasta que cancele.",
+  "pmStartTrialBtn": "Empezar prueba gratis",
+  "pmConsentRequired": "Marca la casilla de confirmación para continuar.",
+  "pmStarting": "Activando tu prueba…",
+  "pmNotLiveMsg": "El cobro automático todavía no está disponible. Vuelve pronto.",
+  "pmComingSoonBtn": "Disponible muy pronto",
+  "pmComingSoonMsg": "La activación de pagos (Payment Nerds) estará disponible en los próximos días. El precio y las condiciones que ves ya son los definitivos.",
+  "pmSignInFirst": "Inicia sesión para empezar",
+  "pmManageBtn": "Gestionar mi suscripción",
+  "subNoneDetail": "Con Premium desbloqueas las 10 zonas completas, sin anuncios, por {price}/mes — después de 3 días gratis.",
+  "subStartTrialBtn": "Empezar prueba gratis de 3 días",
+  "subTrialActiveHead": "Prueba gratis activa — día {n} de 3",
+  "subTrialActiveDetail": "Tienes acceso completo hasta el {date}. El {charge} se cobrará {price}/mes automáticamente, salvo que canceles antes.",
+  "subCancelTrialBtn": "Cancelar prueba",
+  "subTrialCanceledHead": "Prueba cancelada",
+  "subTrialCanceledDetail": "Tienes acceso hasta el {date}. No se te cobrará nada.",
+  "subReactivateTrialBtn": "Reactivar la prueba",
+  "subActiveHead": "Premium activo",
+  "subActiveDetail": "Tu suscripción se renueva el {date} por {price}/mes.",
+  "subCancelBtn": "Cancelar suscripción",
+  "subActiveCanceledHead": "Suscripción cancelada",
+  "subActiveCanceledDetail": "Mantienes el acceso Premium hasta el {date}. No se renovará y no se te cobrará de nuevo.",
+  "subReactivateBtn": "Reactivar suscripción",
+  "subPastDueHead": "Problema con el cobro",
+  "subPastDueDetail": "No pudimos procesar el último pago. Actualiza tu tarjeta para no perder el acceso Premium.",
+  "subUpdateCardBtn": "Actualizar tarjeta",
+  "subBlockedHead": "Acceso Premium pausado",
+  "subBlockedDetail": "Tu prueba terminó y no pudimos completar el cobro. El acceso Premium está pausado hasta que actualices tu tarjeta.",
+  "subCanceledHead": "Sin suscripción activa",
+  "subCanceledDetail": "Ya usaste tu prueba gratis. Puedes volver a Premium cuando quieras.",
+  "subResubscribeBtn": "Volver a Premium ({price}/mes)",
+  "subLoading": "Cargando el estado de tu cuenta…",
+  "subCancelConfirmTrial": "Si cancelas ahora, conservas el acceso hasta que termine la prueba y no se te cobrará nada. ¿Cancelar la prueba?",
+  "subCancelConfirmSub": "Si cancelas, mantienes Premium hasta el final del período ya pagado y no se renovará. ¿Cancelar la suscripción?",
+  "subCancelConfirmYes": "Sí, cancelar",
+  "subCancelConfirmNo": "Volver",
+  "subCancelDone": "Listo. Tu cancelación quedó registrada.",
+  "subWorking": "Un momento…",
+  "subReactivateDone": "Listo. Tu suscripción sigue activa.",
+  "subUpdateCardPending": "La actualización de tarjeta estará disponible cuando se conecte Payment Nerds.",
+  "subResubscribePending": "La re-suscripción estará disponible cuando se conecte Payment Nerds.",
+  "subErrTrialUsed": "Ya usaste tu prueba gratis en esta cuenta.",
+  "subErrAlready": "Ya tienes una suscripción activa.",
+  "subErrNotLive": "El cobro automático todavía no está disponible.",
+  "subErrAuth": "Inicia sesión para continuar.",
+  "subErrGeneric": "Algo falló. Intenta de nuevo en un momento.",
+  "trialReminderBannerText": "Tu prueba gratis termina mañana. El {charge} se cobrará {price} a tu tarjeta, salvo que canceles antes.",
+  "trialBlockedBannerText": "Tu acceso Premium está pausado: no pudimos completar el cobro de {price}. Actualiza tu tarjeta para reactivarlo.",
+  "trialBannerManageBtn": "Ver mi suscripción",
+  "trialBlockedBtn": "Actualizar tarjeta",
+  "tsTitle": "Tu prueba gratis empezó",
+  "tsAccessLine": "Tienes acceso completo a todo Mother Verde.",
+  "tsEndsLabel": "La prueba termina",
+  "tsChargeLabel": "Primer cobro ($7.10)",
+  "tsCancelNote": "El día antes te enviaremos un aviso. Puedes cancelar cuando quieras desde Cuenta → Suscripción, sin escribir a nadie. Si cancelas antes del cobro, no pagas nada.",
+  "tsGotIt": "Entendido",
+  "tsSeeSub": "Ver mi suscripción"
+});
+translations.en = Object.assign(translations.en, {
+  "cuentaEstadoTitle": "Subscription",
+  "cuentaPagoSeguroNote": "Your payments are securely processed by an external provider (Payment Nerds). Mother Verde never sees or stores your card number — only your subscription status.",
+  "pmPagoSeguroNote": "Payment is securely processed by an external provider (Payment Nerds). Mother Verde never sees or stores your card number — only your subscription status.",
+  "pmH2": "The whole codex, no limits.",
+  "pmSubhead": "Try 3 days free. Cancel anytime, yourself, from Account.",
+  "pmTrialTag": "3-day free trial",
+  "pmTrialDisclosure": "After 3 days, <b>$7.10/month</b> will automatically be charged to the card you enter, unless you cancel first.",
+  "pmPriceRowLabel": "Price",
+  "pmPriceRowValue": "$7.10 / month",
+  "pmTrialEndsLabel": "Trial ends",
+  "pmFirstChargeLabel": "First charge",
+  "pmTrialCancelInfo": "You can cancel anytime from Account → Subscription, by yourself, without contacting anyone. If you cancel during the trial, you are not charged.",
+  "pmCardPending": "Card fields will turn on once the payment processor (Payment Nerds) is connected. For now, in testing, the free trial starts without a card.",
+  "pmConsentLabel": "I understand that unless I cancel first, when the 3-day trial ends I will be charged $7.10 every month automatically until I cancel.",
+  "pmStartTrialBtn": "Start free trial",
+  "pmConsentRequired": "Tick the confirmation box to continue.",
+  "pmStarting": "Starting your trial…",
+  "pmNotLiveMsg": "Automatic billing isn't available yet. Check back soon.",
+  "pmComingSoonBtn": "Available very soon",
+  "pmComingSoonMsg": "Payment activation (Payment Nerds) will be available in the next few days. The price and terms shown are final.",
+  "pmSignInFirst": "Sign in to start",
+  "pmManageBtn": "Manage my subscription",
+  "subNoneDetail": "Premium unlocks all 10 full zones, no ads, for {price}/month — after 3 days free.",
+  "subStartTrialBtn": "Start 3-day free trial",
+  "subTrialActiveHead": "Free trial active — day {n} of 3",
+  "subTrialActiveDetail": "You have full access until {date}. On {charge} you'll be charged {price}/month automatically, unless you cancel first.",
+  "subCancelTrialBtn": "Cancel trial",
+  "subTrialCanceledHead": "Trial canceled",
+  "subTrialCanceledDetail": "You keep access until {date}. You won't be charged.",
+  "subReactivateTrialBtn": "Reactivate trial",
+  "subActiveHead": "Premium active",
+  "subActiveDetail": "Your subscription renews on {date} for {price}/month.",
+  "subCancelBtn": "Cancel subscription",
+  "subActiveCanceledHead": "Subscription canceled",
+  "subActiveCanceledDetail": "You keep Premium access until {date}. It won't renew and you won't be charged again.",
+  "subReactivateBtn": "Reactivate subscription",
+  "subPastDueHead": "Payment problem",
+  "subPastDueDetail": "We couldn't process your last payment. Update your card so you don't lose Premium access.",
+  "subUpdateCardBtn": "Update card",
+  "subBlockedHead": "Premium access paused",
+  "subBlockedDetail": "Your trial ended and we couldn't complete the charge. Premium access is paused until you update your card.",
+  "subCanceledHead": "No active subscription",
+  "subCanceledDetail": "You've already used your free trial. You can go Premium again anytime.",
+  "subResubscribeBtn": "Back to Premium ({price}/month)",
+  "subLoading": "Loading your account status…",
+  "subCancelConfirmTrial": "If you cancel now, you keep access until the trial ends and you won't be charged. Cancel the trial?",
+  "subCancelConfirmSub": "If you cancel, you keep Premium until the end of the period you've paid for, and it won't renew. Cancel the subscription?",
+  "subCancelConfirmYes": "Yes, cancel",
+  "subCancelConfirmNo": "Go back",
+  "subCancelDone": "Done. Your cancellation is recorded.",
+  "subWorking": "One moment…",
+  "subReactivateDone": "Done. Your subscription stays active.",
+  "subUpdateCardPending": "Card updates will be available once Payment Nerds is connected.",
+  "subResubscribePending": "Re-subscribing will be available once Payment Nerds is connected.",
+  "subErrTrialUsed": "You've already used your free trial on this account.",
+  "subErrAlready": "You already have an active subscription.",
+  "subErrNotLive": "Automatic billing isn't available yet.",
+  "subErrAuth": "Sign in to continue.",
+  "subErrGeneric": "Something went wrong. Try again in a moment.",
+  "trialReminderBannerText": "Your free trial ends tomorrow. On {charge}, {price} will be charged to your card unless you cancel first.",
+  "trialBlockedBannerText": "Your Premium access is paused: we couldn't complete the {price} charge. Update your card to reactivate it.",
+  "trialBannerManageBtn": "View my subscription",
+  "trialBlockedBtn": "Update card",
+  "tsTitle": "Your free trial has started",
+  "tsAccessLine": "You have full access to all of Mother Verde.",
+  "tsEndsLabel": "Trial ends",
+  "tsChargeLabel": "First charge ($7.10)",
+  "tsCancelNote": "We'll send a reminder the day before. Cancel anytime from Account → Subscription — without contacting anyone. Cancel before the charge and you pay nothing.",
+  "tsGotIt": "Got it",
+  "tsSeeSub": "View my subscription"
+});
+translations.de = Object.assign(translations.de, {
+  "cuentaEstadoTitle": "Abo",
+  "cuentaPagoSeguroNote": "Deine Zahlungen werden sicher von einem externen Anbieter (Payment Nerds) verarbeitet. Mother Verde sieht oder speichert deine Kartennummer niemals — nur deinen Abo-Status.",
+  "pmPagoSeguroNote": "Die Zahlung wird sicher von einem externen Anbieter (Payment Nerds) verarbeitet. Mother Verde sieht oder speichert deine Kartennummer niemals — nur deinen Abo-Status.",
+  "pmH2": "Der ganze Codex, ohne Grenzen.",
+  "pmSubhead": "3 Tage kostenlos testen. Jederzeit selbst kündbar über Konto.",
+  "pmTrialTag": "3 Tage kostenlos testen",
+  "pmTrialDisclosure": "Nach 3 Tagen werden automatisch <b>7,10 $/Monat</b> von der eingegebenen Karte abgebucht, sofern du nicht vorher kündigst.",
+  "pmPriceRowLabel": "Preis",
+  "pmPriceRowValue": "7,10 $ / Monat",
+  "pmTrialEndsLabel": "Testphase endet",
+  "pmFirstChargeLabel": "Erste Abbuchung",
+  "pmTrialCancelInfo": "Du kannst jederzeit selbst über Konto → Abo kündigen, ohne jemanden zu kontaktieren. Wenn du während der Testphase kündigst, wird nichts berechnet.",
+  "pmCardPending": "Die Kartenfelder werden aktiviert, sobald der Zahlungsanbieter (Payment Nerds) angebunden ist. Vorerst startet die Testphase im Test ohne Karte.",
+  "pmConsentLabel": "Mir ist bewusst, dass mir nach Ablauf der 3-tägigen Testphase automatisch 7,10 $ pro Monat berechnet werden, bis ich kündige, sofern ich nicht vorher kündige.",
+  "pmStartTrialBtn": "Kostenlose Testphase starten",
+  "pmConsentRequired": "Bestätige das Kästchen, um fortzufahren.",
+  "pmStarting": "Testphase wird gestartet…",
+  "pmNotLiveMsg": "Die automatische Abrechnung ist noch nicht verfügbar. Schau bald wieder vorbei.",
+  "pmComingSoonBtn": "Sehr bald verfügbar",
+  "pmComingSoonMsg": "Die Zahlungsfreischaltung (Payment Nerds) ist in den nächsten Tagen verfügbar. Preis und Bedingungen sind bereits endgültig.",
+  "pmSignInFirst": "Zum Starten anmelden",
+  "pmManageBtn": "Mein Abo verwalten",
+  "subNoneDetail": "Premium schaltet alle 10 vollständigen Bereiche frei, werbefrei, für {price}/Monat — nach 3 kostenlosen Tagen.",
+  "subStartTrialBtn": "3 Tage kostenlos testen",
+  "subTrialActiveHead": "Testphase aktiv — Tag {n} von 3",
+  "subTrialActiveDetail": "Du hast vollen Zugriff bis zum {date}. Am {charge} werden automatisch {price}/Monat abgebucht, sofern du nicht vorher kündigst.",
+  "subCancelTrialBtn": "Testphase kündigen",
+  "subTrialCanceledHead": "Testphase gekündigt",
+  "subTrialCanceledDetail": "Du behältst den Zugriff bis zum {date}. Es wird nichts berechnet.",
+  "subReactivateTrialBtn": "Testphase reaktivieren",
+  "subActiveHead": "Premium aktiv",
+  "subActiveDetail": "Dein Abo verlängert sich am {date} für {price}/Monat.",
+  "subCancelBtn": "Abo kündigen",
+  "subActiveCanceledHead": "Abo gekündigt",
+  "subActiveCanceledDetail": "Du behältst den Premium-Zugriff bis zum {date}. Es verlängert sich nicht und es wird nichts mehr berechnet.",
+  "subReactivateBtn": "Abo reaktivieren",
+  "subPastDueHead": "Zahlungsproblem",
+  "subPastDueDetail": "Wir konnten deine letzte Zahlung nicht verarbeiten. Aktualisiere deine Karte, um den Premium-Zugriff nicht zu verlieren.",
+  "subUpdateCardBtn": "Karte aktualisieren",
+  "subBlockedHead": "Premium-Zugriff pausiert",
+  "subBlockedDetail": "Deine Testphase ist beendet und die Abbuchung war nicht möglich. Der Premium-Zugriff ist pausiert, bis du deine Karte aktualisierst.",
+  "subCanceledHead": "Kein aktives Abo",
+  "subCanceledDetail": "Du hast deine kostenlose Testphase bereits genutzt. Du kannst jederzeit wieder zu Premium wechseln.",
+  "subResubscribeBtn": "Zurück zu Premium ({price}/Monat)",
+  "subLoading": "Kontostatus wird geladen…",
+  "subCancelConfirmTrial": "Wenn du jetzt kündigst, behältst du den Zugriff bis zum Ende der Testphase und es wird nichts berechnet. Testphase kündigen?",
+  "subCancelConfirmSub": "Wenn du kündigst, behältst du Premium bis zum Ende des bezahlten Zeitraums, und es verlängert sich nicht. Abo kündigen?",
+  "subCancelConfirmYes": "Ja, kündigen",
+  "subCancelConfirmNo": "Zurück",
+  "subCancelDone": "Erledigt. Deine Kündigung ist erfasst.",
+  "subWorking": "Einen Moment…",
+  "subReactivateDone": "Erledigt. Dein Abo bleibt aktiv.",
+  "subUpdateCardPending": "Das Aktualisieren der Karte ist verfügbar, sobald Payment Nerds angebunden ist.",
+  "subResubscribePending": "Das erneute Abonnieren ist verfügbar, sobald Payment Nerds angebunden ist.",
+  "subErrTrialUsed": "Du hast deine kostenlose Testphase mit diesem Konto bereits genutzt.",
+  "subErrAlready": "Du hast bereits ein aktives Abo.",
+  "subErrNotLive": "Die automatische Abrechnung ist noch nicht verfügbar.",
+  "subErrAuth": "Zum Fortfahren anmelden.",
+  "subErrGeneric": "Etwas ist schiefgelaufen. Versuche es gleich noch einmal.",
+  "trialReminderBannerText": "Deine kostenlose Testphase endet morgen. Am {charge} werden {price} von deiner Karte abgebucht, sofern du nicht vorher kündigst.",
+  "trialBlockedBannerText": "Dein Premium-Zugriff ist pausiert: Die Abbuchung von {price} war nicht möglich. Aktualisiere deine Karte, um ihn zu reaktivieren.",
+  "trialBannerManageBtn": "Mein Abo ansehen",
+  "trialBlockedBtn": "Karte aktualisieren",
+  "tsTitle": "Deine kostenlose Testphase hat begonnen",
+  "tsAccessLine": "Du hast vollen Zugriff auf ganz Mother Verde.",
+  "tsEndsLabel": "Testphase endet",
+  "tsChargeLabel": "Erste Abbuchung (7,10 $)",
+  "tsCancelNote": "Am Tag davor senden wir dir eine Erinnerung. Kündige jederzeit über Konto → Abo — ohne jemanden zu kontaktieren. Kündige vor der Abbuchung und du zahlst nichts.",
+  "tsGotIt": "Verstanden",
+  "tsSeeSub": "Mein Abo ansehen"
+});
+translations.fr = Object.assign(translations.fr, {
+  "cuentaEstadoTitle": "Abonnement",
+  "cuentaPagoSeguroNote": "Tes paiements sont traités en toute sécurité par un prestataire externe (Payment Nerds). Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement l'état de ton abonnement.",
+  "pmPagoSeguroNote": "Le paiement est traité en toute sécurité par un prestataire externe (Payment Nerds). Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement l'état de ton abonnement.",
+  "pmH2": "Tout le codex, sans limites.",
+  "pmSubhead": "Essaie 3 jours gratuitement. Annule quand tu veux, toi-même, depuis Compte.",
+  "pmTrialTag": "Essai gratuit de 3 jours",
+  "pmTrialDisclosure": "Après 3 jours, <b>7,10 $/mois</b> seront automatiquement débités de la carte que tu saisis, sauf si tu annules avant.",
+  "pmPriceRowLabel": "Prix",
+  "pmPriceRowValue": "7,10 $ / mois",
+  "pmTrialEndsLabel": "Fin de l'essai",
+  "pmFirstChargeLabel": "Premier débit",
+  "pmTrialCancelInfo": "Tu peux annuler à tout moment depuis Compte → Abonnement, toi-même, sans contacter personne. Si tu annules pendant l'essai, rien ne t'est facturé.",
+  "pmCardPending": "Les champs de carte seront activés une fois le processeur de paiement (Payment Nerds) connecté. Pour l'instant, en test, l'essai gratuit démarre sans carte.",
+  "pmConsentLabel": "Je comprends que, sauf annulation de ma part avant, à la fin de l'essai de 3 jours 7,10 $ me seront facturés chaque mois automatiquement jusqu'à ce que j'annule.",
+  "pmStartTrialBtn": "Démarrer l'essai gratuit",
+  "pmConsentRequired": "Coche la case de confirmation pour continuer.",
+  "pmStarting": "Démarrage de ton essai…",
+  "pmNotLiveMsg": "La facturation automatique n'est pas encore disponible. Reviens bientôt.",
+  "pmComingSoonBtn": "Disponible très bientôt",
+  "pmComingSoonMsg": "L'activation des paiements (Payment Nerds) sera disponible dans les prochains jours. Le prix et les conditions affichés sont définitifs.",
+  "pmSignInFirst": "Connecte-toi pour commencer",
+  "pmManageBtn": "Gérer mon abonnement",
+  "subNoneDetail": "Premium débloque les 10 zones complètes, sans publicité, pour {price}/mois — après 3 jours gratuits.",
+  "subStartTrialBtn": "Démarrer l'essai gratuit de 3 jours",
+  "subTrialActiveHead": "Essai gratuit actif — jour {n} sur 3",
+  "subTrialActiveDetail": "Tu as un accès complet jusqu'au {date}. Le {charge}, {price}/mois seront débités automatiquement, sauf si tu annules avant.",
+  "subCancelTrialBtn": "Annuler l'essai",
+  "subTrialCanceledHead": "Essai annulé",
+  "subTrialCanceledDetail": "Tu gardes l'accès jusqu'au {date}. Rien ne te sera facturé.",
+  "subReactivateTrialBtn": "Réactiver l'essai",
+  "subActiveHead": "Premium actif",
+  "subActiveDetail": "Ton abonnement se renouvelle le {date} pour {price}/mois.",
+  "subCancelBtn": "Annuler l'abonnement",
+  "subActiveCanceledHead": "Abonnement annulé",
+  "subActiveCanceledDetail": "Tu gardes l'accès Premium jusqu'au {date}. Il ne se renouvellera pas et tu ne seras plus facturé.",
+  "subReactivateBtn": "Réactiver l'abonnement",
+  "subPastDueHead": "Problème de paiement",
+  "subPastDueDetail": "Nous n'avons pas pu traiter ton dernier paiement. Mets à jour ta carte pour ne pas perdre l'accès Premium.",
+  "subUpdateCardBtn": "Mettre à jour la carte",
+  "subBlockedHead": "Accès Premium en pause",
+  "subBlockedDetail": "Ton essai est terminé et le débit n'a pas pu aboutir. L'accès Premium est en pause jusqu'à la mise à jour de ta carte.",
+  "subCanceledHead": "Aucun abonnement actif",
+  "subCanceledDetail": "Tu as déjà utilisé ton essai gratuit. Tu peux repasser à Premium quand tu veux.",
+  "subResubscribeBtn": "Revenir à Premium ({price}/mois)",
+  "subLoading": "Chargement de l'état de ton compte…",
+  "subCancelConfirmTrial": "Si tu annules maintenant, tu gardes l'accès jusqu'à la fin de l'essai et rien ne te sera facturé. Annuler l'essai ?",
+  "subCancelConfirmSub": "Si tu annules, tu gardes Premium jusqu'à la fin de la période déjà payée, et il ne se renouvellera pas. Annuler l'abonnement ?",
+  "subCancelConfirmYes": "Oui, annuler",
+  "subCancelConfirmNo": "Retour",
+  "subCancelDone": "C'est fait. Ton annulation est enregistrée.",
+  "subWorking": "Un instant…",
+  "subReactivateDone": "C'est fait. Ton abonnement reste actif.",
+  "subUpdateCardPending": "La mise à jour de la carte sera disponible une fois Payment Nerds connecté.",
+  "subResubscribePending": "Le réabonnement sera disponible une fois Payment Nerds connecté.",
+  "subErrTrialUsed": "Tu as déjà utilisé ton essai gratuit sur ce compte.",
+  "subErrAlready": "Tu as déjà un abonnement actif.",
+  "subErrNotLive": "La facturation automatique n'est pas encore disponible.",
+  "subErrAuth": "Connecte-toi pour continuer.",
+  "subErrGeneric": "Une erreur s'est produite. Réessaie dans un instant.",
+  "trialReminderBannerText": "Ton essai gratuit se termine demain. Le {charge}, {price} seront débités de ta carte sauf si tu annules avant.",
+  "trialBlockedBannerText": "Ton accès Premium est en pause : le débit de {price} n'a pas abouti. Mets à jour ta carte pour le réactiver.",
+  "trialBannerManageBtn": "Voir mon abonnement",
+  "trialBlockedBtn": "Mettre à jour la carte",
+  "tsTitle": "Ton essai gratuit a commencé",
+  "tsAccessLine": "Tu as un accès complet à tout Mother Verde.",
+  "tsEndsLabel": "Fin de l'essai",
+  "tsChargeLabel": "Premier débit (7,10 $)",
+  "tsCancelNote": "Nous t'enverrons un rappel la veille. Annule quand tu veux depuis Compte → Abonnement — sans contacter personne. Annule avant le débit et tu ne paies rien.",
+  "tsGotIt": "Compris",
+  "tsSeeSub": "Voir mon abonnement"
+});
+
 let currentLang = 'es';
 window.getCurrentLang = function(){ return currentLang; };
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
@@ -5697,6 +5987,9 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     // time. Re-render it so posts, "Eliminar"/etc., and any comment thread
     // already open pick up the new language immediately, same as opening it fresh.
     if(document.getElementById('comunidad')?.classList.contains('active')) renderFeed();
+    // Cuenta's subscription status line is built in JS, not via data-i18n, so
+    // re-render it on a language change the same way opening the screen would.
+    if(document.getElementById('cuenta')?.classList.contains('active')) renderCuenta();
   };
 });
 
@@ -5730,6 +6023,7 @@ function showScreen(id){
   if(id === 'comunidad') renderComunidadScreen();
   if(id === 'perfil') renderProfileScreen();
   if(id === 'legal') renderLegalMap();
+  if(typeof syncTrialBanners === 'function') syncTrialBanners();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>{
@@ -5996,6 +6290,7 @@ function applyTier(){
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderBitacoraGate();
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
+  if(typeof syncTrialBanners === 'function') syncTrialBanners();
 }
 
 document.querySelectorAll('#tierSwitch button').forEach(b=>{
@@ -6009,8 +6304,206 @@ document.querySelectorAll('#tierSwitch button').forEach(b=>{
 applyTier();
 
 /* ===================== PREMIUM MODAL ===================== */
-function openPremium(){ document.getElementById('premiumModal').classList.add('active'); }
+function openPremium(){ syncPremiumModal(); document.getElementById('premiumModal').classList.add('active'); }
 function closePremium(){ document.getElementById('premiumModal').classList.remove('active'); }
+
+/* ===================== TRIAL / SUBSCRIPTION FLOW =====================
+   Data model + RPCs: supabase/migrations/20260905180000_subscription_trial.sql
+   Client logic:      src/subscription.js  (window.mvSub)
+   Payment processor:  Payment Nerds — NOT connected yet. Charge points are
+   stubbed and marked TODO(payment-nerds). Day-2 reminder email is designed
+   only (docs/trial-reminder-email.md + api/subscription-cron.js).           */
+
+const MV_LOCALE = { es: 'es-ES', en: 'en-US', de: 'de-DE', fr: 'fr-FR' };
+function mvFmtDate(d){
+  try { return new Date(d).toLocaleDateString(MV_LOCALE[currentLang] || 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  catch(e){ return new Date(d).toISOString().slice(0, 10); }
+}
+function mvFmtDateTime(d){
+  try { return new Date(d).toLocaleString(MV_LOCALE[currentLang] || 'es-ES', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }); }
+  catch(e){ return new Date(d).toISOString().slice(0, 16).replace('T', ' '); }
+}
+function mapSubError(e){
+  const m = ((e && (e.message || e.error_description || e.msg)) || '').toLowerCase();
+  if(m.includes('trial already used')) return t('subErrTrialUsed');
+  if(m.includes('already subscribed')) return t('subErrAlready');
+  if(m.includes('payments-not-live')) return t('subErrNotLive');
+  if(m.includes('not-authenticated') || m.includes('not authenticated')) return t('subErrAuth');
+  return t('subErrGeneric');
+}
+function subMsg(txt, kind){
+  const el = document.getElementById('cuentaSubMsg');
+  if(!el) return;
+  el.textContent = txt || '';
+  el.style.color = kind === 'err' ? 'var(--clay)' : 'var(--moss-deep)';
+}
+
+/* ---- Premium offer modal ---- */
+function syncPremiumModal(){
+  const st = window.mvSub ? window.mvSub.getState() : null;
+  const trialEnd = new Date(Date.now() + 3 * 86400000);
+  const endEl = document.getElementById('pmTrialEnds');
+  const chargeEl = document.getElementById('pmFirstCharge');
+  if(endEl) endEl.textContent = mvFmtDate(trialEnd);
+  if(chargeEl) chargeEl.textContent = mvFmtDateTime(trialEnd);
+  const btn = document.getElementById('pmStartTrialBtn');
+  const consentWrap = document.getElementById('pmConsent') ? document.getElementById('pmConsent').closest('label') : null;
+  const card = document.getElementById('pmCardElement');
+  const msg = document.getElementById('pmMsg');
+  const consent = document.getElementById('pmConsent');
+  if(consent) consent.checked = false;
+  if(msg){ msg.textContent = ''; msg.style.color = 'var(--ink-soft)'; }
+  const signedIn = !!window.mvCurrentUser;
+  const allowed = !st || st.trialStartAllowed;
+  const alreadyOn = st && (st.status === 'trialing' || st.status === 'active');
+  if(alreadyOn){
+    if(btn){ btn.disabled = false; btn.textContent = t('pmManageBtn'); btn.onclick = () => { closePremium(); showScreen('cuenta'); }; }
+    if(consentWrap) consentWrap.style.display = 'none';
+    if(card) card.style.display = 'none';
+    return;
+  }
+  if(btn) btn.onclick = startTrialFlow;
+  if(!signedIn){
+    if(btn){ btn.disabled = false; btn.textContent = t('pmSignInFirst'); btn.onclick = () => { closePremium(); showScreen('cuenta'); }; }
+    if(consentWrap) consentWrap.style.display = 'none';
+    if(card) card.style.display = allowed ? '' : 'none';
+    return;
+  }
+  if(!allowed){
+    if(btn){ btn.disabled = true; btn.textContent = t('pmComingSoonBtn'); }
+    if(consentWrap) consentWrap.style.display = 'none';
+    if(card) card.style.display = 'none';
+    if(msg){ msg.textContent = t('pmComingSoonMsg'); }
+    return;
+  }
+  if(btn){ btn.disabled = false; btn.textContent = t('pmStartTrialBtn'); }
+  if(consentWrap) consentWrap.style.display = 'flex';
+  if(card) card.style.display = '';
+}
+
+async function startTrialFlow(){
+  const msg = document.getElementById('pmMsg');
+  const setMsg = (txt, err) => { if(msg){ msg.textContent = txt || ''; msg.style.color = err ? 'var(--clay)' : 'var(--ink-soft)'; } };
+  if(!window.mvCurrentUser){ closePremium(); showScreen('cuenta'); return; }
+  const st = window.mvSub ? window.mvSub.getState() : {};
+  if(!st.trialStartAllowed){ setMsg(t('pmNotLiveMsg'), true); return; }
+  const consent = document.getElementById('pmConsent');
+  if(!consent || !consent.checked){ setMsg(t('pmConsentRequired'), true); return; }
+  const btn = document.getElementById('pmStartTrialBtn');
+  if(btn) btn.disabled = true;
+  setMsg(t('pmStarting'));
+  try {
+    await window.mvSub.startTrial();
+    if(consent) consent.checked = false;
+    closePremium();
+    openTrialStarted();
+  } catch(e){
+    setMsg(mapSubError(e), true);
+  } finally {
+    if(btn) btn.disabled = false;
+  }
+}
+
+/* ---- Trial started confirmation ---- */
+function openTrialStarted(){
+  const st = window.mvSub ? window.mvSub.getState() : {};
+  const end = st.trialEnds || new Date(Date.now() + 3 * 86400000);
+  const e1 = document.getElementById('tsEndsValue');
+  const e2 = document.getElementById('tsChargeValue');
+  if(e1) e1.textContent = mvFmtDate(end);
+  if(e2) e2.textContent = mvFmtDateTime(end);
+  const m = document.getElementById('trialStartedModal');
+  if(m) m.classList.add('active');
+}
+function closeTrialStarted(){
+  const m = document.getElementById('trialStartedModal');
+  if(m) m.classList.remove('active');
+}
+
+/* ---- Cancel / reactivate (Cuenta) ---- */
+let cancelConfirmKind = null;
+function showCancelConfirm(kind){
+  cancelConfirmKind = kind;
+  const box = document.getElementById('cuentaCancelConfirm');
+  const txt = document.getElementById('cuentaCancelConfirmText');
+  if(txt) txt.textContent = kind === 'trial' ? t('subCancelConfirmTrial') : t('subCancelConfirmSub');
+  if(box) box.hidden = false;
+  const yes = document.getElementById('cuentaCancelConfirmYes');
+  if(yes) yes.onclick = doCancel;
+}
+function hideCancelConfirm(){
+  const box = document.getElementById('cuentaCancelConfirm');
+  if(box) box.hidden = true;
+  cancelConfirmKind = null;
+}
+async function doCancel(){
+  const yes = document.getElementById('cuentaCancelConfirmYes');
+  if(yes) yes.disabled = true;
+  try {
+    await window.mvSub.cancelSubscription();
+    hideCancelConfirm();
+    subMsg(t('subCancelDone'));
+    renderCuenta();
+  } catch(e){
+    subMsg(mapSubError(e), 'err');
+  } finally {
+    if(yes) yes.disabled = false;
+  }
+}
+async function doReactivate(){
+  subMsg(t('subWorking'));
+  try {
+    await window.mvSub.reactivate();
+    subMsg(t('subReactivateDone'));
+    renderCuenta();
+  } catch(e){
+    subMsg(mapSubError(e), 'err');
+  }
+}
+function doUpdateCard(){
+  // TODO(payment-nerds): open hosted card fields to replace the card + retry the outstanding charge.
+  subMsg(t('subUpdateCardPending'), 'err');
+}
+function doResubscribe(){
+  // TODO(payment-nerds): canceled users already used their trial -> direct paid
+  // re-subscribe (card + immediate charge), no second trial.
+  subMsg(t('subResubscribePending'), 'err');
+}
+
+/* ---- Day-2 reminder + blocked banners ---- */
+function syncTrialBanners(){
+  const rem = document.getElementById('trialReminderBanner');
+  const blk = document.getElementById('trialBlockedBanner');
+  if(!rem || !blk) return;
+  const st = window.mvSub ? window.mvSub.getState() : null;
+  const showBlocked = !!st && st.status === 'blocked';
+  blk.hidden = !showBlocked;
+  if(showBlocked){
+    const el = document.getElementById('trialBlockedText');
+    if(el) el.textContent = t('trialBlockedBannerText').split('{price}').join(st.price);
+  }
+  let dismissedKey = '';
+  try { dismissedKey = sessionStorage.getItem('trial-reminder-dismissed') || ''; } catch(e){}
+  const stamp = st && st.trialEnds ? String(st.trialEnds.getTime()) : '1';
+  const showReminder = !!st && st.status === 'trialing' && !st.cancelAtPeriodEnd
+    && st.hoursLeft != null && st.hoursLeft > 0 && st.hoursLeft <= 24 && dismissedKey !== stamp;
+  rem.hidden = !showReminder;
+  if(showReminder){
+    const el = document.getElementById('trialReminderText');
+    if(el) el.textContent = t('trialReminderBannerText')
+      .split('{charge}').join(mvFmtDateTime(st.firstChargeDate))
+      .split('{price}').join(st.price);
+  }
+}
+function dismissTrialReminder(){
+  const st = window.mvSub ? window.mvSub.getState() : null;
+  const stamp = st && st.trialEnds ? String(st.trialEnds.getTime()) : '1';
+  try { sessionStorage.setItem('trial-reminder-dismissed', stamp); } catch(e){}
+  const rem = document.getElementById('trialReminderBanner');
+  if(rem) rem.hidden = true;
+}
+window.syncTrialBanners = syncTrialBanners;
+window.renderCuenta = renderCuenta;
 
 /* ===================== ESPACIO PUBLICITARIO (formulario de contacto) ===================== */
 function openAdInquiry(){ document.getElementById('adInquiryModal').classList.add('active'); }
@@ -6097,7 +6590,9 @@ function renderCuenta(){
   const authCard = document.getElementById('cuentaAuthCard');
   const loggedInWrap = document.getElementById('cuentaLoggedInOnly');
   const estadoEl = document.getElementById('cuentaEstadoTexto');
+  const detalleEl = document.getElementById('cuentaSubDetalle');
   const btnEl = document.getElementById('cuentaBtnAccion');
+  const btn2El = document.getElementById('cuentaBtnSecundaria');
   if(!estadoEl) return;
   const user = window.mvCurrentUser;
   if(authCard) authCard.style.display = user ? 'none' : '';
@@ -6108,15 +6603,64 @@ function renderCuenta(){
     idiomaEl.textContent = nombres[currentLang];
   }
   if(!user) return;
-  if(isPremium){
-    estadoEl.innerHTML = `<b style="color:var(--moss-deep);">${t('cuentaPremiumActivo')}</b>`;
-    btnEl.textContent = t('cuentaGestionarBtn');
-    btnEl.onclick = ()=> alert(t('cuentaGestionarAlert'));
-  } else {
-    estadoEl.innerHTML = `<b style="color:var(--resin);">${t('cuentaPlanGratis')}</b>`;
-    btnEl.textContent = t('cuentaSuscribirBtn');
-    btnEl.onclick = openPremium;
+
+  hideCancelConfirm();
+  const st = window.mvSub ? window.mvSub.getState() : { status: isPremium ? 'active' : 'none', price: '$7.10' };
+  const hide = el => { if(el){ el.style.display = 'none'; el.onclick = null; } };
+  const prim = (txt, fn) => { if(btnEl){ btnEl.style.display = ''; btnEl.textContent = txt; btnEl.onclick = fn; } };
+  hide(btnEl); hide(btn2El);
+  const endStr = st.periodEnd ? mvFmtDate(st.periodEnd) : '';
+  const chargeStr = st.firstChargeDate ? mvFmtDateTime(st.firstChargeDate) : '';
+  const fill = (k, map) => { let v = t(k); for(const p in map) v = v.split('{' + p + '}').join(map[p]); return v; };
+  let head = '', detail = '';
+  switch(st.status){
+    case 'trialing':
+      if(st.cancelAtPeriodEnd){
+        head = `<b style="color:var(--resin);">${t('subTrialCanceledHead')}</b>`;
+        detail = fill('subTrialCanceledDetail', { date: endStr });
+        prim(t('subReactivateTrialBtn'), doReactivate);
+      } else {
+        head = `<b style="color:var(--moss-deep);">${fill('subTrialActiveHead', { n: st.trialDayNumber || 1 })}</b>`;
+        detail = fill('subTrialActiveDetail', { date: endStr, charge: chargeStr, price: st.price });
+        prim(t('subCancelTrialBtn'), () => showCancelConfirm('trial'));
+      }
+      break;
+    case 'active':
+      if(st.cancelAtPeriodEnd){
+        head = `<b style="color:var(--resin);">${t('subActiveCanceledHead')}</b>`;
+        detail = fill('subActiveCanceledDetail', { date: endStr });
+        prim(t('subReactivateBtn'), doReactivate);
+      } else {
+        head = `<b style="color:var(--moss-deep);">${t('subActiveHead')}</b>`;
+        detail = fill('subActiveDetail', { date: endStr, price: st.price });
+        prim(t('subCancelBtn'), () => showCancelConfirm('sub'));
+      }
+      break;
+    case 'past_due':
+      head = `<b style="color:var(--clay);">${t('subPastDueHead')}</b>`;
+      detail = t('subPastDueDetail');
+      prim(t('subUpdateCardBtn'), doUpdateCard);
+      break;
+    case 'blocked':
+      head = `<b style="color:var(--clay);">${t('subBlockedHead')}</b>`;
+      detail = t('subBlockedDetail');
+      prim(t('subUpdateCardBtn'), doUpdateCard);
+      break;
+    case 'canceled':
+      head = `<b style="color:var(--resin);">${t('subCanceledHead')}</b>`;
+      detail = t('subCanceledDetail');
+      prim(fill('subResubscribeBtn', { price: st.price }), doResubscribe);
+      break;
+    case 'loading':
+      head = t('subLoading');
+      break;
+    default:
+      head = `<b style="color:var(--resin);">${t('cuentaPlanGratis')}</b>`;
+      detail = fill('subNoneDetail', { price: st.price });
+      prim(t('subStartTrialBtn'), openPremium);
   }
+  estadoEl.innerHTML = head;
+  if(detalleEl) detalleEl.textContent = detail;
   const profile = window.mvCurrentProfile;
   const correoEl = document.getElementById('cuentaCorreoInput');
   if(correoEl && document.activeElement !== correoEl) correoEl.value = profile?.contact_email || '';

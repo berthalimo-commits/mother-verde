@@ -9,10 +9,27 @@ window.mvSupabase = supabase;
 window.mvCurrentUser = null;
 window.mvCurrentProfile = null;
 
+// Canonical client-side Premium check. Mirrors public.is_premium(uid) in
+// supabase/migrations/20260905180000_subscription_trial.sql — keep the two in
+// sync. Premium = inside an active 3-day trial, or a paid subscription that
+// hasn't lapsed. A pending cancellation (cancel_at_period_end) still counts as
+// Premium until the period actually ends; the cron then flips the row.
 function computeIsPremium(profile){
-  if(!profile || !profile.subscription_active) return false;
-  if(!profile.subscription_expires_at) return true;
-  return new Date(profile.subscription_expires_at) > new Date();
+  if(!profile) return false;
+  const now = Date.now();
+  const status = profile.subscription_status || 'none';
+  if(status === 'trialing'){
+    return !!profile.trial_ends_at && new Date(profile.trial_ends_at).getTime() > now;
+  }
+  if(status === 'active'){
+    return !profile.subscription_expires_at || new Date(profile.subscription_expires_at).getTime() > now;
+  }
+  // Legacy rows written before the trial system existed.
+  if(status === 'none' && profile.subscription_active){
+    return !profile.subscription_expires_at || new Date(profile.subscription_expires_at).getTime() > now;
+  }
+  // canceled (period over) / past_due / blocked -> no access.
+  return false;
 }
 
 async function loadProfile(userId){
@@ -28,9 +45,14 @@ async function refreshAuthState(){
   window.setIsPremium?.(computeIsPremium(window.mvCurrentProfile));
   window.renderCuenta?.();
   window.renderBitacoraGate?.();
+  window.syncTrialBanners?.();
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
   window.loadTrichLog?.();
 }
+
+// Let public/main.js (and src/subscription.js) force a full auth/profile reload
+// after a subscription state change, so gating updates everywhere at once.
+window.mvRefreshAuth = refreshAuthState;
 
 supabase.auth.onAuthStateChange(() => { refreshAuthState(); });
 
