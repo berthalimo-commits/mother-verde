@@ -2825,6 +2825,7 @@ const translations = {
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmyAvatarBtn:'Foto de perfil', cmyAvatarNeedsName:'Escribe primero tu nombre o apodo.', cmyAvatarSubiendo:'Subiendo foto…', cmyAvatarListo:'¡Listo! Ya tienes foto de perfil.',
+    cmyCropTitle:'Ajusta tu foto', cmyCropHelp:'Arrastra la imagen y usa la rueda del mouse (o pellizca en el celular) para hacer zoom. Elige qué parte quieres que se vea dentro del círculo.', cmyCropPreviewLabel:'Así se verá', cmyCropCancelar:'Cancelar', cmyCropConfirmar:'Usar esta foto',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Viajero', cmyTipoPostCultivo:'Cultivo', cmyTipoPostDiagnostico:'Diagnóstico', cmyTipoPostPregunta:'Pregunta',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
@@ -3657,6 +3658,7 @@ const translations = {
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmyAvatarBtn:'Profile photo', cmyAvatarNeedsName:'Enter your name or nickname first.', cmyAvatarSubiendo:'Uploading photo…', cmyAvatarListo:'Done! Your profile photo is set.',
+    cmyCropTitle:'Adjust your photo', cmyCropHelp:'Drag the image and use your mouse wheel (or pinch on mobile) to zoom. Choose what you want to show inside the circle.', cmyCropPreviewLabel:'Preview', cmyCropCancelar:'Cancel', cmyCropConfirmar:'Use this photo',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Traveler', cmyTipoPostCultivo:'Grow', cmyTipoPostDiagnostico:'Diagnosis', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
@@ -4487,6 +4489,7 @@ const translations = {
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmyAvatarBtn:'Profilfoto', cmyAvatarNeedsName:'Gib zuerst deinen Namen oder Spitznamen ein.', cmyAvatarSubiendo:'Foto wird hochgeladen…', cmyAvatarListo:'Fertig! Dein Profilfoto ist eingerichtet.',
+    cmyCropTitle:'Foto anpassen', cmyCropHelp:'Ziehe das Bild und nutze das Mausrad (oder kneife auf dem Handy), um zu zoomen. Wähle, was im Kreis zu sehen sein soll.', cmyCropPreviewLabel:'So wird es aussehen', cmyCropCancelar:'Abbrechen', cmyCropConfirmar:'Dieses Foto verwenden',
     cmyTipoPostGeneral:'Allgemein', cmyTipoPostViajero:'Reise', cmyTipoPostCultivo:'Anbau', cmyTipoPostDiagnostico:'Diagnose', cmyTipoPostPregunta:'Frage',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
@@ -5317,6 +5320,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmyAvatarBtn:'Photo de profil', cmyAvatarNeedsName:'\u00c9cris d\u2019abord ton nom ou pseudo.', cmyAvatarSubiendo:'Envoi de la photo\u2026', cmyAvatarListo:'C\u2019est fait ! Ta photo de profil est en place.',
+    cmyCropTitle:'Ajuste ta photo', cmyCropHelp:'Fais glisser l\u2019image et utilise la molette de la souris (ou pince sur mobile) pour zoomer. Choisis ce que tu veux voir dans le cercle.', cmyCropPreviewLabel:'Aper\u00e7u', cmyCropCancelar:'Annuler', cmyCropConfirmar:'Utiliser cette photo',
     cmyTipoPostGeneral:'G\u00e9n\u00e9ral', cmyTipoPostViajero:'Voyage', cmyTipoPostCultivo:'Culture', cmyTipoPostDiagnostico:'Diagnostic', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
@@ -6078,28 +6082,6 @@ function renderCuenta(){
 }
 
 /* ===================== AVATARES (foto o iniciales de color) ===================== */
-// Resize any picked image client-side to a small square JPEG blob, shared by
-// the avatar picker (and reusable anywhere else a small upload is needed).
-function resizeImageToBlob(file, maxDim, quality){
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const img = new Image();
-      img.onload = () => {
-        const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.round(img.width * scale);
-        canvas.height = Math.round(img.height * scale);
-        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('toBlob failed')), 'image/jpeg', quality);
-      };
-      img.onerror = () => reject(new Error('image decode failed'));
-      img.src = ev.target.result;
-    };
-    reader.onerror = () => reject(new Error('file read failed'));
-    reader.readAsDataURL(file);
-  });
-}
 // Same person always gets the same color, picked from the app's own palette.
 const AVATAR_COLORS = ['var(--moss-deep)', 'var(--teal)', 'var(--resin)', 'var(--clay)'];
 function avatarColorFor(seed){
@@ -6135,42 +6117,55 @@ async function renderAccountIcon(){
   }catch(e){ btn.innerHTML = accountIconDefaultSvg; }
 }
 window.renderAccountIcon = renderAccountIcon;
+// Pick a file -> the crop modal (src/avatarCropper.js) lets the user choose
+// what shows in the circle -> onAvatarCropped() below does the actual save,
+// once they confirm. Nothing uploads on file selection alone anymore.
+let pendingAvatarMeta = null;
+function avatarMsgEl(){ return document.getElementById('cmyAvatarMsg'); }
+function showAvatarMsg(text, ok){
+  const el = avatarMsgEl();
+  if(!el) return;
+  el.textContent = text;
+  el.style.color = ok ? 'var(--moss-deep)' : 'var(--clay)';
+  el.style.display = 'block';
+}
 async function handleAvatarUpload(input){
   const file = input.files && input.files[0];
   if(!file) return;
   if(!window.mvCommunity || !window.mvCurrentUser){ input.value = ''; return; }
-  const statusEl = document.getElementById('cmyAvatarMsg');
   const nameEl = document.getElementById('cmyNombreInput');
-  const showMsg = (text, ok) => {
-    if(!statusEl) return;
-    statusEl.textContent = text;
-    statusEl.style.color = ok ? 'var(--moss-deep)' : 'var(--clay)';
-    statusEl.style.display = 'block';
-  };
   let mine = null;
   try{ mine = await window.mvCommunity.getMyMemberProfile(); }catch(e){}
   const typedName = (nameEl?.value || '').trim();
   if(!mine && !typedName){
-    showMsg(t('cmyAvatarNeedsName'), false);
+    showAvatarMsg(t('cmyAvatarNeedsName'), false);
     nameEl?.focus();
     input.value = '';
     return;
   }
-  showMsg(t('cmyAvatarSubiendo'), true);
+  pendingAvatarMeta = { mine, typedName };
+  window.openAvatarCropper?.(file);
+  input.value = ''; // the file itself is already handed to the cropper
+}
+// Called by src/avatarCropper.js once the user drags/zooms and confirms.
+async function onAvatarCropped(blob){
+  const meta = pendingAvatarMeta;
+  pendingAvatarMeta = null;
+  if(!meta || !window.mvCommunity || !window.mvCurrentUser) return;
+  showAvatarMsg(t('cmyAvatarSubiendo'), true);
   try{
-    const blob = await resizeImageToBlob(file, 300, 0.85);
     const avatar_url = await window.mvCommunity.uploadAvatar(blob);
     const fields = { avatar_url };
-    if(!mine) fields.display_name = typedName.slice(0, 30);
+    if(!meta.mine) fields.display_name = meta.typedName.slice(0, 30);
     await window.mvCommunity.upsertMyMemberProfile(fields);
-    showMsg(t('cmyAvatarListo'), true);
+    showAvatarMsg(t('cmyAvatarListo'), true);
     renderAccountIcon();
     renderComunidadScreen();
   }catch(e){
-    showMsg(t('authErrGeneric'), false);
+    showAvatarMsg(t('authErrGeneric'), false);
   }
-  input.value = '';
 }
+window.onAvatarCropped = onAvatarCropped;
 
 /* ===================== DIRECTORIO DE COMUNIDAD (Supabase: community_members) ===================== */
 async function loadCommunityMembers(){

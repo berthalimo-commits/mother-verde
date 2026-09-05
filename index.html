@@ -3535,6 +3535,28 @@
     </div>
   </div>
 
+  <!-- ============ AVATAR CROP MODAL ============ -->
+  <div class="premium-modal" id="avatarCropModal">
+    <div class="premium-sheet" style="max-width:420px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <div class="eyebrow" style="margin-bottom:0;" data-i18n="cmyCropTitle">Ajusta tu foto</div>
+        <span onclick="cancelAvatarCrop()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
+      </div>
+      <p class="subhead" style="margin:0 0 14px; font-size:12.5px;" data-i18n="cmyCropHelp">Arrastra la imagen y usa la rueda del mouse (o pellizca en el celular) para hacer zoom. Elige qué parte quieres que se vea dentro del círculo.</p>
+      <div id="avatarCropContainer" style="width:100%; aspect-ratio:1; background:#000; border-radius:8px; overflow:hidden;">
+        <img id="avatarCropImage" style="display:block; max-width:100%;" alt="">
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; margin-top:16px;">
+        <div id="avatarCropPreview" style="width:56px; height:56px; border-radius:50%; overflow:hidden; background:var(--paper-raised); flex-shrink:0; border:1px solid var(--line-strong);"></div>
+        <span style="font-size:11.5px; color:var(--ink-soft);" data-i18n="cmyCropPreviewLabel">Así se verá</span>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:18px; justify-content:flex-end;">
+        <button class="btn-pill ghost" onclick="cancelAvatarCrop()" data-i18n="cmyCropCancelar">Cancelar</button>
+        <button class="btn-pill" onclick="confirmAvatarCrop()" data-i18n="cmyCropConfirmar">Usar esta foto</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ PREMIUM MODAL ============ -->
   <div class="premium-modal" id="premiumModal">
     <div class="premium-sheet">
@@ -3576,6 +3598,7 @@
 <script src="/main.js"></script>
 <script type="module" src="/src/auth.js"></script>
 <script type="module" src="/src/mvCommunity.js"></script>
+<script type="module" src="/src/avatarCropper.js"></script>
 <script type="module" src="/src/pdf.js"></script>
 <script>
   if('serviceWorker' in navigator && location.hostname !== 'localhost'){
