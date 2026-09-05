@@ -2599,6 +2599,11 @@ const translations = {
     cmDecarbCalcTitle:'Calculadora: THCA de la planta → THC activado', cmDecarbCalcDesc:'Usa el factor estequiométrico real (~0.877) por la pérdida de peso molecular al liberar CO2 durante la decarboxilación — no es una regla de bolsillo.',
     cmDecarbGramosLabel:'Peso de la flor (g)', cmDecarbPctLabel:'% THCA (del COA)', cmDecarbCalcNote:'Esto es el máximo teórico — el rendimiento real siempre es menor por pérdidas de manejo, tiempo/temperatura no ideal, y (si aplica) el comportamiento más desordenado del CBDA que ya viste arriba.',
     cmPotenciaH3:'Cálculo de potencia por porción', cmPotenciaP:'Es matemática de manufactura, no de consumo: <em>(mg totales de THC en el lote) ÷ (número de porciones) = mg por porción</em>. Este cálculo es el corazón del cumplimiento normativo — un error aquí es la causa más común de retiro de producto del mercado en jurisdicciones reguladas.',
+    cmDoseCatInicio:'Porción de inicio — el rango que Health Canada recomienda para quien nunca ha probado edibles.',
+    cmDoseCatEstandar:'Porción estándar en mercados regulados — Colorado exige por ley que cada porción legal no supere 10 mg de THC.',
+    cmDoseCatAlta:'Porción alta — supera el límite legal de una sola porción en la mayoría de mercados regulados; considera dividirla.',
+    cmDoseWarn:'La respuesta a la misma dosis varía mucho entre personas (peso, metabolismo, tolerancia, si comiste antes). Los efectos de un comestible tardan entre 30 minutos y 4 horas en sentirse completamente — nunca tomes más solo porque no sientes nada todavía. Esto es información educativa general, no una recomendación de consumo personalizada.',
+    cmDoseFuentes:'Fuentes oficiales:',
     cmBebidasH3:'Bebidas infusionadas: la categoría de más rápido crecimiento', cmBebidasP:'El reto técnico de una bebida es distinto al de un comestible sólido: el cannabinoide es liposoluble y el agua no, así que sin tratamiento especial simplemente flota y no se disuelve. La solución moderna es la <b>nanoemulsión</b> — reducir las partículas de cannabinoide a una escala nanométrica para que se dispersen de forma estable en un líquido. Esto además acelera la absorción, buscando un inicio de efecto más parecido al del alcohol (minutos) que al de un comestible sólido tradicional (1–2 horas).',
     cmEtiquetaH3:'Normas de etiquetado por país (ejemplo ilustrativo)', cmEtiquetaP:'Muchas jurisdicciones reguladas limitan el contenido de THC por porción y por empaque completo (por ejemplo, topes como 10 mg por porción / 100 mg por paquete son comunes en varios estados de EE. UU.). Estos límites varían por país y estado — se deben verificar contra el regulador local antes de producir o comercializar.',
     cmBhangH3:'Bhang — la preparación de hoja más antigua del mundo', cmBhangP1:'En India, las hojas —y en muchas recetas también los cogollos— se muelen con mortero y mano hasta formar una pasta verde, que se mezcla con leche, ghee y especias: la base del bhang. Con eso se preparan bebidas como el thandai y el bhang lassi, o dulces como el halwa y los laddoos. Se consume tradicionalmente durante festivales hindúes como Holi y Maha Shivaratri, con referencias que se remontan al Atharva Veda y una fuerte asociación religiosa con Shiva.',
@@ -3433,6 +3438,11 @@ const translations = {
     cmDecarbCalcTitle:'Calculator: plant THCA → activated THC', cmDecarbCalcDesc:'Uses the real stoichiometric factor (~0.877) for the molecular weight loss when releasing CO2 during decarboxylation — not a rule of thumb.',
     cmDecarbGramosLabel:'Flower weight (g)', cmDecarbPctLabel:'% THCA (from the COA)', cmDecarbCalcNote:'This is the theoretical maximum — real yield is always lower due to handling losses, non-ideal time/temperature, and (if applicable) the messier behavior of CBDA you saw above.',
     cmPotenciaH3:'Dose-per-serving calculation', cmPotenciaP:'This is manufacturing math, not consumer math: <em>(total mg THC in the batch) \u00f7 (number of servings) = mg per serving</em>. This calculation is at the heart of regulatory compliance — an error here is the most common cause of product recalls in regulated markets.',
+    cmDoseCatInicio:'Starting serving — the range Health Canada recommends for anyone who has never tried edibles.',
+    cmDoseCatEstandar:'Standard serving in regulated markets — Colorado law requires every legal serving to be no more than 10 mg of THC.',
+    cmDoseCatAlta:'High serving — above the legal limit for a single serving in most regulated markets; consider splitting it.',
+    cmDoseWarn:'The response to the same dose varies a lot between people (weight, metabolism, tolerance, whether you ate beforehand). An edible takes 30 minutes to 4 hours to be fully felt — never take more just because you do not feel anything yet. This is general educational information, not a personalized consumption recommendation.',
+    cmDoseFuentes:'Official sources:',
     cmBebidasH3:'Infused beverages: the fastest-growing category', cmBebidasP:'The technical challenge of a beverage differs from that of a solid edible: cannabinoids are fat-soluble and water is not, so without special treatment they simply float and do not dissolve. The modern solution is <b>nanoemulsion</b> — reducing cannabinoid particles to a nanoscale so they disperse stably in a liquid. This also speeds up absorption, aiming for an onset closer to alcohol (minutes) than a traditional solid edible (1-2 hours).',
     cmEtiquetaH3:'Labeling standards by country (illustrative example)', cmEtiquetaP:'Many regulated jurisdictions limit THC content per serving and per full package (for example, caps like 10 mg per serving / 100 mg per package are common in several US states). These limits vary by country and state — they must be checked against the local regulator before producing or selling.',
     cmBhangH3:'Bhang — the oldest leaf preparation in the world', cmBhangP1:'In India, the leaves — and in many recipes the buds too — are ground with a mortar and pestle into a green paste, mixed with milk, ghee and spices: the base of bhang. From that come drinks like thandai and bhang lassi, or sweets like halwa and laddoos. It is traditionally consumed during Hindu festivals like Holi and Maha Shivaratri, with references going back to the Atharva Veda and a strong religious association with Shiva.',
@@ -4265,6 +4275,11 @@ const translations = {
     cmDecarbCalcTitle:'Rechner: Pflanzen-THCA → aktiviertes THC', cmDecarbCalcDesc:'Verwendet den echten stöchiometrischen Faktor (~0,877) für den Molekulargewichtsverlust bei der CO2-Freisetzung während der Decarboxylierung — keine Faustregel.',
     cmDecarbGramosLabel:'Blütengewicht (g)', cmDecarbPctLabel:'% THCA (aus dem COA)', cmDecarbCalcNote:'Dies ist das theoretische Maximum — die tatsächliche Ausbeute ist immer geringer, aufgrund von Handhabungsverlusten, nicht idealer Zeit/Temperatur und (falls zutreffend) dem unordentlicheren Verhalten von CBDA, das du oben gesehen hast.',
     cmPotenciaH3:'Berechnung der Dosis pro Portion', cmPotenciaP:'Das ist Herstellungsmathematik, keine Verbrauchermathematik: <em>(Gesamt-mg THC in der Charge) ÷ (Anzahl der Portionen) = mg pro Portion</em>. Diese Berechnung ist das Herzstück der regulatorischen Konformität — ein Fehler hier ist die häufigste Ursache für Produktrückrufe in regulierten Märkten.',
+    cmDoseCatInicio:'Einstiegsportion — der Bereich, den Health Canada für alle empfiehlt, die noch nie Edibles probiert haben.',
+    cmDoseCatEstandar:'Standardportion in regulierten Märkten — das Gesetz in Colorado schreibt vor, dass jede legale Portion nicht mehr als 10 mg THC enthält.',
+    cmDoseCatAlta:'Hohe Portion — über der gesetzlichen Grenze für eine einzelne Portion in den meisten regulierten Märkten; erwäge, sie zu teilen.',
+    cmDoseWarn:'Die Reaktion auf dieselbe Dosis ist von Person zu Person sehr unterschiedlich (Gewicht, Stoffwechsel, Toleranz, ob du vorher gegessen hast). Ein Edible braucht 30 Minuten bis 4 Stunden, bis es voll wirkt — nimm nie mehr, nur weil du noch nichts spürst. Dies ist allgemeine Bildungsinformation, keine personalisierte Konsumempfehlung.',
+    cmDoseFuentes:'Offizielle Quellen:',
     cmBebidasH3:'Infundierte Getränke: die am schnellsten wachsende Kategorie', cmBebidasP:'Die technische Herausforderung eines Getränks unterscheidet sich von der eines festen essbaren Produkts: Cannabinoide sind fettlöslich und Wasser nicht, sodass sie ohne besondere Behandlung einfach oben schwimmen und sich nicht auflösen. Die moderne Lösung ist die <b>Nanoemulsion</b> — Cannabinoidpartikel auf Nanogröße zu reduzieren, damit sie sich stabil in einer Flüssigkeit verteilen. Das beschleunigt zudem die Aufnahme, mit dem Ziel eines Wirkungseintritts, der eher dem von Alkohol (Minuten) als dem eines traditionellen festen essbaren Produkts (1–2 Stunden) ähnelt.',
     cmEtiquetaH3:'Kennzeichnungsstandards je Land (illustratives Beispiel)', cmEtiquetaP:'Viele regulierte Rechtsordnungen begrenzen den THC-Gehalt pro Portion und pro gesamter Packung (zum Beispiel sind Obergrenzen wie 10 mg pro Portion / 100 mg pro Packung in mehreren US-Bundesstaaten üblich). Diese Grenzwerte variieren nach Land und Bundesstaat — sie müssen vor der Herstellung oder dem Verkauf mit der lokalen Regulierungsbehörde geprüft werden.',
     cmBhangH3:'Bhang — die älteste Blatt-Zubereitung der Welt', cmBhangP1:'In Indien werden die Blätter — und in vielen Rezepten auch die Blüten — mit Mörser und Stößel zu einer grünen Paste zermahlen, die mit Milch, Ghee und Gewürzen vermischt wird: die Grundlage von Bhang. Daraus entstehen Getränke wie Thandai und Bhang-Lassi oder Süßigkeiten wie Halwa und Laddoos. Es wird traditionell während hinduistischer Feste wie Holi und Maha Shivaratri konsumiert, mit Bezügen, die bis zum Atharvaveda zurückreichen, und einer starken religiösen Verbindung zu Shiva.',
@@ -5097,6 +5112,11 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmDecarbCalcTitle:'Calculateur : THCA de la plante → THC activé', cmDecarbCalcDesc:'Utilise le vrai facteur stœchiométrique (~0,877) pour la perte de poids moléculaire lors de la libération de CO2 pendant la décarboxylation — pas une règle empirique.',
     cmDecarbGramosLabel:'Poids de la fleur (g)', cmDecarbPctLabel:'% THCA (du COA)', cmDecarbCalcNote:'Ceci est le maximum théorique — le rendement réel est toujours inférieur en raison des pertes de manipulation, d\u2019un temps/température non idéal, et (le cas échéant) du comportement plus désordonné du CBDA vu plus haut.',
     cmPotenciaH3:'Calcul de la puissance par portion', cmPotenciaP:'C’est des mathématiques de fabrication, pas de consommation : <em>(mg totaux de THC dans le lot) ÷ (nombre de portions) = mg par portion</em>. Ce calcul est au cœur de la conformité réglementaire — une erreur ici est la cause la plus courante de rappel de produit dans les juridictions réglementées.',
+    cmDoseCatInicio:'Portion de début — la fourchette que Santé Canada recommande pour quiconque n’a jamais essayé les comestibles.',
+    cmDoseCatEstandar:'Portion standard dans les marchés réglementés — la loi du Colorado exige que chaque portion légale ne dépasse pas 10 mg de THC.',
+    cmDoseCatAlta:'Portion élevée — au-dessus de la limite légale d’une seule portion dans la plupart des marchés réglementés ; envisage de la diviser.',
+    cmDoseWarn:'La réponse à une même dose varie beaucoup d’une personne à l’autre (poids, métabolisme, tolérance, si tu as mangé avant). Un comestible met 30 minutes à 4 heures avant d’être pleinement ressenti — ne prends jamais plus juste parce que tu ne sens rien encore. Ceci est une information éducative générale, pas une recommandation de consommation personnalisée.',
+    cmDoseFuentes:'Sources officielles :',
     cmBebidasH3:'Boissons infusées : la catégorie à la croissance la plus rapide', cmBebidasP:'Le défi technique d’une boisson diffère de celui d’un comestible solide : le cannabinoïde est liposoluble et l’eau ne l’est pas, donc sans traitement spécial il flotte simplement et ne se dissout pas. La solution moderne est la <b>nanoémulsion</b> — réduire les particules de cannabinoïde à une échelle nanométrique pour qu’elles se dispersent de façon stable dans un liquide. Cela accélère aussi l’absorption, visant un début d’effet plus proche de celui de l’alcool (minutes) que celui d’un comestible solide traditionnel (1 à 2 heures).',
     cmEtiquetaH3:'Normes d’étiquetage par pays (exemple illustratif)', cmEtiquetaP:'De nombreuses juridictions réglementées limitent la teneur en THC par portion et par emballage complet (par exemple, des plafonds comme 10 mg par portion / 100 mg par paquet sont courants dans plusieurs États américains). Ces limites varient selon le pays et l’État — elles doivent être vérifiées auprès du régulateur local avant de produire ou de commercialiser.',
     cmBhangH3:'Bhang — la plus ancienne préparation à base de feuilles au monde', cmBhangP1:'En Inde, les feuilles — et dans de nombreuses recettes aussi les têtes — sont broyées au mortier et au pilon jusqu’à former une pâte verte, mélangée à du lait, du ghee et des épices : la base du bhang. On en prépare des boissons comme le thandai et le bhang lassi, ou des sucreries comme le halwa et les laddoos. Il est traditionnellement consommé lors de fêtes hindoues comme Holi et Maha Shivaratri, avec des références remontant à l’Atharva Véda et une forte association religieuse avec Shiva.',
@@ -7071,11 +7091,26 @@ function updateDLI(){
   const dli = ppfd * hours * 0.0036;
   document.getElementById('dliResult').textContent = dli.toFixed(1) + ' mol/m²/día';
 }
+// Guidance context under the per-serving result, from official government
+// sources only (Health Canada "Lower your risks" + Colorado cannabis.gov):
+// Health Canada = 2.5 mg THC or less to start; Colorado law = each legal
+// serving <= 10 mg THC. The fixed warning below always shows.
+function edibleDoseSafetyHtml(mg){
+  const catKey = mg < 2.5 ? 'cmDoseCatInicio' : (mg <= 10 ? 'cmDoseCatEstandar' : 'cmDoseCatAlta');
+  const parts = t(catKey).split(' — ');
+  const cat = parts.length > 1 ? ('<b>' + parts[0] + '</b> — ' + parts.slice(1).join(' — ')) : t(catKey);
+  return '<div class="note-box" style="margin-top:14px; border-style:solid; border-color:var(--moss-deep);">' + cat + '</div>'
+    + '<p style="font-size:12px; color:var(--ink-soft); line-height:1.55; margin-top:10px;">' + t('cmDoseWarn') + '</p>'
+    + '<p style="font-size:10.5px; color:var(--ink-soft); margin-top:8px;">' + t('cmDoseFuentes')
+    + ' <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/resources/lower-your-risks.html" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">Health Canada</a> ·'
+    + ' <a href="https://cannabis.colorado.gov/responsible-use/safety-with-edibles" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">Colorado.gov</a></p>';
+}
 function updateDose(){
   const mg = parseFloat(document.getElementById('doseMg').value) || 0;
   const servings = parseFloat(document.getElementById('doseServings').value) || 1;
   const dose = mg / servings;
   document.getElementById('doseResult').textContent = dose.toFixed(1) + ' mg / porción';
+  const se = document.getElementById('doseSafety'); if(se) se.innerHTML = edibleDoseSafetyHtml(dose);
 }
 function updateDoseComestibles(){
   const mgEl = document.getElementById('cmDoseMg');
@@ -7086,6 +7121,7 @@ function updateDoseComestibles(){
   const servings = parseFloat(servingsEl.value) || 1;
   const dose = mg / servings;
   resultEl.textContent = dose.toFixed(1) + ' mg / porción';
+  const se = document.getElementById('cmDoseSafety'); if(se) se.innerHTML = edibleDoseSafetyHtml(dose);
 }
 function updateDecarbCalc(){
   const gramosEl = document.getElementById('cmDecarbGramos');
