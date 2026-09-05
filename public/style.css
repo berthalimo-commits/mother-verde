@@ -406,3 +406,12 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .cmy-type-pill.on{background:var(--ink); color:var(--paper); border-color:var(--ink);}
 .cmy-type-help{font-size:12.5px; color:var(--ink-soft); margin:0 0 10px; line-height:1.5;}
 .cmy-post-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; border:1px solid; border-radius:100px; display:inline-block; padding:3px 10px; margin-bottom:10px;}
+
+/* ---- Profile screen ---- */
+.perfil-cover{height:120px; border-radius:10px; margin-bottom:-40px;}
+.perfil-id{display:flex; align-items:flex-end; gap:14px; padding:0 4px;}
+.perfil-id .mv-avatar{border:3px solid var(--paper);}
+.perfil-name{font-family:'Manrope',sans-serif; font-weight:600; font-size:22px; margin:0;}
+.perfil-meta{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss); text-transform:uppercase; letter-spacing:.04em; margin-top:3px;}
+.perfil-bio{font-size:14px; line-height:1.6; color:var(--ink-soft); margin:14px 4px 0; white-space:pre-wrap;}
+.perfil-mutuo{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss-deep); margin-left:10px;}

@@ -68,7 +68,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
         <span id="searchBtnLabel" data-i18n="searchBtnLabel">Buscar</span>
       </button>
-      <button id="accountBtn" onclick="showScreen('cuenta')" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
+      <button id="accountBtn" onclick="showProfile()" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>
       </button>
       <nav class="tabs">
@@ -2793,36 +2793,8 @@
     </div>
     <div id="cmyFeedList"></div>
 
-    <div class="section-title" data-i18n="cmySecUnirse">Únete a la comunidad más grande del mundo</div>
-    <div class="card-block">
-      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
-      <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
-        <div style="display:flex; align-items:center; gap:14px;">
-          <div id="cmyAvatarPreview"></div>
-          <label class="btn-pill ghost sm" style="cursor:pointer;">📷 <span data-i18n="cmyAvatarBtn">Foto de perfil</span>
-            <input type="file" accept="image/*" onchange="handleAvatarUpload(this)" style="display:none;">
-          </label>
-        </div>
-        <div id="cmyAvatarMsg" style="font-size:12px; display:none;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyNombreLabel">Nombre o apodo</label><input type="text" id="cmyNombreInput" data-i18n-ph="cmyNombrePh" placeholder="Cómo quieres que te vean" maxlength="30" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyCorreoLabel">Correo <span style="text-transform:none; opacity:0.7;" data-i18n="cmyCorreoPrivado">(privado, no se muestra)</span></label><input type="email" id="cmyCorreoInput" data-i18n-ph="cmyCorreoPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyPaisLabel">País</label><select id="cmyPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyTipoLabel">¿Qué te describe mejor?</label>
-          <select id="cmyTipoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
-            <option value="cultivador" data-i18n="cmyTipoCultivador">Cultivador/a</option>
-            <option value="negocio" data-i18n="cmyTipoNegocio">Dueño/a de negocio</option>
-            <option value="entusiasta" data-i18n="cmyTipoEntusiasta">Consumidor/a — entusiasta</option>
-            <option value="salud" data-i18n="cmyTipoSalud">Profesional de salud</option>
-            <option value="aprendiendo" data-i18n="cmyTipoAprendiendo">Solo aprendiendo</option>
-            <option value="otro" data-i18n="cmyTipoOtro">Otro</option>
-          </select>
-        </div>
-        <button class="btn btn-primary" style="padding:12px;" onclick="joinCommunity()" data-i18n="cmyUnirmeBtn">Unirme al directorio</button>
-        <div id="cmyJoinMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyJoinExito">¡Listo! Ya apareces en el directorio de abajo.</div>
-      </div>
-    </div>
-
     <div class="section-title" data-i18n="cmySecMiembros">Miembros de la comunidad</div>
+    <p class="subhead" data-i18n="cmyDirectorioIntro">Toca a cualquier persona para ver su perfil. ¿Quieres aparecer aquí? Completa el tuyo desde <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Tu Perfil</a>.</p>
     <div id="cmyDirectoryList"></div>
 
     <div class="section-title" data-i18n="cmySecTipos">La función que más supervisión necesita antes de abrirse</div>
@@ -2841,6 +2813,53 @@
     <div class="note-box" data-i18n="cmyLineasP">
       <b>Cero marketplace</b> — nada de compra-venta ni intercambio de contacto para vender; es lo que permite seguir cumpliendo las políticas de las tiendas de apps. <b>Cero ubicaciones específicas de cultivo</b>, por seguridad. Ningún testimonio médico se publica sin el disclaimer visible.
     </div>
+  </section>
+
+  <!-- ============ PERFIL ============ -->
+  <section class="screen" id="perfil">
+    <span class="detail-back" onclick="showScreen('comunidad')" data-i18n="perfilBack">← Volver a Comunidad</span>
+
+    <div id="perfilGate" class="note-box" style="display:none;" data-i18n="perfilGateMsg">Inicia sesión para ver tu perfil.</div>
+    <div id="perfilUnavailable" class="bit-empty" style="display:none;" data-i18n="perfilNoDisponible">Este perfil no está disponible.</div>
+
+    <div id="perfilHeader"></div>
+
+    <div id="perfilFollowRow" style="display:none; margin-top:14px;"></div>
+
+    <div id="perfilEditCard" class="card-block" style="display:none; margin-top:18px;">
+      <div class="section-title" style="margin-top:0;" data-i18n="perfilEditar">Tu perfil</div>
+      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
+      <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div id="cmyAvatarPreview"></div>
+          <label class="btn-pill ghost sm" style="cursor:pointer;">📷 <span data-i18n="cmyAvatarBtn">Foto de perfil</span>
+            <input type="file" accept="image/*" onchange="handleAvatarUpload(this)" style="display:none;">
+          </label>
+        </div>
+        <div id="cmyAvatarMsg" style="font-size:12px; display:none;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyNombreLabel">Nombre o apodo</label><input type="text" id="cmyNombreInput" data-i18n-ph="cmyNombrePh" placeholder="Cómo quieres que te vean" maxlength="30" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyPaisLabel">País</label><select id="cmyPaisInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cmyTipoLabel">¿Qué te describe mejor?</label>
+          <select id="cmyTipoInput" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <option value="cultivador" data-i18n="cmyTipoCultivador">Cultivador/a</option>
+            <option value="negocio" data-i18n="cmyTipoNegocio">Dueño/a de negocio</option>
+            <option value="entusiasta" data-i18n="cmyTipoEntusiasta">Consumidor/a — entusiasta</option>
+            <option value="salud" data-i18n="cmyTipoSalud">Profesional de salud</option>
+            <option value="aprendiendo" data-i18n="cmyTipoAprendiendo">Solo aprendiendo</option>
+            <option value="otro" data-i18n="cmyTipoOtro">Otro</option>
+          </select>
+        </div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="perfilBioLabel">Biografía</label><textarea id="cmyBioInput" data-i18n-ph="perfilBioPh" placeholder="Cuéntale a la comunidad quién eres (opcional)" maxlength="300" rows="3" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical; background:var(--paper);"></textarea></div>
+        <button class="btn btn-primary" style="padding:12px;" onclick="joinCommunity()" data-i18n="cmyUnirmeBtn">Unirme al directorio</button>
+        <div id="cmyJoinMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyJoinExito">¡Listo! Ya apareces en el directorio de abajo.</div>
+      </div>
+      <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
+        <span onclick="showScreen('cuenta')" style="cursor:pointer; color:var(--ink-soft); font-size:12.5px; text-decoration:underline;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)</span>
+      </div>
+    </div>
+
+    <div id="perfilPostsTitle" class="section-title" style="display:none;" data-i18n="perfilMisPublicaciones">Publicaciones</div>
+    <div id="perfilPostsList"></div>
   </section>
 
   <!-- ============ VARIEDADES Y CULTIVARES ============ -->

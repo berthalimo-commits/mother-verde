@@ -2814,7 +2814,7 @@ const translations = {
     ngCar5h4:'Técnico de extracción', ngCar5role:'Procesamiento · $55K–$75K', ngCar5p:'Opera sistemas cerrados de extracción por hidrocarburo o CO2, convirtiendo flor en los aceites que ya viste en Elaboración → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> y <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrados</a>. Requiere formación en química o ingeniería, además de capacitación específica en seguridad de laboratorio.',
     ngCar6h4:'Chef de comestibles', ngCar6role:'Elaboración · $45K–$90K', ngCar6p:'Diseña y produce comestibles, con dominio real de decarboxilación y cálculo de dosis precisa por porción — la misma matemática que viste en <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Elaboración → Comestibles</a>, aplicada a escala comercial.',
     cmyEyebrow:'Comunidad — próximamente', cmyTitle:'Reportes de campo, verificados', cmySub:'Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.',
-    cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país y tipo de perfil son reales y quedan visibles para todas las personas que usen la app. Tu correo <b>no se muestra públicamente</b> — se guarda aparte, solo para que Mother Verde pueda escribirte si algún día hay novedades importantes. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.',
+    cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.',
     cmyCorreoLabel:'Correo', cmyCorreoPrivado:'(privado, no se muestra)', cmyCorreoPh:'tu@correo.com',
     cmyEnDesarrollo:'🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.', cmySecViajeroReal:'Reportes de viajero', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
     cmyViajeroPaisLabel:'País donde viajaste', cmyViajeroTextoLabel:'Tu experiencia', cmyViajeroTextoPh:'Qué pasó en la frontera o aduana, sin datos personales', cmyViajeroBtn:'Compartir experiencia', cmyViajeroExito:'¡Gracias! Tu experiencia ya está en la lista de abajo.', cmyViajeroVacio:'Todavía no hay experiencias compartidas — sé la primera persona.',
@@ -2826,6 +2826,7 @@ const translations = {
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmyAvatarBtn:'Foto de perfil', cmyAvatarNeedsName:'Escribe primero tu nombre o apodo.', cmyAvatarSubiendo:'Subiendo foto…', cmyAvatarListo:'¡Listo! Ya tienes foto de perfil.',
     cmyCropTitle:'Ajusta tu foto', cmyCropHelp:'Arrastra la imagen y usa la rueda del mouse (o pellizca en el celular) para hacer zoom. Elige qué parte quieres que se vea dentro del círculo.', cmyCropPreviewLabel:'Así se verá', cmyCropCancelar:'Cancelar', cmyCropConfirmar:'Usar esta foto',
+    perfilBack:'← Volver a Comunidad', perfilGateMsg:'Inicia sesión para ver tu perfil.', perfilNoDisponible:'Este perfil no está disponible.', perfilEditar:'Tu perfil', perfilBioLabel:'Biografía', perfilBioPh:'Cuéntale a la comunidad quién eres (opcional)', perfilConfigCuenta:'⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)', perfilMisPublicaciones:'Publicaciones', perfilSeguir:'Seguir', perfilDejarSeguir:'Dejar de seguir', perfilMutuo:'Se siguen mutuamente', perfilCompleta:'Completa tu perfil para aparecer en el directorio y publicar.', perfilSinPostsPropio:'Todavía no has publicado nada.', perfilSinPostsOtro:'Todavía no ha publicado nada.', perfilVerCompleto:'Ver perfil completo', cmyDirectorioIntro:'Toca a cualquier persona para ver su perfil. ¿Quieres aparecer aquí? Completa el tuyo desde <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Tu Perfil</a>.',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Viajero', cmyTipoPostCultivo:'Cultivo', cmyTipoPostDiagnostico:'Diagnóstico', cmyTipoPostPregunta:'Pregunta',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
@@ -3647,7 +3648,7 @@ const translations = {
     ngCar5h4:'Extraction technician', ngCar5role:'Processing · $55K\u2013$75K', ngCar5p:'Operates closed-loop hydrocarbon or CO2 extraction systems, turning flower into the oils you already saw in Making → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> and <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrates</a>. Requires training in chemistry or engineering, plus specific lab safety training.',
     ngCar6h4:'Edibles chef', ngCar6role:'Manufacturing · $45K\u2013$90K', ngCar6p:'Designs and produces edibles, with real command of decarboxylation and precise per-serving dosing calculation — the same math you saw in <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Making → Edibles</a>, applied at commercial scale.',
     cmyEyebrow:'Community — coming soon', cmyTitle:'Field reports, verified', cmySub:'What follows below (reports, confirmed diagnoses, moderated questions) needs user accounts and real moderation (backend) — it is the build plan, not a simulation. But the basic directory right below is real: it actually saves, and anyone using the app can see it.',
-    cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, and profile type are real and stay visible to everyone using the app. Your email <b>is not shown publicly</b> — it is stored separately, only so Mother Verde can reach you if there is ever important news. Never share a full last name, phone number, or exact grow location here.',
+    cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, profile type, photo and bio are public — anyone using the app can see them. Never share a full last name, phone number, or exact grow location here.',
     cmyCorreoLabel:'Email', cmyCorreoPrivado:'(private, not shown)', cmyCorreoPh:'you@email.com',
     cmyEnDesarrollo:'🚧 This feature is in development — you can\'t submit or see reports here yet. It\'s on the build list, not a simulation.', cmySecViajeroReal:'Traveler reports', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
     cmyViajeroPaisLabel:'Country you traveled to', cmyViajeroTextoLabel:'Your experience', cmyViajeroTextoPh:'What happened at the border or customs, no personal details', cmyViajeroBtn:'Share experience', cmyViajeroExito:'Thanks! Your experience is now in the list below.', cmyViajeroVacio:'No experiences shared yet — be the first.',
@@ -3659,6 +3660,7 @@ const translations = {
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmyAvatarBtn:'Profile photo', cmyAvatarNeedsName:'Enter your name or nickname first.', cmyAvatarSubiendo:'Uploading photo…', cmyAvatarListo:'Done! Your profile photo is set.',
     cmyCropTitle:'Adjust your photo', cmyCropHelp:'Drag the image and use your mouse wheel (or pinch on mobile) to zoom. Choose what you want to show inside the circle.', cmyCropPreviewLabel:'Preview', cmyCropCancelar:'Cancel', cmyCropConfirmar:'Use this photo',
+    perfilBack:'← Back to Community', perfilGateMsg:'Sign in to see your profile.', perfilNoDisponible:'This profile is not available.', perfilEditar:'Your profile', perfilBioLabel:'Bio', perfilBioPh:'Tell the community who you are (optional)', perfilConfigCuenta:'⚙️ Account settings (email, subscription, sign out)', perfilMisPublicaciones:'Posts', perfilSeguir:'Follow', perfilDejarSeguir:'Unfollow', perfilMutuo:'You follow each other', perfilCompleta:'Complete your profile to appear in the directory and post.', perfilSinPostsPropio:'You haven\'t posted anything yet.', perfilSinPostsOtro:'Hasn\'t posted anything yet.', perfilVerCompleto:'See full profile', cmyDirectorioIntro:'Tap anyone to see their profile. Want to appear here? Complete yours from <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Your Profile</a>.',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Traveler', cmyTipoPostCultivo:'Grow', cmyTipoPostDiagnostico:'Diagnosis', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
@@ -4478,7 +4480,7 @@ const translations = {
     ngCar5h4:'Extraktionstechniker', ngCar5role:'Verarbeitung · 55–75 Tsd. $', ngCar5p:'Betreibt geschlossene Kohlenwasserstoff- oder CO2-Extraktionssysteme und verwandelt Blüte in die Öle, die du bereits in Verarbeitung → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> und <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Konzentrate</a> gesehen hast. Erfordert Ausbildung in Chemie oder Ingenieurwesen, plus spezifische Laborsicherheitsschulung.',
     ngCar6h4:'Esswaren-Koch', ngCar6role:'Herstellung · 45–90 Tsd. $', ngCar6p:'Entwirft und produziert Esswaren, mit echter Beherrschung von Decarboxylierung und präziser Dosisberechnung pro Portion — dieselbe Mathematik, die du in <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Verarbeitung → Esswaren</a> gesehen hast, angewandt im kommerziellen Maßstab.',
     cmyEyebrow:'Community — demnächst', cmyTitle:'Felderfahrungen, verifiziert', cmySub:'Was unten folgt (Berichte, bestätigte Diagnosen, moderierte Fragen) benötigt Nutzerkonten und echte Moderation (Backend) — das ist der Bauplan, keine Simulation. Aber das grundlegende Verzeichnis direkt unten ist echt: es wird tatsächlich gespeichert, und jeder, der die App nutzt, kann es sehen.',
-    cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Dein Name, Land und Profiltyp sind echt und bleiben für alle sichtbar, die die App nutzen. Deine E-Mail wird <b>nicht öffentlich angezeigt</b> — sie wird separat gespeichert, nur damit Mother Verde dich kontaktieren kann, falls es einmal wichtige Neuigkeiten gibt. Teile hier niemals einen vollständigen Nachnamen, Telefonnummer oder genaue Anbauadresse.',
+    cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Dein Name, Land, Profiltyp, Foto und Biografie sind öffentlich — alle, die die App nutzen, können sie sehen. Teile hier niemals einen vollständigen Nachnamen, Telefonnummer oder genaue Anbauadresse.',
     cmyCorreoLabel:'E-Mail', cmyCorreoPrivado:'(privat, nicht angezeigt)', cmyCorreoPh:'du@email.com',
     cmyEnDesarrollo:'🚧 Diese Funktion ist in Entwicklung — du kannst hier noch keine Berichte senden oder sehen. Sie steht auf der To-do-Liste, ist keine Simulation.', cmySecViajeroReal:'Reiseberichte', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
     cmyViajeroPaisLabel:'Land, in das du gereist bist', cmyViajeroTextoLabel:'Deine Erfahrung', cmyViajeroTextoPh:'Was an der Grenze oder beim Zoll passiert ist, ohne persönliche Daten', cmyViajeroBtn:'Erfahrung teilen', cmyViajeroExito:'Danke! Deine Erfahrung steht jetzt in der Liste unten.', cmyViajeroVacio:'Noch keine Erfahrungen geteilt — sei die erste Person.',
@@ -4490,6 +4492,7 @@ const translations = {
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmyAvatarBtn:'Profilfoto', cmyAvatarNeedsName:'Gib zuerst deinen Namen oder Spitznamen ein.', cmyAvatarSubiendo:'Foto wird hochgeladen…', cmyAvatarListo:'Fertig! Dein Profilfoto ist eingerichtet.',
     cmyCropTitle:'Foto anpassen', cmyCropHelp:'Ziehe das Bild und nutze das Mausrad (oder kneife auf dem Handy), um zu zoomen. Wähle, was im Kreis zu sehen sein soll.', cmyCropPreviewLabel:'So wird es aussehen', cmyCropCancelar:'Abbrechen', cmyCropConfirmar:'Dieses Foto verwenden',
+    perfilBack:'← Zurück zur Community', perfilGateMsg:'Melde dich an, um dein Profil zu sehen.', perfilNoDisponible:'Dieses Profil ist nicht verfügbar.', perfilEditar:'Dein Profil', perfilBioLabel:'Biografie', perfilBioPh:'Erzähl der Community, wer du bist (optional)', perfilConfigCuenta:'⚙️ Kontoeinstellungen (E-Mail, Abo, Abmelden)', perfilMisPublicaciones:'Beiträge', perfilSeguir:'Folgen', perfilDejarSeguir:'Entfolgen', perfilMutuo:'Ihr folgt euch gegenseitig', perfilCompleta:'Vervollständige dein Profil, um im Verzeichnis zu erscheinen und zu posten.', perfilSinPostsPropio:'Du hast noch nichts gepostet.', perfilSinPostsOtro:'Hat noch nichts gepostet.', perfilVerCompleto:'Vollständiges Profil ansehen', cmyDirectorioIntro:'Tippe auf jemanden, um sein Profil zu sehen. Willst du hier erscheinen? Vervollständige deins über <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Dein Profil</a>.',
     cmyTipoPostGeneral:'Allgemein', cmyTipoPostViajero:'Reise', cmyTipoPostCultivo:'Anbau', cmyTipoPostDiagnostico:'Diagnose', cmyTipoPostPregunta:'Frage',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
@@ -5309,7 +5312,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     ngCar5h4:'Technicien d\u2019extraction', ngCar5role:'Transformation · 55-75 k $', ngCar5p:'Exploite des systèmes d\u2019extraction en circuit fermé à l\u2019hydrocarbure ou au CO2, transformant la fleur en huiles que tu as déjà vues dans Élaboration → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> et <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrés</a>. Nécessite une formation en chimie ou en ingénierie, plus une formation spécifique en sécurité de laboratoire.',
     ngCar6h4:'Chef comestibles', ngCar6role:'Élaboration · 45-90 k $', ngCar6p:'Conçoit et produit des comestibles, avec une véritable maîtrise de la décarboxylation et du calcul précis de dosage par portion — les mêmes mathématiques que tu as vues dans <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Élaboration → Comestibles</a>, appliquées à l\u2019échelle commerciale.',
     cmyEyebrow:'Communauté — bientôt', cmyTitle:'Rapports de terrain, vérifiés', cmySub:'Ce qui suit ci-dessous (rapports, diagnostics confirmés, questions modérées) nécessite des comptes utilisateurs et une modération réelle (backend) — c\u2019est le plan de construction, pas une simulation. Mais l\u2019annuaire de base juste en dessous est réel : il est vraiment enregistré, et toute personne utilisant l\u2019app peut le voir.',
-    cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays et ton type de profil sont réels et restent visibles pour toutes les personnes utilisant l\u2019app. Ton e-mail <b>n\u2019est pas affiché publiquement</b> — il est stocké séparément, uniquement pour que Mother Verde puisse te contacter s\u2019il y a un jour des nouvelles importantes. Ne partage jamais ici de nom de famille complet, de téléphone, ni d\u2019emplacement exact de culture.',
+    cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays, ton type de profil, ta photo et ta bio sont publics — toute personne utilisant l’app peut les voir. Ne partage jamais ici de nom de famille complet, de téléphone, ni d’emplacement exact de culture.',
     cmyCorreoLabel:'E-mail', cmyCorreoPrivado:'(privé, non affiché)', cmyCorreoPh:'toi@email.com',
     cmyEnDesarrollo:'🚧 Cette fonctionnalité est en cours de développement — tu ne peux pas encore envoyer ni voir de rapports ici. C’est prévu, ce n’est pas une simulation.', cmySecViajeroReal:'Rapports de voyageurs', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
     cmyViajeroPaisLabel:'Pays où tu as voyagé', cmyViajeroTextoLabel:'Ton expérience', cmyViajeroTextoPh:'Ce qui s\u2019est passé à la frontière ou à la douane, sans données personnelles', cmyViajeroBtn:'Partager l\u2019expérience', cmyViajeroExito:'Merci ! Ton expérience est maintenant dans la liste ci-dessous.', cmyViajeroVacio:'Aucune expérience partagée pour l\u2019instant — sois la première personne.',
@@ -5321,6 +5324,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmyAvatarBtn:'Photo de profil', cmyAvatarNeedsName:'\u00c9cris d\u2019abord ton nom ou pseudo.', cmyAvatarSubiendo:'Envoi de la photo\u2026', cmyAvatarListo:'C\u2019est fait ! Ta photo de profil est en place.',
     cmyCropTitle:'Ajuste ta photo', cmyCropHelp:'Fais glisser l\u2019image et utilise la molette de la souris (ou pince sur mobile) pour zoomer. Choisis ce que tu veux voir dans le cercle.', cmyCropPreviewLabel:'Aper\u00e7u', cmyCropCancelar:'Annuler', cmyCropConfirmar:'Utiliser cette photo',
+    perfilBack:'\u2190 Retour \u00e0 la communaut\u00e9', perfilGateMsg:'Connecte-toi pour voir ton profil.', perfilNoDisponible:'Ce profil n\u2019est pas disponible.', perfilEditar:'Ton profil', perfilBioLabel:'Bio', perfilBioPh:'Dis \u00e0 la communaut\u00e9 qui tu es (facultatif)', perfilConfigCuenta:'\u2699\ufe0f Param\u00e8tres du compte (e-mail, abonnement, d\u00e9connexion)', perfilMisPublicaciones:'Publications', perfilSeguir:'Suivre', perfilDejarSeguir:'Ne plus suivre', perfilMutuo:'Vous vous suivez mutuellement', perfilCompleta:'Compl\u00e8te ton profil pour appara\u00eetre dans l\u2019annuaire et publier.', perfilSinPostsPropio:'Tu n\u2019as encore rien publi\u00e9.', perfilSinPostsOtro:'N\u2019a encore rien publi\u00e9.', perfilVerCompleto:'Voir le profil complet', cmyDirectorioIntro:'Touche n\u2019importe qui pour voir son profil. Tu veux appara\u00eetre ici ? Compl\u00e8te le tien depuis <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ton profil</a>.',
     cmyTipoPostGeneral:'G\u00e9n\u00e9ral', cmyTipoPostViajero:'Voyage', cmyTipoPostCultivo:'Culture', cmyTipoPostDiagnostico:'Diagnostic', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
@@ -5686,6 +5690,7 @@ function showScreen(id){
   if(id === 'cuenta') renderCuenta();
   if(id === 'glosario') renderGlosario('');
   if(id === 'comunidad') renderComunidadScreen();
+  if(id === 'perfil') renderProfileScreen();
   if(id === 'legal') renderLegalMap();
   window.scrollTo(0,0);
 }
@@ -6160,7 +6165,7 @@ async function onAvatarCropped(blob){
     await window.mvCommunity.upsertMyMemberProfile(fields);
     showAvatarMsg(t('cmyAvatarListo'), true);
     renderAccountIcon();
-    renderComunidadScreen();
+    renderProfileScreen();
   }catch(e){
     showAvatarMsg(t('authErrGeneric'), false);
   }
@@ -6314,12 +6319,8 @@ function buscarEspecialista(){
   resultEl.innerHTML = html;
 }
 async function renderComunidadScreen(){
-  const selectEl = document.getElementById('cmyPaisInput');
   const listEl = document.getElementById('cmyDirectoryList');
-  if(!selectEl || !listEl) return;
-  if(selectEl.options.length === 0){
-    selectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
-  }
+  if(!listEl) return;
   const postViajeroSelectEl = document.getElementById('cmyPostViajeroPaisInput');
   if(postViajeroSelectEl && postViajeroSelectEl.options.length === 0){
     postViajeroSelectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
@@ -6330,8 +6331,7 @@ async function renderComunidadScreen(){
   // listMembers() already returns newest-first.
   listEl.innerHTML = members.length === 0
     ? `<p class="bit-empty">${t('cmyVacioMsg')}</p>`
-    : members.map(m => `<div class="spec-row"><span style="display:flex; align-items:center; gap:9px;">${mvAvatarHtml(m, 28)}<span><b>${esc(m.display_name)}</b> · ${esc(m.country || '')}</span></span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(tipoLabels[m.profile_type] || m.profile_type || '')}</span></div>`).join('');
-  prefillCommunityJoinForm();
+    : members.map(m => `<div class="spec-row" style="cursor:pointer;" onclick="showProfile('${m.user_id}')"><span style="display:flex; align-items:center; gap:9px;">${mvAvatarHtml(m, 28)}<span><b>${esc(m.display_name)}</b> · ${esc(m.country || '')}</span></span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(tipoLabels[m.profile_type] || m.profile_type || '')}</span></div>`).join('');
   renderDescubrir();
   renderFeed();
 }
@@ -6383,9 +6383,10 @@ function paintDiscoverTop(){
     <div class="discover-card" id="cmyDescubrirActive">
       <div class="discover-cover"${cover}></div>
       <div class="discover-body">
-        <div style="display:flex; align-items:center; gap:10px;">${mvAvatarHtml(m, 40)}<h3 style="margin:0;">${esc(m.display_name)}</h3></div>
+        <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="showProfile('${m.user_id}')">${mvAvatarHtml(m, 40)}<h3 style="margin:0;">${esc(m.display_name)}</h3></div>
         <div class="discover-meta">${metaBits}</div>
         ${bio}
+        <button class="btn-pill ghost sm" style="margin-top:10px;" onclick="showProfile('${m.user_id}')">${esc(t('perfilVerCompleto'))}</button>
       </div>
     </div>`;
 }
@@ -6535,17 +6536,11 @@ async function renderFeed(){
 
   let posts = [];
   try{
-    const [p, members, following, followers] = await Promise.all([
+    const [p] = await Promise.all([
       window.mvCommunity.listFeedPosts({ limit: 40 }),
-      window.mvCommunity.listMembers({ limit: 500 }),
-      window.mvCommunity.getFollowing(),
-      window.mvCommunity.getFollowers(),
+      loadFeedAuthorContext(),
     ]);
     posts = p;
-    feedAuthors = {};
-    members.forEach(m => { feedAuthors[m.user_id] = m; });
-    const followerSet = new Set(followers);
-    feedMutual = new Set(following.filter(id => followerSet.has(id)));
   }catch(e){ posts = []; }
 
   if(posts.length === 0){
@@ -6586,7 +6581,7 @@ function renderPostCard(post){
     <div class="cmy-post" id="cmyPost-${post.id}"${cardStyle}>
       ${typeTag}
       <div class="cmy-post-head">
-        <span style="display:flex; align-items:center; gap:8px;">${mvAvatarHtml(author, 32)}<span><b>${esc(author.display_name)}</b> · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span></span>
+        <span style="display:flex; align-items:center; gap:8px; cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 32)}<span><b>${esc(author.display_name)}</b> · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span></span>
         ${del}
       </div>
       ${bodyBlock}
@@ -6647,7 +6642,7 @@ async function loadCommentThread(postId){
     : comments.map(c => {
         const author = feedAuthors[c.user_id] || { display_name: t('cmyMiembroDesconocido'), user_id: c.user_id };
         const body = window.mvCommunity.localizeBody(c, currentLang);
-        return `<div class="cmy-comment" style="display:flex; gap:8px;">${mvAvatarHtml(author, 24)}<div><b>${esc(author.display_name)}</b> <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div></div>`;
+        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b> <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div></div>`;
       }).join('');
   const composer = canComment
     ? `<div class="cmy-comment-composer">
@@ -6676,30 +6671,174 @@ async function submitComment(postId){
 // window.storage that never existed and faked a success message. Removed. The
 // four sections now show a static "in development" note and their inputs are
 // disabled in index.html. They will come back as post types in the feed.
-// Prefill the join form from the current user's existing directory row, if any,
-// so "Unirme" doubles as "edit my entry".
-async function prefillCommunityJoinForm(){
+/* ===================== PERFIL (community_members + tus publicaciones) ===================== */
+let viewingProfileUserId = null;
+
+// Shared by renderFeed() and renderProfileScreen(): fill feedAuthors (for
+// avatars/names on post & comment cards) and feedMutual (comment gate).
+async function loadFeedAuthorContext(){
+  try{
+    const [members, following, followers] = await Promise.all([
+      window.mvCommunity.listMembers({ limit: 500 }),
+      window.mvCommunity.getFollowing(),
+      window.mvCommunity.getFollowers(),
+    ]);
+    feedAuthors = {};
+    members.forEach(m => { feedAuthors[m.user_id] = m; });
+    const followerSet = new Set(followers);
+    feedMutual = new Set(following.filter(id => followerSet.has(id)));
+  }catch(e){ /* keep whatever we had */ }
+}
+
+// userId omitted -> your own profile. Not signed in -> the account screen
+// (which has the sign-in form).
+function showProfile(userId){
+  const target = userId || window.mvCurrentUser?.id;
+  if(!target){ showScreen('cuenta'); return; }
+  viewingProfileUserId = target;
+  showScreen('perfil');
+}
+
+async function renderProfileScreen(){
+  const headerEl = document.getElementById('perfilHeader');
+  if(!headerEl || !window.mvCommunity) return;
+  const gateEl = document.getElementById('perfilGate');
+  const unavailEl = document.getElementById('perfilUnavailable');
+  const editCard = document.getElementById('perfilEditCard');
+  const followRow = document.getElementById('perfilFollowRow');
+  const postsTitle = document.getElementById('perfilPostsTitle');
+  const postsList = document.getElementById('perfilPostsList');
+  const esc = window.mvCommunity.escapeHtml;
+  const hide = el => { if(el) el.style.display = 'none'; };
+  [gateEl, unavailEl, editCard, followRow, postsTitle].forEach(hide);
+  headerEl.innerHTML = '';
+  postsList.innerHTML = '';
+
+  const myId = window.mvCurrentUser?.id || null;
+  if(!viewingProfileUserId) viewingProfileUserId = myId;
+  const isOwn = !!myId && viewingProfileUserId === myId;
+
+  if(!viewingProfileUserId){
+    if(gateEl){ gateEl.textContent = t('perfilGateMsg'); gateEl.style.display = 'block'; }
+    return;
+  }
+
+  // Populate the country select for the edit form (once).
+  const paisEl = document.getElementById('cmyPaisInput');
+  if(paisEl && paisEl.options.length === 0){
+    paisEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  }
+
+  let member = null;
+  try{ member = await window.mvCommunity.getMemberProfile(viewingProfileUserId); }catch(e){}
+
+  const tipoLabels = {cultivador:t('cmyTipoCultivador'), negocio:t('cmyTipoNegocio'), entusiasta:t('cmyTipoEntusiasta'), salud:t('cmyTipoSalud'), aprendiendo:t('cmyTipoAprendiendo'), otro:t('cmyTipoOtro')};
+
+  if(member){
+    const cover = member.cover_photo_url
+      ? `background-image:url('${esc(member.cover_photo_url)}'); background-size:cover; background-position:center;`
+      : 'background:linear-gradient(135deg, var(--moss-deep), var(--teal));';
+    const metaBits = [member.country, tipoLabels[member.profile_type] || member.profile_type].filter(Boolean).map(esc).join(' · ');
+    headerEl.innerHTML = `
+      <div class="perfil-cover" style="${cover}"></div>
+      <div class="perfil-id">
+        ${mvAvatarHtml(member, 96)}
+        <div>
+          <h2 class="perfil-name">${esc(member.display_name)}</h2>
+          <div class="perfil-meta">${metaBits}</div>
+        </div>
+      </div>
+      ${member.bio && member.bio.trim() ? `<p class="perfil-bio">${esc(member.bio)}</p>` : ''}`;
+  } else if(isOwn){
+    headerEl.innerHTML = `<p class="subhead" data-i18n="perfilCompleta">Completa tu perfil para aparecer en el directorio y publicar.</p>`;
+    headerEl.querySelector('[data-i18n]').textContent = t('perfilCompleta');
+  } else {
+    if(unavailEl) unavailEl.style.display = 'block';
+    return;
+  }
+
+  // Logged out: show the public header only, then a sign-in prompt.
+  if(!myId){
+    if(gateEl){ gateEl.textContent = t('perfilGateMsg'); gateEl.style.display = 'block'; }
+    return;
+  }
+
+  if(isOwn){
+    if(editCard) editCard.style.display = 'block';
+    prefillProfileForm(member);
+  } else {
+    if(followRow) followRow.style.display = 'block';
+    renderFollowRow(viewingProfileUserId);
+  }
+
+  // Their posts (RLS: visible if it's you or you follow them).
+  try{
+    await loadFeedAuthorContext();
+    const posts = await window.mvCommunity.listUserPosts(viewingProfileUserId, { limit: 40 });
+    if(postsTitle) postsTitle.style.display = 'block';
+    postsList.innerHTML = posts.length === 0
+      ? `<p class="bit-empty">${t(isOwn ? 'perfilSinPostsPropio' : 'perfilSinPostsOtro')}</p>`
+      : posts.map(renderPostCard).join('');
+    openCommentThreads.forEach(id => {
+      const el = document.getElementById('cmyThread-' + id);
+      if(el){ el.style.display = 'block'; loadCommentThread(id); }
+    });
+  }catch(e){ postsList.innerHTML = ''; }
+}
+
+async function renderFollowRow(userId){
+  const el = document.getElementById('perfilFollowRow');
+  if(!el) return;
+  let following = [], mutual = false;
+  try{
+    following = await window.mvCommunity.getFollowing();
+    mutual = await window.mvCommunity.isMutual(userId);
+  }catch(e){}
+  const isFollowing = following.includes(userId);
+  el.innerHTML = `
+    <button class="btn-pill${isFollowing ? ' ghost' : ''}" onclick="toggleFollowFromProfile('${userId}')">
+      ${isFollowing ? t('perfilDejarSeguir') : t('perfilSeguir')}
+    </button>
+    ${mutual ? `<span class="perfil-mutuo">${t('perfilMutuo')}</span>` : ''}`;
+}
+
+async function toggleFollowFromProfile(userId){
   if(!window.mvCommunity || !window.mvCurrentUser) return;
+  let following = [];
+  try{ following = await window.mvCommunity.getFollowing(); }catch(e){}
+  try{
+    if(following.includes(userId)) await window.mvCommunity.unfollow(userId);
+    else await window.mvCommunity.follow(userId);
+  }catch(e){}
+  renderProfileScreen(); // reflects new follow state + now-visible posts
+}
+
+// Prefill the edit form from the current user's directory row, if any.
+async function prefillProfileForm(mine){
   const nameEl = document.getElementById('cmyNombreInput');
   const paisEl = document.getElementById('cmyPaisInput');
   const tipoEl = document.getElementById('cmyTipoInput');
+  const bioEl = document.getElementById('cmyBioInput');
   const avatarEl = document.getElementById('cmyAvatarPreview');
   if(!nameEl) return;
-  let mine = null;
-  try{ mine = await window.mvCommunity.getMyMemberProfile(); }catch(e){ return; }
+  if(mine === undefined){
+    try{ mine = await window.mvCommunity.getMyMemberProfile(); }catch(e){ mine = null; }
+  }
   if(avatarEl) avatarEl.innerHTML = mvAvatarHtml(mine || { display_name: nameEl.value || '?' }, 56);
+  const btnEl = document.querySelector('#perfilEditCard button[onclick="joinCommunity()"]');
+  if(btnEl) btnEl.textContent = t(mine ? 'cmyActualizarBtn' : 'cmyUnirmeBtn');
   if(!mine) return;
   if(document.activeElement !== nameEl) nameEl.value = mine.display_name || '';
   if(paisEl && mine.country) paisEl.value = mine.country;
   if(tipoEl && mine.profile_type) tipoEl.value = mine.profile_type;
-  const btnEl = document.querySelector('#comunidad button[onclick="joinCommunity()"]');
-  if(btnEl) btnEl.textContent = t('cmyActualizarBtn');
+  if(bioEl && document.activeElement !== bioEl) bioEl.value = mine.bio || '';
 }
+
 async function joinCommunity(){
   const nameEl = document.getElementById('cmyNombreInput');
-  const correoEl = document.getElementById('cmyCorreoInput');
   const paisEl = document.getElementById('cmyPaisInput');
   const tipoEl = document.getElementById('cmyTipoInput');
+  const bioEl = document.getElementById('cmyBioInput');
   const msgEl = document.getElementById('cmyJoinMsg');
   const name = nameEl.value.trim();
   if(!name){ nameEl.focus(); return; }
@@ -6714,23 +6853,20 @@ async function joinCommunity(){
       display_name: name.slice(0,30),
       country: paisEl.value,
       profile_type: tipoEl.value,
+      bio: (bioEl?.value || '').trim().slice(0,300) || null,
     });
-    const correo = correoEl.value.trim();
-    if(correo){
-      await window.mvSupabase.from('profiles').update({ contact_email: correo }).eq('id', window.mvCurrentUser.id);
-    }
   }catch(e){
     msgEl.textContent = t('authErrGeneric');
     msgEl.style.color = 'var(--clay)';
     msgEl.style.display = 'block';
     return;
   }
-  correoEl.value = '';
   msgEl.textContent = t('cmyJoinExito');
   msgEl.style.color = 'var(--moss-deep)';
   msgEl.style.display = 'block';
   setTimeout(()=>{ msgEl.style.display = 'none'; }, 4000);
-  renderComunidadScreen();
+  renderAccountIcon();
+  renderProfileScreen();
 }
 function runSearch(){
   const norm = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
