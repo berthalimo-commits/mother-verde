@@ -6293,8 +6293,17 @@ function applyTier(){
   if(typeof syncTrialBanners === 'function') syncTrialBanners();
 }
 
+// The preview tier switch flips isPremium directly, bypassing every gate, so
+// it must never be usable by a real visitor. Shown on localhost / 127.0.0.1
+// only; hidden (and its clicks made harmless) everywhere else.
+const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+if(MV_IS_LOCAL){
+  const w = document.getElementById('tierPreviewWrap');
+  if(w) w.style.display = 'flex';
+}
 document.querySelectorAll('#tierSwitch button').forEach(b=>{
   b.onclick = ()=>{
+    if(!MV_IS_LOCAL) return;
     isPremium = (b.dataset.tier === 'premium');
     document.querySelectorAll('#tierSwitch button').forEach(x=>x.classList.remove('tier-on'));
     b.classList.add('tier-on');

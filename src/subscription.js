@@ -26,20 +26,32 @@
 // ===========================================================================
 
 const PAYMENTS_ENABLED = false; // TODO(payment-nerds): flip to true once the processor is live
+
+// The owner has chosen to open the free trial to the public BEFORE the
+// processor is connected. This is safe: when a trial's 3 days are up and no
+// charge can be taken, the account defaults to BLOCKED, never to free access.
+// Every gate fails closed —
+//   * computeIsPremium() (auth.js): status 'trialing' grants access only while
+//     trial_ends_at > now; the moment it passes, Premium is false even though
+//     the DB row may still read 'trialing'.
+//   * getState() below: an expired 'trialing'/'active' row is reported as
+//     'blocked' (or 'canceled' if the user cancelled) — no grace period.
+//   * is_premium(uid) SQL + api/subscription-cron.js: same rule server-side;
+//     the cron's charge stub returns { ok:false } -> row set to 'blocked'.
+// Set to false to hide the offer everywhere except localhost / preview.
+const PUBLIC_TRIAL_ENABLED = true;
+
 const PRICE_USD        = '7.10';
 const PRICE_LABEL      = '$7.10';
 const BILLING_PERIOD   = 'month';
 const TRIAL_DAYS       = 3;
 
-// Trial start is allowed from the browser without a card while the processor
-// is offline, but ONLY on localhost / Vercel preview — never on the real
-// production domain, where the offer button stays disabled ("proximamente").
 function isTestHost(){
   const h = location.hostname;
   return h === 'localhost' || h === '127.0.0.1' || h.endsWith('.vercel.app');
 }
 function trialStartAllowed(){
-  return PAYMENTS_ENABLED || isTestHost();
+  return PAYMENTS_ENABLED || PUBLIC_TRIAL_ENABLED || isTestHost();
 }
 
 function sb(){ return window.mvSupabase; }

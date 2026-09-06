@@ -98,10 +98,15 @@
         <button data-lang="de">DE</button>
         <button data-lang="fr">FR</button>
       </div>
-      <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.">Vista previa:</span>
-      <div class="tier-switch" id="tierSwitch">
-        <button data-tier="free">Gratis</button>
-        <button data-tier="premium" class="tier-on">Premium</button>
+      <!-- Tier preview switch: bypasses all Premium gating, so it must never be
+           reachable by real visitors. main.js hides #tierPreviewWrap on any
+           host that isn't localhost / 127.0.0.1. -->
+      <div id="tierPreviewWrap" style="display:none; align-items:center;">
+        <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.">Vista previa:</span>
+        <div class="tier-switch" id="tierSwitch">
+          <button data-tier="free">Gratis</button>
+          <button data-tier="premium" class="tier-on">Premium</button>
+        </div>
       </div>
     </div>
   </div>

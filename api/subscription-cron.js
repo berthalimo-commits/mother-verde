@@ -33,6 +33,10 @@ import { createClient } from '@supabase/supabase-js';
 const PRICE_USD = '7.10';
 const REMINDER_WINDOW_HOURS = 24;
 
+// Must match src/subscription.js. While false, NO charge can succeed and every
+// trial that reaches day 3 is set to 'blocked' — never left with free access.
+const PAYMENTS_ENABLED = false; // TODO(payment-nerds): flip on when the processor is live
+
 function admin() {
   const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -42,7 +46,21 @@ function admin() {
 
 // -- TODO(payment-nerds): real charge. Return { ok: true } / { ok: false }. ----
 async function chargeCard(/* profile, amountUsd */) {
-  return { ok: false, pending: true, reason: 'payment-nerds-not-connected' };
+  if (!PAYMENTS_ENABLED) return { ok: false, pending: true, reason: 'payment-nerds-not-connected' };
+  // TODO(payment-nerds): call the processor here.
+  return { ok: false, pending: true, reason: 'not-implemented' };
+}
+
+// Fail-closed wrapper: a charge counts as successful ONLY if payments are live
+// AND the processor explicitly said ok. Anything else -> block.
+async function chargeSucceeded(profile) {
+  if (!PAYMENTS_ENABLED) return false;
+  try {
+    const r = await chargeCard(profile, PRICE_USD);
+    return r && r.ok === true;
+  } catch (e) {
+    return false;
+  }
 }
 
 // -- TODO(email): real send via the provider we set up on Hostinger DNS. -------
@@ -103,8 +121,7 @@ export default async function handler(req, res) {
         summary.trialsCanceled++;
         continue;
       }
-      const charge = await chargeCard(p, PRICE_USD); // TODO(payment-nerds)
-      if (charge.ok) {
+      if (await chargeSucceeded(p)) {
         await db.from('profiles').update({
           subscription_status: 'active',
           subscription_active: true,
@@ -112,7 +129,7 @@ export default async function handler(req, res) {
         }).eq('id', p.id);
         summary.trialsCharged++;
       } else {
-        // Immediate block — no grace period.
+        // Default outcome on ANY doubt: immediate block, no grace period.
         await db.from('profiles').update({
           subscription_status: 'blocked',
           subscription_active: false,
@@ -139,8 +156,7 @@ export default async function handler(req, res) {
         summary.subsCanceled++;
         continue;
       }
-      const charge = await chargeCard(p, PRICE_USD); // TODO(payment-nerds)
-      if (charge.ok) {
+      if (await chargeSucceeded(p)) {
         await db.from('profiles').update({ subscription_expires_at: addOneMonth(now) }).eq('id', p.id);
         summary.renewals++;
       } else {
