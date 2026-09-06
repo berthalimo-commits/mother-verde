@@ -132,7 +132,7 @@ async function startTrial(){
 }
 
 async function cancelSubscription(){
-  const { data, error } = await sb().rpc('cancel_subscription');
+  const { data, error } = await sb().rpc('cancel_subscription', { p_confirm: true });
   if(error) throw error;
   // TODO(payment-nerds): also call the processor to cancel the subscription so
   // no renewal attempt is made. (The RPC already stops OUR side.)
@@ -141,7 +141,7 @@ async function cancelSubscription(){
 }
 
 async function reactivate(){
-  const { data, error } = await sb().rpc('reactivate_subscription');
+  const { data, error } = await sb().rpc('reactivate_subscription', { p_confirm: true });
   if(error) throw error;
   // TODO(payment-nerds): un-cancel on the processor side too.
   await reloadProfile();
