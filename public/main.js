@@ -6324,6 +6324,8 @@ function mvFmtDateTime(d){
   catch(e){ return new Date(d).toISOString().slice(0, 16).replace('T', ' '); }
 }
 function mapSubError(e){
+  // Always log the raw error — the mapped strings below are deliberately vague.
+  console.error('[subscription]', e);
   const m = ((e && (e.message || e.error_description || e.msg)) || '').toLowerCase();
   if(m.includes('trial already used')) return t('subErrTrialUsed');
   if(m.includes('already subscribed')) return t('subErrAlready');
