@@ -5868,6 +5868,16 @@ translations.en.cmDoseRefTitle = "What each mg-per-serving range means";
 translations.de.cmDoseRefTitle = "Was jeder Bereich von mg pro Portion bedeutet";
 translations.fr.cmDoseRefTitle = "Ce que signifie chaque plage de mg par portion";
 
+/* Featured / seeded community posts. */
+translations.es.cmyDestacado = "Destacado";
+translations.en.cmyDestacado = "Featured";
+translations.de.cmyDestacado = "Angeheftet";
+translations.fr.cmyDestacado = "À la une";
+translations.es.cmyFeedFeaturedNote = "Estás viendo publicaciones destacadas de Mother Verde. Sigue a personas en Descubrir (arriba) para que tu feed se llene con sus publicaciones.";
+translations.en.cmyFeedFeaturedNote = "You are seeing featured posts from Mother Verde. Follow people in Discover (above) so your feed fills up with their posts.";
+translations.de.cmyFeedFeaturedNote = "Du siehst angeheftete Beiträge von Mother Verde. Folge Personen unter „Entdecken\" (oben), damit sich dein Feed mit ihren Beiträgen füllt.";
+translations.fr.cmyFeedFeaturedNote = "Tu vois les publications à la une de Mother Verde. Suis des personnes dans Découvrir (ci-dessus) pour que ton fil se remplisse de leurs publications.";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -7150,7 +7160,10 @@ async function renderFeed(){
     listEl.innerHTML = `<p class="bit-empty">${t('cmyFeedVacio')}</p>`;
     return;
   }
-  listEl.innerHTML = posts.map(renderPostCard).join('');
+  const onlyFeatured = posts.every(p => p.featured);
+  const featNote = onlyFeatured
+    ? `<div class="note-box" style="margin-bottom:14px;">${t('cmyFeedFeaturedNote')}</div>` : '';
+  listEl.innerHTML = featNote + posts.map(renderPostCard).join('');
   // Re-open any comment threads the user had expanded before this refresh.
   openCommentThreads.forEach(id => {
     const el = document.getElementById('cmyThread-' + id);
@@ -7180,9 +7193,11 @@ function renderPostCard(post){
     ? ` · ${esc(post.meta[typeInfo.metaKey])}` : '';
   const typeTag = typeInfo && typeInfo.color
     ? `<div class="cmy-post-tag" style="color:${typeInfo.color}; border-color:${typeInfo.color};">${typeInfo.emoji} ${esc(t(typeInfo.labelKey))}${typeExtra}</div>` : '';
+  const featTag = post.featured
+    ? `<div class="cmy-post-tag" style="color:var(--resin); border-color:var(--resin);">\uD83D\uDCCC ${esc(t('cmyDestacado'))}</div>` : '';
   return `
     <div class="cmy-post" id="cmyPost-${post.id}"${cardStyle}>
-      ${typeTag}
+      ${featTag}${typeTag}
       <div class="cmy-post-head">
         <span style="display:flex; align-items:center; gap:8px; cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 32)}<span><b>${esc(author.display_name)}</b> · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span></span>
         ${del}
