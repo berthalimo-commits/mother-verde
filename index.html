@@ -14,6 +14,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Mother Verde">
+<script>
+  /* The age gate is visible by default in the HTML below (fail-safe if JS is
+     disabled). For a visitor who already confirmed, hide it here — before first
+     paint — so it never flashes on screen while the large main.js downloads and
+     parses. main.js's checkAgeGate() remains the full source of truth. */
+  try { if (localStorage.getItem('age-verified') === 'true') document.documentElement.classList.add('age-ok'); } catch (e) {}
+</script>
+<style>html.age-ok #ageGateModal{display:none!important;}</style>
 </head>
 <body>
 <div class="premium-modal active" id="ageGateModal" style="z-index:500;">
