@@ -6840,9 +6840,8 @@ const researchedCountries = {
   'Canadá': {region:'Norteamérica', key:'mdCanadaP', flag:'🇨🇦'},
 };
 function populateBuscarPaisSelect(){
-  const selectEl = document.getElementById('mdBuscarPaisInput');
-  if(!selectEl || selectEl.options.length > 0) return;
-  selectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  const el = document.getElementById('mdBuscarPaisInput');
+  if(el) el.innerHTML = countries.map(c=>`<option value="${c.name}">${countryDisplayName(c)}</option>`).join('');
 }
 function filterEducacion(){
   const pais = document.getElementById('eduFiltroPais')?.value || '';
@@ -6870,9 +6869,8 @@ const researchedVets = {
   'Japón': {region:'Asia', flag:'🇯🇵', name:'Animal Clinical Behavior Laboratory (Tokio)', role:{es:'Monpanier Co., Ltd.', en:'Monpanier Co., Ltd.', de:'Monpanier Co., Ltd.', fr:'Monpanier Co., Ltd.'}, org:'Veterinary Cannabis Society', url:'https://veterinarycannabissociety.org/directory-of-practitioners/'},
 };
 function populateBuscarVetSelect(){
-  const selectEl = document.getElementById('pmBuscarPaisInput');
-  if(!selectEl || selectEl.options.length > 0) return;
-  selectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  const el = document.getElementById('pmBuscarPaisInput');
+  if(el) el.innerHTML = countries.map(c=>`<option value="${c.name}">${countryDisplayName(c)}</option>`).join('');
 }
 function buscarVeterinario(){
   const paisEl = document.getElementById('pmBuscarPaisInput');
@@ -6985,11 +6983,13 @@ function localizePostMeta(post){
   if(post.post_type === 'diagnostico') return localizeDiagProblem(post.meta.problem);
   return '';
 }
-// Rebuild the community <select>s so their option labels follow currentLang.
-// The option value stays the Spanish key (unchanged, backward-compatible).
+// Rebuild the country / method / diagnosis <select>s (Community composer +
+// profile edit + the Ciencia -> Médico specialist/vet search) so their option
+// labels follow currentLang. The option value stays the Spanish key
+// (unchanged, backward-compatible).
 function rebuildLocalizedSelects(){
   const countryOpts = countries.map(c => `<option value="${c.name}">${countryDisplayName(c)}</option>`).join('');
-  ['cmyPostViajeroPaisInput', 'cmyPaisInput'].forEach(id => {
+  ['cmyPostViajeroPaisInput', 'cmyPaisInput', 'mdBuscarPaisInput', 'pmBuscarPaisInput'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
     const cur = el.value;
