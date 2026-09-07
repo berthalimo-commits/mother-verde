@@ -5862,6 +5862,12 @@ translations.fr = Object.assign(translations.fr, {
 
 let currentLang = 'es';
 window.getCurrentLang = function(){ return currentLang; };
+/* Edibles safety reference title (free content). */
+translations.es.cmDoseRefTitle = "Qué significa cada rango de mg por porción";
+translations.en.cmDoseRefTitle = "What each mg-per-serving range means";
+translations.de.cmDoseRefTitle = "Was jeder Bereich von mg pro Portion bedeutet";
+translations.fr.cmDoseRefTitle = "Ce que signifie chaque plage de mg par portion";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -5956,6 +5962,7 @@ function applyLang(){
   if(comparadorOpen && isPremium) renderComparador();
   if(document.getElementById('vpdTemp')){ updateVPD(); updateDLI(); updateDose(); }
   if(document.getElementById('cmDoseMg')) updateDoseComestibles();
+  renderEdibleSafetyCards();
   if(document.getElementById('cmDecarbGramos')) updateDecarbCalc();
   if(document.getElementById('snCalcTotal')) updateSnCalc();
   if(document.getElementById('ilLuzArea')) updateIlCalcLuz();
@@ -6123,7 +6130,12 @@ function wrapForGating(gate){
   if(!el || el.dataset.gated) return;
   const wrapper = document.createElement('div');
   wrapper.className = 'full-gate-inner';
-  while(el.firstChild){ wrapper.appendChild(el.firstChild); }
+  // Elements flagged [data-gate-exempt] stay outside the blur wrapper so they
+  // remain readable for Free users (e.g. the edibles safety context).
+  Array.from(el.childNodes).forEach(node => {
+    if(node.nodeType === 1 && node.hasAttribute('data-gate-exempt')) return;
+    wrapper.appendChild(node);
+  });
   el.appendChild(wrapper);
   el.classList.add('gate-wrap');
   el.dataset.gated = '1';
@@ -7650,22 +7662,35 @@ function updateDLI(){
 // sources only (Health Canada "Lower your risks" + Colorado cannabis.gov):
 // Health Canada = 2.5 mg THC or less to start; Colorado law = each legal
 // serving <= 10 mg THC. The fixed warning below always shows.
-function edibleDoseSafetyHtml(mg){
-  const catKey = mg < 2.5 ? 'cmDoseCatInicio' : (mg <= 10 ? 'cmDoseCatEstandar' : 'cmDoseCatAlta');
-  const parts = t(catKey).split(' — ');
-  const cat = parts.length > 1 ? ('<b>' + parts[0] + '</b> — ' + parts.slice(1).join(' — ')) : t(catKey);
-  return '<div class="note-box" style="margin-top:14px; border-style:solid; border-color:var(--moss-deep);">' + cat + '</div>'
+// Edibles safety context. FREE for everyone (Health Canada / Colorado guidance)
+// even though the dose calculators themselves are Premium. Rendered into
+// #edibleDoseSafetyCard (Calculadoras) and #edibleDoseSafetyCardCm
+// (Elaboración → Comestibles, kept outside the paywall via [data-gate-exempt]).
+function edibleSafetyRefHtml(){
+  return '<div class="note-box" style="margin-top:0; border-style:solid; border-color:var(--moss-deep);">'
+    + '<b>' + t('cmDoseRefTitle') + '</b>'
+    + '<ul style="margin:8px 0 0; padding-left:18px; font-size:12.5px; line-height:1.6;">'
+    + '<li>' + t('cmDoseCatInicio') + '</li>'
+    + '<li>' + t('cmDoseCatEstandar') + '</li>'
+    + '<li>' + t('cmDoseCatAlta') + '</li>'
+    + '</ul></div>'
     + '<p style="font-size:12px; color:var(--ink-soft); line-height:1.55; margin-top:10px;">' + t('cmDoseWarn') + '</p>'
     + '<p style="font-size:10.5px; color:var(--ink-soft); margin-top:8px;">' + t('cmDoseFuentes')
     + ' <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/resources/lower-your-risks.html" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">Health Canada</a> ·'
     + ' <a href="https://cannabis.colorado.gov/responsible-use/safety-with-edibles" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">Colorado.gov</a></p>';
+}
+function renderEdibleSafetyCards(){
+  const html = edibleSafetyRefHtml();
+  ['edibleDoseSafetyCard', 'edibleDoseSafetyCardCm'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  });
 }
 function updateDose(){
   const mg = parseFloat(document.getElementById('doseMg').value) || 0;
   const servings = parseFloat(document.getElementById('doseServings').value) || 1;
   const dose = mg / servings;
   document.getElementById('doseResult').textContent = dose.toFixed(1) + ' mg / porción';
-  const se = document.getElementById('doseSafety'); if(se) se.innerHTML = edibleDoseSafetyHtml(dose);
 }
 function updateDoseComestibles(){
   const mgEl = document.getElementById('cmDoseMg');
@@ -7676,7 +7701,6 @@ function updateDoseComestibles(){
   const servings = parseFloat(servingsEl.value) || 1;
   const dose = mg / servings;
   resultEl.textContent = dose.toFixed(1) + ' mg / porción';
-  const se = document.getElementById('cmDoseSafety'); if(se) se.innerHTML = edibleDoseSafetyHtml(dose);
 }
 function updateDecarbCalc(){
   const gramosEl = document.getElementById('cmDecarbGramos');
@@ -7781,6 +7805,7 @@ if(document.getElementById('degradTiempo')) updateDegradCalc();
   if(el) el.addEventListener('input', updateDoseComestibles);
 });
 if(document.getElementById('cmDoseMg')) updateDoseComestibles();
+renderEdibleSafetyCards();
 ['vpdTemp','vpdRH','vpdStage'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.addEventListener('input', updateVPD);
