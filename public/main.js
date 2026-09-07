@@ -5902,7 +5902,7 @@ function renderGrid(filter){
     el.onclick = () => showDetail(c);
     el.innerHTML = `
       <div class="top">
-        <div><h4>${flagImg(c.flag)} ${c.name}</h4><div class="region">${regionNames[c.region][currentLang]}</div></div>
+        <div><h4>${flagImg(c.flag)} ${countryDisplayName(c)}</h4><div class="region">${regionNames[c.region][currentLang]}</div></div>
         <div class="badge">${statusLabel(c.status)}</div>
       </div>
       <div class="desc">${c.desc[currentLang] || c.desc.es}</div>`;
@@ -5934,9 +5934,9 @@ function showDetail(c){
   const el = document.getElementById('detailContent');
   el.innerHTML = `
     <div class="detail-head">
-      <div class="big-stamp" style="--status-color:${c.color}; color:${c.color};"><div style="font-family:'Manrope',sans-serif; font-style:italic; font-size:15px;">${c.name}</div><span>${statusLabel(c.status)}</span></div>
+      <div class="big-stamp" style="--status-color:${c.color}; color:${c.color};"><div style="font-family:'Manrope',sans-serif; font-style:italic; font-size:15px;">${countryDisplayName(c)}</div><span>${statusLabel(c.status)}</span></div>
       <div>
-        <h2>${flagImg(c.flag, 28)} ${c.name}</h2>
+        <h2>${flagImg(c.flag, 28)} ${countryDisplayName(c)}</h2>
         <div class="status-line" style="color:${c.color}">${statusLabel(c.status)} · ${regionNames[c.region][currentLang]}</div>
       </div>
     </div>
@@ -6003,9 +6003,16 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     // feed, which bakes localized post/comment text straight into HTML at render
     // time. Re-render it so posts, "Eliminar"/etc., and any comment thread
     // already open pick up the new language immediately, same as opening it fresh.
-    if(document.getElementById('comunidad')?.classList.contains('active')) renderFeed();
-    // Cuenta's subscription status line is built in JS, not via data-i18n, so
-    // re-render it on a language change the same way opening the screen would.
+    // Directory list / Descubrir card / profile / feed bake localized dropdown
+    // values and post text into HTML at render time — re-render them, same as
+    // opening the screen fresh would.
+    rebuildLocalizedSelects();
+    if(document.getElementById('comunidad')?.classList.contains('active')){
+      renderCommunityDirectoryList();
+      if(document.getElementById('cmyDescubrirActive')) paintDiscoverTop();
+      renderFeed();
+    }
+    if(document.getElementById('perfil')?.classList.contains('active')) renderProfileScreen();
     if(document.getElementById('cuenta')?.classList.contains('active')) renderCuenta();
   };
 });
@@ -6931,20 +6938,89 @@ function buscarEspecialista(){
 
   resultEl.innerHTML = html;
 }
+/* ---------- Localizing values that were stored as literal dropdown text ----------
+   Country / grow method / diagnosis / profile type were all saved as Spanish
+   strings straight from a <select>. These resolve them to currentLang at render
+   time; the stored value stays the (Spanish) key, so nothing in the DB changes. */
+const growMethodsI18n = {
+  "Indoor":      { es: "Indoor",      en: "Indoor",      de: "Indoor",         fr: "Int\u00e9rieur" },
+  "Outdoor":     { es: "Outdoor",     en: "Outdoor",     de: "Outdoor",        fr: "Ext\u00e9rieur" },
+  "Invernadero": { es: "Invernadero", en: "Greenhouse",  de: "Gew\u00e4chshaus", fr: "Serre" },
+  "Hidropon\u00eda":  { es: "Hidropon\u00eda",  en: "Hydroponics", de: "Hydroponik",     fr: "Hydroponie" },
+  "Suelo vivo":  { es: "Suelo vivo",  en: "Living soil", de: "Lebendige Erde", fr: "Sol vivant" },
+  "Aeropon\u00eda":   { es: "Aeropon\u00eda",   en: "Aeroponics",  de: "Aeroponik",      fr: "A\u00e9roponie" },
+};
+const diagProblemsI18n = {
+  "O\u00eddio (mildiu polvoso)":            { es: "O\u00eddio (mildiu polvoso)", en: "Powdery mildew",        de: "Echter Mehltau",            fr: "O\u00efdium (blanc)" },
+  "Botrytis (bud rot)":                     { es: "Botrytis (bud rot)",          en: "Botrytis (bud rot)",    de: "Botrytis (Bl\u00fctenf\u00e4ule)", fr: "Botrytis (pourriture des t\u00eates)" },
+  "\u00c1caros / ara\u00f1a roja":              { es: "\u00c1caros / ara\u00f1a roja",    en: "Mites / spider mites",  de: "Milben / Spinnmilben",      fr: "Acariens / t\u00e9tranyques" },
+  "Deficiencia de nitr\u00f3geno":            { es: "Deficiencia de nitr\u00f3geno", en: "Nitrogen deficiency",   de: "Stickstoffmangel",          fr: "Carence en azote" },
+  "Exceso de riego":                        { es: "Exceso de riego",             en: "Overwatering",          de: "Staun\u00e4sse / \u00dcberw\u00e4sserung", fr: "Exc\u00e8s d\u2019arrosage" },
+  "Deficiencia de magnesio":                { es: "Deficiencia de magnesio",     en: "Magnesium deficiency",  de: "Magnesiummangel",           fr: "Carence en magn\u00e9sium" },
+  "Viroide latente del l\u00fapulo (HLVd)":    { es: "Viroide latente del l\u00fapulo (HLVd)", en: "Hop latent viroid (HLVd)", de: "Hopfen-Latent-Viroid (HLVd)", fr: "Viro\u00efde latent du houblon (HLVd)" },
+  "Pulgones (\u00e1fidos)":                    { es: "Pulgones (\u00e1fidos)",         en: "Aphids",                de: "Blattl\u00e4use",              fr: "Pucerons" },
+  "Trips":                                  { es: "Trips",                       en: "Thrips",                de: "Thripse",                   fr: "Thrips" },
+  "Mosca blanca":                           { es: "Mosca blanca",                en: "Whitefly",              de: "Wei\u00dfe Fliege",            fr: "Aleurode (mouche blanche)" },
+  "Pythium (pudrici\u00f3n de ra\u00edz)":       { es: "Pythium (pudrici\u00f3n de ra\u00edz)", en: "Pythium (root rot)",  de: "Pythium (Wurzelf\u00e4ule)",  fr: "Pythium (pourriture racinaire)" },
+};
+const PROFILE_TYPE_KEYS = { cultivador: 'cmyTipoCultivador', negocio: 'cmyTipoNegocio', entusiasta: 'cmyTipoEntusiasta', salud: 'cmyTipoSalud', aprendiendo: 'cmyTipoAprendiendo', otro: 'cmyTipoOtro' };
+
+function countryDisplayName(c){
+  if(!c) return '';
+  const iso = isoFromFlag(c.flag);
+  return (iso && countryNamesI18n[iso] && countryNamesI18n[iso][currentLang]) || c.name || '';
+}
+function localizeCountryName(esName){
+  if(!esName) return esName || '';
+  return countryDisplayName(countries.find(x => x.name === esName)) || esName;
+}
+function localizeGrowMethod(v){ return (v && growMethodsI18n[v] && growMethodsI18n[v][currentLang]) || v || ''; }
+function localizeDiagProblem(v){ return (v && diagProblemsI18n[v] && diagProblemsI18n[v][currentLang]) || v || ''; }
+function profileTypeLabel(key){ return (key && PROFILE_TYPE_KEYS[key] && t(PROFILE_TYPE_KEYS[key])) || key || ''; }
+// The one extra field a special post carries (country / method / problem), localized.
+function localizePostMeta(post){
+  if(!post || !post.meta) return '';
+  if(post.post_type === 'viajero') return localizeCountryName(post.meta.country);
+  if(post.post_type === 'cultivo') return localizeGrowMethod(post.meta.method);
+  if(post.post_type === 'diagnostico') return localizeDiagProblem(post.meta.problem);
+  return '';
+}
+// Rebuild the community <select>s so their option labels follow currentLang.
+// The option value stays the Spanish key (unchanged, backward-compatible).
+function rebuildLocalizedSelects(){
+  const countryOpts = countries.map(c => `<option value="${c.name}">${countryDisplayName(c)}</option>`).join('');
+  ['cmyPostViajeroPaisInput', 'cmyPaisInput'].forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const cur = el.value;
+    el.innerHTML = countryOpts;
+    if(cur) el.value = cur;
+  });
+  const fromMap = (id, map) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const cur = el.value;
+    el.innerHTML = Object.keys(map).map(k => `<option value="${k}">${map[k][currentLang] || k}</option>`).join('');
+    if(cur) el.value = cur;
+  };
+  fromMap('cmyPostCultivoMetodoInput', growMethodsI18n);
+  fromMap('cmyPostDiagProblemaInput', diagProblemsI18n);
+}
+// Directory list only (no Descubrir re-fetch, no feed) — for a language switch.
+async function renderCommunityDirectoryList(){
+  const listEl = document.getElementById('cmyDirectoryList');
+  if(!listEl) return;
+  const members = await loadCommunityMembers();
+  const esc = window.mvCommunity ? window.mvCommunity.escapeHtml : (s => s);
+  listEl.innerHTML = members.length === 0
+    ? `<p class="bit-empty">${t('cmyVacioMsg')}</p>`
+    : members.map(m => `<div class="spec-row" style="cursor:pointer;" onclick="showProfile('${m.user_id}')"><span style="display:flex; align-items:center; gap:9px;">${mvAvatarHtml(m, 28)}<span><b>${esc(m.display_name)}</b> \u00b7 ${esc(localizeCountryName(m.country))}</span></span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(profileTypeLabel(m.profile_type))}</span></div>`).join('');
+}
 async function renderComunidadScreen(){
   const listEl = document.getElementById('cmyDirectoryList');
   if(!listEl) return;
-  const postViajeroSelectEl = document.getElementById('cmyPostViajeroPaisInput');
-  if(postViajeroSelectEl && postViajeroSelectEl.options.length === 0){
-    postViajeroSelectEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
-  }
-  const members = await loadCommunityMembers();
-  const esc = window.mvCommunity ? window.mvCommunity.escapeHtml : (s => s);
-  const tipoLabels = {cultivador:t('cmyTipoCultivador'), negocio:t('cmyTipoNegocio'), entusiasta:t('cmyTipoEntusiasta'), salud:t('cmyTipoSalud'), aprendiendo:t('cmyTipoAprendiendo'), otro:t('cmyTipoOtro')};
-  // listMembers() already returns newest-first.
-  listEl.innerHTML = members.length === 0
-    ? `<p class="bit-empty">${t('cmyVacioMsg')}</p>`
-    : members.map(m => `<div class="spec-row" style="cursor:pointer;" onclick="showProfile('${m.user_id}')"><span style="display:flex; align-items:center; gap:9px;">${mvAvatarHtml(m, 28)}<span><b>${esc(m.display_name)}</b> · ${esc(m.country || '')}</span></span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(tipoLabels[m.profile_type] || m.profile_type || '')}</span></div>`).join('');
+  rebuildLocalizedSelects();
+  await renderCommunityDirectoryList();
   renderDescubrir();
   renderFeed();
 }
@@ -6985,10 +7061,9 @@ function paintDiscoverTop(){
   }
   if(emptyEl) emptyEl.style.display = 'none';
   if(controlsEl) controlsEl.style.display = 'flex';
-  const tipoLabels = {cultivador:t('cmyTipoCultivador'), negocio:t('cmyTipoNegocio'), entusiasta:t('cmyTipoEntusiasta'), salud:t('cmyTipoSalud'), aprendiendo:t('cmyTipoAprendiendo'), otro:t('cmyTipoOtro')};
   const cover = m.cover_photo_url
     ? ` style="background-image:url('${esc(m.cover_photo_url)}')"` : '';
-  const metaBits = [m.country, tipoLabels[m.profile_type] || m.profile_type].filter(Boolean).map(esc).join(' · ');
+  const metaBits = [localizeCountryName(m.country), profileTypeLabel(m.profile_type)].filter(Boolean).map(esc).join(' \u00b7 ');
   const bio = m.bio && m.bio.trim()
     ? `<p class="discover-bio">${esc(m.bio)}</p>`
     : `<p class="discover-bio empty">${esc(t('cmyDescubrirSinBio'))}</p>`;
@@ -7189,8 +7264,8 @@ function renderPostCard(post){
     ? `<button class="cmy-del" onclick="deletePostStep(this,'${post.id}')">${t('cmyEliminar')}</button>` : '';
   const typeInfo = POST_TYPE_INFO[post.post_type];
   const cardStyle = typeInfo && typeInfo.color ? ` style="border-left:3px solid ${typeInfo.color};"` : '';
-  const typeExtra = typeInfo && typeInfo.metaKey && post.meta && post.meta[typeInfo.metaKey]
-    ? ` · ${esc(post.meta[typeInfo.metaKey])}` : '';
+  const metaLabel = localizePostMeta(post);
+  const typeExtra = metaLabel ? ` \u00b7 ${esc(metaLabel)}` : '';
   const typeTag = typeInfo && typeInfo.color
     ? `<div class="cmy-post-tag" style="color:${typeInfo.color}; border-color:${typeInfo.color};">${typeInfo.emoji} ${esc(t(typeInfo.labelKey))}${typeExtra}</div>` : '';
   const featTag = post.featured
@@ -7342,21 +7417,16 @@ async function renderProfileScreen(){
   }
 
   // Populate the country select for the edit form (once).
-  const paisEl = document.getElementById('cmyPaisInput');
-  if(paisEl && paisEl.options.length === 0){
-    paisEl.innerHTML = countries.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
-  }
+  rebuildLocalizedSelects();
 
   let member = null;
   try{ member = await window.mvCommunity.getMemberProfile(viewingProfileUserId); }catch(e){}
-
-  const tipoLabels = {cultivador:t('cmyTipoCultivador'), negocio:t('cmyTipoNegocio'), entusiasta:t('cmyTipoEntusiasta'), salud:t('cmyTipoSalud'), aprendiendo:t('cmyTipoAprendiendo'), otro:t('cmyTipoOtro')};
 
   if(member){
     const cover = member.cover_photo_url
       ? `background-image:url('${esc(member.cover_photo_url)}'); background-size:cover; background-position:center;`
       : 'background:linear-gradient(135deg, var(--moss-deep), var(--teal));';
-    const metaBits = [member.country, tipoLabels[member.profile_type] || member.profile_type].filter(Boolean).map(esc).join(' · ');
+    const metaBits = [localizeCountryName(member.country), profileTypeLabel(member.profile_type)].filter(Boolean).map(esc).join(' \u00b7 ');
     headerEl.innerHTML = `
       <div class="perfil-cover" style="${cover}"></div>
       <div class="perfil-id">
