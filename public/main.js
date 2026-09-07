@@ -7178,7 +7178,7 @@ function renderPostCard(post){
   const author = feedAuthors[post.user_id] || { display_name: t('cmyMiembroDesconocido'), user_id: post.user_id };
   const localized = window.mvCommunity.localizeBody(post, currentLang);
   const translated = window.mvCommunity.isTranslated(post, currentLang);
-  const canComment = post.user_id === myId || feedMutual.has(post.user_id);
+  const canComment = post.user_id === myId || post.featured || feedMutual.has(post.user_id);
   const photo = post.photo_url
     ? `<img class="cmy-post-photo" src="${esc(post.photo_url)}" alt="" loading="lazy">` : '';
   const bodyBlock = localized
