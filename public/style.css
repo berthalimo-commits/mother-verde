@@ -416,6 +416,11 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .cmy-type-pill.on{background:var(--ink); color:var(--paper); border-color:var(--ink);}
 .cmy-type-help{font-size:12.5px; color:var(--ink-soft); margin:0 0 10px; line-height:1.5;}
 .cmy-post-tag{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; border:1px solid; border-radius:100px; display:inline-block; padding:3px 10px; margin-bottom:10px;}
+/* color is !important: the badge is a fixed-token component and lands inside
+   containers with their own colour rules (e.g. .spec-row span:first-child). */
+.mv-verified{display:inline-flex; align-items:center; gap:4px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:500; text-transform:uppercase; letter-spacing:.03em; color:var(--moss-deep)!important; background:rgba(42,235,160,0.12); border:1px solid var(--moss-deep); border-radius:100px; padding:2px 8px 2px 5px; white-space:nowrap; vertical-align:middle; line-height:1;}
+.mv-verified svg{width:12px; height:12px; flex-shrink:0;}
+.mv-verified > span{color:var(--moss-deep);}
 
 /* ---- Profile screen ---- */
 .perfil-cover{height:120px; border-radius:10px; margin-bottom:-40px;}

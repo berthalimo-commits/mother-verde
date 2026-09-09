@@ -5878,6 +5878,12 @@ translations.en.cmyFeedFeaturedNote = "You are seeing featured posts from Mother
 translations.de.cmyFeedFeaturedNote = "Du siehst angeheftete Beiträge von Mother Verde. Folge Personen unter „Entdecken\" (oben), damit sich dein Feed mit ihren Beiträgen füllt.";
 translations.fr.cmyFeedFeaturedNote = "Tu vois les publications à la une de Mother Verde. Suis des personnes dans Découvrir (ci-dessus) pour que ton fil se remplisse de leurs publications.";
 
+/* Verified-account badge label. */
+translations.es.cmyCuentaOficial = "Cuenta oficial";
+translations.en.cmyCuentaOficial = "Official account";
+translations.de.cmyCuentaOficial = "Offizielles Konto";
+translations.fr.cmyCuentaOficial = "Compte officiel";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -6975,6 +6981,15 @@ function localizeCountryName(esName){
 function localizeGrowMethod(v){ return (v && growMethodsI18n[v] && growMethodsI18n[v][currentLang]) || v || ''; }
 function localizeDiagProblem(v){ return (v && diagProblemsI18n[v] && diagProblemsI18n[v][currentLang]) || v || ''; }
 function profileTypeLabel(key){ return (key && PROFILE_TYPE_KEYS[key] && t(PROFILE_TYPE_KEYS[key])) || key || ''; }
+// Verified-account badge (currently only 'official' — the Mother Verde
+// platform account). verified_type is set service-role only (migration
+// 20260909130000). Returns '' for everyone else.
+const VERIFIED_CHECK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M6.8 12.4l3.4 3.4L17.2 8.6" fill="none" stroke="var(--ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function verifiedBadgeHtml(member){
+  if(!member || member.verified_type !== 'official') return '';
+  const label = t('cmyCuentaOficial');
+  return `<span class="mv-verified" title="${label}">${VERIFIED_CHECK_SVG}<span>${label}</span></span>`;
+}
 // The one extra field a special post carries (country / method / problem), localized.
 function localizePostMeta(post){
   if(!post || !post.meta) return '';
@@ -7014,7 +7029,7 @@ async function renderCommunityDirectoryList(){
   const esc = window.mvCommunity ? window.mvCommunity.escapeHtml : (s => s);
   listEl.innerHTML = members.length === 0
     ? `<p class="bit-empty">${t('cmyVacioMsg')}</p>`
-    : members.map(m => `<div class="spec-row" style="cursor:pointer;" onclick="showProfile('${m.user_id}')"><span style="display:flex; align-items:center; gap:9px;">${mvAvatarHtml(m, 28)}<span><b>${esc(m.display_name)}</b> \u00b7 ${esc(localizeCountryName(m.country))}</span></span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${esc(profileTypeLabel(m.profile_type))}</span></div>`).join('');
+    : members.map(m => `<div class="spec-row" style="cursor:pointer;" onclick="showProfile('${m.user_id}')"><span style="display:flex; align-items:center; gap:9px;">${mvAvatarHtml(m, 28)}<span><b>${esc(m.display_name)}</b>${m.country ? ` \u00b7 ${esc(localizeCountryName(m.country))}` : ``}</span></span><span style="color:var(--moss-deep); font-family:'IBM Plex Mono',monospace; font-size:11px;">${m.verified_type === 'official' ? verifiedBadgeHtml(m) : esc(profileTypeLabel(m.profile_type))}</span></div>`).join('');
 }
 async function renderComunidadScreen(){
   const listEl = document.getElementById('cmyDirectoryList');
@@ -7063,7 +7078,7 @@ function paintDiscoverTop(){
   if(controlsEl) controlsEl.style.display = 'flex';
   const cover = m.cover_photo_url
     ? ` style="background-image:url('${esc(m.cover_photo_url)}')"` : '';
-  const metaBits = [localizeCountryName(m.country), profileTypeLabel(m.profile_type)].filter(Boolean).map(esc).join(' \u00b7 ');
+  const metaBits = [localizeCountryName(m.country), m.verified_type === 'official' ? '' : profileTypeLabel(m.profile_type)].filter(Boolean).map(esc).join(' \u00b7 ');
   const bio = m.bio && m.bio.trim()
     ? `<p class="discover-bio">${esc(m.bio)}</p>`
     : `<p class="discover-bio empty">${esc(t('cmyDescubrirSinBio'))}</p>`;
@@ -7071,7 +7086,7 @@ function paintDiscoverTop(){
     <div class="discover-card" id="cmyDescubrirActive">
       <div class="discover-cover"${cover}></div>
       <div class="discover-body">
-        <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="showProfile('${m.user_id}')">${mvAvatarHtml(m, 40)}<h3 style="margin:0;">${esc(m.display_name)}</h3></div>
+        <div style="display:flex; align-items:center; gap:10px; cursor:pointer;" onclick="showProfile('${m.user_id}')">${mvAvatarHtml(m, 40)}<h3 style="margin:0; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">${esc(m.display_name)}${verifiedBadgeHtml(m)}</h3></div>
         <div class="discover-meta">${metaBits}</div>
         ${bio}
         <button class="btn-pill ghost sm" style="margin-top:10px;" onclick="showProfile('${m.user_id}')">${esc(t('perfilVerCompleto'))}</button>
@@ -7274,7 +7289,7 @@ function renderPostCard(post){
     <div class="cmy-post" id="cmyPost-${post.id}"${cardStyle}>
       ${featTag}${typeTag}
       <div class="cmy-post-head">
-        <span style="display:flex; align-items:center; gap:8px; cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 32)}<span><b>${esc(author.display_name)}</b> · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span></span>
+        <span style="display:flex; align-items:center; gap:8px; cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 32)}<span><b>${esc(author.display_name)}</b>${verifiedBadgeHtml(author)} · <span class="cmy-post-time">${cmyFmtDate(post.created_at)}</span></span></span>
         ${del}
       </div>
       ${bodyBlock}
@@ -7335,7 +7350,7 @@ async function loadCommentThread(postId){
     : comments.map(c => {
         const author = feedAuthors[c.user_id] || { display_name: t('cmyMiembroDesconocido'), user_id: c.user_id };
         const body = window.mvCommunity.localizeBody(c, currentLang);
-        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b> <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div></div>`;
+        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b>${verifiedBadgeHtml(author)} <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div></div>`;
       }).join('');
   const composer = canComment
     ? `<div class="cmy-comment-composer">
@@ -7426,13 +7441,13 @@ async function renderProfileScreen(){
     const cover = member.cover_photo_url
       ? `background-image:url('${esc(member.cover_photo_url)}'); background-size:cover; background-position:center;`
       : 'background:linear-gradient(135deg, var(--moss-deep), var(--teal));';
-    const metaBits = [localizeCountryName(member.country), profileTypeLabel(member.profile_type)].filter(Boolean).map(esc).join(' \u00b7 ');
+    const metaBits = [localizeCountryName(member.country), member.verified_type === 'official' ? '' : profileTypeLabel(member.profile_type)].filter(Boolean).map(esc).join(' \u00b7 ');
     headerEl.innerHTML = `
       <div class="perfil-cover" style="${cover}"></div>
       <div class="perfil-id">
         ${mvAvatarHtml(member, 96)}
         <div>
-          <h2 class="perfil-name">${esc(member.display_name)}</h2>
+          <h2 class="perfil-name" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">${esc(member.display_name)}${verifiedBadgeHtml(member)}</h2>
           <div class="perfil-meta">${metaBits}</div>
         </div>
       </div>
