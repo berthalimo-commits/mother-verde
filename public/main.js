@@ -5884,6 +5884,68 @@ translations.en.cmyCuentaOficial = "Official account";
 translations.de.cmyCuentaOficial = "Offizielles Konto";
 translations.fr.cmyCuentaOficial = "Compte officiel";
 
+/* Médico condition-picker UI strings. */
+translations.es.mcSelectorLabel = "Elige una condición o síntoma";
+translations.en.mcSelectorLabel = "Choose a condition or symptom";
+translations.de.mcSelectorLabel = "Wähle eine Erkrankung oder ein Symptom";
+translations.fr.mcSelectorLabel = "Choisis une affection ou un symptôme";
+translations.es.mcSelectorPlaceholder = "— Elige una condición —";
+translations.en.mcSelectorPlaceholder = "— Choose a condition —";
+translations.de.mcSelectorPlaceholder = "— Erkrankung wählen —";
+translations.fr.mcSelectorPlaceholder = "— Choisis une affection —";
+translations.es.mcOSeparador = "— o descríbelo con tus propias palabras —";
+translations.en.mcOSeparador = "— or describe it in your own words —";
+translations.de.mcOSeparador = "— oder beschreibe es in eigenen Worten —";
+translations.fr.mcOSeparador = "— ou décris-le avec tes propres mots —";
+translations.es.mcGroupClinical = "Con evidencia de ensayos clínicos";
+translations.en.mcGroupClinical = "Clinical-trial evidence";
+translations.de.mcGroupClinical = "Evidenz aus klinischen Studien";
+translations.fr.mcGroupClinical = "Preuves d’essais cliniques";
+translations.es.mcGroupPreliminary = "Con evidencia preliminar";
+translations.en.mcGroupPreliminary = "Preliminary evidence";
+translations.de.mcGroupPreliminary = "Vorläufige Evidenz";
+translations.fr.mcGroupPreliminary = "Preuves préliminaires";
+translations.es.mcGroupLimited = "Con evidencia limitada";
+translations.en.mcGroupLimited = "Limited evidence";
+translations.de.mcGroupLimited = "Begrenzte Evidenz";
+translations.fr.mcGroupLimited = "Preuves limitées";
+translations.es.mcGroupNotRecommended = "Generalmente no recomendado";
+translations.en.mcGroupNotRecommended = "Generally not recommended";
+translations.de.mcGroupNotRecommended = "Im Allgemeinen nicht empfohlen";
+translations.fr.mcGroupNotRecommended = "Généralement déconseillé";
+translations.es.mcLevelClinical = "Evidencia de ensayos clínicos";
+translations.en.mcLevelClinical = "Clinical-trial evidence";
+translations.de.mcLevelClinical = "Evidenz aus klinischen Studien";
+translations.fr.mcLevelClinical = "Preuves d’essais cliniques";
+translations.es.mcLevelPreliminary = "Evidencia preliminar";
+translations.en.mcLevelPreliminary = "Preliminary evidence";
+translations.de.mcLevelPreliminary = "Vorläufige Evidenz";
+translations.fr.mcLevelPreliminary = "Preuves préliminaires";
+translations.es.mcLevelLimited = "Evidencia limitada";
+translations.en.mcLevelLimited = "Limited evidence";
+translations.de.mcLevelLimited = "Begrenzte Evidenz";
+translations.fr.mcLevelLimited = "Preuves limitées";
+translations.es.mcLevelNotRecommended = "Generalmente no recomendado";
+translations.en.mcLevelNotRecommended = "Generally not recommended";
+translations.de.mcLevelNotRecommended = "Im Allgemeinen nicht empfohlen";
+translations.fr.mcLevelNotRecommended = "Généralement déconseillé";
+translations.es.mcVerEnApp = "Ver en la app:";
+translations.en.mcVerEnApp = "See in the app:";
+translations.de.mcVerEnApp = "In der App ansehen:";
+translations.fr.mcVerEnApp = "Voir dans l’app :";
+translations.es.mcFuente = "fuente";
+translations.en.mcFuente = "source";
+translations.de.mcFuente = "Quelle";
+translations.fr.mcFuente = "source";
+translations.es.mcInteraccionesRecordatorio = "Antes de empezar cualquier uso medicinal, revisa las interacciones con otros medicamentos (anticoagulantes, sedantes y más) — arriba, en \"Interacciones a tener en cuenta\".";
+translations.en.mcInteraccionesRecordatorio = "Before starting any medical use, check the interactions with other medications (blood thinners, sedatives and more) — above, under \"Interactions to keep in mind\".";
+translations.de.mcInteraccionesRecordatorio = "Bevor du eine medizinische Anwendung beginnst, prüfe die Wechselwirkungen mit anderen Medikamenten (Blutverdünner, Beruhigungsmittel und mehr) — oben unter „Zu beachtende Wechselwirkungen\".";
+translations.fr.mcInteraccionesRecordatorio = "Avant de commencer tout usage médical, vérifie les interactions avec d’autres médicaments (anticoagulants, sédatifs et autres) — plus haut, dans « Interactions à prendre en compte ».";
+translations.es.mcDisclaimer = "Esto es información educativa sobre el estado de la evidencia — no un diagnóstico ni una recomendación de tratamiento. Habla siempre con un profesional.";
+translations.en.mcDisclaimer = "This is educational information about the state of the evidence — not a diagnosis or a treatment recommendation. Always talk to a professional.";
+translations.de.mcDisclaimer = "Dies ist Bildungsinformation über den Stand der Evidenz — keine Diagnose und keine Behandlungsempfehlung. Sprich immer mit einer Fachkraft.";
+translations.fr.mcDisclaimer = "Ceci est une information éducative sur l’état des preuves — pas un diagnostic ni une recommandation de traitement. Parle toujours à un professionnel.";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -6020,6 +6082,8 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     }
     if(document.getElementById('perfil')?.classList.contains('active')) renderProfileScreen();
     if(document.getElementById('cuenta')?.classList.contains('active')) renderCuenta();
+    // Médico condition-picker result is built in JS — re-run it if one is showing.
+    if(document.getElementById('mdBuscarResultado')?.innerHTML.trim()) buscarEspecialista();
   };
 });
 
@@ -6898,49 +6962,117 @@ function buscarVeterinario(){
   html += `<div class="note-box"><b>${t('mdBuscarGlobal')}</b><br><a href="https://veterinarycannabissociety.org/directory-of-practitioners/" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">Veterinary Cannabis Society →</a></div>`;
   resultEl.innerHTML = html;
 }
-function buscarEspecialista(){
-  const inputEl = document.getElementById('mdBuscarInput');
-  const paisEl = document.getElementById('mdBuscarPaisInput');
-  const resultEl = document.getElementById('mdBuscarResultado');
-  if(!inputEl || !resultEl) return;
-  const input = inputEl.value.trim().toLowerCase();
-  if(!input){ resultEl.innerHTML = ''; return; }
-  let matched = null;
-  for(const key in specialtyKeywords){
-    if(specialtyKeywords[key].some(w => input.includes(w))){ matched = key; break; }
-  }
-  const url = 'https://www.cannabisclinicians.org/find-a-cannabis-doctor/';
-  const specLabel = matched ? (specialtyLabels[matched][currentLang] || specialtyLabels[matched].es) : null;
+/* ===================== BUSCADOR MÉDICO: selector de condiciones =====================
+   17 condiciones con nivel de evidencia + fuente citable (Ronda 1, aprobada
+   2026-09-10). El texto vive en MED_CONDITION_TEXT; MED_CONDITIONS lleva el
+   nivel, la especialidad (para el directorio), la tarjeta de la app y la URL. */
+const MED_CONDITIONS = [{"id":"dolor","level":"clinical","spec":"dolor","card":"mdCardIndic","src":"https://www.ncbi.nlm.nih.gov/books/NBK618045/","srcLabel":"AHRQ 2025"},{"id":"nausea","level":"clinical","spec":"oncologia","card":"mdCardIndic","src":"https://www.cochrane.org/evidence/CD009464_cannabis-based-medicine-nausea-and-vomiting-people-treated-chemotherapy-cancer","srcLabel":"Cochrane 2015"},{"id":"epilepsia","level":"clinical","spec":"epilepsia","card":"mdCardIndic","src":"https://pubmed.ncbi.nlm.nih.gov/29768152/","srcLabel":"NEJM 2018"},{"id":"em","level":"clinical","spec":"neurologia","card":"mdCardEm","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10616923/","srcLabel":"Meta-analysis 2023"},{"id":"parkinson","level":"preliminary","spec":"neurologia","card":"mdCardReciente","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10446505/","srcLabel":"Cannabis Cannabinoid Res."},{"id":"autismo","level":"preliminary","spec":"autismo","card":"mdCardReciente","src":"https://pubmed.ncbi.nlm.nih.gov/41974303/","srcLabel":"Systematic review 2026"},{"id":"ansiedad","level":"limited","spec":"psiquiatria","card":"mdCardIndic","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11595441/","srcLabel":"Life 2024"},{"id":"insomnio","level":"limited","spec":"psiquiatria","card":"mdCardIndic","src":"https://pubmed.ncbi.nlm.nih.gov/40929927/","srcLabel":"Meta-analysis 2025"},{"id":"fibromialgia","level":"limited","spec":"dolor","card":"mdCardIndic","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10295750/","srcLabel":"Systematic review 2023"},{"id":"endometriosis","level":"limited","spec":"ginecologia","card":"mdCardIndic","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12920050/","srcLabel":"ANZJOG 2026"},{"id":"eii","level":"limited","spec":"gastroenterologia","card":"mdCardIndic","src":"https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012954/full","srcLabel":"Cochrane"},{"id":"migrana","level":"limited","spec":"neurologia","card":"mdCardIndic","src":"https://www.neurology.org/doi/10.1212/WNL.0000000000204925","srcLabel":"Neurology 2024"},{"id":"apetito","level":"limited","spec":"oncologia","card":"mdCardIndic","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8818598/","srcLabel":"Meta-analysis 2022"},{"id":"demencia","level":"limited","spec":"geriatria","card":"mdCardIndic","src":"https://www.ajgponline.org/article/S1064-7481(19)30355-0/fulltext","srcLabel":"Am J Geriatr Psychiatry 2019"},{"id":"piel","level":"limited","spec":"dermatologia","card":"mdCardIndic","src":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12467061/","srcLabel":"Systematic review 2025"},{"id":"glaucoma","level":"not-recommended","spec":null,"card":null,"src":"https://www.aao.org/eyenet/article/marijuana-and-glaucoma-a-shifting-landscape","srcLabel":"Am. Acad. of Ophthalmology"},{"id":"tept","level":"not-recommended","spec":"psiquiatria","card":null,"src":"https://medicalcannabis.utah.gov/evidence-based-guidelines/ptsd/","srcLabel":"Utah guidelines · VA/DoD"}];
+const MED_CONDITION_TEXT = {"dolor":{"label":{"es":"Dolor crónico o neuropático","en":"Chronic or neuropathic pain","de":"Chronische oder neuropathische Schmerzen","fr":"Douleur chronique ou neuropathique"},"note":{"es":"Revisiones sistemáticas de ensayos aleatorizados (revisión viva de la AHRQ, 2025; revisión Cochrane, 2026) encuentran una mejora pequeña del dolor —sobre todo del neuropático— acompañada de efectos adversos moderados a grandes (mareo, sedación). El CBD por sí solo no mostró beneficio.","en":"Systematic reviews of randomized trials (AHRQ living review, 2025; Cochrane review, 2026) find a small improvement in pain — mostly neuropathic — alongside moderate-to-large side effects (dizziness, sedation). CBD on its own showed no benefit.","de":"Systematische Übersichten randomisierter Studien (AHRQ-Living-Review, 2025; Cochrane-Review, 2026) finden eine kleine Schmerzverbesserung — vor allem bei neuropathischem Schmerz — bei mittleren bis großen Nebenwirkungen (Schwindel, Sedierung). CBD allein zeigte keinen Nutzen.","fr":"Des revues systématiques d’essais randomisés (revue vivante de l’AHRQ, 2025 ; revue Cochrane, 2026) trouvent une petite amélioration de la douleur — surtout neuropathique — avec des effets indésirables modérés à importants (vertiges, sédation). Le CBD seul n’a montré aucun bénéfice."}},"nausea":{"label":{"es":"Náuseas y vómitos por quimioterapia","en":"Chemotherapy-induced nausea and vomiting","de":"Übelkeit und Erbrechen durch Chemotherapie","fr":"Nausées et vomissements dus à la chimiothérapie"},"note":{"es":"Una revisión Cochrane (2015) concluye que los cannabinoides pueden ayudar cuando otros antieméticos no funcionan. Advertencia: los ensayos son antiguos y no se compararon bien con los antieméticos modernos (ondansetrón y antagonistas de NK1).","en":"A Cochrane review (2015) concludes cannabinoids can help when other antiemetics do not. Caveat: the trials are old and were not well compared against modern antiemetics (ondansetron and NK1 antagonists).","de":"Ein Cochrane-Review (2015) kommt zu dem Schluss, dass Cannabinoide helfen können, wenn andere Antiemetika nicht wirken. Vorbehalt: Die Studien sind alt und wurden nicht gut mit modernen Antiemetika (Ondansetron, NK1-Antagonisten) verglichen.","fr":"Une revue Cochrane (2015) conclut que les cannabinoïdes peuvent aider quand les autres antiémétiques échouent. Réserve : les essais sont anciens et mal comparés aux antiémétiques modernes (ondansétron, antagonistes NK1)."}},"epilepsia":{"label":{"es":"Epilepsia refractaria (síndromes de Dravet o Lennox-Gastaut)","en":"Drug-resistant epilepsy (Dravet or Lennox-Gastaut syndromes)","de":"Therapieresistente Epilepsie (Dravet- oder Lennox-Gastaut-Syndrom)","fr":"Épilepsie pharmacorésistante (syndromes de Dravet ou Lennox-Gastaut)"},"note":{"es":"Dos ensayos aleatorizados publicados en el New England Journal of Medicine (2017 y 2018) mostraron que el CBD purificado reduce las convulsiones cerca del 40%, frente a ~17% con placebo — la base de la aprobación de la FDA y la EMA. Es CBD farmacéutico con dosis controlada, no cannabis genérico.","en":"Two randomized trials in the New England Journal of Medicine (2017 and 2018) showed purified CBD cuts seizures by about 40%, versus ~17% on placebo — the basis of FDA and EMA approval. This is pharmaceutical CBD at a controlled dose, not generic cannabis.","de":"Zwei randomisierte Studien im New England Journal of Medicine (2017 und 2018) zeigten, dass gereinigtes CBD Anfälle um etwa 40% senkt, gegenüber ~17% unter Placebo — die Grundlage der FDA- und EMA-Zulassung. Es handelt sich um pharmazeutisches CBD in kontrollierter Dosierung, nicht um generisches Cannabis.","fr":"Deux essais randomisés dans le New England Journal of Medicine (2017 et 2018) ont montré que le CBD purifié réduit les crises d’environ 40%, contre ~17% sous placebo — la base de l’approbation de la FDA et de l’EMA. C’est du CBD pharmaceutique à dose contrôlée, pas du cannabis générique."}},"em":{"label":{"es":"Espasticidad por esclerosis múltiple","en":"Spasticity from multiple sclerosis","de":"Spastik bei Multipler Sklerose","fr":"Spasticité liée à la sclérose en plaques"},"note":{"es":"El nabiximols (Sativex, spray de THC/CBD) está aprobado en decenas de países como tratamiento complementario para la espasticidad de la EM que no responde al tratamiento estándar. Los meta-análisis muestran una mejora reportada por el paciente más consistente que la medición objetiva del médico.","en":"Nabiximols (Sativex, a THC/CBD spray) is approved in dozens of countries as an add-on for MS spasticity that does not respond to standard treatment. Meta-analyses show patient-reported improvement is more consistent than the doctor’s objective measurement.","de":"Nabiximols (Sativex, ein THC/CBD-Spray) ist in Dutzenden Ländern als Zusatztherapie für MS-Spastik zugelassen, die auf die Standardbehandlung nicht anspricht. Meta-Analysen zeigen, dass die von Patienten berichtete Besserung konsistenter ist als die objektive Messung durch den Arzt.","fr":"Le nabiximols (Sativex, spray THC/CBD) est approuvé dans des dizaines de pays comme traitement d’appoint pour la spasticité de la SEP qui ne répond pas au traitement standard. Les méta-analyses montrent que l’amélioration rapportée par le patient est plus constante que la mesure objective du médecin."}},"parkinson":{"label":{"es":"Síntomas de la enfermedad de Parkinson (dolor, sueño, calidad de vida)","en":"Parkinson’s disease symptoms (pain, sleep, quality of life)","de":"Symptome der Parkinson-Krankheit (Schmerzen, Schlaf, Lebensqualität)","fr":"Symptômes de la maladie de Parkinson (douleur, sommeil, qualité de vie)"},"note":{"es":"Un estudio prospectivo abierto de 68 pacientes (revista Cannabis and Cannabinoid Research; Cleveland Clinic, Sheba, Technion y Universidad de Tel Aviv) encontró mejoras a los 3 meses en dolor, sueño, calidad de vida y micción nocturna. No hubo grupo control ni cegamiento — los autores piden ensayos aleatorizados.","en":"An open-label prospective study of 68 patients (Cannabis and Cannabinoid Research; Cleveland Clinic, Sheba, Technion, and Tel Aviv University) found improvements at 3 months in pain, sleep, quality of life, and night-time urination. There was no control group and no blinding — the authors call for randomized trials.","de":"Eine offene prospektive Studie mit 68 Patienten (Cannabis and Cannabinoid Research; Cleveland Clinic, Sheba, Technion und Universität Tel Aviv) fand nach 3 Monaten Verbesserungen bei Schmerzen, Schlaf, Lebensqualität und nächtlichem Wasserlassen. Es gab keine Kontrollgruppe und keine Verblindung — die Autoren fordern randomisierte Studien.","fr":"Une étude prospective ouverte de 68 patients (Cannabis and Cannabinoid Research ; Cleveland Clinic, Sheba, Technion et Université de Tel Aviv) a trouvé, à 3 mois, des améliorations de la douleur, du sommeil, de la qualité de vie et des mictions nocturnes. Sans groupe témoin ni insu — les auteurs réclament des essais randomisés."}},"autismo":{"label":{"es":"Autismo — síntomas asociados (irritabilidad, comunicación social, sueño)","en":"Autism — associated symptoms (irritability, social communication, sleep)","de":"Autismus — begleitende Symptome (Reizbarkeit, soziale Kommunikation, Schlaf)","fr":"Autisme — symptômes associés (irritabilité, communication sociale, sommeil)"},"note":{"es":"Una revisión sistemática de 2026 (12 estudios, 4 de ellos aleatorizados) encontró una tasa de respuesta global del 49% frente al 21% con placebo y mejora en la comunicación social, pero sin diferencia en el sueño ni en la severidad global. El CBD fue bien tolerado; se necesitan más ensayos.","en":"A 2026 systematic review (12 studies, 4 randomized) found a global response rate of 49% versus 21% on placebo and improvement in social communication, but no difference in sleep or overall severity. CBD was well tolerated; more trials are needed.","de":"Eine systematische Übersicht von 2026 (12 Studien, davon 4 randomisiert) fand eine globale Ansprechrate von 49% gegenüber 21% unter Placebo und eine Verbesserung der sozialen Kommunikation, aber keinen Unterschied bei Schlaf oder Gesamtschwere. CBD wurde gut vertragen; weitere Studien sind nötig.","fr":"Une revue systématique de 2026 (12 études, dont 4 randomisées) a trouvé un taux de réponse global de 49% contre 21% sous placebo et une amélioration de la communication sociale, mais aucune différence pour le sommeil ou la sévérité globale. Le CBD a été bien toléré ; d’autres essais sont nécessaires."}},"ansiedad":{"label":{"es":"Ansiedad","en":"Anxiety","de":"Angst","fr":"Anxiété"},"note":{"es":"Una revisión sistemática de 2024 (11 ensayos aleatorizados, 2013–2023) concluye que el CBD podría reducir la ansiedad con pocos efectos adversos, pero los resultados son inconsistentes y la señal es más clara en ansiedad puntual (por ejemplo, antes de hablar en público) que en trastornos de ansiedad crónicos.","en":"A 2024 systematic review (11 randomized trials, 2013–2023) concludes CBD might reduce anxiety with few side effects, but the results are inconsistent and the signal is clearer for situational anxiety (for example, before public speaking) than for chronic anxiety disorders.","de":"Eine systematische Übersicht von 2024 (11 randomisierte Studien, 2013–2023) kommt zu dem Schluss, dass CBD Angst mit wenigen Nebenwirkungen verringern könnte, aber die Ergebnisse sind widersprüchlich und das Signal ist bei situativer Angst (z. B. vor öffentlichem Reden) deutlicher als bei chronischen Angststörungen.","fr":"Une revue systématique de 2024 (11 essais randomisés, 2013–2023) conclut que le CBD pourrait réduire l’anxiété avec peu d’effets indésirables, mais les résultats sont incohérents et le signal est plus net pour l’anxiété situationnelle (par exemple, avant de parler en public) que pour les troubles anxieux chroniques."}},"insomnio":{"label":{"es":"Insomnio o trastornos del sueño","en":"Insomnia or sleep disorders","de":"Schlaflosigkeit oder Schlafstörungen","fr":"Insomnie ou troubles du sommeil"},"note":{"es":"Meta-análisis de 2025–2026 encuentran un efecto modesto (unos 30 minutos más de sueño), con el THC funcionando mejor que el CBD solo — pero toda la evidencia es de baja calidad. El uso crónico puede reducir el sueño REM y causar insomnio de rebote al suspenderlo.","en":"Meta-analyses from 2025–2026 find a modest effect (about 30 more minutes of sleep), with THC working better than CBD alone — but all the evidence is low quality. Chronic use can reduce REM sleep and cause rebound insomnia when stopped.","de":"Meta-Analysen von 2025–2026 finden einen bescheidenen Effekt (etwa 30 Minuten mehr Schlaf), wobei THC besser wirkt als CBD allein — aber die gesamte Evidenz ist von geringer Qualität. Chronischer Gebrauch kann den REM-Schlaf verringern und beim Absetzen Rebound-Schlaflosigkeit verursachen.","fr":"Des méta-analyses de 2025–2026 trouvent un effet modeste (environ 30 minutes de sommeil en plus), le THC agissant mieux que le CBD seul — mais toutes les preuves sont de faible qualité. L’usage chronique peut réduire le sommeil paradoxal et provoquer une insomnie de rebond à l’arrêt."}},"fibromialgia":{"label":{"es":"Fibromialgia","en":"Fibromyalgia","de":"Fibromyalgie","fr":"Fibromyalgie"},"note":{"es":"Una revisión sistemática de 2023 (4 ensayos aleatorizados y 5 estudios observacionales) encontró evidencia de baja calidad de reducción del dolor a corto plazo y mejora en sueño y calidad de vida; uno de los ensayos no halló diferencia con placebo. Las guías europeas de reumatología (EULAR) no lo recomiendan de rutina.","en":"A 2023 systematic review (4 randomized trials and 5 observational studies) found low-quality evidence of short-term pain reduction and improvement in sleep and quality of life; one of the trials found no difference from placebo. The European rheumatology guidelines (EULAR) do not recommend it routinely.","de":"Eine systematische Übersicht von 2023 (4 randomisierte Studien und 5 Beobachtungsstudien) fand Evidenz geringer Qualität für eine kurzfristige Schmerzlinderung und Verbesserung von Schlaf und Lebensqualität; eine der Studien fand keinen Unterschied zu Placebo. Die europäischen Rheumatologie-Leitlinien (EULAR) empfehlen es nicht routinemäßig.","fr":"Une revue systématique de 2023 (4 essais randomisés et 5 études observationnelles) a trouvé des preuves de faible qualité d’une réduction de la douleur à court terme et d’une amélioration du sommeil et de la qualité de vie ; l’un des essais n’a trouvé aucune différence avec le placebo. Les recommandations européennes de rhumatologie (EULAR) ne le recommandent pas en routine."}},"endometriosis":{"label":{"es":"Endometriosis o dolor pélvico crónico","en":"Endometriosis or chronic pelvic pain","de":"Endometriose oder chronische Unterleibsschmerzen","fr":"Endométriose ou douleur pelvienne chronique"},"note":{"es":"Una revisión sistemática de 2026 (Australian and New Zealand Journal of Obstetrics and Gynaecology) encontró que el uso auto-reportado es frecuente —el dolor es la razón principal— y algunas mujeres reportan usar menos analgésicos, pero no existe todavía ningún ensayo aleatorizado. Hay cuatro en curso.","en":"A 2026 systematic review (Australian and New Zealand Journal of Obstetrics and Gynaecology) found self-reported use is common — pain is the main reason — and some women report using fewer painkillers, but there is not yet a single randomized trial. Four are underway.","de":"Eine systematische Übersicht von 2026 (Australian and New Zealand Journal of Obstetrics and Gynaecology) fand, dass selbstberichteter Gebrauch häufig ist — Schmerz ist der Hauptgrund — und einige Frauen berichten von weniger Schmerzmitteln, aber es gibt noch keine einzige randomisierte Studie. Vier laufen.","fr":"Une revue systématique de 2026 (Australian and New Zealand Journal of Obstetrics and Gynaecology) a trouvé que l’usage auto-déclaré est fréquent — la douleur en est la principale raison — et que certaines femmes déclarent utiliser moins d’antalgiques, mais il n’existe encore aucun essai randomisé. Quatre sont en cours."}},"eii":{"label":{"es":"Enfermedad inflamatoria intestinal (Crohn, colitis ulcerosa)","en":"Inflammatory bowel disease (Crohn’s, ulcerative colitis)","de":"Chronisch-entzündliche Darmerkrankung (Morbus Crohn, Colitis ulcerosa)","fr":"Maladie inflammatoire de l’intestin (Crohn, rectocolite hémorragique)"},"note":{"es":"Revisiones Cochrane (5 ensayos aleatorizados, 185 pacientes) muestran que el cannabis mejora los síntomas y la calidad de vida, pero no la inflamación: no hay curación de la mucosa medida por endoscopía. El riesgo real es sentirse mejor sin tratar la enfermedad de fondo.","en":"Cochrane reviews (5 randomized trials, 185 patients) show cannabis improves symptoms and quality of life, but not inflammation: there is no mucosal healing measured by endoscopy. The real risk is feeling better without treating the underlying disease.","de":"Cochrane-Reviews (5 randomisierte Studien, 185 Patienten) zeigen, dass Cannabis Symptome und Lebensqualität verbessert, aber nicht die Entzündung: Es gibt keine endoskopisch gemessene Schleimhautheilung. Das eigentliche Risiko ist, sich besser zu fühlen, ohne die Grunderkrankung zu behandeln.","fr":"Des revues Cochrane (5 essais randomisés, 185 patients) montrent que le cannabis améliore les symptômes et la qualité de vie, mais pas l’inflammation : il n’y a pas de cicatrisation muqueuse mesurée par endoscopie. Le vrai risque est de se sentir mieux sans traiter la maladie de fond."}},"migrana":{"label":{"es":"Migraña o cefalea crónica","en":"Migraine or chronic headache","de":"Migräne oder chronischer Kopfschmerz","fr":"Migraine ou céphalée chronique"},"note":{"es":"Un ensayo aleatorizado de 2024 (revista Neurology) encontró beneficio del cannabis vaporizado (THC con CBD) para la crisis aguda de migraña. Para la prevención solo hay datos observacionales. Se considera una opción complementaria en migraña que no responde al tratamiento habitual.","en":"A 2024 randomized trial (the journal Neurology) found a benefit of vaporized cannabis (THC with CBD) for acute migraine attacks. For prevention there is only observational data. It is considered an add-on option for migraine that does not respond to usual treatment.","de":"Eine randomisierte Studie von 2024 (Zeitschrift Neurology) fand einen Nutzen von verdampftem Cannabis (THC mit CBD) beim akuten Migräneanfall. Zur Vorbeugung gibt es nur Beobachtungsdaten. Es gilt als Zusatzoption bei Migräne, die auf die übliche Behandlung nicht anspricht.","fr":"Un essai randomisé de 2024 (revue Neurology) a trouvé un bénéfice du cannabis vaporisé (THC avec CBD) pour la crise aiguë de migraine. Pour la prévention, il n’existe que des données observationnelles. C’est considéré comme une option d’appoint pour la migraine qui ne répond pas au traitement habituel."}},"apetito":{"label":{"es":"Falta de apetito o pérdida de peso (cáncer, VIH)","en":"Loss of appetite or weight loss (cancer, HIV)","de":"Appetitlosigkeit oder Gewichtsverlust (Krebs, HIV)","fr":"Perte d’appétit ou perte de poids (cancer, VIH)"},"note":{"es":"El dronabinol tiene aprobación histórica de la FDA para la anorexia asociada al VIH, basada en ensayos antiguos y pequeños. Pero los meta-análisis recientes en caquexia por cáncer no encuentran beneficio significativo en peso ni apetito, y el megestrol resultó más efectivo.","en":"Dronabinol has historical FDA approval for HIV-associated anorexia, based on small old trials. But recent meta-analyses in cancer cachexia find no significant benefit for weight or appetite, and megestrol was more effective.","de":"Dronabinol hat eine historische FDA-Zulassung für HIV-assoziierte Anorexie, basierend auf kleinen alten Studien. Aber jüngere Meta-Analysen zur Krebskachexie finden keinen signifikanten Nutzen für Gewicht oder Appetit, und Megestrol war wirksamer.","fr":"Le dronabinol a une approbation historique de la FDA pour l’anorexie associée au VIH, fondée sur de petits essais anciens. Mais les méta-analyses récentes sur la cachexie cancéreuse ne trouvent aucun bénéfice significatif pour le poids ou l’appétit, et le mégestrol s’est révélé plus efficace."}},"demencia":{"label":{"es":"Agitación en demencia o enfermedad de Alzheimer","en":"Agitation in dementia or Alzheimer’s disease","de":"Unruhe bei Demenz oder Alzheimer-Krankheit","fr":"Agitation dans la démence ou la maladie d’Alzheimer"},"note":{"es":"La evidencia es mixta: un ensayo aleatorizado con nabilona mostró mejora (47% frente al 23% con placebo), mientras que otro con aceite de THC/CBD no superó al placebo, aunque redujo el uso de otros psicofármacos. Los ensayos son pequeños.","en":"The evidence is mixed: a randomized trial of nabilone showed improvement (47% versus 23% on placebo), while another with THC/CBD oil did not beat placebo, though it reduced the use of other psychiatric medications. The trials are small.","de":"Die Evidenz ist gemischt: Eine randomisierte Studie mit Nabilon zeigte eine Besserung (47% gegenüber 23% unter Placebo), während eine andere mit THC/CBD-Öl Placebo nicht übertraf, obwohl sie den Einsatz anderer Psychopharmaka verringerte. Die Studien sind klein.","fr":"Les preuves sont mitigées : un essai randomisé de nabilone a montré une amélioration (47% contre 23% sous placebo), tandis qu’un autre avec de l’huile THC/CBD n’a pas battu le placebo, bien qu’il ait réduit l’usage d’autres psychotropes. Les essais sont de petite taille."}},"piel":{"label":{"es":"Condiciones de piel (psoriasis, eccema, dermatitis)","en":"Skin conditions (psoriasis, eczema, dermatitis)","de":"Hauterkrankungen (Psoriasis, Ekzem, Dermatitis)","fr":"Affections cutanées (psoriasis, eczéma, dermatite)"},"note":{"es":"Una revisión de 2025 con metodología GRADE encontró solo estudios pequeños y observacionales de CBD tópico (por ejemplo, 8 semanas con menos picor y lesiones en dermatitis atópica). No hay ensayos aleatorizados. El CBD tópico se tolera bien.","en":"A 2025 review using GRADE methodology found only small observational studies of topical CBD (for example, 8 weeks with less itching and fewer lesions in atopic dermatitis). There are no randomized trials. Topical CBD is well tolerated.","de":"Ein Review von 2025 nach GRADE-Methodik fand nur kleine Beobachtungsstudien zu topischem CBD (z. B. 8 Wochen mit weniger Juckreiz und Läsionen bei atopischer Dermatitis). Es gibt keine randomisierten Studien. Topisches CBD wird gut vertragen.","fr":"Une revue de 2025 utilisant la méthodologie GRADE n’a trouvé que de petites études observationnelles sur le CBD topique (par exemple, 8 semaines avec moins de démangeaisons et de lésions dans la dermatite atopique). Il n’y a aucun essai randomisé. Le CBD topique est bien toléré."}},"glaucoma":{"label":{"es":"Glaucoma","en":"Glaucoma","de":"Glaukom","fr":"Glaucome"},"note":{"es":"El cannabis baja la presión ocular, pero solo unas 3 a 4 horas — habría que consumirlo 6 a 8 veces al día — y añade efectos cardiovasculares y psicoactivos. La Academia Americana de Oftalmología y la Sociedad Americana de Glaucoma no lo recomiendan: hay tratamientos mejores.","en":"Cannabis lowers eye pressure, but only for about 3 to 4 hours — you would need to use it 6 to 8 times a day — and it adds cardiovascular and psychoactive effects. The American Academy of Ophthalmology and the American Glaucoma Society do not recommend it: better treatments exist.","de":"Cannabis senkt den Augeninnendruck, aber nur für etwa 3 bis 4 Stunden — man müsste es 6 bis 8 Mal täglich anwenden — und es fügt kardiovaskuläre und psychoaktive Effekte hinzu. Die American Academy of Ophthalmology und die American Glaucoma Society empfehlen es nicht: Es gibt bessere Behandlungen.","fr":"Le cannabis abaisse la pression oculaire, mais seulement pendant 3 à 4 heures environ — il faudrait l’utiliser 6 à 8 fois par jour — et il ajoute des effets cardiovasculaires et psychoactifs. L’American Academy of Ophthalmology et l’American Glaucoma Society ne le recommandent pas : de meilleurs traitements existent."}},"tept":{"label":{"es":"Trastorno de estrés postraumático (TEPT)","en":"Post-traumatic stress disorder (PTSD)","de":"Posttraumatische Belastungsstörung (PTBS)","fr":"Trouble de stress post-traumatique (TSPT)"},"note":{"es":"Las revisiones sistemáticas de 2024 indican que los cannabinoides pueden ayudar con el sueño y las pesadillas (certeza muy baja) pero no mejoran los síntomas centrales del TEPT. Las guías de tratamiento de EE. UU. (VA/DoD) y las guías estatales de cannabis medicinal de Utah recomiendan explícitamente en contra, y advierten del riesgo de empeorar la ideación suicida en personas con TEPT que además tienen trastorno por consumo de cannabis.","en":"Systematic reviews from 2024 indicate cannabinoids may help with sleep and nightmares (very low certainty) but do not improve the core symptoms of PTSD. U.S. treatment guidelines (VA/DoD) and Utah’s state medical-cannabis guidelines explicitly recommend against it, and warn of the risk of worsening suicidal thinking in people who have PTSD together with a cannabis use disorder.","de":"Systematische Übersichten von 2024 deuten darauf hin, dass Cannabinoide bei Schlaf und Albträumen helfen können (sehr geringe Sicherheit), aber die Kernsymptome der PTBS nicht verbessern. Die US-Behandlungsleitlinien (VA/DoD) und die Medizinal-Cannabis-Leitlinien des Bundesstaates Utah raten ausdrücklich davon ab und warnen vor dem Risiko verstärkter Suizidgedanken bei Menschen mit PTBS und gleichzeitiger Cannabiskonsumstörung.","fr":"Des revues systématiques de 2024 indiquent que les cannabinoïdes peuvent aider pour le sommeil et les cauchemars (certitude très faible) mais n’améliorent pas les symptômes centraux du TSPT. Les recommandations de traitement américaines (VA/DoD) et les recommandations sur le cannabis médical de l’État de l’Utah les déconseillent explicitement, et mettent en garde contre le risque d’aggraver les idées suicidaires chez les personnes ayant un TSPT associé à un trouble de l’usage du cannabis."}}};
+const MED_CARD_TITLE_KEY = {"mdCardIndic":"mdIndicH3","mdCardEm":"mdEmH3","mdCardReciente":"mdRecienteH3"};
+const MED_LEVEL_KEY = {"clinical":"mcLevelClinical","preliminary":"mcLevelPreliminary","limited":"mcLevelLimited","not-recommended":"mcLevelNotRecommended"};
+const MED_GROUP_KEY = {"clinical":"mcGroupClinical","preliminary":"mcGroupPreliminary","limited":"mcGroupLimited","not-recommended":"mcGroupNotRecommended"};
 
-  // Ubicación: país elegido + su región (usando los mismos datos de Legal & Viajero)
+function populateCondicionSelect(){
+  const el = document.getElementById('mdBuscarCondicionInput');
+  if(!el) return;
+  const cur = el.value;
+  const order = ['clinical', 'preliminary', 'limited', 'not-recommended'];
+  let html = `<option value="">${t('mcSelectorPlaceholder')}</option>`;
+  order.forEach(lvl => {
+    const items = MED_CONDITIONS.filter(c => c.level === lvl);
+    if(!items.length) return;
+    html += `<optgroup label="${t(MED_GROUP_KEY[lvl])}">`;
+    items.forEach(c => {
+      const T = MED_CONDITION_TEXT[c.id];
+      const label = (T && (T.label[currentLang] || T.label.es)) || c.id;
+      html += `<option value="${c.id}">${label}</option>`;
+    });
+    html += `</optgroup>`;
+  });
+  el.innerHTML = html;
+  if(cur) el.value = cur;
+}
+
+function mdScrollToCard(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.style.transition = 'box-shadow .3s ease';
+  el.style.boxShadow = '0 0 0 2px var(--moss-deep)';
+  setTimeout(() => { el.style.boxShadow = ''; }, 1800);
+}
+
+// The country / region / global-directory output — shared by both search paths.
+function mdLocationOutputHtml(matched){
+  const paisEl = document.getElementById('mdBuscarPaisInput');
+  const url = 'https://www.cannabisclinicians.org/find-a-cannabis-doctor/';
   const selectedName = paisEl ? paisEl.value : '';
   const selectedCountryObj = countries.find(c => c.name === selectedName);
   const selectedRegion = selectedCountryObj ? selectedCountryObj.region : null;
-
   let html = '';
-  if(matched){
-    html += `<div class="note-box" style="border-color:var(--moss-deep); background:rgba(122,138,64,0.12); margin-bottom:10px;"><b>${t('mdBuscarMatch')}: ${specLabel}</b></div>`;
-  } else {
-    html += `<div class="note-box" style="margin-bottom:10px;">${t('mdBuscarNoMatch')}</div>`;
-  }
-  if(matched === 'autismo'){
-    html += `<div class="note-box" style="border-color:var(--teal); margin-bottom:10px;">${t('mdBuscarAutismoNota')}</div>`;
-  }
-  // 1) Tu país exacto, si ya lo investigamos
   const exact = researchedCountries[selectedName];
   if(exact){
     html += `<div class="note-box" style="margin-bottom:8px;"><b>${flagImg(exact.flag)} ${t('mdBuscarTuPais')}</b><br>${t(exact.key)}</div>`;
   }
-  // 2) Otros países investigados en la misma región (excluyendo el exacto)
   const cercanos = Object.entries(researchedCountries).filter(([name, d]) => name !== selectedName && d.region === selectedRegion);
   if(cercanos.length > 0){
     html += `<div class="note-box" style="margin-bottom:8px;"><b>${t('mdBuscarCerca')}</b><br>` +
-      cercanos.map(([name, d]) => `${flagImg(d.flag)} <b>${name}:</b> ${t(d.key)}`).join('<br><br>') + `</div>`;
+      cercanos.map(([name, d]) => `${flagImg(d.flag)} <b>${localizeCountryName(name)}:</b> ${t(d.key)}`).join('<br><br>') + `</div>`;
   }
-  // 3) Siempre: la opción global
-  html += `<div class="note-box"><b>${t('mdBuscarGlobal')}</b><br><a href="${url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">${t('mdBuscarVerBtn')} →</a></div>`;
+  html += `<div class="note-box"><b>${t('mdBuscarGlobal')}</b><br><a href="${url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">${t('mdBuscarVerBtn')} \u2192</a></div>`;
+  return html;
+}
 
-  resultEl.innerHTML = html;
+// The evidence block shown when a condition is picked from the dropdown.
+function mdConditionResultHtml(cond){
+  const T = MED_CONDITION_TEXT[cond.id];
+  const label = (T.label[currentLang] || T.label.es);
+  const note = (T.note[currentLang] || T.note.es);
+  const specLabel = cond.spec && specialtyLabels[cond.spec] ? (specialtyLabels[cond.spec][currentLang] || specialtyLabels[cond.spec].es) : null;
+  let h = `<div class="note-box" style="margin-bottom:10px;">`;
+  h += `<div style="margin-bottom:8px;"><span class="md-evlevel ${cond.level}">${t(MED_LEVEL_KEY[cond.level])}</span></div>`;
+  h += `<b>${label}</b>`;
+  h += `<p style="margin:8px 0 0; font-size:13px; line-height:1.6; color:var(--ink);">${note} <a href="${cond.src}" target="_blank" rel="noopener noreferrer" style="color:var(--teal); white-space:nowrap;">${cond.srcLabel} \u2197</a></p>`;
+  if(cond.card && MED_CARD_TITLE_KEY[cond.card]){
+    h += `<p style="margin:10px 0 0; font-size:12px;">${t('mcVerEnApp')} <a onclick="mdScrollToCard('${cond.card}')" style="color:var(--teal); cursor:pointer; text-decoration:underline;">${t(MED_CARD_TITLE_KEY[cond.card])}</a></p>`;
+  }
+  if(specLabel){
+    h += `<p style="margin:8px 0 0; font-size:11.5px; color:var(--ink-soft);">${t('mdBuscarMatch')}: ${specLabel}</p>`;
+  }
+  h += `</div>`;
+  h += `<div class="note-box" style="margin-bottom:10px; font-size:12px;">${t('mcInteraccionesRecordatorio')}</div>`;
+  return h;
+}
+function buscarEspecialista(){
+  const resultEl = document.getElementById('mdBuscarResultado');
+  if(!resultEl) return;
+  const condEl = document.getElementById('mdBuscarCondicionInput');
+  const inputEl = document.getElementById('mdBuscarInput');
+  const condId = condEl ? condEl.value : '';
+  let matched = null, topHtml = '';
+
+  if(condId){
+    const cond = MED_CONDITIONS.find(c => c.id === condId);
+    if(cond){
+      matched = cond.spec;
+      topHtml = mdConditionResultHtml(cond);
+    }
+  } else {
+    const input = (inputEl ? inputEl.value : '').trim().toLowerCase();
+    if(!input){ resultEl.innerHTML = ''; return; }
+    for(const key in specialtyKeywords){
+      if(specialtyKeywords[key].some(w => input.includes(w))){ matched = key; break; }
+    }
+    const specLabel = matched ? (specialtyLabels[matched][currentLang] || specialtyLabels[matched].es) : null;
+    topHtml = matched
+      ? `<div class="note-box" style="border-color:var(--moss-deep); background:rgba(122,138,64,0.12); margin-bottom:10px;"><b>${t('mdBuscarMatch')}: ${specLabel}</b></div>`
+      : `<div class="note-box" style="margin-bottom:10px;">${t('mdBuscarNoMatch')}</div>`;
+    if(matched === 'autismo'){
+      topHtml += `<div class="note-box" style="border-color:var(--teal); margin-bottom:10px;">${t('mdBuscarAutismoNota')}</div>`;
+    }
+  }
+
+  resultEl.innerHTML = topHtml + mdLocationOutputHtml(matched);
 }
 /* ---------- Localizing values that were stored as literal dropdown text ----------
    Country / grow method / diagnosis / profile type were all saved as Spanish
@@ -7020,6 +7152,7 @@ function rebuildLocalizedSelects(){
   };
   fromMap('cmyPostCultivoMetodoInput', growMethodsI18n);
   fromMap('cmyPostDiagProblemaInput', diagProblemsI18n);
+  populateCondicionSelect();
 }
 // Directory list only (no Descubrir re-fetch, no feed) — for a language switch.
 async function renderCommunityDirectoryList(){
@@ -7906,6 +8039,7 @@ if(document.getElementById('degradTiempo')) updateDegradCalc();
 });
 if(document.getElementById('cmDoseMg')) updateDoseComestibles();
 renderEdibleSafetyCards();
+populateCondicionSelect();
 ['vpdTemp','vpdRH','vpdStage'].forEach(id=>{
   const el = document.getElementById(id);
   if(el) el.addEventListener('input', updateVPD);

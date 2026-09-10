@@ -1928,24 +1928,24 @@
     <!-- MEDICO -->
     <div class="subview" id="ciencia-medico">
       <svg viewBox="0 0 50 44" width="100%" style="max-width:90px; display:block; margin:0 auto 16px;"><rect x="20" y="4" width="10" height="36" rx="2" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><line x1="25" y1="10" x2="25" y2="20" stroke="var(--clay)" stroke-width="2"/><line x1="20" y1="15" x2="30" y2="15" stroke="var(--clay)" stroke-width="2"/><line x1="20" y1="26" x2="30" y2="26" stroke="var(--line-strong)" stroke-width="1.3"/><line x1="20" y1="31" x2="30" y2="31" stroke="var(--line-strong)" stroke-width="1.3"/></svg>
-      <div class="card-block">
+      <div class="card-block" id="mdCardIndic">
         <h3 data-i18n="mdIndicH3">Indicaciones con evidencia clínica</h3>
         <p data-i18n="mdIndicP">Dolor crónico, náuseas asociadas a quimioterapia, y ciertos síndromes de epilepsia refractaria (con CBD purificado) cuentan con evidencia de ensayos clínicos. Otras indicaciones tienen evidencia preliminar o preclínica — el nivel de evidencia importa tanto como la indicación misma.</p>
       </div>
-      <div class="card-block">
+      <div class="card-block" id="mdCardReciente">
         <h3 data-i18n="mdRecienteH3">Evidencia clínica reciente: 2025–2026</h3>
         <p data-i18n="mdRecienteP1"><b>Parkinson:</b> un estudio de la Universidad de Tel Aviv y la Clínica Cleveland, publicado en <em>Cannabis and Cannabinoid Research</em>, siguió a 68 pacientes con Parkinson que iniciaban tratamiento con cannabis medicinal (50 completaron el seguimiento) durante 3 meses y encontró mejoras en dolor, sueño, calidad de vida y frecuencia urinaria nocturna. Los propios investigadores señalan que son hallazgos exploratorios de un estudio abierto —sin grupo control ciego— y que se necesitan ensayos aleatorizados de mayor duración para confirmarlo.</p>
         <p data-i18n="mdRecienteP2"><b>Opioides:</b> investigadores encontraron que la presencia de dispensarios y las leyes de legalización se asociaron con menos intoxicaciones no fatales por opioides. Es un hallazgo de asociación poblacional, no un ensayo controlado que pruebe causalidad directa — pero se suma a un cuerpo de evidencia sobre el acceso legal al cannabis como posible factor de reducción de daños.</p>
         <p data-i18n="mdRecienteP3"><b>Autismo:</b> un nuevo estudio encontró que el CBD fue bien tolerado en niños con autismo y se asoció con mejoras en síntomas sociales — un área donde la investigación clínica real sigue siendo escasa, pese al interés creciente.</p>
         <div class="note-box" data-i18n="mdRecienteNote">Los tres hallazgos comparten el mismo patrón: son reales, publicados, y prometedores — pero ninguno es todavía el estándar de oro (ensayo clínico aleatorizado y controlado a gran escala). Es la diferencia entre "hay evidencia inicial real" y "está comprobado" — una distinción que esta app trata de mantener siempre clara.</div>
       </div>
-      <div class="card-block">
+      <div class="card-block" id="mdCardEm">
         <h3 data-i18n="mdEmH3">Esclerosis múltiple y espasticidad — el hueco que encontramos, ahora resuelto</h3>
         <p data-i18n="mdEmP1">La espasticidad (rigidez muscular, espasmos) afecta al 54% de pacientes con esclerosis múltiple desde el inicio de la enfermedad, y no responde completamente al tratamiento estándar en 1 de cada 3 pacientes. Nabiximols (Sativex, spray oral de THC/CBD) ya está aprobado en docenas de países fuera de EE. UU. específicamente para esto.</p>
         <p data-i18n="mdEmP2">El meta-análisis más grande hasta ahora (<em>Clinical Therapeutics</em>, 2025) analizó 9 ensayos clínicos con 2,544 pacientes con EM, estudiados entre 2003 y 2021 en múltiples países — encontró mejoras consistentes reportadas por los propios pacientes en espasticidad y dolor, aunque las mediciones objetivas del médico (escalas como Ashworth) variaron más. Es la diferencia entre "el paciente lo siente mejor" y "se puede medir clínicamente igual de bien" — no siempre coinciden.</p>
         <p data-i18n="mdEmP3">Un estudio más reciente (junio 2026, 2,949 pacientes, 25 estudios) encontró mejora significativa también en vejiga, sueño y velocidad al caminar — pero los propios autores calificaron la certeza de sus hallazgos como baja a muy baja, un ejemplo honesto de los límites reales de la evidencia actual.</p>
       </div>
-      <div class="card-block">
+      <div class="card-block" id="mdCardInteracciones">
         <h3 data-i18n="mdInteracH3">Interacciones a tener en cuenta</h3>
         <p data-i18n="mdInteracP">El cannabis puede interactuar con anticoagulantes y sedantes, entre otros medicamentos. Cualquier paciente bajo tratamiento debe consultarlo con su médico antes de iniciar uso medicinal.</p>
         <p data-i18n="mdInteracMecP">El mecanismo real: el CBD, más que el THC, inhibe varias enzimas del sistema CYP450 — la misma familia de enzimas que metaboliza la mayoría de los medicamentos recetados. Por eso las interacciones no son casos raros aislados, sino un patrón estructural: cualquier medicamento que dependa de esas mismas enzimas para metabolizarse puede verse afectado, en cualquier dirección (subiendo o bajando su nivel real en sangre).</p>
@@ -1961,12 +1961,15 @@
         <h3 data-i18n="mdEspecialistaH3">Cómo encontrar un profesional real, verificado, según tu condición</h3>
         <p data-i18n="mdEspecialistaIntro">En vez de que esta app mantenga su propia lista de nombres (que se desactualiza y que nadie puede verificar de forma continua), te conectamos con organizaciones profesionales reales que ya hacen ese trabajo de verificación de forma activa — mantienen sus propios directorios actualizados, con licencias y especialidades confirmadas.</p>
         <div style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:8px; padding:18px; margin:16px 0;">
+          <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:8px;" data-i18n="mcSelectorLabel">Elige una condición o síntoma</label>
+          <select id="mdBuscarCondicionInput" onchange="document.getElementById('mdBuscarInput').value=''; buscarEspecialista()" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; margin-bottom:12px; background:var(--paper);"></select>
+          <div style="text-align:center; font-size:11px; color:var(--ink-soft); margin-bottom:12px;" data-i18n="mcOSeparador">— o descríbelo con tus propias palabras —</div>
           <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:8px;" data-i18n="mdBuscarLabel">Escribe tu condición o síntoma</label>
-          <input type="text" id="mdBuscarInput" data-i18n-ph="mdBuscarPh" placeholder="Ej: dolor muscular severo" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; margin-bottom:10px;" onkeydown="if(event.key==='Enter') buscarEspecialista()">
+          <input type="text" id="mdBuscarInput" data-i18n-ph="mdBuscarPh" placeholder="Ej: dolor muscular severo" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; margin-bottom:10px;" onkeydown="if(event.key==='Enter'){ document.getElementById('mdBuscarCondicionInput').value=''; buscarEspecialista(); }">
           <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:8px;" data-i18n="mdBuscarPaisLabel">Tu país (para priorizar médicos cerca de ti)</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <select id="mdBuscarPaisInput" style="flex:1; min-width:180px; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></select>
-            <button class="btn btn-primary" style="padding:10px 18px;" onclick="buscarEspecialista()" data-i18n="mdBuscarBtn">Buscar médico especializado</button>
+            <button class="btn btn-primary" style="padding:10px 18px;" onclick="document.getElementById('mdBuscarCondicionInput').value=''; buscarEspecialista()" data-i18n="mdBuscarBtn">Buscar médico especializado</button>
           </div>
           <div id="mdBuscarResultado" style="margin-top:14px;"></div>
           <div style="font-size:11px; color:var(--ink-soft); margin-top:10px;" data-i18n="mdBuscarDisclaimer">Esto reconoce tu condición y te lleva directo a la herramienta real de búsqueda de la Society of Cannabis Clinicians, ya orientada a la especialidad correcta — no es una base de datos propia de Mother Verde.</div>
