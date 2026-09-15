@@ -29,6 +29,7 @@
 // ===========================================================================
 
 import { createClient } from '@supabase/supabase-js';
+import { timingSafeEqual } from 'node:crypto';
 
 const PRICE_USD = '7.10';
 const REMINDER_WINDOW_HOURS = 24;
@@ -82,7 +83,11 @@ export default async function handler(req, res) {
   // way to mass-block or mass-cancel every account, not just a config nit.
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.authorization || '';
-  if (!secret || auth !== `Bearer ${secret}`) {
+  const expected = secret ? `Bearer ${secret}` : null;
+  const authBuf = Buffer.from(auth);
+  const expectedBuf = Buffer.from(expected || '');
+  const authorized = !!expected && authBuf.length === expectedBuf.length && timingSafeEqual(authBuf, expectedBuf);
+  if (!authorized) {
     res.status(401).json({ error: 'unauthorized' });
     return;
   }
