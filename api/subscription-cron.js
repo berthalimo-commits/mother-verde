@@ -76,9 +76,13 @@ function addOneMonth(from) {
 }
 
 export default async function handler(req, res) {
+  // Fail closed: a missing CRON_SECRET must reject every request, not skip
+  // the check. This endpoint runs with the service-role key and can mutate
+  // any profile's subscription_status, so an unauthenticated hole here is a
+  // way to mass-block or mass-cancel every account, not just a config nit.
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.authorization || '';
-  if (secret && auth !== `Bearer ${secret}`) {
+  if (!secret || auth !== `Bearer ${secret}`) {
     res.status(401).json({ error: 'unauthorized' });
     return;
   }
