@@ -8469,6 +8469,12 @@ function renderBitacoraGate(){
   if(pdfLocked) pdfLocked.style.display = (user && !isPremium) ? 'inline-flex' : 'none';
 }
 window.renderBitacoraGate = renderBitacoraGate;
+// Bitácora notes are free text rendered via innerHTML below; escape them so a
+// note can't break out as markup (self-XSS today since rows are user_id-
+// scoped, but the fix is free, so do it anyway).
+function escapeHtml(str){
+  return String(str == null ? '' : str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 async function loadBitEntries(){
   const listEl = document.getElementById('bitList');
   const resumenEl = document.getElementById('bitResumen');
@@ -8563,7 +8569,7 @@ async function loadBitEntries(){
       </div>
       ${e.foto ? `<img src="${e.foto}" onclick="window.open('${e.foto}','_blank')" style="max-width:120px; border-radius:6px; border:1px solid var(--line-strong); display:block; margin-bottom:8px; cursor:pointer;">` : ''}
       ${datos.length ? `<div style="font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--teal); margin-bottom:4px;">${datos.join(' · ')}</div>` : ''}
-      <div style="font-size:13.5px; color:var(--ink-soft);">${e.nota || t('bitSinNotas')}</div>
+      <div style="font-size:13.5px; color:var(--ink-soft);">${e.nota ? escapeHtml(e.nota) : t('bitSinNotas')}</div>
     </div>`;}).join('');
 }
 let currentBitFoto = null;
