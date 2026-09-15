@@ -6157,7 +6157,18 @@ function showSub(screen, sub){
 
 /* ===================== PAYWALL / GATING ===================== */
 let isPremium = false;
-window.setIsPremium = function(value){ isPremium = !!value; applyTier(); };
+const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+// window.setIsPremium(true) used to flip isPremium directly, so any visitor
+// could open devtools in production and unlock every Premium gate for free.
+// The real source of truth is the profile row auth.js already fetched from
+// Supabase (billing columns aren't client-writable, see the subscription_trial
+// migration) via computeIsPremium(). Off localhost we ignore whatever value a
+// caller passes and recompute from that profile ourselves; only on localhost
+// (QA / the #tierSwitch preview) do we still trust an explicit override.
+window.setIsPremium = function(value){
+  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvComputeIsPremium && window.mvComputeIsPremium(window.mvCurrentProfile));
+  applyTier();
+};
 const LOCK_SVG = '<svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>';
 
 // FILOSOFÍA DE CONTENIDO GRATIS VS. PREMIUM (decisión de producto, no accidente):
@@ -6395,7 +6406,6 @@ function applyTier(){
 // The preview tier switch flips isPremium directly, bypassing every gate, so
 // it must never be usable by a real visitor. Shown on localhost / 127.0.0.1
 // only; hidden (and its clicks made harmless) everywhere else.
-const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
 if(MV_IS_LOCAL){
   const w = document.getElementById('tierPreviewWrap');
   if(w) w.style.display = 'flex';

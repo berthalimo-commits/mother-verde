@@ -14,6 +14,9 @@ window.mvCurrentProfile = null;
 // sync. Premium = inside an active 3-day trial, or a paid subscription that
 // hasn't lapsed. A pending cancellation (cancel_at_period_end) still counts as
 // Premium until the period actually ends; the cron then flips the row.
+// Exposed so main.js can recompute Premium itself instead of trusting a
+// caller-supplied value (see the window.setIsPremium guard in main.js).
+window.mvComputeIsPremium = computeIsPremium;
 function computeIsPremium(profile){
   if(!profile) return false;
   const now = Date.now();
