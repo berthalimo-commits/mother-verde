@@ -389,6 +389,14 @@ deno_version = 2
 # Only signed-in users may call the translator (they are publishing content).
 verify_jwt = true
 
+[functions.community-publish-post]
+# Only signed-in users may publish; the function also resolves the caller
+# itself (see _shared/translate.ts resolveUser) to get a user id to write.
+verify_jwt = true
+
+[functions.community-publish-comment]
+verify_jwt = true
+
 [analytics]
 enabled = true
 port = 54327
