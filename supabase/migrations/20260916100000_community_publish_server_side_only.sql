@@ -1,0 +1,27 @@
+-- Step 3 of moving Community publishing server-side (audit finding: a client
+-- could skip community-translate and write any body_i18n it wanted, showing
+-- different text per language than what was actually published — see
+-- 20260915120000_lock_community_posts_featured.sql for the full writeup).
+--
+-- Steps 1 (community-publish-post / community-publish-comment Edge
+-- Functions) and 2 (src/mvCommunity.js calling them instead of writing the
+-- tables itself) are deployed and confirmed working in production. This is
+-- the actual lockdown: the client can no longer insert or update
+-- community_posts / community_comments at all — every write that used to go
+-- through the client's Supabase session now goes exclusively through those
+-- two Edge Functions, which run with the service-role key (bypasses RLS/
+-- grants entirely) and enforce ownership + the comment-eligibility rule by
+-- hand (see their source for exactly where).
+--
+-- This supersedes the column-narrowed grant from 20260915120000 (which was
+-- an interim step, not the final state — its own comment said as much).
+--
+-- SELECT and DELETE are untouched on purpose:
+--   * SELECT: reading the feed never had anything to do with this — revoking
+--     it would break every read in the app.
+--   * DELETE: deletePost/deleteComment still go straight from the client via
+--     community_posts_delete_own / community_comments_delete_own (RLS,
+--     auth.uid() = user_id) — deletion was never part of the translation-
+--     spoofing surface, so it stays as-is.
+revoke insert, update on public.community_posts from authenticated;
+revoke insert, update on public.community_comments from authenticated;
