@@ -32,9 +32,13 @@ function escapeHtml(s){
 }
 
 /* ---------------------- Translation (Fase 2) ---------------------- */
-// Posts and comments are translated into all four platform languages at
-// publish time by the community-translate Edge Function (Azure AI Translator),
-// and the four versions are stored on the row. Readers get their own language.
+// Posts and comments are translated into all four platform languages, and
+// published, by the community-publish-post / community-publish-comment Edge
+// Functions (Azure AI Translator under the hood) — see createPost/updatePost/
+// addComment below. The client no longer writes community_posts /
+// community_comments directly; it never sees body_i18n before the server
+// computes it, which is the actual point (an earlier version let a caller
+// skip translation and write any body_i18n it wanted).
 
 const PLATFORM_LANGS = ['es', 'en', 'de', 'fr'];
 const POST_MAX_LEN = 2000;
@@ -44,36 +48,23 @@ function normalizeLang(lang){
   return PLATFORM_LANGS.includes(lang) ? lang : 'es';
 }
 
-// Ask the Edge Function for { source_lang, body_i18n, status }. Throws on any
-// failure so callers can decide whether to publish with the original only.
-async function translateForPublish(text, sourceHint){
-  const { data, error } = await sb().functions.invoke('community-translate', {
-    body: { text, sourceHint: normalizeLang(sourceHint) },
-  });
-  if(error) throw error;
-  if(!data || !data.body_i18n) throw new Error('community-translate: bad response');
-  return data;
-}
-
-// Build the insert/update fields for a translatable body. Never throws — if the
-// provider is unavailable the row still publishes with the original text in the
-// author's language and translation_status 'failed' for the backfill job.
-async function translatedFields(text, sourceHint){
-  const hint = normalizeLang(sourceHint);
-  try{
-    const r = await translateForPublish(text, hint);
-    return {
-      body_i18n: r.body_i18n,
-      source_lang: normalizeLang(r.source_lang),
-      translation_status: r.status === 'skipped' ? 'skipped' : 'done',
-    };
-  }catch(e){
-    return {
-      body_i18n: { [hint]: text },
-      source_lang: hint,
-      translation_status: 'failed',
-    };
+// Call a community-publish-* Edge Function and unwrap its {data, error} into
+// either the parsed response body or a thrown Error carrying the function's
+// own message (e.g. "empty post", "not allowed to comment on this post")
+// instead of a generic FunctionsHttpError.
+async function invokePublish(name, body){
+  const { data, error } = await sb().functions.invoke(name, { body });
+  if(error){
+    let message = error.message || ('mvCommunity: ' + name + ' failed');
+    if(error.context && typeof error.context.json === 'function'){
+      try{
+        const parsed = await error.context.json();
+        if(parsed && parsed.error) message = parsed.error;
+      }catch(_e){ /* response body wasn't JSON, or already consumed */ }
+    }
+    throw new Error(message);
   }
+  return data;
 }
 
 // Pick the best available version of a post/comment body for a reader's language.
@@ -263,32 +254,27 @@ const POST_TYPES = ['general', 'viajero', 'cultivo', 'diagnostico', 'pregunta'];
 // (meta holds that type's one extra field, e.g. { country: 'Perú' }) — plain
 // posts leave both at their defaults.
 async function createPost({ body = null, photoFile = null, sourceHint = 'es', post_type = 'general', meta = null } = {}){
-  const me = requireUser();
+  requireUser(); // fail fast with a clear message rather than a 401 round trip
   let photo_url = null;
   if(photoFile) photo_url = await uploadCommunityPhoto(photoFile, 'posts');
-  const kind = photo_url ? 'photo' : 'text';
   const trimmed = body ? body.trim() : null;
-  if(kind === 'text' && !trimmed) throw new Error('mvCommunity.createPost: empty post');
+  if(!photo_url && !trimmed) throw new Error('mvCommunity.createPost: empty post');
   if(trimmed && trimmed.length > POST_MAX_LEN){
     throw new Error('mvCommunity.createPost: body exceeds ' + POST_MAX_LEN + ' chars');
   }
-  const row = {
-    user_id: me, kind, body: trimmed, photo_url,
+  const data = await invokePublish('community-publish-post', {
+    action: 'create',
+    body: trimmed,
+    photo_url,
     post_type: POST_TYPES.includes(post_type) ? post_type : 'general',
     meta: meta || null,
-  };
-  if(trimmed){
-    Object.assign(row, await translatedFields(trimmed, sourceHint));
-  } else {
-    row.translation_status = 'skipped';
-  }
-  const { data, error } = await sb().from('community_posts')
-    .insert(row).select().single();
-  if(error) throw error;
-  return data;
+    sourceHint: normalizeLang(sourceHint),
+  });
+  if(!data || !data.post) throw new Error('community-publish-post: bad response');
+  return data.post;
 }
 
-// Edit a post's text. Re-translates the new body.
+// Edit a post's text. The function re-translates the new body server-side.
 async function updatePost(id, { body = null, sourceHint = 'es' } = {}){
   requireUser();
   const trimmed = body ? body.trim() : null;
@@ -296,11 +282,11 @@ async function updatePost(id, { body = null, sourceHint = 'es' } = {}){
   if(trimmed.length > POST_MAX_LEN){
     throw new Error('mvCommunity.updatePost: body exceeds ' + POST_MAX_LEN + ' chars');
   }
-  const row = { body: trimmed, ...(await translatedFields(trimmed, sourceHint)) };
-  const { data, error } = await sb().from('community_posts')
-    .update(row).eq('id', id).select().single();
-  if(error) throw error;
-  return data;
+  const data = await invokePublish('community-publish-post', {
+    action: 'update', id, body: trimmed, sourceHint: normalizeLang(sourceHint),
+  });
+  if(!data || !data.post) throw new Error('community-publish-post: bad response');
+  return data.post;
 }
 
 async function deletePost(id){
@@ -310,9 +296,10 @@ async function deletePost(id){
 }
 
 /* ---------------------- Comments ---------------------- */
-// Insert is allowed only when commenter and post author mutually follow (or
-// the commenter is the author) — enforced by RLS, so a failed insert on an
-// unlocked post surfaces as an error here.
+// Publishing (create) goes through community-publish-comment, which checks
+// eligibility itself — featured post, own post, or mutual follow — the same
+// rule that used to live only in RLS. A disallowed comment surfaces as a 403
+// thrown from invokePublish.
 
 async function listComments(postId){
   const { data, error } = await sb().from('community_comments').select('*')
@@ -322,20 +309,17 @@ async function listComments(postId){
 }
 
 async function addComment(postId, body, { sourceHint = 'es' } = {}){
-  const me = requireUser();
+  requireUser();
   const text = (body || '').trim();
   if(!text) throw new Error('mvCommunity.addComment: empty comment');
   if(text.length > COMMENT_MAX_LEN){
     throw new Error('mvCommunity.addComment: comment exceeds ' + COMMENT_MAX_LEN + ' chars');
   }
-  const row = {
-    post_id: postId, user_id: me, body: text,
-    ...(await translatedFields(text, sourceHint)),
-  };
-  const { data, error } = await sb().from('community_comments')
-    .insert(row).select().single();
-  if(error) throw error;
-  return data;
+  const data = await invokePublish('community-publish-comment', {
+    post_id: postId, body: text, sourceHint: normalizeLang(sourceHint),
+  });
+  if(!data || !data.comment) throw new Error('community-publish-comment: bad response');
+  return data.comment;
 }
 
 async function deleteComment(id){
