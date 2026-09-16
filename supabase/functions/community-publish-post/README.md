@@ -1,13 +1,17 @@
 # community-publish-post
 
-Creates or updates a community post: translates the body (reusing the same
-Azure-backed core as `community-translate`, see `../_shared/translate.ts`)
-and writes the row with the service-role key. Replaces the old flow where
-`src/mvCommunity.js` called `community-translate` and then inserted/updated
-`community_posts` itself — that let a caller skip translation and write any
-`body_i18n` it wanted. See the migration that revokes direct client
-insert/update on `community_posts` once this function is deployed and
-`src/mvCommunity.js` is switched over.
+Creates or updates a community post: translates the body and writes the row
+with the service-role key. Replaces the old flow where `src/mvCommunity.js`
+called `community-translate` and then inserted/updated `community_posts`
+itself — that let a caller skip translation and write any `body_i18n` it
+wanted. See the migration that revokes direct client insert/update on
+`community_posts` once this function is deployed and `src/mvCommunity.js` is
+switched over.
+
+This file is self-contained (no import of a shared module) — it was
+deployed by pasting directly into the Supabase dashboard's function editor,
+since CLI/browser login wasn't available. It duplicates the same
+Azure/translation_cache core as `community-translate/index.ts` on purpose.
 
 ## Contract
 
@@ -43,6 +47,10 @@ No new secrets — reuses `AZURE_TRANSLATOR_KEY` / `AZURE_TRANSLATOR_REGION`
 already set for `community-translate`, plus the platform-injected
 `SUPABASE_URL` / `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY`.
 
+Via the CLI, once logged in:
 ```bash
 supabase functions deploy community-publish-post
 ```
+
+Or via the dashboard (Edge Functions → New function → paste the contents of
+`index.ts`), the same way `community-translate` was first deployed.
