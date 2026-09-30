@@ -11,7 +11,7 @@ switched over.
 This file is self-contained (no import of a shared module) — it was
 deployed by pasting directly into the Supabase dashboard's function editor,
 since CLI/browser login wasn't available. It duplicates the same
-Azure/translation_cache core as `community-translate/index.ts` on purpose.
+DeepL/translation_cache core as `community-translate/index.ts` on purpose.
 
 ## Contract
 
@@ -43,9 +43,9 @@ Update:
 
 ## Deploy
 
-No new secrets — reuses `AZURE_TRANSLATOR_KEY` / `AZURE_TRANSLATOR_REGION`
-already set for `community-translate`, plus the platform-injected
-`SUPABASE_URL` / `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY`.
+No new secrets — reuses `DEEPL_API_KEY` already set for `community-translate`,
+plus the platform-injected `SUPABASE_URL` / `SUPABASE_ANON_KEY` /
+`SUPABASE_SERVICE_ROLE_KEY`.
 
 Via the CLI, once logged in:
 ```bash

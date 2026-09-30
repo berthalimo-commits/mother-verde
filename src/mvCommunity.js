@@ -34,7 +34,7 @@ function escapeHtml(s){
 /* ---------------------- Translation (Fase 2) ---------------------- */
 // Posts and comments are translated into all four platform languages, and
 // published, by the community-publish-post / community-publish-comment Edge
-// Functions (Azure AI Translator under the hood) — see createPost/updatePost/
+// Functions (DeepL API under the hood) — see createPost/updatePost/
 // addComment below. The client no longer writes community_posts /
 // community_comments directly; it never sees body_i18n before the server
 // computes it, which is the actual point (an earlier version let a caller

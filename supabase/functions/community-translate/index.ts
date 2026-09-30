@@ -23,9 +23,9 @@
 // original text only and let the backfill job fill the rest later.
 //
 // Secrets (supabase secrets set ...):
-//   AZURE_TRANSLATOR_KEY       - Azure AI Translator resource key
-//   AZURE_TRANSLATOR_REGION    - e.g. "eastus" (the resource's region)
-//   AZURE_TRANSLATOR_ENDPOINT  - optional, defaults to the global endpoint
+//   DEEPL_API_KEY  - DeepL API key (Free keys end in ":fx" and are routed to
+//                     the free endpoint automatically; Pro keys hit the Pro
+//                     endpoint — see deeplEndpoint() below)
 // Auto-injected by Supabase: SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
@@ -34,9 +34,15 @@ const PLATFORM_LANGS = ["es", "en", "de", "fr"] as const;
 type Lang = (typeof PLATFORM_LANGS)[number];
 
 const MAX_LEN = 2000;
-const AZURE_ENDPOINT =
-  (Deno.env.get("AZURE_TRANSLATOR_ENDPOINT") ??
-    "https://api.cognitive.microsofttranslator.com").replace(/\/+$/, "");
+
+// DeepL requires a regional variant for English as a translation target
+// (plain "EN" is source-only); the other three platform languages don't need one.
+const DEEPL_TARGET_LANG: Record<Lang, string> = {
+  es: "ES",
+  en: "EN-US",
+  de: "DE",
+  fr: "FR",
+};
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -78,45 +84,56 @@ async function sha256Hex(input: string): Promise<string> {
     .join("");
 }
 
-interface AzureResult {
+interface DeepLResult {
   detected: string;
   translations: Partial<Record<Lang, string>>;
 }
 
-async function azureTranslate(text: string, targets: Lang[]): Promise<AzureResult> {
-  const key = Deno.env.get("AZURE_TRANSLATOR_KEY");
-  const region = Deno.env.get("AZURE_TRANSLATOR_REGION");
-  if (!key || !region) throw new Error("Azure Translator secrets not configured");
+function deeplEndpoint(key: string): string {
+  return key.endsWith(":fx")
+    ? "https://api-free.deepl.com/v2/translate"
+    : "https://api.deepl.com/v2/translate";
+}
 
-  const params = new URLSearchParams({ "api-version": "3.0" });
-  for (const t of targets) params.append("to", t);
+// DeepL translates to exactly one target language per call, unlike Azure's
+// single multi-target request — so one call per target, run in parallel.
+async function deeplTranslate(text: string, targets: Lang[]): Promise<DeepLResult> {
+  const key = Deno.env.get("DEEPL_API_KEY");
+  if (!key) throw new Error("DeepL API key not configured");
 
-  const res = await fetch(`${AZURE_ENDPOINT}/translate?${params.toString()}`, {
-    method: "POST",
-    headers: {
-      "Ocp-Apim-Subscription-Key": key,
-      "Ocp-Apim-Subscription-Region": region,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify([{ Text: text }]),
-  });
+  const endpoint = deeplEndpoint(key);
+  const results = await Promise.all(
+    targets.map(async (target) => {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Authorization": `DeepL-Auth-Key ${key}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: [text], target_lang: DEEPL_TARGET_LANG[target] }),
+      });
 
-  if (!res.ok) {
-    throw new Error(`Azure ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  }
+      if (!res.ok) {
+        throw new Error(`DeepL ${res.status}: ${(await res.text()).slice(0, 300)}`);
+      }
 
-  const data = await res.json();
-  const entry = Array.isArray(data) ? data[0] : null;
-  if (!entry?.translations) throw new Error("Azure: unexpected response shape");
+      const data = await res.json();
+      const entry = data?.translations?.[0];
+      if (!entry?.text) throw new Error("DeepL: unexpected response shape");
+      return {
+        target,
+        text: entry.text as string,
+        detected: typeof entry.detected_source_language === "string"
+          ? entry.detected_source_language.toLowerCase()
+          : "",
+      };
+    }),
+  );
 
   const translations: Partial<Record<Lang, string>> = {};
-  for (const tr of entry.translations) {
-    if (isLang(tr.to)) translations[tr.to as Lang] = tr.text;
-  }
-  return {
-    detected: entry.detectedLanguage?.language ?? "",
-    translations,
-  };
+  for (const r of results) translations[r.target] = r.text;
+
+  return { detected: results[0]?.detected ?? "", translations };
 }
 
 Deno.serve(async (req) => {
@@ -187,19 +204,19 @@ Deno.serve(async (req) => {
 
   // Miss — translate into the three languages other than the hinted source.
   const targets = PLATFORM_LANGS.filter((l) => l !== sourceHint);
-  let azure: AzureResult;
+  let deepl: DeepLResult;
   try {
-    azure = await azureTranslate(text, targets);
+    deepl = await deeplTranslate(text, targets);
   } catch (err) {
-    console.error("azureTranslate failed:", err);
+    console.error("deeplTranslate failed:", err);
     return json({ error: "translation provider unavailable" }, 502);
   }
 
-  // The authoritative source language is Azure's detection when it lands on a
+  // The authoritative source language is DeepL's detection when it lands on a
   // platform language, otherwise the UI hint.
-  const detected = isLang(azure.detected) ? azure.detected : sourceHint;
+  const detected = isLang(deepl.detected) ? deepl.detected : sourceHint;
 
-  const draft: Partial<Record<Lang, string>> = { ...azure.translations };
+  const draft: Partial<Record<Lang, string>> = { ...deepl.translations };
   draft[detected] = text; // the original text IS the real source-language version
   for (const l of PLATFORM_LANGS) if (!draft[l]) draft[l] = text; // never leave a hole
   const body_i18n = draft as Record<Lang, string>;

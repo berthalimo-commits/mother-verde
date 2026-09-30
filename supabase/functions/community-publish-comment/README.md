@@ -16,7 +16,7 @@ not assumed.
 This file is self-contained (no import of a shared module) — it was
 deployed by pasting directly into the Supabase dashboard's function editor,
 since CLI/browser login wasn't available. It duplicates the same
-Azure/translation_cache core as `community-translate/index.ts` on purpose.
+DeepL/translation_cache core as `community-translate/index.ts` on purpose.
 
 ## Contract
 
