@@ -3737,7 +3737,56 @@
 <script type="module" src="/src/pdf.js"></script>
 <script>
   if('serviceWorker' in navigator && location.hostname !== 'localhost'){
-    window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'));
+    // Discreet update notice: when a new deploy's worker is waiting, show a
+    // small pill at the bottom. Tapping "Actualizar" activates it and reloads;
+    // dismissing just hides it (the update applies on the next full visit).
+    const UPDATE_TEXT = {
+      es: ['Hay una versión nueva', 'Actualizar', 'Cerrar'],
+      en: ['A new version is available', 'Update', 'Close'],
+      de: ['Eine neue Version ist verfügbar', 'Aktualisieren', 'Schließen'],
+      fr: ['Une nouvelle version est disponible', 'Mettre à jour', 'Fermer']
+    };
+    let reloading = false;
+    function showUpdateNotice(worker){
+      if(document.getElementById('swUpdateNotice')) return;
+      const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
+      const [msg, action, close] = UPDATE_TEXT[lang] || UPDATE_TEXT.es;
+      const el = document.createElement('div');
+      el.id = 'swUpdateNotice';
+      el.className = 'sw-update';
+      el.setAttribute('role', 'status');
+      el.innerHTML = '<span></span><button type="button" class="sw-update-go"></button><button type="button" class="sw-update-x">×</button>';
+      el.querySelector('span').textContent = msg;
+      el.querySelector('.sw-update-go').textContent = action;
+      el.querySelector('.sw-update-x').setAttribute('aria-label', close);
+      el.querySelector('.sw-update-go').onclick = () => {
+        reloading = true;
+        el.querySelector('.sw-update-go').disabled = true;
+        worker.postMessage({ type: 'SKIP_WAITING' });
+      };
+      el.querySelector('.sw-update-x').onclick = () => el.remove();
+      document.body.appendChild(el);
+      requestAnimationFrame(() => el.classList.add('show'));
+    }
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if(reloading) location.reload();
+    });
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').then((reg) => {
+        if(reg.waiting && navigator.serviceWorker.controller) showUpdateNotice(reg.waiting);
+        reg.addEventListener('updatefound', () => {
+          const nw = reg.installing;
+          if(!nw) return;
+          nw.addEventListener('statechange', () => {
+            if(nw.state === 'installed' && navigator.serviceWorker.controller) showUpdateNotice(nw);
+          });
+        });
+        // Installed PWAs can stay open for days — re-check when brought back.
+        document.addEventListener('visibilitychange', () => {
+          if(document.visibilityState === 'visible') reg.update().catch(() => {});
+        });
+      });
+    });
   }
 </script>
 </body>

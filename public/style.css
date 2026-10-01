@@ -435,3 +435,12 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .perfil-meta{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss); text-transform:uppercase; letter-spacing:.04em; margin-top:3px;}
 .perfil-bio{font-size:14px; line-height:1.6; color:var(--ink-soft); margin:14px 4px 0; white-space:pre-wrap;}
 .perfil-mutuo{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss-deep); margin-left:10px;}
+
+/* Service-worker update notice (see index.html) — small, bottom-center, non-blocking */
+.sw-update{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); z-index:90; display:flex; align-items:center; gap:10px; max-width:calc(100vw - 32px); padding:8px 8px 8px 14px; background:var(--paper-raised); color:var(--ink); border:1px solid var(--glow-border); border-radius:999px; box-shadow:0 6px 20px rgba(0,0,0,0.4); font-size:13px; opacity:0; transform:translate(-50%,12px); transition:opacity .2s ease, transform .2s ease;}
+.sw-update.show{opacity:1; transform:translate(-50%,0);}
+.sw-update span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.sw-update-go{flex:none; border:0; border-radius:999px; padding:5px 12px; background:var(--moss); color:var(--ink-on-accent); font:inherit; font-weight:600; cursor:pointer;}
+.sw-update-go:disabled{opacity:.6; cursor:default;}
+.sw-update-x{flex:none; border:0; background:none; color:var(--ink-soft); font-size:18px; line-height:1; padding:2px 6px; cursor:pointer;}
+@media (prefers-reduced-motion: reduce){.sw-update{transition:none;}}
