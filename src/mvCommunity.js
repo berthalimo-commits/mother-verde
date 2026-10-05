@@ -115,19 +115,18 @@ async function getMyMemberProfile(){
 async function upsertMyMemberProfile(fields = {}){
   const id = requireUser();
   const allowed = ['display_name', 'country', 'profile_type', 'bio', 'cover_photo_url', 'avatar_url'];
-  const row = { user_id: id };
-  for(const k of allowed) if(k in fields) row[k] = fields[k];
-  if(!('display_name' in row)){
-    // Postgres validates NOT NULL on the candidate INSERT row even when the
-    // conflict makes this a no-op UPDATE (e.g. saving just an avatar_url for
-    // someone who already joined) — so display_name must always be present.
-    // Carry over the existing value; a genuinely new row still requires the
-    // caller to supply one, exactly as before.
-    const existing = await getMemberProfile(id);
-    row.display_name = existing ? existing.display_name : null;
-  }
-  const { data, error } = await sb().from('community_members')
-    .upsert(row, { onConflict: 'user_id' }).select().single();
+  const changes = {};
+  for(const k of allowed) if(k in fields) changes[k] = fields[k];
+  // Separate update / insert, NOT upsert: an upsert's ON CONFLICT DO UPDATE
+  // needs UPDATE privilege on every column it sends, user_id included, and
+  // user_id is deliberately not updatable (migration
+  // 20260909130000_community_verified.sql) — so upsert failed with
+  // "permission denied" for everyone.
+  const existing = await getMemberProfile(id);
+  const query = existing
+    ? sb().from('community_members').update(changes).eq('user_id', id)
+    : sb().from('community_members').insert({ user_id: id, ...changes });
+  const { data, error } = await query.select().single();
   if(error) throw error;
   return data;
 }
