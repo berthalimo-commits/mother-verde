@@ -26,8 +26,10 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
+  // No email provider yet: say so plainly. The form then offers a mailto link
+  // to TO_EMAIL instead of losing the message (see main.js, adInquiryForm).
   if (!apiKey) {
-    res.status(500).json({ error: 'email service not configured' });
+    res.status(503).json({ error: 'email service not configured', fallback: 'mailto' });
     return;
   }
 
