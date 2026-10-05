@@ -397,6 +397,10 @@ verify_jwt = true
 [functions.community-publish-comment]
 verify_jwt = true
 
+[functions.delete-account]
+# Signed-in users only; the function also re-checks the password itself.
+verify_jwt = true
+
 [analytics]
 enabled = true
 port = 54327

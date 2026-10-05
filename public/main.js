@@ -5946,6 +5946,70 @@ translations.en.mcDisclaimer = "This is educational information about the state 
 translations.de.mcDisclaimer = "Dies ist Bildungsinformation über den Stand der Evidenz — keine Diagnose und keine Behandlungsempfehlung. Sprich immer mit einer Fachkraft.";
 translations.fr.mcDisclaimer = "Ceci est une information éducative sur l’état des preuves — pas un diagnostic ni une recommandation de traitement. Parle toujours à un professionnel.";
 
+// Cuenta -> Eliminar mi cuenta (logic in src/auth.js, server side in supabase/functions/delete-account)
+translations.es.delAccTitle = "Eliminar mi cuenta";
+translations.en.delAccTitle = "Delete my account";
+translations.de.delAccTitle = "Mein Konto löschen";
+translations.fr.delAccTitle = "Supprimer mon compte";
+translations.es.delAccDesc = "Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.";
+translations.en.delAccDesc = "Permanently deletes your account and everything tied to it: your profile, your grow journal, your posts, comments and photos, and who you follow. This can’t be undone.";
+translations.de.delAccDesc = "Löscht dein Konto und alles, was dazugehört, endgültig: dein Profil, dein Anbau-Tagebuch, deine Beiträge, Kommentare und Fotos sowie wem du folgst. Das kann nicht rückgängig gemacht werden.";
+translations.fr.delAccDesc = "Supprime définitivement ton compte et tout ce qui y est lié : ton profil, ton journal de culture, tes publications, commentaires et photos, et les personnes que tu suis. C’est irréversible.";
+translations.es.delAccOpenBtn = "Eliminar mi cuenta…";
+translations.en.delAccOpenBtn = "Delete my account…";
+translations.de.delAccOpenBtn = "Mein Konto löschen…";
+translations.fr.delAccOpenBtn = "Supprimer mon compte…";
+translations.es.delAccWord = "ELIMINAR";
+translations.en.delAccWord = "DELETE";
+translations.de.delAccWord = "LÖSCHEN";
+translations.fr.delAccWord = "SUPPRIMER";
+translations.es.delAccConfirmText = "Para confirmar, escribe tu contraseña y la palabra {word}. Si tienes publicaciones, también se borrarán los comentarios que otras personas dejaron en ellas.";
+translations.en.delAccConfirmText = "To confirm, enter your password and type {word}. If you have posts, the comments other people left on them will be deleted too.";
+translations.de.delAccConfirmText = "Zur Bestätigung gib dein Passwort ein und tippe {word}. Wenn du Beiträge hast, werden auch die Kommentare anderer Personen darunter gelöscht.";
+translations.fr.delAccConfirmText = "Pour confirmer, saisis ton mot de passe et tape {word}. Si tu as des publications, les commentaires que d’autres personnes y ont laissés seront aussi supprimés.";
+translations.es.delAccPasswordPh = "Tu contraseña";
+translations.en.delAccPasswordPh = "Your password";
+translations.de.delAccPasswordPh = "Dein Passwort";
+translations.fr.delAccPasswordPh = "Ton mot de passe";
+translations.es.delAccConfirmBtn = "Eliminar definitivamente";
+translations.en.delAccConfirmBtn = "Delete permanently";
+translations.de.delAccConfirmBtn = "Endgültig löschen";
+translations.fr.delAccConfirmBtn = "Supprimer définitivement";
+translations.es.delAccCancelBtn = "Volver";
+translations.en.delAccCancelBtn = "Go back";
+translations.de.delAccCancelBtn = "Zurück";
+translations.fr.delAccCancelBtn = "Retour";
+translations.es.delAccWorking = "Eliminando tu cuenta…";
+translations.en.delAccWorking = "Deleting your account…";
+translations.de.delAccWorking = "Dein Konto wird gelöscht…";
+translations.fr.delAccWorking = "Suppression de ton compte…";
+translations.es.delAccErrConfirm = "Escribe tu contraseña y la palabra de confirmación tal como aparece.";
+translations.en.delAccErrConfirm = "Enter your password and the confirmation word exactly as shown.";
+translations.de.delAccErrConfirm = "Gib dein Passwort und das Bestätigungswort genau wie angezeigt ein.";
+translations.fr.delAccErrConfirm = "Saisis ton mot de passe et le mot de confirmation exactement comme indiqué.";
+translations.es.delAccErrPassword = "La contraseña no es correcta. Tu cuenta no se ha borrado.";
+translations.en.delAccErrPassword = "That password isn’t correct. Your account was not deleted.";
+translations.de.delAccErrPassword = "Das Passwort ist nicht korrekt. Dein Konto wurde nicht gelöscht.";
+translations.fr.delAccErrPassword = "Le mot de passe est incorrect. Ton compte n’a pas été supprimé.";
+translations.es.delAccErrBlocked = "Esta cuenta no se puede borrar desde aquí. Escríbenos a hello@motherverdeny.com y lo hacemos por ti.";
+translations.en.delAccErrBlocked = "This account can’t be deleted from here. Write to us at hello@motherverdeny.com and we’ll do it for you.";
+translations.de.delAccErrBlocked = "Dieses Konto kann hier nicht gelöscht werden. Schreib uns an hello@motherverdeny.com, dann erledigen wir das für dich.";
+translations.fr.delAccErrBlocked = "Ce compte ne peut pas être supprimé ici. Écris-nous à hello@motherverdeny.com et nous le ferons pour toi.";
+translations.es.delAccErrGeneric = "No se pudo borrar la cuenta y no se ha borrado nada. Inténtalo de nuevo; si sigue fallando, escríbenos a hello@motherverdeny.com.";
+translations.en.delAccErrGeneric = "Your account couldn’t be deleted and nothing was removed. Please try again; if it keeps failing, write to hello@motherverdeny.com.";
+translations.de.delAccErrGeneric = "Dein Konto konnte nicht gelöscht werden, es wurde nichts entfernt. Versuch es erneut; wenn es weiter fehlschlägt, schreib an hello@motherverdeny.com.";
+translations.fr.delAccErrGeneric = "Ton compte n’a pas pu être supprimé et rien n’a été effacé. Réessaie ; si ça continue, écris à hello@motherverdeny.com.";
+translations.es.delAccDone = "Tu cuenta y todos sus datos se han borrado. Gracias por haber sido parte de Mother Verde.";
+translations.en.delAccDone = "Your account and all its data have been deleted. Thank you for being part of Mother Verde.";
+translations.de.delAccDone = "Dein Konto und alle zugehörigen Daten wurden gelöscht. Danke, dass du Teil von Mother Verde warst.";
+translations.fr.delAccDone = "Ton compte et toutes ses données ont été supprimés. Merci d’avoir fait partie de Mother Verde.";
+
+// Ad inquiry fallback when sending fails (e.g. no email provider configured yet)
+translations.es.adInquiryErrorMail = "No pudimos enviarlo desde aquí. Escríbenos directamente:";
+translations.en.adInquiryErrorMail = "We couldn’t send it from here. Write to us directly:";
+translations.de.adInquiryErrorMail = "Wir konnten es von hier aus nicht senden. Schreib uns direkt:";
+translations.fr.adInquiryErrorMail = "Nous n’avons pas pu l’envoyer d’ici. Écris-nous directement :";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -6656,8 +6720,18 @@ document.getElementById('adInquiryForm')?.addEventListener('submit', async (e) =
     document.getElementById('adInquiryForm').reset();
     setTimeout(closeAdInquiry, 2500);
   }catch(err){
+    // Whatever went wrong (no email provider yet, network, server), never
+    // lose the message: offer a mailto link pre-filled with what they wrote.
+    // The form is NOT reset, so nothing typed is lost either.
+    const subject = 'Espacio publicitario — ' + payload.nombre;
+    const bodyText = [payload.mensaje, '', payload.nombre, payload.empresa, payload.correo].filter((s, i) => s || i === 1).join('\n');
+    const link = document.createElement('a');
+    link.href = 'mailto:hello@motherverdeny.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+    link.textContent = 'hello@motherverdeny.com';
+    link.style.cssText = 'color:var(--teal); text-decoration:underline; font-weight:600;';
     msgEl.style.color = 'var(--clay)';
-    msgEl.textContent = t('adInquiryError');
+    msgEl.textContent = t('adInquiryErrorMail') + ' ';
+    msgEl.appendChild(link);
   }finally{
     btn.disabled = false;
   }

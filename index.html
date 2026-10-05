@@ -3479,6 +3479,25 @@
           <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>
         </div>
       </div>
+
+      <!-- Delete account: password + typed word, inline confirm (no browser confirm()). Logic in src/auth.js. -->
+      <div class="card-block" id="cuentaBorrarCard">
+        <h3 data-i18n="delAccTitle">Eliminar mi cuenta</h3>
+        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.</p>
+        <button type="button" class="btn btn-ghost" id="delAccOpenBtn" data-i18n="delAccOpenBtn">Eliminar mi cuenta…</button>
+        <div id="delAccConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF; max-width:420px;">
+          <p id="delAccConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:10px;">
+            <input type="password" id="delAccPassword" autocomplete="current-password" data-i18n-ph="delAccPasswordPh" placeholder="Tu contraseña" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;">
+            <input type="text" id="delAccWord" autocomplete="off" autocapitalize="characters" spellcheck="false" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'IBM Plex Mono',monospace;">
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="btn btn-primary" id="delAccConfirmBtn" style="background:var(--clay); border-color:var(--clay);" data-i18n="delAccConfirmBtn">Eliminar definitivamente</button>
+            <button type="button" class="btn btn-ghost" id="delAccCancelBtn" style="color:#7a2f1c; border-color:#7a2f1c;" data-i18n="delAccCancelBtn">Volver</button>
+          </div>
+          <div id="delAccMsg" style="font-size:12.5px; min-height:16px; margin-top:10px; color:#7a2f1c;"></div>
+        </div>
+      </div>
     </div>
 
     <div class="card-block">

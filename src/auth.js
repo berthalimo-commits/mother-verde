@@ -137,6 +137,80 @@ document.getElementById('authLogoutBtn')?.addEventListener('click', async () => 
   await supabase.auth.signOut();
 });
 
+/* ---------------------- Delete account ---------------------- */
+// The real work (password re-check, Storage, translation cache, auth user)
+// happens server-side in supabase/functions/delete-account. Here: an inline
+// confirm that needs the password plus a typed, localized word.
+
+function delAccEls(){
+  return {
+    box: document.getElementById('delAccConfirm'),
+    text: document.getElementById('delAccConfirmText'),
+    pw: document.getElementById('delAccPassword'),
+    word: document.getElementById('delAccWord'),
+    btn: document.getElementById('delAccConfirmBtn'),
+    msg: document.getElementById('delAccMsg'),
+  };
+}
+
+function resetDeleteAccount(){
+  const el = delAccEls();
+  if(!el.box) return;
+  el.box.hidden = true;
+  el.pw.value = '';
+  el.word.value = '';
+  el.msg.textContent = '';
+  el.btn.disabled = false;
+}
+
+document.getElementById('delAccOpenBtn')?.addEventListener('click', () => {
+  const el = delAccEls();
+  const word = window.t('delAccWord');
+  el.text.textContent = window.t('delAccConfirmText').replace('{word}', word);
+  el.word.placeholder = word;
+  el.msg.textContent = '';
+  el.box.hidden = false;
+  el.pw.focus();
+});
+
+document.getElementById('delAccCancelBtn')?.addEventListener('click', resetDeleteAccount);
+
+document.getElementById('delAccConfirmBtn')?.addEventListener('click', async () => {
+  if(!window.mvCurrentUser) return;
+  const el = delAccEls();
+  const password = el.pw.value;
+  const typed = el.word.value.trim().toLocaleUpperCase();
+  if(!password || typed !== window.t('delAccWord').toLocaleUpperCase()){
+    el.msg.textContent = window.t('delAccErrConfirm');
+    return;
+  }
+  el.btn.disabled = true;
+  el.msg.textContent = window.t('delAccWorking');
+
+  const { error } = await supabase.functions.invoke('delete-account', {
+    body: { password, confirm: 'DELETE' },
+  });
+  if(error){
+    let code = '';
+    try { code = (await error.context.json()).error || ''; } catch(e){}
+    el.msg.textContent = window.t(
+      code === 'wrong password' ? 'delAccErrPassword'
+      : (code === 'official account' || code === 'active subscription') ? 'delAccErrBlocked'
+      : 'delAccErrGeneric'
+    );
+    el.btn.disabled = false;
+    return;
+  }
+
+  // The account is gone server-side; drop the local session and everything
+  // this device kept for the app.
+  await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+  try { localStorage.clear(); sessionStorage.clear(); } catch(e){}
+  resetDeleteAccount();
+  await refreshAuthState();
+  setAuthMsg(window.t('delAccDone'), false);
+});
+
 document.getElementById('cuentaGuardarBtn')?.addEventListener('click', async () => {
   if(!window.mvCurrentUser) return;
   const contact_email = document.getElementById('cuentaCorreoInput').value.trim();

@@ -289,10 +289,29 @@ async function updatePost(id, { body = null, sourceHint = 'es' } = {}){
   return data.post;
 }
 
+// Also removes the post's photo from Storage: the bucket is public, so a
+// photo left behind would stay reachable at its URL after the post is gone.
 async function deletePost(id){
-  requireUser();
+  const me = requireUser();
+  const { data: post } = await sb().from('community_posts').select('photo_url').eq('id', id).maybeSingle();
   const { error } = await sb().from('community_posts').delete().eq('id', id);
   if(error) throw error;
+  const path = photoPathFromUrl(post && post.photo_url);
+  // Only our own folder — the storage delete policy enforces the same.
+  if(path && path.startsWith(me + '/')){
+    const { error: rmError } = await sb().storage.from(BUCKET).remove([path]);
+    if(rmError) console.warn('deletePost: photo not removed', rmError);
+  }
+}
+
+// ".../storage/v1/object/public/community-photos/<path>?v=..." -> "<path>"
+function photoPathFromUrl(url){
+  if(!url) return null;
+  const marker = '/object/public/' + BUCKET + '/';
+  const i = url.indexOf(marker);
+  if(i === -1) return null;
+  try { return decodeURIComponent(url.slice(i + marker.length).split('?')[0]); }
+  catch(e){ return null; }
 }
 
 /* ---------------------- Comments ---------------------- */
