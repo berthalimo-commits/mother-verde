@@ -6004,6 +6004,12 @@ translations.en.delAccDone = "Your account and all its data have been deleted. T
 translations.de.delAccDone = "Dein Konto und alle zugehörigen Daten wurden gelöscht. Danke, dass du Teil von Mother Verde warst.";
 translations.fr.delAccDone = "Ton compte et toutes ses données ont été supprimés. Merci d’avoir fait partie de Mother Verde.";
 
+// Under the post and comment boxes: their text goes to DeepL for translation
+translations.es.cmyAvisoTraduccion = "Tu texto se envía a un servicio de traducción. No incluyas datos personales ni de salud, tuyos o de otras personas.";
+translations.en.cmyAvisoTraduccion = "Your text is sent to a translation service. Don’t include personal or health information, yours or anyone else’s.";
+translations.de.cmyAvisoTraduccion = "Dein Text wird an einen Übersetzungsdienst gesendet. Gib keine persönlichen oder Gesundheitsdaten an – weder deine noch die anderer Personen.";
+translations.fr.cmyAvisoTraduccion = "Ton texte est envoyé à un service de traduction. N’y mets pas de données personnelles ou de santé, ni les tiennes ni celles d’autres personnes.";
+
 // Ad inquiry fallback when sending fails (e.g. no email provider configured yet)
 translations.es.adInquiryErrorMail = "No pudimos enviarlo desde aquí. Escríbenos directamente:";
 translations.en.adInquiryErrorMail = "We couldn’t send it from here. Write to us directly:";
@@ -7572,6 +7578,7 @@ async function loadCommentThread(postId){
   const composer = canComment
     ? `<div class="cmy-comment-composer">
          <textarea id="cmyCommentInput-${postId}" maxlength="500" rows="2" data-i18n-ph="cmyComentarioPh" placeholder="Escribe un comentario…" style="width:100%; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; background:var(--paper); resize:vertical;"></textarea>
+         <p class="cmy-privacy-note">${t('cmyAvisoTraduccion')}</p>
          <button class="btn-pill sm" onclick="submitComment('${postId}')">${t('cmyComentarBtn')}</button>
        </div>`
     : `<div class="note-box" style="margin-top:8px;">${t('cmyComentarioBloqueado')}</div>`;
