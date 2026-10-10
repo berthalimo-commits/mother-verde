@@ -63,6 +63,9 @@ supabase.auth.onAuthStateChange(() => { refreshAuthState(); });
 
 function mapAuthError(err){
   const msg = (err && err.message || '').toLowerCase();
+  // Rejected by the "Before User Created" hook (disposable domain, or the same
+  // Gmail address already has an account). One message for both on purpose.
+  if(msg.includes('signup_not_allowed')) return 'authErrSignupNotAllowed';
   if(msg.includes('already registered') || msg.includes('already exists')) return 'authErrEmailTaken';
   if(msg.includes('invalid login credentials')) return 'authErrInvalidCredentials';
   if(msg.includes('password') && (msg.includes('least') || msg.includes('short') || msg.includes('weak'))) return 'authErrWeakPassword';

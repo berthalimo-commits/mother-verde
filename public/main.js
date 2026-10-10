@@ -6133,6 +6133,12 @@ translations.en.dsFormProximamente = "The form to tell us about your contributio
 translations.de.dsFormProximamente = "Das Formular, mit dem du uns über deinen Beitrag informierst, kommt sehr bald hierher. Bitte sende noch nichts: Warte, bis es erscheint.";
 translations.fr.dsFormProximamente = "Le formulaire pour nous signaler ta contribution sera ici très bientôt. N’envoie rien pour l’instant : attends qu’il apparaisse.";
 
+// Signup rejected by the Before User Created hook (src/auth.js mapAuthError)
+translations.es.authErrSignupNotAllowed = "No pudimos crear la cuenta con ese correo. Si ya tienes una cuenta, inicia sesión; si no, prueba con otro correo (no aceptamos correos temporales).";
+translations.en.authErrSignupNotAllowed = "We couldn’t create an account with that email. If you already have an account, sign in; if not, try another email (temporary inboxes aren’t accepted).";
+translations.de.authErrSignupNotAllowed = "Mit dieser E-Mail-Adresse konnten wir kein Konto erstellen. Wenn du schon ein Konto hast, melde dich an; sonst versuch es mit einer anderen Adresse (Wegwerf-Adressen werden nicht akzeptiert).";
+translations.fr.authErrSignupNotAllowed = "Nous n’avons pas pu créer de compte avec cet e-mail. Si tu as déjà un compte, connecte-toi ; sinon, essaie une autre adresse (les adresses temporaires ne sont pas acceptées).";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){

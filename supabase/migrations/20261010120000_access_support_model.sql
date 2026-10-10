@@ -8,9 +8,11 @@
 -- phone number is stored anywhere.
 --
 -- Paste in the Supabase SQL Editor. Then:
---   * paste supabase/seed-blocked-email-domains.sql (the domain list), and
---   * enable the hook: Authentication -> Hooks -> "Before User Created"
---     -> Postgres -> schema public -> function hook_before_user_created.
+--   * paste supabase/seed-blocked-email-domains/part-01.sql … part-07.sql, and
+--   * LAST, enable the hook (Authentication -> Hooks -> "Before User Created"
+--     -> Postgres -> schema public -> function hook_before_user_created),
+--     following supabase/admin/hook-activation-plan.md.
+-- Undo: supabase/admin/rollback-20261010120000.sql.
 -- REQUIRED: Authentication -> "Confirm email" must be ON. If it is off,
 -- Supabase fills email_confirmed_at at signup without a real confirmation,
 -- and the trigger below never fires (no trial at all: fails closed).
@@ -164,7 +166,7 @@ revoke execute on function public.reactivate_subscription(boolean) from public, 
 -- ---------------------------------------------------------------------------
 -- 6. Signup abuse controls: Before User Created auth hook.
 --    Blocked domains live in this table; the list itself is in
---    supabase/blocked-email-domains.txt (seed: seed-blocked-email-domains.sql).
+--    supabase/blocked-email-domains.txt (seed: seed-blocked-email-domains/part-*.sql).
 --    To block one more domain:
 --      insert into public.blocked_email_domains (domain) values ('example.org');
 -- ---------------------------------------------------------------------------
