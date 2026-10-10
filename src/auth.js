@@ -21,6 +21,8 @@ function computeIsPremium(profile){
   if(!profile) return false;
   const now = Date.now();
   const status = profile.subscription_status || 'none';
+  // One-time support contribution, verified by hand: full access, no end date.
+  if(status === 'supporter') return true;
   if(status === 'trialing'){
     return !!profile.trial_ends_at && new Date(profile.trial_ends_at).getTime() > now;
   }
