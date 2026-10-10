@@ -86,7 +86,6 @@ export function renderDesbloquear() {
     <div class="card-block ds-cannawasi">
       <h3>${t('dsCannaWasiH3')}</h3>
       <p>${SUPPORT_RECIPIENT_TEXT[lang()] || SUPPORT_RECIPIENT_TEXT.es}</p>
-      <p class="ds-wasi">${t('dsWasiNota')}</p>
     </div>
 
     ${ready ? paymentHtml() : `<div class="note-box">${t('dsProximamente')}</div>`}

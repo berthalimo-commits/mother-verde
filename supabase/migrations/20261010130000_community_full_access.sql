@@ -13,6 +13,7 @@
 --     (community_usage_log below).
 --   * community_can_view / community_is_mutual no longer answer about other
 --     people's relationships when called from the browser.
+--   * A global daily cap on characters sent to DeepL (section 8).
 --
 -- Honest limit: photos in the public bucket stay reachable by anyone who has
 -- the exact URL (public bucket URLs skip these rules). Closing that needs a
@@ -168,3 +169,47 @@ create index if not exists community_usage_log_user_time_idx
   on public.community_usage_log (user_id, created_at desc);
 alter table public.community_usage_log enable row level security;
 revoke all on public.community_usage_log from anon, authenticated;
+
+-- ---------------------------------------------------------------------------
+-- 8. GLOBAL daily cap on characters sent to DeepL (all users together).
+--    DeepL counts the source text once per target language, so one publish
+--    of N characters translated into 3 languages uses 3 x N.
+--    Cap: 14,000 per UTC day -> at most 434,000 a month, under the Free
+--    plan's 500,000 with ~13% margin. Change it only here (c_cap).
+--    When the cap is reached the publish functions still publish, with the
+--    original text only and translation_status = 'failed' — which puts the
+--    row in community_translation_backlog, the list to retry later.
+--    Cache hits don't call DeepL and don't count.
+-- ---------------------------------------------------------------------------
+create table if not exists public.deepl_usage_daily (
+  day   date primary key,
+  chars integer not null default 0 check (chars >= 0)
+);
+alter table public.deepl_usage_daily enable row level security;
+revoke all on public.deepl_usage_daily from anon, authenticated;
+
+-- Atomically reserves p_chars for today; true = go ahead and call DeepL,
+-- false = cap reached (nothing reserved).
+create or replace function public.deepl_reserve_chars(p_chars integer)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  c_cap constant integer := 14000;
+  v_ok boolean;
+begin
+  if p_chars is null or p_chars <= 0 then return true; end if;
+  if p_chars > c_cap then return false; end if;
+  insert into public.deepl_usage_daily as d (day, chars)
+    values ((now() at time zone 'utc')::date, p_chars)
+    on conflict (day) do update
+      set chars = d.chars + excluded.chars
+      where d.chars + excluded.chars <= c_cap
+    returning true into v_ok;
+  return coalesce(v_ok, false);
+end;
+$$;
+revoke execute on function public.deepl_reserve_chars(integer) from public, anon, authenticated;
+grant execute on function public.deepl_reserve_chars(integer) to service_role;

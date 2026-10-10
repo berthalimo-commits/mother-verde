@@ -194,6 +194,24 @@ async function translateText(admin: any, text: string, sourceHint: Lang): Promis
   }
 
   const targets = PLATFORM_LANGS.filter((l) => l !== sourceHint);
+
+  // Global daily DeepL cap (deepl_reserve_chars, migration 20261010130000).
+  // DeepL counts the source once per target language. Cap reached, or the
+  // check itself failed -> publish untranslated, marked "failed" (= listed
+  // in community_translation_backlog for a later retry).
+  const { data: allowed, error: capErr } = await admin.rpc("deepl_reserve_chars", {
+    p_chars: text.length * targets.length,
+  });
+  if (capErr || allowed !== true) {
+    if (capErr) console.error("translateText: deepl_reserve_chars failed:", capErr);
+    else console.warn("translateText: global DeepL daily cap reached, publishing untranslated");
+    return {
+      source_lang: sourceHint,
+      body_i18n: { [sourceHint]: text } as Record<Lang, string>,
+      status: "failed",
+    };
+  }
+
   try {
     const deepl = await deeplTranslate(text, targets);
     const detected = isLang(deepl.detected) ? deepl.detected : sourceHint;

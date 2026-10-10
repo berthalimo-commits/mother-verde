@@ -93,3 +93,7 @@ grant execute on function public.community_can_view(uuid, uuid) to public;
 
 -- 7. Usage log (the old Edge Functions don't use it).
 drop table if exists public.community_usage_log;
+
+-- 8. Global DeepL cap.
+drop function if exists public.deepl_reserve_chars(integer);
+drop table if exists public.deepl_usage_daily;
