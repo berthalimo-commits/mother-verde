@@ -460,3 +460,32 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 /* ACCESS_MODEL (public/main.js): pieces of the old card subscription stay in
    the markup but are hidden while the support model is live. */
 html[data-access-model="support"] .mv-sub-only{display:none !important;}
+
+/* Desbloquear (src/desbloquear.js) */
+.ds-intro{max-width:640px;}
+.ds-scale{display:flex; align-items:flex-end; gap:14px; margin:22px 0 8px;}
+.ds-scale-msg{font-family:'Manrope',sans-serif; font-weight:600; font-size:18px; color:var(--ink); margin:0 0 22px;}
+.ds-bud{display:block; flex:none;}
+.ds-bud-pop{animation:dsPop .35s ease-out;}
+@keyframes dsPop{from{transform:scale(.6); opacity:0;} to{transform:scale(1); opacity:1;}}
+.ds-picker{display:flex; align-items:center; gap:12px; margin:14px 0 8px;}
+.ds-garden{flex:1; display:flex; flex-wrap:wrap; align-items:flex-end; gap:6px; min-height:58px; padding:8px 10px; border:1px dashed var(--line-strong); border-radius:10px;}
+.ds-step{flex:none; width:40px; height:40px; border-radius:50%; border:1px solid var(--line-strong); background:transparent; color:var(--ink); font-size:20px; line-height:1; cursor:pointer;}
+.ds-step:disabled{opacity:.35; cursor:default;}
+.ds-step:not(:disabled):hover{border-color:var(--moss);}
+.ds-total{font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--moss); margin-bottom:4px;}
+.ds-extra-note{font-size:12.5px; color:var(--ink-soft); margin:0;}
+.ds-wasi{font-size:12.5px; color:var(--ink-soft); margin-bottom:0;}
+.ds-network-warning{border:2px solid var(--moss); border-radius:10px; padding:14px 16px; margin:4px 0 18px; background:rgba(42,235,160,0.08);}
+.ds-network-big{font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; line-height:1.25; color:var(--ink);}
+.ds-network-small{font-size:13px; color:var(--ink-soft); margin-top:6px;}
+.ds-pay-grid{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start;}
+.ds-qr{flex:none; width:180px; height:180px; background:#fff; border-radius:8px; overflow:hidden;}
+.ds-qr svg{display:block; width:100%; height:100%;}
+.ds-addr-col{flex:1; min-width:220px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;}
+.ds-label{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
+.ds-addr{display:block; max-width:100%; font-family:'IBM Plex Mono',monospace; font-size:14px; color:var(--ink); background:var(--paper); border:1px solid var(--line-strong); border-radius:6px; padding:10px 12px; word-break:break-all; user-select:all;}
+.ds-copied{font-size:12.5px; color:var(--moss);}
+.ds-steps{margin:18px 0 14px; padding-left:20px; line-height:1.6; font-size:14px;}
+.ds-steps li{margin-bottom:6px;}
+@media (prefers-reduced-motion: reduce){.ds-bud-pop{animation:none;}}

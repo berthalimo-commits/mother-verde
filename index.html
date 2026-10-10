@@ -3517,14 +3517,51 @@
   </section>
 
   <!-- ============ DESBLOQUEAR (aporte único de apoyo) ============ -->
-  <!-- Placeholder: the full page (flowers, Canna Wasi, USDC) comes later.
-       Payment data lives only in src/supportConfig.js; while it is empty this
-       page must say "Próximamente" and show no QR and no form. -->
+  <!-- Rendered by src/desbloquear.js. Payment data lives only in
+       src/supportConfig.js; while the address is empty or invalid this page
+       says "Próximamente" and shows no QR and no form. -->
   <section class="screen" id="desbloquear">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <!-- Hand-drawn cannabis flower (bud): calyxes, sugar leaves, pistils, trichomes. -->
+      <symbol id="mvBud" viewBox="0 0 60 96">
+        <path d="M30 95 C30 86 31 79 30 70" stroke="#16B884" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <!-- Two small fan leaves with serrated leaflets (5 each), behind the bud. -->
+        <defs>
+          <path id="mvLeaflet" d="M0 0 L-1.6 -3.5 L-1 -4 L-2.6 -8 L-1.8 -8.4 L-2.9 -12.5 L-2 -13 L-2.3 -16.5 L0 -22 L2.3 -16.5 L2 -13 L2.9 -12.5 L1.8 -8.4 L2.6 -8 L1 -4 L1.6 -3.5 Z"/>
+        </defs>
+        <g transform="translate(26 76) rotate(-58)" fill="#119a6e">
+          <use href="#mvLeaflet"/>
+          <use href="#mvLeaflet" transform="rotate(-32) scale(.82)"/><use href="#mvLeaflet" transform="rotate(32) scale(.82)"/>
+          <use href="#mvLeaflet" transform="rotate(-62) scale(.55)"/><use href="#mvLeaflet" transform="rotate(62) scale(.55)"/>
+        </g>
+        <g transform="translate(34 76) rotate(58)" fill="#16B884">
+          <use href="#mvLeaflet"/>
+          <use href="#mvLeaflet" transform="rotate(-32) scale(.82)"/><use href="#mvLeaflet" transform="rotate(32) scale(.82)"/>
+          <use href="#mvLeaflet" transform="rotate(-62) scale(.55)"/><use href="#mvLeaflet" transform="rotate(62) scale(.55)"/>
+        </g>
+        <g stroke="rgba(4,20,15,0.35)" stroke-width="0.8">
+          <circle cx="22" cy="64" r="8" fill="#16B884"/><circle cx="38" cy="64" r="8" fill="#16B884"/><circle cx="30" cy="66" r="8.5" fill="#1FCF8C"/>
+          <circle cx="20" cy="55" r="8" fill="#1FCF8C"/><circle cx="40" cy="55" r="8" fill="#16B884"/><circle cx="30" cy="57" r="8.5" fill="#2AEBA0"/>
+          <circle cx="22" cy="46" r="7.5" fill="#16B884"/><circle cx="38" cy="46" r="7.5" fill="#1FCF8C"/><circle cx="30" cy="48" r="8" fill="#2AEBA0"/>
+          <circle cx="24" cy="38" r="7" fill="#1FCF8C"/><circle cx="36" cy="38" r="7" fill="#16B884"/><circle cx="30" cy="39" r="7.5" fill="#2AEBA0"/>
+          <circle cx="25.5" cy="30" r="6.2" fill="#16B884"/><circle cx="34.5" cy="30" r="6.2" fill="#1FCF8C"/><circle cx="30" cy="31" r="6.5" fill="#2AEBA0"/>
+          <circle cx="27.5" cy="22.5" r="5.3" fill="#1FCF8C"/><circle cx="32.5" cy="22.5" r="5.3" fill="#2AEBA0"/>
+          <circle cx="30" cy="16" r="4.6" fill="#2AEBA0"/><circle cx="30" cy="10.5" r="3.2" fill="#1FCF8C"/>
+        </g>
+        <g stroke="#F2A65A" stroke-width="1.2" fill="none" stroke-linecap="round">
+          <path d="M21 58 q-6 -2 -9 -8"/><path d="M39 58 q6 -2 9 -8"/><path d="M23 42 q-6 -3 -7 -9"/><path d="M37 42 q6 -3 7 -9"/>
+          <path d="M26 27 q-4 -4 -4 -9"/><path d="M34 27 q4 -4 4 -9"/><path d="M30 8 q-1 -4 -4 -6"/><path d="M30 8 q1 -4 4 -6"/>
+        </g>
+        <g fill="#F0F7F3" opacity="0.85">
+          <circle cx="27" cy="62" r="0.9"/><circle cx="35" cy="52" r="0.9"/><circle cx="25" cy="50" r="0.8"/><circle cx="33" cy="41" r="0.9"/>
+          <circle cx="28" cy="33" r="0.8"/><circle cx="31" cy="24" r="0.8"/><circle cx="36" cy="64" r="0.8"/><circle cx="22" cy="37" r="0.7"/>
+        </g>
+      </symbol>
+    </svg>
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
     <div class="eyebrow" data-i18n="dsEyebrow">Acceso completo</div>
-    <h2 class="title" data-i18n="dsTitle">Desbloquear</h2>
-    <div class="note-box" data-i18n="dsProximamente">Próximamente.</div>
+    <h2 class="title" data-i18n="dsTitle">Desbloquea Mother Verde</h2>
+    <div id="desbloquearContent"></div>
   </section>
 
   <!-- ============ TÉRMINOS Y CONDICIONES ============ -->
@@ -3767,6 +3804,7 @@
 <script type="module" src="/src/mvCommunity.js"></script>
 <script type="module" src="/src/avatarCropper.js"></script>
 <script type="module" src="/src/pdf.js"></script>
+<script type="module" src="/src/desbloquear.js"></script>
 <script>
   if('serviceWorker' in navigator && location.hostname !== 'localhost'){
     // Discreet update notice: when a new deploy's worker is waiting, show a
