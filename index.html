@@ -26,11 +26,11 @@
 <body>
 <div class="premium-modal active" id="ageGateModal" style="z-index:500;">
   <div class="premium-sheet" style="max-width:420px; text-align:center;" id="ageGateQuestion">
-    <div style="display:flex; justify-content:center; gap:8px; margin-bottom:20px;">
-      <button onclick="document.querySelector('#langSwitch button[data-lang=es]').click(); this.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity=.5); this.style.opacity=1;" style="padding:6px 12px; border:1px solid var(--line-strong); border-radius:20px; background:transparent; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; opacity:1;">ES</button>
-      <button onclick="document.querySelector('#langSwitch button[data-lang=en]').click(); this.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity=.5); this.style.opacity=1;" style="padding:6px 12px; border:1px solid var(--line-strong); border-radius:20px; background:transparent; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; opacity:.5;">EN</button>
-      <button onclick="document.querySelector('#langSwitch button[data-lang=de]').click(); this.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity=.5); this.style.opacity=1;" style="padding:6px 12px; border:1px solid var(--line-strong); border-radius:20px; background:transparent; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; opacity:.5;">DE</button>
-      <button onclick="document.querySelector('#langSwitch button[data-lang=fr]').click(); this.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity=.5); this.style.opacity=1;" style="padding:6px 12px; border:1px solid var(--line-strong); border-radius:20px; background:transparent; font-family:'IBM Plex Mono',monospace; font-size:11px; cursor:pointer; opacity:.5;">FR</button>
+    <div class="ag-langs" style="display:flex; justify-content:center; gap:8px; margin-bottom:20px;">
+      <button type="button" class="ag-lang on" aria-pressed="true" onclick="document.querySelector('#langSwitch button[data-lang=es]').click(); this.parentElement.querySelectorAll('.ag-lang').forEach(b=>{b.classList.remove('on'); b.setAttribute('aria-pressed','false');}); this.classList.add('on'); this.setAttribute('aria-pressed','true');">ES</button>
+      <button type="button" class="ag-lang" aria-pressed="false" onclick="document.querySelector('#langSwitch button[data-lang=en]').click(); this.parentElement.querySelectorAll('.ag-lang').forEach(b=>{b.classList.remove('on'); b.setAttribute('aria-pressed','false');}); this.classList.add('on'); this.setAttribute('aria-pressed','true');">EN</button>
+      <button type="button" class="ag-lang" aria-pressed="false" onclick="document.querySelector('#langSwitch button[data-lang=de]').click(); this.parentElement.querySelectorAll('.ag-lang').forEach(b=>{b.classList.remove('on'); b.setAttribute('aria-pressed','false');}); this.classList.add('on'); this.setAttribute('aria-pressed','true');">DE</button>
+      <button type="button" class="ag-lang" aria-pressed="false" onclick="document.querySelector('#langSwitch button[data-lang=fr]').click(); this.parentElement.querySelectorAll('.ag-lang').forEach(b=>{b.classList.remove('on'); b.setAttribute('aria-pressed','false');}); this.classList.add('on'); this.setAttribute('aria-pressed','true');">FR</button>
     </div>
     <svg viewBox="0 0 60 70" width="44" height="52" style="margin:0 auto 18px; display:block;"><path d="M30,8 C36,16 40,26 37,36 C34,45 30,52 25,55 C20,51 17,44 19,35 C21,25 25,15 30,8 Z" fill="var(--moss)" stroke="var(--moss-deep)" stroke-width="1.5"/></svg>
     <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Verificación de edad</h2>
@@ -2908,7 +2908,7 @@
         <div id="cmyJoinMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyJoinExito">¡Listo! Ya apareces en el directorio de abajo.</div>
       </div>
       <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
-        <span onclick="showScreen('cuenta')" style="cursor:pointer; color:var(--ink-soft); font-size:12.5px; text-decoration:underline;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)</span>
+        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)</button>
       </div>
     </div>
 
