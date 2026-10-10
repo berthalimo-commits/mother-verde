@@ -489,3 +489,4 @@ html[data-access-model="support"] .mv-sub-only{display:none !important;}
 .ds-steps{margin:18px 0 14px; padding-left:20px; line-height:1.6; font-size:14px;}
 .ds-steps li{margin-bottom:6px;}
 @media (prefers-reduced-motion: reduce){.ds-bud-pop{animation:none;}}
+.cmy-comment-msg{margin:4px 0 6px; font-size:12px; color:var(--clay); min-height:0;}

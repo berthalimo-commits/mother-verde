@@ -35,6 +35,35 @@ type Lang = (typeof PLATFORM_LANGS)[number];
 const POST_MAX_LEN = 2000;
 const POST_TYPES = ["general", "viajero", "cultivo", "diagnostico", "pregunta"] as const;
 
+// Daily limits per person (rolling 24 h), against spam and DeepL quota abuse.
+// Must match community-publish-comment. Counted in community_usage_log, which
+// deleting a post does not reset.
+const LIMITS = { postsPerDay: 5, commentsPerDay: 20, translatedCharsPerDay: 6000 };
+
+// deno-lint-ignore no-explicit-any
+async function usageLast24h(admin: any, userId: string) {
+  const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
+  const { data, error } = await admin
+    .from("community_usage_log")
+    .select("kind, chars")
+    .eq("user_id", userId)
+    .gte("created_at", since);
+  if (error) throw error;
+  let posts = 0, comments = 0, chars = 0;
+  for (const r of data ?? []) {
+    if (r.kind === "post") posts++;
+    if (r.kind === "comment") comments++;
+    chars += r.chars ?? 0;
+  }
+  return { posts, comments, chars };
+}
+
+// deno-lint-ignore no-explicit-any
+async function logUsage(admin: any, userId: string, kind: string, chars: number) {
+  const { error } = await admin.from("community_usage_log").insert({ user_id: userId, kind, chars });
+  if (error) console.error("community_usage_log insert:", error);
+}
+
 // DeepL requires a regional variant for English as a translation target
 // (plain "EN" is source-only); the other three platform languages don't need one.
 const DEEPL_TARGET_LANG: Record<Lang, string> = {
@@ -238,6 +267,22 @@ Deno.serve(async (req) => {
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
 
+  // Community is part of full access (24 h trial or verified contribution).
+  const { data: hasAccess, error: accessErr } = await admin.rpc("is_premium", { uid: user.id });
+  if (accessErr) {
+    console.error("community-publish-post is_premium:", accessErr);
+    return json({ error: "could not verify access" }, 500);
+  }
+  if (!hasAccess) return json({ error: "no_access" }, 403);
+
+  let usage;
+  try {
+    usage = await usageLast24h(admin, user.id);
+  } catch (e) {
+    console.error("community-publish-post usage:", e);
+    return json({ error: "could not check limits" }, 500);
+  }
+
   if (payload.action === "create") {
     const photo_url = typeof payload.photo_url === "string" && payload.photo_url ? payload.photo_url : null;
     const kind = photo_url ? "photo" : "text";
@@ -245,6 +290,8 @@ Deno.serve(async (req) => {
 
     if (kind === "text" && !trimmed) return json({ error: "empty post" }, 400);
     if (trimmed.length > POST_MAX_LEN) return json({ error: "body exceeds " + POST_MAX_LEN + " chars" }, 400);
+    if (usage.posts >= LIMITS.postsPerDay) return json({ error: "daily_post_limit" }, 429);
+    if (usage.chars + trimmed.length > LIMITS.translatedCharsPerDay) return json({ error: "daily_char_limit" }, 429);
 
     // deno-lint-ignore no-explicit-any
     const row: Record<string, any> = {
@@ -270,6 +317,7 @@ Deno.serve(async (req) => {
       console.error("community-publish-post create:", error);
       return json({ error: "could not create post" }, 500);
     }
+    await logUsage(admin, user.id, "post", trimmed.length);
     return json({ post: data });
   }
 
@@ -279,6 +327,7 @@ Deno.serve(async (req) => {
     const trimmed = typeof payload.body === "string" ? payload.body.trim() : "";
     if (!trimmed) return json({ error: "empty post" }, 400);
     if (trimmed.length > POST_MAX_LEN) return json({ error: "body exceeds " + POST_MAX_LEN + " chars" }, 400);
+    if (usage.chars + trimmed.length > LIMITS.translatedCharsPerDay) return json({ error: "daily_char_limit" }, 429);
 
     const t = await translateText(admin, trimmed, sourceHint);
     const { data, error } = await admin
@@ -301,6 +350,7 @@ Deno.serve(async (req) => {
       return json({ error: "could not update post" }, 500);
     }
     if (!data) return json({ error: "not found" }, 404);
+    await logUsage(admin, user.id, "post_edit", trimmed.length);
     return json({ post: data });
   }
 

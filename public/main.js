@@ -6139,6 +6139,24 @@ translations.en.authErrSignupNotAllowed = "We couldn’t create an account with 
 translations.de.authErrSignupNotAllowed = "Mit dieser E-Mail-Adresse konnten wir kein Konto erstellen. Wenn du schon ein Konto hast, melde dich an; sonst versuch es mit einer anderen Adresse (Wegwerf-Adressen werden nicht akzeptiert).";
 translations.fr.authErrSignupNotAllowed = "Nous n’avons pas pu créer de compte avec cet e-mail. Si tu as déjà un compte, connecte-toi ; sinon, essaie une autre adresse (les adresses temporaires ne sont pas acceptées).";
 
+// Community publish errors (cmyPublishErrorKey)
+translations.es.cmyErrNoAccess = "Para publicar en la Comunidad necesitas acceso completo.";
+translations.en.cmyErrNoAccess = "You need full access to post in the Community.";
+translations.de.cmyErrNoAccess = "Um in der Community zu posten, brauchst du Vollzugriff.";
+translations.fr.cmyErrNoAccess = "Pour publier dans la Communauté, il te faut l’accès complet.";
+translations.es.cmyErrLimitPosts = "Llegaste al máximo de 5 publicaciones en 24 horas. Podrás publicar de nuevo más tarde.";
+translations.en.cmyErrLimitPosts = "You reached the limit of 5 posts in 24 hours. You can post again later.";
+translations.de.cmyErrLimitPosts = "Du hast das Maximum von 5 Beiträgen in 24 Stunden erreicht. Später kannst du wieder posten.";
+translations.fr.cmyErrLimitPosts = "Tu as atteint la limite de 5 publications en 24 heures. Tu pourras republier plus tard.";
+translations.es.cmyErrLimitComments = "Llegaste al máximo de 20 comentarios en 24 horas. Podrás comentar de nuevo más tarde.";
+translations.en.cmyErrLimitComments = "You reached the limit of 20 comments in 24 hours. You can comment again later.";
+translations.de.cmyErrLimitComments = "Du hast das Maximum von 20 Kommentaren in 24 Stunden erreicht. Später kannst du wieder kommentieren.";
+translations.fr.cmyErrLimitComments = "Tu as atteint la limite de 20 commentaires en 24 heures. Tu pourras commenter de nouveau plus tard.";
+translations.es.cmyErrLimitChars = "Llegaste al máximo de texto traducido en 24 horas (6.000 caracteres). Prueba con un texto más corto o vuelve más tarde.";
+translations.en.cmyErrLimitChars = "You reached the daily limit of translated text (6,000 characters in 24 hours). Try a shorter text or come back later.";
+translations.de.cmyErrLimitChars = "Du hast das Tageslimit für übersetzten Text erreicht (6.000 Zeichen in 24 Stunden). Versuch einen kürzeren Text oder komm später wieder.";
+translations.fr.cmyErrLimitChars = "Tu as atteint la limite quotidienne de texte traduit (6 000 caractères en 24 heures). Essaie un texte plus court ou reviens plus tard.";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -7586,8 +7604,18 @@ async function submitPost(){
     setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
     renderFeed();
   }catch(e){
-    show(t('authErrGeneric'), false);
+    show(t(cmyPublishErrorKey(e)), false);
   }
+}
+
+// Error codes the community-publish-* functions return -> i18n key.
+function cmyPublishErrorKey(e){
+  const m = (e && e.message) || '';
+  if(m === 'no_access') return 'cmyErrNoAccess';
+  if(m === 'daily_post_limit') return 'cmyErrLimitPosts';
+  if(m === 'daily_comment_limit') return 'cmyErrLimitComments';
+  if(m === 'daily_char_limit') return 'cmyErrLimitChars';
+  return 'authErrGeneric';
 }
 
 async function renderFeed(){
@@ -7723,6 +7751,7 @@ async function loadCommentThread(postId){
     ? `<div class="cmy-comment-composer">
          <textarea id="cmyCommentInput-${postId}" maxlength="500" rows="2" data-i18n-ph="cmyComentarioPh" placeholder="Escribe un comentario…" style="width:100%; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; background:var(--paper); resize:vertical;"></textarea>
          <p class="cmy-privacy-note">${t('cmyAvisoTraduccion')}</p>
+         <p class="cmy-comment-msg" id="cmyCommentMsg-${postId}" aria-live="polite"></p>
          <button class="btn-pill sm" onclick="submitComment('${postId}')">${t('cmyComentarBtn')}</button>
        </div>`
     : `<div class="note-box" style="margin-top:8px;">${t('cmyComentarioBloqueado')}</div>`;
@@ -7740,6 +7769,8 @@ async function submitComment(postId){
     loadCommentThread(postId);
   }catch(e){
     inputEl.style.borderColor = 'var(--clay)';
+    const cMsg = document.getElementById('cmyCommentMsg-' + postId);
+    if(cMsg) cMsg.textContent = t(cmyPublishErrorKey(e));
   }
 }
 
