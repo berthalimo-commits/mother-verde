@@ -1,3 +1,19 @@
+# ⚠️ ARCHIVADO — no usar
+
+Este correo pertenece al **modelo de suscripción anterior** ($7.10/mes con
+tarjeta y prueba de 3 días), que está **desactivado** (`ACCESS_MODEL = 'support'`
+en `public/main.js`). Nunca se envió: no hay proveedor de correo conectado.
+
+El modelo actual (prueba gratis de 24 h + aporte único de apoyo, sin tarjeta ni
+cobros automáticos) **no tiene correo de recordatorio**. Si algún día se añade
+uno, debe escribirse de nuevo: no reutilices el texto de abajo, porque habla de
+precios mensuales, tarjeta y cobros que ya no existen.
+
+Se conserva solo como referencia histórica, por si se reactivara el modelo de
+suscripción.
+
+---
+
 # Day-2 trial reminder — email (DESIGNED ONLY, not wired)
 
 **Status:** not sending. No transactional email provider is connected yet.

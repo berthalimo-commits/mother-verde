@@ -2217,14 +2217,14 @@ const searchIndexStatic = [
 
 const translations = {
   es:{brandSub:'Codex global · cannabis medicinal &amp; recreacional', navHome:'Inicio', navCultivo:'Cultivo', navElaboracion:'Elaboración', navLegal:'Legal', navCiencia:'Ciencia', navMas:'Más',
-    gateUnlockBtn:'Desbloquear con Premium',
-    gtDliTitle:'Calculadora de DLI', gtDliDesc:'La integral de luz diaria es una herramienta Premium.',
-    gtDoseTitle:'Dosis por porción', gtDoseDesc:'La calculadora de cumplimiento normativo es una herramienta Premium.',
-    gtTrazaTitle:'Trazabilidad', gtTrazaDesc:'Los sistemas semilla-a-venta que exige cada regulador son contenido Premium.',
-    gtDirTitle:'Directorio de proveedores', gtDirDesc:'El directorio completo por categoría es contenido Premium.',
-    gtCarrTitle:'Carreras', gtCarrDesc:'El detalle de cada rol profesional del rubro es contenido Premium.',
-    gtSistemasTitle:'Sistemas de cultivo', gtSistemasDesc:'Indoor, invernadero y outdoor, con parámetros técnicos completos, son contenido Premium.',
-    gtMetodosTitle:'Métodos de cultivo', gtMetodosDesc:'Los métodos de nutrición de raíz —suelo orgánico, hidropónico, aeropónico y acuaponía— son contenido Premium.',
+    gateUnlockBtn:'Desbloquear acceso completo',
+    gtDliTitle:'Calculadora de DLI', gtDliDesc:'La integral de luz diaria es una herramienta del acceso completo.',
+    gtDoseTitle:'Dosis por porción', gtDoseDesc:'La calculadora de cumplimiento normativo es una herramienta del acceso completo.',
+    gtTrazaTitle:'Trazabilidad', gtTrazaDesc:'Los sistemas semilla-a-venta que exige cada regulador requieren acceso completo.',
+    gtDirTitle:'Directorio de proveedores', gtDirDesc:'El directorio completo por categoría requiere acceso completo.',
+    gtCarrTitle:'Carreras', gtCarrDesc:'El detalle de cada rol profesional del rubro requiere acceso completo.',
+    gtSistemasTitle:'Sistemas de cultivo', gtSistemasDesc:'Indoor, invernadero y outdoor, con parámetros técnicos completos, requieren acceso completo.',
+    gtMetodosTitle:'Métodos de cultivo', gtMetodosDesc:'Los métodos de nutrición de raíz —suelo orgánico, hidropónico, aeropónico y acuaponía— requieren acceso completo.',
     cmMetodosIntro:'Elegido el sistema (dónde), lo siguiente es el método: cómo se nutre la raíz. Estas cuatro familias definen el resto de las decisiones de cultivo — desde el equipo hasta el calendario de nutrición.',
     cmSecSuelo:'Suelo orgánico',
     cmSuelo1h4:'Tierra tradicional', cmSuelo1sci:'El punto de partida más antiguo', cmSuelo1desc:'Cultivo directo en tierra de jardín o campo abierto. Es el método más antiguo y el más "forgiving" con errores de riego o nutrición — el propio suelo amortigua los desbalances.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
@@ -2266,31 +2266,31 @@ const translations = {
     eqF5H3:'5. Secado', eqF5i1:'Malla de secado por niveles', eqF5i2:'Filtro de carbón al mínimo', eqF5i3:'Ventilador apuntado a la pared — nunca directo a las flores', eqF5i4:'Espacio 100% oscuro',
     eqF6H3:'6. Curado', eqF6i1:'Frascos de vidrio herméticos', eqF6i2:'Sobres de humedad bidireccional', eqF6i3:'Mini-termohigrómetros para frascos',
     eqCuradoMarcas:'<b>Ejemplos ilustrativos:</b> Boveda e Integra son las marcas más citadas de sobres de humedad bidireccional para frascos de curado — regulan la humedad interna sin que tengas que abrir el frasco a adivinar.',
-    gtIlumTitle:'Iluminación', gtIlumDesc:'Los objetivos de PPFD y DLI por etapa, con base científica, son contenido Premium.',
-    gtSustratoTitle:'Sustrato y nutrición', gtSustratoDesc:'La guía completa de sustratos y macro/micronutrientes es contenido Premium.',
-    gtEntrenTitle:'Poda y entrenamiento', gtEntrenDesc:'Las 7 técnicas de entrenamiento con estimación de rendimiento son contenido Premium.',
-    gtGenTitle:'Genética y quimiotipos', gtGenDesc:'La clasificación científica por quimiotipo, con fuente citada, es contenido Premium.',
-    gtCicloTitle:'Ciclo de vida', gtCicloDesc:'El detalle completo del ciclo de vida de la planta es contenido Premium.',
-    gtCosechaTitle:'Cosecha', gtCosechaDesc:'La checklist de tricomas y las decisiones de corte y trim son contenido Premium.',
-    gtPropTitle:'Propagación avanzada', gtPropDesc:'Feminización, cruces autoflorecientes e injertos son contenido Premium.',
-    gtProcTitle:'Procesos y SOP', gtProcDesc:'Los procedimientos completos de post-cosecha son contenido Premium.',
-    gtConcTitle:'Concentrados', gtConcDesc:'El recorrido mundial de técnicas de extracción es contenido Premium.',
-    gtTintTitle:'Tinturas, cápsulas y parches', gtTintDesc:'Las 3 vías de absorción con dosis medida son contenido Premium.',
-    gtVapesTitle:'Vapes y cartuchos', gtVapesDesc:'La guía de hardware y la historia del EVALI son contenido Premium.',
-    gtComTitle:'Comestibles', gtComDesc:'Decarboxilación y cálculo de potencia son contenido Premium.',
-    gtSkinTitle:'Skincare y tópicos', gtSkinDesc:'La guía completa de tópicos es contenido Premium.',
-    gtEtiqTitle:'Etiquetado', gtEtiqDesc:'El estándar de etiquetado completo es contenido Premium.',
-    gtCientTitle:'Científicos', gtCientDesc:'El directorio completo de investigadores activos es contenido Premium.',
-    gtMedTitle:'Información médica', gtMedDesc:'Indicaciones clínicas e interacciones son contenido Premium.',
-    gtEcsTitle:'Sistema Endocannabinoide 101', gtEcsDesc:'La explicación narrativa del sistema endocannabinoide y la comparativa humanos vs. animales son contenido Premium.',
-    gtSeguridadDesc:'Profundización científica completa — estudios adicionales, mecanismos y contexto extendido — disponible con Premium.',
-    gtDiagTeaserTitle:'Viste 2 de 11', gtDiagTeaserDesc:'Desbloquea las 9 fichas restantes con Premium.',
-    gtPapersTeaserTitle:'Viste 1 de 26', gtPapersTeaserDesc:'Desbloquea la biblioteca completa de papers con Premium.',
-    legalTeaserVisto:'Viste', legalTeaserDe:'de', legalTeaserDesbloquea:'Desbloquea los 50 países con Premium.',
-    gtCannaTeaserTitle:'Viste 2 de 6', gtCannaTeaserDesc:'Desbloquea los 4 cannabinoides restantes con Premium.',
-    gtTerpTeaserTitle:'Viste 2 de 8', gtTerpTeaserDesc:'Desbloquea los 6 perfiles restantes con Premium.',
-    gtFlavTeaserTitle:'Viste 2 de 5', gtFlavTeaserDesc:'Desbloquea los 5 perfiles de flavonoides con Premium.',
-    gtMitosTeaserTitle:'Viste 2 de 6', gtMitosTeaserDesc:'Desbloquea la biblioteca completa de mitos con Premium.',
+    gtIlumTitle:'Iluminación', gtIlumDesc:'Los objetivos de PPFD y DLI por etapa, con base científica, requieren acceso completo.',
+    gtSustratoTitle:'Sustrato y nutrición', gtSustratoDesc:'La guía completa de sustratos y macro/micronutrientes requiere acceso completo.',
+    gtEntrenTitle:'Poda y entrenamiento', gtEntrenDesc:'Las 7 técnicas de entrenamiento con estimación de rendimiento requieren acceso completo.',
+    gtGenTitle:'Genética y quimiotipos', gtGenDesc:'La clasificación científica por quimiotipo, con fuente citada, requiere acceso completo.',
+    gtCicloTitle:'Ciclo de vida', gtCicloDesc:'El detalle completo del ciclo de vida de la planta requiere acceso completo.',
+    gtCosechaTitle:'Cosecha', gtCosechaDesc:'La checklist de tricomas y las decisiones de corte y trim requieren acceso completo.',
+    gtPropTitle:'Propagación avanzada', gtPropDesc:'Feminización, cruces autoflorecientes e injertos requieren acceso completo.',
+    gtProcTitle:'Procesos y SOP', gtProcDesc:'Los procedimientos completos de post-cosecha requieren acceso completo.',
+    gtConcTitle:'Concentrados', gtConcDesc:'El recorrido mundial de técnicas de extracción requiere acceso completo.',
+    gtTintTitle:'Tinturas, cápsulas y parches', gtTintDesc:'Las 3 vías de absorción con dosis medida requieren acceso completo.',
+    gtVapesTitle:'Vapes y cartuchos', gtVapesDesc:'La guía de hardware y la historia del EVALI requieren acceso completo.',
+    gtComTitle:'Comestibles', gtComDesc:'Decarboxilación y cálculo de potencia requieren acceso completo.',
+    gtSkinTitle:'Skincare y tópicos', gtSkinDesc:'La guía completa de tópicos requiere acceso completo.',
+    gtEtiqTitle:'Etiquetado', gtEtiqDesc:'El estándar de etiquetado completo requiere acceso completo.',
+    gtCientTitle:'Científicos', gtCientDesc:'El directorio completo de investigadores activos requiere acceso completo.',
+    gtMedTitle:'Información médica', gtMedDesc:'Indicaciones clínicas e interacciones requieren acceso completo.',
+    gtEcsTitle:'Sistema Endocannabinoide 101', gtEcsDesc:'La explicación narrativa del sistema endocannabinoide y la comparativa humanos vs. animales requieren acceso completo.',
+    gtSeguridadDesc:'Profundización científica completa — estudios adicionales, mecanismos y contexto extendido — disponible con el acceso completo.',
+    gtDiagTeaserTitle:'Viste 2 de 11', gtDiagTeaserDesc:'Desbloquea las 9 fichas restantes con el acceso completo.',
+    gtPapersTeaserTitle:'Viste 1 de 26', gtPapersTeaserDesc:'Desbloquea la biblioteca completa de papers con el acceso completo.',
+    legalTeaserVisto:'Viste', legalTeaserDe:'de', legalTeaserDesbloquea:'Desbloquea los 50 países con el acceso completo.',
+    gtCannaTeaserTitle:'Viste 2 de 6', gtCannaTeaserDesc:'Desbloquea los 4 cannabinoides restantes con el acceso completo.',
+    gtTerpTeaserTitle:'Viste 2 de 8', gtTerpTeaserDesc:'Desbloquea los 6 perfiles restantes con el acceso completo.',
+    gtFlavTeaserTitle:'Viste 2 de 5', gtFlavTeaserDesc:'Desbloquea los 5 perfiles de flavonoides con el acceso completo.',
+    gtMitosTeaserTitle:'Viste 2 de 6', gtMitosTeaserDesc:'Desbloquea la biblioteca completa de mitos con el acceso completo.',
   tierSwitchLabel:'Vista previa:',
     agTitle:'Verificación de edad', agBody:'Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.', agYes:'Sí, tengo 18 años o más', agNo:'No, soy menor de 18', agBlockedTitle:'Acceso no disponible', agBlockedBody:'Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.',
     cuentaLegalTitle:'Legal', cuentaTerminosLabel:'Términos y Condiciones', cuentaPrivacidadLabel:'Política de Privacidad',
@@ -2375,15 +2375,15 @@ const translations = {
     bitPhLabel:'pH sustrato', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humedad (%)', bitAtajosLabel:'Atajos mientras registras:', bitAtajoVpd:'Calcular VPD →', bitAtajoDosis:'Calcular mezcla de nutrientes →',
     bitStatDias:'Días de ciclo', bitStatEntradas:'Entradas totales', bitStatEtapa:'Etapa actual', bitGraficoTitle:'pH y EC a lo largo del tiempo', bitGraficoVacio:'Registra pH o EC en al menos 2 entradas para ver el gráfico de tendencia aquí.',
     bitAuthGateH3:'Inicia sesión para llevar tu bitácora', bitAuthGateP:'Tus entradas quedan guardadas en tu cuenta, privadas — solo tú puedes verlas. Necesitas iniciar sesión o crear una cuenta primero.', bitAuthGateBtn:'Ir a Cuenta',
-    bitPdfBtn:'Descargar PDF', bitPdfLockedMsg:'Descargar en PDF es una función Premium — desbloquéala',
+    bitPdfBtn:'Descargar PDF', bitPdfLockedMsg:'Descargar en PDF es parte del acceso completo — desbloquéalo',
     bitErrSinNota:'Escribe una nota antes de guardar.', bitGuardadoOk:'✓ Guardado', bitErrGuardar:'No se pudo guardar — intenta de nuevo.',
     bitSinFecha:'sin fecha', bitEliminar:'Eliminar', bitSinNotas:'(sin notas)', bitVacio:'Todavía no hay entradas — agrega la primera arriba.',
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
-    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.',
-    cuentaPremiumActivo:'✓ Premium activo — acceso completo a las 10 zonas, sin publicidad, descargas ilimitadas.', cuentaGestionarBtn:'Gestionar suscripción', cuentaGestionarAlert:'En la app real, esto abriría la gestión de suscripción de Apple/Google.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', cuentaSuscribirBtn:'Obtener Premium — $7.10/mes',
+    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.',
+    cuentaPremiumActivo:'✓ Acceso completo activo.', cuentaGestionarBtn:'Gestionar suscripción', cuentaGestionarAlert:'En la app real, esto abriría la gestión de suscripción de Apple/Google.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', cuentaSuscribirBtn:'Obtener Premium — $7.10/mes',
     pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', pmComprarBtn:'Comprar Premium — $7.10/mes',
     pmPagoSeguroNote:'Pago procesado de forma segura por App Store / Google Play / Stripe — Mother Verde nunca ve ni guarda tu número de tarjeta.',
-    alertasEyebrow:'Beneficio Premium', alertasTitle:'Alertas de cambio legal', alertasSub:'Sigue países específicos — te avisamos apenas cambie su estatus, sin que tengas que revisar manualmente.', alertasSigues:'Países que sigues', alertasSeguirBtn:'Seguir', alertasEjemploTitle:'Así se vería una alerta real', alertasEjemploH4:'Alemania actualizó su límite de posesión personal', alertasEjemploTag:'Cambio confirmado', alertasEjemploMeta:'Hace 2 días · Fuente: BfArM', alertasEjemploBody:'Ejemplo ilustrativo de cómo llegaría una notificación real cuando un país que sigues actualiza su marco legal.',
+    alertasEyebrow:'Incluido en el acceso completo', alertasTitle:'Alertas de cambio legal', alertasSub:'Sigue países específicos — te avisamos apenas cambie su estatus, sin que tengas que revisar manualmente.', alertasSigues:'Países que sigues', alertasSeguirBtn:'Seguir', alertasEjemploTitle:'Así se vería una alerta real', alertasEjemploH4:'Alemania actualizó su límite de posesión personal', alertasEjemploTag:'Cambio confirmado', alertasEjemploMeta:'Hace 2 días · Fuente: BfArM', alertasEjemploBody:'Ejemplo ilustrativo de cómo llegaría una notificación real cuando un país que sigues actualiza su marco legal.',
     alertaSemillasH4:'EE. UU.: prohibición federal al comercio interestatal de semillas con 0.3%+ THC', alertaSemillasTag:'Alerta real — no ilustrativa', alertaSemillasMeta:'21 de julio de 2026 · Fuente: MJBizDaily',
     alertaSemillasBody:'La redefinición federal del cáñamo hace ilegal enviar semillas de cultivares con 0.3% THC o más entre estados, a partir del <b>12 de noviembre de 2026</b>. Bancos de semillas ya están diversificando operaciones a distintos estados para poder seguir operando después de esa fecha.',
     alertaSemillasLink:'Leer más en mjbizdaily.com →',
@@ -2831,7 +2831,7 @@ const translations = {
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmyAvatarBtn:'Foto de perfil', cmyAvatarNeedsName:'Escribe primero tu nombre o apodo.', cmyAvatarSubiendo:'Subiendo foto…', cmyAvatarListo:'¡Listo! Ya tienes foto de perfil.',
     cmyCropTitle:'Ajusta tu foto', cmyCropHelp:'Arrastra la imagen y usa la rueda del mouse (o pellizca en el celular) para hacer zoom. Elige qué parte quieres que se vea dentro del círculo.', cmyCropPreviewLabel:'Así se verá', cmyCropCancelar:'Cancelar', cmyCropConfirmar:'Usar esta foto',
-    perfilBack:'← Volver a Comunidad', perfilGateMsg:'Inicia sesión para ver tu perfil.', perfilNoDisponible:'Este perfil no está disponible.', perfilEditar:'Tu perfil', perfilBioLabel:'Biografía', perfilBioPh:'Cuéntale a la comunidad quién eres (opcional)', perfilConfigCuenta:'⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)', perfilMisPublicaciones:'Publicaciones', perfilSeguir:'Seguir', perfilDejarSeguir:'Dejar de seguir', perfilMutuo:'Se siguen mutuamente', perfilCompleta:'Completa tu perfil para aparecer en el directorio y publicar.', perfilSinPostsPropio:'Todavía no has publicado nada.', perfilSinPostsOtro:'Todavía no ha publicado nada.', perfilVerCompleto:'Ver perfil completo', cmyDirectorioIntro:'Toca a cualquier persona para ver su perfil. ¿Quieres aparecer aquí? Completa el tuyo desde <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Tu Perfil</a>.',
+    perfilBack:'← Volver a Comunidad', perfilGateMsg:'Inicia sesión para ver tu perfil.', perfilNoDisponible:'Este perfil no está disponible.', perfilEditar:'Tu perfil', perfilBioLabel:'Biografía', perfilBioPh:'Cuéntale a la comunidad quién eres (opcional)', perfilConfigCuenta:'⚙️ Configuración de cuenta (correo, acceso, cerrar sesión)', perfilMisPublicaciones:'Publicaciones', perfilSeguir:'Seguir', perfilDejarSeguir:'Dejar de seguir', perfilMutuo:'Se siguen mutuamente', perfilCompleta:'Completa tu perfil para aparecer en el directorio y publicar.', perfilSinPostsPropio:'Todavía no has publicado nada.', perfilSinPostsOtro:'Todavía no ha publicado nada.', perfilVerCompleto:'Ver perfil completo', cmyDirectorioIntro:'Toca a cualquier persona para ver su perfil. ¿Quieres aparecer aquí? Completa el tuyo desde <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Tu Perfil</a>.',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Viajero', cmyTipoPostCultivo:'Cultivo', cmyTipoPostDiagnostico:'Diagnóstico', cmyTipoPostPregunta:'Pregunta',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
@@ -2846,7 +2846,7 @@ const translations = {
     cmySecLineas:'Líneas rojas', cmyLineasP:'<b>Cero marketplace</b> — nada de compra-venta ni intercambio de contacto para vender; es lo que permite seguir cumpliendo las políticas de las tiendas de apps. <b>Cero ubicaciones específicas de cultivo</b>, por seguridad. Ningún testimonio médico se publica sin el disclaimer visible.',
     vrEyebrow:'Variedades &amp; cultivares', vrTitle:'Base de datos buscable', vrSub:'Nunca decimos "strain" — es un término de microbiología (bacterias, virus, hongos), no de botánica. Usamos <b>variedad</b> (adaptación natural, como una landrace) o <b>cultivar</b> (cruce desarrollado intencionalmente por un breeder).',
     vrTodos:'Todos', vrTipoI:'Tipo I (THC)', vrTipoII:'Tipo II (balanceado)', vrTipoIII:'Tipo III (CBD)',
-    vrTipoPrefix:'Tipo', vrLinaje:'Linaje', vrTerpenos:'Terpenos', vrDificultad:'Dificultad', vrVisteTeaser:'Viste', vrDe:'de', vrDesbloquea:'Desbloquea la base de datos completa con Premium.',
+    vrTipoPrefix:'Tipo', vrLinaje:'Linaje', vrTerpenos:'Terpenos', vrDificultad:'Dificultad', vrVisteTeaser:'Viste', vrDe:'de', vrDesbloquea:'Desbloquea la base de datos completa con el acceso completo.',
     modSegTitle:'Seguridad', modSegDesc:'Mascotas, interacciones con medicamentos, manejo, embarazo y lactancia, y salud mental — con evidencia real.',
     eySeg:'Seguridad', segTitle:'Lo que puede salir mal, y cómo evitarlo', segSub:'La misma evidencia rigurosa del resto de la app, aplicada a los riesgos reales — mascotas, medicamentos, manejo, embarazo y salud mental.',
     subMascotas:'Mascotas', subInteracciones:'Medicamentos', subManejo:'Manejo', subEmbarazo:'Embarazo &amp; lactancia', subSaludFem:'Salud femenina', subMental:'Salud mental', subOcupacional:'Trabajo &amp; producción', subDeporte:'Deporte', subMayores:'Personas mayores', subCorazon:'Corazón &amp; presión',
@@ -2948,7 +2948,7 @@ const translations = {
     flH3:'Más allá del consumo: fibra de cáñamo en manufactura 3D', flP1:'Investigadores franceses y libaneses están estudiando cómo combinar fibras de cáñamo con subproductos agrícolas para crear materiales compuestos ecológicos, con aplicaciones reales en vehículos de transporte y otras industrias — una colaboración internacional real (julio 2026), fuera del circuito habitual de consumo.',
     vrFloracion:'Floración',
     cpToggleH3:'⚖️ Comparar dos cultivares lado a lado', cpToggleP:'Elige dos y ve las diferencias reales de un vistazo — potencia, terpenos, floración y más.',
-    cpLockedMsg:'Comparar cultivares completos es una herramienta Premium — desbloquéala para elegir cualquier par de los 19 cultivares.',
+    cpLockedMsg:'Comparar cultivares completos es parte del acceso completo — desbloquéalo para elegir cualquier par de los 19 cultivares.',
     fsSecTitle:'Full spectrum, broad spectrum y aislado: la etiqueta que casi nadie explica',
     fsIntroP:'Estos tres términos aparecen en casi cualquier producto comercial, y se conectan directo con el "efecto séquito" del Dr. Russo que ya viste en <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Ciencia → Terpenos y flavonoides</a> — describen cuánto del perfil químico original de la planta queda en el extracto final.',
     fsFullLabel:'Full spectrum (espectro completo)', fsFullVal:'Conserva todos los cannabinoides, terpenos y flavonoides originales, incluidas trazas de THC — busca el efecto séquito más fuerte posible',
@@ -3057,14 +3057,14 @@ const translations = {
     adInquiryNombreLabel:'Nombre', adInquiryEmpresaLabel:'Empresa', adInquiryCorreoLabel:'Correo', adInquiryMensajeLabel:'Mensaje', adInquirySubmitBtn:'Enviar',
     adInquiryEnviando:'Enviando…', adInquiryOk:'✓ Recibido — te contactaremos pronto.', adInquiryError:'No se pudo enviar. Intenta de nuevo.'},
   en:{brandSub:'Global codex · medical &amp; recreational cannabis', navHome:'Home', navCultivo:'Growing', navElaboracion:'Making', navLegal:'Legal', navCiencia:'Science', navMas:'More',
-    gateUnlockBtn:'Unlock with Premium',
-    gtDliTitle:'DLI Calculator', gtDliDesc:'The daily light integral is a Premium tool.',
-    gtDoseTitle:'Dose per serving', gtDoseDesc:'The regulatory compliance calculator is a Premium tool.',
-    gtTrazaTitle:'Traceability', gtTrazaDesc:'The seed-to-sale systems every regulator requires are Premium content.',
-    gtDirTitle:'Supplier directory', gtDirDesc:'The full directory by category is Premium content.',
-    gtCarrTitle:'Careers', gtCarrDesc:'The detail on each professional role in the industry is Premium content.',
-    gtSistemasTitle:'Growing systems', gtSistemasDesc:'Indoor, greenhouse, and outdoor, with full technical parameters, are Premium content.',
-    gtMetodosTitle:'Growing methods', gtMetodosDesc:'The root-feeding methods — organic soil, hydroponic, aeroponic, and aquaponic — are Premium content.',
+    gateUnlockBtn:'Unlock full access',
+    gtDliTitle:'DLI Calculator', gtDliDesc:'The daily light integral is part of full access.',
+    gtDoseTitle:'Dose per serving', gtDoseDesc:'The regulatory compliance calculator is part of full access.',
+    gtTrazaTitle:'Traceability', gtTrazaDesc:'The seed-to-sale systems every regulator requires require full access.',
+    gtDirTitle:'Supplier directory', gtDirDesc:'The full directory by category requires full access.',
+    gtCarrTitle:'Careers', gtCarrDesc:'The detail on each professional role in the industry requires full access.',
+    gtSistemasTitle:'Growing systems', gtSistemasDesc:'Indoor, greenhouse, and outdoor, with full technical parameters, require full access.',
+    gtMetodosTitle:'Growing methods', gtMetodosDesc:'The root-feeding methods — organic soil, hydroponic, aeroponic, and aquaponic — require full access.',
     cmMetodosIntro:'Once you’ve chosen the system (where), the next decision is the method: how the root is fed. These four families shape every other growing decision — from equipment to nutrient schedule.',
     cmSecSuelo:'Organic soil',
     cmSuelo1h4:'Traditional soil', cmSuelo1sci:'The oldest starting point', cmSuelo1desc:'Direct growing in garden soil or open field. It’s the oldest method and the most forgiving of watering or nutrient mistakes — the soil itself buffers imbalances.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
@@ -3106,30 +3106,30 @@ const translations = {
     eqF5H3:'5. Drying', eqF5i1:'Tiered drying rack', eqF5i2:'Carbon filter on low', eqF5i3:'Fan pointed at the wall — never directly at the flowers', eqF5i4:'100% dark space',
     eqF6H3:'6. Curing', eqF6i1:'Airtight glass jars', eqF6i2:'Two-way humidity control packs', eqF6i3:'Mini thermo-hygrometers for jars',
     eqCuradoMarcas:'<b>Illustrative examples:</b> Boveda and Integra are the most commonly cited brands of two-way humidity packs for curing jars — they regulate internal humidity without you having to open the jar to guess.',
-    gtIlumTitle:'Lighting', gtIlumDesc:'PPFD and DLI targets by stage, with scientific backing, are Premium content.',
-    gtSustratoTitle:'Substrate and nutrition', gtSustratoDesc:'The full guide to substrates and macro/micronutrients is Premium content.',
-    gtEntrenTitle:'Pruning and training', gtEntrenDesc:'The 7 training techniques with yield estimates are Premium content.',
-    gtGenTitle:'Genetics and chemotypes', gtGenDesc:'The scientific classification by chemotype, with cited source, is Premium content.',
-    gtCicloTitle:'Life cycle', gtCicloDesc:'The full detail of the plant\u2019s life cycle is Premium content.',
-    gtCosechaTitle:'Harvest', gtCosechaDesc:'The trichome checklist and cutting/trimming decisions are Premium content.',
-    gtPropTitle:'Advanced propagation', gtPropDesc:'Feminization, autoflower crosses, and grafting are Premium content.',
-    gtProcTitle:'Processes & SOP', gtProcDesc:'The complete post-harvest procedures are Premium content.',
-    gtConcTitle:'Concentrates', gtConcDesc:'The global tour of extraction techniques is Premium content.',
-    gtTintTitle:'Tinctures, capsules & patches', gtTintDesc:'The 3 absorption routes with measured dosing are Premium content.',
-    gtVapesTitle:'Vapes & cartridges', gtVapesDesc:'The hardware guide and the EVALI history are Premium content.',
-    gtComTitle:'Edibles', gtComDesc:'Decarboxylation and potency calculation are Premium content.',
-    gtSkinTitle:'Skincare & topicals', gtSkinDesc:'The full guide to topicals is Premium content.',
-    gtEtiqTitle:'Labeling', gtEtiqDesc:'The full labeling standard is Premium content.',
-    gtCientTitle:'Scientists', gtCientDesc:'The full directory of active researchers is Premium content.',
-    gtMedTitle:'Medical information', gtMedDesc:'Clinical indications and interactions are Premium content.',
-    gtEcsTitle:'Endocannabinoid System 101', gtEcsDesc:'The narrative explanation of the endocannabinoid system and the humans vs. animals comparison are Premium content.',
-    gtSeguridadDesc:'Full scientific deep dive — additional studies, mechanisms, and extended context — available with Premium.',
-    gtDiagTeaserTitle:'Saw 2 of 11', gtDiagTeaserDesc:'Unlock the remaining 9 entries with Premium.',
-    gtPapersTeaserTitle:'Saw 1 of 26', gtPapersTeaserDesc:'Unlock the full papers library with Premium.',
-    gtCannaTeaserTitle:'Saw 2 of 6', gtCannaTeaserDesc:'Unlock the remaining 4 cannabinoids with Premium.',
-    gtTerpTeaserTitle:'Saw 2 of 8', gtTerpTeaserDesc:'Unlock the remaining 6 profiles with Premium.',
-    gtFlavTeaserTitle:'Saw 2 of 5', gtFlavTeaserDesc:'Unlock the 5 flavonoid profiles with Premium.',
-    gtMitosTeaserTitle:'Saw 2 of 6', gtMitosTeaserDesc:'Unlock the full myths library with Premium.',
+    gtIlumTitle:'Lighting', gtIlumDesc:'PPFD and DLI targets by stage, with scientific backing, require full access.',
+    gtSustratoTitle:'Substrate and nutrition', gtSustratoDesc:'The full guide to substrates and macro/micronutrients requires full access.',
+    gtEntrenTitle:'Pruning and training', gtEntrenDesc:'The 7 training techniques with yield estimates require full access.',
+    gtGenTitle:'Genetics and chemotypes', gtGenDesc:'The scientific classification by chemotype, with cited source, requires full access.',
+    gtCicloTitle:'Life cycle', gtCicloDesc:'The full detail of the plant\\u2019s life cycle requires full access.',
+    gtCosechaTitle:'Harvest', gtCosechaDesc:'The trichome checklist and cutting/trimming decisions require full access.',
+    gtPropTitle:'Advanced propagation', gtPropDesc:'Feminization, autoflower crosses, and grafting require full access.',
+    gtProcTitle:'Processes & SOP', gtProcDesc:'The complete post-harvest procedures require full access.',
+    gtConcTitle:'Concentrates', gtConcDesc:'The global tour of extraction techniques requires full access.',
+    gtTintTitle:'Tinctures, capsules & patches', gtTintDesc:'The 3 absorption routes with measured dosing require full access.',
+    gtVapesTitle:'Vapes & cartridges', gtVapesDesc:'The hardware guide and the EVALI history require full access.',
+    gtComTitle:'Edibles', gtComDesc:'Decarboxylation and potency calculation require full access.',
+    gtSkinTitle:'Skincare & topicals', gtSkinDesc:'The full guide to topicals requires full access.',
+    gtEtiqTitle:'Labeling', gtEtiqDesc:'The full labeling standard requires full access.',
+    gtCientTitle:'Scientists', gtCientDesc:'The full directory of active researchers requires full access.',
+    gtMedTitle:'Medical information', gtMedDesc:'Clinical indications and interactions require full access.',
+    gtEcsTitle:'Endocannabinoid System 101', gtEcsDesc:'The narrative explanation of the endocannabinoid system and the humans vs. animals comparison require full access.',
+    gtSeguridadDesc:'Full scientific deep dive — additional studies, mechanisms, and extended context — available with full access.',
+    gtDiagTeaserTitle:'Saw 2 of 11', gtDiagTeaserDesc:'Unlock the remaining 9 entries with full access.',
+    gtPapersTeaserTitle:'Saw 1 of 26', gtPapersTeaserDesc:'Unlock the full papers library with full access.',
+    gtCannaTeaserTitle:'Saw 2 of 6', gtCannaTeaserDesc:'Unlock the remaining 4 cannabinoids with full access.',
+    gtTerpTeaserTitle:'Saw 2 of 8', gtTerpTeaserDesc:'Unlock the remaining 6 profiles with full access.',
+    gtFlavTeaserTitle:'Saw 2 of 5', gtFlavTeaserDesc:'Unlock the 5 flavonoid profiles with full access.',
+    gtMitosTeaserTitle:'Saw 2 of 6', gtMitosTeaserDesc:'Unlock the full myths library with full access.',
   tierSwitchLabel:'Preview:',
     agTitle:'Age verification', agBody:'This content is intended for adults 18 and older, and includes information about cannabis for educational, medical, and informational purposes.', agYes:'Yes, I am 18 or older', agNo:'No, I am under 18', agBlockedTitle:'Access not available', agBlockedBody:'This content is restricted to people 18 and older. We are unable to grant you access at this time.',
     cuentaLegalTitle:'Legal', cuentaTerminosLabel:'Terms and Conditions', cuentaPrivacidadLabel:'Privacy Policy',
@@ -3214,15 +3214,15 @@ const translations = {
     bitPhLabel:'Substrate pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidity (%)', bitAtajosLabel:'Shortcuts while logging:', bitAtajoVpd:'Calculate VPD →', bitAtajoDosis:'Calculate nutrient mix →',
     bitStatDias:'Days into cycle', bitStatEntradas:'Total entries', bitStatEtapa:'Current stage', bitGraficoTitle:'pH and EC over time', bitGraficoVacio:'Log pH or EC in at least 2 entries to see the trend chart here.',
     bitAuthGateH3:'Log in to keep your grow journal', bitAuthGateP:'Your entries are saved to your account, private — only you can see them. You need to log in or create an account first.', bitAuthGateBtn:'Go to Account',
-    bitPdfBtn:'Download PDF', bitPdfLockedMsg:'PDF download is a Premium feature — unlock it',
+    bitPdfBtn:'Download PDF', bitPdfLockedMsg:'PDF download is part of full access — unlock it',
     bitErrSinNota:'Write a note before saving.', bitGuardadoOk:'✓ Saved', bitErrGuardar:'Could not save — try again.',
     bitSinFecha:'no date', bitEliminar:'Delete', bitSinNotas:'(no notes)', bitVacio:'No entries yet — add the first one above.',
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
-    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and data are saved for real and securely. The subscription status above comes straight from your account.',
-    cuentaPremiumActivo:'✓ Premium active — full access to all 10 zones, no ads, unlimited downloads.', cuentaGestionarBtn:'Manage subscription', cuentaGestionarAlert:'In the real app, this would open Apple/Google subscription management.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', cuentaSuscribirBtn:'Get Premium — $7.10/month',
+    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and your data are stored on our server, not only on this device.',
+    cuentaPremiumActivo:'✓ Full access active.', cuentaGestionarBtn:'Manage subscription', cuentaGestionarAlert:'In the real app, this would open Apple/Google subscription management.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', cuentaSuscribirBtn:'Get Premium — $7.10/month',
     pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', pmComprarBtn:'Buy Premium — $7.10/month',
     pmPagoSeguroNote:'Payment securely processed by the App Store / Google Play / Stripe — Mother Verde never sees or stores your card number.',
-    alertasEyebrow:'Premium benefit', alertasTitle:'Legal change alerts', alertasSub:'Follow specific countries — we notify you as soon as their status changes, no need to check manually.', alertasSigues:'Countries you follow', alertasSeguirBtn:'Follow', alertasEjemploTitle:'This is what a real alert would look like', alertasEjemploH4:'Germany updated its personal possession limit', alertasEjemploTag:'Confirmed change', alertasEjemploMeta:'2 days ago · Source: BfArM', alertasEjemploBody:'Illustrative example of how a real notification would arrive when a country you follow updates its legal framework.',
+    alertasEyebrow:'Included in full access', alertasTitle:'Legal change alerts', alertasSub:'Follow specific countries — we notify you as soon as their status changes, no need to check manually.', alertasSigues:'Countries you follow', alertasSeguirBtn:'Follow', alertasEjemploTitle:'This is what a real alert would look like', alertasEjemploH4:'Germany updated its personal possession limit', alertasEjemploTag:'Confirmed change', alertasEjemploMeta:'2 days ago · Source: BfArM', alertasEjemploBody:'Illustrative example of how a real notification would arrive when a country you follow updates its legal framework.',
     alertaSemillasH4:'U.S.: federal ban on interstate trade of seeds with 0.3%+ THC', alertaSemillasTag:'Real alert — not illustrative', alertaSemillasMeta:'July 21, 2026 · Source: MJBizDaily',
     alertaSemillasBody:'The federal redefinition of hemp makes it illegal to ship seeds from cultivars with 0.3% THC or more across state lines, starting <b>November 12, 2026</b>. Seed banks are already diversifying operations to different states in order to keep operating after that date.',
     alertaSemillasLink:'Read more at mjbizdaily.com →',
@@ -3670,7 +3670,7 @@ const translations = {
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmyAvatarBtn:'Profile photo', cmyAvatarNeedsName:'Enter your name or nickname first.', cmyAvatarSubiendo:'Uploading photo…', cmyAvatarListo:'Done! Your profile photo is set.',
     cmyCropTitle:'Adjust your photo', cmyCropHelp:'Drag the image and use your mouse wheel (or pinch on mobile) to zoom. Choose what you want to show inside the circle.', cmyCropPreviewLabel:'Preview', cmyCropCancelar:'Cancel', cmyCropConfirmar:'Use this photo',
-    perfilBack:'← Back to Community', perfilGateMsg:'Sign in to see your profile.', perfilNoDisponible:'This profile is not available.', perfilEditar:'Your profile', perfilBioLabel:'Bio', perfilBioPh:'Tell the community who you are (optional)', perfilConfigCuenta:'⚙️ Account settings (email, subscription, sign out)', perfilMisPublicaciones:'Posts', perfilSeguir:'Follow', perfilDejarSeguir:'Unfollow', perfilMutuo:'You follow each other', perfilCompleta:'Complete your profile to appear in the directory and post.', perfilSinPostsPropio:'You haven\'t posted anything yet.', perfilSinPostsOtro:'Hasn\'t posted anything yet.', perfilVerCompleto:'See full profile', cmyDirectorioIntro:'Tap anyone to see their profile. Want to appear here? Complete yours from <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Your Profile</a>.',
+    perfilBack:'← Back to Community', perfilGateMsg:'Sign in to see your profile.', perfilNoDisponible:'This profile is not available.', perfilEditar:'Your profile', perfilBioLabel:'Bio', perfilBioPh:'Tell the community who you are (optional)', perfilConfigCuenta:'⚙️ Account settings (email, access, sign out)', perfilMisPublicaciones:'Posts', perfilSeguir:'Follow', perfilDejarSeguir:'Unfollow', perfilMutuo:'You follow each other', perfilCompleta:'Complete your profile to appear in the directory and post.', perfilSinPostsPropio:'You haven\'t posted anything yet.', perfilSinPostsOtro:'Hasn\'t posted anything yet.', perfilVerCompleto:'See full profile', cmyDirectorioIntro:'Tap anyone to see their profile. Want to appear here? Complete yours from <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Your Profile</a>.',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Traveler', cmyTipoPostCultivo:'Grow', cmyTipoPostDiagnostico:'Diagnosis', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
@@ -3685,7 +3685,7 @@ const translations = {
     cmySecLineas:'Red lines', cmyLineasP:'<b>Zero marketplace</b> — no buying, selling, or exchanging contact info to sell; that is what keeps this app compliant with app store policies. <b>Zero specific grow locations</b>, for safety. No medical testimonial is published without the visible disclaimer.',
     vrEyebrow:'Varieties &amp; cultivars', vrTitle:'Searchable database', vrSub:'We never say "strain" — that is a microbiology term (bacteria, viruses, fungi), not a botanical one. We use <b>variety</b> (natural adaptation, like a landrace) or <b>cultivar</b> (a cross intentionally developed by a breeder).',
     vrTodos:'All', vrTipoI:'Type I (THC)', vrTipoII:'Type II (balanced)', vrTipoIII:'Type III (CBD)',
-    vrTipoPrefix:'Type', vrLinaje:'Lineage', vrTerpenos:'Terpenes', vrDificultad:'Difficulty', vrVisteTeaser:'You saw', vrDe:'of', vrDesbloquea:'Unlock the full database with Premium.',
+    vrTipoPrefix:'Type', vrLinaje:'Lineage', vrTerpenos:'Terpenes', vrDificultad:'Difficulty', vrVisteTeaser:'You saw', vrDe:'of', vrDesbloquea:'Unlock the full database with full access.',
     modSegTitle:'Safety', modSegDesc:'Pets, medication interactions, driving, pregnancy and breastfeeding, and mental health — with real evidence.',
     eySeg:'Safety', segTitle:'What can go wrong, and how to avoid it', segSub:'The same rigorous evidence as the rest of the app, applied to real risks — pets, medications, driving, pregnancy, and mental health.',
     subMascotas:'Pets', subInteracciones:'Medications', subManejo:'Driving', subEmbarazo:'Pregnancy &amp; breastfeeding', subSaludFem:'Women’s health', subMental:'Mental health', subOcupacional:'Work &amp; production', subDeporte:'Sports', subMayores:'Older adults', subCorazon:'Heart &amp; blood pressure',
@@ -3786,7 +3786,7 @@ const translations = {
     flH3:'Beyond consumption: hemp fiber in 3D manufacturing', flP1:'French and Lebanese researchers are studying how to combine hemp fibers with agricultural byproducts to create eco-friendly composite materials, with real applications in transport vehicles and other industries — a real international collaboration (July 2026), outside the usual consumption circuit.',
     vrFloracion:'Flowering time',
     cpToggleH3:'⚖️ Compare two cultivars side by side', cpToggleP:'Pick two and see the real differences at a glance — potency, terpenes, flowering time, and more.',
-    cpLockedMsg:'Comparing full cultivars is a Premium tool — unlock it to pick any pair from all 19 cultivars.',
+    cpLockedMsg:'Comparing full cultivars is part of full access — unlock it to pick any pair from all 19 cultivars.',
     fsSecTitle:'Full spectrum, broad spectrum, and isolate: the label almost nobody explains',
     fsIntroP:'These three terms appear on almost every commercial product, and connect directly to Dr. Russo\u2019s "entourage effect" you already saw in <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Science → Terpenes and flavonoids</a> — they describe how much of the plant\u2019s original chemical profile remains in the final extract.',
     fsFullLabel:'Full spectrum', fsFullVal:'Keeps all the original cannabinoids, terpenes, and flavonoids, including trace THC — aims for the strongest possible entourage effect',
@@ -3895,14 +3895,14 @@ const translations = {
     adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Company', adInquiryCorreoLabel:'Email', adInquiryMensajeLabel:'Message', adInquirySubmitBtn:'Send',
     adInquiryEnviando:'Sending…', adInquiryOk:'✓ Received — we’ll be in touch soon.', adInquiryError:'Could not send. Please try again.'},
   de:{brandSub:'Globaler Codex · medizinisches &amp; Freizeit-Cannabis', navHome:'Start', navCultivo:'Anbau', navElaboracion:'Verarbeitung', navLegal:'Recht', navCiencia:'Wissenschaft', navMas:'Mehr',
-    gateUnlockBtn:'Mit Premium freischalten',
-    gtDliTitle:'DLI-Rechner', gtDliDesc:'Das tägliche Lichtintegral ist ein Premium-Werkzeug.',
-    gtDoseTitle:'Dosis pro Portion', gtDoseDesc:'Der Rechner für regulatorische Konformität ist ein Premium-Werkzeug.',
-    gtTrazaTitle:'Rückverfolgbarkeit', gtTrazaDesc:'Die von jedem Regulierer geforderten Seed-to-Sale-Systeme sind Premium-Inhalt.',
-    gtDirTitle:'Lieferantenverzeichnis', gtDirDesc:'Das vollständige Verzeichnis nach Kategorie ist Premium-Inhalt.',
-    gtCarrTitle:'Karrieren', gtCarrDesc:'Die Details zu jeder Berufsrolle der Branche sind Premium-Inhalt.',
-    gtSistemasTitle:'Anbausysteme', gtSistemasDesc:'Indoor, Gewächshaus und Outdoor, mit vollständigen technischen Parametern, sind Premium-Inhalt.',
-    gtMetodosTitle:'Anbaumethoden', gtMetodosDesc:'Die Wurzelernährungsmethoden — Bio-Erde, Hydroponik, Aeroponik und Aquaponik — sind Premium-Inhalt.',
+    gateUnlockBtn:'Vollzugriff freischalten',
+    gtDliTitle:'DLI-Rechner', gtDliDesc:'Das tägliche Lichtintegral gehört zum Vollzugriff.',
+    gtDoseTitle:'Dosis pro Portion', gtDoseDesc:'Der Rechner für regulatorische Konformität gehört zum Vollzugriff.',
+    gtTrazaTitle:'Rückverfolgbarkeit', gtTrazaDesc:'Die von jedem Regulierer geforderten Seed-to-Sale-Systeme erfordern Vollzugriff.',
+    gtDirTitle:'Lieferantenverzeichnis', gtDirDesc:'Das vollständige Verzeichnis nach Kategorie erfordert Vollzugriff.',
+    gtCarrTitle:'Karrieren', gtCarrDesc:'Die Details zu jeder Berufsrolle der Branche erfordern Vollzugriff.',
+    gtSistemasTitle:'Anbausysteme', gtSistemasDesc:'Indoor, Gewächshaus und Outdoor, mit vollständigen technischen Parametern, erfordern Vollzugriff.',
+    gtMetodosTitle:'Anbaumethoden', gtMetodosDesc:'Die Wurzelernährungsmethoden — Bio-Erde, Hydroponik, Aeroponik und Aquaponik — erfordern Vollzugriff.',
     cmMetodosIntro:'Nach der Wahl des Systems (wo) folgt die Methode: wie die Wurzel ernährt wird. Diese vier Familien bestimmen alle weiteren Anbauentscheidungen — von der Ausrüstung bis zum Nährstoffplan.',
     cmSecSuelo:'Bio-Erde',
     cmSuelo1h4:'Traditionelle Erde', cmSuelo1sci:'Der älteste Ausgangspunkt', cmSuelo1desc:'Direkter Anbau in Gartenerde oder im Freiland. Die älteste Methode und am verzeihendsten bei Gieß- oder Nährstofffehlern — die Erde selbst puffert Ungleichgewichte ab.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
@@ -3944,30 +3944,30 @@ const translations = {
     eqF5H3:'5. Trocknung', eqF5i1:'Etagen-Trockengestell', eqF5i2:'Kohlefilter auf niedrigster Stufe', eqF5i3:'Ventilator auf die Wand gerichtet — nie direkt auf die Blüten', eqF5i4:'100% dunkler Raum',
     eqF6H3:'6. Aushärtung (Curing)', eqF6i1:'Luftdichte Glasgefäße', eqF6i2:'Zweiwege-Feuchtigkeitsregler-Beutel', eqF6i3:'Mini-Thermo-Hygrometer für Gläser',
     eqCuradoMarcas:'<b>Veranschaulichende Beispiele:</b> Boveda und Integra sind die meistgenannten Marken für Zweiwege-Feuchtigkeitsbeutel für Curing-Gläser — sie regulieren die Innenfeuchtigkeit, ohne dass man das Glas zum Nachschauen öffnen muss.',
-    gtIlumTitle:'Beleuchtung', gtIlumDesc:'PPFD- und DLI-Zielwerte je Phase, wissenschaftlich fundiert, sind Premium-Inhalt.',
-    gtSustratoTitle:'Substrat und Ernährung', gtSustratoDesc:'Der vollständige Leitfaden zu Substraten und Makro-/Mikronährstoffen ist Premium-Inhalt.',
-    gtEntrenTitle:'Beschneiden und Training', gtEntrenDesc:'Die 7 Trainingstechniken mit Ertragsschätzung sind Premium-Inhalt.',
-    gtGenTitle:'Genetik und Chemotypen', gtGenDesc:'Die wissenschaftliche Klassifikation nach Chemotyp, mit zitierter Quelle, ist Premium-Inhalt.',
-    gtCicloTitle:'Lebenszyklus', gtCicloDesc:'Das vollständige Detail des Lebenszyklus der Pflanze ist Premium-Inhalt.',
-    gtCosechaTitle:'Ernte', gtCosechaDesc:'Die Trichom-Checkliste und die Schnitt-/Trimm-Entscheidungen sind Premium-Inhalt.',
-    gtPropTitle:'Fortgeschrittene Vermehrung', gtPropDesc:'Feminisierung, Autoflower-Kreuzungen und Pfropfen sind Premium-Inhalt.',
-    gtProcTitle:'Prozesse & SOP', gtProcDesc:'Die vollständigen Nachernte-Verfahren sind Premium-Inhalt.',
-    gtConcTitle:'Konzentrate', gtConcDesc:'Die weltweite Tour durch Extraktionstechniken ist Premium-Inhalt.',
-    gtTintTitle:'Tinkturen, Kapseln & Pflaster', gtTintDesc:'Die 3 Aufnahmewege mit dosierter Menge sind Premium-Inhalt.',
-    gtVapesTitle:'Vapes & Kartuschen', gtVapesDesc:'Der Hardware-Leitfaden und die EVALI-Geschichte sind Premium-Inhalt.',
-    gtComTitle:'Esswaren', gtComDesc:'Decarboxylierung und Potenzberechnung sind Premium-Inhalt.',
-    gtSkinTitle:'Hautpflege & Topika', gtSkinDesc:'Der vollständige Leitfaden zu Topika ist Premium-Inhalt.',
-    gtEtiqTitle:'Kennzeichnung', gtEtiqDesc:'Der vollständige Kennzeichnungsstandard ist Premium-Inhalt.',
-    gtCientTitle:'Wissenschaftler', gtCientDesc:'Das vollständige Verzeichnis aktiver Forscher ist Premium-Inhalt.',
-    gtMedTitle:'Medizinische Informationen', gtMedDesc:'Klinische Indikationen und Wechselwirkungen sind Premium-Inhalt.',
-    gtEcsTitle:'Endocannabinoid-System 101', gtEcsDesc:'Die narrative Erklärung des Endocannabinoid-Systems und der Vergleich Mensch vs. Tier sind Premium-Inhalt.',
-    gtSeguridadDesc:'Vollständige wissenschaftliche Vertiefung — zusätzliche Studien, Mechanismen und erweiterter Kontext — verfügbar mit Premium.',
-    gtDiagTeaserTitle:'2 von 11 gesehen', gtDiagTeaserDesc:'Schalte die restlichen 9 Einträge mit Premium frei.',
-    gtPapersTeaserTitle:'1 von 26 gesehen', gtPapersTeaserDesc:'Schalte die vollständige Papers-Bibliothek mit Premium frei.',
-    gtCannaTeaserTitle:'2 von 6 gesehen', gtCannaTeaserDesc:'Schalte die restlichen 4 Cannabinoide mit Premium frei.',
-    gtTerpTeaserTitle:'2 von 8 gesehen', gtTerpTeaserDesc:'Schalte die restlichen 6 Profile mit Premium frei.',
-    gtFlavTeaserTitle:'2 von 5 gesehen', gtFlavTeaserDesc:'Schalte die 5 Flavonoid-Profile mit Premium frei.',
-    gtMitosTeaserTitle:'2 von 6 gesehen', gtMitosTeaserDesc:'Schalte die vollständige Mythen-Bibliothek mit Premium frei.',
+    gtIlumTitle:'Beleuchtung', gtIlumDesc:'PPFD- und DLI-Zielwerte je Phase, wissenschaftlich fundiert, erfordern Vollzugriff.',
+    gtSustratoTitle:'Substrat und Ernährung', gtSustratoDesc:'Der vollständige Leitfaden zu Substraten und Makro-/Mikronährstoffen erfordert Vollzugriff.',
+    gtEntrenTitle:'Beschneiden und Training', gtEntrenDesc:'Die 7 Trainingstechniken mit Ertragsschätzung erfordern Vollzugriff.',
+    gtGenTitle:'Genetik und Chemotypen', gtGenDesc:'Die wissenschaftliche Klassifikation nach Chemotyp, mit zitierter Quelle, erfordert Vollzugriff.',
+    gtCicloTitle:'Lebenszyklus', gtCicloDesc:'Das vollständige Detail des Lebenszyklus der Pflanze erfordert Vollzugriff.',
+    gtCosechaTitle:'Ernte', gtCosechaDesc:'Die Trichom-Checkliste und die Schnitt-/Trimm-Entscheidungen erfordern Vollzugriff.',
+    gtPropTitle:'Fortgeschrittene Vermehrung', gtPropDesc:'Feminisierung, Autoflower-Kreuzungen und Pfropfen erfordern Vollzugriff.',
+    gtProcTitle:'Prozesse & SOP', gtProcDesc:'Die vollständigen Nachernte-Verfahren erfordern Vollzugriff.',
+    gtConcTitle:'Konzentrate', gtConcDesc:'Die weltweite Tour durch Extraktionstechniken erfordert Vollzugriff.',
+    gtTintTitle:'Tinkturen, Kapseln & Pflaster', gtTintDesc:'Die 3 Aufnahmewege mit dosierter Menge erfordern Vollzugriff.',
+    gtVapesTitle:'Vapes & Kartuschen', gtVapesDesc:'Der Hardware-Leitfaden und die EVALI-Geschichte erfordern Vollzugriff.',
+    gtComTitle:'Esswaren', gtComDesc:'Decarboxylierung und Potenzberechnung erfordern Vollzugriff.',
+    gtSkinTitle:'Hautpflege & Topika', gtSkinDesc:'Der vollständige Leitfaden zu Topika erfordert Vollzugriff.',
+    gtEtiqTitle:'Kennzeichnung', gtEtiqDesc:'Der vollständige Kennzeichnungsstandard erfordert Vollzugriff.',
+    gtCientTitle:'Wissenschaftler', gtCientDesc:'Das vollständige Verzeichnis aktiver Forscher erfordert Vollzugriff.',
+    gtMedTitle:'Medizinische Informationen', gtMedDesc:'Klinische Indikationen und Wechselwirkungen erfordern Vollzugriff.',
+    gtEcsTitle:'Endocannabinoid-System 101', gtEcsDesc:'Die narrative Erklärung des Endocannabinoid-Systems und der Vergleich Mensch vs. Tier erfordern Vollzugriff.',
+    gtSeguridadDesc:'Vollständige wissenschaftliche Vertiefung — zusätzliche Studien, Mechanismen und erweiterter Kontext — verfügbar mit Vollzugriff.',
+    gtDiagTeaserTitle:'2 von 11 gesehen', gtDiagTeaserDesc:'Schalte die restlichen 9 Einträge mit Vollzugriff frei.',
+    gtPapersTeaserTitle:'1 von 26 gesehen', gtPapersTeaserDesc:'Schalte die vollständige Papers-Bibliothek mit Vollzugriff frei.',
+    gtCannaTeaserTitle:'2 von 6 gesehen', gtCannaTeaserDesc:'Schalte die restlichen 4 Cannabinoide mit Vollzugriff frei.',
+    gtTerpTeaserTitle:'2 von 8 gesehen', gtTerpTeaserDesc:'Schalte die restlichen 6 Profile mit Vollzugriff frei.',
+    gtFlavTeaserTitle:'2 von 5 gesehen', gtFlavTeaserDesc:'Schalte die 5 Flavonoid-Profile mit Vollzugriff frei.',
+    gtMitosTeaserTitle:'2 von 6 gesehen', gtMitosTeaserDesc:'Schalte die vollständige Mythen-Bibliothek mit Vollzugriff frei.',
   tierSwitchLabel:'Vorschau:',
     agTitle:'Altersverifizierung', agBody:'Dieser Inhalt ist nur für Personen ab 18 Jahren bestimmt und enthält Informationen über Cannabis zu Bildungs-, medizinischen und Informationszwecken.', agYes:'Ja, ich bin 18 Jahre oder älter', agNo:'Nein, ich bin unter 18', agBlockedTitle:'Zugriff nicht verfügbar', agBlockedBody:'Dieser Inhalt ist auf Personen ab 18 Jahren beschränkt. Wir können dir derzeit keinen Zugang gewähren.',
     cuentaLegalTitle:'Rechtliches', cuentaTerminosLabel:'Nutzungsbedingungen', cuentaPrivacidadLabel:'Datenschutzrichtlinie',
@@ -4052,12 +4052,12 @@ const translations = {
     bitPhLabel:'Substrat-pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Luftfeuchtigkeit (%)', bitAtajosLabel:'Abkürzungen beim Protokollieren:', bitAtajoVpd:'VPD berechnen →', bitAtajoDosis:'Nährstoffmischung berechnen →',
     bitStatDias:'Tage im Zyklus', bitStatEntradas:'Einträge insgesamt', bitStatEtapa:'Aktuelle Phase', bitGraficoTitle:'pH und EC im Zeitverlauf', bitGraficoVacio:'Erfasse pH oder EC in mindestens 2 Einträgen, um hier das Trenddiagramm zu sehen.',
     bitAuthGateH3:'Melde dich an, um dein Anbau-Tagebuch zu führen', bitAuthGateP:'Deine Einträge werden privat in deinem Konto gespeichert — nur du kannst sie sehen. Du musst dich zuerst anmelden oder ein Konto erstellen.', bitAuthGateBtn:'Zum Konto',
-    bitPdfBtn:'PDF herunterladen', bitPdfLockedMsg:'PDF-Download ist eine Premium-Funktion — jetzt freischalten',
+    bitPdfBtn:'PDF herunterladen', bitPdfLockedMsg:'PDF-Download gehört zum Vollzugriff — jetzt freischalten',
     bitErrSinNota:'Schreibe eine Notiz, bevor du speicherst.', bitGuardadoOk:'✓ Gespeichert', bitErrGuardar:'Konnte nicht gespeichert werden — versuch es erneut.',
     bitSinFecha:'kein Datum', bitEliminar:'Löschen', bitSinNotas:'(keine Notizen)', bitVacio:'Noch keine Einträge — füge oben den ersten hinzu.',
     bitFotoLabel:'Foto (optional)', bitFotoNota:'Wird automatisch komprimiert, um Speicherplatz zu sparen. Bei vielen Einträgen mit Foto kann der Speicherplatz des Prototyps voll werden — in der Produktion würde dies auf einem echten Server ohne dieses Limit liegen.',
-    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden echt und sicher gespeichert. Der Abo-Status oben kommt direkt aus deinem Konto.',
-    cuentaPremiumActivo:'✓ Premium aktiv — voller Zugriff auf alle 10 Bereiche, werbefrei, unbegrenzte Downloads.', cuentaGestionarBtn:'Abo verwalten', cuentaGestionarAlert:'In der echten App würde dies die Abo-Verwaltung von Apple/Google öffnen.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', cuentaSuscribirBtn:'Premium holen — 7,10 $/Monat',
+    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden auf unserem Server gespeichert, nicht nur auf diesem Gerät.',
+    cuentaPremiumActivo:'✓ Vollzugriff aktiv.', cuentaGestionarBtn:'Abo verwalten', cuentaGestionarAlert:'In der echten App würde dies die Abo-Verwaltung von Apple/Google öffnen.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', cuentaSuscribirBtn:'Premium holen — 7,10 $/Monat',
     pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', pmComprarBtn:'Premium kaufen — 7,10 $/Monat',
     pmPagoSeguroNote:'Zahlung sicher abgewickelt über App Store / Google Play / Stripe — Mother Verde sieht oder speichert deine Kartennummer niemals.',
     alertaSemillasH4:'USA: Bundesweites Verbot des zwischenstaatlichen Handels mit Samen mit 0,3 %+ THC', alertaSemillasTag:'Echte Benachrichtigung — nicht illustrativ', alertaSemillasMeta:'21. Juli 2026 · Quelle: MJBizDaily',
@@ -4507,7 +4507,7 @@ const translations = {
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmyAvatarBtn:'Profilfoto', cmyAvatarNeedsName:'Gib zuerst deinen Namen oder Spitznamen ein.', cmyAvatarSubiendo:'Foto wird hochgeladen…', cmyAvatarListo:'Fertig! Dein Profilfoto ist eingerichtet.',
     cmyCropTitle:'Foto anpassen', cmyCropHelp:'Ziehe das Bild und nutze das Mausrad (oder kneife auf dem Handy), um zu zoomen. Wähle, was im Kreis zu sehen sein soll.', cmyCropPreviewLabel:'So wird es aussehen', cmyCropCancelar:'Abbrechen', cmyCropConfirmar:'Dieses Foto verwenden',
-    perfilBack:'← Zurück zur Community', perfilGateMsg:'Melde dich an, um dein Profil zu sehen.', perfilNoDisponible:'Dieses Profil ist nicht verfügbar.', perfilEditar:'Dein Profil', perfilBioLabel:'Biografie', perfilBioPh:'Erzähl der Community, wer du bist (optional)', perfilConfigCuenta:'⚙️ Kontoeinstellungen (E-Mail, Abo, Abmelden)', perfilMisPublicaciones:'Beiträge', perfilSeguir:'Folgen', perfilDejarSeguir:'Entfolgen', perfilMutuo:'Ihr folgt euch gegenseitig', perfilCompleta:'Vervollständige dein Profil, um im Verzeichnis zu erscheinen und zu posten.', perfilSinPostsPropio:'Du hast noch nichts gepostet.', perfilSinPostsOtro:'Hat noch nichts gepostet.', perfilVerCompleto:'Vollständiges Profil ansehen', cmyDirectorioIntro:'Tippe auf jemanden, um sein Profil zu sehen. Willst du hier erscheinen? Vervollständige deins über <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Dein Profil</a>.',
+    perfilBack:'← Zurück zur Community', perfilGateMsg:'Melde dich an, um dein Profil zu sehen.', perfilNoDisponible:'Dieses Profil ist nicht verfügbar.', perfilEditar:'Dein Profil', perfilBioLabel:'Biografie', perfilBioPh:'Erzähl der Community, wer du bist (optional)', perfilConfigCuenta:'⚙️ Kontoeinstellungen (E-Mail, Zugriff, Abmelden)', perfilMisPublicaciones:'Beiträge', perfilSeguir:'Folgen', perfilDejarSeguir:'Entfolgen', perfilMutuo:'Ihr folgt euch gegenseitig', perfilCompleta:'Vervollständige dein Profil, um im Verzeichnis zu erscheinen und zu posten.', perfilSinPostsPropio:'Du hast noch nichts gepostet.', perfilSinPostsOtro:'Hat noch nichts gepostet.', perfilVerCompleto:'Vollständiges Profil ansehen', cmyDirectorioIntro:'Tippe auf jemanden, um sein Profil zu sehen. Willst du hier erscheinen? Vervollständige deins über <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Dein Profil</a>.',
     cmyTipoPostGeneral:'Allgemein', cmyTipoPostViajero:'Reise', cmyTipoPostCultivo:'Anbau', cmyTipoPostDiagnostico:'Diagnose', cmyTipoPostPregunta:'Frage',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
@@ -4522,7 +4522,7 @@ const translations = {
     cmySecLineas:'Rote Linien', cmyLineasP:'<b>Kein Marktplatz</b> — kein Kaufen, Verkaufen oder Austausch von Kontaktdaten zum Verkauf; das hält diese App konform mit den Richtlinien der App-Stores. <b>Keine spezifischen Anbauorte</b>, aus Sicherheitsgründen. Kein medizinischer Erfahrungsbericht wird ohne sichtbaren Haftungsausschluss veröffentlicht.',
     vrEyebrow:'Sorten &amp; Kultivare', vrTitle:'Durchsuchbare Datenbank', vrSub:'Wir sagen nie "Strain" — das ist ein Begriff aus der Mikrobiologie (Bakterien, Viren, Pilze), kein botanischer. Wir verwenden <b>Sorte</b> (natürliche Anpassung, wie eine Landrasse) oder <b>Kultivar</b> (eine absichtlich von einem Züchter entwickelte Kreuzung).',
     vrTodos:'Alle', vrTipoI:'Typ I (THC)', vrTipoII:'Typ II (ausgewogen)', vrTipoIII:'Typ III (CBD)',
-    vrTipoPrefix:'Typ', vrLinaje:'Abstammung', vrTerpenos:'Terpene', vrDificultad:'Schwierigkeit', vrVisteTeaser:'Du hast', vrDe:'von', vrDesbloquea:'Schalte die vollständige Datenbank mit Premium frei.',
+    vrTipoPrefix:'Typ', vrLinaje:'Abstammung', vrTerpenos:'Terpene', vrDificultad:'Schwierigkeit', vrVisteTeaser:'Du hast', vrDe:'von', vrDesbloquea:'Schalte die vollständige Datenbank mit Vollzugriff frei.',
     modSegTitle:'Sicherheit', modSegDesc:'Haustiere, Wechselwirkungen mit Medikamenten, Fahren, Schwangerschaft und Stillzeit sowie psychische Gesundheit — mit echter Evidenz.',
     eySeg:'Sicherheit', segTitle:'Was schiefgehen kann, und wie man es vermeidet', segSub:'Dieselbe rigorose Evidenz wie im Rest der App, angewendet auf reale Risiken — Haustiere, Medikamente, Fahren, Schwangerschaft und psychische Gesundheit.',
     subMascotas:'Haustiere', subInteracciones:'Medikamente', subManejo:'Fahren', subEmbarazo:'Schwangerschaft &amp; Stillzeit', subSaludFem:'Frauengesundheit', subMental:'Psychische Gesundheit', subOcupacional:'Arbeit &amp; Produktion', subDeporte:'Sport', subMayores:'Ältere Menschen', subCorazon:'Herz &amp; Blutdruck',
@@ -4623,7 +4623,7 @@ const translations = {
     flH3:'Jenseits des Konsums: Hanffaser in der 3D-Fertigung', flP1:'Französische und libanesische Forscher untersuchen, wie sich Hanffasern mit landwirtschaftlichen Nebenprodukten kombinieren lassen, um umweltfreundliche Verbundwerkstoffe herzustellen, mit realen Anwendungen in Transportfahrzeugen und anderen Branchen — eine echte internationale Zusammenarbeit (Juli 2026), außerhalb des üblichen Konsumkreislaufs.',
     vrFloracion:'Blütezeit',
     cpToggleH3:'⚖️ Zwei Kultivare nebeneinander vergleichen', cpToggleP:'Wähle zwei aus und sieh die echten Unterschiede auf einen Blick — Potenz, Terpene, Blütezeit und mehr.',
-    cpLockedMsg:'Der vollständige Kultivar-Vergleich ist ein Premium-Tool — schalte es frei, um jedes beliebige Paar aus allen 19 Kultivaren zu wählen.',
+    cpLockedMsg:'Der vollständige Kultivar-Vergleich gehört zum Vollzugriff — schalte ihn frei, um jedes beliebige Paar aus allen 19 Kultivaren zu wählen.',
     fsSecTitle:'Full Spectrum, Broad Spectrum und Isolate: das Etikett, das fast niemand erklärt',
     fsIntroP:'Diese drei Begriffe stehen auf fast jedem kommerziellen Produkt und hängen direkt mit Dr. Russos "Entourage-Effekt" zusammen, den du bereits in <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Wissenschaft → Terpene und Flavonoide</a> gesehen hast — sie beschreiben, wie viel vom ursprünglichen chemischen Profil der Pflanze im finalen Extrakt verbleibt.',
     fsFullLabel:'Full Spectrum (Vollspektrum)', fsFullVal:'Bewahrt alle ursprünglichen Cannabinoide, Terpene und Flavonoide, einschließlich Spuren von THC — zielt auf den stärkstmöglichen Entourage-Effekt ab',
@@ -4732,14 +4732,14 @@ const translations = {
     adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Unternehmen', adInquiryCorreoLabel:'E-Mail', adInquiryMensajeLabel:'Nachricht', adInquirySubmitBtn:'Senden',
     adInquiryEnviando:'Wird gesendet…', adInquiryOk:'✓ Erhalten — wir melden uns bald.', adInquiryError:'Konnte nicht gesendet werden. Versuch es erneut.'},
   fr:{brandSub:'Codex mondial · cannabis médical &amp; récréatif', navHome:'Accueil', navCultivo:'Culture', navElaboracion:'Élaboration', navLegal:'Légal', navCiencia:'Science', navMas:'Plus',
-    gateUnlockBtn:'Débloquer avec Premium',
-    gtDliTitle:'Calculateur de DLI', gtDliDesc:"L'intégrale de lumière quotidienne est un outil Premium.",
-    gtDoseTitle:'Dose par portion', gtDoseDesc:'Le calculateur de conformité réglementaire est un outil Premium.',
-    gtTrazaTitle:'Traçabilité', gtTrazaDesc:'Les systèmes de la graine à la vente exigés par chaque régulateur sont du contenu Premium.',
-    gtDirTitle:'Répertoire de fournisseurs', gtDirDesc:'Le répertoire complet par catégorie est du contenu Premium.',
-    gtCarrTitle:'Carrières', gtCarrDesc:"Le détail de chaque rôle professionnel du secteur est du contenu Premium.",
-    gtSistemasTitle:'Systèmes de culture', gtSistemasDesc:'Indoor, serre et outdoor, avec paramètres techniques complets, sont du contenu Premium.',
-    gtMetodosTitle:'Méthodes de culture', gtMetodosDesc:'Les méthodes de nutrition racinaire — sol organique, hydroponique, aéroponique et aquaponique — sont du contenu Premium.',
+    gateUnlockBtn:'Débloquer l’accès complet',
+    gtDliTitle:'Calculateur de DLI', gtDliDesc:"L'intégrale de lumière quotidienne fait partie de l’accès complet.",
+    gtDoseTitle:'Dose par portion', gtDoseDesc:'Le calculateur de conformité réglementaire fait partie de l’accès complet.',
+    gtTrazaTitle:'Traçabilité', gtTrazaDesc:'Les systèmes de la graine à la vente exigés par chaque régulateur nécessitent l’accès complet.',
+    gtDirTitle:'Répertoire de fournisseurs', gtDirDesc:'Le répertoire complet par catégorie nécessite l’accès complet.',
+    gtCarrTitle:'Carrières', gtCarrDesc:"Le détail de chaque rôle professionnel du secteur nécessite l’accès complet.",
+    gtSistemasTitle:'Systèmes de culture', gtSistemasDesc:'Indoor, serre et outdoor, avec paramètres techniques complets, nécessitent l’accès complet.',
+    gtMetodosTitle:'Méthodes de culture', gtMetodosDesc:'Les méthodes de nutrition racinaire — sol organique, hydroponique, aéroponique et aquaponique — nécessitent l’accès complet.',
     cmMetodosIntro:'Une fois le système choisi (où), vient la méthode : comment la racine est nourrie. Ces quatre familles déterminent toutes les autres décisions de culture — de l’équipement au calendrier de nutrition.',
     cmSecSuelo:'Sol organique',
     cmSuelo1h4:'Terre traditionnelle', cmSuelo1sci:'Le point de départ le plus ancien', cmSuelo1desc:'Culture directe en terre de jardin ou en plein champ. La méthode la plus ancienne et la plus tolérante aux erreurs d’arrosage ou de nutrition — le sol lui-même amortit les déséquilibres.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
@@ -4781,30 +4781,30 @@ const translations = {
     eqF5H3:'5. Séchage', eqF5i1:'Grille de séchage à étages', eqF5i2:'Filtre à charbon au minimum', eqF5i3:'Ventilateur dirigé vers le mur — jamais directement sur les fleurs', eqF5i4:'Espace 100% obscur',
     eqF6H3:'6. Affinage', eqF6i1:'Bocaux en verre hermétiques', eqF6i2:'Sachets d’humidité bidirectionnelle', eqF6i3:'Mini thermo-hygromètres pour bocaux',
     eqCuradoMarcas:'<b>Exemples illustratifs :</b> Boveda et Integra sont les marques les plus citées de sachets d’humidité bidirectionnelle pour bocaux d’affinage — elles régulent l’humidité interne sans avoir à ouvrir le bocal pour deviner.',
-    gtIlumTitle:'Éclairage', gtIlumDesc:'Les cibles de PPFD et DLI par stade, avec base scientifique, sont du contenu Premium.',
-    gtSustratoTitle:'Substrat et nutrition', gtSustratoDesc:'Le guide complet des substrats et macro/micronutriments est du contenu Premium.',
-    gtEntrenTitle:'Taille et palissage', gtEntrenDesc:'Les 7 techniques de palissage avec estimation de rendement sont du contenu Premium.',
-    gtGenTitle:'Génétique et chémotypes', gtGenDesc:'La classification scientifique par chémotype, avec source citée, est du contenu Premium.',
-    gtCicloTitle:'Cycle de vie', gtCicloDesc:'Le détail complet du cycle de vie de la plante est du contenu Premium.',
-    gtCosechaTitle:'Récolte', gtCosechaDesc:'La checklist des trichomes et les décisions de coupe/effeuillage sont du contenu Premium.',
-    gtPropTitle:'Propagation avancée', gtPropDesc:'Féminisation, croisements autofloraison et greffage sont du contenu Premium.',
-    gtProcTitle:'Processus et SOP', gtProcDesc:'Les procédures complètes post-récolte sont du contenu Premium.',
-    gtConcTitle:'Concentrés', gtConcDesc:"Le tour du monde des techniques d'extraction est du contenu Premium.",
-    gtTintTitle:'Teintures, capsules et patchs', gtTintDesc:'Les 3 voies d\u2019absorption avec dosage mesuré sont du contenu Premium.',
-    gtVapesTitle:'Vapes et cartouches', gtVapesDesc:"Le guide du matériel et l'histoire de l'EVALI sont du contenu Premium.",
-    gtComTitle:'Comestibles', gtComDesc:'La décarboxylation et le calcul de puissance sont du contenu Premium.',
-    gtSkinTitle:'Soins de la peau et topiques', gtSkinDesc:'Le guide complet des topiques est du contenu Premium.',
-    gtEtiqTitle:'Étiquetage', gtEtiqDesc:"La norme complète d'étiquetage est du contenu Premium.",
-    gtCientTitle:'Scientifiques', gtCientDesc:'Le répertoire complet des chercheurs actifs est du contenu Premium.',
-    gtMedTitle:'Informations médicales', gtMedDesc:'Les indications cliniques et interactions sont du contenu Premium.',
-    gtEcsTitle:'Système Endocannabinoïde 101', gtEcsDesc:'L’explication narrative du système endocannabinoïde et la comparaison humains vs. animaux sont du contenu Premium.',
-    gtSeguridadDesc:'Approfondissement scientifique complet — études supplémentaires, mécanismes et contexte étendu — disponible avec Premium.',
-    gtDiagTeaserTitle:'2 sur 11 vues', gtDiagTeaserDesc:'Débloque les 9 fiches restantes avec Premium.',
-    gtPapersTeaserTitle:'1 sur 26 vue', gtPapersTeaserDesc:'Débloque la bibliothèque complète des études avec Premium.',
-    gtCannaTeaserTitle:'2 sur 6 vus', gtCannaTeaserDesc:'Débloque les 4 cannabinoïdes restants avec Premium.',
-    gtTerpTeaserTitle:'2 sur 8 vus', gtTerpTeaserDesc:'Débloque les 6 profils restants avec Premium.',
-    gtFlavTeaserTitle:'2 sur 5 vus', gtFlavTeaserDesc:'Débloque les 5 profils de flavonoïdes avec Premium.',
-    gtMitosTeaserTitle:'2 sur 6 vus', gtMitosTeaserDesc:'Débloque la bibliothèque complète des mythes avec Premium.',
+    gtIlumTitle:'Éclairage', gtIlumDesc:'Les cibles de PPFD et DLI par stade, avec base scientifique, nécessitent l’accès complet.',
+    gtSustratoTitle:'Substrat et nutrition', gtSustratoDesc:'Le guide complet des substrats et macro/micronutriments nécessite l’accès complet.',
+    gtEntrenTitle:'Taille et palissage', gtEntrenDesc:'Les 7 techniques de palissage avec estimation de rendement nécessitent l’accès complet.',
+    gtGenTitle:'Génétique et chémotypes', gtGenDesc:'La classification scientifique par chémotype, avec source citée, nécessite l’accès complet.',
+    gtCicloTitle:'Cycle de vie', gtCicloDesc:'Le détail complet du cycle de vie de la plante nécessite l’accès complet.',
+    gtCosechaTitle:'Récolte', gtCosechaDesc:'La checklist des trichomes et les décisions de coupe/effeuillage nécessitent l’accès complet.',
+    gtPropTitle:'Propagation avancée', gtPropDesc:'Féminisation, croisements autofloraison et greffage nécessitent l’accès complet.',
+    gtProcTitle:'Processus et SOP', gtProcDesc:'Les procédures complètes post-récolte nécessitent l’accès complet.',
+    gtConcTitle:'Concentrés', gtConcDesc:"Le tour du monde des techniques d'extraction nécessite l’accès complet.",
+    gtTintTitle:'Teintures, capsules et patchs', gtTintDesc:'Les 3 voies d\\u2019absorption avec dosage mesuré nécessitent l’accès complet.',
+    gtVapesTitle:'Vapes et cartouches', gtVapesDesc:"Le guide du matériel et l'histoire de l'EVALI nécessitent l’accès complet.",
+    gtComTitle:'Comestibles', gtComDesc:'La décarboxylation et le calcul de puissance nécessitent l’accès complet.',
+    gtSkinTitle:'Soins de la peau et topiques', gtSkinDesc:'Le guide complet des topiques nécessite l’accès complet.',
+    gtEtiqTitle:'Étiquetage', gtEtiqDesc:"La norme complète d'étiquetage nécessite l’accès complet.",
+    gtCientTitle:'Scientifiques', gtCientDesc:'Le répertoire complet des chercheurs actifs nécessite l’accès complet.',
+    gtMedTitle:'Informations médicales', gtMedDesc:'Les indications cliniques et interactions nécessitent l’accès complet.',
+    gtEcsTitle:'Système Endocannabinoïde 101', gtEcsDesc:'L’explication narrative du système endocannabinoïde et la comparaison humains vs. animaux nécessitent l’accès complet.',
+    gtSeguridadDesc:'Approfondissement scientifique complet — études supplémentaires, mécanismes et contexte étendu — disponible avec l’accès complet.',
+    gtDiagTeaserTitle:'2 sur 11 vues', gtDiagTeaserDesc:'Débloque les 9 fiches restantes avec l’accès complet.',
+    gtPapersTeaserTitle:'1 sur 26 vue', gtPapersTeaserDesc:'Débloque la bibliothèque complète des études avec l’accès complet.',
+    gtCannaTeaserTitle:'2 sur 6 vus', gtCannaTeaserDesc:'Débloque les 4 cannabinoïdes restants avec l’accès complet.',
+    gtTerpTeaserTitle:'2 sur 8 vus', gtTerpTeaserDesc:'Débloque les 6 profils restants avec l’accès complet.',
+    gtFlavTeaserTitle:'2 sur 5 vus', gtFlavTeaserDesc:'Débloque les 5 profils de flavonoïdes avec l’accès complet.',
+    gtMitosTeaserTitle:'2 sur 6 vus', gtMitosTeaserDesc:'Débloque la bibliothèque complète des mythes avec l’accès complet.',
   tierSwitchLabel:'Aperçu :',
     agTitle:'Vérification de l\u2019âge', agBody:'Ce contenu est destiné aux personnes de 18 ans et plus, et inclut des informations sur le cannabis à des fins éducatives, médicales et informatives.', agYes:'Oui, j\u2019ai 18 ans ou plus', agNo:'Non, j\u2019ai moins de 18 ans', agBlockedTitle:'Accès non disponible', agBlockedBody:'Ce contenu est réservé aux personnes de 18 ans et plus. Nous ne pouvons pas vous donner accès pour le moment.',
     cuentaLegalTitle:'Mentions légales', cuentaTerminosLabel:'Conditions générales', cuentaPrivacidadLabel:'Politique de confidentialité',
@@ -4889,12 +4889,12 @@ const translations = {
     bitPhLabel:'pH du substrat', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidité (%)', bitAtajosLabel:"Raccourcis pendant l'enregistrement :", bitAtajoVpd:'Calculer le VPD →', bitAtajoDosis:'Calculer le mélange de nutriments →',
     bitStatDias:'Jours de cycle', bitStatEntradas:'Entrées totales', bitStatEtapa:'Stade actuel', bitGraficoTitle:'pH et EC dans le temps',
     bitAuthGateH3:'Connecte-toi pour tenir ton journal de culture', bitAuthGateP:'Tes entrées sont enregistrées dans ton compte, en privé — toi seul(e) peux les voir. Tu dois d’abord te connecter ou créer un compte.', bitAuthGateBtn:'Aller à Compte',
-    bitPdfBtn:'Télécharger le PDF', bitPdfLockedMsg:'Le téléchargement PDF est une fonctionnalité Premium — débloque-la',
+    bitPdfBtn:'Télécharger le PDF', bitPdfLockedMsg:'Le téléchargement PDF fait partie de l’accès complet — débloque-le',
     bitErrSinNota:'Écris une note avant d’enregistrer.', bitGuardadoOk:'✓ Enregistré', bitErrGuardar:'Impossible d’enregistrer — réessaie.',
     bitSinFecha:'sans date', bitEliminar:'Supprimer', bitSinNotas:'(sans notes)', bitVacio:'Pas encore d’entrées — ajoute la première ci-dessus.', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
     bitFotoLabel:'Photo (facultatif)', bitFotoNota:'Automatiquement compressée pour économiser de l\u2019espace. Avec de nombreuses entrées avec photo, l\u2019espace de stockage du prototype peut se remplir — en production, cela vivrait sur un vrai serveur, sans cette limite.',
-    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés pour de vrai, en toute sécurité. Le statut d’abonnement ci-dessus vient directement de ton compte.',
-    cuentaPremiumActivo:'✓ Premium actif — accès complet aux 10 zones, sans publicité, téléchargements illimités.', cuentaGestionarBtn:"Gérer l'abonnement", cuentaGestionarAlert:"Dans l'app réelle, ceci ouvrirait la gestion d'abonnement d'Apple/Google.", cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', cuentaSuscribirBtn:'Obtenir Premium — 7,10 $/mois',
+    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés sur notre serveur, pas seulement sur cet appareil.',
+    cuentaPremiumActivo:'✓ Accès complet actif.', cuentaGestionarBtn:"Gérer l'abonnement", cuentaGestionarAlert:"Dans l'app réelle, ceci ouvrirait la gestion d'abonnement d'Apple/Google.", cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', cuentaSuscribirBtn:'Obtenir Premium — 7,10 $/mois',
     pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', pmComprarBtn:'Acheter Premium — 7,10 $/mois',
     pmPagoSeguroNote:'Paiement traité en toute sécurité par l\u2019App Store / Google Play / Stripe — Mother Verde ne voit ni ne stocke jamais ton numéro de carte.',
     alertaSemillasH4:'États-Unis : interdiction fédérale du commerce interétatique de graines à 0,3 %+ de THC', alertaSemillasTag:'Alerte réelle — non illustrative', alertaSemillasMeta:'21 juillet 2026 · Source : MJBizDaily',
@@ -5344,7 +5344,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmyAvatarBtn:'Photo de profil', cmyAvatarNeedsName:'\u00c9cris d\u2019abord ton nom ou pseudo.', cmyAvatarSubiendo:'Envoi de la photo\u2026', cmyAvatarListo:'C\u2019est fait ! Ta photo de profil est en place.',
     cmyCropTitle:'Ajuste ta photo', cmyCropHelp:'Fais glisser l\u2019image et utilise la molette de la souris (ou pince sur mobile) pour zoomer. Choisis ce que tu veux voir dans le cercle.', cmyCropPreviewLabel:'Aper\u00e7u', cmyCropCancelar:'Annuler', cmyCropConfirmar:'Utiliser cette photo',
-    perfilBack:'\u2190 Retour \u00e0 la communaut\u00e9', perfilGateMsg:'Connecte-toi pour voir ton profil.', perfilNoDisponible:'Ce profil n\u2019est pas disponible.', perfilEditar:'Ton profil', perfilBioLabel:'Bio', perfilBioPh:'Dis \u00e0 la communaut\u00e9 qui tu es (facultatif)', perfilConfigCuenta:'\u2699\ufe0f Param\u00e8tres du compte (e-mail, abonnement, d\u00e9connexion)', perfilMisPublicaciones:'Publications', perfilSeguir:'Suivre', perfilDejarSeguir:'Ne plus suivre', perfilMutuo:'Vous vous suivez mutuellement', perfilCompleta:'Compl\u00e8te ton profil pour appara\u00eetre dans l\u2019annuaire et publier.', perfilSinPostsPropio:'Tu n\u2019as encore rien publi\u00e9.', perfilSinPostsOtro:'N\u2019a encore rien publi\u00e9.', perfilVerCompleto:'Voir le profil complet', cmyDirectorioIntro:'Touche n\u2019importe qui pour voir son profil. Tu veux appara\u00eetre ici ? Compl\u00e8te le tien depuis <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ton profil</a>.',
+    perfilBack:'\u2190 Retour \u00e0 la communaut\u00e9', perfilGateMsg:'Connecte-toi pour voir ton profil.', perfilNoDisponible:'Ce profil n\u2019est pas disponible.', perfilEditar:'Ton profil', perfilBioLabel:'Bio', perfilBioPh:'Dis \u00e0 la communaut\u00e9 qui tu es (facultatif)', perfilConfigCuenta:'⚙️ Paramètres du compte (e-mail, accès, déconnexion)', perfilMisPublicaciones:'Publications', perfilSeguir:'Suivre', perfilDejarSeguir:'Ne plus suivre', perfilMutuo:'Vous vous suivez mutuellement', perfilCompleta:'Compl\u00e8te ton profil pour appara\u00eetre dans l\u2019annuaire et publier.', perfilSinPostsPropio:'Tu n\u2019as encore rien publi\u00e9.', perfilSinPostsOtro:'N\u2019a encore rien publi\u00e9.', perfilVerCompleto:'Voir le profil complet', cmyDirectorioIntro:'Touche n\u2019importe qui pour voir son profil. Tu veux appara\u00eetre ici ? Compl\u00e8te le tien depuis <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ton profil</a>.',
     cmyTipoPostGeneral:'G\u00e9n\u00e9ral', cmyTipoPostViajero:'Voyage', cmyTipoPostCultivo:'Culture', cmyTipoPostDiagnostico:'Diagnostic', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
@@ -5359,7 +5359,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmySecLineas:'Lignes rouges', cmyLineasP:'<b>Zéro marketplace</b> — aucun achat-vente ni échange de coordonnées pour vendre ; c\u2019est ce qui permet de rester conforme aux politiques des boutiques d\u2019applications. <b>Zéro emplacement de culture précis</b>, pour la sécurité. Aucun témoignage médical n\u2019est publié sans l\u2019avertissement visible.',
     vrEyebrow:'Variétés &amp; cultivars', vrTitle:'Base de données consultable', vrSub:'On ne dit jamais « strain » — c\u2019est un terme de microbiologie (bactéries, virus, champignons), pas de botanique. On utilise <b>variété</b> (adaptation naturelle, comme une landrace) ou <b>cultivar</b> (croisement développé intentionnellement par un breeder).',
     vrTodos:'Tous', vrTipoI:'Type I (THC)', vrTipoII:'Type II (équilibré)', vrTipoIII:'Type III (CBD)',
-    vrTipoPrefix:'Type', vrLinaje:'Lignée', vrTerpenos:'Terpènes', vrDificultad:'Difficulté', vrVisteTeaser:'Tu as vu', vrDe:'sur', vrDesbloquea:'Débloque la base de données complète avec Premium.',
+    vrTipoPrefix:'Type', vrLinaje:'Lignée', vrTerpenos:'Terpènes', vrDificultad:'Difficulté', vrVisteTeaser:'Tu as vu', vrDe:'sur', vrDesbloquea:'Débloque la base de données complète avec l’accès complet.',
     modSegTitle:'Sécurité', modSegDesc:'Animaux de compagnie, interactions médicamenteuses, conduite, grossesse et allaitement, et santé mentale — avec des preuves réelles.',
     eySeg:'Sécurité', segTitle:'Ce qui peut mal tourner, et comment l\u2019éviter', segSub:'Les mêmes preuves rigoureuses que le reste de l\u2019app, appliquées aux risques réels — animaux, médicaments, conduite, grossesse et santé mentale.',
     subMascotas:'Animaux', subInteracciones:'Médicaments', subManejo:'Conduite', subEmbarazo:'Grossesse &amp; allaitement', subSaludFem:'Santé féminine', subMental:'Santé mentale', subOcupacional:'Travail &amp; production', subDeporte:'Sport', subMayores:'Personnes âgées', subCorazon:'Cœur &amp; tension artérielle',
@@ -5460,7 +5460,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     flH3:'Au-delà de la consommation : la fibre de chanvre dans la fabrication 3D', flP1:'Des chercheurs français et libanais étudient comment combiner des fibres de chanvre avec des sous-produits agricoles pour créer des matériaux composites écologiques, avec des applications réelles dans les véhicules de transport et d\u2019autres industries — une véritable collaboration internationale (juillet 2026), hors du circuit habituel de consommation.',
     vrFloracion:'Floraison',
     cpToggleH3:'⚖️ Comparer deux cultivars côte à côte', cpToggleP:'Choisis-en deux et vois les vraies différences en un coup d\u2019œil — puissance, terpènes, floraison et plus.',
-    cpLockedMsg:'Comparer les cultivars complets est un outil Premium — débloque-le pour choisir n\u2019importe quelle paire parmi les 19 cultivars.',
+    cpLockedMsg:'Comparer les cultivars complets fait partie de l’accès complet — débloque-le pour choisir n’importe quelle paire parmi les 19 cultivars.',
     fsSecTitle:'Full spectrum, broad spectrum et isolat : l\u2019étiquette que presque personne n\u2019explique',
     fsIntroP:'Ces trois termes apparaissent sur presque tous les produits commerciaux, et se rattachent directement à l\u2019« effet d\u2019entourage » du Dr Russo déjà vu dans <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Science → Terpènes et flavonoïdes</a> — ils décrivent la part du profil chimique d\u2019origine de la plante qui subsiste dans l\u2019extrait final.',
     fsFullLabel:'Full spectrum (spectre complet)', fsFullVal:'Conserve tous les cannabinoïdes, terpènes et flavonoïdes d\u2019origine, y compris des traces de THC — vise l\u2019effet d\u2019entourage le plus fort possible',
@@ -5951,10 +5951,10 @@ translations.es.delAccTitle = "Eliminar mi cuenta";
 translations.en.delAccTitle = "Delete my account";
 translations.de.delAccTitle = "Mein Konto löschen";
 translations.fr.delAccTitle = "Supprimer mon compte";
-translations.es.delAccDesc = "Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.";
-translations.en.delAccDesc = "Permanently deletes your account and everything tied to it: your profile, your grow journal, your posts, comments and photos, and who you follow. This can’t be undone.";
-translations.de.delAccDesc = "Löscht dein Konto und alles, was dazugehört, endgültig: dein Profil, dein Anbau-Tagebuch, deine Beiträge, Kommentare und Fotos sowie wem du folgst. Das kann nicht rückgängig gemacht werden.";
-translations.fr.delAccDesc = "Supprime définitivement ton compte et tout ce qui y est lié : ton profil, ton journal de culture, tes publications, commentaires et photos, et les personnes que tu suis. C’est irréversible.";
+translations.es.delAccDesc = "Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. También pierdes el acceso completo, aunque lo hayas obtenido con un aporte. No se puede deshacer.";
+translations.en.delAccDesc = "Permanently deletes your account and everything tied to it: your profile, your grow journal, your posts, comments and photos, and who you follow. You also lose full access, even if you got it through a contribution. This can’t be undone.";
+translations.de.delAccDesc = "Löscht dein Konto und alles, was dazugehört, endgültig: dein Profil, dein Anbau-Tagebuch, deine Beiträge, Kommentare und Fotos sowie wem du folgst. Du verlierst auch den Vollzugriff, selbst wenn du ihn mit einem Beitrag erhalten hast. Das kann nicht rückgängig gemacht werden.";
+translations.fr.delAccDesc = "Supprime définitivement ton compte et tout ce qui y est lié : ton profil, ton journal de culture, tes publications, commentaires et photos, et les personnes que tu suis. Tu perds aussi l’accès complet, même si tu l’as obtenu grâce à une contribution. C’est irréversible.";
 translations.es.delAccOpenBtn = "Eliminar mi cuenta…";
 translations.en.delAccOpenBtn = "Delete my account…";
 translations.de.delAccOpenBtn = "Mein Konto löschen…";
@@ -5963,10 +5963,10 @@ translations.es.delAccWord = "ELIMINAR";
 translations.en.delAccWord = "DELETE";
 translations.de.delAccWord = "LÖSCHEN";
 translations.fr.delAccWord = "SUPPRIMER";
-translations.es.delAccConfirmText = "Para confirmar, escribe tu contraseña y la palabra {word}. Si tienes publicaciones, también se borrarán los comentarios que otras personas dejaron en ellas.";
-translations.en.delAccConfirmText = "To confirm, enter your password and type {word}. If you have posts, the comments other people left on them will be deleted too.";
-translations.de.delAccConfirmText = "Zur Bestätigung gib dein Passwort ein und tippe {word}. Wenn du Beiträge hast, werden auch die Kommentare anderer Personen darunter gelöscht.";
-translations.fr.delAccConfirmText = "Pour confirmer, saisis ton mot de passe et tape {word}. Si tu as des publications, les commentaires que d’autres personnes y ont laissés seront aussi supprimés.";
+translations.es.delAccConfirmText = "Para confirmar, escribe tu contraseña y la palabra {word}. Perderás el acceso completo, aunque lo hayas obtenido con un aporte. Si tienes publicaciones, también se borrarán los comentarios que otras personas dejaron en ellas.";
+translations.en.delAccConfirmText = "To confirm, enter your password and type {word}. You will lose full access, even if you got it through a contribution. If you have posts, the comments other people left on them will be deleted too.";
+translations.de.delAccConfirmText = "Zur Bestätigung gib dein Passwort ein und tippe {word}. Du verlierst den Vollzugriff, selbst wenn du ihn mit einem Beitrag erhalten hast. Wenn du Beiträge hast, werden auch die Kommentare anderer Personen darunter gelöscht.";
+translations.fr.delAccConfirmText = "Pour confirmer, saisis ton mot de passe et tape {word}. Tu perdras l’accès complet, même si tu l’as obtenu grâce à une contribution. Si tu as des publications, les commentaires que d’autres personnes y ont laissés seront aussi supprimés.";
 translations.es.delAccPasswordPh = "Tu contraseña";
 translations.en.delAccPasswordPh = "Your password";
 translations.de.delAccPasswordPh = "Dein Passwort";
@@ -6015,6 +6015,25 @@ translations.es.adInquiryErrorMail = "No pudimos enviarlo desde aquí. Escríben
 translations.en.adInquiryErrorMail = "We couldn’t send it from here. Write to us directly:";
 translations.de.adInquiryErrorMail = "Wir konnten es von hier aus nicht senden. Schreib uns direkt:";
 translations.fr.adInquiryErrorMail = "Nous n’avons pas pu l’envoyer d’ici. Écris-nous directement :";
+
+// Access model "support" (ACCESS_MODEL in this file): Desbloquear screen + keys that were Spanish-only
+translations.es.dsEyebrow = "Acceso completo";
+translations.en.dsEyebrow = "Full access";
+translations.de.dsEyebrow = "Vollzugriff";
+translations.fr.dsEyebrow = "Accès complet";
+translations.es.dsTitle = "Desbloquear";
+translations.en.dsTitle = "Unlock";
+translations.de.dsTitle = "Freischalten";
+translations.fr.dsTitle = "Débloquer";
+translations.es.dsProximamente = "Próximamente.";
+translations.en.dsProximamente = "Coming soon.";
+translations.de.dsProximamente = "Demnächst.";
+translations.fr.dsProximamente = "Bientôt disponible.";
+translations.en.legalTeaserDesbloquea = "Unlock all 50 countries with full access.";
+translations.de.legalTeaserDesbloquea = "Schalte alle 50 Länder mit Vollzugriff frei.";
+translations.fr.legalTeaserDesbloquea = "Débloque les 50 pays avec l’accès complet.";
+translations.de.alertasEyebrow = "Im Vollzugriff enthalten";
+translations.fr.alertasEyebrow = "Inclus dans l’accès complet";
 
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
@@ -6226,6 +6245,17 @@ function showSub(screen, sub){
 }
 
 /* ===================== PAYWALL / GATING ===================== */
+// Which access model is live:
+//   'support'      — 24 h free trial for new accounts, then full access through a
+//                    one-time support contribution (the Desbloquear screen).
+//   'subscription' — the old $7.10/month card subscription with a 3-day trial.
+//                    Kept intact but hidden; flip back only on purpose.
+// Everything subscription-only is marked .mv-sub-only (hidden by style.css when
+// the model is 'support') or checks ACCESS_MODEL directly.
+const ACCESS_MODEL = 'support';
+window.MV_ACCESS_MODEL = ACCESS_MODEL;
+document.documentElement.dataset.accessModel = ACCESS_MODEL;
+
 let isPremium = false;
 const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
 // window.setIsPremium(true) used to flip isPremium directly, so any visitor
@@ -6492,7 +6522,12 @@ document.querySelectorAll('#tierSwitch button').forEach(b=>{
 applyTier();
 
 /* ===================== PREMIUM MODAL ===================== */
-function openPremium(){ syncPremiumModal(); document.getElementById('premiumModal').classList.add('active'); }
+function openPremium(){
+  // Every lock / "unlock" button calls this. Under the support model it leads to
+  // the Desbloquear screen instead of the old subscription modal.
+  if(ACCESS_MODEL === 'support'){ showScreen('desbloquear'); return; }
+  syncPremiumModal(); document.getElementById('premiumModal').classList.add('active');
+}
 function closePremium(){ document.getElementById('premiumModal').classList.remove('active'); }
 
 /* ===================== TRIAL / SUBSCRIPTION FLOW =====================
@@ -6572,6 +6607,7 @@ function syncPremiumModal(){
 }
 
 async function startTrialFlow(){
+  if(ACCESS_MODEL !== 'subscription') return;
   const msg = document.getElementById('pmMsg');
   const setMsg = (txt, err) => { if(msg){ msg.textContent = txt || ''; msg.style.color = err ? 'var(--clay)' : 'var(--ink-soft)'; } };
   if(!window.mvCurrentUser){ closePremium(); showScreen('cuenta'); return; }
@@ -6596,6 +6632,7 @@ async function startTrialFlow(){
 
 /* ---- Trial started confirmation ---- */
 function openTrialStarted(){
+  if(ACCESS_MODEL !== 'subscription') return;
   const st = window.mvSub ? window.mvSub.getState() : {};
   const end = st.trialEnds || new Date(Date.now() + 3 * 86400000);
   const e1 = document.getElementById('tsEndsValue');
@@ -6665,6 +6702,7 @@ function syncTrialBanners(){
   const rem = document.getElementById('trialReminderBanner');
   const blk = document.getElementById('trialBlockedBanner');
   if(!rem || !blk) return;
+  if(ACCESS_MODEL !== 'subscription'){ rem.hidden = true; blk.hidden = true; return; }
   const st = window.mvSub ? window.mvSub.getState() : null;
   const showBlocked = !!st && st.status === 'blocked';
   blk.hidden = !showBlocked;

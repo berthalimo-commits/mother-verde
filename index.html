@@ -113,7 +113,7 @@
         <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.">Vista previa:</span>
         <div class="tier-switch" id="tierSwitch">
           <button data-tier="free">Gratis</button>
-          <button data-tier="premium" class="tier-on">Premium</button>
+          <button data-tier="premium" class="tier-on">Acceso completo</button>
         </div>
       </div>
     </div>
@@ -130,12 +130,12 @@
     #trialBlockedBanner{background:#F7E4DF; color:#7a2f1c;}
     #trialReminderBanner .mv-sub-x{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:15px; opacity:.6;}
   </style>
-  <div class="mv-sub-banner" id="trialReminderBanner" hidden>
+  <div class="mv-sub-banner mv-sub-only" id="trialReminderBanner" hidden>
     <span class="mv-sub-banner-txt" id="trialReminderText"></span>
     <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBannerManageBtn">Ver mi suscripción</button>
     <span class="mv-sub-x" onclick="dismissTrialReminder()" title="Ocultar">×</span>
   </div>
-  <div class="mv-sub-banner" id="trialBlockedBanner" hidden>
+  <div class="mv-sub-banner mv-sub-only" id="trialBlockedBanner" hidden>
     <span class="mv-sub-banner-txt" id="trialBlockedText"></span>
     <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBlockedBtn">Actualizar tarjeta</button>
   </div>
@@ -3248,7 +3248,7 @@
     <div class="section-title" data-i18n="bitHistorial">Historial</div>
     <div style="margin-bottom:14px;">
       <button class="btn btn-primary" id="bitPdfBtn" onclick="exportBitacoraPDF()" style="display:none;" data-i18n="bitPdfBtn">Descargar PDF</button>
-      <span id="bitPdfLocked" style="display:none; font-size:12px; color:var(--ink-soft); cursor:pointer; align-items:center;" onclick="openPremium()"><svg class="lock-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="bitPdfLockedMsg" style="text-decoration:underline; margin-left:6px;">Descargar en PDF es una función Premium — desbloquéala</span></span>
+      <span id="bitPdfLocked" style="display:none; font-size:12px; color:var(--ink-soft); cursor:pointer; align-items:center;" onclick="openPremium()"><svg class="lock-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="bitPdfLockedMsg" style="text-decoration:underline; margin-left:6px;">Descargar en PDF es parte del acceso completo — desbloquéalo</span></span>
     </div>
     <div id="bitList"></div>
     </div>
@@ -3444,7 +3444,7 @@
     </div>
 
     <div id="cuentaLoggedInOnly">
-      <div class="card-block" id="cuentaEstadoCard">
+      <div class="card-block mv-sub-only" id="cuentaEstadoCard">
         <h3 data-i18n="cuentaEstadoTitle">Suscripción</h3>
         <p id="cuentaEstadoTexto" style="margin-bottom:6px;"></p>
         <p id="cuentaSubDetalle" style="margin:0 0 14px; font-size:12.5px; color:var(--ink-soft); line-height:1.55;"></p>
@@ -3465,9 +3465,6 @@
           <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/></svg>
           <span data-i18n="cuentaPagoSeguroNote">Tus pagos se procesan de forma segura por un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
         </div>
-        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
-          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
-        </div>
       </div>
 
       <div class="card-block">
@@ -3479,12 +3476,16 @@
         <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
           <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>
         </div>
+        <!-- Sign out lives here (not in the subscription card) so it is always reachable. -->
+        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
+          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
+        </div>
       </div>
 
       <!-- Delete account: password + typed word, inline confirm (no browser confirm()). Logic in src/auth.js. -->
       <div class="card-block" id="cuentaBorrarCard">
         <h3 data-i18n="delAccTitle">Eliminar mi cuenta</h3>
-        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.</p>
+        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. También pierdes el acceso completo, aunque lo hayas obtenido con un aporte. No se puede deshacer.</p>
         <button type="button" class="btn btn-ghost" id="delAccOpenBtn" data-i18n="delAccOpenBtn">Eliminar mi cuenta…</button>
         <div id="delAccConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF; max-width:420px;">
           <p id="delAccConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
@@ -3515,6 +3516,17 @@
     <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.</div>
   </section>
 
+  <!-- ============ DESBLOQUEAR (aporte único de apoyo) ============ -->
+  <!-- Placeholder: the full page (flowers, Canna Wasi, USDC) comes later.
+       Payment data lives only in src/supportConfig.js; while it is empty this
+       page must say "Próximamente" and show no QR and no form. -->
+  <section class="screen" id="desbloquear">
+    <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
+    <div class="eyebrow" data-i18n="dsEyebrow">Acceso completo</div>
+    <h2 class="title" data-i18n="dsTitle">Desbloquear</h2>
+    <div class="note-box" data-i18n="dsProximamente">Próximamente.</div>
+  </section>
+
   <!-- ============ TÉRMINOS Y CONDICIONES ============ -->
   <section class="screen" id="terminos">
     <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
@@ -3541,8 +3553,8 @@
       <p data-i18n="tc4P">Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="tc5H3">5. Suscripción Premium</h3>
-      <p data-i18n="tc5P">La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.</p>
+      <h3 class="mv-sub-only" data-i18n="tc5H3">5. Suscripción Premium</h3>
+      <p class="mv-sub-only" data-i18n="tc5P">La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="tc6H3">6. Propiedad intelectual</h3>
@@ -3589,8 +3601,8 @@
       <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv4H3">4. Servicios de terceros y pagos</h3>
-      <p data-i18n="ppv4P">Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.</p>
+      <h3 class="mv-sub-only" data-i18n="ppv4H3">4. Servicios de terceros y pagos</h3>
+      <p class="mv-sub-only" data-i18n="ppv4P">Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="ppv5H3">5. Tus derechos</h3>

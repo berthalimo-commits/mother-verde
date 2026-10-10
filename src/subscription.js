@@ -50,7 +50,11 @@ function isTestHost(){
   const h = location.hostname;
   return h === 'localhost' || h === '127.0.0.1' || h.endsWith('.vercel.app');
 }
+// The 3-day card trial belongs to the old subscription model. Under
+// ACCESS_MODEL 'support' (public/main.js) it can never start from the client;
+// the start_free_trial RPC is also disabled server-side by the migration.
 function trialStartAllowed(){
+  if(window.MV_ACCESS_MODEL !== 'subscription') return false;
   return PAYMENTS_ENABLED || PUBLIC_TRIAL_ENABLED || isTestHost();
 }
 

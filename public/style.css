@@ -456,3 +456,7 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 
 /* Under the post / comment boxes: their text is sent to DeepL for translation. */
 .cmy-privacy-note{margin:6px 0 8px; font-size:11.5px; line-height:1.45; color:var(--ink-soft);}
+
+/* ACCESS_MODEL (public/main.js): pieces of the old card subscription stay in
+   the markup but are hidden while the support model is live. */
+html[data-access-model="support"] .mv-sub-only{display:none !important;}
