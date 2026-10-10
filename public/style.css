@@ -444,3 +444,12 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .sw-update-go:disabled{opacity:.6; cursor:default;}
 .sw-update-x{flex:none; border:0; background:none; color:var(--ink-soft); font-size:18px; line-height:1; padding:2px 6px; cursor:pointer;}
 @media (prefers-reduced-motion: reduce){.sw-update{transition:none;}}
+
+/* Age-gate language selector (index.html #ageGateModal). Styles only — the
+   gate's show/hide logic is untouched. White text on the dark sheet; the
+   active language gets a green tint, green border and bold text instead of
+   the old opacity fade (opacity was what made it unreadable). */
+.ag-lang{padding:6px 12px; border:1px solid var(--line-strong); border-radius:20px; background:transparent; color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500; cursor:pointer;}
+.ag-lang:hover{border-color:var(--moss);}
+.ag-lang.on{background:rgba(42,235,160,0.16); border-color:var(--moss); font-weight:700;}
+.ag-lang:focus-visible{outline:2px solid var(--moss); outline-offset:2px;}
