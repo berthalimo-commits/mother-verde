@@ -5580,7 +5580,11 @@ translations.fr = Object.assign(translations.fr, {
   "subLoading": "Chargement de l'état de ton compte…",
 });
 
-let currentLang = 'es';
+// Language chosen last time in this browser (kept across reloads); Spanish otherwise.
+const MV_LANGS = ['es', 'en', 'de', 'fr'];
+let currentLang = (function(){
+  try { const l = localStorage.getItem('mv-lang'); return MV_LANGS.includes(l) ? l : 'es'; } catch(e){ return 'es'; }
+})();
 window.getCurrentLang = function(){ return currentLang; };
 /* Edibles safety reference title (free content). */
 translations.es.cmDoseRefTitle = "Qué significa cada rango de mg por porción";
@@ -6363,9 +6367,12 @@ function applyLang(){
 document.querySelectorAll('#langSwitch button').forEach(b=>{
   b.onclick = ()=>{
     currentLang = b.dataset.lang;
-    document.querySelectorAll('#langSwitch button').forEach(x=>x.classList.remove('lang-on'));
-    b.classList.add('lang-on');
+    try { localStorage.setItem('mv-lang', currentLang); } catch(e){}
+    mvSyncLangButtons();
     applyLang();
+    // Access texts (lock screen, pending-contribution notice, 24 h strip, Cuenta
+    // "Tu acceso" + gift code) are built in JavaScript, not data-i18n: redraw them.
+    mvRedrawAccessTexts();
     // applyLang() only re-applies data-i18n text; it doesn't touch the community
     // feed, which bakes localized post/comment text straight into HTML at render
     // time. Re-render it so posts, "Eliminar"/etc., and any comment thread
@@ -6386,6 +6393,22 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     if(document.getElementById('mdBuscarResultado')?.innerHTML.trim()) buscarEspecialista();
   };
 });
+
+// Marks the current language in the top switch and in the age-gate switch.
+function mvSyncLangButtons(){
+  document.querySelectorAll('#langSwitch button').forEach(x => x.classList.toggle('lang-on', x.dataset.lang === currentLang));
+  document.querySelectorAll('.ag-lang').forEach(x => {
+    const on = x.textContent.trim().toLowerCase() === currentLang;
+    x.classList.toggle('on', on);
+    x.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+function mvRedrawAccessTexts(){
+  if(ACCESS_MODEL !== 'support') return;
+  if(document.getElementById('acceso')?.classList.contains('active')) mvRenderAcceso();
+  mvRenderTrialStrip();
+  mvRenderCuentaAcceso();
+}
 
 // Screens reachable only from the "Más ▾" menu (not their own top-bar tab).
 const MORE_SCREENS = ['comunidad', 'seguridad', 'historia', 'glosario', 'calculadoras', 'bitacora', 'variedades', 'negocio'];
@@ -6721,6 +6744,8 @@ function mvRenderGiftBox(st){
   const show = ['trial', 'granted', 'expired', 'no_trial'].includes(st);
   box.hidden = !show;
   if(!show || box.dataset.lang === getCurrentLang()) return;
+  const wasOpen = !!document.getElementById('giftForm') && !document.getElementById('giftForm').hidden;
+  const typed = document.getElementById('giftCode')?.value || '';
   box.dataset.lang = getCurrentLang();
   box.innerHTML = '<button type="button" class="btn btn-ghost" id="giftToggle" onclick="mvOpenGiftForm()">' + t('giftTengo') + '</button>'
     + '<form id="giftForm" class="gift-form" hidden onsubmit="mvRedeemGift(event)">'
@@ -6728,6 +6753,10 @@ function mvRenderGiftBox(st){
     + '<input type="text" id="giftCode" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">'
     + '<button type="submit" class="btn btn-primary" id="giftBtn">' + t('giftCanjear') + '</button>'
     + '<p class="acc-note" id="giftMsg" aria-live="polite"></p></form>';
+  if(wasOpen){
+    document.getElementById('giftForm').hidden = false;
+    document.getElementById('giftCode').value = typed;
+  }
 }
 function mvOpenGiftForm(){
   if(document.getElementById('cuenta') && !document.getElementById('cuenta').classList.contains('active')) showScreen('cuenta');
@@ -9229,6 +9258,7 @@ function renderSymptomPicker(){
 /* Run once on load so the initial render always matches translations[currentLang],
    not just index.html's inline Spanish — keeps static/dynamic content from drifting
    apart again like it did earlier in this project. */
+mvSyncLangButtons();
 applyLang();
 
 /* ===================== BRILLO NEÓN: CURSOR (escritorio) ===================== */
