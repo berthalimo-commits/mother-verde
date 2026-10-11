@@ -6,6 +6,7 @@ begin;
 drop function if exists public.admin_reject_claim(bigint, text);
 drop function if exists public.admin_approve_claim(bigint, text);
 drop function if exists public.admin_list_claims(text[]);
+drop function if exists public.svc_claim_context(bigint);
 drop function if exists public.svc_approve_claim(bigint, uuid, text, text);
 drop function if exists public.svc_record_claim_check(bigint, jsonb, boolean, text);
 drop function if exists public.cancel_my_support_claim(bigint);

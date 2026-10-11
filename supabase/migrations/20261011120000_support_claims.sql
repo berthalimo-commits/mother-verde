@@ -243,6 +243,28 @@ begin
 end;
 $$;
 
+-- Everything the Edge Function needs about one claim (service role only):
+-- the claim, the account e-mail and language, and the verification settings.
+create or replace function public.svc_claim_context(p_claim_id bigint)
+returns jsonb
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select jsonb_build_object(
+           'claim', to_jsonb(c),
+           'email', u.email,
+           'lang', coalesce(p.preferred_lang, 'es'),
+           'min_confirmations', public.app_config_value('claim_min_confirmations', 30),
+           'auto_max_usdc', public.app_config_value('claim_auto_max_usdc', 100),
+           'auto_enabled', public.app_config_value('claim_auto_verify_enabled', 0) = 1)
+    from public.support_claims c
+    join auth.users u on u.id = c.user_id
+    left join public.profiles p on p.id = c.user_id
+   where c.id = p_claim_id;
+$$;
+
 -- ---------------------------------------------------------------- admins
 -- List claims (admins with MFA, or the SQL Editor).
 create or replace function public.admin_list_claims(p_statuses text[] default array['submitted', 'manual_review'])
@@ -324,10 +346,12 @@ revoke execute on function public.app_config_value(text, integer) from public, a
 revoke execute on function public.expire_support_claims() from public, anon, authenticated;
 revoke execute on function public.svc_record_claim_check(bigint, jsonb, boolean, text) from public, anon, authenticated;
 revoke execute on function public.svc_approve_claim(bigint, uuid, text, text) from public, anon, authenticated;
+revoke execute on function public.svc_claim_context(bigint) from public, anon, authenticated;
 grant execute on function public.app_config_value(text, integer) to service_role;
 grant execute on function public.expire_support_claims() to service_role;
 grant execute on function public.svc_record_claim_check(bigint, jsonb, boolean, text) to service_role;
 grant execute on function public.svc_approve_claim(bigint, uuid, text, text) to service_role;
+grant execute on function public.svc_claim_context(bigint) to service_role;
 revoke execute on function public.create_support_claim(integer) from public, anon;
 revoke execute on function public.submit_support_claim_tx(bigint, text) from public, anon;
 revoke execute on function public.cancel_my_support_claim(bigint) from public, anon;

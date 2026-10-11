@@ -175,6 +175,11 @@ declare
   v_id bigint;
   v_email text := lower(trim(p_email));
 begin
+  if v_email !~ '^[^@\s]+@[^@\s]+\.[a-z]{2,}$' or char_length(v_email) > 254 then raise exception 'bad_email'; end if;
+  if exists (select 1 from public.blocked_email_domains b
+             where split_part(v_email, '@', 2) = b.domain or split_part(v_email, '@', 2) like '%.' || b.domain) then
+    raise exception 'blocked_domain';
+  end if;
   perform pg_advisory_xact_lock(hashtext('gift_codes_send'));
   if public.gift_codes_created_today() >= 20 then raise exception 'daily_limit_20'; end if;
   if (select count(*) from public.gift_codes where lower(sent_to_email) = v_email) >= 3 then
