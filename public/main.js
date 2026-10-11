@@ -2300,7 +2300,7 @@ const translations = {
     tc2H3:'2. Elegibilidad y edad mínima', tc2P:'La App está destinada exclusivamente a personas de 18 años o más. Al confirmar tu edad en el acceso inicial, declaras y garantizas que cumples este requisito. Nos reservamos el derecho de suspender el acceso a cualquier cuenta si tenemos motivos razonables para creer que esta declaración es falsa.',
     tc3H3:'3. Naturaleza del contenido — esto no es asesoría médica ni legal', tc3P:'Todo el contenido de la App —incluyendo información sobre cultivo, elaboración, ciencia, dosificación, seguridad, y estatus legal por país— se ofrece <b>únicamente con fines educativos e informativos</b>. No constituye asesoría médica, diagnóstico, tratamiento, ni asesoría legal de ningún tipo. El estatus legal del cannabis cambia con frecuencia y varía por jurisdicción; es tu responsabilidad verificar la ley vigente en tu ubicación antes de actuar. Consulta siempre a un profesional de salud calificado antes de usar cannabis con fines medicinales, y a un abogado local para cualquier duda legal.',
     tc4H3:'4. Uso permitido', tc4P:'Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.',
-    tc5H3:'5. Suscripción Premium', tc5P:'La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.',
+    tc5H3:'5. Acceso completo', tc5P:'[PENDIENTE: redactar con contador y abogado — prueba gratis de 24 horas al confirmar el correo, aporte único de apoyo en USDC (red Base), códigos de regalo y retirada del acceso en caso de fraude.]',
     tc6H3:'6. Propiedad intelectual', tc6P:'Todo el contenido original de la App —textos, ilustraciones, marca, diseño— es propiedad de Mother Verde LLC o de sus licenciantes, y está protegido por las leyes de propiedad intelectual aplicables. No está permitida su reproducción comercial sin autorización previa por escrito.',
     tc7H3:'7. Contenido generado por el usuario', tc7P:'Herramientas como la Bitácora de cultivo almacenan la información que ingreses. Eres responsable del contenido que registras. No debes ingresar información sensible de terceros sin su consentimiento.',
     tc8H3:'8. Limitación de responsabilidad', tc8P:'En la medida permitida por la ley, Mother Verde LLC no será responsable por daños derivados del uso o la imposibilidad de uso de la App, incluyendo decisiones tomadas con base en la información proporcionada. La App se ofrece "tal cual", sin garantías de ningún tipo.',
@@ -2312,7 +2312,7 @@ const translations = {
     ppv2H3:'2. Dónde se almacena tu información', ppv2P:'La mayoría de los datos mencionados se guardan localmente en tu propio dispositivo, no en nuestros servidores. Esto significa que, en su forma actual, gran parte de tu actividad en la App permanece en tu teléfono o navegador, y no la recopilamos de forma centralizada.',
     ppv2AdminP:'Dentro del directorio de comunidad, tu nombre, país y tipo de perfil son visibles para otras personas que usen la App. Datos como tu correo electrónico nunca se muestran públicamente — solo el equipo administrador de Mother Verde LLC tiene acceso a esa información, con controles de seguridad específicos para eso (verificación en dos pasos, registro de accesos).',
     ppv3H3:'3. Cómo usamos tu información', ppv3P:'Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.',
-    ppv4H3:'4. Servicios de terceros y pagos', ppv4P:'Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.',
+    ppv4H3:'4. Servicios de terceros', ppv4P:'[PENDIENTE: lista de proveedores (Supabase, Vercel, DeepL, Hostinger) y tratamiento de los aportes recibidos en la red Base — confirmar con contador y abogado.]',
     ppv5H3:'5. Tus derechos', ppv5P:'Puedes eliminar la información almacenada localmente borrando los datos de la App desde la configuración de tu dispositivo. Si en el futuro almacenamos datos en servidores, tendrás derecho a solicitar acceso, corrección o eliminación de tu información, según lo permita la ley de tu jurisdicción.',
     ppv6H3:'6. Privacidad de menores', ppv6P:'La App está restringida a personas mayores de 18 años mediante verificación de edad al ingresar. No recopilamos intencionalmente información de menores de edad.',
     ppv7H3:'7. Cambios a esta política', ppv7P:'Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos dentro de la App.',
@@ -2379,10 +2379,9 @@ const translations = {
     bitErrSinNota:'Escribe una nota antes de guardar.', bitGuardadoOk:'✓ Guardado', bitErrGuardar:'No se pudo guardar — intenta de nuevo.',
     bitSinFecha:'sin fecha', bitEliminar:'Eliminar', bitSinNotas:'(sin notas)', bitVacio:'Todavía no hay entradas — agrega la primera arriba.',
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
-    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.',
-    cuentaPremiumActivo:'✓ Acceso completo activo.', cuentaGestionarBtn:'Gestionar suscripción', cuentaGestionarAlert:'En la app real, esto abriría la gestión de suscripción de Apple/Google.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', cuentaSuscribirBtn:'Obtener Premium — $7.10/mes',
-    pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', pmComprarBtn:'Comprar Premium — $7.10/mes',
-    pmPagoSeguroNote:'Pago procesado de forma segura por App Store / Google Play / Stripe — Mother Verde nunca ve ni guarda tu número de tarjeta.',
+    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.',
+    cuentaPremiumActivo:'✓ Acceso completo activo.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', 
+    pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', 
     alertasEyebrow:'Incluido en el acceso completo', alertasTitle:'Alertas de cambio legal', alertasSub:'Sigue países específicos — te avisamos apenas cambie su estatus, sin que tengas que revisar manualmente.', alertasSigues:'Países que sigues', alertasSeguirBtn:'Seguir', alertasEjemploTitle:'Así se vería una alerta real', alertasEjemploH4:'Alemania actualizó su límite de posesión personal', alertasEjemploTag:'Cambio confirmado', alertasEjemploMeta:'Hace 2 días · Fuente: BfArM', alertasEjemploBody:'Ejemplo ilustrativo de cómo llegaría una notificación real cuando un país que sigues actualiza su marco legal.',
     alertaSemillasH4:'EE. UU.: prohibición federal al comercio interestatal de semillas con 0.3%+ THC', alertaSemillasTag:'Alerta real — no ilustrativa', alertaSemillasMeta:'21 de julio de 2026 · Fuente: MJBizDaily',
     alertaSemillasBody:'La redefinición federal del cáñamo hace ilegal enviar semillas de cultivares con 0.3% THC o más entre estados, a partir del <b>12 de noviembre de 2026</b>. Bancos de semillas ya están diversificando operaciones a distintos estados para poder seguir operando después de esa fecha.',
@@ -2582,7 +2581,7 @@ const translations = {
     ttG5h4:'Rosin (calor + presión mecánica)', ttPasos3b:'3 pasos', ttG5desc:'1) Envuelve flor curada, hash o kief en papel pergamino doblado. 2) Presiona con una plancha de pelo o prensa de rosin a temperatura media (~90–120 °C) por 5–10 segundos. 3) Despega el papel de inmediato y recolecta el aceite antes de que se enfríe.',
     ttG6h4:'Dry sift (tamizado)', ttPasos3c:'3 pasos', ttG6desc:'1) Coloca flor seca sobre una malla de micra fina, sobre una superficie lisa debajo. 2) Frota suavemente con una tarjeta o rodillo para desprender los tricomas. 3) Recolecta el polvo que cae — eso es el kief.',
     ttG7h4:'Decarboxilación en horno', ttPasos3d:'3 pasos', ttG7desc:'1) Desmenuza la flor en trozos parejos sobre una bandeja con papel para hornear. 2) Hornea a ~110–115 °C durante 45–60 min, revisando que no se dore de más. 3) Deja enfriar antes de usarla en cualquier infusión.',
-    ttNoteFinal:'Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el plan de suscripción.',
+    ttNoteFinal:'Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el tipo de acceso.',
     ttCtaH3:'¿Necesitas una fórmula de dosificación real para tu producto?', ttCtaP:'Tinturas, cápsulas o parches con dosis precisa y consistente por lote requieren cálculos específicos. Podemos ayudarte a pensarlo para tu operación.',
     vpTiposH3:'Qué hay realmente dentro del cartucho: 3 formas legítimas de hacerlo', vpTiposIntro:'Antes de hablar de riesgos, vale la pena reconocer que existen empresas que siguen estándares reales y producen aceite de calidad genuina — de formas bastante distintas entre sí. Estas son las 3 categorías principales que vas a encontrar en un mercado legal y regulado.',
     vpDestH4:'Destilado', vpDestSci:'Con solventes + destilación', vpDestDesc:'Se extrae con CO2, etanol, o hidrocarburos, luego se "winteriza" (congela y filtra para quitar grasas y ceras), y se refina mediante destilación de trayecto corto — un proceso de purificación real y bien documentado. El resultado es un aceite muy limpio, con THC frecuentemente entre 85-99%, pero prácticamente sin terpenos propios — por eso casi siempre se le re-agregan terpenos (de cannabis o botánicos) después.',
@@ -2837,13 +2836,13 @@ const translations = {
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
     cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
     cmySecTipos:'La función que más supervisión necesita antes de abrirse',
-    cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', cmy1p:'Bitácoras tipo diario, ligadas a un método específico, para cruzar experiencia real contra la ficha oficial.',
-    cmy2h4:'Confirmaciones de diagnóstico', cmy2sci:'Se conecta con <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>', cmy2p:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de plaga o enfermedad.',
+    cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', 
+    cmy2h4:'Confirmaciones de diagnóstico', cmy2sci:'Se conecta con <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>', 
     cmy3h4:'Reportes de viajero', cmy3sci:'Se conecta con Legal &amp; Viajero', cmy3p:'Experiencias reales en fronteras y aduanas por país — las leyes cambian más rápido de lo que cualquier app actualiza sola.',
     cmy4h4:'Preguntas y respuestas', cmy4sci:'Moderadas', cmy4p:'Un perfil verificado puede responder con más peso visible que uno anónimo.',
     cmy5h4:'Testimonios médicos', cmy5sci:'Con disclaimer obligatorio', cmy5p:'Siempre visible: experiencia personal, no consejo médico. Nunca se muestra sin esa etiqueta.',
     cmySecVerif:'Verificación', cmyVerifP:'Un perfil profesional registrado en Negocio (master grower, compliance officer, etc.) puede pedir una insignia verificada — sus respuestas se distinguen visualmente. Cada publicación lleva una etiqueta permanente: <b>"Verificado por la app"</b> (dato oficial) o <b>"Reporte de comunidad, no verificado"</b> — nunca se mezclan sin distinción clara.',
-    cmySecLineas:'Líneas rojas', cmyLineasP:'<b>Cero marketplace</b> — nada de compra-venta ni intercambio de contacto para vender; es lo que permite seguir cumpliendo las políticas de las tiendas de apps. <b>Cero ubicaciones específicas de cultivo</b>, por seguridad. Ningún testimonio médico se publica sin el disclaimer visible.',
+    cmySecLineas:'Líneas rojas', cmyLineasP:'<b>Cero marketplace</b> — nada de compra-venta ni intercambio de contacto para vender; es lo que permite seguir cumpliendo las políticas de las plataformas donde funciona. <b>Cero ubicaciones específicas de cultivo</b>, por seguridad. Ningún testimonio médico se publica sin el disclaimer visible.',
     vrEyebrow:'Variedades &amp; cultivares', vrTitle:'Base de datos buscable', vrSub:'Nunca decimos "strain" — es un término de microbiología (bacterias, virus, hongos), no de botánica. Usamos <b>variedad</b> (adaptación natural, como una landrace) o <b>cultivar</b> (cruce desarrollado intencionalmente por un breeder).',
     vrTodos:'Todos', vrTipoI:'Tipo I (THC)', vrTipoII:'Tipo II (balanceado)', vrTipoIII:'Tipo III (CBD)',
     vrTipoPrefix:'Tipo', vrLinaje:'Linaje', vrTerpenos:'Terpenos', vrDificultad:'Dificultad', vrVisteTeaser:'Viste', vrDe:'de', vrDesbloquea:'Desbloquea la base de datos completa con el acceso completo.',
@@ -3139,7 +3138,7 @@ const translations = {
     tc2H3:'2. Eligibility and minimum age', tc2P:'The App is intended exclusively for people 18 years of age or older. By confirming your age on initial access, you represent and warrant that you meet this requirement. We reserve the right to suspend access to any account if we have reasonable grounds to believe this statement is false.',
     tc3H3:'3. Nature of the content — this is not medical or legal advice', tc3P:'All content in the App — including information on growing, making, science, dosing, safety, and legal status by country — is provided <b>solely for educational and informational purposes</b>. It does not constitute medical advice, diagnosis, treatment, or legal advice of any kind. The legal status of cannabis changes frequently and varies by jurisdiction; it is your responsibility to verify the law in effect in your location before acting. Always consult a qualified health professional before using cannabis for medicinal purposes, and a local lawyer for any legal questions.',
     tc4H3:'4. Permitted use', tc4P:'You agree to use the App only in a lawful manner, in accordance with the laws of your jurisdiction. You must not use the App to facilitate illegal activities, nor attempt to access restricted parts of the service without authorization.',
-    tc5H3:'5. Premium subscription', tc5P:'The App offers a free tier and a paid Premium tier with additional content. Pricing, billing, and cancellation details are specified at the time of subscription. We reserve the right to modify the pricing and benefits of each tier, with reasonable prior notice.',
+    tc5H3:'5. Full access', tc5P:'[PENDING: to be drafted with the accountant and the lawyer — 24-hour free trial on e-mail confirmation, one-time support contribution in USDC (Base network), gift codes and withdrawal of access in case of fraud.]',
     tc6H3:'6. Intellectual property', tc6P:'All original content in the App — text, illustrations, brand, design — is the property of Mother Verde LLC or its licensors, and is protected by applicable intellectual property laws. Commercial reproduction is not permitted without prior written authorization.',
     tc7H3:'7. User-generated content', tc7P:'Tools such as the Grow Log store the information you enter. You are responsible for the content you record. You must not enter sensitive information about third parties without their consent.',
     tc8H3:'8. Limitation of liability', tc8P:'To the extent permitted by law, Mother Verde LLC will not be liable for damages arising from the use or inability to use the App, including decisions made based on the information provided. The App is offered "as is", without warranties of any kind.',
@@ -3151,7 +3150,7 @@ const translations = {
     ppv2H3:'2. Where your information is stored', ppv2P:'Most of the data mentioned is stored locally on your own device, not on our servers. This means that, in its current form, most of your activity in the App stays on your phone or browser, and we do not collect it centrally.',
     ppv2AdminP:'Within the community directory, your name, country, and profile type are visible to other people using the App. Data such as your email address is never shown publicly — only the Mother Verde LLC admin team has access to that information, with specific security controls for it (two-factor verification, access logging).',
     ppv3H3:'3. How we use your information', ppv3P:'We use the stored information only so the App works as you expect: remembering your language, your age verification, and the content you yourself enter into tools like the Grow Log. We do not sell your information to third parties.',
-    ppv4H3:'4. Third-party services and payments', ppv4P:'Premium subscription payments are processed through the App Store, Google Play, or Stripe — never directly by Mother Verde. <b>Mother Verde LLC never receives, processes, or stores your card number, CVV, or expiration date.</b> We only receive confirmation that payment was made and your subscription status. Those payment processors have their own privacy policies, independent of this one.',
+    ppv4H3:'4. Third-party services', ppv4P:'[PENDING: list of providers (Supabase, Vercel, DeepL, Hostinger) and how contributions received on the Base network are handled — to confirm with the accountant and the lawyer.]',
     ppv5H3:'5. Your rights', ppv5P:'You can delete locally stored information by clearing the App\u2019s data from your device settings. If in the future we store data on servers, you will have the right to request access, correction, or deletion of your information, as permitted by the law of your jurisdiction.',
     ppv6H3:'6. Children\u2019s privacy', ppv6P:'The App is restricted to people 18 and older through age verification on entry. We do not knowingly collect information from minors.',
     ppv7H3:'7. Changes to this policy', ppv7P:'We may update this Privacy Policy periodically. We will notify you of significant changes within the App.',
@@ -3218,10 +3217,9 @@ const translations = {
     bitErrSinNota:'Write a note before saving.', bitGuardadoOk:'✓ Saved', bitErrGuardar:'Could not save — try again.',
     bitSinFecha:'no date', bitEliminar:'Delete', bitSinNotas:'(no notes)', bitVacio:'No entries yet — add the first one above.',
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
-    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and your data are stored on our server, not only on this device.',
-    cuentaPremiumActivo:'✓ Full access active.', cuentaGestionarBtn:'Manage subscription', cuentaGestionarAlert:'In the real app, this would open Apple/Google subscription management.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', cuentaSuscribirBtn:'Get Premium — $7.10/month',
-    pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', pmComprarBtn:'Buy Premium — $7.10/month',
-    pmPagoSeguroNote:'Payment securely processed by the App Store / Google Play / Stripe — Mother Verde never sees or stores your card number.',
+    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and your data are stored on our server, not only on this device.',
+    cuentaPremiumActivo:'✓ Full access active.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', 
+    pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', 
     alertasEyebrow:'Included in full access', alertasTitle:'Legal change alerts', alertasSub:'Follow specific countries — we notify you as soon as their status changes, no need to check manually.', alertasSigues:'Countries you follow', alertasSeguirBtn:'Follow', alertasEjemploTitle:'This is what a real alert would look like', alertasEjemploH4:'Germany updated its personal possession limit', alertasEjemploTag:'Confirmed change', alertasEjemploMeta:'2 days ago · Source: BfArM', alertasEjemploBody:'Illustrative example of how a real notification would arrive when a country you follow updates its legal framework.',
     alertaSemillasH4:'U.S.: federal ban on interstate trade of seeds with 0.3%+ THC', alertaSemillasTag:'Real alert — not illustrative', alertaSemillasMeta:'July 21, 2026 · Source: MJBizDaily',
     alertaSemillasBody:'The federal redefinition of hemp makes it illegal to ship seeds from cultivars with 0.3% THC or more across state lines, starting <b>November 12, 2026</b>. Seed banks are already diversifying operations to different states in order to keep operating after that date.',
@@ -3421,7 +3419,7 @@ const translations = {
     ttG5h4:'Rosin (heat + mechanical pressure)', ttPasos3b:'3 steps', ttG5desc:'1) Wrap cured flower, hash or kief in folded parchment paper. 2) Press with a hair straightener or rosin press at medium temperature (~90-120°C) for 5-10 seconds. 3) Peel off the paper immediately and collect the oil before it cools.',
     ttG6h4:'Dry sift (sieving)', ttPasos3c:'3 steps', ttG6desc:'1) Place dry flower on a fine-micron screen, over a smooth surface underneath. 2) Rub gently with a card or roller to knock the trichomes loose. 3) Collect the powder that falls through — that is the kief.',
     ttG7h4:'Oven decarboxylation', ttPasos3d:'3 steps', ttG7desc:'1) Break the flower into even pieces on a tray lined with baking paper. 2) Bake at about 110-115°C for 45-60 min, checking that it does not over-brown. 3) Let it cool before using it in any infusion.',
-    ttNoteFinal:'These 6 techniques use only kitchen heat, simple mechanical pressure, or sieving — no pressurized gas systems or flammable solvents. That is the real limit of what this app teaches step by step. Anything requiring specialized equipment or handling flammable substances (BHO, CO2, vape liquid formulation) stays at the science and characteristics level you already saw in Concentrates and Vapes — never operational instructions, regardless of subscription plan.',
+    ttNoteFinal:'These 6 techniques use only kitchen heat, simple mechanical pressure, or sieving — no pressurized gas systems or flammable solvents. That is the real limit of what this app teaches step by step. Anything requiring specialized equipment or handling flammable substances (BHO, CO2, vape liquid formulation) stays at the science and characteristics level you already saw in Concentrates and Vapes — never operational instructions, regardless of the type of access.',
     ttCtaH3:'Need a real dosing formula for your product?', ttCtaP:'Tinctures, capsules, or patches with precise, batch-consistent dosing require specific calculations. We can help you think it through for your operation.',
     vpTiposH3:'What\u2019s actually inside the cartridge: 3 legitimate ways to make it', vpTiposIntro:'Before talking about risks, it\u2019s worth recognizing that real companies follow real standards and produce genuinely quality oil — in quite different ways from one another. These are the 3 main categories you\u2019ll find in a legal, regulated market.',
     vpDestH4:'Distillate', vpDestSci:'Solvent-based + distilled', vpDestDesc:'Extracted with CO2, ethanol, or hydrocarbons, then "winterized" (frozen and filtered to remove fats and waxes), and refined through short-path distillation — a real, well-documented purification process. The result is a very clean oil, with THC often between 85-99%, but with almost no terpenes of its own — which is why terpenes (cannabis-derived or botanical) are nearly always added back afterward.',
@@ -3676,13 +3674,13 @@ const translations = {
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
     cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
     cmySecTipos:'The feature that needs the most oversight before opening',
-    cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', cmy1p:'Diary-style logs, tied to a specific method, to cross-check real experience against the official card.',
-    cmy2h4:'Diagnosis confirmations', cmy2sci:'Connects with <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis</a>', cmy2p:'The most valuable of all: "I had exactly this and this worked for me," linked to a real pest or disease card.',
+    cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', 
+    cmy2h4:'Diagnosis confirmations', cmy2sci:'Connects with <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis</a>', 
     cmy3h4:'Traveler reports', cmy3sci:'Connects with Legal &amp; Travel', cmy3p:'Real border and customs experiences by country — laws change faster than any app can update alone.',
     cmy4h4:'Questions and answers', cmy4sci:'Moderated', cmy4p:'A verified profile can answer with more visible weight than an anonymous one.',
     cmy5h4:'Medical testimonials', cmy5sci:'With mandatory disclaimer', cmy5p:'Always visible: personal experience, not medical advice. Never shown without that label.',
     cmySecVerif:'Verification', cmyVerifP:'A professional profile registered in Business (master grower, compliance officer, etc.) can request a verified badge — their answers are visually distinguished. Every post carries a permanent label: <b>"Verified by the app"</b> (official data) or <b>"Community report, unverified"</b> — never mixed without a clear distinction.',
-    cmySecLineas:'Red lines', cmyLineasP:'<b>Zero marketplace</b> — no buying, selling, or exchanging contact info to sell; that is what keeps this app compliant with app store policies. <b>Zero specific grow locations</b>, for safety. No medical testimonial is published without the visible disclaimer.',
+    cmySecLineas:'Red lines', cmyLineasP:'<b>Zero marketplace</b> — no buying, selling, or exchanging contact info to sell; that is what keeps this app compliant with the policies of the platforms it runs on. <b>Zero specific grow locations</b>, for safety. No medical testimonial is published without the visible disclaimer.',
     vrEyebrow:'Varieties &amp; cultivars', vrTitle:'Searchable database', vrSub:'We never say "strain" — that is a microbiology term (bacteria, viruses, fungi), not a botanical one. We use <b>variety</b> (natural adaptation, like a landrace) or <b>cultivar</b> (a cross intentionally developed by a breeder).',
     vrTodos:'All', vrTipoI:'Type I (THC)', vrTipoII:'Type II (balanced)', vrTipoIII:'Type III (CBD)',
     vrTipoPrefix:'Type', vrLinaje:'Lineage', vrTerpenos:'Terpenes', vrDificultad:'Difficulty', vrVisteTeaser:'You saw', vrDe:'of', vrDesbloquea:'Unlock the full database with full access.',
@@ -3977,7 +3975,7 @@ const translations = {
     tc2H3:'2. Berechtigung und Mindestalter', tc2P:'Die App ist ausschließlich für Personen ab 18 Jahren bestimmt. Durch die Bestätigung deines Alters beim ersten Zugriff versicherst du, dass du diese Anforderung erfüllst. Wir behalten uns das Recht vor, den Zugang zu jedem Konto zu sperren, wenn wir begründeten Anlass zu der Annahme haben, dass diese Angabe falsch ist.',
     tc3H3:'3. Art des Inhalts — dies ist keine medizinische oder rechtliche Beratung', tc3P:'Alle Inhalte der App — einschließlich Informationen zu Anbau, Verarbeitung, Wissenschaft, Dosierung, Sicherheit und rechtlichem Status nach Land — werden <b>ausschließlich zu Bildungs- und Informationszwecken</b> bereitgestellt. Sie stellen keine medizinische Beratung, Diagnose, Behandlung oder Rechtsberatung jeglicher Art dar. Der rechtliche Status von Cannabis ändert sich häufig und variiert je nach Rechtsprechung; es liegt in deiner Verantwortung, das an deinem Standort geltende Recht vor dem Handeln zu überprüfen. Konsultiere vor der medizinischen Nutzung von Cannabis stets eine qualifizierte Gesundheitsfachkraft und bei rechtlichen Fragen einen örtlichen Anwalt.',
     tc4H3:'4. Erlaubte Nutzung', tc4P:'Du verpflichtest dich, die App nur auf rechtmäßige Weise gemäß den Gesetzen deiner Rechtsprechung zu nutzen. Du darfst die App nicht zur Erleichterung illegaler Aktivitäten nutzen und nicht versuchen, ohne Berechtigung auf eingeschränkte Teile des Dienstes zuzugreifen.',
-    tc5H3:'5. Premium-Abonnement', tc5P:'Die App bietet eine kostenlose Stufe und eine kostenpflichtige Premium-Stufe mit zusätzlichen Inhalten. Details zu Preis, Abrechnung und Kündigung werden zum Zeitpunkt des Abonnements angegeben. Wir behalten uns das Recht vor, die Preise und Vorteile jeder Stufe mit angemessener vorheriger Ankündigung zu ändern.',
+    tc5H3:'5. Vollzugriff', tc5P:'[AUSSTEHEND: mit Steuerberatung und Anwalt zu verfassen — 24-stündige Gratis-Testphase nach Bestätigung der E-Mail, einmaliger Unterstützungsbeitrag in USDC (Base-Netzwerk), Geschenkcodes und Entzug des Zugangs bei Betrug.]',
     tc6H3:'6. Geistiges Eigentum', tc6P:'Alle Originalinhalte der App — Texte, Illustrationen, Marke, Design — sind Eigentum von Mother Verde LLC oder ihrer Lizenzgeber und durch geltendes Recht zum Schutz geistigen Eigentums geschützt. Eine kommerzielle Vervielfältigung ist ohne vorherige schriftliche Genehmigung nicht gestattet.',
     tc7H3:'7. Von Nutzern erstellte Inhalte', tc7P:'Werkzeuge wie das Anbautagebuch speichern die von dir eingegebenen Informationen. Du bist für die von dir erfassten Inhalte verantwortlich. Du darfst keine sensiblen Informationen Dritter ohne deren Zustimmung eingeben.',
     tc8H3:'8. Haftungsbeschränkung', tc8P:'Soweit gesetzlich zulässig, haftet Mother Verde LLC nicht für Schäden, die aus der Nutzung oder der Unmöglichkeit der Nutzung der App entstehen, einschließlich Entscheidungen, die auf Basis der bereitgestellten Informationen getroffen wurden. Die App wird "wie besehen" ohne jegliche Gewährleistung angeboten.',
@@ -3989,7 +3987,7 @@ const translations = {
     ppv2H3:'2. Wo deine Informationen gespeichert werden', ppv2P:'Die meisten der genannten Daten werden lokal auf deinem eigenen Gerät gespeichert, nicht auf unseren Servern. Das bedeutet, dass in der aktuellen Form der Großteil deiner Aktivität in der App auf deinem Telefon oder Browser verbleibt und wir sie nicht zentral erfassen.',
     ppv2AdminP:'Im Community-Verzeichnis sind dein Name, dein Land und dein Profiltyp für andere Personen sichtbar, die die App nutzen. Daten wie deine E-Mail-Adresse werden niemals öffentlich angezeigt — nur das Admin-Team von Mother Verde LLC hat Zugriff auf diese Informationen, mit spezifischen Sicherheitskontrollen dafür (Zwei-Faktor-Verifizierung, Zugriffsprotokollierung).',
     ppv3H3:'3. Wie wir deine Informationen verwenden', ppv3P:'Wir verwenden die gespeicherten Informationen nur, damit die App wie erwartet funktioniert: um deine Sprache, deine Altersverifizierung und die Inhalte zu merken, die du selbst in Werkzeuge wie das Anbautagebuch eingibst. Wir verkaufen deine Informationen nicht an Dritte.',
-    ppv4H3:'4. Dienste Dritter und Zahlungen', ppv4P:'Zahlungen für das Premium-Abonnement werden über den App Store, Google Play oder Stripe abgewickelt — niemals direkt durch Mother Verde. <b>Mother Verde LLC erhält, verarbeitet oder speichert niemals deine Kartennummer, CVV oder das Ablaufdatum.</b> Wir erhalten lediglich eine Bestätigung, dass die Zahlung erfolgt ist, und deinen Abonnementstatus. Diese Zahlungsabwickler haben ihre eigenen, von dieser unabhängigen Datenschutzrichtlinien.',
+    ppv4H3:'4. Dienste Dritter', ppv4P:'[AUSSTEHEND: Liste der Anbieter (Supabase, Vercel, DeepL, Hostinger) und Umgang mit den im Base-Netzwerk erhaltenen Beiträgen — mit Steuerberatung und Anwalt zu bestätigen.]',
     ppv5H3:'5. Deine Rechte', ppv5P:'Du kannst lokal gespeicherte Informationen löschen, indem du die App-Daten über die Geräteeinstellungen entfernst. Sollten wir in Zukunft Daten auf Servern speichern, hast du das Recht, Zugang, Berichtigung oder Löschung deiner Informationen zu verlangen, soweit das Recht deiner Rechtsprechung dies zulässt.',
     ppv6H3:'6. Datenschutz für Kinder', ppv6P:'Die App ist durch Altersverifizierung beim Zugriff auf Personen ab 18 Jahren beschränkt. Wir sammeln nicht wissentlich Informationen von Minderjährigen.',
     ppv7H3:'7. Änderungen dieser Richtlinie', ppv7P:'Wir können diese Datenschutzrichtlinie regelmäßig aktualisieren. Wir werden dich über wesentliche Änderungen innerhalb der App informieren.',
@@ -4056,10 +4054,9 @@ const translations = {
     bitErrSinNota:'Schreibe eine Notiz, bevor du speicherst.', bitGuardadoOk:'✓ Gespeichert', bitErrGuardar:'Konnte nicht gespeichert werden — versuch es erneut.',
     bitSinFecha:'kein Datum', bitEliminar:'Löschen', bitSinNotas:'(keine Notizen)', bitVacio:'Noch keine Einträge — füge oben den ersten hinzu.',
     bitFotoLabel:'Foto (optional)', bitFotoNota:'Wird automatisch komprimiert, um Speicherplatz zu sparen. Bei vielen Einträgen mit Foto kann der Speicherplatz des Prototyps voll werden — in der Produktion würde dies auf einem echten Server ohne dieses Limit liegen.',
-    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden auf unserem Server gespeichert, nicht nur auf diesem Gerät.',
-    cuentaPremiumActivo:'✓ Vollzugriff aktiv.', cuentaGestionarBtn:'Abo verwalten', cuentaGestionarAlert:'In der echten App würde dies die Abo-Verwaltung von Apple/Google öffnen.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', cuentaSuscribirBtn:'Premium holen — 7,10 $/Monat',
-    pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', pmComprarBtn:'Premium kaufen — 7,10 $/Monat',
-    pmPagoSeguroNote:'Zahlung sicher abgewickelt über App Store / Google Play / Stripe — Mother Verde sieht oder speichert deine Kartennummer niemals.',
+    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden auf unserem Server gespeichert, nicht nur auf diesem Gerät.',
+    cuentaPremiumActivo:'✓ Vollzugriff aktiv.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', 
+    pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', 
     alertaSemillasH4:'USA: Bundesweites Verbot des zwischenstaatlichen Handels mit Samen mit 0,3 %+ THC', alertaSemillasTag:'Echte Benachrichtigung — nicht illustrativ', alertaSemillasMeta:'21. Juli 2026 · Quelle: MJBizDaily',
     alertaSemillasBody:'Die bundesweite Neudefinition von Hanf macht es ab dem <b>12. November 2026</b> illegal, Samen von Sorten mit 0,3 % THC oder mehr über Bundesstaatsgrenzen zu versenden. Samenbanken diversifizieren ihre Aktivitäten bereits auf verschiedene Bundesstaaten, um nach diesem Datum weiter operieren zu können.',
     alertaSemillasLink:'Mehr lesen auf mjbizdaily.com →',
@@ -4258,7 +4255,7 @@ const translations = {
     ttG5h4:'Rosin (Hitze + mechanischer Druck)', ttPasos3b:'3 Schritte', ttG5desc:'1) Wickle gereifte Blüte, Hash oder Kief in gefaltetes Backpapier. 2) Presse mit einem Haarglätteisen oder einer Rosin-Presse bei mittlerer Temperatur (~90–120 °C) für 5–10 Sekunden. 3) Löse das Papier sofort ab und sammle das Öl, bevor es abkühlt.',
     ttG6h4:'Dry Sift (Sieben)', ttPasos3c:'3 Schritte', ttG6desc:'1) Lege trockene Blüte auf ein feines Mikron-Sieb, mit einer glatten Oberfläche darunter. 2) Reibe sanft mit einer Karte oder Rolle, um die Trichome zu lösen. 3) Sammle das durchfallende Pulver — das ist das Kief.',
     ttG7h4:'Decarboxylierung im Ofen', ttPasos3d:'3 Schritte', ttG7desc:'1) Zerkleinere die Blüte in gleichmäßige Stücke auf einem mit Backpapier ausgelegten Blech. 2) Backe bei ~110–115 °C für 45–60 Min und achte darauf, dass sie nicht zu stark bräunt. 3) Vor der Verwendung in jeglicher Infusion abkühlen lassen.',
-    ttNoteFinal:'Diese 6 Techniken verwenden nur Küchenhitze, einfachen mechanischen Druck oder Sieben — keine Druckgassysteme oder entzündlichen Lösungsmittel. Das ist die echte Grenze dessen, was diese App Schritt für Schritt lehrt. Alles, was Spezialausrüstung oder den Umgang mit entzündlichen Substanzen erfordert (BHO, CO2, Vape-Flüssigkeits-Formulierung), bleibt auf der Ebene von Wissenschaft und Eigenschaften, die du bereits in Konzentrate und Vapes gesehen hast — nie in operativen Anweisungen, unabhängig vom Abo-Plan.',
+    ttNoteFinal:'Diese 6 Techniken verwenden nur Küchenhitze, einfachen mechanischen Druck oder Sieben — keine Druckgassysteme oder entzündlichen Lösungsmittel. Das ist die echte Grenze dessen, was diese App Schritt für Schritt lehrt. Alles, was Spezialausrüstung oder den Umgang mit entzündlichen Substanzen erfordert (BHO, CO2, Vape-Flüssigkeits-Formulierung), bleibt auf der Ebene von Wissenschaft und Eigenschaften, die du bereits in Konzentrate und Vapes gesehen hast — nie in operativen Anweisungen, unabhängig von der Art des Zugangs.',
     ttCtaH3:'Brauchst du eine echte Dosierungsformel für dein Produkt?', ttCtaP:'Tinkturen, Kapseln oder Pflaster mit präziser, chargenkonsistenter Dosierung erfordern spezifische Berechnungen. Wir können dir helfen, es für deinen Betrieb durchzudenken.',
     vpTiposH3:'Was wirklich in der Cartridge steckt: 3 legitime Herstellungswege', vpTiposIntro:'Bevor wir über Risiken sprechen, lohnt es sich anzuerkennen, dass es Unternehmen gibt, die echte Standards einhalten und Öl von echter Qualität herstellen — auf recht unterschiedliche Weise. Dies sind die 3 Hauptkategorien, die du auf einem legalen, regulierten Markt findest.',
     vpDestH4:'Destillat', vpDestSci:'Mit Lösungsmitteln + destilliert', vpDestDesc:'Extrahiert mit CO2, Ethanol oder Kohlenwasserstoffen, dann "winterisiert" (gefroren und gefiltert, um Fette und Wachse zu entfernen), und durch Kurzwegdestillation raffiniert — ein realer, gut dokumentierter Reinigungsprozess. Das Ergebnis ist ein sehr sauberes Öl mit THC häufig zwischen 85-99 %, aber praktisch ohne eigene Terpene — deshalb werden fast immer Terpene (aus Cannabis oder botanisch) nachträglich wieder zugesetzt.',
@@ -4513,13 +4510,13 @@ const translations = {
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
     cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
     cmySecTipos:'Die Funktion, die vor der Öffnung am meisten Aufsicht braucht',
-    cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', cmy1p:'Tagebuchartige Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Karte abzugleichen.',
-    cmy2h4:'Diagnosebestätigungen', cmy2sci:'Verbindet sich mit <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>', cmy2p:'Der wertvollste von allen: "ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten Schädlings- oder Krankheitskarte.',
+    cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', 
+    cmy2h4:'Diagnosebestätigungen', cmy2sci:'Verbindet sich mit <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>', 
     cmy3h4:'Reiseberichte', cmy3sci:'Verbindet sich mit Recht &amp; Reisen', cmy3p:'Echte Erfahrungen an Grenzen und im Zoll nach Land — Gesetze ändern sich schneller, als jede App allein aktualisieren kann.',
     cmy4h4:'Fragen und Antworten', cmy4sci:'Moderiert', cmy4p:'Ein verifiziertes Profil kann mit sichtbar mehr Gewicht antworten als ein anonymes.',
     cmy5h4:'Medizinische Erfahrungsberichte', cmy5sci:'Mit obligatorischem Haftungsausschluss', cmy5p:'Immer sichtbar: persönliche Erfahrung, kein medizinischer Rat. Wird nie ohne dieses Label angezeigt.',
     cmySecVerif:'Verifizierung', cmyVerifP:'Ein bei Geschäft registriertes berufliches Profil (Master Grower, Compliance Officer usw.) kann ein verifiziertes Abzeichen beantragen — seine Antworten werden visuell hervorgehoben. Jeder Beitrag trägt ein dauerhaftes Label: <b>"Von der App verifiziert"</b> (offizielle Daten) oder <b>"Community-Bericht, nicht verifiziert"</b> — niemals ohne klare Unterscheidung vermischt.',
-    cmySecLineas:'Rote Linien', cmyLineasP:'<b>Kein Marktplatz</b> — kein Kaufen, Verkaufen oder Austausch von Kontaktdaten zum Verkauf; das hält diese App konform mit den Richtlinien der App-Stores. <b>Keine spezifischen Anbauorte</b>, aus Sicherheitsgründen. Kein medizinischer Erfahrungsbericht wird ohne sichtbaren Haftungsausschluss veröffentlicht.',
+    cmySecLineas:'Rote Linien', cmyLineasP:'<b>Kein Marktplatz</b> — kein Kaufen, Verkaufen oder Austausch von Kontaktdaten zum Verkauf; das hält diese App konform mit den Richtlinien der Plattformen, auf denen sie läuft. <b>Keine spezifischen Anbauorte</b>, aus Sicherheitsgründen. Kein medizinischer Erfahrungsbericht wird ohne sichtbaren Haftungsausschluss veröffentlicht.',
     vrEyebrow:'Sorten &amp; Kultivare', vrTitle:'Durchsuchbare Datenbank', vrSub:'Wir sagen nie "Strain" — das ist ein Begriff aus der Mikrobiologie (Bakterien, Viren, Pilze), kein botanischer. Wir verwenden <b>Sorte</b> (natürliche Anpassung, wie eine Landrasse) oder <b>Kultivar</b> (eine absichtlich von einem Züchter entwickelte Kreuzung).',
     vrTodos:'Alle', vrTipoI:'Typ I (THC)', vrTipoII:'Typ II (ausgewogen)', vrTipoIII:'Typ III (CBD)',
     vrTipoPrefix:'Typ', vrLinaje:'Abstammung', vrTerpenos:'Terpene', vrDificultad:'Schwierigkeit', vrVisteTeaser:'Du hast', vrDe:'von', vrDesbloquea:'Schalte die vollständige Datenbank mit Vollzugriff frei.',
@@ -4814,7 +4811,7 @@ const translations = {
     tc2H3:'2. Éligibilité et âge minimum', tc2P:'L\u2019App est destinée exclusivement aux personnes de 18 ans ou plus. En confirmant ton âge lors de l\u2019accès initial, tu déclares et garantis que tu remplis cette condition. Nous nous réservons le droit de suspendre l\u2019accès à tout compte si nous avons des motifs raisonnables de croire que cette déclaration est fausse.',
     tc3H3:'3. Nature du contenu — ceci n\u2019est pas un avis médical ou juridique', tc3P:'Tout le contenu de l\u2019App — y compris les informations sur la culture, l\u2019élaboration, la science, le dosage, la sécurité et le statut légal par pays — est fourni <b>uniquement à des fins éducatives et informatives</b>. Il ne constitue ni avis médical, diagnostic, traitement, ni avis juridique d\u2019aucune sorte. Le statut légal du cannabis change fréquemment et varie selon la juridiction ; il est de ta responsabilité de vérifier la loi en vigueur à ton emplacement avant d\u2019agir. Consulte toujours un professionnel de santé qualifié avant d\u2019utiliser le cannabis à des fins médicinales, et un avocat local pour toute question juridique.',
     tc4H3:'4. Utilisation autorisée', tc4P:'Tu t\u2019engages à utiliser l\u2019App uniquement de manière licite, conformément aux lois de ta juridiction. Tu ne dois pas utiliser l\u2019App pour faciliter des activités illégales, ni tenter d\u2019accéder à des parties restreintes du service sans autorisation.',
-    tc5H3:'5. Abonnement Premium', tc5P:'L\u2019App propose un niveau gratuit et un niveau Premium payant, avec du contenu supplémentaire. Les détails de prix, facturation et annulation sont précisés au moment de l\u2019abonnement. Nous nous réservons le droit de modifier les prix et avantages de chaque niveau, avec un préavis raisonnable.',
+    tc5H3:'5. Accès complet', tc5P:'[EN ATTENTE : à rédiger avec le comptable et l’avocat — essai gratuit de 24 heures à la confirmation de l’e-mail, contribution unique de soutien en USDC (réseau Base), codes cadeaux et retrait de l’accès en cas de fraude.]',
     tc6H3:'6. Propriété intellectuelle', tc6P:'Tout le contenu original de l\u2019App — textes, illustrations, marque, design — est la propriété de Mother Verde LLC ou de ses concédants, et est protégé par les lois applicables en matière de propriété intellectuelle. Sa reproduction commerciale n\u2019est pas autorisée sans autorisation écrite préalable.',
     tc7H3:'7. Contenu généré par l\u2019utilisateur', tc7P:'Des outils comme le Journal de culture stockent les informations que tu saisis. Tu es responsable du contenu que tu enregistres. Tu ne dois pas saisir d\u2019informations sensibles concernant des tiers sans leur consentement.',
     tc8H3:'8. Limitation de responsabilité', tc8P:'Dans la mesure permise par la loi, Mother Verde LLC ne sera pas responsable des dommages découlant de l\u2019utilisation ou de l\u2019impossibilité d\u2019utiliser l\u2019App, y compris les décisions prises sur la base des informations fournies. L\u2019App est proposée « telle quelle », sans garantie d\u2019aucune sorte.',
@@ -4826,7 +4823,7 @@ const translations = {
     ppv2H3:'2. Où tes informations sont stockées', ppv2P:'La plupart des données mentionnées sont stockées localement sur ton propre appareil, pas sur nos serveurs. Cela signifie que, sous sa forme actuelle, la majeure partie de ton activité dans l\u2019App reste sur ton téléphone ou navigateur, et nous ne la collectons pas de manière centralisée.',
     ppv2AdminP:'Au sein de l\u2019annuaire de la communauté, ton nom, ton pays et ton type de profil sont visibles par les autres personnes utilisant l\u2019App. Des données comme ton adresse e-mail ne sont jamais affichées publiquement — seule l\u2019équipe d\u2019administration de Mother Verde LLC a accès à cette information, avec des contrôles de sécurité spécifiques pour cela (vérification à deux facteurs, journalisation des accès).',
     ppv3H3:'3. Comment nous utilisons tes informations', ppv3P:'Nous utilisons les informations stockées uniquement pour que l\u2019App fonctionne comme tu l\u2019attends : mémoriser ta langue, ta vérification d\u2019âge, et le contenu que tu saisis toi-même dans des outils comme le Journal de culture. Nous ne vendons pas tes informations à des tiers.',
-    ppv4H3:'4. Services tiers et paiements', ppv4P:'Les paiements de l\u2019abonnement Premium sont traités via l\u2019App Store, Google Play, ou Stripe — jamais directement par Mother Verde. <b>Mother Verde LLC ne reçoit, ne traite, ni ne stocke jamais ton numéro de carte, ton CVV, ni sa date d\u2019expiration.</b> Nous recevons seulement une confirmation que le paiement a été effectué et ton statut d\u2019abonnement. Ces processeurs de paiement ont leurs propres politiques de confidentialité, indépendantes de celle-ci.',
+    ppv4H3:'4. Services tiers', ppv4P:'[EN ATTENTE : liste des prestataires (Supabase, Vercel, DeepL, Hostinger) et traitement des contributions reçues sur le réseau Base — à confirmer avec le comptable et l’avocat.]',
     ppv5H3:'5. Tes droits', ppv5P:'Tu peux supprimer les informations stockées localement en effaçant les données de l\u2019App depuis les paramètres de ton appareil. Si à l\u2019avenir nous stockons des données sur des serveurs, tu auras le droit de demander l\u2019accès, la correction ou la suppression de tes informations, selon ce que permet la loi de ta juridiction.',
     ppv6H3:'6. Confidentialité des mineurs', ppv6P:'L\u2019App est réservée aux personnes de 18 ans et plus grâce à une vérification d\u2019âge à l\u2019entrée. Nous ne collectons pas sciemment d\u2019informations auprès de mineurs.',
     ppv7H3:'7. Modifications de cette politique', ppv7P:'Nous pouvons mettre à jour cette Politique de confidentialité périodiquement. Nous te notifierons des changements significatifs au sein de l\u2019App.',
@@ -4893,10 +4890,9 @@ const translations = {
     bitErrSinNota:'Écris une note avant d’enregistrer.', bitGuardadoOk:'✓ Enregistré', bitErrGuardar:'Impossible d’enregistrer — réessaie.',
     bitSinFecha:'sans date', bitEliminar:'Supprimer', bitSinNotas:'(sans notes)', bitVacio:'Pas encore d’entrées — ajoute la première ci-dessus.', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
     bitFotoLabel:'Photo (facultatif)', bitFotoNota:'Automatiquement compressée pour économiser de l\u2019espace. Avec de nombreuses entrées avec photo, l\u2019espace de stockage du prototype peut se remplir — en production, cela vivrait sur un vrai serveur, sans cette limite.',
-    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés sur notre serveur, pas seulement sur cet appareil.',
-    cuentaPremiumActivo:'✓ Accès complet actif.', cuentaGestionarBtn:"Gérer l'abonnement", cuentaGestionarAlert:"Dans l'app réelle, ceci ouvrirait la gestion d'abonnement d'Apple/Google.", cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', cuentaSuscribirBtn:'Obtenir Premium — 7,10 $/mois',
-    pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', pmComprarBtn:'Acheter Premium — 7,10 $/mois',
-    pmPagoSeguroNote:'Paiement traité en toute sécurité par l\u2019App Store / Google Play / Stripe — Mother Verde ne voit ni ne stocke jamais ton numéro de carte.',
+    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés sur notre serveur, pas seulement sur cet appareil.',
+    cuentaPremiumActivo:'✓ Accès complet actif.', cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', 
+    pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', 
     alertaSemillasH4:'États-Unis : interdiction fédérale du commerce interétatique de graines à 0,3 %+ de THC', alertaSemillasTag:'Alerte réelle — non illustrative', alertaSemillasMeta:'21 juillet 2026 · Source : MJBizDaily',
     alertaSemillasBody:'La redéfinition fédérale du chanvre rend illégal l\u2019envoi de graines de cultivars à 0,3 % de THC ou plus entre États, à partir du <b>12 novembre 2026</b>. Les banques de graines diversifient déjà leurs opérations vers différents États pour pouvoir continuer à fonctionner après cette date.',
     alertaSemillasLink:'Lire la suite sur mjbizdaily.com →',
@@ -5095,7 +5091,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     ttG5h4:'Rosin (chaleur + pression mécanique)', ttPasos3b:'3 étapes', ttG5desc:'1) Enveloppe la fleur affinée, le hash ou le kief dans du papier sulfurisé plié. 2) Presse avec un lisseur à cheveux ou une presse à rosin à température moyenne (~90–120 °C) pendant 5 à 10 secondes. 3) Décolle immédiatement le papier et récolte l’huile avant qu’elle ne refroidisse.',
     ttG6h4:'Dry sift (tamisage)', ttPasos3c:'3 étapes', ttG6desc:'1) Place la fleur sèche sur un tamis à micron fin, au-dessus d’une surface lisse en dessous. 2) Frotte doucement avec une carte ou un rouleau pour détacher les trichomes. 3) Récolte la poudre qui tombe — c’est le kief.',
     ttG7h4:'Décarboxylation au four', ttPasos3d:'3 étapes', ttG7desc:'1) Émiette la fleur en morceaux réguliers sur une plaque avec du papier cuisson. 2) Fais cuire à ~110–115 °C pendant 45 à 60 min, en vérifiant qu’elle ne brunisse pas trop. 3) Laisse refroidir avant de l’utiliser dans toute infusion.',
-    ttNoteFinal:'Ces 6 techniques n’utilisent que de la chaleur de cuisine, une pression mécanique simple ou du tamisage — aucun système de gaz sous pression ni solvant inflammable. C’est la vraie limite de ce que cette app enseigne pas à pas. Tout ce qui nécessite un équipement spécialisé ou la manipulation de substances inflammables (BHO, CO2, formulation de liquide de vape) reste au niveau de la science et des caractéristiques déjà vu dans Concentrés et Vapes — jamais en instructions opérationnelles, quel que soit le plan d’abonnement.',
+    ttNoteFinal:'Ces 6 techniques n’utilisent que de la chaleur de cuisine, une pression mécanique simple ou du tamisage — aucun système de gaz sous pression ni solvant inflammable. C’est la vraie limite de ce que cette app enseigne pas à pas. Tout ce qui nécessite un équipement spécialisé ou la manipulation de substances inflammables (BHO, CO2, formulation de liquide de vape) reste au niveau de la science et des caractéristiques déjà vu dans Concentrés et Vapes — jamais en instructions opérationnelles, quel que soit le type d’accès.',
     ttCtaH3:'As-tu besoin d\u2019une véritable formule de dosage pour ton produit ?', ttCtaP:'Teintures, capsules ou patchs avec un dosage précis et constant par lot nécessitent des calculs spécifiques. Nous pouvons t\u2019aider à y réfléchir pour ton exploitation.',
     vpTiposH3:'Ce qui se trouve vraiment dans la cartouche : 3 façons légitimes de la fabriquer', vpTiposIntro:'Avant de parler des risques, il vaut la peine de reconnaître qu\u2019il existe de vraies entreprises qui suivent de vraies normes et produisent une huile de qualité authentique — de façons assez différentes les unes des autres. Voici les 3 catégories principales que tu trouveras sur un marché légal et réglementé.',
     vpDestH4:'Distillat', vpDestSci:'Avec solvants + distillation', vpDestDesc:'Extrait au CO2, à l\u2019éthanol, ou aux hydrocarbures, puis « winterisé » (congelé et filtré pour retirer graisses et cires), et raffiné par distillation à trajet court — un véritable processus de purification, bien documenté. Le résultat est une huile très pure, avec un THC souvent entre 85 et 99 %, mais pratiquement sans terpènes propres — c\u2019est pourquoi des terpènes (issus du cannabis ou botaniques) y sont presque toujours réintroduits ensuite.',
@@ -5350,13 +5346,13 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
     cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
     cmySecTipos:'La fonctionnalité qui demande le plus de supervision avant ouverture',
-    cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', cmy1p:'Journaux type carnet, liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle.',
-    cmy2h4:'Confirmations de diagnostic', cmy2sci:'Se connecte à <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>', cmy2p:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a marché pour moi », lié à une vraie fiche de nuisible ou de maladie.',
+    cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', 
+    cmy2h4:'Confirmations de diagnostic', cmy2sci:'Se connecte à <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>', 
     cmy3h4:'Rapports de voyageurs', cmy3sci:'Se connecte à Légal &amp; Voyage', cmy3p:'Expériences réelles aux frontières et à la douane par pays — les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule.',
     cmy4h4:'Questions et réponses', cmy4sci:'Modérées', cmy4p:'Un profil vérifié peut répondre avec un poids visuellement plus important qu\u2019un profil anonyme.',
     cmy5h4:'Témoignages médicaux', cmy5sci:'Avec avertissement obligatoire', cmy5p:'Toujours visible : expérience personnelle, pas un conseil médical. Jamais affiché sans cette étiquette.',
     cmySecVerif:'Vérification', cmyVerifP:'Un profil professionnel enregistré dans Affaires (master grower, compliance officer, etc.) peut demander un badge vérifié — ses réponses se distinguent visuellement. Chaque publication porte une étiquette permanente : <b>« Vérifié par l\u2019app »</b> (donnée officielle) ou <b>« Rapport communautaire, non vérifié »</b> — jamais mélangés sans distinction claire.',
-    cmySecLineas:'Lignes rouges', cmyLineasP:'<b>Zéro marketplace</b> — aucun achat-vente ni échange de coordonnées pour vendre ; c\u2019est ce qui permet de rester conforme aux politiques des boutiques d\u2019applications. <b>Zéro emplacement de culture précis</b>, pour la sécurité. Aucun témoignage médical n\u2019est publié sans l\u2019avertissement visible.',
+    cmySecLineas:'Lignes rouges', cmyLineasP:'<b>Zéro marketplace</b> — aucun achat-vente ni échange de coordonnées pour vendre ; c\u2019est ce qui permet de rester conforme aux politiques des plateformes où elle fonctionne. <b>Zéro emplacement de culture précis</b>, pour la sécurité. Aucun témoignage médical n\u2019est publié sans l\u2019avertissement visible.',
     vrEyebrow:'Variétés &amp; cultivars', vrTitle:'Base de données consultable', vrSub:'On ne dit jamais « strain » — c\u2019est un terme de microbiologie (bactéries, virus, champignons), pas de botanique. On utilise <b>variété</b> (adaptation naturelle, comme une landrace) ou <b>cultivar</b> (croisement développé intentionnellement par un breeder).',
     vrTodos:'Tous', vrTipoI:'Type I (THC)', vrTipoII:'Type II (équilibré)', vrTipoIII:'Type III (CBD)',
     vrTipoPrefix:'Type', vrLinaje:'Lignée', vrTerpenos:'Terpènes', vrDificultad:'Difficulté', vrVisteTeaser:'Tu as vu', vrDe:'sur', vrDesbloquea:'Débloque la base de données complète avec l’accès complet.',
@@ -5570,294 +5566,18 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     adInquiryEnviando:'Envoi…', adInquiryOk:'✓ Reçu — on te recontacte bientôt.', adInquiryError:'Échec de l’envoi. Réessaie.'}
 };
 
-/* Subscription / free-trial strings (appended so overrides win). */
+/* Account status strings (appended so overrides win). */
 translations.es = Object.assign(translations.es, {
-  "cuentaEstadoTitle": "Suscripción",
-  "cuentaPagoSeguroNote": "Tus pagos los procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.",
-  "pmPagoSeguroNote": "El pago lo procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.",
-  "pmH2": "Todo el codex, sin límites.",
-  "pmSubhead": "Prueba 3 días gratis. Cancela cuando quieras, tú misma, desde Cuenta.",
-  "pmTrialTag": "Prueba gratis de 3 días",
-  "pmTrialDisclosure": "Después de 3 días, se cobrará automáticamente <b>$7.10/mes</b> a la tarjeta que ingreses, salvo que canceles antes.",
-  "pmPriceRowLabel": "Precio",
-  "pmPriceRowValue": "$7.10 / mes",
-  "pmTrialEndsLabel": "Fin de la prueba",
-  "pmFirstChargeLabel": "Primer cobro",
-  "pmTrialCancelInfo": "Puedes cancelar en cualquier momento desde Cuenta → Suscripción, tú misma, sin escribir a nadie. Si cancelas durante la prueba, no se te cobra nada.",
-  "pmCardPending": "Los campos de tarjeta se activarán cuando se conecte el procesador de pagos (Payment Nerds). Por ahora, en pruebas, la prueba gratis se activa sin tarjeta.",
-  "pmConsentLabel": "Entiendo que, si no cancelo antes, al terminar la prueba de 3 días se me cobrará $7.10 cada mes de forma automática hasta que cancele.",
-  "pmStartTrialBtn": "Empezar prueba gratis",
-  "pmConsentRequired": "Marca la casilla de confirmación para continuar.",
-  "pmStarting": "Activando tu prueba…",
-  "pmNotLiveMsg": "El cobro automático todavía no está disponible. Vuelve pronto.",
-  "pmComingSoonBtn": "Disponible muy pronto",
-  "pmComingSoonMsg": "La activación de pagos (Payment Nerds) estará disponible en los próximos días. El precio y las condiciones que ves ya son los definitivos.",
-  "pmSignInFirst": "Inicia sesión para empezar",
-  "pmManageBtn": "Gestionar mi suscripción",
-  "subNoneDetail": "Con Premium desbloqueas las 10 zonas completas, sin anuncios, por {price}/mes — después de 3 días gratis.",
-  "subStartTrialBtn": "Empezar prueba gratis de 3 días",
-  "subTrialActiveHead": "Prueba gratis activa — día {n} de 3",
-  "subTrialActiveDetail": "Tienes acceso completo hasta el {date}. El {charge} se cobrará {price}/mes automáticamente, salvo que canceles antes.",
-  "subCancelTrialBtn": "Cancelar prueba",
-  "subTrialCanceledHead": "Prueba cancelada",
-  "subTrialCanceledDetail": "Tienes acceso hasta el {date}. No se te cobrará nada.",
-  "subReactivateTrialBtn": "Reactivar la prueba",
-  "subActiveHead": "Premium activo",
-  "subActiveDetail": "Tu suscripción se renueva el {date} por {price}/mes.",
-  "subCancelBtn": "Cancelar suscripción",
-  "subActiveCanceledHead": "Suscripción cancelada",
-  "subActiveCanceledDetail": "Mantienes el acceso Premium hasta el {date}. No se renovará y no se te cobrará de nuevo.",
-  "subReactivateBtn": "Reactivar suscripción",
-  "subPastDueHead": "Problema con el cobro",
-  "subPastDueDetail": "No pudimos procesar el último pago. Actualiza tu tarjeta para no perder el acceso Premium.",
-  "subUpdateCardBtn": "Actualizar tarjeta",
-  "subBlockedHead": "Acceso Premium pausado",
-  "subBlockedDetail": "Tu prueba terminó y no pudimos completar el cobro. El acceso Premium está pausado hasta que actualices tu tarjeta.",
-  "subCanceledHead": "Sin suscripción activa",
-  "subCanceledDetail": "Ya usaste tu prueba gratis. Puedes volver a Premium cuando quieras.",
-  "subResubscribeBtn": "Volver a Premium ({price}/mes)",
   "subLoading": "Cargando el estado de tu cuenta…",
-  "subCancelConfirmTrial": "Si cancelas ahora, conservas el acceso hasta que termine la prueba y no se te cobrará nada. ¿Cancelar la prueba?",
-  "subCancelConfirmSub": "Si cancelas, mantienes Premium hasta el final del período ya pagado y no se renovará. ¿Cancelar la suscripción?",
-  "subCancelConfirmYes": "Sí, cancelar",
-  "subCancelConfirmNo": "Volver",
-  "subCancelDone": "Listo. Tu cancelación quedó registrada.",
-  "subWorking": "Un momento…",
-  "subReactivateDone": "Listo. Tu suscripción sigue activa.",
-  "subUpdateCardPending": "La actualización de tarjeta estará disponible cuando se conecte Payment Nerds.",
-  "subResubscribePending": "La re-suscripción estará disponible cuando se conecte Payment Nerds.",
-  "subErrTrialUsed": "Ya usaste tu prueba gratis en esta cuenta.",
-  "subErrAlready": "Ya tienes una suscripción activa.",
-  "subErrNotLive": "El cobro automático todavía no está disponible.",
-  "subErrAuth": "Inicia sesión para continuar.",
-  "subErrGeneric": "Algo falló. Intenta de nuevo en un momento.",
-  "trialReminderBannerText": "Tu prueba gratis termina mañana. El {charge} se cobrará {price} a tu tarjeta, salvo que canceles antes.",
-  "trialBlockedBannerText": "Tu acceso Premium está pausado: no pudimos completar el cobro de {price}. Actualiza tu tarjeta para reactivarlo.",
-  "trialBannerManageBtn": "Ver mi suscripción",
-  "trialBlockedBtn": "Actualizar tarjeta",
-  "tsTitle": "Tu prueba gratis empezó",
-  "tsAccessLine": "Tienes acceso completo a todo Mother Verde.",
-  "tsEndsLabel": "La prueba termina",
-  "tsChargeLabel": "Primer cobro ($7.10)",
-  "tsCancelNote": "El día antes te enviaremos un aviso. Puedes cancelar cuando quieras desde Cuenta → Suscripción, sin escribir a nadie. Si cancelas antes del cobro, no pagas nada.",
-  "tsGotIt": "Entendido",
-  "tsSeeSub": "Ver mi suscripción"
 });
 translations.en = Object.assign(translations.en, {
-  "cuentaEstadoTitle": "Subscription",
-  "cuentaPagoSeguroNote": "Your payments are securely processed by an external provider (Payment Nerds). Mother Verde never sees or stores your card number — only your subscription status.",
-  "pmPagoSeguroNote": "Payment is securely processed by an external provider (Payment Nerds). Mother Verde never sees or stores your card number — only your subscription status.",
-  "pmH2": "The whole codex, no limits.",
-  "pmSubhead": "Try 3 days free. Cancel anytime, yourself, from Account.",
-  "pmTrialTag": "3-day free trial",
-  "pmTrialDisclosure": "After 3 days, <b>$7.10/month</b> will automatically be charged to the card you enter, unless you cancel first.",
-  "pmPriceRowLabel": "Price",
-  "pmPriceRowValue": "$7.10 / month",
-  "pmTrialEndsLabel": "Trial ends",
-  "pmFirstChargeLabel": "First charge",
-  "pmTrialCancelInfo": "You can cancel anytime from Account → Subscription, by yourself, without contacting anyone. If you cancel during the trial, you are not charged.",
-  "pmCardPending": "Card fields will turn on once the payment processor (Payment Nerds) is connected. For now, in testing, the free trial starts without a card.",
-  "pmConsentLabel": "I understand that unless I cancel first, when the 3-day trial ends I will be charged $7.10 every month automatically until I cancel.",
-  "pmStartTrialBtn": "Start free trial",
-  "pmConsentRequired": "Tick the confirmation box to continue.",
-  "pmStarting": "Starting your trial…",
-  "pmNotLiveMsg": "Automatic billing isn't available yet. Check back soon.",
-  "pmComingSoonBtn": "Available very soon",
-  "pmComingSoonMsg": "Payment activation (Payment Nerds) will be available in the next few days. The price and terms shown are final.",
-  "pmSignInFirst": "Sign in to start",
-  "pmManageBtn": "Manage my subscription",
-  "subNoneDetail": "Premium unlocks all 10 full zones, no ads, for {price}/month — after 3 days free.",
-  "subStartTrialBtn": "Start 3-day free trial",
-  "subTrialActiveHead": "Free trial active — day {n} of 3",
-  "subTrialActiveDetail": "You have full access until {date}. On {charge} you'll be charged {price}/month automatically, unless you cancel first.",
-  "subCancelTrialBtn": "Cancel trial",
-  "subTrialCanceledHead": "Trial canceled",
-  "subTrialCanceledDetail": "You keep access until {date}. You won't be charged.",
-  "subReactivateTrialBtn": "Reactivate trial",
-  "subActiveHead": "Premium active",
-  "subActiveDetail": "Your subscription renews on {date} for {price}/month.",
-  "subCancelBtn": "Cancel subscription",
-  "subActiveCanceledHead": "Subscription canceled",
-  "subActiveCanceledDetail": "You keep Premium access until {date}. It won't renew and you won't be charged again.",
-  "subReactivateBtn": "Reactivate subscription",
-  "subPastDueHead": "Payment problem",
-  "subPastDueDetail": "We couldn't process your last payment. Update your card so you don't lose Premium access.",
-  "subUpdateCardBtn": "Update card",
-  "subBlockedHead": "Premium access paused",
-  "subBlockedDetail": "Your trial ended and we couldn't complete the charge. Premium access is paused until you update your card.",
-  "subCanceledHead": "No active subscription",
-  "subCanceledDetail": "You've already used your free trial. You can go Premium again anytime.",
-  "subResubscribeBtn": "Back to Premium ({price}/month)",
   "subLoading": "Loading your account status…",
-  "subCancelConfirmTrial": "If you cancel now, you keep access until the trial ends and you won't be charged. Cancel the trial?",
-  "subCancelConfirmSub": "If you cancel, you keep Premium until the end of the period you've paid for, and it won't renew. Cancel the subscription?",
-  "subCancelConfirmYes": "Yes, cancel",
-  "subCancelConfirmNo": "Go back",
-  "subCancelDone": "Done. Your cancellation is recorded.",
-  "subWorking": "One moment…",
-  "subReactivateDone": "Done. Your subscription stays active.",
-  "subUpdateCardPending": "Card updates will be available once Payment Nerds is connected.",
-  "subResubscribePending": "Re-subscribing will be available once Payment Nerds is connected.",
-  "subErrTrialUsed": "You've already used your free trial on this account.",
-  "subErrAlready": "You already have an active subscription.",
-  "subErrNotLive": "Automatic billing isn't available yet.",
-  "subErrAuth": "Sign in to continue.",
-  "subErrGeneric": "Something went wrong. Try again in a moment.",
-  "trialReminderBannerText": "Your free trial ends tomorrow. On {charge}, {price} will be charged to your card unless you cancel first.",
-  "trialBlockedBannerText": "Your Premium access is paused: we couldn't complete the {price} charge. Update your card to reactivate it.",
-  "trialBannerManageBtn": "View my subscription",
-  "trialBlockedBtn": "Update card",
-  "tsTitle": "Your free trial has started",
-  "tsAccessLine": "You have full access to all of Mother Verde.",
-  "tsEndsLabel": "Trial ends",
-  "tsChargeLabel": "First charge ($7.10)",
-  "tsCancelNote": "We'll send a reminder the day before. Cancel anytime from Account → Subscription — without contacting anyone. Cancel before the charge and you pay nothing.",
-  "tsGotIt": "Got it",
-  "tsSeeSub": "View my subscription"
 });
 translations.de = Object.assign(translations.de, {
-  "cuentaEstadoTitle": "Abo",
-  "cuentaPagoSeguroNote": "Deine Zahlungen werden sicher von einem externen Anbieter (Payment Nerds) verarbeitet. Mother Verde sieht oder speichert deine Kartennummer niemals — nur deinen Abo-Status.",
-  "pmPagoSeguroNote": "Die Zahlung wird sicher von einem externen Anbieter (Payment Nerds) verarbeitet. Mother Verde sieht oder speichert deine Kartennummer niemals — nur deinen Abo-Status.",
-  "pmH2": "Der ganze Codex, ohne Grenzen.",
-  "pmSubhead": "3 Tage kostenlos testen. Jederzeit selbst kündbar über Konto.",
-  "pmTrialTag": "3 Tage kostenlos testen",
-  "pmTrialDisclosure": "Nach 3 Tagen werden automatisch <b>7,10 $/Monat</b> von der eingegebenen Karte abgebucht, sofern du nicht vorher kündigst.",
-  "pmPriceRowLabel": "Preis",
-  "pmPriceRowValue": "7,10 $ / Monat",
-  "pmTrialEndsLabel": "Testphase endet",
-  "pmFirstChargeLabel": "Erste Abbuchung",
-  "pmTrialCancelInfo": "Du kannst jederzeit selbst über Konto → Abo kündigen, ohne jemanden zu kontaktieren. Wenn du während der Testphase kündigst, wird nichts berechnet.",
-  "pmCardPending": "Die Kartenfelder werden aktiviert, sobald der Zahlungsanbieter (Payment Nerds) angebunden ist. Vorerst startet die Testphase im Test ohne Karte.",
-  "pmConsentLabel": "Mir ist bewusst, dass mir nach Ablauf der 3-tägigen Testphase automatisch 7,10 $ pro Monat berechnet werden, bis ich kündige, sofern ich nicht vorher kündige.",
-  "pmStartTrialBtn": "Kostenlose Testphase starten",
-  "pmConsentRequired": "Bestätige das Kästchen, um fortzufahren.",
-  "pmStarting": "Testphase wird gestartet…",
-  "pmNotLiveMsg": "Die automatische Abrechnung ist noch nicht verfügbar. Schau bald wieder vorbei.",
-  "pmComingSoonBtn": "Sehr bald verfügbar",
-  "pmComingSoonMsg": "Die Zahlungsfreischaltung (Payment Nerds) ist in den nächsten Tagen verfügbar. Preis und Bedingungen sind bereits endgültig.",
-  "pmSignInFirst": "Zum Starten anmelden",
-  "pmManageBtn": "Mein Abo verwalten",
-  "subNoneDetail": "Premium schaltet alle 10 vollständigen Bereiche frei, werbefrei, für {price}/Monat — nach 3 kostenlosen Tagen.",
-  "subStartTrialBtn": "3 Tage kostenlos testen",
-  "subTrialActiveHead": "Testphase aktiv — Tag {n} von 3",
-  "subTrialActiveDetail": "Du hast vollen Zugriff bis zum {date}. Am {charge} werden automatisch {price}/Monat abgebucht, sofern du nicht vorher kündigst.",
-  "subCancelTrialBtn": "Testphase kündigen",
-  "subTrialCanceledHead": "Testphase gekündigt",
-  "subTrialCanceledDetail": "Du behältst den Zugriff bis zum {date}. Es wird nichts berechnet.",
-  "subReactivateTrialBtn": "Testphase reaktivieren",
-  "subActiveHead": "Premium aktiv",
-  "subActiveDetail": "Dein Abo verlängert sich am {date} für {price}/Monat.",
-  "subCancelBtn": "Abo kündigen",
-  "subActiveCanceledHead": "Abo gekündigt",
-  "subActiveCanceledDetail": "Du behältst den Premium-Zugriff bis zum {date}. Es verlängert sich nicht und es wird nichts mehr berechnet.",
-  "subReactivateBtn": "Abo reaktivieren",
-  "subPastDueHead": "Zahlungsproblem",
-  "subPastDueDetail": "Wir konnten deine letzte Zahlung nicht verarbeiten. Aktualisiere deine Karte, um den Premium-Zugriff nicht zu verlieren.",
-  "subUpdateCardBtn": "Karte aktualisieren",
-  "subBlockedHead": "Premium-Zugriff pausiert",
-  "subBlockedDetail": "Deine Testphase ist beendet und die Abbuchung war nicht möglich. Der Premium-Zugriff ist pausiert, bis du deine Karte aktualisierst.",
-  "subCanceledHead": "Kein aktives Abo",
-  "subCanceledDetail": "Du hast deine kostenlose Testphase bereits genutzt. Du kannst jederzeit wieder zu Premium wechseln.",
-  "subResubscribeBtn": "Zurück zu Premium ({price}/Monat)",
   "subLoading": "Kontostatus wird geladen…",
-  "subCancelConfirmTrial": "Wenn du jetzt kündigst, behältst du den Zugriff bis zum Ende der Testphase und es wird nichts berechnet. Testphase kündigen?",
-  "subCancelConfirmSub": "Wenn du kündigst, behältst du Premium bis zum Ende des bezahlten Zeitraums, und es verlängert sich nicht. Abo kündigen?",
-  "subCancelConfirmYes": "Ja, kündigen",
-  "subCancelConfirmNo": "Zurück",
-  "subCancelDone": "Erledigt. Deine Kündigung ist erfasst.",
-  "subWorking": "Einen Moment…",
-  "subReactivateDone": "Erledigt. Dein Abo bleibt aktiv.",
-  "subUpdateCardPending": "Das Aktualisieren der Karte ist verfügbar, sobald Payment Nerds angebunden ist.",
-  "subResubscribePending": "Das erneute Abonnieren ist verfügbar, sobald Payment Nerds angebunden ist.",
-  "subErrTrialUsed": "Du hast deine kostenlose Testphase mit diesem Konto bereits genutzt.",
-  "subErrAlready": "Du hast bereits ein aktives Abo.",
-  "subErrNotLive": "Die automatische Abrechnung ist noch nicht verfügbar.",
-  "subErrAuth": "Zum Fortfahren anmelden.",
-  "subErrGeneric": "Etwas ist schiefgelaufen. Versuche es gleich noch einmal.",
-  "trialReminderBannerText": "Deine kostenlose Testphase endet morgen. Am {charge} werden {price} von deiner Karte abgebucht, sofern du nicht vorher kündigst.",
-  "trialBlockedBannerText": "Dein Premium-Zugriff ist pausiert: Die Abbuchung von {price} war nicht möglich. Aktualisiere deine Karte, um ihn zu reaktivieren.",
-  "trialBannerManageBtn": "Mein Abo ansehen",
-  "trialBlockedBtn": "Karte aktualisieren",
-  "tsTitle": "Deine kostenlose Testphase hat begonnen",
-  "tsAccessLine": "Du hast vollen Zugriff auf ganz Mother Verde.",
-  "tsEndsLabel": "Testphase endet",
-  "tsChargeLabel": "Erste Abbuchung (7,10 $)",
-  "tsCancelNote": "Am Tag davor senden wir dir eine Erinnerung. Kündige jederzeit über Konto → Abo — ohne jemanden zu kontaktieren. Kündige vor der Abbuchung und du zahlst nichts.",
-  "tsGotIt": "Verstanden",
-  "tsSeeSub": "Mein Abo ansehen"
 });
 translations.fr = Object.assign(translations.fr, {
-  "cuentaEstadoTitle": "Abonnement",
-  "cuentaPagoSeguroNote": "Tes paiements sont traités en toute sécurité par un prestataire externe (Payment Nerds). Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement l'état de ton abonnement.",
-  "pmPagoSeguroNote": "Le paiement est traité en toute sécurité par un prestataire externe (Payment Nerds). Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement l'état de ton abonnement.",
-  "pmH2": "Tout le codex, sans limites.",
-  "pmSubhead": "Essaie 3 jours gratuitement. Annule quand tu veux, toi-même, depuis Compte.",
-  "pmTrialTag": "Essai gratuit de 3 jours",
-  "pmTrialDisclosure": "Après 3 jours, <b>7,10 $/mois</b> seront automatiquement débités de la carte que tu saisis, sauf si tu annules avant.",
-  "pmPriceRowLabel": "Prix",
-  "pmPriceRowValue": "7,10 $ / mois",
-  "pmTrialEndsLabel": "Fin de l'essai",
-  "pmFirstChargeLabel": "Premier débit",
-  "pmTrialCancelInfo": "Tu peux annuler à tout moment depuis Compte → Abonnement, toi-même, sans contacter personne. Si tu annules pendant l'essai, rien ne t'est facturé.",
-  "pmCardPending": "Les champs de carte seront activés une fois le processeur de paiement (Payment Nerds) connecté. Pour l'instant, en test, l'essai gratuit démarre sans carte.",
-  "pmConsentLabel": "Je comprends que, sauf annulation de ma part avant, à la fin de l'essai de 3 jours 7,10 $ me seront facturés chaque mois automatiquement jusqu'à ce que j'annule.",
-  "pmStartTrialBtn": "Démarrer l'essai gratuit",
-  "pmConsentRequired": "Coche la case de confirmation pour continuer.",
-  "pmStarting": "Démarrage de ton essai…",
-  "pmNotLiveMsg": "La facturation automatique n'est pas encore disponible. Reviens bientôt.",
-  "pmComingSoonBtn": "Disponible très bientôt",
-  "pmComingSoonMsg": "L'activation des paiements (Payment Nerds) sera disponible dans les prochains jours. Le prix et les conditions affichés sont définitifs.",
-  "pmSignInFirst": "Connecte-toi pour commencer",
-  "pmManageBtn": "Gérer mon abonnement",
-  "subNoneDetail": "Premium débloque les 10 zones complètes, sans publicité, pour {price}/mois — après 3 jours gratuits.",
-  "subStartTrialBtn": "Démarrer l'essai gratuit de 3 jours",
-  "subTrialActiveHead": "Essai gratuit actif — jour {n} sur 3",
-  "subTrialActiveDetail": "Tu as un accès complet jusqu'au {date}. Le {charge}, {price}/mois seront débités automatiquement, sauf si tu annules avant.",
-  "subCancelTrialBtn": "Annuler l'essai",
-  "subTrialCanceledHead": "Essai annulé",
-  "subTrialCanceledDetail": "Tu gardes l'accès jusqu'au {date}. Rien ne te sera facturé.",
-  "subReactivateTrialBtn": "Réactiver l'essai",
-  "subActiveHead": "Premium actif",
-  "subActiveDetail": "Ton abonnement se renouvelle le {date} pour {price}/mois.",
-  "subCancelBtn": "Annuler l'abonnement",
-  "subActiveCanceledHead": "Abonnement annulé",
-  "subActiveCanceledDetail": "Tu gardes l'accès Premium jusqu'au {date}. Il ne se renouvellera pas et tu ne seras plus facturé.",
-  "subReactivateBtn": "Réactiver l'abonnement",
-  "subPastDueHead": "Problème de paiement",
-  "subPastDueDetail": "Nous n'avons pas pu traiter ton dernier paiement. Mets à jour ta carte pour ne pas perdre l'accès Premium.",
-  "subUpdateCardBtn": "Mettre à jour la carte",
-  "subBlockedHead": "Accès Premium en pause",
-  "subBlockedDetail": "Ton essai est terminé et le débit n'a pas pu aboutir. L'accès Premium est en pause jusqu'à la mise à jour de ta carte.",
-  "subCanceledHead": "Aucun abonnement actif",
-  "subCanceledDetail": "Tu as déjà utilisé ton essai gratuit. Tu peux repasser à Premium quand tu veux.",
-  "subResubscribeBtn": "Revenir à Premium ({price}/mois)",
   "subLoading": "Chargement de l'état de ton compte…",
-  "subCancelConfirmTrial": "Si tu annules maintenant, tu gardes l'accès jusqu'à la fin de l'essai et rien ne te sera facturé. Annuler l'essai ?",
-  "subCancelConfirmSub": "Si tu annules, tu gardes Premium jusqu'à la fin de la période déjà payée, et il ne se renouvellera pas. Annuler l'abonnement ?",
-  "subCancelConfirmYes": "Oui, annuler",
-  "subCancelConfirmNo": "Retour",
-  "subCancelDone": "C'est fait. Ton annulation est enregistrée.",
-  "subWorking": "Un instant…",
-  "subReactivateDone": "C'est fait. Ton abonnement reste actif.",
-  "subUpdateCardPending": "La mise à jour de la carte sera disponible une fois Payment Nerds connecté.",
-  "subResubscribePending": "Le réabonnement sera disponible une fois Payment Nerds connecté.",
-  "subErrTrialUsed": "Tu as déjà utilisé ton essai gratuit sur ce compte.",
-  "subErrAlready": "Tu as déjà un abonnement actif.",
-  "subErrNotLive": "La facturation automatique n'est pas encore disponible.",
-  "subErrAuth": "Connecte-toi pour continuer.",
-  "subErrGeneric": "Une erreur s'est produite. Réessaie dans un instant.",
-  "trialReminderBannerText": "Ton essai gratuit se termine demain. Le {charge}, {price} seront débités de ta carte sauf si tu annules avant.",
-  "trialBlockedBannerText": "Ton accès Premium est en pause : le débit de {price} n'a pas abouti. Mets à jour ta carte pour le réactiver.",
-  "trialBannerManageBtn": "Voir mon abonnement",
-  "trialBlockedBtn": "Mettre à jour la carte",
-  "tsTitle": "Ton essai gratuit a commencé",
-  "tsAccessLine": "Tu as un accès complet à tout Mother Verde.",
-  "tsEndsLabel": "Fin de l'essai",
-  "tsChargeLabel": "Premier débit (7,10 $)",
-  "tsCancelNote": "Nous t'enverrons un rappel la veille. Annule quand tu veux depuis Compte → Abonnement — sans contacter personne. Annule avant le débit et tu ne paies rien.",
-  "tsGotIt": "Compris",
-  "tsSeeSub": "Voir mon abonnement"
 });
 
 let currentLang = 'es';
@@ -6036,10 +5756,10 @@ translations.de.alertasEyebrow = "Im Vollzugriff enthalten";
 translations.fr.alertasEyebrow = "Inclus dans l’accès complet";
 
 // Desbloquear page (src/desbloquear.js). Payment data + recipient text live in src/supportConfig.js.
-translations.es.dsIntro = "Creemos que aprender sobre cannabis debería estar al alcance del bolsillo de cada persona. Por eso aquí no hay suscripción ni cobros automáticos: con un <b>aporte único de apoyo</b> tienes acceso completo a todo el contenido y a la Comunidad, mientras la plataforma esté activa.";
-translations.en.dsIntro = "We believe learning about cannabis should be within reach of everyone’s pocket. That’s why there’s no subscription and no automatic charges here: a <b>one-time support contribution</b> gives you full access to all the content and the Community, for as long as the platform is running.";
-translations.de.dsIntro = "Wir finden, dass Wissen über Cannabis für jeden Geldbeutel erreichbar sein sollte. Deshalb gibt es hier kein Abo und keine automatischen Abbuchungen: Mit einem <b>einmaligen Unterstützungsbeitrag</b> bekommst du vollen Zugriff auf alle Inhalte und die Community, solange die Plattform läuft.";
-translations.fr.dsIntro = "Nous pensons qu’apprendre sur le cannabis devrait être à la portée de toutes les bourses. C’est pourquoi il n’y a ici ni abonnement ni prélèvement automatique : une <b>contribution unique de soutien</b> te donne un accès complet à tout le contenu et à la Communauté, tant que la plateforme est active.";
+translations.es.dsIntro = "Creemos que aprender sobre cannabis debería estar al alcance del bolsillo de cada persona. Por eso aquí no hay pagos mensuales ni cobros automáticos: con un <b>aporte único de apoyo</b> tienes acceso completo a todo el contenido y a la Comunidad, mientras la plataforma esté activa.";
+translations.en.dsIntro = "We believe learning about cannabis should be within reach of everyone’s pocket. That’s why there are no monthly payments and no automatic charges here: a <b>one-time support contribution</b> gives you full access to all the content and the Community, for as long as the platform is running.";
+translations.de.dsIntro = "Wir finden, dass Wissen über Cannabis für jeden Geldbeutel erreichbar sein sollte. Deshalb gibt es hier keine monatlichen Zahlungen und keine automatischen Abbuchungen: Mit einem <b>einmaligen Unterstützungsbeitrag</b> bekommst du vollen Zugriff auf alle Inhalte und die Community, solange die Plattform läuft.";
+translations.fr.dsIntro = "Nous pensons qu’apprendre sur le cannabis devrait être à la portée de toutes les bourses. C’est pourquoi il n’y a ici ni paiement mensuel ni prélèvement automatique : une <b>contribution unique de soutien</b> te donne un accès complet à tout le contenu et à la Communauté, tant que la plateforme est active.";
 translations.es.dsImportante = "Tu aporte es importante para continuar.";
 translations.en.dsImportante = "Your contribution matters for us to keep going.";
 translations.de.dsImportante = "Dein Beitrag ist wichtig, damit es weitergeht.";
@@ -6707,7 +6427,6 @@ function showScreen(id){
   if(id === 'comunidad') renderComunidadScreen();
   if(id === 'perfil') renderProfileScreen();
   if(id === 'legal') renderLegalMap();
-  if(typeof syncTrialBanners === 'function') syncTrialBanners();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>{
@@ -6749,10 +6468,8 @@ function showSub(screen, sub){
 // Which access model is live:
 //   'support'      — 24 h free trial for new accounts, then full access through a
 //                    one-time support contribution (the Desbloquear screen).
-//   'subscription' — the old $7.10/month card subscription with a 3-day trial.
-//                    Kept intact but hidden; flip back only on purpose.
-// Everything subscription-only is marked .mv-sub-only (hidden by style.css when
-// the model is 'support') or checks ACCESS_MODEL directly.
+// The previous paid model and its code were removed on 2026-10-11; 'support'
+// is the only model.
 const ACCESS_MODEL = 'support';
 window.MV_ACCESS_MODEL = ACCESS_MODEL;
 document.documentElement.dataset.accessModel = ACCESS_MODEL;
@@ -7307,7 +7024,6 @@ function applyTier(){
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderBitacoraGate();
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
-  if(typeof syncTrialBanners === 'function') syncTrialBanners();
 }
 
 // The preview tier switch flips isPremium directly, bypassing every gate, so
@@ -7328,22 +7044,13 @@ document.querySelectorAll('#tierSwitch button').forEach(b=>{
 });
 applyTier();
 
-/* ===================== PREMIUM MODAL ===================== */
+/* ===================== UNLOCK ===================== */
 function openPremium(){
-  // Every lock / "unlock" button calls this. Under the support model it leads to
-  // the Desbloquear screen instead of the old subscription modal.
-  if(ACCESS_MODEL === 'support'){ showScreen('desbloquear'); return; }
-  syncPremiumModal(); document.getElementById('premiumModal').classList.add('active');
+  // Every lock / "unlock" button calls this: it leads to the Desbloquear screen.
+  showScreen('desbloquear');
 }
-function closePremium(){ document.getElementById('premiumModal').classList.remove('active'); }
 
-/* ===================== TRIAL / SUBSCRIPTION FLOW =====================
-   Data model + RPCs: supabase/migrations/20260905180000_subscription_trial.sql
-   Client logic:      src/subscription.js  (window.mvSub)
-   Payment processor:  Payment Nerds — NOT connected yet. Charge points are
-   stubbed and marked TODO(payment-nerds). Day-2 reminder email is designed
-   only (docs/trial-reminder-email.md + api/subscription-cron.js).           */
-
+/* ===================== DATES ===================== */
 const MV_LOCALE = { es: 'es-ES', en: 'en-US', de: 'de-DE', fr: 'fr-FR' };
 function mvFmtDate(d){
   try { return new Date(d).toLocaleDateString(MV_LOCALE[currentLang] || 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }); }
@@ -7353,191 +7060,6 @@ function mvFmtDateTime(d){
   try { return new Date(d).toLocaleString(MV_LOCALE[currentLang] || 'es-ES', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }); }
   catch(e){ return new Date(d).toISOString().slice(0, 16).replace('T', ' '); }
 }
-function mapSubError(e){
-  // Always log the raw error — the mapped strings below are deliberately vague.
-  console.error('[subscription]', e);
-  const m = ((e && (e.message || e.error_description || e.msg)) || '').toLowerCase();
-  if(m.includes('trial already used')) return t('subErrTrialUsed');
-  if(m.includes('already subscribed')) return t('subErrAlready');
-  if(m.includes('payments-not-live')) return t('subErrNotLive');
-  if(m.includes('not-authenticated') || m.includes('not authenticated')) return t('subErrAuth');
-  return t('subErrGeneric');
-}
-function subMsg(txt, kind){
-  const el = document.getElementById('cuentaSubMsg');
-  if(!el) return;
-  el.textContent = txt || '';
-  el.style.color = kind === 'err' ? 'var(--clay)' : 'var(--moss-deep)';
-}
-
-/* ---- Premium offer modal ---- */
-function syncPremiumModal(){
-  const st = window.mvSub ? window.mvSub.getState() : null;
-  const trialEnd = new Date(Date.now() + 3 * 86400000);
-  const endEl = document.getElementById('pmTrialEnds');
-  const chargeEl = document.getElementById('pmFirstCharge');
-  if(endEl) endEl.textContent = mvFmtDate(trialEnd);
-  if(chargeEl) chargeEl.textContent = mvFmtDateTime(trialEnd);
-  const btn = document.getElementById('pmStartTrialBtn');
-  const consentWrap = document.getElementById('pmConsent') ? document.getElementById('pmConsent').closest('label') : null;
-  const card = document.getElementById('pmCardElement');
-  const msg = document.getElementById('pmMsg');
-  const consent = document.getElementById('pmConsent');
-  if(consent) consent.checked = false;
-  if(msg){ msg.textContent = ''; msg.style.color = 'var(--ink-soft)'; }
-  const signedIn = !!window.mvCurrentUser;
-  const allowed = !st || st.trialStartAllowed;
-  const alreadyOn = st && (st.status === 'trialing' || st.status === 'active');
-  if(alreadyOn){
-    if(btn){ btn.disabled = false; btn.textContent = t('pmManageBtn'); btn.onclick = () => { closePremium(); showScreen('cuenta'); }; }
-    if(consentWrap) consentWrap.style.display = 'none';
-    if(card) card.style.display = 'none';
-    return;
-  }
-  if(btn) btn.onclick = startTrialFlow;
-  if(!signedIn){
-    if(btn){ btn.disabled = false; btn.textContent = t('pmSignInFirst'); btn.onclick = () => { closePremium(); showScreen('cuenta'); }; }
-    if(consentWrap) consentWrap.style.display = 'none';
-    if(card) card.style.display = allowed ? '' : 'none';
-    return;
-  }
-  if(!allowed){
-    if(btn){ btn.disabled = true; btn.textContent = t('pmComingSoonBtn'); }
-    if(consentWrap) consentWrap.style.display = 'none';
-    if(card) card.style.display = 'none';
-    if(msg){ msg.textContent = t('pmComingSoonMsg'); }
-    return;
-  }
-  if(btn){ btn.disabled = false; btn.textContent = t('pmStartTrialBtn'); }
-  if(consentWrap) consentWrap.style.display = 'flex';
-  if(card) card.style.display = '';
-}
-
-async function startTrialFlow(){
-  if(ACCESS_MODEL !== 'subscription') return;
-  const msg = document.getElementById('pmMsg');
-  const setMsg = (txt, err) => { if(msg){ msg.textContent = txt || ''; msg.style.color = err ? 'var(--clay)' : 'var(--ink-soft)'; } };
-  if(!window.mvCurrentUser){ closePremium(); showScreen('cuenta'); return; }
-  const st = window.mvSub ? window.mvSub.getState() : {};
-  if(!st.trialStartAllowed){ setMsg(t('pmNotLiveMsg'), true); return; }
-  const consent = document.getElementById('pmConsent');
-  if(!consent || !consent.checked){ setMsg(t('pmConsentRequired'), true); return; }
-  const btn = document.getElementById('pmStartTrialBtn');
-  if(btn) btn.disabled = true;
-  setMsg(t('pmStarting'));
-  try {
-    await window.mvSub.startTrial();
-    if(consent) consent.checked = false;
-    closePremium();
-    openTrialStarted();
-  } catch(e){
-    setMsg(mapSubError(e), true);
-  } finally {
-    if(btn) btn.disabled = false;
-  }
-}
-
-/* ---- Trial started confirmation ---- */
-function openTrialStarted(){
-  if(ACCESS_MODEL !== 'subscription') return;
-  const st = window.mvSub ? window.mvSub.getState() : {};
-  const end = st.trialEnds || new Date(Date.now() + 3 * 86400000);
-  const e1 = document.getElementById('tsEndsValue');
-  const e2 = document.getElementById('tsChargeValue');
-  if(e1) e1.textContent = mvFmtDate(end);
-  if(e2) e2.textContent = mvFmtDateTime(end);
-  const m = document.getElementById('trialStartedModal');
-  if(m) m.classList.add('active');
-}
-function closeTrialStarted(){
-  const m = document.getElementById('trialStartedModal');
-  if(m) m.classList.remove('active');
-}
-
-/* ---- Cancel / reactivate (Cuenta) ---- */
-let cancelConfirmKind = null;
-function showCancelConfirm(kind){
-  cancelConfirmKind = kind;
-  const box = document.getElementById('cuentaCancelConfirm');
-  const txt = document.getElementById('cuentaCancelConfirmText');
-  if(txt) txt.textContent = kind === 'trial' ? t('subCancelConfirmTrial') : t('subCancelConfirmSub');
-  if(box) box.hidden = false;
-  const yes = document.getElementById('cuentaCancelConfirmYes');
-  if(yes) yes.onclick = doCancel;
-}
-function hideCancelConfirm(){
-  const box = document.getElementById('cuentaCancelConfirm');
-  if(box) box.hidden = true;
-  cancelConfirmKind = null;
-}
-async function doCancel(){
-  const yes = document.getElementById('cuentaCancelConfirmYes');
-  if(yes) yes.disabled = true;
-  try {
-    await window.mvSub.cancelSubscription();
-    hideCancelConfirm();
-    subMsg(t('subCancelDone'));
-    renderCuenta();
-  } catch(e){
-    subMsg(mapSubError(e), 'err');
-  } finally {
-    if(yes) yes.disabled = false;
-  }
-}
-async function doReactivate(){
-  subMsg(t('subWorking'));
-  try {
-    await window.mvSub.reactivate();
-    subMsg(t('subReactivateDone'));
-    renderCuenta();
-  } catch(e){
-    subMsg(mapSubError(e), 'err');
-  }
-}
-function doUpdateCard(){
-  // TODO(payment-nerds): open hosted card fields to replace the card + retry the outstanding charge.
-  subMsg(t('subUpdateCardPending'), 'err');
-}
-function doResubscribe(){
-  // TODO(payment-nerds): canceled users already used their trial -> direct paid
-  // re-subscribe (card + immediate charge), no second trial.
-  subMsg(t('subResubscribePending'), 'err');
-}
-
-/* ---- Day-2 reminder + blocked banners ---- */
-function syncTrialBanners(){
-  const rem = document.getElementById('trialReminderBanner');
-  const blk = document.getElementById('trialBlockedBanner');
-  if(!rem || !blk) return;
-  if(ACCESS_MODEL !== 'subscription'){ rem.hidden = true; blk.hidden = true; return; }
-  const st = window.mvSub ? window.mvSub.getState() : null;
-  const showBlocked = !!st && st.status === 'blocked';
-  blk.hidden = !showBlocked;
-  if(showBlocked){
-    const el = document.getElementById('trialBlockedText');
-    if(el) el.textContent = t('trialBlockedBannerText').split('{price}').join(st.price);
-  }
-  let dismissedKey = '';
-  try { dismissedKey = sessionStorage.getItem('trial-reminder-dismissed') || ''; } catch(e){}
-  const stamp = st && st.trialEnds ? String(st.trialEnds.getTime()) : '1';
-  const showReminder = !!st && st.status === 'trialing' && !st.cancelAtPeriodEnd
-    && st.hoursLeft != null && st.hoursLeft > 0 && st.hoursLeft <= 24 && dismissedKey !== stamp;
-  rem.hidden = !showReminder;
-  if(showReminder){
-    const el = document.getElementById('trialReminderText');
-    if(el) el.textContent = t('trialReminderBannerText')
-      .split('{charge}').join(mvFmtDateTime(st.firstChargeDate))
-      .split('{price}').join(st.price);
-  }
-}
-function dismissTrialReminder(){
-  const st = window.mvSub ? window.mvSub.getState() : null;
-  const stamp = st && st.trialEnds ? String(st.trialEnds.getTime()) : '1';
-  try { sessionStorage.setItem('trial-reminder-dismissed', stamp); } catch(e){}
-  const rem = document.getElementById('trialReminderBanner');
-  if(rem) rem.hidden = true;
-}
-window.syncTrialBanners = syncTrialBanners;
 window.renderCuenta = renderCuenta;
 
 /* ===================== ESPACIO PUBLICITARIO (formulario de contacto) ===================== */
@@ -7635,11 +7157,6 @@ function renderCuenta(){
   mvRenderCuentaAcceso();
   const authCard = document.getElementById('cuentaAuthCard');
   const loggedInWrap = document.getElementById('cuentaLoggedInOnly');
-  const estadoEl = document.getElementById('cuentaEstadoTexto');
-  const detalleEl = document.getElementById('cuentaSubDetalle');
-  const btnEl = document.getElementById('cuentaBtnAccion');
-  const btn2El = document.getElementById('cuentaBtnSecundaria');
-  if(!estadoEl) return;
   const user = window.mvCurrentUser;
   if(authCard) authCard.style.display = user ? 'none' : '';
   if(loggedInWrap) loggedInWrap.style.display = user ? '' : 'none';
@@ -7650,63 +7167,6 @@ function renderCuenta(){
   }
   if(!user) return;
 
-  hideCancelConfirm();
-  const st = window.mvSub ? window.mvSub.getState() : { status: isPremium ? 'active' : 'none', price: '$7.10' };
-  const hide = el => { if(el){ el.style.display = 'none'; el.onclick = null; } };
-  const prim = (txt, fn) => { if(btnEl){ btnEl.style.display = ''; btnEl.textContent = txt; btnEl.onclick = fn; } };
-  hide(btnEl); hide(btn2El);
-  const endStr = st.periodEnd ? mvFmtDate(st.periodEnd) : '';
-  const chargeStr = st.firstChargeDate ? mvFmtDateTime(st.firstChargeDate) : '';
-  const fill = (k, map) => { let v = t(k); for(const p in map) v = v.split('{' + p + '}').join(map[p]); return v; };
-  let head = '', detail = '';
-  switch(st.status){
-    case 'trialing':
-      if(st.cancelAtPeriodEnd){
-        head = `<b style="color:var(--resin);">${t('subTrialCanceledHead')}</b>`;
-        detail = fill('subTrialCanceledDetail', { date: endStr });
-        prim(t('subReactivateTrialBtn'), doReactivate);
-      } else {
-        head = `<b style="color:var(--moss-deep);">${fill('subTrialActiveHead', { n: st.trialDayNumber || 1 })}</b>`;
-        detail = fill('subTrialActiveDetail', { date: endStr, charge: chargeStr, price: st.price });
-        prim(t('subCancelTrialBtn'), () => showCancelConfirm('trial'));
-      }
-      break;
-    case 'active':
-      if(st.cancelAtPeriodEnd){
-        head = `<b style="color:var(--resin);">${t('subActiveCanceledHead')}</b>`;
-        detail = fill('subActiveCanceledDetail', { date: endStr });
-        prim(t('subReactivateBtn'), doReactivate);
-      } else {
-        head = `<b style="color:var(--moss-deep);">${t('subActiveHead')}</b>`;
-        detail = fill('subActiveDetail', { date: endStr, price: st.price });
-        prim(t('subCancelBtn'), () => showCancelConfirm('sub'));
-      }
-      break;
-    case 'past_due':
-      head = `<b style="color:var(--clay);">${t('subPastDueHead')}</b>`;
-      detail = t('subPastDueDetail');
-      prim(t('subUpdateCardBtn'), doUpdateCard);
-      break;
-    case 'blocked':
-      head = `<b style="color:var(--clay);">${t('subBlockedHead')}</b>`;
-      detail = t('subBlockedDetail');
-      prim(t('subUpdateCardBtn'), doUpdateCard);
-      break;
-    case 'canceled':
-      head = `<b style="color:var(--resin);">${t('subCanceledHead')}</b>`;
-      detail = t('subCanceledDetail');
-      prim(fill('subResubscribeBtn', { price: st.price }), doResubscribe);
-      break;
-    case 'loading':
-      head = t('subLoading');
-      break;
-    default:
-      head = `<b style="color:var(--resin);">${t('cuentaPlanGratis')}</b>`;
-      detail = fill('subNoneDetail', { price: st.price });
-      prim(t('subStartTrialBtn'), openPremium);
-  }
-  estadoEl.innerHTML = head;
-  if(detalleEl) detalleEl.textContent = detail;
   const profile = window.mvCurrentProfile;
   const correoEl = document.getElementById('cuentaCorreoInput');
   if(correoEl && document.activeElement !== correoEl) correoEl.value = profile?.contact_email || '';
@@ -8711,9 +8171,6 @@ document.getElementById('searchModal')?.addEventListener('click', (e)=>{ if(e.ta
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape') closeSearch();
   if((e.ctrlKey||e.metaKey) && e.key==='k'){ e.preventDefault(); openSearch(); }
-});
-document.getElementById('premiumModal').addEventListener('click', (e)=>{
-  if(e.target.id === 'premiumModal') closePremium();
 });
 document.addEventListener('click', (e)=>{
   if(e.target.classList && e.target.classList.contains('gate-btn')) openPremium();

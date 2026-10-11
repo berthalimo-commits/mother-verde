@@ -119,27 +119,6 @@
     </div>
   </div>
 
-  <!-- ============ TRIAL / SUBSCRIPTION BANNERS ============ -->
-  <style>
-    .mv-sub-banner{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:12px 18px; font-size:13px; line-height:1.5; border-bottom:1px solid var(--line-strong);}
-    .mv-sub-banner[hidden]{display:none;}
-    .mv-sub-banner .mv-sub-banner-txt{flex:1; min-width:200px;}
-    .mv-sub-banner b{font-weight:700;}
-    .mv-sub-banner .btn-pill{white-space:nowrap;}
-    #trialReminderBanner{background:#FBF3E2; color:#5a4a1e;}
-    #trialBlockedBanner{background:#F7E4DF; color:#7a2f1c;}
-    #trialReminderBanner .mv-sub-x{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:15px; opacity:.6;}
-  </style>
-  <div class="mv-sub-banner mv-sub-only" id="trialReminderBanner" hidden>
-    <span class="mv-sub-banner-txt" id="trialReminderText"></span>
-    <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBannerManageBtn">Ver mi suscripción</button>
-    <span class="mv-sub-x" onclick="dismissTrialReminder()" title="Ocultar">×</span>
-  </div>
-  <div class="mv-sub-banner mv-sub-only" id="trialBlockedBanner" hidden>
-    <span class="mv-sub-banner-txt" id="trialBlockedText"></span>
-    <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBlockedBtn">Actualizar tarjeta</button>
-  </div>
-
   <!-- Trial countdown strip (support model). Filled by mvApplyAccessState() in main.js. -->
   <div class="mv-trial-strip" id="trialCountdown" hidden role="status">
     <span id="trialCountdownText"></span>
@@ -1451,7 +1430,7 @@
         <div class="specimen"><h4 data-i18n="ttG7h4">Decarboxilación en horno</h4><div class="sci" data-i18n="ttPasos3d">3 pasos</div>
           <p class="method-desc" data-i18n="ttG7desc">1) Desmenuza la flor en trozos parejos sobre una bandeja con papel para hornear. 2) Hornea a ~110–115 °C durante 45–60 min, revisando que no se dore de más. 3) Deja enfriar antes de usarla en cualquier infusión.</p></div>
       </div>
-      <div class="note-box" data-i18n="ttNoteFinal">Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el plan de suscripción.</div>
+      <div class="note-box" data-i18n="ttNoteFinal">Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el tipo de acceso.</div>
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="ttCtaH3">¿Necesitas una fórmula de dosificación real para tu producto?</h3>
         <p data-i18n="ttCtaP">Tinturas, cápsulas o parches con dosis precisa y consistente por lote requieren cálculos específicos. Podemos ayudarte a pensarlo para tu operación.</p>
@@ -2958,7 +2937,7 @@
         <div id="cmyJoinMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyJoinExito">¡Listo! Ya apareces en el directorio de abajo.</div>
       </div>
       <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
-        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)</button>
+        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, acceso, cerrar sesión)</button>
       </div>
     </div>
 
@@ -3500,29 +3479,6 @@
         <button type="button" class="btn btn-primary" id="cuentaAccesoBtn" onclick="showScreen('desbloquear')" data-i18n="accDesbloquearBtn" hidden>Desbloquear</button>
         <div id="cuentaRegaloBox" class="gift-box" hidden></div>
       </div>
-      <div class="card-block mv-sub-only" id="cuentaEstadoCard">
-        <h3 data-i18n="cuentaEstadoTitle">Suscripción</h3>
-        <p id="cuentaEstadoTexto" style="margin-bottom:6px;"></p>
-        <p id="cuentaSubDetalle" style="margin:0 0 14px; font-size:12.5px; color:var(--ink-soft); line-height:1.55;"></p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" id="cuentaBtnAccion" style="display:none;"></button>
-          <button class="btn btn-ghost" id="cuentaBtnSecundaria" style="display:none;"></button>
-        </div>
-        <!-- Inline cancel confirmation (no browser confirm() dialog). -->
-        <div id="cuentaCancelConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF;">
-          <p id="cuentaCancelConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn btn-primary" id="cuentaCancelConfirmYes" data-i18n="subCancelConfirmYes">Sí, cancelar</button>
-            <button class="btn btn-ghost" onclick="hideCancelConfirm()" data-i18n="subCancelConfirmNo">Volver</button>
-          </div>
-        </div>
-        <div id="cuentaSubMsg" style="font-size:12.5px; min-height:16px; margin-top:10px; color:var(--moss-deep);"></div>
-        <div style="display:flex; align-items:flex-start; gap:6px; margin-top:12px; font-size:11px; color:var(--ink-soft); line-height:1.5;">
-          <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/></svg>
-          <span data-i18n="cuentaPagoSeguroNote">Tus pagos se procesan de forma segura por un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
-        </div>
-      </div>
-
       <div class="card-block">
         <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
@@ -3532,7 +3488,7 @@
         <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
           <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>
         </div>
-        <!-- Sign out lives here (not in the subscription card) so it is always reachable. -->
+        <!-- Sign out lives here so it is always reachable. -->
         <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
           <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
         </div>
@@ -3569,7 +3525,7 @@
       <div class="spec-row" style="cursor:pointer;" onclick="showScreen('privacidad')"><span data-i18n="cuentaPrivacidadLabel">Política de Privacidad</span><span>→</span></div>
     </div>
 
-    <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.</div>
+    <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.</div>
   </section>
 
   <!-- ============ DESBLOQUEAR (aporte único de apoyo) ============ -->
@@ -3646,8 +3602,8 @@
       <p data-i18n="tc4P">Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.</p>
     </div>
     <div class="card-block">
-      <h3 class="mv-sub-only" data-i18n="tc5H3">5. Suscripción Premium</h3>
-      <p class="mv-sub-only" data-i18n="tc5P">La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.</p>
+      <h3 data-i18n="tc5H3">5. Acceso completo</h3>
+      <p data-i18n="tc5P">[PENDIENTE: redactar con contador y abogado — prueba gratis de 24 horas al confirmar el correo, aporte único de apoyo en USDC (red Base), códigos de regalo y retirada del acceso en caso de fraude.]</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="tc6H3">6. Propiedad intelectual</h3>
@@ -3694,8 +3650,8 @@
       <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
     </div>
     <div class="card-block">
-      <h3 class="mv-sub-only" data-i18n="ppv4H3">4. Servicios de terceros y pagos</h3>
-      <p class="mv-sub-only" data-i18n="ppv4P">Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.</p>
+      <h3 data-i18n="ppv4H3">4. Servicios de terceros</h3>
+      <p data-i18n="ppv4P">[PENDIENTE: lista de proveedores (Supabase, Vercel, DeepL, Hostinger) y tratamiento de los aportes recibidos en la red Base — confirmar con contador y abogado.]</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="ppv5H3">5. Tus derechos</h3>
@@ -3773,90 +3729,8 @@
     </div>
   </div>
 
-  <!-- ============ PREMIUM MODAL ============ -->
-  <div class="premium-modal" id="premiumModal">
-    <div class="premium-sheet">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
-        <div class="eyebrow" style="margin-bottom:6px;">Mother Verde Premium</div>
-        <span onclick="closePremium()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
-      </div>
-      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:26px; margin-bottom:6px;" data-i18n="pmH2">Todo el codex, sin límites.</h2>
-      <p style="font-size:13px; color:var(--ink-soft); margin-bottom:22px;" data-i18n="pmSubhead">Prueba 3 días gratis. Cancela cuando quieras, tú misma, desde Cuenta.</p>
-
-      <div style="display:flex; justify-content:flex-end; gap:18px; padding:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; color:var(--ink-soft);">
-        <span style="width:64px; text-align:center;">Gratis</span>
-        <span style="width:64px; text-align:center; color:var(--moss-deep); font-weight:700;">Premium</span>
-      </div>
-      <div class="pm-row"><span class="feat">Explorador legal (50 países)</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Diagnóstico de plagas</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Cultivo completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Elaboración completa</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Ciencia completa</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Negocio e industria</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Modo viajero completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Descargas ilimitadas de PDFs</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Sin publicidad</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-
-      <!-- TRIAL DISCLOSURE — legally required, shown BEFORE any card field,
-           normal size, no fine print. Price is visible right here. -->
-      <div style="margin-top:24px; border:1.5px solid var(--moss-deep); border-radius:10px; padding:16px 16px 18px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--moss-deep); margin-bottom:8px;" data-i18n="pmTrialTag">Prueba gratis de 3 días</div>
-        <p style="font-size:14px; line-height:1.6; margin:0 0 12px;" data-i18n="pmTrialDisclosure">Después de 3 días, se cobrará automáticamente <b>$7.10/mes</b> a la tarjeta que ingreses, salvo que canceles antes.</p>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmPriceRowLabel">Precio</span><span><b data-i18n="pmPriceRowValue">$7.10 / mes</b></span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmTrialEndsLabel">Fin de la prueba</span><span id="pmTrialEnds">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmFirstChargeLabel">Primer cobro</span><span id="pmFirstCharge">—</span>
-        </div>
-        <p style="font-size:12.5px; color:var(--ink-soft); margin:12px 0 0; line-height:1.55;" data-i18n="pmTrialCancelInfo">Puedes cancelar en cualquier momento desde <b>Cuenta → Suscripción</b>, tú misma, sin escribir a nadie. Si cancelas durante la prueba, no se te cobra nada.</p>
-      </div>
-
-      <!-- Card fields — placeholder until Payment Nerds is connected.
-           TODO(payment-nerds): mount hosted card fields into #pmCardElement. -->
-      <div id="pmCardElement" style="margin-top:16px; border:1px dashed var(--line-strong); border-radius:8px; padding:14px; font-size:12.5px; color:var(--ink-soft); text-align:center; line-height:1.5;" data-i18n="pmCardPending">Los campos de tarjeta se activarán cuando se conecte el procesador de pagos (Payment Nerds). Por ahora, en pruebas, la prueba gratis se activa sin tarjeta.</div>
-
-      <!-- Separate express consent — unchecked by default, required to proceed. -->
-      <label style="display:flex; gap:10px; align-items:flex-start; margin-top:16px; font-size:13px; line-height:1.5; cursor:pointer;">
-        <input type="checkbox" id="pmConsent" style="margin-top:2px; flex-shrink:0; width:16px; height:16px;">
-        <span data-i18n="pmConsentLabel">Entiendo que, si no cancelo antes, al terminar la prueba de 3 días se me cobrará $7.10 cada mes de forma automática hasta que cancele.</span>
-      </label>
-
-      <button class="btn btn-primary" id="pmStartTrialBtn" style="width:100%; margin-top:16px; padding:14px;" onclick="startTrialFlow()" data-i18n="pmStartTrialBtn">Empezar prueba gratis</button>
-      <div id="pmMsg" style="font-size:12.5px; min-height:16px; margin-top:8px; text-align:center;"></div>
-
-      <div style="display:flex; align-items:flex-start; justify-content:center; gap:6px; margin-top:8px; font-size:11px; color:var(--ink-soft); line-height:1.5;">
-        <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--moss-deep)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--moss-deep)" stroke-width="1.3"/></svg>
-        <span data-i18n="pmPagoSeguroNote">El pago lo procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
-      </div>
-      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-top:18px; text-align:center;">© 2026 Mother Verde LLC</div>
-    </div>
-  </div>
-
-  <!-- ============ TRIAL STARTED — CONFIRMATION ============ -->
-  <div class="premium-modal" id="trialStartedModal">
-    <div class="premium-sheet" style="max-width:440px;">
-      <div style="text-align:center; font-size:34px; line-height:1; margin-bottom:12px;">🌱</div>
-      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; text-align:center; margin-bottom:10px;" data-i18n="tsTitle">Tu prueba gratis empezó</h2>
-      <p style="font-size:14px; line-height:1.6; text-align:center; margin-bottom:8px;" id="tsAccessLine" data-i18n="tsAccessLine">Tienes acceso completo a todo Mother Verde.</p>
-      <div style="border:1px solid var(--line-strong); border-radius:10px; padding:14px 16px; margin:16px 0; font-size:13px; line-height:1.6;">
-        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span data-i18n="tsEndsLabel">La prueba termina</span><span id="tsEndsValue">—</span></div>
-        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:1px solid var(--line);"><span data-i18n="tsChargeLabel">Primer cobro ($7.10)</span><span id="tsChargeValue">—</span></div>
-      </div>
-      <p style="font-size:12.5px; color:var(--ink-soft); line-height:1.6; text-align:center; margin-bottom:18px;" data-i18n="tsCancelNote">El día antes te enviaremos un aviso. Puedes cancelar cuando quieras desde Cuenta → Suscripción — sin escribir a nadie. Si cancelas antes del cobro, no pagas nada.</p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-ghost" style="flex:1;" onclick="closeTrialStarted()" data-i18n="tsGotIt">Entendido</button>
-        <button class="btn btn-primary" style="flex:1;" onclick="closeTrialStarted(); showScreen('cuenta');" data-i18n="tsSeeSub">Ver mi suscripción</button>
-      </div>
-    </div>
-  </div>
-
-
 <script src="/main.js"></script>
 <script type="module" src="/src/auth.js"></script>
-<script type="module" src="/src/subscription.js"></script>
 <script type="module" src="/src/mvCommunity.js"></script>
 <script type="module" src="/src/avatarCropper.js"></script>
 <script type="module" src="/src/pdf.js"></script>

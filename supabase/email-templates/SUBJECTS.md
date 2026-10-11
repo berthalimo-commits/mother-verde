@@ -6,7 +6,7 @@ Paste the **Subject** below into the subject field and the whole `.html` file
 (including the first comment line, harmless) into the body.
 
 All templates: Spanish first, then English, German, French; inline styles only;
-no external images or fonts; no prices, subscriptions or payment processors.
+no external images or fonts; no prices and no payment processors.
 
 Plain-text version: the Supabase dashboard only takes an HTML body (there is no
 separate plain-text field), so every template is simple HTML that reads well in

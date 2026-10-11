@@ -53,7 +53,6 @@ async function refreshAuthState(){
   window.setIsPremium?.(computeIsPremium(window.mvCurrentProfile));
   window.renderCuenta?.();
   window.renderBitacoraGate?.();
-  window.syncTrialBanners?.();
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
   window.loadTrichLog?.();
   if(window.mvCurrentUser) window.mvSetPendingConfirm?.('');
@@ -73,8 +72,8 @@ async function loadLatestClaim(){
 }
 window.mvLoadLatestClaim = loadLatestClaim;
 
-// Let public/main.js (and src/subscription.js) force a full auth/profile reload
-// after a subscription state change, so gating updates everywhere at once.
+// Let public/main.js and src/desbloquear.js force a full auth/profile reload
+// after an access change, so gating updates everywhere at once.
 window.mvRefreshAuth = refreshAuthState;
 
 supabase.auth.onAuthStateChange(() => { refreshAuthState(); });
