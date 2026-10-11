@@ -1,3 +1,6 @@
+-- Runs as ONE transaction: if any statement fails, nothing is applied.
+begin;
+
 -- Community is part of full access: close it on the SERVER (RLS), not just
 -- in the UI. Requires migration 20261010120000 (has_full_access()).
 --
@@ -13,7 +16,7 @@
 --     (community_usage_log below).
 --   * community_can_view / community_is_mutual no longer answer about other
 --     people's relationships when called from the browser.
---   * A global daily cap on characters sent to DeepL (section 8).
+--   * DeepL caps, global and per person, configured in app_config (section 8).
 --
 -- Honest limit: photos in the public bucket stay reachable by anyone who has
 -- the exact URL (public bucket URLs skip these rules). Closing that needs a
@@ -171,16 +174,60 @@ alter table public.community_usage_log enable row level security;
 revoke all on public.community_usage_log from anon, authenticated;
 
 -- ---------------------------------------------------------------------------
--- 8. GLOBAL daily cap on characters sent to DeepL (all users together).
---    DeepL counts the source text once per target language, so one publish
---    of N characters translated into 3 languages uses 3 x N.
---    Cap: 14,000 per UTC day -> at most 434,000 a month, under the Free
---    plan's 500,000 with ~13% margin. Change it only here (c_cap).
---    When the cap is reached the publish functions still publish, with the
---    original text only and translation_status = 'failed' — which puts the
---    row in community_translation_backlog, the list to retry later.
---    Cache hits don't call DeepL and don't count.
+-- 8. DeepL caps — the numbers live in ONE place: public.app_config.
+--
+--    Global daily cap (all users together), in characters as DeepL counts
+--    them: the source text once per target language, so a publish of N
+--    characters into 3 languages uses 3 x N.
+--      14,000 per UTC day -> at most 434,000 a month, under the Free plan's
+--      500,000 (~13% margin).
+--    Per-person cap: always a third of the global cap, so no single person
+--    can use more than a third of a day's budget. In source characters:
+--      floor(14,000 / 3 / 3) = 1,555 per rolling 24 h.
+--
+--    Over either cap the publish functions still publish, with the original
+--    text only and translation_status = 'failed' (listed in
+--    community_translation_backlog to retry later). Cache hits don't call
+--    DeepL and don't count against the global cap.
+--
+--    To change the cap (e.g. after moving to DeepL Pro), one statement:
+--      update public.app_config set value = 100000 where key = 'deepl_daily_char_cap';
 -- ---------------------------------------------------------------------------
+create table if not exists public.app_config (
+  key   text primary key,
+  value integer not null check (value >= 0),
+  note  text
+);
+alter table public.app_config enable row level security;
+revoke all on public.app_config from anon, authenticated;
+insert into public.app_config (key, value, note) values
+  ('deepl_daily_char_cap', 14000,
+   'Characters sent to DeepL per UTC day, all users together (source x target languages).')
+on conflict (key) do nothing;
+
+create or replace function public.deepl_daily_cap()
+returns integer
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  -- No row -> 0 -> nothing gets translated (fails closed, posts still publish).
+  select coalesce((select value from public.app_config where key = 'deepl_daily_char_cap'), 0);
+$$;
+
+-- Per person, in SOURCE characters per rolling 24 h: a third of the global
+-- cap, divided by the 3 target languages.
+create or replace function public.community_user_char_limit()
+returns integer
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select public.deepl_daily_cap() / 9;
+$$;
+
 create table if not exists public.deepl_usage_daily (
   day   date primary key,
   chars integer not null default 0 check (chars >= 0)
@@ -197,19 +244,26 @@ security definer
 set search_path = public
 as $$
 declare
-  c_cap constant integer := 14000;
+  v_cap integer := public.deepl_daily_cap();
   v_ok boolean;
 begin
   if p_chars is null or p_chars <= 0 then return true; end if;
-  if p_chars > c_cap then return false; end if;
+  if p_chars > v_cap then return false; end if;
   insert into public.deepl_usage_daily as d (day, chars)
     values ((now() at time zone 'utc')::date, p_chars)
     on conflict (day) do update
       set chars = d.chars + excluded.chars
-      where d.chars + excluded.chars <= c_cap
+      where d.chars + excluded.chars <= v_cap
     returning true into v_ok;
   return coalesce(v_ok, false);
 end;
 $$;
+
+revoke execute on function public.deepl_daily_cap() from public, anon, authenticated;
+revoke execute on function public.community_user_char_limit() from public, anon, authenticated;
 revoke execute on function public.deepl_reserve_chars(integer) from public, anon, authenticated;
+grant execute on function public.deepl_daily_cap() to service_role;
+grant execute on function public.community_user_char_limit() to service_role;
 grant execute on function public.deepl_reserve_chars(integer) to service_role;
+
+commit;

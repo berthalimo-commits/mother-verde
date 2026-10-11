@@ -1,3 +1,6 @@
+-- Runs as ONE transaction: if any statement fails, nothing is applied.
+begin;
+
 -- ROLLBACK of migration 20261010130000_community_full_access.sql.
 -- Restores the Community rules exactly as they were before (directory public,
 -- no full-access check). Run this BEFORE rollback-20261010120000.sql if you
@@ -88,12 +91,17 @@ as $$
   select viewer = owner
     or exists(select 1 from public.community_follows where follower_id = viewer and followed_id = owner);
 $$;
-grant execute on function public.community_is_mutual(uuid, uuid) to public;
-grant execute on function public.community_can_view(uuid, uuid) to public;
+grant execute on function public.community_is_mutual(uuid, uuid) to public, anon;
+grant execute on function public.community_can_view(uuid, uuid) to public, anon;
 
 -- 7. Usage log (the old Edge Functions don't use it).
 drop table if exists public.community_usage_log;
 
--- 8. Global DeepL cap.
+-- 8. DeepL caps + config.
 drop function if exists public.deepl_reserve_chars(integer);
+drop function if exists public.community_user_char_limit();
+drop function if exists public.deepl_daily_cap();
 drop table if exists public.deepl_usage_daily;
+drop table if exists public.app_config;
+
+commit;

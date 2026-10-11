@@ -1,3 +1,6 @@
+-- Runs as ONE transaction: if any statement fails, nothing is applied.
+begin;
+
 -- Access model "support": 24 h free trial for NEW accounts (starts when the
 -- e-mail is confirmed), then full access only through a manually verified
 -- one-time support contribution (status 'supporter'). Replaces the 3-day card
@@ -211,3 +214,5 @@ end;
 $$;
 grant execute on function public.hook_before_user_created(jsonb) to supabase_auth_admin;
 revoke execute on function public.hook_before_user_created(jsonb) from public, anon, authenticated;
+
+commit;

@@ -1,3 +1,6 @@
+-- Runs as ONE transaction: if any statement fails, nothing is applied.
+begin;
+
 -- ROLLBACK of migration 20261010120000_access_support_model.sql.
 -- Puts the database back exactly as it was before that migration.
 --
@@ -25,9 +28,9 @@ drop trigger if exists on_auth_email_confirmed on auth.users;
 drop function if exists public.start_trial_on_email_confirmed();
 
 -- 3. Old card-trial RPCs: callable again (as before).
-grant execute on function public.start_free_trial(text, text) to authenticated;
-grant execute on function public.cancel_subscription(boolean) to authenticated;
-grant execute on function public.reactivate_subscription(boolean) to authenticated;
+grant execute on function public.start_free_trial(text, text) to public, anon, authenticated;
+grant execute on function public.cancel_subscription(boolean) to public, anon, authenticated;
+grant execute on function public.reactivate_subscription(boolean) to public, anon, authenticated;
 
 -- 4. has_full_access() goes; is_premium() back to its previous definition and
 --    its previous (default, public) execute privilege.
@@ -52,7 +55,7 @@ as $$
     from public.profiles where id = uid
   ), false);
 $$;
-grant execute on function public.is_premium(uuid) to public;
+grant execute on function public.is_premium(uuid) to public, anon, authenticated;
 
 -- 5. Signup trigger back to the original (no normalized e-mail).
 create or replace function public.handle_new_user()
@@ -98,3 +101,5 @@ grant update on public.profiles to anon;
 select u.email, p.subscription_status, p.subscription_active, p.subscription_expires_at
 from public.profiles p join auth.users u on u.id = p.id
 where p.subscription_active;
+
+commit;

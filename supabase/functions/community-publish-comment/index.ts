@@ -29,10 +29,13 @@ type Lang = (typeof PLATFORM_LANGS)[number];
 
 const COMMENT_MAX_LEN = 500;
 
-// Daily limits per person (rolling 24 h), against spam and DeepL quota abuse.
-// Must match community-publish-post. Counted in community_usage_log, which
-// deleting a comment does not reset.
-const LIMITS = { postsPerDay: 5, commentsPerDay: 20, translatedCharsPerDay: 6000 };
+// Daily limits per person (rolling 24 h), against spam. Must match
+// community-publish-post. Counted in community_usage_log, which deleting
+// a comment does not reset.
+// The per-person budget of TRANSLATED characters is not here: it is a third of
+// the global DeepL cap, read from the database (community_user_char_limit(),
+// configured in public.app_config). Over it, text is published untranslated.
+const LIMITS = { postsPerDay: 5, commentsPerDay: 20 };
 
 // deno-lint-ignore no-explicit-any
 async function usageLast24h(admin: any, userId: string) {
@@ -164,7 +167,7 @@ interface TranslateResult {
 }
 
 // deno-lint-ignore no-explicit-any
-async function translateText(admin: any, text: string, sourceHint: Lang): Promise<TranslateResult> {
+async function translateText(admin: any, text: string, sourceHint: Lang, allowDeepL = true): Promise<TranslateResult> {
   if (isTrivial(text)) {
     const body_i18n = Object.fromEntries(
       PLATFORM_LANGS.map((l) => [l, text] as const),
@@ -193,9 +196,19 @@ async function translateText(admin: any, text: string, sourceHint: Lang): Promis
     return { source_lang: sourceHint, body_i18n: cached.translations, status: "done" };
   }
 
+  // Per-person budget used up: publish untranslated, marked "failed".
+  if (!allowDeepL) {
+    return {
+      source_lang: sourceHint,
+      body_i18n: { [sourceHint]: text } as Record<Lang, string>,
+      status: "failed",
+    };
+  }
+
   const targets = PLATFORM_LANGS.filter((l) => l !== sourceHint);
 
-  // Global daily DeepL cap (deepl_reserve_chars, migration 20261010130000).
+  // Global daily DeepL cap (deepl_reserve_chars, migration 20261010130000,
+  // value in public.app_config).
   // DeepL counts the source once per target language. Cap reached, or the
   // check itself failed -> publish untranslated, marked "failed" (= listed
   // in community_translation_backlog for a later retry).
@@ -280,10 +293,13 @@ Deno.serve(async (req) => {
   }
   if (!hasAccess) return json({ error: "no_access" }, 403);
 
+  let canTranslate: boolean;
   try {
     const usage = await usageLast24h(admin, user.id);
     if (usage.comments >= LIMITS.commentsPerDay) return json({ error: "daily_comment_limit" }, 429);
-    if (usage.chars + trimmed.length > LIMITS.translatedCharsPerDay) return json({ error: "daily_char_limit" }, 429);
+    const { data: lim, error: limErr } = await admin.rpc("community_user_char_limit");
+    if (limErr || typeof lim !== "number") throw limErr ?? new Error("bad community_user_char_limit");
+    canTranslate = usage.chars + trimmed.length <= lim;
   } catch (e) {
     console.error("community-publish-comment usage:", e);
     return json({ error: "could not check limits" }, 500);
@@ -314,7 +330,7 @@ Deno.serve(async (req) => {
   }
   if (!allowed) return json({ error: "not allowed to comment on this post" }, 403);
 
-  const t = await translateText(admin, trimmed, sourceHint);
+  const t = await translateText(admin, trimmed, sourceHint, canTranslate);
   const { data, error } = await admin
     .from("community_comments")
     .insert({
@@ -332,6 +348,7 @@ Deno.serve(async (req) => {
     console.error("community-publish-comment create:", error);
     return json({ error: "could not create comment" }, 500);
   }
-  await logUsage(admin, user.id, "comment", trimmed.length);
+  // Only translated text counts against the per-person budget.
+  await logUsage(admin, user.id, "comment", t.status === "done" ? trimmed.length : 0);
   return json({ comment: data });
 });

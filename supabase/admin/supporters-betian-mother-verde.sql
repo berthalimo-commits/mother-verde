@@ -11,7 +11,8 @@ left join public.community_members m on m.user_id = u.id
 where (u.email = 'berthalimo@gmail.com' and m.display_name = 'Betian')
    or (u.id = '5bcf51c6-db9d-4965-906e-c1fb426eb0b3' and u.email = 'berthalimo@proton.me');
 
--- PART 2: mark both as 'supporter' (full access, no end date).
+-- PART 2: mark both as 'supporter' (full access, no end date). One transaction.
+begin;
 update public.profiles p
 set subscription_status = 'supporter'
 from auth.users u
@@ -20,3 +21,4 @@ where p.id = u.id
   and ((u.email = 'berthalimo@gmail.com' and m.display_name = 'Betian')
     or (u.id = '5bcf51c6-db9d-4965-906e-c1fb426eb0b3' and u.email = 'berthalimo@proton.me'))
 returning p.id, u.email, p.subscription_status;
+commit;

@@ -6152,10 +6152,10 @@ translations.es.cmyErrLimitComments = "Llegaste al máximo de 20 comentarios en 
 translations.en.cmyErrLimitComments = "You reached the limit of 20 comments in 24 hours. You can comment again later.";
 translations.de.cmyErrLimitComments = "Du hast das Maximum von 20 Kommentaren in 24 Stunden erreicht. Später kannst du wieder kommentieren.";
 translations.fr.cmyErrLimitComments = "Tu as atteint la limite de 20 commentaires en 24 heures. Tu pourras commenter de nouveau plus tard.";
-translations.es.cmyErrLimitChars = "Llegaste al máximo de texto traducido en 24 horas (6.000 caracteres). Prueba con un texto más corto o vuelve más tarde.";
-translations.en.cmyErrLimitChars = "You reached the daily limit of translated text (6,000 characters in 24 hours). Try a shorter text or come back later.";
-translations.de.cmyErrLimitChars = "Du hast das Tageslimit für übersetzten Text erreicht (6.000 Zeichen in 24 Stunden). Versuch einen kürzeren Text oder komm später wieder.";
-translations.fr.cmyErrLimitChars = "Tu as atteint la limite quotidienne de texte traduit (6 000 caractères en 24 heures). Essaie un texte plus court ou reviens plus tard.";
+translations.es.cmyErrLimitChars = "Llegaste al máximo de texto traducido por hoy. Prueba con un texto más corto o vuelve más tarde.";
+translations.en.cmyErrLimitChars = "You reached today’s limit of translated text. Try a shorter text or come back later.";
+translations.de.cmyErrLimitChars = "Du hast das heutige Limit für übersetzten Text erreicht. Versuch einen kürzeren Text oder komm später wieder.";
+translations.fr.cmyErrLimitChars = "Tu as atteint la limite de texte traduit pour aujourd’hui. Essaie un texte plus court ou reviens plus tard.";
 
 // Access screens, countdown strip and Cuenta access card (support model)
 translations.es.accDesbloquearBtn = "Desbloquear";
@@ -6274,6 +6274,71 @@ translations.es.dsVisitorNote = "Primero crea tu cuenta, para que podamos verifi
 translations.en.dsVisitorNote = "First create your account, so we can verify your contribution.";
 translations.de.dsVisitorNote = "Erstelle zuerst dein Konto, damit wir deinen Beitrag prüfen können.";
 translations.fr.dsVisitorNote = "Crée d’abord ton compte, pour que nous puissions vérifier ta contribution.";
+
+// Seguridad -> Emergencia. Spanish approved by the owner 2026-10-11; EN/DE/FR translate it, nothing added.
+// Sources (verified 2026-10-10): Health Canada — Cannabis health effects; What you need to know if you
+// choose to consume cannabis; Cannabis poisonings in children; Infosheet: Store your cannabis safely;
+// CDC — Cannabis and Poisoning. Links are in index.html (#segEmergencia).
+translations.es.emTitle = "Emergencia: consumiste demasiado, o un niño o una mascota lo ingirió";
+translations.en.emTitle = "Emergency: you took too much, or a child or a pet ingested it";
+translations.de.emTitle = "Notfall: Du hast zu viel konsumiert, oder ein Kind oder ein Haustier hat es verschluckt";
+translations.fr.emTitle = "Urgence : tu as trop consommé, ou un enfant ou un animal l’a ingéré";
+translations.es.emCall = "<b>Llama a tu número local de emergencias o a tu centro de toxicología.</b>";
+translations.en.emCall = "<b>Call your local emergency number or your poison control center.</b>";
+translations.de.emCall = "<b>Ruf deine örtliche Notrufnummer oder deinen Giftnotruf an.</b>";
+translations.fr.emCall = "<b>Appelle ton numéro d’urgence local ou ton centre antipoison.</b>";
+translations.es.emAdultH = "Si tú u otro adulto consumió demasiado";
+translations.en.emAdultH = "If you or another adult took too much";
+translations.de.emAdultH = "Wenn du oder eine andere erwachsene Person zu viel konsumiert hat";
+translations.fr.emAdultH = "Si toi ou un autre adulte avez trop consommé";
+translations.es.emAdult1 = "Deja de consumir.";
+translations.en.emAdult1 = "Stop using it.";
+translations.de.emAdult1 = "Hör auf zu konsumieren.";
+translations.fr.emAdult1 = "Arrête de consommer.";
+translations.es.emAdult2 = "Los comestibles tardan de 30 minutos a 2 horas en empezar a hacer efecto, y hasta 4 horas en llegar a su efecto completo. No tomes más mientras esperas.";
+translations.en.emAdult2 = "Edibles take 30 minutes to 2 hours to start working, and up to 4 hours to reach their full effect. Don’t take more while you wait.";
+translations.de.emAdult2 = "Essbare Produkte brauchen 30 Minuten bis 2 Stunden, bis sie zu wirken beginnen, und bis zu 4 Stunden bis zur vollen Wirkung. Nimm nicht mehr, während du wartest.";
+translations.fr.emAdult2 = "Les comestibles mettent de 30 minutes à 2 heures à commencer à agir, et jusqu’à 4 heures pour atteindre leur plein effet. N’en reprends pas pendant que tu attends.";
+translations.es.emAdult3 = "Puede haber dolor en el pecho, latidos rápidos, náuseas o vómitos, ansiedad intensa o ataque de pánico, un episodio psicótico o respiración lenta.";
+translations.en.emAdult3 = "There may be chest pain, a fast heartbeat, nausea or vomiting, severe anxiety or a panic attack, a psychotic episode, or slowed breathing.";
+translations.de.emAdult3 = "Möglich sind Brustschmerzen, schneller Herzschlag, Übelkeit oder Erbrechen, starke Angst oder eine Panikattacke, eine psychotische Episode oder verlangsamte Atmung.";
+translations.fr.emAdult3 = "Il peut y avoir une douleur à la poitrine, un rythme cardiaque rapide, des nausées ou des vomissements, une anxiété intense ou une crise de panique, un épisode psychotique ou une respiration ralentie.";
+translations.es.emAdult4 = "Si los efectos son muy desagradables o te preocupan, busca atención médica de inmediato o llama a tu centro de toxicología. Puede ser peligroso y a veces requiere atención de urgencia u hospitalización.";
+translations.en.emAdult4 = "If the effects are very unpleasant or worry you, get medical help right away or call your poison control center. It can be dangerous and sometimes requires emergency care or hospitalization.";
+translations.de.emAdult4 = "Wenn die Wirkung sehr unangenehm ist oder dir Sorgen macht, hol sofort ärztliche Hilfe oder ruf deinen Giftnotruf an. Es kann gefährlich sein und erfordert manchmal eine Notfallbehandlung oder einen Krankenhausaufenthalt.";
+translations.fr.emAdult4 = "Si les effets sont très désagréables ou t’inquiètent, consulte immédiatement un médecin ou appelle ton centre antipoison. Cela peut être dangereux et nécessite parfois des soins d’urgence ou une hospitalisation.";
+translations.es.emChildH = "Si un niño o una niña lo ingirió";
+translations.en.emChildH = "If a child ingested it";
+translations.de.emChildH = "Wenn ein Kind es verschluckt hat";
+translations.fr.emChildH = "Si un enfant l’a ingéré";
+translations.es.emChild1 = "Llama de inmediato a tu centro de toxicología. Si pierde el conocimiento o le cuesta respirar, llama a tu número local de emergencias.";
+translations.en.emChild1 = "Call your poison control center right away. If the child loses consciousness or has trouble breathing, call your local emergency number.";
+translations.de.emChild1 = "Ruf sofort deinen Giftnotruf an. Wenn das Kind das Bewusstsein verliert oder schwer atmet, ruf deine örtliche Notrufnummer an.";
+translations.fr.emChild1 = "Appelle immédiatement ton centre antipoison. Si l’enfant perd connaissance ou a du mal à respirer, appelle ton numéro d’urgence local.";
+translations.es.emChild2 = "Di que los síntomas son o pueden ser por cannabis: ayuda a que lo atiendan antes.";
+translations.en.emChild2 = "Say that the symptoms are or may be from cannabis: it helps them get treated sooner.";
+translations.de.emChild2 = "Sag, dass die Symptome von Cannabis kommen oder kommen könnten: Das hilft, dass es schneller behandelt wird.";
+translations.fr.emChild2 = "Dis que les symptômes sont ou pourraient être dus au cannabis : cela aide à ce qu’il soit soigné plus vite.";
+translations.es.emChild3 = "Señales: vómitos, confusión, que no responda, habla arrastrada, inestabilidad al caminar, somnolencia, respiración lenta y, en casos raros, convulsiones. Los niños pueden enfermar gravemente.";
+translations.en.emChild3 = "Signs: vomiting, confusion, not responding, slurred speech, unsteadiness when walking, drowsiness, slowed breathing and, in rare cases, seizures. Children can become seriously ill.";
+translations.de.emChild3 = "Anzeichen: Erbrechen, Verwirrtheit, keine Reaktion, verwaschene Sprache, Unsicherheit beim Gehen, Schläfrigkeit, verlangsamte Atmung und in seltenen Fällen Krampfanfälle. Kinder können schwer krank werden.";
+translations.fr.emChild3 = "Signes : vomissements, confusion, absence de réaction, élocution pâteuse, démarche instable, somnolence, respiration ralentie et, dans de rares cas, convulsions. Les enfants peuvent tomber gravement malades.";
+translations.es.emPetH = "Si fue una mascota";
+translations.en.emPetH = "If it was a pet";
+translations.de.emPetH = "Wenn es ein Haustier war";
+translations.fr.emPetH = "Si c’était un animal";
+translations.es.emPet1 = "Llama de inmediato a tu veterinario o a un centro de toxicología. Más detalles abajo, en <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Mascotas</a>.";
+translations.en.emPet1 = "Call your vet or a poison control center right away. More details below, in <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Pets</a>.";
+translations.de.emPet1 = "Ruf sofort deinen Tierarzt oder einen Giftnotruf an. Mehr Details weiter unten unter <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Haustiere</a>.";
+translations.fr.emPet1 = "Appelle immédiatement ton vétérinaire ou un centre antipoison. Plus de détails plus bas, dans <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Animaux</a>.";
+translations.es.emNote = "Esta información es educativa y no sustituye la atención médica.";
+translations.en.emNote = "This information is educational and does not replace medical care.";
+translations.de.emNote = "Diese Information dient der Aufklärung und ersetzt keine ärztliche Behandlung.";
+translations.fr.emNote = "Ces informations sont éducatives et ne remplacent pas des soins médicaux.";
+translations.es.emSrc = "Fuentes:";
+translations.en.emSrc = "Sources:";
+translations.de.emSrc = "Quellen:";
+translations.fr.emSrc = "Sources :";
 
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
