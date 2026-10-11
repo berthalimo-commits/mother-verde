@@ -2,8 +2,45 @@
 
 Todo está en la rama `dev`. **Nada está en producción**: no se pegó ninguna
 migración ni función, no se creó ninguna cuenta y no se envió ningún correo
-real. Todas las pruebas se hicieron con una base de datos simulada (PGlite,
+real. Todas las pruebas (en `tests/sim/`, ver su README) se hicieron con una base de datos simulada (PGlite,
 PostgreSQL 18) y con correo, red Base y DeepL simulados.
+
+---
+
+## 0. Bug de idioma en las pantallas nuevas (corregido, commit `7e0e1d2`)
+
+**Síntoma:** en «Tu prueba gratis terminó», al pulsar EN/DE/FR el botón se
+marcaba pero el texto seguía en español; y al recargar, la app volvía siempre
+a español.
+
+**Por qué mis pruebas anteriores no lo vieron:** el barrido de 880
+combinaciones fijaba el idioma *antes* de dibujar cada pantalla, así que
+nunca probó cambiar de idioma con la pantalla ya abierta.
+
+| Pantalla | ¿Fallaba? | Por qué |
+|---|---|---|
+| Bloqueo «Tu prueba gratis terminó» (textos, enlaces, «Tengo un código de regalo», «Tu cuenta y tu Bitácora…») | **Sí** (EN, DE, FR) | Se dibuja con JavaScript; el botón de idioma solo re-aplicaba los textos fijos del HTML (`data-i18n`) y nunca volvía a dibujarla. |
+| Bloqueo con aviso de aporte pendiente | **Sí** (EN, DE, FR) | La misma pantalla, la misma causa. |
+| Franja de cuenta atrás de 24 h | **Sí** | Solo se redibujaba cada 15 s o al cambiar el estado de acceso. |
+| Cuenta → «Tengo un código de regalo» (formulario abierto) | **Sí** | Al cambiar de idioma se redibujaba, pero se cerraba el formulario y se borraba lo escrito. |
+| Desbloquear (monto reservado) | No | Ya se redibujaba al cambiar de idioma. |
+| Panel de administración | **Sí** | Estaba solo en español y no tenía selector de idioma. |
+| Recargar la página (cualquier pantalla) | **Sí** | El idioma elegido no se guardaba: siempre arrancaba en español. |
+
+**Arreglo:** el botón de idioma ahora vuelve a dibujar todo lo que se crea con
+JavaScript (pantalla de bloqueo, aviso pendiente, franja de 24 h, «Tu acceso»
+y código de regalo, manteniendo abierto el formulario y lo escrito). El idioma
+se guarda en este navegador y se recupera al recargar (también marca el botón
+correcto, arriba y en la puerta de edad). El panel está ahora en los 4
+idiomas: abre en el idioma elegido en la app y tiene su propio selector.
+
+**Prueba nueva** (`tests/sim/lang-live.mjs`, en el repositorio): cambia de
+idioma **con la pantalla abierta**, sin recargar, en EN → DE → FR → ES. En
+cada cambio comprueba que no queda ningún texto en otro idioma y que aparece
+el título correcto. Pantallas: bloqueo, bloqueo con aviso pendiente,
+Desbloquear con monto reservado, código de regalo, franja de 24 h y panel.
+También recarga la página y comprueba que se conserva el idioma.
+Resultado: **29 / 29**. Antes del arreglo daba 10 / 29.
 
 ---
 
@@ -15,6 +52,7 @@ PostgreSQL 18) y con correo, red Base y DeepL simulados.
 | Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **69 / 69** |
 | Panel en navegador | MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **19 / 19** |
 | App en navegador | Desbloquear con monto exacto, envío del TXID, código de regalo | **10 / 10** |
+| Idioma en vivo | cambio ES/EN/DE/FR con la pantalla abierta + recarga, 6 pantallas | **29 / 29** |
 | Barrido de textos | 20 pantallas × 4 idiomas × 8 estados de acceso (880 combinaciones) | **0 textos del modelo viejo, 0 errores JS** |
 
 Pruebas de abuso pedidas, todas superadas: usuario normal llamando a funciones
@@ -200,7 +238,7 @@ Comprobación real: en el panel, **Códigos de regalo → «Enviar correo de pru
 - Dirección: `https://www.motherverdeny.com/panel-mv.html` (no está enlazada en ningún sitio y tiene `noindex`).
 - Primera vez: entra en Mother Verde con `berthalimo@gmail.com`, abre el panel y escanea el QR con tu app de autenticación. **Guarda la clave.**
 - Pestañas: **Avisos de aporte** (correo, monto, TXID, fecha, cada comprobación con ✓/✗, enlace a Basescan; «Activar acceso completo» solo se habilita si todo pasa; la activación manual y el rechazo exigen motivo), **Códigos de regalo** (enviar, lista con estados, anular con motivo, correo de prueba), **Registro** (solo lectura).
-- Idioma del panel: solo español (eres la única administradora).
+- Idioma del panel: ES/EN/DE/FR, con selector propio; abre en el idioma elegido en la app.
 - Si pierdes el teléfono del MFA, en el SQL Editor:
   `delete from auth.mfa_factors where user_id = (select id from auth.users where email = 'berthalimo@gmail.com');`
   y vuelve a activarlo en el panel.
@@ -244,4 +282,3 @@ En la app, el código de regalo está en el icono de persona (arriba a la derech
 - **Fuentes de Google y banderas de flagcdn alojadas en el propio servidor**: pendiente; no bloquea el modelo de aportes, pero conviene antes del lanzamiento público por privacidad (las cargan servidores de terceros).
 - **Fotos de la Comunidad en un bucket privado** (3b): después del lanzamiento, como acordamos.
 - **Limpieza interna de `delete-account`**: después del lanzamiento (sin texto visible).
-- **Panel en otros idiomas**: no hace falta mientras seas la única administradora.
