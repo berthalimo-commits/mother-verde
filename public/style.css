@@ -539,4 +539,19 @@ html.mv-locked .bit-entry-del{display:none !important;}
 .ds-claim-rejected{font-size:13px; color:var(--clay); margin:0;}
 .ds-claim-pending{margin-top:16px; padding:12px 14px; border:1px solid var(--moss); border-radius:8px; background:rgba(42,235,160,0.08); font-size:14px; line-height:1.5;}
 .acc-pending{text-align:left; margin:16px auto; max-width:520px;}
+/* Desbloquear: the reserved unique amount */
+.ds-amount{margin-top:16px; padding:16px; border:2px solid var(--moss); border-radius:10px; background:rgba(42,235,160,0.06); max-width:520px;}
+.ds-amount-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);}
+.ds-amount-big{font-family:'IBM Plex Mono',monospace; font-size:30px; font-weight:600; color:var(--ink); margin:4px 0; overflow-wrap:anywhere;}
+.ds-amount-net{font-size:14px; font-weight:600; color:var(--moss); margin-bottom:10px;}
+.ds-amount-note{font-size:12.5px; color:var(--ink-soft); margin:8px 0 0; line-height:1.5;}
+.ds-amount .btn{margin-top:8px;}
+.ds-cancel-link{align-self:flex-start; background:none; border:0; padding:0; margin-top:4px; color:var(--ink-soft); font-size:12.5px; text-decoration:underline; cursor:pointer;}
+/* Cuenta: gift code */
+.gift-box{margin-top:14px;}
+.gift-form{display:flex; flex-direction:column; gap:8px; max-width:360px; margin-top:10px;}
+.gift-form label{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
+.gift-form input{width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:6px; background:var(--paper); color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.08em; text-transform:uppercase;}
+.gift-form .btn{align-self:flex-start;}
+.acc-note a{color:var(--teal); cursor:pointer; text-decoration:underline;}
 .cmy-pending-tr{display:block; margin-top:4px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft);}

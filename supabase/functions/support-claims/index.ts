@@ -222,7 +222,7 @@ function activationEmail(flowers: number, appUrl: string): Mail & { to: "" } {
       "Thank you for supporting Canna Wasi. If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
-      `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blume" : "Blumen"} erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
+      `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
       "Danke, dass du Canna Wasi unterstützt. Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [

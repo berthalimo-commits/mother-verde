@@ -10,11 +10,11 @@ window.mvSupabase = supabase;
 window.mvCurrentUser = null;
 window.mvCurrentProfile = null;
 
-// Canonical client-side Premium check. Mirrors public.is_premium(uid) in
-// supabase/migrations/20260905180000_subscription_trial.sql — keep the two in
-// sync. Premium = inside an active 3-day trial, or a paid subscription that
-// hasn't lapsed. A pending cancellation (cancel_at_period_end) still counts as
-// Premium until the period actually ends; the cron then flips the row.
+// Canonical client-side full-access check. Mirrors public.is_premium(uid) in
+// supabase/migrations/20261010120000_access_support_model.sql — keep the two
+// in sync. Full access = verified contribution ('supporter'), the 24 h trial,
+// or days from a gift code / an admin (access_until), unless an admin took
+// access away ('revoked'). Rows from the old card model are still honoured.
 // Exposed so main.js can recompute Premium itself instead of trusting a
 // caller-supplied value (see the window.setIsPremium guard in main.js).
 window.mvComputeIsPremium = computeIsPremium;
@@ -24,6 +24,8 @@ function computeIsPremium(profile){
   const status = profile.subscription_status || 'none';
   // One-time support contribution, verified by hand: full access, no end date.
   if(status === 'supporter') return true;
+  if(status === 'revoked') return false;
+  if(profile.access_until && new Date(profile.access_until).getTime() > now) return true;
   if(status === 'trialing'){
     return !!profile.trial_ends_at && new Date(profile.trial_ends_at).getTime() > now;
   }
@@ -65,7 +67,7 @@ async function loadLatestClaim(){
   window.mvLatestClaim = null;
   if(!window.mvCurrentUser) return;
   const { data, error } = await supabase.from('support_claims')
-    .select('id, status, created_at, reviewed_at')
+    .select('id, status, flowers, amount_units, created_at, expires_at, tx_hash, submitted_at, review_reason, reviewed_at')
     .order('created_at', { ascending: false }).limit(1).maybeSingle();
   if(!error) window.mvLatestClaim = data || null;
 }

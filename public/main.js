@@ -6116,18 +6116,18 @@ translations.es.dsPaso1 = "En tu exchange o billetera, elige <b>{cur}</b> y la r
 translations.en.dsPaso1 = "In your exchange or wallet, choose <b>{cur}</b> and the <b>{net}</b> network.";
 translations.de.dsPaso1 = "Wähle in deiner Börse oder Wallet <b>{cur}</b> und das <b>{net}</b>-Netzwerk.";
 translations.fr.dsPaso1 = "Dans ton exchange ou ton portefeuille, choisis <b>{cur}</b> et le réseau <b>{net}</b>.";
-translations.es.dsPaso2 = "Envía de modo que lleguen <b>{usdc} {cur}</b> por cada flor. Si tu exchange cobra una comisión de retiro, súmala para que lleguen completos.";
-translations.en.dsPaso2 = "Send so that <b>{usdc} {cur}</b> arrive per flower. If your exchange charges a withdrawal fee, add it so the full amount arrives.";
-translations.de.dsPaso2 = "Sende so, dass pro Blüte <b>{usdc} {cur}</b> ankommen. Wenn deine Börse eine Auszahlungsgebühr berechnet, rechne sie dazu, damit der volle Betrag ankommt.";
-translations.fr.dsPaso2 = "Envoie de façon à ce que <b>{usdc} {cur}</b> arrivent par fleur. Si ton exchange prend des frais de retrait, ajoute-les pour que le montant complet arrive.";
+translations.es.dsPaso2 = "Envía <b>exactamente</b> el monto que te damos abajo, con todos sus decimales. Si tu exchange cobra una comisión de retiro, súmala para que llegue ese monto exacto.";
+translations.en.dsPaso2 = "Send <b>exactly</b> the amount we give you below, with all its decimals. If your exchange charges a withdrawal fee, add it so that exact amount arrives.";
+translations.de.dsPaso2 = "Sende <b>genau</b> den Betrag, den wir dir unten nennen, mit allen Nachkommastellen. Wenn deine Börse eine Auszahlungsgebühr berechnet, rechne sie dazu, damit genau dieser Betrag ankommt.";
+translations.fr.dsPaso2 = "Envoie <b>exactement</b> le montant indiqué ci-dessous, avec toutes ses décimales. Si ton exchange prend des frais de retrait, ajoute-les pour que ce montant exact arrive.";
 translations.es.dsPaso3 = "Guarda el código de la transacción (también llamado «hash» o «ID de transacción»).";
 translations.en.dsPaso3 = "Keep the transaction code (also called “hash” or “transaction ID”).";
 translations.de.dsPaso3 = "Bewahre den Transaktionscode auf (auch „Hash“ oder „Transaktions-ID“ genannt).";
 translations.fr.dsPaso3 = "Garde le code de la transaction (aussi appelé « hash » ou « ID de transaction »).";
-translations.es.dsPaso4 = "Avísanos con tu correo y ese código. Verificamos cada aporte a mano en un máximo de {h} horas y activamos tu acceso completo.";
-translations.en.dsPaso4 = "Let us know with your email and that code. We check every contribution by hand within {h} hours at most and turn on your full access.";
-translations.de.dsPaso4 = "Gib uns mit deiner E-Mail und diesem Code Bescheid. Wir prüfen jeden Beitrag von Hand innerhalb von höchstens {h} Stunden und schalten deinen Vollzugriff frei.";
-translations.fr.dsPaso4 = "Préviens-nous avec ton e-mail et ce code. Nous vérifions chaque contribution à la main en {h} heures maximum et activons ton accès complet.";
+translations.es.dsPaso4 = "Pega aquí ese código. Revisamos cada aporte en un máximo de {h} horas y activamos tu acceso completo.";
+translations.en.dsPaso4 = "Paste that code here. We check every contribution within {h} hours at most and turn on your full access.";
+translations.de.dsPaso4 = "Füge diesen Code hier ein. Wir prüfen jeden Beitrag innerhalb von höchstens {h} Stunden und schalten deinen Vollzugriff frei.";
+translations.fr.dsPaso4 = "Colle ce code ici. Nous vérifions chaque contribution en {h} heures maximum et activons ton accès complet.";
 translations.es.dsFormProximamente = "El formulario para avisarnos de tu aporte estará aquí muy pronto. Todavía no envíes nada: espera a que aparezca.";
 translations.en.dsFormProximamente = "The form to tell us about your contribution will be here very soon. Please don’t send anything yet: wait until it appears.";
 translations.de.dsFormProximamente = "Das Formular, mit dem du uns über deinen Beitrag informierst, kommt sehr bald hierher. Bitte sende noch nichts: Warte, bis es erscheint.";
@@ -6341,10 +6341,10 @@ translations.de.emSrc = "Quellen:";
 translations.fr.emSrc = "Sources :";
 
 // Desbloquear -> claim form and "pending verification" (support_claims)
-translations.es.dsFormH3 = "Avísanos de tu aporte";
-translations.en.dsFormH3 = "Tell us about your contribution";
-translations.de.dsFormH3 = "Teile uns deinen Beitrag mit";
-translations.fr.dsFormH3 = "Signale-nous ta contribution";
+translations.es.dsFormH3 = "¿Ya lo enviaste? Pega el código de la transacción";
+translations.en.dsFormH3 = "Sent it? Paste the transaction code";
+translations.de.dsFormH3 = "Schon gesendet? Füge den Transaktionscode ein";
+translations.fr.dsFormH3 = "Déjà envoyé ? Colle le code de la transaction";
 translations.es.dsFormEmail = "Tu correo";
 translations.en.dsFormEmail = "Your email";
 translations.de.dsFormEmail = "Deine E-Mail";
@@ -6361,10 +6361,10 @@ translations.es.dsFormFlores = "Tu aporte: {n} flor(es) · {usdc} {cur}";
 translations.en.dsFormFlores = "Your contribution: {n} flower(s) · {usdc} {cur}";
 translations.de.dsFormFlores = "Dein Beitrag: {n} Blüte(n) · {usdc} {cur}";
 translations.fr.dsFormFlores = "Ta contribution : {n} fleur(s) · {usdc} {cur}";
-translations.es.dsFormBtn = "Enviar aviso";
-translations.en.dsFormBtn = "Send";
-translations.de.dsFormBtn = "Senden";
-translations.fr.dsFormBtn = "Envoyer";
+translations.es.dsFormBtn = "Enviar código";
+translations.en.dsFormBtn = "Send code";
+translations.de.dsFormBtn = "Code senden";
+translations.fr.dsFormBtn = "Envoyer le code";
 translations.es.dsFormSending = "Enviando…";
 translations.en.dsFormSending = "Sending…";
 translations.de.dsFormSending = "Wird gesendet…";
@@ -6393,14 +6393,14 @@ translations.es.dsPendingH = "Recibimos tu aporte, lo estamos verificando";
 translations.en.dsPendingH = "We received your contribution and are verifying it";
 translations.de.dsPendingH = "Wir haben deinen Beitrag erhalten und prüfen ihn";
 translations.fr.dsPendingH = "Nous avons reçu ta contribution et nous la vérifions";
-translations.es.dsPendingP = "Lo revisamos a mano en un máximo de {h} horas.";
-translations.en.dsPendingP = "We check it by hand within {h} hours at most.";
-translations.de.dsPendingP = "Wir prüfen ihn von Hand innerhalb von höchstens {h} Stunden.";
-translations.fr.dsPendingP = "Nous la vérifions à la main en {h} heures maximum.";
-translations.es.dsRejectedP = "No pudimos verificar tu último aporte. Revisa el código y vuelve a enviarlo, o escríbenos a hello@motherverdeny.com.";
-translations.en.dsRejectedP = "We couldn’t verify your last contribution. Check the code and send it again, or write to hello@motherverdeny.com.";
-translations.de.dsRejectedP = "Wir konnten deinen letzten Beitrag nicht bestätigen. Prüfe den Code und sende ihn erneut, oder schreib an hello@motherverdeny.com.";
-translations.fr.dsRejectedP = "Nous n’avons pas pu vérifier ta dernière contribution. Vérifie le code et renvoie-le, ou écris à hello@motherverdeny.com.";
+translations.es.dsPendingP = "Lo revisamos en un máximo de {h} horas. Te avisaremos por correo cuando tu acceso esté activo.";
+translations.en.dsPendingP = "We check it within {h} hours at most. We’ll e-mail you when your access is active.";
+translations.de.dsPendingP = "Wir prüfen ihn innerhalb von höchstens {h} Stunden. Wir schreiben dir eine E-Mail, sobald dein Zugang aktiv ist.";
+translations.fr.dsPendingP = "Nous la vérifions en {h} heures maximum. Nous t’écrirons par e-mail quand ton accès sera actif.";
+translations.es.dsRejectedP = "No pudimos verificar tu último aporte. Si crees que es un error, escríbenos a hello@motherverdeny.com con el código de la transacción.";
+translations.en.dsRejectedP = "We couldn’t verify your last contribution. If you think this is a mistake, write to hello@motherverdeny.com with the transaction code.";
+translations.de.dsRejectedP = "Wir konnten deinen letzten Beitrag nicht bestätigen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com mit dem Transaktionscode.";
+translations.fr.dsRejectedP = "Nous n’avons pas pu vérifier ta dernière contribution. Si tu penses que c’est une erreur, écris à hello@motherverdeny.com avec le code de la transaction.";
 translations.es.dsYaTienes = "Ya tienes acceso completo.";
 translations.en.dsYaTienes = "You already have full access.";
 translations.de.dsYaTienes = "Du hast bereits Vollzugriff.";
@@ -6411,6 +6411,119 @@ translations.es.cmyTraduccionPendiente = "Traducción pendiente: se muestra el t
 translations.en.cmyTraduccionPendiente = "Translation pending: showing the original text.";
 translations.de.cmyTraduccionPendiente = "Übersetzung ausstehend: Der Originaltext wird angezeigt.";
 translations.fr.cmyTraduccionPendiente = "Traduction en attente : le texte original est affiché.";
+// Points 6-7: unique amount, gift codes, granted/revoked access.
+translations.es.dsReservarH = "Tu monto para enviar";
+translations.en.dsReservarH = "Your amount to send";
+translations.de.dsReservarH = "Dein Betrag zum Senden";
+translations.fr.dsReservarH = "Ton montant à envoyer";
+translations.es.dsReservarP = "Para reconocer tu aporte sin pedirte datos, te damos un monto único: {usdc} {cur} más unos decimales que solo son tuyos.";
+translations.en.dsReservarP = "To recognise your contribution without asking for any data, we give you a unique amount: {usdc} {cur} plus a few decimals that are yours alone.";
+translations.de.dsReservarP = "Damit wir deinen Beitrag ohne weitere Daten erkennen, bekommst du einen eindeutigen Betrag: {usdc} {cur} plus ein paar Nachkommastellen, die nur dir gehören.";
+translations.fr.dsReservarP = "Pour reconnaître ta contribution sans te demander de données, nous te donnons un montant unique : {usdc} {cur} plus quelques décimales qui ne sont qu’à toi.";
+translations.es.dsReservarBtn = "Ver mi monto";
+translations.en.dsReservarBtn = "Show my amount";
+translations.de.dsReservarBtn = "Meinen Betrag anzeigen";
+translations.fr.dsReservarBtn = "Voir mon montant";
+translations.es.dsReservarOtro = "Cambiar a {n} flor(es)";
+translations.en.dsReservarOtro = "Change to {n} flower(s)";
+translations.de.dsReservarOtro = "Auf {n} Blüte(n) ändern";
+translations.fr.dsReservarOtro = "Passer à {n} fleur(s)";
+translations.es.dsEnviaExacto = "Envía exactamente";
+translations.en.dsEnviaExacto = "Send exactly";
+translations.de.dsEnviaExacto = "Sende genau";
+translations.fr.dsEnviaExacto = "Envoie exactement";
+translations.es.dsEnRed = "en la red {net}";
+translations.en.dsEnRed = "on the {net} network";
+translations.de.dsEnRed = "im {net}-Netzwerk";
+translations.fr.dsEnRed = "sur le réseau {net}";
+translations.es.dsDecimalesP = "Los últimos decimales identifican tu aporte: no los redondees. Si tu billetera usa coma en lugar de punto, escribe los mismos dígitos.";
+translations.en.dsDecimalesP = "The last decimals identify your contribution: don’t round them. If your wallet uses a comma instead of a dot, type the same digits.";
+translations.de.dsDecimalesP = "Die letzten Nachkommastellen identifizieren deinen Beitrag: nicht runden. Wenn deine Wallet ein Komma statt eines Punktes verwendet, gib dieselben Ziffern ein.";
+translations.fr.dsDecimalesP = "Les dernières décimales identifient ta contribution : ne les arrondis pas. Si ton portefeuille utilise une virgule au lieu d’un point, tape les mêmes chiffres.";
+translations.es.dsCopiarMonto = "Copiar monto";
+translations.en.dsCopiarMonto = "Copy amount";
+translations.de.dsCopiarMonto = "Betrag kopieren";
+translations.fr.dsCopiarMonto = "Copier le montant";
+translations.es.dsMontoCopiado = "¡Monto copiado!";
+translations.en.dsMontoCopiado = "Amount copied!";
+translations.de.dsMontoCopiado = "Betrag kopiert!";
+translations.fr.dsMontoCopiado = "Montant copié !";
+translations.es.dsValidoHasta = "Este monto está reservado para ti hasta el {d}.";
+translations.en.dsValidoHasta = "This amount is reserved for you until {d}.";
+translations.de.dsValidoHasta = "Dieser Betrag ist bis {d} für dich reserviert.";
+translations.fr.dsValidoHasta = "Ce montant t’est réservé jusqu’au {d}.";
+translations.es.dsCancelar = "Ya no quiero enviarlo";
+translations.en.dsCancelar = "I don’t want to send it anymore";
+translations.de.dsCancelar = "Ich möchte nicht mehr senden";
+translations.fr.dsCancelar = "Je ne veux plus l’envoyer";
+translations.es.dsVencidoP = "Tu monto reservado venció. Si todavía no enviaste nada, pide uno nuevo. Si ya lo enviaste, escríbenos a hello@motherverdeny.com con el código de la transacción.";
+translations.en.dsVencidoP = "Your reserved amount expired. If you haven’t sent anything yet, ask for a new one. If you already sent it, write to hello@motherverdeny.com with the transaction code.";
+translations.de.dsVencidoP = "Dein reservierter Betrag ist abgelaufen. Wenn du noch nichts gesendet hast, fordere einen neuen an. Wenn du schon gesendet hast, schreib an hello@motherverdeny.com mit dem Transaktionscode.";
+translations.fr.dsVencidoP = "Ton montant réservé a expiré. Si tu n’as encore rien envoyé, demandes-en un nouveau. Si tu l’as déjà envoyé, écris à hello@motherverdeny.com avec le code de la transaction.";
+translations.es.dsErrBusy = "Ahora mismo hay muchos aportes en curso. Inténtalo de nuevo en unos minutos.";
+translations.en.dsErrBusy = "There are many contributions in progress right now. Try again in a few minutes.";
+translations.de.dsErrBusy = "Gerade laufen sehr viele Beiträge. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.dsErrBusy = "Beaucoup de contributions sont en cours en ce moment. Réessaie dans quelques minutes.";
+translations.es.dsErrConfirm = "Primero confirma tu correo.";
+translations.en.dsErrConfirm = "Confirm your e-mail first.";
+translations.de.dsErrConfirm = "Bestätige zuerst deine E-Mail-Adresse.";
+translations.fr.dsErrConfirm = "Confirme d’abord ton adresse e-mail.";
+translations.es.dsErrExpired = "Tu monto reservado venció: pide uno nuevo antes de enviar.";
+translations.en.dsErrExpired = "Your reserved amount expired: ask for a new one before sending.";
+translations.de.dsErrExpired = "Dein reservierter Betrag ist abgelaufen: Fordere einen neuen an, bevor du sendest.";
+translations.fr.dsErrExpired = "Ton montant réservé a expiré : demandes-en un nouveau avant d’envoyer.";
+translations.es.accRevocadoH = "Esta cuenta no tiene acceso";
+translations.en.accRevocadoH = "This account has no access";
+translations.de.accRevocadoH = "Dieses Konto hat keinen Zugang";
+translations.fr.accRevocadoH = "Ce compte n’a pas d’accès";
+translations.es.accRevocadoP = "El acceso de esta cuenta fue retirado. Si crees que es un error, escríbenos a hello@motherverdeny.com.";
+translations.en.accRevocadoP = "Access for this account was withdrawn. If you think this is a mistake, write to hello@motherverdeny.com.";
+translations.de.accRevocadoP = "Der Zugang dieses Kontos wurde entzogen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com.";
+translations.fr.accRevocadoP = "L’accès de ce compte a été retiré. Si tu penses que c’est une erreur, écris à hello@motherverdeny.com.";
+translations.es.accCuentaGranted = "Acceso completo activo hasta el {d}.";
+translations.en.accCuentaGranted = "Full access active until {d}.";
+translations.de.accCuentaGranted = "Vollzugriff aktiv bis {d}.";
+translations.fr.accCuentaGranted = "Accès complet actif jusqu’au {d}.";
+translations.es.accCuentaRevoked = "El acceso de esta cuenta fue retirado. Si crees que es un error, escríbenos a hello@motherverdeny.com.";
+translations.en.accCuentaRevoked = "Access for this account was withdrawn. If you think this is a mistake, write to hello@motherverdeny.com.";
+translations.de.accCuentaRevoked = "Der Zugang dieses Kontos wurde entzogen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com.";
+translations.fr.accCuentaRevoked = "L’accès de ce compte a été retiré. Si tu penses que c’est une erreur, écris à hello@motherverdeny.com.";
+translations.es.giftTengo = "Tengo un código de regalo";
+translations.en.giftTengo = "I have a gift code";
+translations.de.giftTengo = "Ich habe einen Geschenkcode";
+translations.fr.giftTengo = "J’ai un code cadeau";
+translations.es.giftLabel = "Tu código de regalo";
+translations.en.giftLabel = "Your gift code";
+translations.de.giftLabel = "Dein Geschenkcode";
+translations.fr.giftLabel = "Ton code cadeau";
+translations.es.giftCanjear = "Canjear";
+translations.en.giftCanjear = "Redeem";
+translations.de.giftCanjear = "Einlösen";
+translations.fr.giftCanjear = "Utiliser";
+translations.es.giftOk = "¡Listo! Tienes acceso completo hasta el {d}.";
+translations.en.giftOk = "Done! You have full access until {d}.";
+translations.de.giftOk = "Fertig! Du hast Vollzugriff bis {d}.";
+translations.fr.giftOk = "C’est fait ! Tu as un accès complet jusqu’au {d}.";
+translations.es.giftErrInvalid = "Ese código no es válido o ya no se puede usar.";
+translations.en.giftErrInvalid = "That code isn’t valid or can no longer be used.";
+translations.de.giftErrInvalid = "Dieser Code ist ungültig oder kann nicht mehr verwendet werden.";
+translations.fr.giftErrInvalid = "Ce code n’est pas valide ou ne peut plus être utilisé.";
+translations.es.giftErrTooMany = "Demasiados intentos. Vuelve a intentarlo dentro de 24 horas.";
+translations.en.giftErrTooMany = "Too many attempts. Try again in 24 hours.";
+translations.de.giftErrTooMany = "Zu viele Versuche. Versuch es in 24 Stunden noch einmal.";
+translations.fr.giftErrTooMany = "Trop de tentatives. Réessaie dans 24 heures.";
+translations.es.giftErrConfirm = "Primero confirma tu correo.";
+translations.en.giftErrConfirm = "Confirm your e-mail first.";
+translations.de.giftErrConfirm = "Bestätige zuerst deine E-Mail-Adresse.";
+translations.fr.giftErrConfirm = "Confirme d’abord ton adresse e-mail.";
+translations.es.giftErrYaTienes = "Ya tienes acceso completo, así que no usamos el código: puedes regalárselo a otra persona.";
+translations.en.giftErrYaTienes = "You already have full access, so we didn’t use the code: you can give it to someone else.";
+translations.de.giftErrYaTienes = "Du hast bereits Vollzugriff, deshalb haben wir den Code nicht verwendet: Du kannst ihn weiterschenken.";
+translations.fr.giftErrYaTienes = "Tu as déjà un accès complet, nous n’avons donc pas utilisé le code : tu peux l’offrir à quelqu’un d’autre.";
+translations.es.giftErrGeneric = "No pudimos comprobar el código ahora. Inténtalo de nuevo en unos minutos.";
+translations.en.giftErrGeneric = "We couldn’t check the code right now. Try again in a few minutes.";
+translations.de.giftErrGeneric = "Wir konnten den Code gerade nicht prüfen. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.giftErrGeneric = "Nous n’avons pas pu vérifier le code pour le moment. Réessaie dans quelques minutes.";
 
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
@@ -6653,6 +6766,8 @@ const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
      unconfirmed – signed up, e-mail not confirmed yet         -> "confirm your e-mail"
      trial       – 24 h trial running                          -> everything + countdown strip
      supporter   – verified contribution (or old full access)  -> everything
+     granted     – days from a gift code or an admin (access_until) -> everything
+     revoked     – access taken away by an admin               -> lock screen, own text
      expired     – trial used up, no verified contribution     -> lock screen
      no_trial    – account that existed before and never had a trial -> lock screen, other text
      loading     – signed in, profile not loaded yet           -> treated as locked (fails closed)
@@ -6661,6 +6776,7 @@ const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
    Community is closed on the server (RLS + publish functions). */
 var mvAccessPreviewState = null;   // localhost only, see window.mvAccessPreview
 var mvPreviewTrialEnd = 0;
+var mvPreviewGrantedEnd = 0;
 var mvLastAccessState = null;
 
 function mvPendingConfirmEmail(){
@@ -6685,13 +6801,15 @@ function mvAccessState(){
   if(!user) return mvPendingConfirmEmail() ? 'unconfirmed' : 'visitor';
   if(!p) return 'loading';
   if(p.subscription_status === 'supporter') return 'supporter';
+  if(p.subscription_status === 'revoked') return 'revoked';
+  if(p.access_until && new Date(p.access_until).getTime() > Date.now()) return 'granted';
   if(p.subscription_status === 'trialing' && p.trial_ends_at && new Date(p.trial_ends_at).getTime() > Date.now()) return 'trial';
   if(window.mvComputeIsPremium && window.mvComputeIsPremium(p)) return 'supporter';
   if(p.trial_started_at) return 'expired';
   return 'no_trial';
 }
 function mvIsLockedState(st){
-  return st === 'visitor' || st === 'unconfirmed' || st === 'expired' || st === 'no_trial' || st === 'loading';
+  return st === 'visitor' || st === 'unconfirmed' || st === 'expired' || st === 'no_trial' || st === 'revoked' || st === 'loading';
 }
 // Screens that stay open without access.
 function mvScreenAllowedLocked(id){
@@ -6702,10 +6820,17 @@ function mvScreenAllowedLocked(id){
 window.mvAccessStateNow = function(){ return mvAccessState(); };
 // Localhost previews pretend to be signed in for these states.
 window.mvIsPreviewSignedIn = function(){
-  return MV_IS_LOCAL && ['trial', 'expired', 'no_trial', 'supporter'].includes(mvAccessPreviewState);
+  return MV_IS_LOCAL && ['trial', 'expired', 'no_trial', 'supporter', 'granted', 'revoked'].includes(mvAccessPreviewState);
 };
 // A support-contribution claim waiting for the owner's manual check.
-function mvClaimPending(){ return !!(window.mvLatestClaim && window.mvLatestClaim.status === 'pending'); }
+// 'submitted' = transaction code given; 'manual_review' = being checked by hand.
+function mvClaimPending(){ return !!(window.mvLatestClaim && ['submitted', 'manual_review'].includes(window.mvLatestClaim.status)); }
+// End of gift / admin-granted days ('granted' state).
+function mvGrantedUntilMs(){
+  if(MV_IS_LOCAL && mvAccessPreviewState === 'granted') return mvPreviewGrantedEnd;
+  const p = window.mvCurrentProfile;
+  return p && p.access_until ? new Date(p.access_until).getTime() : 0;
+}
 function mvPendingNoteHtml(){
   return mvClaimPending()
     ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + t('dsPendingP').replace('{h}', window.MV_VERIFY_MAX_HOURS || 48) + '</div>'
@@ -6796,6 +6921,11 @@ function mvRenderAcceso(){
       + '<p class="acc-text">' + t(p) + '</p>'
       + mvPendingNoteHtml()
       + (mvClaimPending() ? '' : '<div class="acc-actions"><button class="btn btn-primary" onclick="showScreen(\'desbloquear\')">' + t('accDesbloquearBtn') + '</button></div>')
+      + '<p class="acc-note"><a onclick="mvOpenGiftForm()">' + t('giftTengo') + '</a></p>'
+      + keep;
+  } else if(st === 'revoked'){
+    html = '<h2 class="acc-title">' + t('accRevocadoH') + '</h2>'
+      + '<p class="acc-text">' + t('accRevocadoP') + '</p>'
       + keep;
   } else if(st === 'loading'){
     html = '<p class="acc-text">' + t('subLoading') + '</p>';
@@ -6853,15 +6983,65 @@ document.getElementById('trialCountdownClose')?.addEventListener('click', () => 
 function mvRenderCuentaAcceso(){
   const card = document.getElementById('cuentaAccesoCard');
   if(!card) return;
-  if(ACCESS_MODEL !== 'support' || !window.mvCurrentUser){ card.hidden = true; return; }
+  if(ACCESS_MODEL !== 'support' || (!window.mvCurrentUser && !window.mvIsPreviewSignedIn())){ card.hidden = true; return; }
   const st = mvAccessState();
   const txt = document.getElementById('cuentaAccesoTexto');
   const btn = document.getElementById('cuentaAccesoBtn');
-  const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial' }[st] || 'subLoading';
-  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>')
+  const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial', granted: 'accCuentaGranted', revoked: 'accCuentaRevoked' }[st] || 'subLoading';
+  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
     + (st !== 'supporter' && mvClaimPending() ? '<br><br>' + mvPendingNoteHtml() : '');
-  if(btn) btn.hidden = st === 'supporter' || st === 'loading' || mvClaimPending();
+  if(btn) btn.hidden = st === 'supporter' || st === 'revoked' || st === 'loading' || mvClaimPending();
+  mvRenderGiftBox(st);
   card.hidden = false;
+}
+
+// «Tengo un código de regalo» (Cuenta). The database decides everything
+// (redeem_gift_code): confirmed e-mail, single use, expiry, 5 failed tries
+// per 24 h, never uses up a code on an account that already has full access.
+function mvRenderGiftBox(st){
+  const box = document.getElementById('cuentaRegaloBox');
+  if(!box) return;
+  const show = ['trial', 'granted', 'expired', 'no_trial'].includes(st);
+  box.hidden = !show;
+  if(!show || box.dataset.lang === getCurrentLang()) return;
+  box.dataset.lang = getCurrentLang();
+  box.innerHTML = '<button type="button" class="btn btn-ghost" id="giftToggle" onclick="mvOpenGiftForm()">' + t('giftTengo') + '</button>'
+    + '<form id="giftForm" class="gift-form" hidden onsubmit="mvRedeemGift(event)">'
+    + '<label for="giftCode">' + t('giftLabel') + '</label>'
+    + '<input type="text" id="giftCode" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">'
+    + '<button type="submit" class="btn btn-primary" id="giftBtn">' + t('giftCanjear') + '</button>'
+    + '<p class="acc-note" id="giftMsg" aria-live="polite"></p></form>';
+}
+function mvOpenGiftForm(){
+  if(document.getElementById('cuenta') && !document.getElementById('cuenta').classList.contains('active')) showScreen('cuenta');
+  const f = document.getElementById('giftForm');
+  if(!f) return;
+  f.hidden = false;
+  document.getElementById('cuentaRegaloBox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  document.getElementById('giftCode')?.focus();
+}
+async function mvRedeemGift(ev){
+  ev.preventDefault();
+  const msg = document.getElementById('giftMsg'), btn = document.getElementById('giftBtn');
+  const code = (document.getElementById('giftCode').value || '').trim();
+  if(code.replace(/[^A-Za-z0-9]/g, '').length < 12){ msg.textContent = t('giftErrInvalid'); return; }
+  if(MV_IS_LOCAL && mvAccessPreviewState){ msg.textContent = t('giftOk').replace('{d}', mvFmtDate(Date.now() + 7 * 86400000)); return; }
+  if(!window.mvSupabase || !window.mvCurrentUser){ msg.textContent = t('giftErrGeneric'); return; }
+  btn.disabled = true; msg.textContent = '…';
+  const { data, error } = await window.mvSupabase.rpc('redeem_gift_code', { p_code: code });
+  btn.disabled = false;
+  if(error){
+    const m = error.message || '';
+    msg.textContent = t(m.includes('too_many_attempts') ? 'giftErrTooMany' : m.includes('email_not_confirmed') ? 'giftErrConfirm' : 'giftErrGeneric');
+    return;
+  }
+  if(!data || !data.ok){
+    msg.textContent = t(data && data.error === 'already_full_access' ? 'giftErrYaTienes' : 'giftErrInvalid');
+    return;
+  }
+  document.getElementById('giftCode').value = '';
+  msg.textContent = t('giftOk').replace('{d}', mvFmtDate(new Date(data.access_until).getTime()));
+  window.mvRefreshAuth?.();
 }
 
 // When the trial runs out with the app open, lock without reloading.
@@ -6876,12 +7056,13 @@ setInterval(() => {
 // mvAccessPreview('expired'), mvAccessPreview('trial', 0.5) (minutes left), mvAccessPreview(null).
 if(MV_IS_LOCAL){
   window.mvClaimPreview = function(status){
-    window.mvLatestClaim = status ? { id: 0, status: status } : null;
+    window.mvLatestClaim = status ? { id: 0, status: status, flowers: 1, amount_units: 10004700, expires_at: new Date(Date.now() + (status === 'expired' ? -1 : 72) * 3600000).toISOString() } : null;
     mvApplyAccessState();
   };
   window.mvAccessPreview = function(st, minutesLeft){
     mvAccessPreviewState = st || null;
     if(st === 'trial') mvPreviewTrialEnd = Date.now() + (minutesLeft != null ? minutesLeft : 17 * 60 + 32) * 60000 + 20000;
+    if(st === 'granted') mvPreviewGrantedEnd = Date.now() + 7 * 86400000;
     mvApplyAccessState();
   };
 }

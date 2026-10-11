@@ -32,66 +32,121 @@ function totalLine() {
   return fmt(t(key), { n: flowers, usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY });
 }
 
-// "Tell us about your contribution" (support_claims). The database enforces
-// the real rules (own rows only, status always 'pending', one pending claim
-// per person, hash format, a hash claimed only once); this only gives early,
-// friendly feedback.
+// Contribution with a UNIQUE AMOUNT (support_claims, migration 20261011120000).
+// The database does the real work and enforces every rule: it reserves
+// N x 10 USDC + 0.0001–0.0099 that no other open request has, for 72 h; it
+// accepts one transaction code per request, used only once ever; the browser
+// can only call these three functions and read its own requests.
+// Statuses: awaiting_payment -> submitted -> (manual_review) -> approved |
+// rejected; awaiting_payment can also end as expired or canceled.
 const TX_RE = /^0x[0-9a-fA-F]{64}$/;
-const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const OPEN = ['submitted', 'manual_review'];
+let syncedFromClaim = null; // claim id whose flower count the picker already took
 
-function claimHtml() {
-  const claim = window.mvLatestClaim;
-  const access = window.mvAccessStateNow ? window.mvAccessStateNow() : '';
-  if (access === 'supporter') return `<div class="note-box">${t('dsYaTienes')}</div>`;
-  if (claim && claim.status === 'pending') {
-    return `<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}</div>`;
+const claimNow = () => window.mvLatestClaim || null;
+const isLocalPreview = () => ['localhost', '127.0.0.1'].includes(location.hostname)
+  && ((claimNow() && claimNow().id === 0) || !!(window.mvIsPreviewSignedIn && window.mvIsPreviewSignedIn()));
+const amountText = (units) => (Number(units) / 1e6).toFixed(4);
+const fmtWhen = (iso) => (window.mvFmtDateTime ? window.mvFmtDateTime(iso) : new Date(iso).toLocaleString());
+function awaiting(c) { return c && c.status === 'awaiting_payment' && new Date(c.expires_at).getTime() > Date.now(); }
+
+const RPC_ERR = {
+  email_not_confirmed: 'dsErrConfirm', busy_try_later: 'dsErrBusy', expired: 'dsErrExpired',
+  bad_tx_format: 'dsFormErrTx', tx_already_used: 'dsFormErrDup', already_supporter: 'dsYaTienes',
+};
+const errKey = (error) => { const m = (error && error.message) || ''; const k = Object.keys(RPC_ERR).find((x) => m.includes(x)); return k ? RPC_ERR[k] : 'dsFormErrGeneric'; };
+
+async function reserve() {
+  const msg = document.getElementById('dsClaimMsg');
+  if (isLocalPreview()) {
+    window.mvLatestClaim = { id: 0, status: 'awaiting_payment', flowers, amount_units: flowers * 10000000 + 4700, expires_at: new Date(Date.now() + 72 * 3600000).toISOString() };
+    renderDesbloquear(); return;
   }
-  const email = (window.mvCurrentUser && window.mvCurrentUser.email) || '';
-  return `
-    <form class="ds-claim" id="dsClaimForm" novalidate>
-      <h3>${t('dsFormH3')}</h3>
-      ${claim && claim.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : ''}
-      <label for="dsClaimEmail">${t('dsFormEmail')}</label>
-      <input type="email" id="dsClaimEmail" maxlength="254" autocomplete="email" value="${email.replace(/"/g, '&quot;')}">
-      <label for="dsClaimTx">${t('dsFormTx')}</label>
-      <input type="text" id="dsClaimTx" maxlength="66" autocomplete="off" spellcheck="false" placeholder="0x…">
-      <p class="ds-claim-help">${t('dsFormAyuda')}</p>
-      <p class="ds-claim-flowers">${fmt(t('dsFormFlores'), { n: flowers, usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
-      <button type="submit" class="btn btn-primary" id="dsClaimBtn">${t('dsFormBtn')}</button>
-      <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
-    </form>`;
+  if (msg) msg.textContent = t('dsFormSending');
+  const { data, error } = await window.mvSupabase.rpc('create_support_claim', { p_flowers: flowers });
+  if (error) { if (msg) msg.textContent = t(errKey(error)); return; }
+  window.mvLatestClaim = data;
+  renderDesbloquear();
 }
 
-async function submitClaim(ev) {
+async function cancelReservation() {
+  const c = claimNow();
+  if (!c) return;
+  if (!isLocalPreview()) {
+    const { error } = await window.mvSupabase.rpc('cancel_my_support_claim', { p_claim_id: c.id });
+    if (error) { document.getElementById('dsClaimMsg').textContent = t('dsFormErrGeneric'); return; }
+  }
+  window.mvLatestClaim = { ...c, status: 'canceled' };
+  renderDesbloquear();
+}
+
+async function submitTx(ev) {
   ev.preventDefault();
   const msg = document.getElementById('dsClaimMsg');
   const btn = document.getElementById('dsClaimBtn');
-  const email = document.getElementById('dsClaimEmail').value.trim();
   const tx = document.getElementById('dsClaimTx').value.trim();
-  if (!EMAIL_RE.test(email)) { msg.textContent = t('dsFormErrEmail'); return; }
   if (!TX_RE.test(tx)) { msg.textContent = t('dsFormErrTx'); return; }
-  if (!window.mvSupabase || !window.mvCurrentUser) { msg.textContent = t('dsFormErrGeneric'); return; }
+  const c = claimNow();
+  if (isLocalPreview()) { window.mvLatestClaim = { ...c, status: 'submitted', tx_hash: tx.toLowerCase() }; window.mvApplyAccessState?.(); renderDesbloquear(); return; }
+  if (!window.mvSupabase || !window.mvCurrentUser || !c) { msg.textContent = t('dsFormErrGeneric'); return; }
   btn.disabled = true;
   msg.textContent = t('dsFormSending');
-  const { data, error } = await window.mvSupabase.from('support_claims')
-    .insert({ contact_email: email, tx_hash: tx, flowers })
-    .select('id, status, created_at, reviewed_at').single();
-  if (error) {
-    const text = (error.message || '') + ' ' + (error.details || '');
-    msg.textContent = t(text.includes('support_claims_one_pending') ? 'dsFormErrPending'
-      : text.includes('support_claims_tx_once') ? 'dsFormErrDup'
-      : error.code === '23514' ? 'dsFormErrTx'
-      : 'dsFormErrGeneric');
-    btn.disabled = false;
-    return;
-  }
+  const { data, error } = await window.mvSupabase.rpc('submit_support_claim_tx', { p_claim_id: c.id, p_tx_hash: tx });
+  if (error) { msg.textContent = t(errKey(error)); btn.disabled = false; return; }
   window.mvLatestClaim = data;
-  window.mvApplyAccessState?.();
+  // Automatic verification (only does anything if it was switched on).
+  try { await window.mvSupabase.functions.invoke('support-claims', { body: { action: 'verify', claim_id: data.id } }); } catch (e) {}
+  await window.mvRefreshAuth?.();
   renderDesbloquear();
+}
+
+function claimHtml() {
+  const c = claimNow();
+  const access = window.mvAccessStateNow ? window.mvAccessStateNow() : '';
+  if (access === 'supporter') return `<div class="note-box">${t('dsYaTienes')}</div>`;
+  if (c && OPEN.includes(c.status)) {
+    return `<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}</div>`;
+  }
+  const notes = (c && c.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : '')
+    + (c && (c.status === 'expired' || (c.status === 'awaiting_payment' && !awaiting(c))) ? `<p class="ds-claim-rejected">${t('dsVencidoP')}</p>` : '');
+  if (!awaiting(c)) {
+    return `
+      <div class="ds-claim">
+        <h3>${t('dsReservarH')}</h3>
+        ${notes}
+        <p>${fmt(t('dsReservarP'), { usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
+        <button type="button" class="btn btn-primary" id="dsReservarBtn">${t('dsReservarBtn')}</button>
+        <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
+      </div>`;
+  }
+  const amount = amountText(c.amount_units);
+  return `
+    <div class="ds-amount" role="note">
+      <div class="ds-amount-label">${t('dsEnviaExacto')}</div>
+      <div class="ds-amount-big"><span id="dsAmount">${amount}</span> ${SUPPORT.CURRENCY}</div>
+      <div class="ds-amount-net">${fmt(t('dsEnRed'), { net: SUPPORT.NETWORK })}</div>
+      <button type="button" class="btn btn-ghost ds-copy" id="dsCopyAmount">${t('dsCopiarMonto')}</button>
+      <span class="ds-copied" id="dsAmountCopied" aria-live="polite"></span>
+      <p class="ds-amount-note">${t('dsDecimalesP')}</p>
+      <p class="ds-amount-note">${fmt(t('dsValidoHasta'), { d: fmtWhen(c.expires_at) })}</p>
+      ${c.flowers !== flowers ? `<button type="button" class="btn btn-ghost" id="dsReservarBtn">${fmt(t('dsReservarOtro'), { n: flowers })}</button>` : ''}
+    </div>
+    <form class="ds-claim" id="dsClaimForm" novalidate>
+      <h3>${t('dsFormH3')}</h3>
+      <label for="dsClaimTx">${t('dsFormTx')}</label>
+      <input type="text" id="dsClaimTx" maxlength="66" autocomplete="off" spellcheck="false" placeholder="0x…">
+      <p class="ds-claim-help">${t('dsFormAyuda')}</p>
+      <button type="submit" class="btn btn-primary" id="dsClaimBtn">${t('dsFormBtn')}</button>
+      <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
+      <button type="button" class="ds-cancel-link" id="dsCancelBtn">${t('dsCancelar')}</button>
+    </form>`;
 }
 
 function paymentHtml() {
   const addr = SUPPORT.ADDRESS;
+  if (!awaiting(claimNow())) {
+    return `<div class="card-block ds-pay"><h3>${t('dsComoH3')}</h3>${claimHtml()}</div>`;
+  }
   return `
     <div class="card-block ds-pay">
       <h3>${t('dsComoH3')}</h3>
@@ -110,7 +165,7 @@ function paymentHtml() {
       </div>
       <ol class="ds-steps">
         <li>${fmt(t('dsPaso1'), { cur: SUPPORT.CURRENCY, net: SUPPORT.NETWORK })}</li>
-        <li>${fmt(t('dsPaso2'), { usdc: SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</li>
+        <li>${t('dsPaso2')}</li>
         <li>${t('dsPaso3')}</li>
         <li>${fmt(t('dsPaso4'), { h: SUPPORT.VERIFY_MAX_HOURS })}</li>
       </ol>
@@ -130,6 +185,8 @@ function visitorHtml() {
 export function renderDesbloquear() {
   const root = document.getElementById('desbloquearContent');
   if (!root) return;
+  const c0 = claimNow();
+  if (awaiting(c0) && syncedFromClaim !== c0.id) { syncedFromClaim = c0.id; flowers = c0.flowers; }
   const ready = supportAddressIsValid();
   // Visitors without a session never see the address or the QR: a contribution
   // can only be verified against an account.
@@ -184,7 +241,15 @@ export function renderDesbloquear() {
     if (box) box.innerHTML = svg;
   }).catch(() => {});
 
-  root.querySelector('#dsClaimForm')?.addEventListener('submit', submitClaim);
+  root.querySelector('#dsReservarBtn')?.addEventListener('click', reserve);
+  root.querySelector('#dsCancelBtn')?.addEventListener('click', cancelReservation);
+  root.querySelector('#dsClaimForm')?.addEventListener('submit', submitTx);
+  root.querySelector('#dsCopyAmount')?.addEventListener('click', async () => {
+    const m = document.getElementById('dsAmountCopied');
+    try { await navigator.clipboard.writeText(document.getElementById('dsAmount').textContent); m.textContent = t('dsMontoCopiado'); }
+    catch (e) { m.textContent = ''; }
+  });
+  if (!awaiting(claimNow())) return;
 
   root.querySelector('#dsCopyBtn').onclick = async () => {
     const msg = document.getElementById('dsCopied');
