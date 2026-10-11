@@ -539,3 +539,4 @@ html.mv-locked .bit-entry-del{display:none !important;}
 .ds-claim-rejected{font-size:13px; color:var(--clay); margin:0;}
 .ds-claim-pending{margin-top:16px; padding:12px 14px; border:1px solid var(--moss); border-radius:8px; background:rgba(42,235,160,0.08); font-size:14px; line-height:1.5;}
 .acc-pending{text-align:left; margin:16px auto; max-width:520px;}
+.cmy-pending-tr{display:block; margin-top:4px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft);}

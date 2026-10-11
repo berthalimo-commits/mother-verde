@@ -6406,6 +6406,12 @@ translations.en.dsYaTienes = "You already have full access.";
 translations.de.dsYaTienes = "Du hast bereits Vollzugriff.";
 translations.fr.dsYaTienes = "Tu as déjà l’accès complet.";
 
+// Community: note under untranslated posts/comments (translation_status failed)
+translations.es.cmyTraduccionPendiente = "Traducción pendiente: se muestra el texto original.";
+translations.en.cmyTraduccionPendiente = "Translation pending: showing the original text.";
+translations.de.cmyTraduccionPendiente = "Übersetzung ausstehend: Der Originaltext wird angezeigt.";
+translations.fr.cmyTraduccionPendiente = "Traduction en attente : le texte original est affiché.";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -8117,6 +8123,14 @@ function cmyHandleNoAccess(e){
   return true;
 }
 
+// Shown under a post/comment published without translation (budget or cap
+// reached, or DeepL failed): translation_status 'failed', reader's language
+// differs from the original. The text shown is the original.
+function cmyPendingTranslationNote(row){
+  if(!row || row.translation_status !== 'failed' || !row.source_lang || row.source_lang === currentLang) return '';
+  return '<span class="cmy-pending-tr">' + t('cmyTraduccionPendiente') + '</span>';
+}
+
 // Error codes the community-publish-* functions return -> i18n key.
 function cmyPublishErrorKey(e){
   const m = (e && e.message) || '';
@@ -8177,7 +8191,7 @@ function renderPostCard(post){
     ? `<img class="cmy-post-photo" src="${esc(post.photo_url)}" alt="" loading="lazy">` : '';
   const bodyBlock = localized
     ? `<p class="cmy-post-body" id="cmyBody-${post.id}" data-localized="${esc(localized)}" data-original="${esc(post.body || localized)}">${esc(localized)}</p>
-       ${translated ? `<button class="cmy-translated" onclick="togglePostOriginal('${post.id}')" data-orig="0">${t('cmyVerOriginal')}</button>` : ''}`
+       ${translated ? `<button class="cmy-translated" onclick="togglePostOriginal('${post.id}')" data-orig="0">${t('cmyVerOriginal')}</button>` : ''}${cmyPendingTranslationNote(post)}`
     : '';
   const del = post.user_id === myId
     ? `<button class="cmy-del" onclick="deletePostStep(this,'${post.id}')">${t('cmyEliminar')}</button>` : '';
@@ -8253,8 +8267,9 @@ async function loadCommentThread(postId){
     ? `<p class="bit-empty" style="margin:8px 0;">${t('cmyComentariosVacio')}</p>`
     : comments.map(c => {
         const author = feedAuthors[c.user_id] || { display_name: t('cmyMiembroDesconocido'), user_id: c.user_id };
-        const body = window.mvCommunity.localizeBody(c, currentLang);
-        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b>${verifiedBadgeHtml(author)} <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div></div>`;
+        const body = window.mvCommunity.localizeBody(c, currentLang) + '';
+        const pendingNote = cmyPendingTranslationNote(c);
+        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b>${verifiedBadgeHtml(author)} <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}${pendingNote}</div></div>`;
       }).join('');
   const composer = canComment
     ? `<div class="cmy-comment-composer">
