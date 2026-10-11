@@ -6,6 +6,8 @@ import QRCode from 'qrcode';
 import { SUPPORT, SUPPORT_RECIPIENT_TEXT, supportAddressIsValid } from './supportConfig.js';
 
 let flowers = 1;
+// main.js (classic script) can't import the config; it reads this.
+window.MV_VERIFY_MAX_HOURS = SUPPORT.VERIFY_MAX_HOURS;
 
 const t = (k) => (window.t ? window.t(k) : k);
 const lang = () => (window.getCurrentLang ? window.getCurrentLang() : 'es');
@@ -28,6 +30,64 @@ function gardenHtml() {
 function totalLine() {
   const key = flowers === 1 ? 'dsRamoUna' : 'dsRamoVarias';
   return fmt(t(key), { n: flowers, usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY });
+}
+
+// "Tell us about your contribution" (support_claims). The database enforces
+// the real rules (own rows only, status always 'pending', one pending claim
+// per person, hash format, a hash claimed only once); this only gives early,
+// friendly feedback.
+const TX_RE = /^0x[0-9a-fA-F]{64}$/;
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+function claimHtml() {
+  const claim = window.mvLatestClaim;
+  const access = window.mvAccessStateNow ? window.mvAccessStateNow() : '';
+  if (access === 'supporter') return `<div class="note-box">${t('dsYaTienes')}</div>`;
+  if (claim && claim.status === 'pending') {
+    return `<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}</div>`;
+  }
+  const email = (window.mvCurrentUser && window.mvCurrentUser.email) || '';
+  return `
+    <form class="ds-claim" id="dsClaimForm" novalidate>
+      <h3>${t('dsFormH3')}</h3>
+      ${claim && claim.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : ''}
+      <label for="dsClaimEmail">${t('dsFormEmail')}</label>
+      <input type="email" id="dsClaimEmail" maxlength="254" autocomplete="email" value="${email.replace(/"/g, '&quot;')}">
+      <label for="dsClaimTx">${t('dsFormTx')}</label>
+      <input type="text" id="dsClaimTx" maxlength="66" autocomplete="off" spellcheck="false" placeholder="0x…">
+      <p class="ds-claim-help">${t('dsFormAyuda')}</p>
+      <p class="ds-claim-flowers">${fmt(t('dsFormFlores'), { n: flowers, usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
+      <button type="submit" class="btn btn-primary" id="dsClaimBtn">${t('dsFormBtn')}</button>
+      <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
+    </form>`;
+}
+
+async function submitClaim(ev) {
+  ev.preventDefault();
+  const msg = document.getElementById('dsClaimMsg');
+  const btn = document.getElementById('dsClaimBtn');
+  const email = document.getElementById('dsClaimEmail').value.trim();
+  const tx = document.getElementById('dsClaimTx').value.trim();
+  if (!EMAIL_RE.test(email)) { msg.textContent = t('dsFormErrEmail'); return; }
+  if (!TX_RE.test(tx)) { msg.textContent = t('dsFormErrTx'); return; }
+  if (!window.mvSupabase || !window.mvCurrentUser) { msg.textContent = t('dsFormErrGeneric'); return; }
+  btn.disabled = true;
+  msg.textContent = t('dsFormSending');
+  const { data, error } = await window.mvSupabase.from('support_claims')
+    .insert({ contact_email: email, tx_hash: tx, flowers })
+    .select('id, status, created_at, reviewed_at').single();
+  if (error) {
+    const text = (error.message || '') + ' ' + (error.details || '');
+    msg.textContent = t(text.includes('support_claims_one_pending') ? 'dsFormErrPending'
+      : text.includes('support_claims_tx_once') ? 'dsFormErrDup'
+      : error.code === '23514' ? 'dsFormErrTx'
+      : 'dsFormErrGeneric');
+    btn.disabled = false;
+    return;
+  }
+  window.mvLatestClaim = data;
+  window.mvApplyAccessState?.();
+  renderDesbloquear();
 }
 
 function paymentHtml() {
@@ -54,7 +114,7 @@ function paymentHtml() {
         <li>${t('dsPaso3')}</li>
         <li>${fmt(t('dsPaso4'), { h: SUPPORT.VERIFY_MAX_HOURS })}</li>
       </ol>
-      <div class="note-box ds-form-soon">${t('dsFormProximamente')}</div>
+      ${claimHtml()}
     </div>`;
 }
 
@@ -73,7 +133,7 @@ export function renderDesbloquear() {
   const ready = supportAddressIsValid();
   // Visitors without a session never see the address or the QR: a contribution
   // can only be verified against an account.
-  const signedIn = !!window.mvCurrentUser;
+  const signedIn = !!window.mvCurrentUser || !!(window.mvIsPreviewSignedIn && window.mvIsPreviewSignedIn());
 
   root.innerHTML = `
     <p class="subhead ds-intro">${t('dsIntro')}</p>
@@ -123,6 +183,8 @@ export function renderDesbloquear() {
     const box = document.getElementById('dsQr');
     if (box) box.innerHTML = svg;
   }).catch(() => {});
+
+  root.querySelector('#dsClaimForm')?.addEventListener('submit', submitClaim);
 
   root.querySelector('#dsCopyBtn').onclick = async () => {
     const msg = document.getElementById('dsCopied');

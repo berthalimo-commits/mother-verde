@@ -55,8 +55,21 @@ async function refreshAuthState(){
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
   window.loadTrichLog?.();
   if(window.mvCurrentUser) window.mvSetPendingConfirm?.('');
+  await loadLatestClaim();
   window.mvApplyAccessState?.();
 }
+
+// Latest support-contribution claim of the signed-in person (support_claims,
+// RLS: own rows only). null when none, signed out, or the table isn't there.
+async function loadLatestClaim(){
+  window.mvLatestClaim = null;
+  if(!window.mvCurrentUser) return;
+  const { data, error } = await supabase.from('support_claims')
+    .select('id, status, created_at, reviewed_at')
+    .order('created_at', { ascending: false }).limit(1).maybeSingle();
+  if(!error) window.mvLatestClaim = data || null;
+}
+window.mvLoadLatestClaim = loadLatestClaim;
 
 // Let public/main.js (and src/subscription.js) force a full auth/profile reload
 // after a subscription state change, so gating updates everywhere at once.

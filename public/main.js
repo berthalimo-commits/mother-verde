@@ -6340,6 +6340,72 @@ translations.en.emSrc = "Sources:";
 translations.de.emSrc = "Quellen:";
 translations.fr.emSrc = "Sources :";
 
+// Desbloquear -> claim form and "pending verification" (support_claims)
+translations.es.dsFormH3 = "Avísanos de tu aporte";
+translations.en.dsFormH3 = "Tell us about your contribution";
+translations.de.dsFormH3 = "Teile uns deinen Beitrag mit";
+translations.fr.dsFormH3 = "Signale-nous ta contribution";
+translations.es.dsFormEmail = "Tu correo";
+translations.en.dsFormEmail = "Your email";
+translations.de.dsFormEmail = "Deine E-Mail";
+translations.fr.dsFormEmail = "Ton e-mail";
+translations.es.dsFormTx = "Código de la transacción (hash)";
+translations.en.dsFormTx = "Transaction code (hash)";
+translations.de.dsFormTx = "Transaktionscode (Hash)";
+translations.fr.dsFormTx = "Code de la transaction (hash)";
+translations.es.dsFormAyuda = "Lo encuentras en el detalle del envío, en tu exchange o billetera: empieza por 0x y tiene 66 caracteres. Si no aparece, escríbenos a hello@motherverdeny.com.";
+translations.en.dsFormAyuda = "You’ll find it in the transfer details in your exchange or wallet: it starts with 0x and has 66 characters. If it doesn’t show up, write to hello@motherverdeny.com.";
+translations.de.dsFormAyuda = "Du findest ihn in den Details der Überweisung in deiner Börse oder Wallet: Er beginnt mit 0x und hat 66 Zeichen. Wenn er nicht angezeigt wird, schreib an hello@motherverdeny.com.";
+translations.fr.dsFormAyuda = "Tu le trouves dans le détail de l’envoi, dans ton exchange ou ton portefeuille : il commence par 0x et compte 66 caractères. S’il n’apparaît pas, écris à hello@motherverdeny.com.";
+translations.es.dsFormFlores = "Tu aporte: {n} flor(es) · {usdc} {cur}";
+translations.en.dsFormFlores = "Your contribution: {n} flower(s) · {usdc} {cur}";
+translations.de.dsFormFlores = "Dein Beitrag: {n} Blüte(n) · {usdc} {cur}";
+translations.fr.dsFormFlores = "Ta contribution : {n} fleur(s) · {usdc} {cur}";
+translations.es.dsFormBtn = "Enviar aviso";
+translations.en.dsFormBtn = "Send";
+translations.de.dsFormBtn = "Senden";
+translations.fr.dsFormBtn = "Envoyer";
+translations.es.dsFormSending = "Enviando…";
+translations.en.dsFormSending = "Sending…";
+translations.de.dsFormSending = "Wird gesendet…";
+translations.fr.dsFormSending = "Envoi…";
+translations.es.dsFormErrEmail = "Revisa tu correo: no parece válido.";
+translations.en.dsFormErrEmail = "Please check your email: it doesn’t look valid.";
+translations.de.dsFormErrEmail = "Bitte prüfe deine E-Mail: Sie scheint ungültig zu sein.";
+translations.fr.dsFormErrEmail = "Vérifie ton e-mail : il ne semble pas valide.";
+translations.es.dsFormErrTx = "El código debe empezar por 0x y tener 66 caracteres en total.";
+translations.en.dsFormErrTx = "The code must start with 0x and have 66 characters in total.";
+translations.de.dsFormErrTx = "Der Code muss mit 0x beginnen und insgesamt 66 Zeichen haben.";
+translations.fr.dsFormErrTx = "Le code doit commencer par 0x et compter 66 caractères au total.";
+translations.es.dsFormErrPending = "Ya tienes un aporte pendiente de verificar.";
+translations.en.dsFormErrPending = "You already have a contribution waiting to be verified.";
+translations.de.dsFormErrPending = "Du hast bereits einen Beitrag, der noch geprüft wird.";
+translations.fr.dsFormErrPending = "Tu as déjà une contribution en attente de vérification.";
+translations.es.dsFormErrDup = "Ese código de transacción ya fue enviado.";
+translations.en.dsFormErrDup = "That transaction code has already been sent.";
+translations.de.dsFormErrDup = "Dieser Transaktionscode wurde bereits gesendet.";
+translations.fr.dsFormErrDup = "Ce code de transaction a déjà été envoyé.";
+translations.es.dsFormErrGeneric = "No pudimos enviar el aviso. Inténtalo de nuevo o escríbenos a hello@motherverdeny.com.";
+translations.en.dsFormErrGeneric = "We couldn’t send it. Please try again or write to hello@motherverdeny.com.";
+translations.de.dsFormErrGeneric = "Wir konnten es nicht senden. Versuch es noch einmal oder schreib an hello@motherverdeny.com.";
+translations.fr.dsFormErrGeneric = "Nous n’avons pas pu l’envoyer. Réessaie ou écris à hello@motherverdeny.com.";
+translations.es.dsPendingH = "Recibimos tu aporte, lo estamos verificando";
+translations.en.dsPendingH = "We received your contribution and are verifying it";
+translations.de.dsPendingH = "Wir haben deinen Beitrag erhalten und prüfen ihn";
+translations.fr.dsPendingH = "Nous avons reçu ta contribution et nous la vérifions";
+translations.es.dsPendingP = "Lo revisamos a mano en un máximo de {h} horas.";
+translations.en.dsPendingP = "We check it by hand within {h} hours at most.";
+translations.de.dsPendingP = "Wir prüfen ihn von Hand innerhalb von höchstens {h} Stunden.";
+translations.fr.dsPendingP = "Nous la vérifions à la main en {h} heures maximum.";
+translations.es.dsRejectedP = "No pudimos verificar tu último aporte. Revisa el código y vuelve a enviarlo, o escríbenos a hello@motherverdeny.com.";
+translations.en.dsRejectedP = "We couldn’t verify your last contribution. Check the code and send it again, or write to hello@motherverdeny.com.";
+translations.de.dsRejectedP = "Wir konnten deinen letzten Beitrag nicht bestätigen. Prüfe den Code und sende ihn erneut, oder schreib an hello@motherverdeny.com.";
+translations.fr.dsRejectedP = "Nous n’avons pas pu vérifier ta dernière contribution. Vérifie le code et renvoie-le, ou écris à hello@motherverdeny.com.";
+translations.es.dsYaTienes = "Ya tienes acceso completo.";
+translations.en.dsYaTienes = "You already have full access.";
+translations.de.dsYaTienes = "Du hast bereits Vollzugriff.";
+translations.fr.dsYaTienes = "Tu as déjà l’accès complet.";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -6627,6 +6693,19 @@ function mvScreenAllowedLocked(id){
   if(id === 'bitacora') return !!window.mvCurrentUser;   // own log, read-only + PDF
   return false;
 }
+window.mvAccessStateNow = function(){ return mvAccessState(); };
+// Localhost previews pretend to be signed in for these states.
+window.mvIsPreviewSignedIn = function(){
+  return MV_IS_LOCAL && ['trial', 'expired', 'no_trial', 'supporter'].includes(mvAccessPreviewState);
+};
+// A support-contribution claim waiting for the owner's manual check.
+function mvClaimPending(){ return !!(window.mvLatestClaim && window.mvLatestClaim.status === 'pending'); }
+function mvPendingNoteHtml(){
+  return mvClaimPending()
+    ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + t('dsPendingP').replace('{h}', window.MV_VERIFY_MAX_HOURS || 48) + '</div>'
+    : '';
+}
+
 function mvTrialEndMs(){
   if(MV_IS_LOCAL && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
   const p = window.mvCurrentProfile;
@@ -6709,7 +6788,8 @@ function mvRenderAcceso(){
     const p = st === 'expired' ? 'accTerminoP' : 'accSinAccesoP';
     html = '<h2 class="acc-title">' + t(h) + '</h2>'
       + '<p class="acc-text">' + t(p) + '</p>'
-      + '<div class="acc-actions"><button class="btn btn-primary" onclick="showScreen(\'desbloquear\')">' + t('accDesbloquearBtn') + '</button></div>'
+      + mvPendingNoteHtml()
+      + (mvClaimPending() ? '' : '<div class="acc-actions"><button class="btn btn-primary" onclick="showScreen(\'desbloquear\')">' + t('accDesbloquearBtn') + '</button></div>')
       + keep;
   } else if(st === 'loading'){
     html = '<p class="acc-text">' + t('subLoading') + '</p>';
@@ -6772,8 +6852,9 @@ function mvRenderCuentaAcceso(){
   const txt = document.getElementById('cuentaAccesoTexto');
   const btn = document.getElementById('cuentaAccesoBtn');
   const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial' }[st] || 'subLoading';
-  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>');
-  if(btn) btn.hidden = st === 'supporter' || st === 'loading';
+  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>')
+    + (st !== 'supporter' && mvClaimPending() ? '<br><br>' + mvPendingNoteHtml() : '');
+  if(btn) btn.hidden = st === 'supporter' || st === 'loading' || mvClaimPending();
   card.hidden = false;
 }
 
@@ -6788,6 +6869,10 @@ setInterval(() => {
 // Localhost only: preview every state without touching the database, e.g.
 // mvAccessPreview('expired'), mvAccessPreview('trial', 0.5) (minutes left), mvAccessPreview(null).
 if(MV_IS_LOCAL){
+  window.mvClaimPreview = function(status){
+    window.mvLatestClaim = status ? { id: 0, status: status } : null;
+    mvApplyAccessState();
+  };
   window.mvAccessPreview = function(st, minutesLeft){
     mvAccessPreviewState = st || null;
     if(st === 'trial') mvPreviewTrialEnd = Date.now() + (minutesLeft != null ? minutesLeft : 17 * 60 + 32) * 60000 + 20000;
