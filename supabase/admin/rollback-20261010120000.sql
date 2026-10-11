@@ -81,6 +81,16 @@ update public.profiles
       subscription_active = true,
       subscription_expires_at = null
   where subscription_status = 'supporter';
+update public.profiles set subscription_status = 'blocked' where subscription_status = 'revoked';
+-- Gift days / days given by an admin (access_until) -> legacy full access
+-- with that end date, so nobody loses days they were given.
+update public.profiles
+  set subscription_status = 'none',
+      subscription_active = true,
+      subscription_expires_at = access_until
+  where subscription_status not in ('blocked', 'none')
+    and access_until is not null and access_until > now()
+    and not (subscription_status = 'trialing' and trial_ends_at > access_until);
 
 alter table public.profiles drop constraint if exists profiles_subscription_status_check;
 alter table public.profiles add constraint profiles_subscription_status_check
@@ -90,6 +100,7 @@ alter table public.profiles add constraint profiles_subscription_status_check
 drop index if exists public.profiles_email_normalized_idx;
 alter table public.profiles drop column if exists email_normalized;
 alter table public.profiles drop column if exists trial_eligible;
+alter table public.profiles drop column if exists access_until;
 drop function if exists public.normalize_email(text);
 
 -- 8. Table privileges as they were (RLS still blocks inserts/deletes and

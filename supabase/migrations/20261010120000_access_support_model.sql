@@ -21,11 +21,12 @@ begin;
 -- and the trigger below never fires (no trial at all: fails closed).
 
 -- ---------------------------------------------------------------------------
--- 1. New status 'supporter' + who may still get a trial.
+-- 1. New statuses 'supporter' and 'revoked' + who may still get a trial.
 -- ---------------------------------------------------------------------------
 alter table public.profiles drop constraint if exists profiles_subscription_status_check;
 alter table public.profiles add constraint profiles_subscription_status_check
-  check (subscription_status in ('none','trialing','active','canceled','past_due','blocked','supporter'));
+  check (subscription_status in ('none','trialing','active','canceled','past_due','blocked','supporter','revoked'));
+-- 'revoked' = access taken away by an admin (fraud); never set automatically.
 
 -- Existing rows get false (no automatic trial for accounts that already
 -- exist); every profile created after this migration gets true.
@@ -34,6 +35,11 @@ alter table public.profiles alter column trial_eligible set default true;
 
 -- Normalized e-mail, only to detect the same address registered twice.
 alter table public.profiles add column if not exists email_normalized text;
+
+-- Access granted for a number of days (gift codes, "give N days" by an admin).
+-- Kept apart from the trial columns on purpose: redeeming a gift never
+-- touches trial_started_at / trial_ends_at, so "one trial per account" holds.
+alter table public.profiles add column if not exists access_until timestamptz;
 
 -- Column privileges: the browser still may update ONLY these five columns.
 -- (Re-stated so the new columns are explicitly not client-writable.)
@@ -99,6 +105,8 @@ as $$
     select
       subscription_status = 'supporter'
       or (subscription_status = 'trialing' and trial_ends_at is not null and trial_ends_at > now())
+      -- days granted by a gift code or an admin (not while access is revoked):
+      or (subscription_status <> 'revoked' and access_until is not null and access_until > now())
       -- old subscription model (inactive while ACCESS_MODEL = 'support'):
       or (subscription_status = 'active' and subscription_expires_at is not null and subscription_expires_at > now())
       or (subscription_status = 'none' and subscription_active

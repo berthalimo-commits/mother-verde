@@ -266,4 +266,23 @@ grant execute on function public.deepl_daily_cap() to service_role;
 grant execute on function public.community_user_char_limit() to service_role;
 grant execute on function public.deepl_reserve_chars(integer) to service_role;
 
+
+-- ---------------------------------------------------------------------------
+-- 9. Retrying untranslated posts/comments (Edge Function community-retranslate,
+--    once a day). Each row gets an attempt counter; after 5 failed attempts it
+--    becomes 'gave_up' and is no longer retried. A DeepL 456 (quota used up)
+--    doesn't count as an attempt. Retries reserve characters from the same
+--    global daily counter (deepl_reserve_chars), so they can never go over it.
+-- ---------------------------------------------------------------------------
+alter table public.community_posts add column if not exists translation_attempts integer not null default 0;
+alter table public.community_posts add column if not exists translation_last_attempt_at timestamptz;
+alter table public.community_comments add column if not exists translation_attempts integer not null default 0;
+alter table public.community_comments add column if not exists translation_last_attempt_at timestamptz;
+alter table public.community_posts drop constraint if exists community_posts_translation_status_check;
+alter table public.community_posts add constraint community_posts_translation_status_check
+  check (translation_status in ('pending', 'done', 'failed', 'skipped', 'gave_up'));
+alter table public.community_comments drop constraint if exists community_comments_translation_status_check;
+alter table public.community_comments add constraint community_comments_translation_status_check
+  check (translation_status in ('pending', 'done', 'failed', 'skipped', 'gave_up'));
+
 commit;

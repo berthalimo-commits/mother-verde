@@ -1,5 +1,6 @@
 -- READ-ONLY precheck. Paste in the Supabase SQL Editor BEFORE migrations
--- 20261010120000, 20261010130000 and 20261011120000. It changes nothing.
+-- 20261010120000, 20261010130000, 20261011100000, 20261011120000 and
+-- 20261011130000. It changes nothing.
 --
 -- It checks that production has exactly the objects those migrations expect
 -- to replace (policies, functions, constraint, triggers) and none of the
@@ -39,7 +40,14 @@ with expected(kind, name) as (values
   ('table',    'public.app_config'),
   ('table',    'public.deepl_usage_daily'),
   ('table',    'public.support_claims'),
-  ('function', 'public.approve_support_claim(p_id bigint, p_note text)'),
+  ('table',    'public.admin_users'),
+  ('table',    'public.admin_audit_log'),
+  ('table',    'public.gift_codes'),
+  ('table',    'public.gift_redeem_attempts'),
+  ('function', 'public.is_admin_aal2()'),
+  ('column',   'public.profiles.access_until'),
+  ('column',   'public.community_posts.translation_attempts'),
+  ('column',   'public.community_comments.translation_attempts'),
   ('trigger',  'auth.users.on_auth_email_confirmed'),
   ('column',   'public.profiles.trial_eligible'),
   ('column',   'public.profiles.email_normalized')

@@ -104,4 +104,19 @@ drop function if exists public.deepl_daily_cap();
 drop table if exists public.deepl_usage_daily;
 drop table if exists public.app_config;
 
+
+-- 9. Retry columns + 'gave_up' status ('gave_up' rows go back to 'failed').
+update public.community_posts set translation_status = 'failed' where translation_status = 'gave_up';
+update public.community_comments set translation_status = 'failed' where translation_status = 'gave_up';
+alter table public.community_posts drop constraint if exists community_posts_translation_status_check;
+alter table public.community_posts add constraint community_posts_translation_status_check
+  check (translation_status in ('pending','done','failed','skipped'));
+alter table public.community_comments drop constraint if exists community_comments_translation_status_check;
+alter table public.community_comments add constraint community_comments_translation_status_check
+  check (translation_status in ('pending','done','failed','skipped'));
+alter table public.community_posts drop column if exists translation_attempts;
+alter table public.community_posts drop column if exists translation_last_attempt_at;
+alter table public.community_comments drop column if exists translation_attempts;
+alter table public.community_comments drop column if exists translation_last_attempt_at;
+
 commit;
