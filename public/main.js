@@ -6157,6 +6157,124 @@ translations.en.cmyErrLimitChars = "You reached the daily limit of translated te
 translations.de.cmyErrLimitChars = "Du hast das Tageslimit für übersetzten Text erreicht (6.000 Zeichen in 24 Stunden). Versuch einen kürzeren Text oder komm später wieder.";
 translations.fr.cmyErrLimitChars = "Tu as atteint la limite quotidienne de texte traduit (6 000 caractères en 24 heures). Essaie un texte plus court ou reviens plus tard.";
 
+// Access screens, countdown strip and Cuenta access card (support model)
+translations.es.accDesbloquearBtn = "Desbloquear";
+translations.en.accDesbloquearBtn = "Unlock";
+translations.de.accDesbloquearBtn = "Freischalten";
+translations.fr.accDesbloquearBtn = "Débloquer";
+translations.es.accCuentaTitle = "Tu acceso";
+translations.en.accCuentaTitle = "Your access";
+translations.de.accCuentaTitle = "Dein Zugriff";
+translations.fr.accCuentaTitle = "Ton accès";
+translations.es.accLinkSeguridad = "Seguridad y emergencias";
+translations.en.accLinkSeguridad = "Safety and emergencies";
+translations.de.accLinkSeguridad = "Sicherheit und Notfälle";
+translations.fr.accLinkSeguridad = "Sécurité et urgences";
+translations.es.accLinkDesbloquear = "Cómo desbloquear";
+translations.en.accLinkDesbloquear = "How to unlock";
+translations.de.accLinkDesbloquear = "So schaltest du frei";
+translations.fr.accLinkDesbloquear = "Comment débloquer";
+translations.es.accEntradaH = "Mother Verde";
+translations.en.accEntradaH = "Mother Verde";
+translations.de.accEntradaH = "Mother Verde";
+translations.fr.accEntradaH = "Mother Verde";
+translations.es.accEntradaP = "Una enciclopedia de cannabis medicinal y recreacional basada en evidencia, en cuatro idiomas, con una comunidad para aprender juntos. Crea tu cuenta y, al confirmar tu correo, tendrás 24 horas de acceso completo, gratis y sin tarjeta.";
+translations.en.accEntradaP = "An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together. Create your account and, once you confirm your email, you’ll get 24 hours of full access, free and with no card.";
+translations.de.accEntradaP = "Eine evidenzbasierte Enzyklopädie über medizinisches und Freizeit-Cannabis, in vier Sprachen, mit einer Community, um gemeinsam zu lernen. Erstelle dein Konto und, sobald du deine E-Mail bestätigst, hast du 24 Stunden Vollzugriff, kostenlos und ohne Karte.";
+translations.fr.accEntradaP = "Une encyclopédie du cannabis médical et récréatif fondée sur les preuves, en quatre langues, avec une communauté pour apprendre ensemble. Crée ton compte et, dès que tu confirmes ton e-mail, tu auras 24 heures d’accès complet, gratuitement et sans carte.";
+translations.es.accCrearCuenta = "Crear cuenta";
+translations.en.accCrearCuenta = "Create account";
+translations.de.accCrearCuenta = "Konto erstellen";
+translations.fr.accCrearCuenta = "Créer un compte";
+translations.es.accEntrar = "Entrar";
+translations.en.accEntrar = "Sign in";
+translations.de.accEntrar = "Anmelden";
+translations.fr.accEntrar = "Se connecter";
+translations.es.accConfirmaH = "Confirma tu correo para empezar tus 24 horas";
+translations.en.accConfirmaH = "Confirm your email to start your 24 hours";
+translations.de.accConfirmaH = "Bestätige deine E-Mail, um deine 24 Stunden zu starten";
+translations.fr.accConfirmaH = "Confirme ton e-mail pour commencer tes 24 heures";
+translations.es.accConfirmaP = "Te enviamos un enlace a {email}. Ábrelo para confirmar tu cuenta: tus 24 horas de acceso completo empiezan en ese momento. Si no lo ves, revisa la carpeta de spam.";
+translations.en.accConfirmaP = "We sent a link to {email}. Open it to confirm your account: your 24 hours of full access start at that moment. If you don’t see it, check your spam folder.";
+translations.de.accConfirmaP = "Wir haben einen Link an {email} geschickt. Öffne ihn, um dein Konto zu bestätigen: Deine 24 Stunden Vollzugriff beginnen in diesem Moment. Wenn du ihn nicht siehst, schau im Spam-Ordner nach.";
+translations.fr.accConfirmaP = "Nous avons envoyé un lien à {email}. Ouvre-le pour confirmer ton compte : tes 24 heures d’accès complet commencent à ce moment-là. Si tu ne le vois pas, regarde dans tes spams.";
+translations.es.accReenviar = "Reenviar correo";
+translations.en.accReenviar = "Resend email";
+translations.de.accReenviar = "E-Mail erneut senden";
+translations.fr.accReenviar = "Renvoyer l’e-mail";
+translations.es.accOtroCorreo = "Usar otro correo";
+translations.en.accOtroCorreo = "Use another email";
+translations.de.accOtroCorreo = "Andere E-Mail verwenden";
+translations.fr.accOtroCorreo = "Utiliser un autre e-mail";
+translations.es.accReenviarEspera = "Podrás reenviarlo en {s} s.";
+translations.en.accReenviarEspera = "You can resend it in {s} s.";
+translations.de.accReenviarEspera = "Du kannst sie in {s} s erneut senden.";
+translations.fr.accReenviarEspera = "Tu pourras le renvoyer dans {s} s.";
+translations.es.accReenviarOk = "Listo: te enviamos el correo de nuevo.";
+translations.en.accReenviarOk = "Done: we sent the email again.";
+translations.de.accReenviarOk = "Erledigt: Wir haben die E-Mail erneut gesendet.";
+translations.fr.accReenviarOk = "C’est fait : nous t’avons renvoyé l’e-mail.";
+translations.es.accReenviarError = "No pudimos reenviarlo ahora. Inténtalo de nuevo en unos minutos.";
+translations.en.accReenviarError = "We couldn’t resend it right now. Please try again in a few minutes.";
+translations.de.accReenviarError = "Wir konnten sie gerade nicht erneut senden. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.accReenviarError = "Impossible de le renvoyer pour l’instant. Réessaie dans quelques minutes.";
+translations.es.accTerminoH = "Tu prueba gratis terminó";
+translations.en.accTerminoH = "Your free trial has ended";
+translations.de.accTerminoH = "Deine kostenlose Testphase ist vorbei";
+translations.fr.accTerminoH = "Ton essai gratuit est terminé";
+translations.es.accTerminoP = "Gracias por probar Mother Verde. Si quieres seguir con el acceso completo a todo el contenido y a la Comunidad, puedes desbloquearlo con un aporte único de apoyo.";
+translations.en.accTerminoP = "Thank you for trying Mother Verde. If you’d like to keep full access to all the content and the Community, you can unlock it with a one-time support contribution.";
+translations.de.accTerminoP = "Danke, dass du Mother Verde ausprobiert hast. Wenn du weiterhin Vollzugriff auf alle Inhalte und die Community haben möchtest, kannst du ihn mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accTerminoP = "Merci d’avoir essayé Mother Verde. Si tu veux garder l’accès complet à tout le contenu et à la Communauté, tu peux le débloquer avec une contribution unique de soutien.";
+translations.es.accSinAccesoH = "Esta cuenta no tiene acceso activo";
+translations.en.accSinAccesoH = "This account has no active access";
+translations.de.accSinAccesoH = "Dieses Konto hat keinen aktiven Zugriff";
+translations.fr.accSinAccesoH = "Ce compte n’a pas d’accès actif";
+translations.es.accSinAccesoP = "Puedes desbloquear el acceso completo a todo el contenido y a la Comunidad con un aporte único de apoyo.";
+translations.en.accSinAccesoP = "You can unlock full access to all the content and the Community with a one-time support contribution.";
+translations.de.accSinAccesoP = "Du kannst den Vollzugriff auf alle Inhalte und die Community mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accSinAccesoP = "Tu peux débloquer l’accès complet à tout le contenu et à la Communauté avec une contribution unique de soutien.";
+translations.es.accKeepP = "Tu cuenta y tu Bitácora siguen aquí: puedes {bit}descargarla{/bit} o {del}eliminar tu cuenta{/del} cuando quieras.";
+translations.en.accKeepP = "Your account and your grow journal are still here: you can {bit}download it{/bit} or {del}delete your account{/del} whenever you want.";
+translations.de.accKeepP = "Dein Konto und dein Anbau-Tagebuch sind weiterhin da: Du kannst {bit}es herunterladen{/bit} oder {del}dein Konto löschen{/del}, wann immer du willst.";
+translations.fr.accKeepP = "Ton compte et ton journal de culture sont toujours là : tu peux {bit}le télécharger{/bit} ou {del}supprimer ton compte{/del} quand tu veux.";
+translations.es.accStripText = "Prueba gratis: te quedan {t} de acceso completo.";
+translations.en.accStripText = "Free trial: {t} of full access left.";
+translations.de.accStripText = "Kostenlose Testphase: noch {t} Vollzugriff.";
+translations.fr.accStripText = "Essai gratuit : il te reste {t} d’accès complet.";
+translations.es.accFmtHM = "{h} h {m} min";
+translations.en.accFmtHM = "{h} h {m} min";
+translations.de.accFmtHM = "{h} Std. {m} Min.";
+translations.fr.accFmtHM = "{h} h {m} min";
+translations.es.accFmtM = "{m} min";
+translations.en.accFmtM = "{m} min";
+translations.de.accFmtM = "{m} Min.";
+translations.fr.accFmtM = "{m} min";
+translations.es.accFmtLess1 = "menos de 1 min";
+translations.en.accFmtLess1 = "less than 1 min";
+translations.de.accFmtLess1 = "weniger als 1 Min.";
+translations.fr.accFmtLess1 = "moins d’1 min";
+translations.es.accCuentaTrial = "Prueba gratis activa: te quedan {t} de acceso completo.";
+translations.en.accCuentaTrial = "Free trial active: {t} of full access left.";
+translations.de.accCuentaTrial = "Kostenlose Testphase aktiv: noch {t} Vollzugriff.";
+translations.fr.accCuentaTrial = "Essai gratuit actif : il te reste {t} d’accès complet.";
+translations.es.accCuentaSupporter = "Acceso completo activo.";
+translations.en.accCuentaSupporter = "Full access active.";
+translations.de.accCuentaSupporter = "Vollzugriff aktiv.";
+translations.fr.accCuentaSupporter = "Accès complet actif.";
+translations.es.accCuentaExpired = "Tu prueba gratis terminó. Puedes desbloquear el acceso completo con un aporte único de apoyo.";
+translations.en.accCuentaExpired = "Your free trial has ended. You can unlock full access with a one-time support contribution.";
+translations.de.accCuentaExpired = "Deine kostenlose Testphase ist vorbei. Du kannst den Vollzugriff mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accCuentaExpired = "Ton essai gratuit est terminé. Tu peux débloquer l’accès complet avec une contribution unique de soutien.";
+translations.es.accCuentaNoTrial = "Esta cuenta no tiene acceso activo. Puedes desbloquearlo con un aporte único de apoyo.";
+translations.en.accCuentaNoTrial = "This account has no active access. You can unlock it with a one-time support contribution.";
+translations.de.accCuentaNoTrial = "Dieses Konto hat keinen aktiven Zugriff. Du kannst ihn mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accCuentaNoTrial = "Ce compte n’a pas d’accès actif. Tu peux le débloquer avec une contribution unique de soutien.";
+translations.es.dsVisitorNote = "Primero crea tu cuenta, para que podamos verificar tu aporte.";
+translations.en.dsVisitorNote = "First create your account, so we can verify your contribution.";
+translations.de.dsVisitorNote = "Erstelle zuerst dein Konto, damit wir deinen Beitrag prüfen können.";
+translations.fr.dsVisitorNote = "Crée d’abord ton compte, pour que nous puissions vérifier ta contribution.";
+
 function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
@@ -6315,6 +6433,13 @@ document.addEventListener('click', e => { if(!e.target.closest('#tabsMore')) clo
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMoreMenu(); });
 
 function showScreen(id){
+  // Access model "support": a visitor or an account without active access can
+  // only open the allowed screens (see mvScreenAllowedLocked); anything else
+  // shows the access screen. Visual only — see the ACCESS STATE block.
+  if(ACCESS_MODEL === 'support' && mvIsLockedState(mvAccessState())){
+    if(id === 'perfil') id = 'cuenta';
+    if(!mvScreenAllowedLocked(id)) id = 'acceso';
+  }
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>b.classList.remove('active'));
@@ -6326,6 +6451,8 @@ function showScreen(id){
   if(id === 'bitacora') loadBitEntries();
   if(id === 'cuenta') renderCuenta();
   if(id === 'desbloquear') window.mvRenderDesbloquear?.();
+  if(id === 'acceso') mvRenderAcceso();
+  if(id === 'seguridad') mvEnsureSeguridadSub();
   if(id === 'glosario') renderGlosario('');
   if(id === 'comunidad') renderComunidadScreen();
   if(id === 'perfil') renderProfileScreen();
@@ -6382,6 +6509,227 @@ document.documentElement.dataset.accessModel = ACCESS_MODEL;
 
 let isPremium = false;
 const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+
+/* ===================== ACCESS STATE (ACCESS_MODEL 'support') =====================
+   One place decides what a person may see:
+     visitor     – no session                                  -> entry screen
+     unconfirmed – signed up, e-mail not confirmed yet         -> "confirm your e-mail"
+     trial       – 24 h trial running                          -> everything + countdown strip
+     supporter   – verified contribution (or old full access)  -> everything
+     expired     – trial used up, no verified contribution     -> lock screen
+     no_trial    – account that existed before and never had a trial -> lock screen, other text
+     loading     – signed in, profile not loaded yet           -> treated as locked (fails closed)
+   Lock mode only HIDES things in the browser (html.mv-locked). The educational
+   content still ships in the page and can be revealed from the console; the
+   Community is closed on the server (RLS + publish functions). */
+var mvAccessPreviewState = null;   // localhost only, see window.mvAccessPreview
+var mvPreviewTrialEnd = 0;
+var mvLastAccessState = null;
+
+function mvPendingConfirmEmail(){
+  try { return sessionStorage.getItem('mv-pending-confirm') || ''; } catch(e){ return ''; }
+}
+window.mvSetPendingConfirm = function(email){
+  try {
+    if(email) sessionStorage.setItem('mv-pending-confirm', email);
+    else sessionStorage.removeItem('mv-pending-confirm');
+  } catch(e){}
+  mvApplyAccessState();
+};
+
+function mvAccessState(){
+  if(ACCESS_MODEL !== 'support') return 'supporter';
+  if(MV_IS_LOCAL && mvAccessPreviewState){
+    // A previewed trial runs out like a real one (to test locking with the app open).
+    if(mvAccessPreviewState === 'trial' && Date.now() >= mvPreviewTrialEnd) return 'expired';
+    return mvAccessPreviewState;
+  }
+  const user = window.mvCurrentUser, p = window.mvCurrentProfile;
+  if(!user) return mvPendingConfirmEmail() ? 'unconfirmed' : 'visitor';
+  if(!p) return 'loading';
+  if(p.subscription_status === 'supporter') return 'supporter';
+  if(p.subscription_status === 'trialing' && p.trial_ends_at && new Date(p.trial_ends_at).getTime() > Date.now()) return 'trial';
+  if(window.mvComputeIsPremium && window.mvComputeIsPremium(p)) return 'supporter';
+  if(p.trial_started_at) return 'expired';
+  return 'no_trial';
+}
+function mvIsLockedState(st){
+  return st === 'visitor' || st === 'unconfirmed' || st === 'expired' || st === 'no_trial' || st === 'loading';
+}
+// Screens that stay open without access.
+function mvScreenAllowedLocked(id){
+  if(['acceso', 'desbloquear', 'terminos', 'privacidad', 'seguridad', 'cuenta'].includes(id)) return true;
+  if(id === 'bitacora') return !!window.mvCurrentUser;   // own log, read-only + PDF
+  return false;
+}
+function mvTrialEndMs(){
+  if(MV_IS_LOCAL && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
+  const p = window.mvCurrentProfile;
+  return p && p.trial_ends_at ? new Date(p.trial_ends_at).getTime() : 0;
+}
+function mvFmtLeft(ms){
+  const mins = Math.max(0, Math.floor(ms / 60000));
+  const h = Math.floor(mins / 60), m = mins % 60;
+  if(h > 0) return t('accFmtHM').replace('{h}', h).replace('{m}', m);
+  if(mins > 0) return t('accFmtM').replace('{m}', mins);
+  return t('accFmtLess1');
+}
+
+function mvApplyAccessState(){
+  if(ACCESS_MODEL !== 'support') return;
+  const st = mvAccessState();
+  const locked = mvIsLockedState(st);
+  const changed = st !== mvLastAccessState;
+  mvLastAccessState = st;
+  document.documentElement.classList.toggle('mv-locked', locked);
+  document.documentElement.dataset.access = st;
+  if(changed && typeof window.setIsPremium === 'function') window.setIsPremium(!locked);
+  const active = document.querySelector('.screen.active');
+  const activeId = active ? active.id : 'home';
+  if(locked && !mvScreenAllowedLocked(activeId)) showScreen('acceso');
+  else if(!locked && activeId === 'acceso') showScreen('home');
+  else if(activeId === 'acceso') mvRenderAcceso();
+  if(locked && activeId === 'seguridad') mvEnsureSeguridadSub();
+  mvRenderTrialStrip();
+  mvRenderCuentaAcceso();
+  if(document.getElementById('desbloquear')?.classList.contains('active')) window.mvRenderDesbloquear?.();
+  if(typeof renderBitacoraGate === 'function') renderBitacoraGate();
+}
+window.mvApplyAccessState = mvApplyAccessState;
+
+// Locked Seguridad shows only Mascotas and Manejo; make sure one of them is open.
+function mvEnsureSeguridadSub(){
+  if(!mvIsLockedState(mvAccessState())) return;
+  const open = document.querySelector('#seguridad .subview.active');
+  if(!open || (open.id !== 'seguridad-mascotas' && open.id !== 'seguridad-manejo')) showSub('seguridad', 'mascotas');
+}
+
+function mvGoAuth(mode){
+  showScreen('cuenta');
+  window.mvSetAuthMode?.(mode);
+  document.getElementById('cuentaAuthCard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function mvRenderAcceso(){
+  const root = document.getElementById('accesoContent');
+  if(!root) return;
+  const st = mvAccessState();
+  const esc = (x) => String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const links = '<div class="acc-links">'
+    + '<a onclick="showScreen(\'seguridad\')">' + t('accLinkSeguridad') + '</a>'
+    + '<a onclick="showScreen(\'desbloquear\')">' + t('accLinkDesbloquear') + '</a>'
+    + '<a onclick="showScreen(\'terminos\')">' + t('cuentaTerminosLabel') + '</a>'
+    + '<a onclick="showScreen(\'privacidad\')">' + t('cuentaPrivacidadLabel') + '</a>'
+    + '</div>';
+  const keep = '<p class="acc-keep">' + t('accKeepP')
+    .replace('{bit}', '<a onclick="showScreen(\'bitacora\')">')
+    .replace('{/bit}', '</a>')
+    .replace('{del}', '<a onclick="showScreen(\'cuenta\'); document.getElementById(\'cuentaBorrarCard\')?.scrollIntoView({behavior:\'smooth\'})">')
+    .replace('{/del}', '</a>') + '</p>';
+  let html = '';
+  if(st === 'visitor'){
+    html = '<h2 class="acc-title">' + t('accEntradaH') + '</h2>'
+      + '<p class="acc-text">' + t('accEntradaP') + '</p>'
+      + '<div class="acc-actions"><button class="btn btn-primary" onclick="mvGoAuth(\'signup\')">' + t('accCrearCuenta') + '</button>'
+      + '<button class="btn btn-ghost" onclick="mvGoAuth(\'login\')">' + t('accEntrar') + '</button></div>';
+  } else if(st === 'unconfirmed'){
+    const email = mvPendingConfirmEmail() || (MV_IS_LOCAL ? 'tu@correo.com' : '');
+    html = '<h2 class="acc-title">' + t('accConfirmaH') + '</h2>'
+      + '<p class="acc-text">' + t('accConfirmaP').replace('{email}', '<b>' + esc(email) + '</b>') + '</p>'
+      + '<div class="acc-actions"><button class="btn btn-primary" id="accResendBtn" onclick="mvResendClick()">' + t('accReenviar') + '</button>'
+      + '<button class="btn btn-ghost" onclick="window.mvSetPendingConfirm(\'\'); mvGoAuth(\'signup\')">' + t('accOtroCorreo') + '</button></div>'
+      + '<p class="acc-note" id="accResendMsg"></p>';
+  } else if(st === 'expired' || st === 'no_trial'){
+    const h = st === 'expired' ? 'accTerminoH' : 'accSinAccesoH';
+    const p = st === 'expired' ? 'accTerminoP' : 'accSinAccesoP';
+    html = '<h2 class="acc-title">' + t(h) + '</h2>'
+      + '<p class="acc-text">' + t(p) + '</p>'
+      + '<div class="acc-actions"><button class="btn btn-primary" onclick="showScreen(\'desbloquear\')">' + t('accDesbloquearBtn') + '</button></div>'
+      + keep;
+  } else if(st === 'loading'){
+    html = '<p class="acc-text">' + t('subLoading') + '</p>';
+  }
+  root.innerHTML = '<div class="acc-wrap">' + html + links + '</div>';
+  mvUpdateResendCooldown();
+}
+
+// "Resend confirmation e-mail": at most once a minute from this browser (Supabase
+// also rate-limits it on its side).
+const MV_RESEND_COOLDOWN_MS = 60000;
+function mvResendWaitMs(){
+  let last = 0;
+  try { last = Number(localStorage.getItem('mv-resend-at')) || 0; } catch(e){}
+  return Math.max(0, last + MV_RESEND_COOLDOWN_MS - Date.now());
+}
+function mvUpdateResendCooldown(){
+  const btn = document.getElementById('accResendBtn');
+  if(!btn) return;
+  const wait = mvResendWaitMs();
+  btn.disabled = wait > 0;
+  if(wait > 0){
+    const msg = document.getElementById('accResendMsg');
+    if(msg && !msg.dataset.sticky) msg.textContent = t('accReenviarEspera').replace('{s}', Math.ceil(wait / 1000));
+    setTimeout(mvUpdateResendCooldown, 1000);
+  }
+}
+async function mvResendClick(){
+  const msg = document.getElementById('accResendMsg');
+  const email = mvPendingConfirmEmail();
+  if(!email || mvResendWaitMs() > 0 || !window.mvResendConfirmation) return;
+  try { localStorage.setItem('mv-resend-at', String(Date.now())); } catch(e){}
+  const err = await window.mvResendConfirmation(email);
+  if(msg){ msg.dataset.sticky = '1'; msg.textContent = t(err ? 'accReenviarError' : 'accReenviarOk'); setTimeout(() => { delete msg.dataset.sticky; }, 4000); }
+  mvUpdateResendCooldown();
+}
+
+// Countdown strip (trial only). Can be closed for this browser session.
+function mvRenderTrialStrip(){
+  const el = document.getElementById('trialCountdown');
+  if(!el) return;
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem('mv-strip-dismissed') === '1'; } catch(e){}
+  if(mvAccessState() !== 'trial' || dismissed){ el.hidden = true; return; }
+  const txt = document.getElementById('trialCountdownText');
+  if(txt) txt.innerHTML = t('accStripText').replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>');
+  el.hidden = false;
+}
+document.getElementById('trialCountdownClose')?.addEventListener('click', () => {
+  try { sessionStorage.setItem('mv-strip-dismissed', '1'); } catch(e){}
+  mvRenderTrialStrip();
+});
+
+// Cuenta -> "Tu acceso".
+function mvRenderCuentaAcceso(){
+  const card = document.getElementById('cuentaAccesoCard');
+  if(!card) return;
+  if(ACCESS_MODEL !== 'support' || !window.mvCurrentUser){ card.hidden = true; return; }
+  const st = mvAccessState();
+  const txt = document.getElementById('cuentaAccesoTexto');
+  const btn = document.getElementById('cuentaAccesoBtn');
+  const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial' }[st] || 'subLoading';
+  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>');
+  if(btn) btn.hidden = st === 'supporter' || st === 'loading';
+  card.hidden = false;
+}
+
+// When the trial runs out with the app open, lock without reloading.
+setInterval(() => {
+  if(ACCESS_MODEL !== 'support') return;
+  const st = mvAccessState();
+  if(st !== mvLastAccessState) mvApplyAccessState();
+  else if(st === 'trial'){ mvRenderTrialStrip(); mvRenderCuentaAcceso(); }
+}, 15000);
+
+// Localhost only: preview every state without touching the database, e.g.
+// mvAccessPreview('expired'), mvAccessPreview('trial', 0.5) (minutes left), mvAccessPreview(null).
+if(MV_IS_LOCAL){
+  window.mvAccessPreview = function(st, minutesLeft){
+    mvAccessPreviewState = st || null;
+    if(st === 'trial') mvPreviewTrialEnd = Date.now() + (minutesLeft != null ? minutesLeft : 17 * 60 + 32) * 60000 + 20000;
+    mvApplyAccessState();
+  };
+}
+
 // window.setIsPremium(true) used to flip isPremium directly, so any visitor
 // could open devtools in production and unlock every Premium gate for free.
 // The real source of truth is the profile row auth.js already fetched from
@@ -6427,12 +6775,10 @@ const FULL_GATES = [
   {id:'ciencia-cientificos', titleKey:'gtCientTitle', descKey:'gtCientDesc'},
   {id:'ciencia-medico', titleKey:'gtMedTitle', descKey:'gtMedDesc'},
   {id:'ciencia-ecs', titleKey:'gtEcsTitle', descKey:'gtEcsDesc'},
-  {id:'seg-pm-prevencion', titleKey:'pmPrevencionH3', descKey:'gtSeguridadDesc'},
-  {id:'seg-pm-mecanismo', titleKey:'pmMecanismoH3', descKey:'gtSeguridadDesc'},
-  {id:'seg-pm-vet', titleKey:'pmVetH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pi-categorias', titleKey:'piCategoriasH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pi-revision', titleKey:'piRevisionH3', descKey:'gtSeguridadDesc'},
-  {id:'seg-pd-estadistica', titleKey:'pdEstadisticaH3', descKey:'gtSeguridadDesc'},
+  // seg-pm-* (Mascotas) and seg-pd-estadistica (Manejo) are open to everyone
+  // under the support model: safety content for visitors and blocked accounts.
   {id:'seg-pe-mecanismo', titleKey:'peMecanismoH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pe-matiz', titleKey:'peMatizH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pk-cud', titleKey:'pkCudH3', descKey:'gtSeguridadDesc'},
@@ -6949,6 +7295,7 @@ populateBuscarVetSelect();
 
 function renderCuenta(){
   renderAccountIcon();
+  mvRenderCuentaAcceso();
   const authCard = document.getElementById('cuentaAuthCard');
   const loggedInWrap = document.getElementById('cuentaLoggedInOnly');
   const estadoEl = document.getElementById('cuentaEstadoTexto');
@@ -7604,8 +7951,20 @@ async function submitPost(){
     setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
     renderFeed();
   }catch(e){
+    if(cmyHandleNoAccess(e)) return;
     show(t(cmyPublishErrorKey(e)), false);
   }
+}
+
+// The server said "no full access" (trial ended while the page was open, or a
+// contribution not verified yet): reload the profile and show the lock screen.
+function cmyHandleNoAccess(e){
+  if(!e || e.message !== 'no_access') return false;
+  Promise.resolve(window.mvRefreshAuth && window.mvRefreshAuth()).finally(() => {
+    mvApplyAccessState();
+    showScreen('acceso');
+  });
+  return true;
 }
 
 // Error codes the community-publish-* functions return -> i18n key.
@@ -7768,6 +8127,7 @@ async function submitComment(postId){
     inputEl.value = '';
     loadCommentThread(postId);
   }catch(e){
+    if(cmyHandleNoAccess(e)) return;
     inputEl.style.borderColor = 'var(--clay)';
     const cMsg = document.getElementById('cmyCommentMsg-' + postId);
     if(cMsg) cMsg.textContent = t(cmyPublishErrorKey(e));
@@ -8180,7 +8540,7 @@ function edibleSafetyRefHtml(){
 }
 function renderEdibleSafetyCards(){
   const html = edibleSafetyRefHtml();
-  ['edibleDoseSafetyCard', 'edibleDoseSafetyCardCm'].forEach(id => {
+  ['edibleDoseSafetyCard', 'edibleDoseSafetyCardCm', 'edibleDoseSafetyCardSeg'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.innerHTML = html;
   });
@@ -8721,8 +9081,10 @@ function renderBitacoraGate(){
   loggedInEl.style.display = user ? '' : 'none';
   const pdfBtn = document.getElementById('bitPdfBtn');
   const pdfLocked = document.getElementById('bitPdfLocked');
-  if(pdfBtn) pdfBtn.style.display = (user && isPremium) ? 'inline-block' : 'none';
-  if(pdfLocked) pdfLocked.style.display = (user && !isPremium) ? 'inline-flex' : 'none';
+  // Support model: your own log can always be downloaded, even without access.
+  const pdfOk = user && (isPremium || ACCESS_MODEL === 'support');
+  if(pdfBtn) pdfBtn.style.display = pdfOk ? 'inline-block' : 'none';
+  if(pdfLocked) pdfLocked.style.display = (user && !pdfOk) ? 'inline-flex' : 'none';
 }
 window.renderBitacoraGate = renderBitacoraGate;
 // Bitácora notes are free text rendered via innerHTML below; escape them so a
@@ -9186,3 +9548,7 @@ applyLang();
     saveState(state);
   }, TICK_MS);
 })();
+
+// Support model: lock / unlock the UI as soon as the script has run (fails closed:
+// visitor until auth.js reports a session and profile).
+mvApplyAccessState();

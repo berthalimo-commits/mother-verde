@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { CAPTCHA, captchaIsOn } from './captchaConfig.js';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -53,6 +54,8 @@ async function refreshAuthState(){
   window.syncTrialBanners?.();
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
   window.loadTrichLog?.();
+  if(window.mvCurrentUser) window.mvSetPendingConfirm?.('');
+  window.mvApplyAccessState?.();
 }
 
 // Let public/main.js (and src/subscription.js) force a full auth/profile reload
@@ -96,6 +99,44 @@ function renderAuthMode(){
   setAuthMsg('', false);
 }
 window.mvRenderAuthMode = renderAuthMode;
+// Used by the access screen's "Crear cuenta" / "Entrar" buttons.
+window.mvSetAuthMode = function(mode){ authMode = mode === 'signup' ? 'signup' : 'login'; renderAuthMode(); };
+
+/* ---------------------- Captcha (OFF until keys exist) ---------------------- */
+// src/captchaConfig.js. When off, nothing is loaded and no token is sent.
+let captchaToken = null;
+let captchaWidgetId = null;
+function captchaOptions(){ return captchaIsOn() && captchaToken ? { captchaToken } : {}; }
+function captchaReset(){
+  captchaToken = null;
+  if(captchaIsOn() && window.turnstile && captchaWidgetId !== null) window.turnstile.reset(captchaWidgetId);
+}
+function captchaMount(){
+  if(!captchaIsOn()) return;
+  const box = document.getElementById('authCaptcha');
+  if(!box || box.dataset.mounted) return;
+  box.dataset.mounted = '1';
+  window.mvOnTurnstileLoad = () => {
+    captchaWidgetId = window.turnstile.render(box, {
+      sitekey: CAPTCHA.SITE_KEY,
+      callback: (token) => { captchaToken = token; },
+      'expired-callback': () => { captchaToken = null; },
+    });
+  };
+  const sc = document.createElement('script');
+  sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=mvOnTurnstileLoad';
+  sc.async = true; sc.defer = true;
+  document.head.appendChild(sc);
+}
+captchaMount();
+
+/* ---------------------- E-mail confirmation ---------------------- */
+// Resend the sign-up confirmation e-mail (the access screen limits how often).
+window.mvResendConfirmation = async function(email){
+  const { error } = await supabase.auth.resend({ type: 'signup', email, options: captchaOptions() });
+  captchaReset();
+  return error || null;
+};
 
 document.getElementById('authTabs')?.addEventListener('click', (e) => {
   const b = e.target.closest('button[data-auth-tab]');
@@ -118,22 +159,34 @@ document.getElementById('authForm')?.addEventListener('submit', async (e) => {
     if(authMode === 'signup'){
       const { data, error } = await supabase.auth.signUp({
         email, password,
-        options: { data: { preferred_lang: window.currentLang || 'es' } }
+        options: { data: { preferred_lang: (window.getCurrentLang && window.getCurrentLang()) || 'es' }, ...captchaOptions() }
       });
       if(error) throw error;
       if(!data.session){
+        // E-mail not confirmed yet: the access screen explains it and offers
+        // to resend. The 24 h trial starts only once it's confirmed.
         setAuthMsg(window.t('authSignupCheckEmail'), false);
+        window.mvSetPendingConfirm?.(email);
+        window.showScreen?.('acceso');
       } else {
         setAuthMsg(window.t('authSignupSuccess'), false);
       }
     } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if(error) throw error;
+      const { error } = await supabase.auth.signInWithPassword({ email, password, options: captchaOptions() });
+      if(error){
+        if((error.message || '').toLowerCase().includes('email not confirmed')){
+          window.mvSetPendingConfirm?.(email);
+          window.showScreen?.('acceso');
+        }
+        throw error;
+      }
+      window.mvSetPendingConfirm?.('');
     }
     document.getElementById('authForm').reset();
   } catch(err){
     setAuthMsg(window.t(mapAuthError(err)), true);
   } finally {
+    captchaReset();
     setAuthBusy(false);
   }
 });

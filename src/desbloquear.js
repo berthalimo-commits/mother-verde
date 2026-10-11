@@ -58,10 +58,22 @@ function paymentHtml() {
     </div>`;
 }
 
+function visitorHtml() {
+  return `
+    <div class="card-block ds-pay">
+      <h3>${t('dsComoH3')}</h3>
+      <p>${t('dsVisitorNote')}</p>
+      <button type="button" class="btn btn-primary" id="dsCrearCuenta">${t('accCrearCuenta')}</button>
+    </div>`;
+}
+
 export function renderDesbloquear() {
   const root = document.getElementById('desbloquearContent');
   if (!root) return;
   const ready = supportAddressIsValid();
+  // Visitors without a session never see the address or the QR: a contribution
+  // can only be verified against an account.
+  const signedIn = !!window.mvCurrentUser;
 
   root.innerHTML = `
     <p class="subhead ds-intro">${t('dsIntro')}</p>
@@ -88,13 +100,21 @@ export function renderDesbloquear() {
       <p>${SUPPORT_RECIPIENT_TEXT[lang()] || SUPPORT_RECIPIENT_TEXT.es}</p>
     </div>
 
-    ${ready ? paymentHtml() : `<div class="note-box">${t('dsProximamente')}</div>`}
+    ${!ready ? `<div class="note-box">${t('dsProximamente')}</div>`
+      : !signedIn ? visitorHtml()
+      : paymentHtml()}
   `;
 
   root.querySelector('#dsMenos').onclick = () => { if (flowers > 1) { flowers--; renderDesbloquear(); } };
   root.querySelector('#dsMas').onclick = () => { if (flowers < SUPPORT.MAX_FLOWERS) { flowers++; renderDesbloquear(); } };
 
-  if (!ready) return;
+  if (!ready || !signedIn) {
+    root.querySelector('#dsCrearCuenta')?.addEventListener('click', () => {
+      window.showScreen?.('cuenta');
+      window.mvSetAuthMode?.('signup');
+    });
+    return;
+  }
 
   QRCode.toString(SUPPORT.ADDRESS, {
     type: 'svg', errorCorrectionLevel: 'M', margin: 2,
