@@ -51,10 +51,10 @@ for (const dir of ['admin-send-gift-code', 'support-claims', 'community-retransl
 // ---- seed: admin + a person with a submitted claim whose transfer is on "Base"
 const q = async (s, p) => (await db.query(s, p)).rows;
 export const ADMIN = 'b0000001-0000-4000-8000-000000000000', PAYER = 'b0000002-0000-4000-8000-000000000000', NEWBIE = 'b0000003-0000-4000-8000-000000000000';
-await db.exec(`insert into auth.users (id, email) values ('${ADMIN}', 'berthalimo@gmail.com'), ('${PAYER}', 'aportante@example.org'), ('${NEWBIE}', 'nueva@example.org');
+await db.exec(`insert into auth.users (id, email) values ('${ADMIN}', 'hello@motherverdeny.com'), ('${PAYER}', 'aportante@example.org'), ('${NEWBIE}', 'nueva@example.org');
   update auth.users set email_confirmed_at = now();
-  update profiles set trial_ends_at = now() - interval '1 hour' where id in ('${PAYER}', '${NEWBIE}');`);
-await db.exec(fs.readFileSync(APP + '/supabase/admin/grant-admin.sql', 'utf8').split('\n').filter((l) => l.startsWith('insert')).join('\n'));
+  update profiles set trial_ends_at = now() - interval '1 hour' where id in ('${ADMIN}', '${PAYER}', '${NEWBIE}');`);
+await db.exec(fs.readFileSync(APP + '/supabase/admin/grant-admin.sql', 'utf8'));
 const asU = (uid, fn, args) => rest(`${BASE}/rest/v1/rpc/${fn}`, { method: 'POST', headers: { Authorization: `Bearer u:${uid}:aal1` }, body: JSON.stringify(args) }).then((r) => r.json());
 const claim = await asU(PAYER, 'create_support_claim', { p_flowers: 2 });
 const TX = '0x' + 'ab'.repeat(32);
@@ -64,7 +64,7 @@ chain.blocks['0x384'] = { timestamp: '0x' + Math.floor(Date.now() / 1000).toStri
 
 // ---- simulated MFA (TOTP): any 6 digits "123456" are accepted
 const factors = {}; // uid -> [{id, status}]
-const users = { [ADMIN]: 'berthalimo@gmail.com', [PAYER]: 'aportante@example.org', [NEWBIE]: 'nueva@example.org' };
+const users = { [ADMIN]: 'hello@motherverdeny.com', [PAYER]: 'aportante@example.org', [NEWBIE]: 'nueva@example.org' };
 const session = (uid, aal) => ({ access_token: `u:${uid}:${aal}`, refresh_token: `r:${uid}:${aal}`, token_type: 'bearer', expires_in: 360000, expires_at: Math.floor(Date.now() / 1000) + 360000, user: userObj(uid) });
 const userObj = (uid) => ({ id: uid, aud: 'authenticated', role: 'authenticated', email: users[uid], email_confirmed_at: new Date().toISOString(), app_metadata: {}, user_metadata: {}, factors: (factors[uid] || []).map((f) => ({ id: f.id, factor_type: 'totp', status: f.status, friendly_name: 'Mother Verde admin', created_at: '', updated_at: '' })), created_at: '' });
 

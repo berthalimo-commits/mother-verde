@@ -9,8 +9,11 @@ await b.send('Page.navigate', { url: 'http://localhost:5174/panel-mv.html' });
 check('cuenta normal (aunque tenga MFA) -> "no tiene acceso al panel"', /no tiene acceso al panel/.test(await b.waitFor(/acceso al panel|Avisos/)));
 await b.close();
 
-// 2) admin without MFA -> enrollment -> panel
+// 2) admin (hello@motherverdeny.com, 24 h trial over, no full access) without MFA -> enrollment -> panel
 b = await browser(ADMIN, 'aal1');
+await b.send('Page.navigate', { url: 'http://localhost:5174/' }); await sleep(5000);
+const appState = await b.ev(`({ access: document.documentElement.dataset.access, locked: document.documentElement.classList.contains('mv-locked'), acceso: document.getElementById('acceso').classList.contains('active') })`);
+check('en la app, la admin con la prueba terminada ve la pantalla de bloqueo (sin acceso completo)', appState.access === 'expired' && appState.locked && appState.acceso, JSON.stringify(appState));
 await b.send('Page.navigate', { url: 'http://localhost:5174/panel-mv.html' });
 let s = await b.waitFor(/Activa la verificación|Escribe el código/);
 check('admin sin MFA -> pantalla para activar la verificación en dos pasos (QR + clave)', /Activa la verificación en dos pasos/.test(s) && /JBSWY3DPEHPK3PXP/.test(s), s.slice(0, 200));
@@ -60,7 +63,7 @@ check('anular código con motivo -> estado anulado', /anulado/.test(s) && /Envia
 const giftsBefore = (await sql(`select count(*)::int c from gift_codes`))[0].c;
 await b.ev(`document.getElementById('gt').click(); 1`);
 s = await b.waitFor(/Correo de prueba enviado/);
-check('"Enviar correo de prueba a mi correo" -> a berthalimo@gmail.com, sin crear código', /berthalimo@gmail\.com/.test(s) && (await sql(`select count(*)::int c from gift_codes`))[0].c === giftsBefore);
+check('"Enviar correo de prueba a mi correo" -> a hello@motherverdeny.com, sin crear código', /hello@motherverdeny\.com/.test(s) && (await sql(`select count(*)::int c from gift_codes`))[0].c === giftsBefore);
 await b.shot('panel-4-codigos');
 await b.ev(`document.querySelector('.tabs button[data-t=audit]').click(); 1`);
 s = await b.waitFor(/claim_approved/);

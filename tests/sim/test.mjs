@@ -161,6 +161,9 @@ check('subdominio de desechable -> rechazado', (await hook('a@x.mailinator.com')
 check('variante de un Gmail existente (bertha.limo+x@gmail.com) -> rechazado', (await hook('bertha.limo+x@gmail.com'))?.error?.message === 'signup_not_allowed');
 check('correo normal nuevo -> aceptado', JSON.stringify(await hook('alguien@example.org')) === '{}');
 check('Gmail nuevo -> aceptado', JSON.stringify(await hook('otra.persona@gmail.com')) === '{}');
+check('hello@motherverdeny.com (futura admin) -> aceptado por el hook', JSON.stringify(await hook('hello@motherverdeny.com')) === '{}');
+check('motherverdeny.com NO está en blocked_email_domains', (await q(`select count(*)::int c from blocked_email_domains where 'motherverdeny.com' = domain or 'motherverdeny.com' like '%.' || domain`))[0].c === 0);
+check('la normalización no cambia hello@motherverdeny.com', (await q(`select public.normalize_email('Hello@MotherVerdeNY.com') v`))[0].v === 'hello@motherverdeny.com');
 check('el navegador NO puede llamar al hook', !!(await as('authenticated', THIRD, `select public.hook_before_user_created('{}'::jsonb)`)).error);
 
 await import('./test-part2.mjs').then(m => m.run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }));

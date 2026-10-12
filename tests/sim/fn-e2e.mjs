@@ -82,8 +82,8 @@ async function user(n, email) {
   await db.exec(`insert into auth.users (id, email) values ('${uid(n)}', '${email}'); update auth.users set email_confirmed_at = now() where id = '${uid(n)}';`);
   return uid(n);
 }
-const ADMIN = await user(1, 'berthalimo@gmail.com');
-await db.exec(fs.readFileSync(APP + '/supabase/admin/grant-admin.sql', 'utf8').split('\n').filter((l) => l.startsWith('insert')).join('\n'));
+const ADMIN = await user(1, 'hello@motherverdeny.com');
+await db.exec(fs.readFileSync(APP + '/supabase/admin/grant-admin.sql', 'utf8'));
 const NORMAL = await user(2, 'normal@example.org');
 const tok = (u, aal = 'aal1') => `u:${u}:${aal}`;
 const A2 = tok(ADMIN, 'aal2');
@@ -97,7 +97,7 @@ check('admin SIN MFA (aal1) -> 403', (await call('gift', tok(ADMIN, 'aal1'), { a
 check('admin sin MFA tampoco puede enviar correo de prueba', (await call('gift', tok(ADMIN, 'aal1'), { action: 'test_email' })).status === 403);
 const codesBefore = (await q('select count(*)::int c from gift_codes'))[0].c;
 let r = await call('gift', A2, { action: 'test_email' });
-check('correo de prueba al propio correo del admin', r.status === 200 && globalThis.__mail.at(-1)?.to === 'berthalimo@gmail.com', JSON.stringify(r));
+check('correo de prueba al propio correo del admin', r.status === 200 && globalThis.__mail.at(-1)?.to === 'hello@motherverdeny.com', JSON.stringify(r));
 check('…sin crear ningún código', (await q('select count(*)::int c from gift_codes'))[0].c === codesBefore);
 check('…SMTP: smtp.hostinger.com, puerto 465 con SSL', globalThis.__smtpCfg?.host === 'smtp.hostinger.com' && globalThis.__smtpCfg.port === 465 && globalThis.__smtpCfg.secure === true);
 check('…queda en el registro de auditoría', (await q(`select count(*)::int c from admin_audit_log where action = 'test_email_sent'`))[0].c === 1);
@@ -140,7 +140,7 @@ for (let i = today; i < 20; i++) await call('gift', A2, { action: 'send', email:
 n = globalThis.__mail.length;
 r = await call('gift', A2, { action: 'send', email: 'veintiuno@example.org' });
 check('21.º código del día -> daily_limit_20, sin correo', r.body.error === 'daily_limit_20' && globalThis.__mail.length === n, JSON.stringify(r));
-check('auditoría de envíos: quién y a quién (sin el código)', (await q(`select count(*)::int c from admin_audit_log where action = 'gift_code_sent' and actor_label = 'berthalimo@gmail.com' and target_email = 'amiga@example.org'`))[0].c === 3);
+check('auditoría de envíos: quién y a quién (sin el código)', (await q(`select count(*)::int c from admin_audit_log where action = 'gift_code_sent' and actor_label = 'hello@motherverdeny.com' and target_email = 'amiga@example.org'`))[0].c === 3);
 
 // ================================================================ claims
 console.log('B. support-claims (verificación en Base):');

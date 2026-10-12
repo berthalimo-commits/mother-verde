@@ -48,9 +48,9 @@ Resultado: **29 / 29**. Antes del arreglo daba 10 / 29.
 
 | Batería | Qué cubre | Resultado |
 |---|---|---|
-| Base de datos (PGlite) | migraciones, permisos, aportes, admin + MFA, códigos, auditoría, reversas con esquema idéntico | **156 / 156** |
+| Base de datos (PGlite) | migraciones, permisos, aportes, admin (`hello@motherverdeny.com`) + MFA, códigos, auditoría, reversas con esquema idéntico | **166 / 166** |
 | Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **69 / 69** |
-| Panel en navegador | MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **19 / 19** |
+| Panel en navegador | admin con la prueba de 24 h terminada (ve el bloqueo en la app y aun así usa el panel), MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **20 / 20** |
 | App en navegador | Desbloquear con monto exacto, envío del TXID, código de regalo | **10 / 10** |
 | Idioma en vivo | cambio ES/EN/DE/FR con la pantalla abierta + recarga, 6 pantallas | **29 / 29** |
 | Barrido de textos | 20 pantallas × 4 idiomas × 8 estados de acceso (880 combinaciones) | **0 textos del modelo viejo, 0 errores JS** |
@@ -68,7 +68,8 @@ fallidos de canje → bloqueo 24 h; cuenta con acceso retirado intentando canjea
 
 ### Lo que protege cada pieza (en el servidor, no en el navegador)
 - **Admin**: tabla `admin_users` sin ningún permiso para el navegador (ni leer
-  ni escribir). Solo se añade con `grant-admin.sql` desde el SQL Editor. Cada
+  ni escribir). Solo se añade con `grant-admin.sql` desde el SQL Editor, y ese
+  archivo da el rol **únicamente** a `hello@motherverdeny.com`. Cada
   función de admin exige `admin_users` **y** sesión con MFA (`aal2`), lo
   comprueba la base de datos con el token firmado de la persona. La ruta oculta
   `/panel-mv.html` no es la protección: sin MFA, el servidor rechaza todo.
@@ -176,7 +177,7 @@ haz el merge a `main` justo después.
 6. `supabase/migrations/20261011120000_support_claims.sql`
 7. `supabase/migrations/20261011130000_gift_codes_and_access.sql`
 8. `supabase/admin/supporters-betian-mother-verde.sql`: PARTE 1 (debe mostrar 2 cuentas), luego PARTE 2.
-9. `supabase/admin/grant-admin.sql`: tu cuenta `berthalimo@gmail.com` **ya existe**, no hace falta registrarla (el hook de Gmail no interviene).
+9. ~~grant-admin.sql~~: ya **no** va aquí. Se pega después del merge (bloque F).
 
 **B. Secretos** (Supabase → Edge Functions → Secrets). Los pones tú; nunca van en el repositorio.
 | Secreto | Valor |
@@ -202,9 +203,13 @@ haz el merge a `main` justo después.
 
 **E. Plantillas** (Authentication → Emails): las 13 de `supabase/email-templates/` con los asuntos de `SUBJECTS.md`. Activa las notificaciones de seguridad.
 
-**F. Merge `dev` → `main`**, solo con tu aprobación escrita.
+**F. Merge `dev` → `main`**, solo con tu aprobación escrita. Justo después, en este orden:
+  1. Te registras **por la pantalla normal de la app** con `hello@motherverdeny.com` y confirmas el correo (el hook todavía no está activo; de todos modos, `motherverdeny.com` no está en la lista de bloqueados y la normalización no cambia esa dirección).
+  2. Pegas `supabase/admin/grant-admin.sql` entero. Si la cuenta no existe o el correo no está confirmado, **se detiene con un mensaje claro y no da el rol a nadie**. Al final muestra una sola fila: `hello@motherverdeny.com`. Betian (`berthalimo@gmail.com`) **no** es admin; si lo fuera, el archivo se lo quita.
+  3. Abres `/panel-mv.html` y activas la verificación en dos pasos. Funciona aunque la prueba de 24 h de esa cuenta haya terminado y la app te muestre el bloqueo: el panel solo exige rol admin + MFA, no acceso completo.
+  4. En el panel: **Códigos de regalo → «Enviar correo de prueba a mi correo»**. Llega a `hello@motherverdeny.com`.
 
-**G. Hook** «Before User Created», al final, siguiendo `supabase/admin/hook-activation-plan.md`.
+**G. Hook** «Before User Created», **recién después de F.1–F.4**, siguiendo `supabase/admin/hook-activation-plan.md`.
 
 ---
 
@@ -236,11 +241,11 @@ Comprobación real: en el panel, **Códigos de regalo → «Enviar correo de pru
 ## 8. Panel de administración
 
 - Dirección: `https://www.motherverdeny.com/panel-mv.html` (no está enlazada en ningún sitio y tiene `noindex`).
-- Primera vez: entra en Mother Verde con `berthalimo@gmail.com`, abre el panel y escanea el QR con tu app de autenticación. **Guarda la clave.**
+- Primera vez (después de F.1 y F.2): entra en Mother Verde con `hello@motherverdeny.com`, abre el panel y escanea el QR con tu app de autenticación. **Guarda la clave.** No hace falta que esa cuenta tenga acceso completo.
 - Pestañas: **Avisos de aporte** (correo, monto, TXID, fecha, cada comprobación con ✓/✗, enlace a Basescan; «Activar acceso completo» solo se habilita si todo pasa; la activación manual y el rechazo exigen motivo), **Códigos de regalo** (enviar, lista con estados, anular con motivo, correo de prueba), **Registro** (solo lectura).
 - Idioma del panel: ES/EN/DE/FR, con selector propio; abre en el idioma elegido en la app.
 - Si pierdes el teléfono del MFA, en el SQL Editor:
-  `delete from auth.mfa_factors where user_id = (select id from auth.users where email = 'berthalimo@gmail.com');`
+  `delete from auth.mfa_factors where user_id = (select id from auth.users where lower(email) = 'hello@motherverdeny.com');`
   y vuelve a activarlo en el panel.
 
 En la app, el código de regalo está en el icono de persona (arriba a la derecha), en la pantalla de cuenta de cada idioma:
@@ -265,12 +270,12 @@ En la app, el código de regalo está en el icono de persona (arriba a la derech
 1. ☐ Confirmar aquí que la prueba de $5 en USDC (Base) llegó → poner `SUPPORT_ADDRESS`.
 2. ☐ Contador y abogado: textos de aportes, Términos §5 y Privacidad §4 (marcados `[PENDIENTE]`), representante UE y transferencias.
 3. ☐ DeepL Pro: cambiar el secreto `DEEPL_API_KEY` y ejecutar `update public.app_config set value = <nuevo tope> where key = 'deepl_daily_char_cap';`
-4. ☐ Pegar en el orden de la sección 5 (A → G).
+4. ☐ Pegar en el orden de la sección 5: A → E, merge (F), y después F.1–F.4: registrarte con `hello@motherverdeny.com` y confirmar → `grant-admin.sql` → panel + MFA → correo de prueba.
 5. ☐ SMTP ya configurado por ti → probar el correo de confirmación con una cuenta desechable de prueba (y borrarla después).
-6. ☐ Abrir el panel, activar el MFA y pulsar «Enviar correo de prueba a mi correo». Si no llega: plan B Resend.
-7. ☐ Enviarte un código de regalo a un correo tuyo distinto y canjearlo con una cuenta de prueba desechable.
+6. ☐ El correo de prueba del panel llega a `hello@motherverdeny.com`. Si no llega: plan B Resend.
+7. ☐ Enviar un código de regalo **a un correo distinto, un Gmail tuyo**, para ver si llega a la bandeja de entrada o cae en Spam; y canjearlo con una cuenta de prueba desechable.
 8. ☐ Al día siguiente: `select * from public.cron_runs order by started_at desc limit 3;` debe mostrar `ok = true`.
-9. ☐ Activar el hook siguiendo `hook-activation-plan.md`.
+9. ☐ Activar el hook siguiendo `hook-activation-plan.md` (solo después del punto 6).
 10. ☐ (Opcional, más adelante) Encender la verificación automática, solo con tu aprobación escrita.
 
 ---

@@ -15,15 +15,33 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   check('el navegador NO puede escribir admin_users', !!(await as('authenticated', THIRD, `insert into admin_users (user_id) values ('${THIRD}')`)).error);
   check('el navegador NO puede leer admin_users', !!(await as('authenticated', THIRD, `select * from admin_users`)).error);
   check('nadie se asciende: admin_whoami de una cuenta normal = no admin', (await as('authenticated', THIRD, `select admin_whoami() v`)).rows?.[0]?.v?.admin === false);
-  await db.exec((await read('admin/grant-admin.sql')).split('\n').filter(l => l.startsWith('insert')).join('\n'));
-  check('grant-admin.sql (SQL Editor) da el rol a berthalimo@gmail.com', (await q(`select count(*)::int c from admin_users where user_id='${BETIAN}'`))[0].c === 1);
+  const grant = async () => { try { await db.exec(await read('admin/grant-admin.sql')); return 'ok'; } catch (e) { try { await db.exec('rollback'); } catch {} return e.message; } };
+  const admins = async () => (await q('select u.email from admin_users a join auth.users u on u.id = a.user_id order by 1')).map((r) => r.email);
+  let g = await grant();
+  check('grant-admin.sql sin la cuenta hello@ -> se detiene con mensaje claro y no da el rol a nadie', g.includes('no existe ninguna cuenta con hello@motherverdeny.com') && (await admins()).length === 0, g);
+  const ADMIN = '7a000001-0000-4000-8000-000000000000';
+  await db.exec(`insert into auth.users (id, email) values ('${ADMIN}', 'hello@motherverdeny.com')`);
+  g = await grant();
+  check('grant-admin.sql con hello@ sin confirmar -> se detiene, nadie es admin', g.includes('no está confirmado') && (await admins()).length === 0, g);
+  await db.exec(`update auth.users set email_confirmed_at = now() where id = '${ADMIN}'`);
+  await db.exec(`insert into admin_users (user_id, note) values ('${BETIAN}', 'por error')`);
+  g = await grant();
+  check('grant-admin.sql con hello@ confirmada -> SOLO hello@ es admin (Betian, si lo era, deja de serlo)', g === 'ok' && JSON.stringify(await admins()) === '["hello@motherverdeny.com"]', JSON.stringify(await admins()));
+  check('…y queda en el registro de auditoría', (await q(`select count(*)::int c from admin_audit_log where action = 'admin_granted' and target_email = 'hello@motherverdeny.com'`))[0].c === 1);
+  g = await grant();
+  check('pegarlo dos veces no duplica nada', g === 'ok' && (await admins()).length === 1);
+  // A freshly registered admin: 24 h trial over, no full access — the panel must still work.
+  await db.exec(`update profiles set trial_ends_at = now() - interval '1 hour' where id = '${ADMIN}'`);
+  check('admin con la prueba terminada NO tiene acceso completo (has_full_access = false)', await hfa(ADMIN) === false);
+  check('…pero con MFA es admin y usa el panel (no depende de has_full_access)', (await as('authenticated', ADMIN, 'select is_admin_aal2() v', [], 'aal2')).rows?.[0]?.v === true && !(await as('authenticated', ADMIN, 'select * from admin_list_claims()', [], 'aal2')).error && !(await as('authenticated', ADMIN, 'select * from admin_list_gift_codes(10)', [], 'aal2')).error);
+  check('Betian (berthalimo@gmail.com) con MFA NO es admin', (await as('authenticated', BETIAN, 'select is_admin_aal2() v', [], 'aal2')).rows?.[0]?.v === false);
   const isAdm = async (u, aal) => (await as('authenticated', u, 'select is_admin_aal2() v', [], aal)).rows?.[0]?.v;
-  check('admin SIN MFA (aal1) -> no cuenta como admin', await isAdm(BETIAN, 'aal1') === false);
-  check('admin CON MFA (aal2) -> admin', await isAdm(BETIAN, 'aal2') === true);
+  check('admin SIN MFA (aal1) -> no cuenta como admin', await isAdm(ADMIN, 'aal1') === false);
+  check('admin CON MFA (aal2) -> admin', await isAdm(ADMIN, 'aal2') === true);
   check('cuenta normal con MFA (aal2) -> no admin', await isAdm(THIRD, 'aal2') === false);
-  check('admin sin MFA NO lista avisos', err(await as('authenticated', BETIAN, `select * from admin_list_claims()`, [], 'aal1')).includes('not_allowed'));
+  check('admin sin MFA NO lista avisos', err(await as('authenticated', ADMIN, `select * from admin_list_claims()`, [], 'aal1')).includes('not_allowed'));
   check('usuario normal NO lista avisos', err(await as('authenticated', THIRD, `select * from admin_list_claims()`, [], 'aal2')).includes('not_allowed'));
-  check('admin con MFA SÍ lista avisos', !(await as('authenticated', BETIAN, `select * from admin_list_claims()`, [], 'aal2')).error);
+  check('admin con MFA SÍ lista avisos', !(await as('authenticated', ADMIN, `select * from admin_list_claims()`, [], 'aal2')).error);
   check('SQL Editor SÍ lista avisos', !(await as(null, null, `select * from admin_list_claims()`)).error);
   check('service_role (API) NO pasa por "SQL Editor"', err(await as('service_role', null, `select * from admin_list_claims()`)).includes('not_allowed'));
 
@@ -59,14 +77,14 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   // automatic check says "wrong amount" -> manual review with the reason
   const rec = await as('service_role', null, `select * from svc_record_claim_check(${c1b.id}, '{"all_pass": false, "checks": {"amount": false}}'::jsonb, true, 'monto distinto: llegaron 29.9 USDC')`);
   check('verificación con monto incorrecto -> revisión manual con motivo', rec.rows?.[0]?.status === 'manual_review' && rec.rows[0].review_reason.includes('monto'));
-  check('admin sin MFA NO aprueba', err(await as('authenticated', BETIAN, `select * from admin_approve_claim(${c1b.id}, 'motivo largo')`, [], 'aal1')).includes('not_allowed'));
-  check('aprobar sin motivo cuando la verificación falló -> exige motivo', err(await as('authenticated', BETIAN, `select * from admin_approve_claim(${c1b.id})`, [], 'aal2')).includes('reason_required'));
+  check('admin sin MFA NO aprueba', err(await as('authenticated', ADMIN, `select * from admin_approve_claim(${c1b.id}, 'motivo largo')`, [], 'aal1')).includes('not_allowed'));
+  check('aprobar sin motivo cuando la verificación falló -> exige motivo', err(await as('authenticated', ADMIN, `select * from admin_approve_claim(${c1b.id})`, [], 'aal2')).includes('reason_required'));
   await db.exec(`update profiles set trial_ends_at = now() - interval '1 hour' where id = '${U1}'`);
   check('antes de aprobar (prueba de 24 h ya vencida): sin acceso', await hfa(U1) === false);
-  const ap = await as('authenticated', BETIAN, `select status from admin_approve_claim(${c1b.id}, 'Comprobado a mano en Basescan')`, [], 'aal2');
+  const ap = await as('authenticated', ADMIN, `select status from admin_approve_claim(${c1b.id}, 'Comprobado a mano en Basescan')`, [], 'aal2');
   check('admin con MFA aprueba con motivo -> approved', ap.rows?.[0]?.status === 'approved', JSON.stringify(ap));
   check('…y la cuenta pasa a supporter con acceso', await hfa(U1) === true && (await q(`select subscription_status s from profiles where id='${U1}'`))[0].s === 'supporter');
-  check('…y queda en el registro de auditoría (quién, cuenta, motivo)', (await q(`select count(*)::int c from admin_audit_log where action='claim_approved' and target_user_id='${U1}' and actor_label='berthalimo@gmail.com' and reason like 'Comprobado%'`))[0].c === 1);
+  check('…y queda en el registro de auditoría (quién, cuenta, motivo)', (await q(`select count(*)::int c from admin_audit_log where action='claim_approved' and target_user_id='${U1}' and actor_label='hello@motherverdeny.com' and reason like 'Comprobado%'`))[0].c === 1);
   check('rechazar exige motivo', err(await as(null, null, `select * from admin_reject_claim(${c3.id}, '')`)).includes('reason_required'));
   const U4 = await newUser(4); const c4 = (await create(U4, 1)).rows[0];
   await as('authenticated', U4, `select * from submit_support_claim_tx(${c4.id}, '0x${'ef'.repeat(32)}')`);
@@ -102,20 +120,20 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   const fresh = (await as(null, null, `select * from admin_create_gift_codes(1, 7, 30)`)).rows[0].code;
   check('tras 5 intentos fallidos en 24 h -> bloqueado (aunque el código sea válido)', err(await redeem(LOCK, fresh)).includes('too_many_attempts'));
   // sending by e-mail (Edge Function path): per-address limit and failure voids the code
-  const send = (email) => as('service_role', null, `select svc_reserve_sent_gift_code(encode(sha256(convert_to(gen_random_uuid()::text,'UTF8')),'hex'), '${email}', 7, 7, '${BETIAN}', 'berthalimo@gmail.com') v`);
+  const send = (email) => as('service_role', null, `select svc_reserve_sent_gift_code(encode(sha256(convert_to(gen_random_uuid()::text,'UTF8')),'hex'), '${email}', 7, 7, '${ADMIN}', 'hello@motherverdeny.com') v`);
   const s1 = await send('amiga@example.org'); await send('Amiga@example.org'); await send('amiga@example.org');
   check('correo con formato inválido -> rechazado', err(await send('no-es-correo')).includes('bad_email'));
   { const dom = (await q('select domain from blocked_email_domains limit 1'))[0].domain; check('dominio desechable bloqueado (' + dom + ') -> rechazado', err(await send('x@' + dom)).includes('blocked_domain')); }
   check('3 códigos al mismo correo -> el 4.º se rechaza', err(await send('amiga@example.org')).includes('email_limit_3'));
-  await as('service_role', null, `select svc_finish_sent_gift_code(${s1.rows[0].v}, false, 'SMTP 535', '${BETIAN}', 'berthalimo@gmail.com')`);
+  await as('service_role', null, `select svc_finish_sent_gift_code(${s1.rows[0].v}, false, 'SMTP 535', '${ADMIN}', 'hello@motherverdeny.com')`);
   check('si el correo falla, el código queda anulado y se registra', (await q(`select status, send_status from gift_codes where id=${s1.rows[0].v}`))[0].status === 'revoked' && (await q(`select count(*)::int c from admin_audit_log where action='gift_code_send_failed'`))[0].c === 1);
   check('el registro del envío no contiene el código', !(await q(`select details::text d from admin_audit_log where action like 'gift_code%'`)).some(r => /[A-Z2-9]{4}-[A-Z2-9]{4}/.test(r.d)));
   const today = (await q(`select count(*)::int c from gift_codes where created_at >= date_trunc('day', now())`))[0].c;
   for (let i = today; i < 20; i++) await send(`otro${i}@example.org`);
   check('21.º código del día -> rechazado (envío)', err(await send('nuevo@example.org')).includes('daily_limit_20'));
   check('21.º código del día -> rechazado (creación)', err(await as(null, null, `select * from admin_create_gift_codes(1)`)).includes('daily_limit_20'));
-  check('el navegador NO llama svc_reserve_sent_gift_code', !!(await as('authenticated', BETIAN, `select svc_reserve_sent_gift_code('x','a@b.c',7,7,null,'x')`, [], 'aal2')).error);
-  check('lista de códigos con estados (admin MFA)', (await as('authenticated', BETIAN, `select state from admin_list_gift_codes(500)`, [], 'aal2')).rows?.some(r => r.state === 'anulado'));
+  check('el navegador NO llama svc_reserve_sent_gift_code', !!(await as('authenticated', ADMIN, `select svc_reserve_sent_gift_code('x','a@b.c',7,7,null,'x')`, [], 'aal2')).error);
+  check('lista de códigos con estados (admin MFA)', (await as('authenticated', ADMIN, `select state from admin_list_gift_codes(500)`, [], 'aal2')).rows?.some(r => r.state === 'anulado'));
 
   console.log('13. Dar días / quitar acceso / auditoría:');
   const G = await newUser(9);
@@ -131,8 +149,8 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   await db.exec(`insert into gift_codes (code_hash, days, expires_at, created_label) values (encode(sha256(convert_to('REVOKEDTEST2','UTF8')),'hex'), 7, now() + interval '1 day', 'test')`);
   const rv = (await redeem(G, 'REVO-KEDT-EST2')).rows?.[0]?.v;
   check('cuenta con acceso quitado no se reactiva con un regalo (error genérico, código intacto)', rv?.error === 'invalid_code' && (await q(`select status from gift_codes where code_hash = encode(sha256(convert_to('REVOKEDTEST2','UTF8')),'hex')`))[0].status === 'active' && await hfa(G) === false);
-  check('auditoría legible por admin con MFA', (await as('authenticated', BETIAN, `select * from admin_list_audit(500)`, [], 'aal2')).rows?.length >= 4);
-  check('auditoría NO legible por usuario normal ni editable', err(await as('authenticated', THIRD, `select * from admin_list_audit()`, [], 'aal2')).includes('not_allowed') && !!(await as('authenticated', BETIAN, `delete from admin_audit_log`, [], 'aal2')).error);
+  check('auditoría legible por admin con MFA', (await as('authenticated', ADMIN, `select * from admin_list_audit(500)`, [], 'aal2')).rows?.length >= 4);
+  check('auditoría NO legible por usuario normal ni editable', err(await as('authenticated', THIRD, `select * from admin_list_audit()`, [], 'aal2')).includes('not_allowed') && !!(await as('authenticated', ADMIN, `delete from admin_audit_log`, [], 'aal2')).error);
   check('auditoría registra quién, qué, cuenta y motivo', (await q(`select count(*)::int c from admin_audit_log where action='access_revoked' and target_email='u9@example.org' and reason like 'Fraude%' and actor_label='sql-editor'`))[0].c === 1);
 
   console.log('14. Reintentos de traducción (columnas):');
