@@ -46,52 +46,77 @@ function silhouette(bump = 0.8) {
   d += ' Z';
   return d;
 }
-// Long, thin, serrated sugar leaf pointing up from (0,0); length 32.
-const SUGAR = 'M0 0 L1.9 -5 L3.2 -6.4 L2.5 -7.8 L3.5 -12 L4.6 -12.9 L3.5 -14.6 L3.7 -19 L4.4 -19.9 L3.1 -21.4 L2.4 -25.5 L0 -33 L-2.4 -25.5 L-3.1 -21.4 L-4.4 -19.9 L-3.7 -19 L-3.5 -14.6 L-4.6 -12.9 L-3.5 -12 L-2.5 -7.8 L-3.2 -6.4 L-1.9 -5 Z';
-// From the sides of the lower half, diagonally out and down (not like the branches of a tree).
-const LEAVES = [[23, 66, -122, 0.95], [37, 64, 120, 0.95], [19.5, 52, -98, 0.62], [40.5, 50, 100, 0.6]];
+// v2 (after the owner's reference photo): long, thin, serrated sugar leaves
+// that arch outwards and droop at the tip. Built along a curved midrib from
+// (0,0) pointing "up" in local space; teeth lean towards the tip.
+function sugarLeaf(len, maxW, bend) {
+  const N = 14, right = [], left = [];
+  for (let i = 1; i < N; i++) {
+    const t = i / N;
+    const mx = bend * len * t * t, my = -len * t;
+    const tx = 2 * bend * len * t, ty = -len, tl = Math.hypot(tx, ty);
+    const nx = -ty / tl, ny = tx / tl; // unit normal to the +x side
+    const w = maxW * Math.pow(Math.sin(Math.PI * Math.min(t * 1.15, 1)), 0.7) * (1 - 0.35 * t);
+    const k = i % 2 ? 1 : 0.55, kl = i % 2 ? 0.55 : 1; // tooth / notch, alternating on the two edges
+    right.push([mx + nx * w * k, my + ny * w * k]);
+    left.push([mx - nx * w * kl, my - ny * w * kl]);
+  }
+  const tip = [bend * len, -len];
+  const pts = [[0, 0], ...right, tip, ...left.reverse()];
+  return 'M' + pts.map(([x, y]) => `${x.toFixed(2)} ${y.toFixed(2)}`).join(' L') + ' Z';
+}
+const midrib = (len, bend) => `M0 0 Q${(bend * len * 0.5).toFixed(2)} ${(-len * 0.5).toFixed(2)} ${(bend * len).toFixed(2)} ${(-len).toFixed(2)}`;
+// [x, y, rotation, length, droop]: from the sides of the lower half and the
+// middle, out and down; the tips droop (bend towards the ground).
+const LEAVES = [[20, 66, -118, 36, -0.22], [40, 64, 116, 36, 0.22], [17.5, 47, -97, 30, -0.26], [42.5, 45, 99, 28, 0.26]];
+const SHIFT = 12; // the leaves reach beyond the bud: viewBox is 84 wide, bud centred at 42
 // Inner marks: short staggered "cups" (clusters), never full-width bands.
 const CUPS = [[25, 66], [34, 64], [21, 56], [30, 57], [38, 54], [24, 46], [33, 45], [27, 36], [34, 34], [30, 26], [27, 18]];
 const cupPaths = (w, every = 1, half = 3) => CUPS.filter((_, i) => i % every === 0).map(([x, y]) => `<path d="M${x - half} ${y} q${half} ${w} ${half * 2} 0"/>`).join('');
-const PISTILS = ['M24 41 C21.5 38.5 19 37.5 16.5 35', 'M37 48 C39.5 45.5 42 44.5 45.5 43', 'M27.5 28 C25.5 25.5 24 23.5 21.5 21', 'M34.5 61 C37.5 60 40.5 60.5 43.5 59', 'M31.5 17.5 C32.5 14.5 34 12.5 36.5 10.5'];
-const TRICH = [[26, 50], [33, 44], [29, 36], [35, 54], [24, 58], [31, 24], [27, 66], [37, 34]];
+// Curled orange hairs spread along the whole cola (more than v1).
+const PISTILS = ['M24 41 C21.5 38.5 19 37.5 16.5 35', 'M37 48 C39.5 45.5 42 44.5 45.5 43', 'M27.5 28 C25.5 25.5 24 23.5 21.5 21', 'M34.5 61 C37.5 60 40.5 60.5 43.5 59', 'M31.5 17.5 C32.5 14.5 34 12.5 36.5 10.5',
+  'M22 56 C19 55 17 56.5 15 55', 'M38 36 C40.5 34 42 31.5 41.5 29', 'M26 68 C24 70 21.5 70.5 19.5 72'];
+// Frost: pale trichome dots.
+const TRICH = [[26, 50], [33, 44], [29, 36], [35, 54], [24, 58], [31, 24], [27, 66], [37, 34], [22, 44], [38, 60], [30, 50], [33, 30], [26, 30], [29, 15], [34, 68], [20, 62]];
 
 const stem = (stroke, w) => `<path d="M30 95 C30 88 30.6 82 30 76" stroke="${stroke}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
-const leaves = (fill, stroke, sw, which = LEAVES) => which.map(([x, y, r, s]) => `<path d="${SUGAR}" transform="translate(${x} ${y}) rotate(${r}) scale(${s})" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"/>`).join('');
+const leaves = (fill, stroke, sw, which = LEAVES, rib = null) => which.map(([x, y, r, len, bend]) => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="${sugarLeaf(len, 4, bend)}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"/>${rib ? `<path d="${midrib(len, bend)}" stroke="${rib}" stroke-width="0.6" fill="none"/>` : ''}</g>`).join('');
+const open = (extra = '') => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 96"${extra}><g transform="translate(${SHIFT} 0)">`;
+const close = '</g></svg>';
 
-const budFilled = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 96">
+const budFilled = `${open()}
 ${stem(C.deep, 2.4)}
-${leaves(C.deep, C.edge, 0.6)}
+${leaves(C.deep, C.edge, 0.5, LEAVES, C.mid)}
 <path d="${silhouette()}" fill="${C.deep}"/>
 <g stroke="${C.edge}" stroke-width="0.6">${clusters()}</g>
 <path d="M30 ${TIP[1]} Q32.4 11 33 15 L27 15 Q27.6 11 30 ${TIP[1]} Z" fill="${C.light}"/>
 <g stroke="${C.pistil}" stroke-width="1.15" fill="none" stroke-linecap="round">${PISTILS.map((d) => `<path d="${d}"/>`).join('')}</g>
 <g fill="${C.trich}" opacity="0.85">${TRICH.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="0.75"/>`).join('')}</g>
-</svg>`;
+${close}`;
 
 // Outline (not chosen): currentColor, so it follows the text colour in light and dark.
-const budOutline = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+const budOutline = `${open(' fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"')}
 ${stem('currentColor', 2.2)}
-${leaves('none', 'currentColor', 1.3)}
+${leaves('none', 'currentColor', 1.2)}
 <path d="${silhouette()}" stroke-width="2"/>
 <g stroke-width="1.3" opacity="0.75">${cupPaths(3)}</g>
-<g stroke="${C.pistil}" stroke-width="1.3">${PISTILS.slice(0, 3).map((d) => `<path d="${d}"/>`).join('')}</g>
-</svg>`;
+<g stroke="${C.pistil}" stroke-width="1.3">${PISTILS.slice(0, 4).map((d) => `<path d="${d}"/>`).join('')}</g>
+${close}`;
 
-// Simplified, for 24 px: silhouette + 3 scallop lines, 2 leaves, 3 thick pistils.
-const budSmall = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 96">
+// Simplified, for 24 px: silhouette + cups, the 2 long lower leaves, 3 thick pistils.
+const budSmall = `${open()}
 ${stem(C.deep, 3.6)}
 ${leaves(C.deep, 'none', 0, LEAVES.slice(0, 2))}
 <path d="${silhouette(0.85)}" fill="${C.mid}" stroke="${C.deep}" stroke-width="2"/>
 <g stroke="${C.deep}" stroke-width="2.2" fill="none" stroke-linecap="round">${cupPaths(3.5, 2, 3.5)}</g>
 <g stroke="${C.pistil}" stroke-width="2.6" fill="none" stroke-linecap="round"><path d="M23 42 C20.5 39.5 18 38.5 15 36"/><path d="M37 50 C40 47.5 42.5 46.5 46 45"/><path d="M29 24 C27.5 21 25.5 19 22.5 17"/></g>
-</svg>`;
-const budSmallOutline = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 96" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+${close}`;
+const budSmallOutline = `${open(' fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"')}
 ${stem('currentColor', 3.4)}
-${leaves('none', 'currentColor', 2.4, LEAVES.slice(0, 2))}
+${leaves('none', 'currentColor', 2.2, LEAVES.slice(0, 2))}
 <path d="${silhouette(0.85)}" stroke-width="3.2"/>
 <g stroke-width="2.2" opacity="0.75">${cupPaths(3.5, 2, 3.5)}</g>
-</svg>`;
+${close}`;
 
 // ------------------------------------------------------------- leaf (viewBox 0 0 40 40), stroke style like today
 // Leaflet: lanceolate (wide in the middle, pointed), smooth edge with a few
@@ -126,8 +151,8 @@ const row = (title, items, ratio) => `<tr><th>${title}</th>${SIZES.map((px) => `
 const panel = (theme) => `<section class="${theme}"><h2>${theme === 'dark' ? 'Modo oscuro' : 'Modo claro'}</h2>
 <table><tr><th></th>${SIZES.map((p) => `<th>${p} px</th>`).join('')}</tr>
 ${row('Flor — ANTES', [oldBud], 1)}
-${row('Flor — DESPUÉS (rellena · contorno)', [budFilled, budOutline], 1)}
-${row('Flor 24 px simplificada — DESPUÉS (rellena · contorno)', [budSmall, budSmallOutline], 1)}
+${row('Flor — DESPUÉS v2 (rellena · contorno)', [budFilled, budOutline], 1)}
+${row('Flor 24 px simplificada — DESPUÉS v2 (rellena · contorno)', [budSmall, budSmallOutline], 1)}
 ${row('Hoja — ANTES (icono de zona · logo)', [oldLeaf, oldLogo], 1)}
 ${row('Hoja — DESPUÉS (7 · 5 foliolos)', [leaf(7, 'currentColor', 2.2), leaf(5, 'currentColor', 2.4)], 1)}
 </table></section>`;
