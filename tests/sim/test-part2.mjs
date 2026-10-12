@@ -50,7 +50,14 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   const create = (u, n) => as('authenticated', u, `select * from create_support_claim(${n})`);
   check('correo sin confirmar -> no puede pedir monto', err(await create(UNCONF, 1)).includes('email_not_confirmed'));
   check('supporter -> no necesita pedir monto', err(await create(MV, 1)).includes('already_supporter'));
-  check('flores fuera de 1–10 -> rechazado', err(await create(U1, 11)).includes('bad_flowers'));
+  check('0 flores -> rechazado', err(await create(U1, 0)).includes('bad_flowers'));
+  check('21 flores -> rechazado (máximo 20 = 200 USDC)', err(await create(U1, 21)).includes('bad_flowers'));
+  check('la base rechaza flores > 20 aunque se escriba directo (restricción)', !!(await as(null, null, `insert into support_claims (user_id, flowers, amount_units, expires_at) values ('${U1}', 21, 210000100, now())`)).error);
+  for (const [n, k] of [[1, 300], [10, 301], [11, 302], [20, 303]]) {
+    const r = (await create(await newUser(k), n)).rows?.[0];
+    const suf = r ? r.amount_units - n * 10000000 : -1;
+    check(`${n} flor(es) -> ${n * 10},0001–${n * 10},0099 USDC, 4 decimales (${r ? (r.amount_units / 1e6).toFixed(4) : '—'})`, r && r.flowers === n && suf >= 100 && suf <= 9900 && suf % 100 === 0, JSON.stringify(r));
+  }
   const c1 = (await create(U1, 2)).rows[0];
   const frac = c1.amount_units - 20000000;
   check('2 flores -> 20,0001–20,0099 USDC (4 decimales)', frac >= 100 && frac <= 9900 && frac % 100 === 0, String(c1.amount_units));
@@ -62,7 +69,36 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   const amounts = new Set([c1b.amount_units]);
   for (let i = 10; i < 108; i++) { const u = await newUser(i); const r = await create(u, 3); if (r.rows) amounts.add(r.rows[0].amount_units); }
   check('99 solicitudes abiertas de 3 flores -> 99 montos distintos', amounts.size === 99, String(amounts.size));
-  check('la 100.ª con el mismo número de flores -> "ocupado, prueba más tarde"', err(await create(await newUser(200), 3)).includes('busy_try_later'));
+  check('la 100.ª con el mismo número de flores -> error claro no_free_amount (nunca repite)', err(await create(await newUser(200), 3)).includes('no_free_amount'));
+  check('…con 3 flores llenas, otra cantidad (4 flores) sigue funcionando', !!(await create(await newUser(201), 4)).rows?.[0]);
+  for (let i = 0; i < 99; i++) { await create(await newUser(400 + i), 20); }
+  check('20 flores: también 99 montos distintos (200,0001–200,0099) y la 100.ª -> no_free_amount', (await q(`select count(distinct amount_units)::int c from support_claims where flowers = 20 and status = 'awaiting_payment'`))[0].c === 99 && err(await create(await newUser(499), 20)).includes('no_free_amount'));
+  check('ningún monto abierto se repite entre todas las cantidades de flores', (await q(`select count(*)::int a, count(distinct amount_units)::int b from support_claims where status in ('awaiting_payment','submitted','manual_review')`)).map((r) => r.a === r.b)[0]);
+  // Two simultaneous requests: a test-only trigger takes the chosen amount for another person a
+  // moment before the insert (as a competing request would). The function must notice, retry
+  // with another amount and succeed; the trigger counts the attempts (sequences ignore rollbacks).
+  const RX = await newUser(510), RY = await newUser(511);
+  await db.exec(`create sequence test_race_seq;
+    create function test_race() returns trigger language plpgsql as $t$ begin
+      if new.user_id = '${RX}' then
+        if nextval('test_race_seq') = 1 then
+          insert into support_claims (user_id, flowers, amount_units, expires_at)
+          values ('${RY}', new.flowers, new.amount_units, now() + interval '1 day');
+        end if;
+      end if;
+      return new;
+    end $t$;
+    create trigger test_race before insert on support_claims for each row execute function test_race();`);
+  const pa = await create(RX, 7);
+  const tries = (await q('select last_value::int v from test_race_seq'))[0].v;
+  await db.exec('drop trigger test_race on support_claims; drop function test_race(); drop sequence test_race_seq;');
+  check('dos solicitudes a la vez con el mismo monto -> la función lo detecta, reintenta con otro y no falla', !!pa.rows?.[0] && tries === 2 && pa.rows[0].status === 'awaiting_payment', JSON.stringify({ pa, tries }));
+  check('la base impide dos solicitudes abiertas con el mismo monto (índice único)', err(await as(null, null, `insert into support_claims (user_id, flowers, amount_units, expires_at) values ('${await newUser(512)}', 7, ${pa.rows[0].amount_units}, now() + interval '1 day')`)).includes('support_claims_amount_open'));
+  // 98 of the 99 suffixes of 9 flowers taken: the next one gets exactly the last free one
+  await db.exec(`insert into support_claims (user_id, flowers, amount_units, expires_at) select '${await newUser(513)}'::uuid, 9, 90000000 + s * 100, now() + interval '1 day' from generate_series(1, 1) s`);
+  for (let i = 2; i <= 98; i++) await db.exec(`insert into support_claims (user_id, flowers, amount_units, expires_at) values ('${await newUser(600 + i)}', 9, ${90000000 + i * 100}, now() + interval '1 day')`);
+  const last = (await create(await newUser(514), 9)).rows?.[0];
+  check('con 98 de 99 montos de 9 flores ocupados -> recibe justo el que queda (90,0099)', last && last.amount_units === 90009900, JSON.stringify(last));
   check('el navegador NO escribe support_claims directamente', !!(await as('authenticated', U1, `insert into support_claims (user_id, flowers, amount_units, expires_at) values ('${U1}', 1, 1, now())`)).error && !!(await as('authenticated', U1, `update support_claims set status='approved'`)).error);
   check('el navegador NO llama funciones internas (svc_*)', !!(await as('authenticated', U1, `select svc_approve_claim(${c1b.id}, null, 'x', 'x')`)).error);
   const TX = '0x' + 'ab'.repeat(32);
@@ -91,7 +127,7 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   await as('service_role', null, `select * from svc_record_claim_check(${c4.id}, '{"all_pass": true}'::jsonb, false, null)`);
   const auto = await as('service_role', null, `select status from svc_approve_claim(${c4.id}, null, 'auto-verify', 'all checks passed')`);
   check('verificación automática (service_role) aprueba cuando todo pasa', auto.rows?.[0]?.status === 'approved' && await hfa(U4) === true);
-  { const cx = (await as('service_role', null, `select svc_claim_context(${c4.id}) v`)).rows?.[0]?.v; check('svc_claim_context: aviso + correo + idioma + ajustes (auto OFF por defecto)', cx?.email === 'u4@example.org' && cx.lang === 'es' && cx.auto_enabled === false && cx.min_confirmations === 30 && cx.auto_max_usdc === 100, JSON.stringify(cx)); }
+  { const cx = (await as('service_role', null, `select svc_claim_context(${c4.id}) v`)).rows?.[0]?.v; check('svc_claim_context: aviso + correo + idioma + ajustes (auto OFF por defecto)', cx?.email === 'u4@example.org' && cx.lang === 'es' && cx.auto_enabled === false && cx.min_confirmations === 30 && cx.auto_max_usdc === 201, JSON.stringify(cx)); }
   check('el navegador NO llama svc_claim_context', !!(await as('authenticated', U4, `select svc_claim_context(${c4.id})`)).error);
   check('cada persona ve solo sus solicitudes', (await cnt('authenticated', U1, 'select * from support_claims')) === 2 && (await cnt('authenticated', THIRD, 'select * from support_claims')) === 0);
 

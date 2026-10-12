@@ -20,10 +20,16 @@ function fmt(template, vars) {
   return Object.entries(vars).reduce((s, [k, v]) => s.split('{' + k + '}').join(String(v)), template);
 }
 
+// All 20 places are always shown (5 × 4 on phones, 10 × 2 on wide screens);
+// the chosen ones are filled, the rest are an outline. Tapping a place picks
+// that many flowers.
 function gardenHtml() {
-  const shown = Math.min(flowers, SUPPORT.MAX_FLOWERS);
   let html = '';
-  for (let i = 0; i < shown; i++) html += bud(34, 'ds-bud-pop');
+  for (let i = 1; i <= SUPPORT.MAX_FLOWERS; i++) {
+    const on = i <= flowers;
+    const label = fmt(t(i === 1 ? 'dsRamoUna' : 'dsRamoVarias'), { n: i, usdc: i * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY });
+    html += `<button type="button" class="ds-slot${on ? ' on' : ''}" data-n="${i}" aria-pressed="${on}" aria-label="${label}">${bud(30, on ? '' : 'ds-bud-off')}</button>`;
+  }
   return html;
 }
 
@@ -51,7 +57,7 @@ const fmtWhen = (iso) => (window.mvFmtDateTime ? window.mvFmtDateTime(iso) : new
 function awaiting(c) { return c && c.status === 'awaiting_payment' && new Date(c.expires_at).getTime() > Date.now(); }
 
 const RPC_ERR = {
-  email_not_confirmed: 'dsErrConfirm', busy_try_later: 'dsErrBusy', expired: 'dsErrExpired',
+  email_not_confirmed: 'dsErrConfirm', no_free_amount: 'dsErrBusy', expired: 'dsErrExpired',
   bad_tx_format: 'dsFormErrTx', tx_already_used: 'dsFormErrDup', already_supporter: 'dsYaTienes',
 };
 const errKey = (error) => { const m = (error && error.message) || ''; const k = Object.keys(RPC_ERR).find((x) => m.includes(x)); return k ? RPC_ERR[k] : 'dsFormErrGeneric'; };
@@ -64,7 +70,7 @@ async function reserve() {
   }
   if (msg) msg.textContent = t('dsFormSending');
   const { data, error } = await window.mvSupabase.rpc('create_support_claim', { p_flowers: flowers });
-  if (error) { if (msg) msg.textContent = t(errKey(error)); return; }
+  if (error) { if (msg) msg.textContent = fmt(t(errKey(error)), { n: flowers }); return; }
   window.mvLatestClaim = data;
   renderDesbloquear();
 }
@@ -125,6 +131,7 @@ function claimHtml() {
       <div class="ds-amount-label">${t('dsEnviaExacto')}</div>
       <div class="ds-amount-big"><span id="dsAmount">${amount}</span> ${SUPPORT.CURRENCY}</div>
       <div class="ds-amount-net">${fmt(t('dsEnRed'), { net: SUPPORT.NETWORK })}</div>
+      <p class="ds-amount-warn">${t('dsExactoAviso')}</p>
       <button type="button" class="btn btn-ghost ds-copy" id="dsCopyAmount">${t('dsCopiarMonto')}</button>
       <span class="ds-copied" id="dsAmountCopied" aria-live="polite"></span>
       <p class="ds-amount-note">${t('dsDecimalesP')}</p>
@@ -224,6 +231,7 @@ export function renderDesbloquear() {
 
   root.querySelector('#dsMenos').onclick = () => { if (flowers > 1) { flowers--; renderDesbloquear(); } };
   root.querySelector('#dsMas').onclick = () => { if (flowers < SUPPORT.MAX_FLOWERS) { flowers++; renderDesbloquear(); } };
+  root.querySelectorAll('.ds-slot').forEach((b) => { b.onclick = () => { flowers = Number(b.dataset.n); renderDesbloquear(); }; });
 
   if (!ready || !signedIn) {
     root.querySelector('#dsCrearCuenta')?.addEventListener('click', () => {

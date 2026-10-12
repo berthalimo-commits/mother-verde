@@ -19,7 +19,7 @@ export const SUPPORT = {
   CURRENCY: 'USDC',
   // One flower = this many USDC. One flower unlocks full access; more is extra, voluntary support.
   FLOWER_USDC: 10,
-  MAX_FLOWERS: 10,
+  MAX_FLOWERS: 20, // 200 USDC; the database accepts 1–20 (support_claims)
   // Promise shown on the page for the manual verification.
   VERIFY_MAX_HOURS: 48,
 };

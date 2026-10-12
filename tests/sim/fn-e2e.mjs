@@ -167,7 +167,7 @@ check('otra persona no puede verificar ese aviso', (await call('claims', tok(NOR
 check('usuario normal -> admin_check 403', (await call('claims', tok(NORMAL, 'aal2'), { action: 'admin_check', claim_id: P1.c.id })).status === 403);
 check('admin sin MFA -> admin_check / approve 403', (await call('claims', tok(ADMIN), { action: 'admin_check', claim_id: P1.c.id })).status === 403 && (await call('claims', tok(ADMIN), { action: 'admin_approve', claim_id: P1.c.id, reason: 'xxxxxxx' })).status === 403);
 r = await call('claims', A2, { action: 'config' });
-check('panel: config dice verificación automática apagada', r.body.auto_enabled === false && r.body.support_address_set === true);
+check('panel: config dice verificación automática apagada y tope 201', r.body.auto_enabled === false && r.body.auto_max_usdc === 201 && r.body.support_address_set === true);
 r = await call('claims', A2, { action: 'admin_check', claim_id: P1.c.id });
 check('transferencia correcta -> todas las comprobaciones pasan', r.body.result?.all_pass === true && Object.entries(r.body.result.checks).every(([, v]) => v), JSON.stringify(r.body));
 check('…admin_check nunca activa (sigue submitted, sin acceso)', (await q(`select status from support_claims where id = ${P1.c.id}`))[0].status === 'submitted');
@@ -178,12 +178,12 @@ const am = globalThis.__mail.at(-1);
 check('correo de activación: a la cuenta, 4 idiomas, 2 flores, sin precios', am.to === 'pago10@example.org' && ['Tu acceso completo está activo', 'Your full access is active', 'Dein Vollzugriff ist aktiv', 'Ton accès complet est actif', '2 flores'].every((s) => am.text.includes(s)) && !BANNED.some((b) => am.text.includes(b)));
 check('…la cuenta pasa a supporter', (await q(`select subscription_status s from profiles where id = '${P1.u}'`))[0].s === 'supporter');
 const cases = [
-  ['monto incorrecto', (p) => putTx(p.tx, { amount: BigInt(p.c.amount_units) - 100n }), 'exact_amount'],
-  ['destino incorrecto', (p) => putTx(p.tx, { amount: p.c.amount_units, to: '0x' + '33'.repeat(20) }), 'destination'],
-  ['otro token (no USDC oficial)', (p) => putTx(p.tx, { amount: p.c.amount_units, contract: '0x' + '44'.repeat(20) }), 'usdc_contract'],
-  ['transacción fallida', (p) => putTx(p.tx, { amount: p.c.amount_units, status: '0x0' }), 'tx_success'],
-  ['transacción inexistente', () => {}, 'tx_not_found'],
-  ['transferencia anterior a la reserva', (p) => putTx(p.tx, { amount: p.c.amount_units, ts: Date.now() - 3600000 }), 'after_claim'],
+  ['monto incorrecto', (p) => putTx(p.tx, { amount: BigInt(p.c.amount_units) - 100n }), 'monto_distinto'],
+  ['destino incorrecto', (p) => putTx(p.tx, { amount: p.c.amount_units, to: '0x' + '33'.repeat(20) }), 'destino_distinto'],
+  ['otro token (no USDC oficial)', (p) => putTx(p.tx, { amount: p.c.amount_units, contract: '0x' + '44'.repeat(20) }), 'no_es_usdc'],
+  ['transacción fallida', (p) => putTx(p.tx, { amount: p.c.amount_units, status: '0x0' }), 'tx_fallida'],
+  ['transacción inexistente', () => {}, 'tx_no_encontrada'],
+  ['transferencia anterior a la reserva', (p) => putTx(p.tx, { amount: p.c.amount_units, ts: Date.now() - 3600000 }), 'tx_anterior_a_la_reserva'],
 ];
 let k = 20;
 for (const [name, setup, why] of cases) {
@@ -215,21 +215,30 @@ check('auto ON + todo correcto -> activada sola + correo', r.body.status === 'ap
 check('…auditada como auto-verify', (await q(`select count(*)::int c from admin_audit_log where action = 'claim_approved' and actor_label = 'auto-verify' and target_email = 'pago50@example.org'`))[0].c === 1);
 const PT = await payer(51, 10); putTx(PT.tx, { amount: PT.c.amount_units });
 r = await call('claims', tok(PT.u), { action: 'verify', claim_id: PT.c.id });
-check('10 flores (100,00xx USDC) cuenta como 100 -> automática', r.body.status === 'approved', JSON.stringify(r));
+check('10 flores (100,00xx USDC), tope por defecto 201 -> automática', r.body.status === 'approved', JSON.stringify(r));
+check('tope por defecto en app_config: claim_auto_max_usdc = 201', (await q(`select value from app_config where key = 'claim_auto_max_usdc'`))[0].value === 201);
+for (const [n, k] of [[1, 56], [11, 57], [20, 58]]) {
+  const P = await payer(k, n); putTx(P.tx, { amount: P.c.amount_units });
+  r = await call('claims', tok(P.u), { action: 'verify', claim_id: P.c.id });
+  check(`${n} flor(es) (${(P.c.amount_units / 1e6).toFixed(4)} USDC), todo exacto -> activada automáticamente`, r.body.status === 'approved', JSON.stringify(r));
+}
 await db.exec(`update app_config set value = 50 where key = 'claim_auto_max_usdc'`);
 const PB = await payer(52, 6); putTx(PB.tx, { amount: PB.c.amount_units });
 r = await call('claims', tok(PB.u), { action: 'verify', claim_id: PB.c.id });
-check('por encima del límite automático -> revisión manual (over_auto_limit)', r.body.status === 'manual_review' && (await q(`select review_reason from support_claims where id = ${PB.c.id}`))[0].review_reason === 'over_auto_limit');
-await db.exec(`update app_config set value = 100 where key = 'claim_auto_max_usdc'`);
+check('monto por encima del tope (60,00xx con tope 50) y todo exacto -> revisión manual «monto_alto»', r.body.status === 'manual_review' && (await q(`select review_reason from support_claims where id = ${PB.c.id}`))[0].review_reason === 'monto_alto');
+const PB2 = await payer(59, 6); putTx(PB2.tx, { amount: BigInt(PB2.c.amount_units) + 100n });
+r = await call('claims', tok(PB2.u), { action: 'verify', claim_id: PB2.c.id });
+check('por encima del tope Y monto distinto -> revisión manual «monto_distinto, monto_alto»', r.body.status === 'manual_review' && (await q(`select review_reason from support_claims where id = ${PB2.c.id}`))[0].review_reason === 'monto_distinto, monto_alto');
+await db.exec(`update app_config set value = 201 where key = 'claim_auto_max_usdc'`);
 const PW = await payer(53); putTx(PW.tx, { amount: BigInt(PW.c.amount_units) + 1000000n });
 r = await call('claims', tok(PW.u), { action: 'verify', claim_id: PW.c.id });
-check('auto ON + monto incorrecto -> revisión manual, nunca activa', r.body.status === 'manual_review' && (await q(`select subscription_status s from profiles where id = '${PW.u}'`))[0].s !== 'supporter');
+check('auto ON + monto incorrecto -> revisión manual «monto_distinto», nunca activa', r.body.status === 'manual_review' && (await q(`select review_reason from support_claims where id = ${PW.c.id}`))[0].review_reason === 'monto_distinto' && (await q(`select subscription_status s from profiles where id = '${PW.u}'`))[0].s !== 'supporter');
 const PR = await payer(54); putTx(PR.tx, { amount: PR.c.amount_units });
 chain.fail = 429;
 r = await call('claims', tok(PR.u), { action: 'verify', claim_id: PR.c.id });
 chain.fail = null;
 const prr = (await q(`select status, review_reason from support_claims where id = ${PR.c.id}`))[0];
-check('endpoint de Base agotado (429) -> revisión manual "rpc_unavailable", nunca activa', prr.status === 'manual_review' && prr.review_reason.startsWith('rpc_unavailable') && (await q(`select subscription_status s from profiles where id = '${PR.u}'`))[0].s !== 'supporter', JSON.stringify(prr));
+check('endpoint de Base agotado (429) -> revisión manual "red_no_disponible", nunca activa', prr.status === 'manual_review' && prr.review_reason.startsWith('red_no_disponible') && (await q(`select subscription_status s from profiles where id = '${PR.u}'`))[0].s !== 'supporter', JSON.stringify(prr));
 const PS = await payer(55); putTx(PS.tx, { amount: PS.c.amount_units, block: 995 });
 await call('claims', tok(PS.u), { action: 'verify', claim_id: PS.c.id });
 check('volver a pedir verificación antes de 1 minuto -> too_soon', (await call('claims', tok(PS.u), { action: 'verify', claim_id: PS.c.id })).body.error === 'too_soon');

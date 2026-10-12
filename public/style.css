@@ -465,7 +465,13 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .ds-bud-pop{animation:dsPop .35s ease-out;}
 @keyframes dsPop{from{transform:scale(.6); opacity:0;} to{transform:scale(1); opacity:1;}}
 .ds-picker{display:flex; align-items:center; gap:12px; margin:14px 0 8px;}
-.ds-garden{flex:1; display:flex; flex-wrap:wrap; align-items:flex-end; gap:6px; min-height:58px; padding:8px 10px; border:1px dashed var(--line-strong); border-radius:10px;}
+/* 20 places: 5 columns × 4 rows on phones, 10 × 2 from 720 px. */
+.ds-garden{flex:1; display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:4px 6px; padding:8px 10px; border:1px dashed var(--line-strong); border-radius:10px; max-width:420px;}
+@media (min-width:720px){ .ds-garden{grid-template-columns:repeat(10, minmax(0, 1fr)); max-width:560px;} }
+.ds-slot{display:flex; justify-content:center; align-items:flex-end; padding:2px 0; background:none; border:0; border-radius:6px; cursor:pointer; min-height:44px;}
+.ds-slot:focus-visible{outline:2px solid var(--moss); outline-offset:1px;}
+.ds-slot .ds-bud{width:100%; max-width:30px; height:auto;}
+.ds-bud-off{opacity:.22; filter:grayscale(1);}
 .ds-step{flex:none; width:40px; height:40px; border-radius:50%; border:1px solid var(--line-strong); background:transparent; color:var(--ink); font-size:20px; line-height:1; cursor:pointer;}
 .ds-step:disabled{opacity:.35; cursor:default;}
 .ds-step:not(:disabled):hover{border-color:var(--moss);}
@@ -540,6 +546,7 @@ html.mv-locked .bit-entry-del{display:none !important;}
 .ds-amount-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);}
 .ds-amount-big{font-family:'IBM Plex Mono',monospace; font-size:30px; font-weight:600; color:var(--ink); margin:4px 0; overflow-wrap:anywhere;}
 .ds-amount-net{font-size:14px; font-weight:600; color:var(--moss); margin-bottom:10px;}
+.ds-amount-warn{font-size:14px; font-weight:600; color:var(--ink); margin:8px 0 4px; line-height:1.5;}
 .ds-amount-note{font-size:12.5px; color:var(--ink-soft); margin:8px 0 0; line-height:1.5;}
 .ds-amount .btn{margin-top:8px;}
 .ds-cancel-link{align-self:flex-start; background:none; border:0; padding:0; margin-top:4px; color:var(--ink-soft); font-size:12.5px; text-decoration:underline; cursor:pointer;}

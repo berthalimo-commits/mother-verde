@@ -7,14 +7,19 @@ begin;
 -- 20261011100000 (admins + audit log).
 --
 -- Flow
---   1. The person picks N flowers -> create_support_claim(N) reserves an
---      amount nobody else has open: N x 10 USDC + 0.0001 … 0.0099 (4 decimals,
---      because some wallets round). Valid for claim_expiry_hours (72 h).
+--   1. The person picks N flowers (1–20) -> create_support_claim(N) reserves
+--      an amount nobody else has open: N x 10 USDC + 0.0001 … 0.0099 (4
+--      decimals, because some wallets round), e.g. 10.0042 or 200.0073.
+--      99 suffixes per number of flowers -> at most 99 open claims at the
+--      same time for each number of flowers (1,980 in total); when none is
+--      free it fails with 'no_free_amount' and never repeats an amount.
+--      Valid for claim_expiry_hours (72 h).
 --   2. They send exactly that amount and give the transaction code ->
 --      submit_support_claim_tx(id, code)  -> status 'submitted'.
 --   3. Verification (Edge Function support-claims):
 --        automatic, only if app_config claim_auto_verify_enabled = 1 and the
---        amount is <= claim_auto_max_usdc: activates when EVERY check passes,
+--        amount is <= claim_auto_max_usdc (201: every amount from 1 to 20
+--        flowers, 200.00xx included): activates when EVERY check passes,
 --        otherwise -> 'manual_review' with the reason written;
 --        manual: an admin (with MFA) or the owner in the SQL Editor approves
 --        or rejects, with a reason when the checks didn't all pass.
@@ -32,14 +37,14 @@ begin;
 insert into public.app_config (key, value, note) values
   ('claim_expiry_hours', 72, 'Hours a reserved amount stays valid.'),
   ('claim_min_confirmations', 30, 'Base blocks after the transfer before it counts (~1 minute).'),
-  ('claim_auto_max_usdc', 100, 'Above this many USDC a claim is never activated automatically.'),
+  ('claim_auto_max_usdc', 201, 'Above this many USDC a claim is never activated automatically (201 = up to 20 flowers, 200.00xx included).'),
   ('claim_auto_verify_enabled', 0, '1 = automatic activation on (needs the owner''s written approval).')
 on conflict (key) do nothing;
 
 create table if not exists public.support_claims (
   id             bigint generated always as identity primary key,
   user_id        uuid not null references auth.users(id) on delete cascade,
-  flowers        integer not null check (flowers between 1 and 10),
+  flowers        integer not null check (flowers between 1 and 20),
   amount_units   bigint not null check (amount_units > 0),
   status         text not null default 'awaiting_payment'
                  check (status in ('awaiting_payment', 'submitted', 'manual_review',
@@ -103,13 +108,14 @@ declare
   v_try integer;
   v_suffix integer;
   v_amount bigint;
+  v_constraint text;
   c public.support_claims;
 begin
   if v_uid is null then raise exception 'not_authenticated'; end if;
   if not exists (select 1 from auth.users where id = v_uid and email_confirmed_at is not null) then
     raise exception 'email_not_confirmed';
   end if;
-  if p_flowers is null or p_flowers < 1 or p_flowers > 10 then raise exception 'bad_flowers'; end if;
+  if p_flowers is null or p_flowers < 1 or p_flowers > 20 then raise exception 'bad_flowers'; end if;
   select subscription_status into v_status from public.profiles where id = v_uid;
   if v_status = 'supporter' then raise exception 'already_supporter'; end if;
   if v_status = 'revoked' then raise exception 'not_allowed'; end if;
@@ -126,30 +132,42 @@ begin
 
   v_base := p_flowers::bigint * 10 * 1000000;
   -- Random suffix 0.0001 … 0.0099 USDC (= 100 … 9,900 base units), not used
-  -- by any other open claim.
-  for v_try in 1..60 loop
-    v_suffix := 1 + floor(random() * 99)::integer;
-    v_amount := v_base + v_suffix * 100;
-    exit when not exists (select 1 from public.support_claims
-                           where amount_units = v_amount
-                             and status in ('awaiting_payment', 'submitted', 'manual_review'));
+  -- by any other open claim. If another request takes the same amount at
+  -- the same instant, the unique index rejects one of the two inserts and
+  -- that one picks again: an amount is never shared.
+  for v_try in 1..200 loop
     v_amount := null;
+    if v_try <= 30 then
+      v_suffix := 1 + floor(random() * 99)::integer;
+      if not exists (select 1 from public.support_claims
+                      where amount_units = v_base + v_suffix * 100
+                        and status in ('awaiting_payment', 'submitted', 'manual_review')) then
+        v_amount := v_base + v_suffix * 100;
+      end if;
+    end if;
+    if v_amount is null then
+      select v_base + s * 100 into v_amount
+        from generate_series(1, 99) s
+       where not exists (select 1 from public.support_claims
+                          where amount_units = v_base + s * 100
+                            and status in ('awaiting_payment', 'submitted', 'manual_review'))
+       order by random()
+       limit 1;
+      if v_amount is null then raise exception 'no_free_amount'; end if;
+    end if;
+    begin
+      insert into public.support_claims (user_id, flowers, amount_units, expires_at)
+      values (v_uid, p_flowers, v_amount,
+              now() + make_interval(hours => public.app_config_value('claim_expiry_hours', 72)))
+      returning * into c;
+      return c;
+    exception when unique_violation then
+      get stacked diagnostics v_constraint = constraint_name;
+      if v_constraint <> 'support_claims_amount_open' then raise; end if;
+      -- someone else took this amount a moment ago: pick another one
+    end;
   end loop;
-  if v_amount is null then
-    select v_base + s * 100 into v_amount
-      from generate_series(1, 99) s
-     where not exists (select 1 from public.support_claims
-                        where amount_units = v_base + s * 100
-                          and status in ('awaiting_payment', 'submitted', 'manual_review'))
-     limit 1;
-  end if;
-  if v_amount is null then raise exception 'busy_try_later'; end if;
-
-  insert into public.support_claims (user_id, flowers, amount_units, expires_at)
-  values (v_uid, p_flowers, v_amount,
-          now() + make_interval(hours => public.app_config_value('claim_expiry_hours', 72)))
-  returning * into c;
-  return c;
+  raise exception 'no_free_amount';
 end;
 $$;
 
@@ -257,7 +275,7 @@ as $$
            'email', u.email,
            'lang', coalesce(p.preferred_lang, 'es'),
            'min_confirmations', public.app_config_value('claim_min_confirmations', 30),
-           'auto_max_usdc', public.app_config_value('claim_auto_max_usdc', 100),
+           'auto_max_usdc', public.app_config_value('claim_auto_max_usdc', 201),
            'auto_enabled', public.app_config_value('claim_auto_verify_enabled', 0) = 1)
     from public.support_claims c
     join auth.users u on u.id = c.user_id

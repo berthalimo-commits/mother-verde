@@ -48,11 +48,12 @@ Resultado: **29 / 29**. Antes del arreglo daba 10 / 29.
 
 | Batería | Qué cubre | Resultado |
 |---|---|---|
-| Base de datos (PGlite) | migraciones, permisos, aportes, admin (`hello@motherverdeny.com`) + MFA, códigos, auditoría, reversas con esquema idéntico | **166 / 166** |
-| Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **69 / 69** |
+| Base de datos (PGlite) | migraciones, permisos, aportes, admin (`hello@motherverdeny.com`) + MFA, códigos, auditoría, 1–20 flores y unicidad del monto (incluida una carrera simultánea), reversas con esquema idéntico | **178 / 178** |
+| Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **74 / 74** |
 | Panel en navegador | admin con la prueba de 24 h terminada (ve el bloqueo en la app y aun así usa el panel), MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **20 / 20** |
 | App en navegador | Desbloquear con monto exacto, envío del TXID, código de regalo | **10 / 10** |
 | Idioma en vivo | cambio ES/EN/DE/FR con la pantalla abierta + recarga, 6 pantallas | **29 / 29** |
+| 20 flores en navegador | 5×4 en móvil, 10×2 en pantalla grande, 200,00xx, «copiar monto exacto» y aviso en 4 idiomas | **14 / 14** |
 | Barrido de textos | 20 pantallas × 4 idiomas × 8 estados de acceso (880 combinaciones) | **0 textos del modelo viejo, 0 errores JS** |
 
 Pruebas de abuso pedidas, todas superadas: usuario normal llamando a funciones
@@ -143,7 +144,7 @@ Qué se quitó físicamente: `src/subscription.js` (244 líneas), `docs/trial-re
 - `20261010120000_access_support_model.sql` (modificada: `access_until`, estado `revoked`)
 - `20261010130000_community_full_access.sql` (modificada: §9 reintentos, `gave_up`)
 - `20261011100000_admin_and_audit.sql` (nueva)
-- `20261011120000_support_claims.sql` (reescrita: monto único)
+- `20261011120000_support_claims.sql` (reescrita: monto único; 1–20 flores; tope automático 201)
 - `20261011130000_gift_codes_and_access.sql` (nueva)
 
 **SQL de administración** (`C:\Users\User\Desktop\Cannapp\supabase\admin\`)
@@ -231,8 +232,12 @@ Comprobación real: en el panel, **Códigos de regalo → «Enviar correo de pru
 
 - Fuente: endpoint público `https://mainnet.base.org`, sin clave y gratuito. Base no publica el límite exacto: lo describe como «con límite y no para producción».
 - Uso real: 3 llamadas por comprobación (recibo, bloque actual, hora del bloque) y como máximo una comprobación por persona por minuto. Con el volumen esperado, está muy lejos del límite.
-- Si se agota (HTTP 429) o falla: el aviso pasa a **revisión manual** con el motivo `rpc_unavailable`, **nunca se activa**. Probado.
-- Comprobaciones: la transacción existe y se completó; contrato oficial de USDC de Circle (`0x8335…2913`); destino = `SUPPORT_ADDRESS`; monto exacto; transferencia posterior a la reserva; 30 confirmaciones; TXID no usado; aviso vigente y de esa cuenta; ≤ 100 USDC para la automática (10 flores = 100,00xx cuenta como 100).
+- Si se agota (HTTP 429) o falla: el aviso pasa a **revisión manual** con el motivo `red_no_disponible`, **nunca se activa**. Probado.
+- Comprobaciones (todas exactas para activar sola): la transacción existe y se completó; contrato oficial de USDC de Circle (`0x8335…2913`); destino = `SUPPORT_ADDRESS`; monto exacto de esa solicitud; transferencia posterior a la reserva; 30 confirmaciones; TXID no usado; solicitud vigente y de esa misma cuenta.
+- **Tope de la verificación automática: `claim_auto_max_usdc = 201`** en `public.app_config`. Cubre de 1 a 20 flores (200,00xx entra). Se compara el monto completo, decimales incluidos. Cambiarlo es una línea:
+  `update public.app_config set value = 201 where key = 'claim_auto_max_usdc';`
+- Cualquier diferencia o monto por encima del tope pasa **siempre** a revisión manual, con el motivo escrito en códigos: `monto_alto`, `monto_distinto`, `destino_distinto`, `no_es_usdc`, `tx_fallida`, `tx_no_encontrada`, `tx_anterior_a_la_reserva`, `txid_ya_usado`, `solicitud_no_vigente`, `red_no_disponible`. Si hay varios, van separados por comas (p. ej. `monto_distinto, monto_alto`).
+- **Monto único**: N × 10 USDC + un sufijo aleatorio de 4 decimales (0,0001–0,0099), p. ej. 1 flor = 10,0042 y 20 flores = 200,0073. Nunca 6 decimales. Hay **99 sufijos por cada cantidad de flores** → como máximo 99 solicitudes abiertas a la vez de 1 flor, otras 99 de 2 flores… y así hasta 20 (1.980 en total). Entre cantidades distintas nunca chocan (están separadas por 10 USDC). Si se agotan los 99 de una cantidad, la función da el error `no_free_amount` y la app muestra «Ahora mismo no queda ningún monto libre para N flores… elige otra cantidad o vuelve en unas horas»; **nunca repite un monto**. Si dos personas reservan el mismo monto en el mismo instante, el índice único de la base rechaza una de las dos y la función elige otro sufijo sola (probado simulando la carrera).
 - Estado: la parte automática está **apagada**. Para encenderla (solo con tu aprobación escrita): `update public.app_config set value = 1 where key = 'claim_auto_verify_enabled';`
 - Si algún día hace falta más capacidad: Alchemy (gratis, con clave) en `BASE_RPC_URL`. Etherscan gratis no cubre Base.
 

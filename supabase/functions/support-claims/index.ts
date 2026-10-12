@@ -30,12 +30,16 @@
 //   confirmations    at least claim_min_confirmations blocks on top
 //   tx_unused        the code isn't used by another claim (unique in the DB)
 //   claim_open       the claim isn't expired / closed and belongs to the caller
-//   auto_limit       whole USDC <= claim_auto_max_usdc (only for automatic;
-//                    10 flowers = 100.00xx counts as 100)
-// Anything that fails -> 'manual_review' with the reason, never activation.
+//   auto_limit       amount <= claim_auto_max_usdc (only for automatic; 201
+//                    by default = every amount from 1 to 20 flowers, 200.00xx
+//                    included; change it with one line of SQL in app_config)
+// Anything that fails -> 'manual_review' with the reason written as codes:
+//   tx_no_encontrada, tx_fallida, no_es_usdc, destino_distinto,
+//   monto_distinto, tx_anterior_a_la_reserva, txid_ya_usado,
+//   solicitud_no_vigente, monto_alto (over the automatic cap), sin_txid,
+//   direccion_no_configurada, red_no_disponible (Base endpoint failed or
+//   rate limited). Never activation on doubt.
 // Not enough confirmations yet -> stays 'submitted', checked again later.
-// If the Base endpoint fails or is rate limited -> 'manual_review' with
-// reason "rpc_unavailable"; it never activates on doubt.
 //
 // Secrets: SUPPORT_ADDRESS (the receiving address, lower case),
 //   BASE_RPC_URL (optional, default https://mainnet.base.org — free, no key,
@@ -137,9 +141,9 @@ async function baseRpc(method: string, params: unknown[]) {
     body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
     signal: AbortSignal.timeout(10000),
   });
-  if (!res.ok) throw new Error(`rpc_unavailable: HTTP ${res.status}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const j = await res.json();
-  if (j.error) throw new Error(`rpc_unavailable: ${String(j.error.message ?? j.error.code).slice(0, 120)}`);
+  if (j.error) throw new Error(`${String(j.error.message ?? j.error.code).slice(0, 120)}`);
   return j.result;
 }
 
@@ -162,18 +166,18 @@ async function checkOnChain(ctx: Ctx, callerOwnsClaim: boolean): Promise<CheckRe
     tx_unused: !!c.tx_hash, // unique index in the database: a stored code is used by this claim only
     claim_open: callerOwnsClaim && ["submitted", "manual_review"].includes(c.status) &&
       !!c.submitted_at && new Date(c.submitted_at) <= new Date(c.expires_at),
-    // Whole USDC, ignoring the 0.0001–0.0099 identification suffix:
-    // 10 flowers (100.00xx) still counts as 100.
-    auto_limit: BigInt(c.amount_units) / 1000000n <= BigInt(ctx.auto_max_usdc),
+    // The full amount, decimals included: with the default cap of 201,
+    // 20 flowers (200.00xx) are still within it.
+    auto_limit: BigInt(c.amount_units) <= BigInt(ctx.auto_max_usdc) * 1000000n,
   };
   const detail: Record<string, unknown> = {};
   const dest = (Deno.env.get("SUPPORT_ADDRESS") ?? "").toLowerCase();
   const fail = (reason: string): CheckResult => ({ checks, all_pass: false, pending: false, reason, detail });
-  if (!c.tx_hash) return fail("no_tx_hash");
-  if (!/^0x[0-9a-f]{40}$/.test(dest)) return fail("support_address_not_configured");
+  if (!c.tx_hash) return fail("sin_txid");
+  if (!/^0x[0-9a-f]{40}$/.test(dest)) return fail("direccion_no_configurada");
   try {
     const receipt = await baseRpc("eth_getTransactionReceipt", [c.tx_hash]);
-    if (!receipt) return fail("tx_not_found");
+    if (!receipt) return fail("tx_no_encontrada");
     checks.tx_found = true;
     checks.tx_success = receipt.status === "0x1";
     const want = BigInt(c.amount_units);
@@ -200,16 +204,23 @@ async function checkOnChain(ctx: Ctx, callerOwnsClaim: boolean): Promise<CheckRe
     // 2 minutes of tolerance for clock differences.
     checks.after_claim = mined >= new Date(c.created_at).getTime() - 120000;
   } catch (e) {
-    return fail(String((e as Error).message ?? e).slice(0, 200).startsWith("rpc_unavailable")
-      ? String((e as Error).message).slice(0, 200) : "rpc_unavailable: " + String((e as Error).message ?? e).slice(0, 150));
+    return fail("red_no_disponible: " + String((e as Error).message ?? e).replace(/^rpc_unavailable: /, "").slice(0, 150));
   }
   const failed = Object.entries(checks).filter(([k, v]) => !v && k !== "auto_limit").map(([k]) => k);
   // Only "not enough confirmations yet" is worth waiting for.
   if (failed.length === 1 && failed[0] === "confirmations") {
     return { checks, all_pass: false, pending: true, reason: "waiting_confirmations", detail };
   }
-  return { checks, all_pass: failed.length === 0, pending: false, reason: failed.length ? "failed: " + failed.join(", ") : null, detail };
+  return { checks, all_pass: failed.length === 0, pending: false, reason: failed.length ? failed.map((k) => REASON[k]).join(", ") : null, detail };
 }
+
+// Reason codes written on the claim when it goes to manual review.
+const REASON: Record<string, string> = {
+  tx_found: "tx_no_encontrada", tx_success: "tx_fallida", usdc_contract: "no_es_usdc",
+  destination: "destino_distinto", exact_amount: "monto_distinto", after_claim: "tx_anterior_a_la_reserva",
+  confirmations: "confirmaciones_insuficientes", tx_unused: "txid_ya_usado", claim_open: "solicitud_no_vigente",
+  auto_limit: "monto_alto",
+};
 
 function activationEmail(flowers: number, appUrl: string): Mail & { to: "" } {
   const blocks: [string, string, string[]][] = [
@@ -290,7 +301,8 @@ Deno.serve(async (req) => {
       const r = await checkOnChain(ctx, true);
       if (r.pending) { await record(r, false); return json({ ok: true, mode: "auto", status: "submitted", pending: true }); }
       if (!r.all_pass || !r.checks.auto_limit) {
-        if (r.all_pass) r.reason = "over_auto_limit";
+        // Over the automatic cap: always manual, with "monto_alto" in the reason.
+        if (!r.checks.auto_limit) r.reason = r.all_pass || !r.reason ? REASON.auto_limit : r.reason + ", " + REASON.auto_limit;
         await record(r, true);
         return json({ ok: true, mode: "auto", status: "manual_review" });
       }
@@ -311,7 +323,8 @@ Deno.serve(async (req) => {
 
     if (body.action === "config") {
       const { data: on } = await svc.rpc("app_config_value", { p_key: "claim_auto_verify_enabled", p_default: 0 });
-      return json({ ok: true, auto_enabled: on === 1, support_address_set: /^0x[0-9a-fA-F]{40}$/.test(Deno.env.get("SUPPORT_ADDRESS") ?? "") });
+      const { data: cap } = await svc.rpc("app_config_value", { p_key: "claim_auto_max_usdc", p_default: 201 });
+      return json({ ok: true, auto_enabled: on === 1, auto_max_usdc: cap, support_address_set: /^0x[0-9a-fA-F]{40}$/.test(Deno.env.get("SUPPORT_ADDRESS") ?? "") });
     }
     if (body.action === "admin_check") {
       const ctx = await loadCtx();

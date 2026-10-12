@@ -36,7 +36,7 @@ const T = {
     code6: 'El código tiene 6 dígitos.', codeBad: 'Código incorrecto o caducado. Prueba con el siguiente.',
     session: 'Sesión: {e} · verificación en dos pasos ✓', signOut: 'Cerrar sesión',
     tabClaims: 'Avisos de aporte', tabGifts: 'Códigos de regalo', tabAudit: 'Registro',
-    autoOn: '<span class="ok">Verificación automática: ACTIVA</span> (solo activa sola si todo pasa y es ≤ 100 USDC)',
+    autoOn: '<span class="ok">Verificación automática: ACTIVA</span> (solo activa sola si todo coincide exacto y el monto no pasa del tope de {max} USDC: de 1 a 20 flores)',
     autoOff: '<b class="warn">Verificación manual</b> — comprueba cada transferencia (botón «Comprobar en Base» o el enlace al explorador) antes de activar.',
     noAddr: 'Falta el secreto SUPPORT_ADDRESS en la función support-claims: las comprobaciones fallarán.',
     showOpen: 'Ver avisos por decidir', showAwaiting: 'Ver montos reservados sin pagar', refresh: 'Actualizar', empty: 'No hay nada aquí.',
@@ -51,7 +51,7 @@ const T = {
     ck_tx_found: 'La transacción existe en Base', ck_tx_success: 'La transacción se completó', ck_usdc_contract: 'Es USDC (contrato oficial de Circle)',
     ck_destination: 'Llegó a nuestra dirección', ck_exact_amount: 'Monto exacto', ck_after_claim: 'Enviada después de reservar el monto',
     ck_confirmations: 'Confirmaciones suficientes', ck_tx_unused: 'Código no usado en otro aviso', ck_claim_open: 'Aviso vigente y de esa cuenta',
-    ck_auto_limit: 'Dentro del límite automático (≤ 100 USDC)',
+    ck_auto_limit: 'Dentro del tope automático ({max} USDC; si no, «monto_alto»)',
     giftH: 'Enviar un código de regalo (7 días de acceso, válido 7 días)', send: 'Enviar código', sending: 'Enviando…',
     giftLimits: 'Límites: 20 códigos al día en total y 3 por correo. El código solo viaja en el correo: aquí no se puede ver.',
     testBtn: 'Enviar correo de prueba a mi correo', sentTo: 'Enviado a {to}. Caduca: {d}.',
@@ -82,7 +82,7 @@ const T = {
     code6: 'The code has 6 digits.', codeBad: 'Wrong or expired code. Try the next one.',
     session: 'Session: {e} · two-step verification ✓', signOut: 'Sign out',
     tabClaims: 'Contribution claims', tabGifts: 'Gift codes', tabAudit: 'Audit log',
-    autoOn: '<span class="ok">Automatic verification: ON</span> (activates on its own only if everything passes and it is ≤ 100 USDC)',
+    autoOn: '<span class="ok">Automatic verification: ON</span> (activates on its own only if everything matches exactly and the amount is within the {max} USDC cap: 1 to 20 flowers)',
     autoOff: '<b class="warn">Manual verification</b> — check each transfer (the “Check on Base” button or the explorer link) before activating.',
     noAddr: 'The SUPPORT_ADDRESS secret is missing in the support-claims function: checks will fail.',
     showOpen: 'Show claims to decide', showAwaiting: 'Show reserved amounts not paid yet', refresh: 'Refresh', empty: 'Nothing here.',
@@ -97,7 +97,7 @@ const T = {
     ck_tx_found: 'The transaction exists on Base', ck_tx_success: 'The transaction succeeded', ck_usdc_contract: 'It is USDC (Circle’s official contract)',
     ck_destination: 'It reached our address', ck_exact_amount: 'Exact amount', ck_after_claim: 'Sent after the amount was reserved',
     ck_confirmations: 'Enough confirmations', ck_tx_unused: 'Code not used by another claim', ck_claim_open: 'Claim still open and from that account',
-    ck_auto_limit: 'Within the automatic limit (≤ 100 USDC)',
+    ck_auto_limit: 'Within the automatic cap ({max} USDC; otherwise “monto_alto”)',
     giftH: 'Send a gift code (7 days of access, valid for 7 days)', send: 'Send code', sending: 'Sending…',
     giftLimits: 'Limits: 20 codes a day in total and 3 per e-mail address. The code only travels in the e-mail: it can’t be seen here.',
     testBtn: 'Send a test e-mail to my address', sentTo: 'Sent to {to}. Expires: {d}.',
@@ -128,7 +128,7 @@ const T = {
     code6: 'Der Code hat 6 Ziffern.', codeBad: 'Falscher oder abgelaufener Code. Versuch den nächsten.',
     session: 'Sitzung: {e} · Zwei-Faktor-Bestätigung ✓', signOut: 'Abmelden',
     tabClaims: 'Beitragsmeldungen', tabGifts: 'Geschenkcodes', tabAudit: 'Protokoll',
-    autoOn: '<span class="ok">Automatische Prüfung: AN</span> (schaltet nur selbst frei, wenn alles passt und es ≤ 100 USDC sind)',
+    autoOn: '<span class="ok">Automatische Prüfung: AN</span> (schaltet nur selbst frei, wenn alles genau passt und der Betrag die Grenze von {max} USDC nicht überschreitet: 1 bis 20 Blüten)',
     autoOff: '<b class="warn">Manuelle Prüfung</b> — prüfe jede Überweisung (Button „Auf Base prüfen“ oder Link zum Explorer), bevor du freischaltest.',
     noAddr: 'In der Funktion support-claims fehlt das Secret SUPPORT_ADDRESS: Die Prüfungen werden fehlschlagen.',
     showOpen: 'Offene Meldungen anzeigen', showAwaiting: 'Reservierte, unbezahlte Beträge anzeigen', refresh: 'Aktualisieren', empty: 'Hier ist nichts.',
@@ -143,7 +143,7 @@ const T = {
     ck_tx_found: 'Die Transaktion existiert auf Base', ck_tx_success: 'Die Transaktion war erfolgreich', ck_usdc_contract: 'Es ist USDC (offizieller Vertrag von Circle)',
     ck_destination: 'Sie kam an unserer Adresse an', ck_exact_amount: 'Genauer Betrag', ck_after_claim: 'Nach der Reservierung gesendet',
     ck_confirmations: 'Genug Bestätigungen', ck_tx_unused: 'Code in keiner anderen Meldung verwendet', ck_claim_open: 'Meldung offen und von diesem Konto',
-    ck_auto_limit: 'Innerhalb der automatischen Grenze (≤ 100 USDC)',
+    ck_auto_limit: 'Innerhalb der automatischen Grenze ({max} USDC; sonst „monto_alto“)',
     giftH: 'Geschenkcode senden (7 Tage Zugang, 7 Tage gültig)', send: 'Code senden', sending: 'Wird gesendet…',
     giftLimits: 'Grenzen: insgesamt 20 Codes pro Tag und 3 pro E-Mail-Adresse. Der Code steht nur in der E-Mail: Hier ist er nicht sichtbar.',
     testBtn: 'Test-E-Mail an meine Adresse senden', sentTo: 'Gesendet an {to}. Läuft ab: {d}.',
@@ -174,7 +174,7 @@ const T = {
     code6: 'Le code a 6 chiffres.', codeBad: 'Code incorrect ou expiré. Essaie le suivant.',
     session: 'Session : {e} · vérification en deux étapes ✓', signOut: 'Se déconnecter',
     tabClaims: 'Déclarations de contribution', tabGifts: 'Codes cadeaux', tabAudit: 'Journal',
-    autoOn: '<span class="ok">Vérification automatique : ACTIVE</span> (n’active seule que si tout est bon et ≤ 100 USDC)',
+    autoOn: '<span class="ok">Vérification automatique : ACTIVE</span> (n’active seule que si tout correspond exactement et que le montant ne dépasse pas le plafond de {max} USDC : de 1 à 20 fleurs)',
     autoOff: '<b class="warn">Vérification manuelle</b> — vérifie chaque transfert (bouton « Vérifier sur Base » ou lien vers l’explorateur) avant d’activer.',
     noAddr: 'Le secret SUPPORT_ADDRESS manque dans la fonction support-claims : les vérifications échoueront.',
     showOpen: 'Voir les déclarations à traiter', showAwaiting: 'Voir les montants réservés non payés', refresh: 'Actualiser', empty: 'Rien ici.',
@@ -189,7 +189,7 @@ const T = {
     ck_tx_found: 'La transaction existe sur Base', ck_tx_success: 'La transaction a abouti', ck_usdc_contract: 'C’est de l’USDC (contrat officiel de Circle)',
     ck_destination: 'Elle est arrivée à notre adresse', ck_exact_amount: 'Montant exact', ck_after_claim: 'Envoyée après la réservation du montant',
     ck_confirmations: 'Confirmations suffisantes', ck_tx_unused: 'Code non utilisé dans une autre déclaration', ck_claim_open: 'Déclaration ouverte et de ce compte',
-    ck_auto_limit: 'Dans la limite automatique (≤ 100 USDC)',
+    ck_auto_limit: 'Sous le plafond automatique ({max} USDC ; sinon « monto_alto »)',
     giftH: 'Envoyer un code cadeau (7 jours d’accès, valable 7 jours)', send: 'Envoyer le code', sending: 'Envoi…',
     giftLimits: 'Limites : 20 codes par jour au total et 3 par adresse e-mail. Le code ne voyage que dans l’e-mail : il n’est pas visible ici.',
     testBtn: 'Envoyer un e-mail de test à mon adresse', sentTo: 'Envoyé à {to}. Expire : {d}.',
@@ -328,6 +328,7 @@ const view = () => document.getElementById('view');
 // ------------------------------------------------------------ claims
 const CHECKS = ['tx_found', 'tx_success', 'usdc_contract', 'destination', 'exact_amount', 'after_claim', 'confirmations', 'tx_unused', 'claim_open', 'auto_limit'];
 let showAwaiting = false;
+let autoMax = 201; // claim_auto_max_usdc, read from the server
 
 async function claimsView() {
   view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
@@ -336,8 +337,9 @@ async function claimsView() {
     sb.rpc('admin_list_claims', { p_statuses: showAwaiting ? ['awaiting_payment'] : ['submitted', 'manual_review'] }),
   ]);
   if (list.error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(list.error)))}</div>`; return; }
+  if (typeof cfg.auto_max_usdc === 'number') autoMax = cfg.auto_max_usdc;
   view().innerHTML = `
-    <div class="card"><p>${cfg.auto_enabled ? tr('autoOn') : tr('autoOff')}</p>${cfg.support_address_set === false ? `<p class="bad">${tr('noAddr')}</p>` : ''}
+    <div class="card"><p>${cfg.auto_enabled ? tr('autoOn', { max: autoMax }) : tr('autoOff')}</p>${cfg.support_address_set === false ? `<p class="bad">${tr('noAddr')}</p>` : ''}
       <div class="row"><button class="ghost" id="tg">${showAwaiting ? tr('showOpen') : tr('showAwaiting')}</button>
       <button class="ghost" id="rl">${tr('refresh')}</button></div></div>
     ${list.data.length ? list.data.map(claimCard).join('') : `<p class="muted">${tr('empty')}</p>`}`;
@@ -349,7 +351,7 @@ async function claimsView() {
 function claimCard(c) {
   const v = c.verification || null;
   const checks = v?.checks ? CHECKS.filter((k) => k in v.checks)
-    .map((k) => `<li class="${v.checks[k] ? 'ok' : 'bad'}">${v.checks[k] ? '✓' : '✗'} ${tr('ck_' + k)}</li>`).join('') : '';
+    .map((k) => `<li class="${v.checks[k] ? 'ok' : 'bad'}">${v.checks[k] ? '✓' : '✗'} ${tr('ck_' + k, { max: autoMax })}</li>`).join('') : '';
   const allPass = v?.all_pass === true;
   const open = c.status === 'submitted' || c.status === 'manual_review';
   const extra = [v?.detail?.confirmations != null ? tr('confirmations', { n: v.detail.confirmations }) : '',
