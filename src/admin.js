@@ -212,6 +212,74 @@ const T = {
     e_could_not_verify_admin: 'Impossible de vérifier l’autorisation d’administration.', e_server_error: 'Erreur du serveur. Réessaie.', e_demo: 'Aperçu : rien n’est enregistré.', demoBanner: 'APERÇU avec des données d’exemple — rien de tout cela n’est réel et rien n’est enregistré.',
   },
 };
+// Texts for Summary, Users, contact, e-mail buttons and CSV export.
+const T2 = {
+  es: {
+    tabSummary: 'Resumen', tabUsers: 'Usuarios', copyEmail: 'Copiar correo', copied: 'Copiado', writeEmail: 'Escribir',
+    contactName: 'Nombre de contacto', contactPhone: 'WhatsApp o teléfono',
+    sumAccounts: 'Cuentas en total', sumNew7: 'Altas en los últimos 7 días', sumTrialActive: 'Pruebas activas', sumTrialExpired: 'Pruebas vencidas sin aporte',
+    sumFull: 'Con acceso completo', sumGift: 'Accesos por regalo vigentes', sumBlocked: 'Bloqueadas', sumClaims: 'Avisos de aporte', sumUsdc: 'USDC activado en total',
+    cl_pendiente: 'Pendientes', cl_en_revision: 'En revisión', cl_rechazado: 'Rechazados', cl_activado: 'Activados', cl_vencido_o_cancelado: 'Vencidos o cancelados',
+    us_prueba_activa: 'Prueba activa', us_prueba_vencida: 'Prueba vencida', us_acceso_completo: 'Acceso completo', us_regalo: 'Acceso por regalo', us_bloqueado: 'Bloqueado', us_sin_prueba: 'Sin prueba',
+    usSearchPh: 'Buscar por correo o nombre', usAllStates: 'Todos los estados', usSearch: 'Buscar',
+    thEmail: 'Correo', thName: 'Nombre visible', thCountry: 'País', thLang: 'Idioma', thState: 'Estado', thSignup: 'Alta', thTrialEnd: 'Fin de la prueba', thUntil: 'Acceso hasta', thContact: 'Contacto',
+    openFile: 'Ver ficha', back: '← Volver a la lista', prev: '← Anteriores', next: 'Siguientes →', pageInfo: '{a}–{b} de {n}',
+    fileH: 'Ficha de la cuenta', fileNote: 'Solo datos de cuenta y de acceso. Nunca Bitácora, fotos ni publicaciones. Abrir esta ficha queda en el registro.',
+    fileClaims: 'Avisos de aporte', fileGifts: 'Códigos de regalo canjeados', none: 'Ninguno.',
+    exportCsv: 'Exportar CSV', exporting: 'Preparando el archivo…', exported: 'Descargado: {f} ({n} filas).', exportCut: 'Ojo: el archivo tiene solo las primeras {n} filas (límite por exportación).',
+    piiWarn: 'Este archivo contiene datos personales. Guárdalo en un lugar seguro y no lo compartas.', piiGo: 'Exportar', piiCancel: 'Cancelar',
+    e_bad_state: 'Estado no válido.', e_bad_tab: 'Pestaña no válida.',
+  },
+  en: {
+    tabSummary: 'Summary', tabUsers: 'Users', copyEmail: 'Copy e-mail', copied: 'Copied', writeEmail: 'Write',
+    contactName: 'Contact name', contactPhone: 'WhatsApp or phone',
+    sumAccounts: 'Accounts in total', sumNew7: 'Sign-ups in the last 7 days', sumTrialActive: 'Active trials', sumTrialExpired: 'Expired trials without contribution',
+    sumFull: 'With full access', sumGift: 'Active gift access', sumBlocked: 'Blocked', sumClaims: 'Contribution claims', sumUsdc: 'Total USDC activated',
+    cl_pendiente: 'Pending', cl_en_revision: 'In review', cl_rechazado: 'Rejected', cl_activado: 'Activated', cl_vencido_o_cancelado: 'Expired or canceled',
+    us_prueba_activa: 'Active trial', us_prueba_vencida: 'Expired trial', us_acceso_completo: 'Full access', us_regalo: 'Gift access', us_bloqueado: 'Blocked', us_sin_prueba: 'No trial',
+    usSearchPh: 'Search by e-mail or name', usAllStates: 'All states', usSearch: 'Search',
+    thEmail: 'E-mail', thName: 'Display name', thCountry: 'Country', thLang: 'Language', thState: 'State', thSignup: 'Signed up', thTrialEnd: 'Trial ends', thUntil: 'Access until', thContact: 'Contact',
+    openFile: 'Open file', back: '← Back to the list', prev: '← Previous', next: 'Next →', pageInfo: '{a}–{b} of {n}',
+    fileH: 'Account file', fileNote: 'Account and access data only. Never Bitácora, photos or posts. Opening this file is recorded in the log.',
+    fileClaims: 'Contribution claims', fileGifts: 'Redeemed gift codes', none: 'None.',
+    exportCsv: 'Export CSV', exporting: 'Preparing the file…', exported: 'Downloaded: {f} ({n} rows).', exportCut: 'Note: the file has only the first {n} rows (limit per export).',
+    piiWarn: 'This file contains personal data. Keep it somewhere safe and don’t share it.', piiGo: 'Export', piiCancel: 'Cancel',
+    e_bad_state: 'Invalid state.', e_bad_tab: 'Invalid tab.',
+  },
+  de: {
+    tabSummary: 'Übersicht', tabUsers: 'Nutzer', copyEmail: 'E-Mail kopieren', copied: 'Kopiert', writeEmail: 'Schreiben',
+    contactName: 'Kontaktname', contactPhone: 'WhatsApp oder Telefon',
+    sumAccounts: 'Konten insgesamt', sumNew7: 'Neue Konten (letzte 7 Tage)', sumTrialActive: 'Aktive Testphasen', sumTrialExpired: 'Abgelaufene Testphasen ohne Beitrag',
+    sumFull: 'Mit Vollzugriff', sumGift: 'Aktiver Geschenkzugang', sumBlocked: 'Gesperrt', sumClaims: 'Beitragsmeldungen', sumUsdc: 'Freigeschaltete USDC insgesamt',
+    cl_pendiente: 'Offen', cl_en_revision: 'In Prüfung', cl_rechazado: 'Abgelehnt', cl_activado: 'Freigeschaltet', cl_vencido_o_cancelado: 'Abgelaufen oder storniert',
+    us_prueba_activa: 'Testphase aktiv', us_prueba_vencida: 'Testphase abgelaufen', us_acceso_completo: 'Vollzugriff', us_regalo: 'Geschenkzugang', us_bloqueado: 'Gesperrt', us_sin_prueba: 'Ohne Testphase',
+    usSearchPh: 'Nach E-Mail oder Name suchen', usAllStates: 'Alle Status', usSearch: 'Suchen',
+    thEmail: 'E-Mail', thName: 'Anzeigename', thCountry: 'Land', thLang: 'Sprache', thState: 'Status', thSignup: 'Registriert', thTrialEnd: 'Testphase endet', thUntil: 'Zugang bis', thContact: 'Kontakt',
+    openFile: 'Akte öffnen', back: '← Zurück zur Liste', prev: '← Vorherige', next: 'Nächste →', pageInfo: '{a}–{b} von {n}',
+    fileH: 'Kontoakte', fileNote: 'Nur Konto- und Zugangsdaten. Nie Anbau-Tagebuch, Fotos oder Beiträge. Das Öffnen dieser Akte wird protokolliert.',
+    fileClaims: 'Beitragsmeldungen', fileGifts: 'Eingelöste Geschenkcodes', none: 'Keine.',
+    exportCsv: 'CSV exportieren', exporting: 'Datei wird vorbereitet…', exported: 'Heruntergeladen: {f} ({n} Zeilen).', exportCut: 'Achtung: Die Datei enthält nur die ersten {n} Zeilen (Grenze pro Export).',
+    piiWarn: 'Diese Datei enthält personenbezogene Daten. Bewahre sie sicher auf und gib sie nicht weiter.', piiGo: 'Exportieren', piiCancel: 'Abbrechen',
+    e_bad_state: 'Ungültiger Status.', e_bad_tab: 'Ungültiger Reiter.',
+  },
+  fr: {
+    tabSummary: 'Résumé', tabUsers: 'Utilisateurs', copyEmail: 'Copier l’e-mail', copied: 'Copié', writeEmail: 'Écrire',
+    contactName: 'Nom de contact', contactPhone: 'WhatsApp ou téléphone',
+    sumAccounts: 'Comptes au total', sumNew7: 'Inscriptions des 7 derniers jours', sumTrialActive: 'Essais en cours', sumTrialExpired: 'Essais expirés sans contribution',
+    sumFull: 'Avec accès complet', sumGift: 'Accès cadeau en cours', sumBlocked: 'Bloqués', sumClaims: 'Déclarations de contribution', sumUsdc: 'Total d’USDC activés',
+    cl_pendiente: 'En attente', cl_en_revision: 'En vérification', cl_rechazado: 'Refusées', cl_activado: 'Activées', cl_vencido_o_cancelado: 'Expirées ou annulées',
+    us_prueba_activa: 'Essai en cours', us_prueba_vencida: 'Essai expiré', us_acceso_completo: 'Accès complet', us_regalo: 'Accès cadeau', us_bloqueado: 'Bloqué', us_sin_prueba: 'Sans essai',
+    usSearchPh: 'Chercher par e-mail ou nom', usAllStates: 'Tous les états', usSearch: 'Chercher',
+    thEmail: 'E-mail', thName: 'Nom affiché', thCountry: 'Pays', thLang: 'Langue', thState: 'État', thSignup: 'Inscription', thTrialEnd: 'Fin de l’essai', thUntil: 'Accès jusqu’au', thContact: 'Contact',
+    openFile: 'Voir la fiche', back: '← Retour à la liste', prev: '← Précédents', next: 'Suivants →', pageInfo: '{a}–{b} sur {n}',
+    fileH: 'Fiche du compte', fileNote: 'Uniquement les données de compte et d’accès. Jamais le journal de culture, les photos ou les publications. L’ouverture de cette fiche est enregistrée dans le journal.',
+    fileClaims: 'Déclarations de contribution', fileGifts: 'Codes cadeaux utilisés', none: 'Aucun.',
+    exportCsv: 'Exporter en CSV', exporting: 'Préparation du fichier…', exported: 'Téléchargé : {f} ({n} lignes).', exportCut: 'Attention : le fichier ne contient que les {n} premières lignes (limite par export).',
+    piiWarn: 'Ce fichier contient des données personnelles. Garde-le en lieu sûr et ne le partage pas.', piiGo: 'Exporter', piiCancel: 'Annuler',
+    e_bad_state: 'État non valide.', e_bad_tab: 'Onglet non valide.',
+  },
+};
+for (const l of LANGS) Object.assign(T[l], T2[l]);
 const tr = (k, vars = {}) => Object.entries(vars).reduce((s, [a, b]) => s.split('{' + a + '}').join(String(b)), T[lang][k] ?? T.es[k] ?? k);
 const ERR_KEYS = Object.keys(T.es).filter((k) => k.startsWith('e_')).map((k) => k.slice(2));
 const errText = (e, detail) => (ERR_KEYS.includes(e) ? tr('e_' + e) : e || 'Error') + (detail ? ` (${detail})` : '');
@@ -316,14 +384,18 @@ async function verify(factorId) {
 }
 
 // ------------------------------------------------------------ panel
-let tab = 'claims';
+let tab = 'summary';
+let currentEmail = '';
 async function panel(email) {
+  currentEmail = email;
   redraw = () => panel(email);
   app.innerHTML = `
     <div class="row" style="justify-content:space-between;margin-bottom:10px">
       <span class="muted">${esc(tr('session', { e: email }))}</span>
       <button class="ghost" id="out">${tr('signOut')}</button></div>
     <div class="tabs" id="ptabs">
+      <button data-t="summary">${tr('tabSummary')}</button>
+      <button data-t="users">${tr('tabUsers')}</button>
       <button data-t="claims">${tr('tabClaims')}</button>
       <button data-t="gifts">${tr('tabGifts')}</button>
       <button data-t="audit">${tr('tabAudit')}</button></div>
@@ -334,7 +406,7 @@ async function panel(email) {
 }
 function show() {
   app.querySelectorAll('#ptabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
-  ({ claims: claimsView, gifts: giftsView, audit: auditView })[tab]();
+  ({ summary: summaryView, users: usersView, claims: claimsView, gifts: giftsView, audit: auditView })[tab]();
 }
 const view = () => document.getElementById('view');
 
@@ -354,11 +426,14 @@ async function claimsView() {
   view().innerHTML = `
     <div class="card"><p>${cfg.auto_enabled ? tr('autoOn', { max: autoMax }) : tr('autoOff')}</p>${cfg.support_address_set === false ? `<p class="bad">${tr('noAddr')}</p>` : ''}
       <div class="row"><button class="ghost" id="tg">${showAwaiting ? tr('showOpen') : tr('showAwaiting')}</button>
-      <button class="ghost" id="rl">${tr('refresh')}</button></div></div>
+      <button class="ghost" id="rl">${tr('refresh')}</button>
+      <button class="ghost" data-export="claims" data-filters='${JSON.stringify({ statuses: showAwaiting ? ['awaiting_payment'] : ['submitted', 'manual_review'] })}'>${tr('exportCsv')}</button></div>
+      <p class="msg" id="xm-claims"></p></div>
     ${list.data.length ? list.data.map(claimCard).join('') : `<p class="muted">${tr('empty')}</p>`}`;
   document.getElementById('tg').onclick = () => { showAwaiting = !showAwaiting; claimsView(); };
   document.getElementById('rl').onclick = claimsView;
   view().querySelectorAll('[data-act]').forEach((b) => { b.onclick = () => claimAction(b.dataset.act, Number(b.dataset.id)); });
+  wireExports();
 }
 
 function claimCard(c) {
@@ -370,7 +445,8 @@ function claimCard(c) {
   const extra = [v?.detail?.confirmations != null ? tr('confirmations', { n: v.detail.confirmations }) : '',
     v?.detail?.received_units?.length ? tr('receivedAmt', { a: v.detail.received_units.map(usdc).join(', ') }) : ''].filter(Boolean).join(' · ');
   return `<div class="card">
-    <div class="row" style="justify-content:space-between"><b>${esc(c.account_email)}</b><span class="pill">${esc(tr('st_' + c.status))}</span></div>
+    <div class="row" style="justify-content:space-between"><span>${emailCell(c.account_email, true)}</span><span class="pill">${esc(tr('st_' + c.status))}</span></div>
+    ${c.contact_name || c.contact_phone ? `<p class="muted">${c.contact_name ? `${tr('contactName')}: <b>${esc(c.contact_name)}</b>` : ''}${c.contact_name && c.contact_phone ? ' · ' : ''}${c.contact_phone ? `${tr('contactPhone')}: <b class="mono">${esc(c.contact_phone)}</b>` : ''}</p>` : ''}
     <p><b class="mono" style="font-size:18px">${esc(Number(c.amount_usdc).toFixed(4))} USDC</b> · ${c.flowers} ${c.flowers === 1 ? tr('flower') : tr('flowers')}</p>
     <p class="muted">${tr('reserved')}: ${when(c.created_at)} · ${tr('received')}: ${when(c.submitted_at)} · ${tr('expires')}: ${when(c.expires_at)}</p>
     ${c.tx_hash ? `<p>TXID: <span class="mono">${esc(c.tx_hash)}</span><br><a href="${esc(c.explorer_url)}" target="_blank" rel="noopener noreferrer">${tr('explorer')}</a></p>` : ''}
@@ -422,7 +498,7 @@ async function giftsView() {
       <p class="muted">${tr('giftLimits')}</p>
       <div class="row"><button class="ghost" id="gt">${tr('testBtn')}</button></div>
       <p class="msg" id="gtm"></p></div>
-    <div class="card"><h2>${tr('codesH')}</h2><div id="gl" class="scroll"><p class="muted">${tr('loading')}</p></div></div>`;
+    <div class="card"><div class="row" style="justify-content:space-between"><h2>${tr('codesH')}</h2><button class="ghost" data-export="gifts">${tr('exportCsv')}</button></div><p class="msg" id="xm-gifts"></p><div id="gl" class="scroll"><p class="muted">${tr('loading')}</p></div></div>`;
   document.getElementById('gs').onclick = async () => {
     const m = document.getElementById('gm'); const email = document.getElementById('ge').value.trim();
     if (!email) { m.textContent = tr('e_bad_email'); return; }
@@ -434,6 +510,7 @@ async function giftsView() {
     if (r.ok) document.getElementById('ge').value = '';
     loadGifts();
   };
+  wireExports();
   document.getElementById('gt').onclick = async () => {
     const m = document.getElementById('gtm'); m.textContent = tr('sending');
     const r = await fn('admin-send-gift-code', { action: 'test_email' });
@@ -453,7 +530,7 @@ async function loadGifts() {
     ${data.map((g) => `<tr><td>${when(g.created_at)}<br><span class="muted">${esc(g.created_label)}</span></td>
       <td>${esc(g.sent_to_email || '—')}</td><td>${g.days}</td><td>${when(g.expires_at)}</td>
       <td class="${GSTATE[g.state] || ''}" data-state="${esc(g.state)}">${esc(tr('gs_' + g.state))}${g.revoked_reason ? `<br><span class="muted">${esc(g.revoked_reason)}</span>` : ''}</td>
-      <td>${esc(g.used_by_email || '')}${g.used_at ? `<br><span class="muted">${when(g.used_at)}</span>` : ''}</td>
+      <td>${g.used_by_email ? emailCell(g.used_by_email) : ''}${g.used_at ? `<br><span class="muted">${when(g.used_at)}</span>` : ''}</td>
       <td>${g.state === 'enviado' || g.state === 'creado' ? `<button class="ghost" data-void="${g.id}">${tr('void')}</button>` : ''}</td></tr>
       <tr id="vr${g.id}" hidden><td colspan="7"><div class="row"><input id="vi${g.id}" placeholder="${esc(tr('voidPh'))}" maxlength="300" style="max-width:420px">
         <button class="danger" data-voidok="${g.id}">${tr('voidOk')}</button><span class="msg" id="vm${g.id}"></span></div></td></tr>`).join('')}</table>`;
@@ -475,9 +552,135 @@ async function auditView() {
   view().innerHTML = `<div class="card scroll"><p class="muted">${tr('loading')}</p></div>`;
   const { data, error } = await sb.rpc('admin_list_audit', { p_limit: 300 });
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
-  view().innerHTML = `<div class="card scroll"><p class="muted">${tr('auditP')}</p>
+  view().innerHTML = `<div class="card scroll"><div class="row" style="justify-content:space-between"><p class="muted">${tr('auditP')}</p><button class="ghost" data-export="audit">${tr('exportCsv')}</button></div><p class="msg" id="xm-audit"></p>
     <table><tr><th>${tr('thWhen')}</th><th>${tr('thWho')}</th><th>${tr('thAction')}</th><th>${tr('thAccount')}</th><th>${tr('thReason')}</th></tr>
     ${data.map((a) => `<tr><td>${when(a.at)}</td><td>${esc(a.actor_label)}</td><td>${esc(a.action)}</td><td>${esc(a.target_email || '')}</td><td>${esc(a.reason || '')}</td></tr>`).join('')}</table></div>`;
+  wireExports();
+}
+
+// ------------------------------------------------------------ e-mail: copy / write
+// The panel never sends free-form or bulk e-mail: "Escribir" opens your own
+// mail program (mailto) with the subject "Mother Verde".
+function emailCell(email, bold = false) {
+  if (!email) return '';
+  const e = esc(email);
+  return `<span class="mono"${bold ? ' style="font-weight:700"' : ''}>${e}</span> <button type="button" class="ghost mini" data-copy="${e}">${tr('copyEmail')}</button> <a class="mini-link" href="mailto:${encodeURIComponent(email)}?subject=Mother%20Verde">${tr('writeEmail')}</a>`;
+}
+document.addEventListener('click', async (ev) => {
+  const b = ev.target.closest('[data-copy]');
+  if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.copy); } catch (e) {}
+  const old = b.textContent; b.textContent = tr('copied'); setTimeout(() => { b.textContent = old; }, 1500);
+});
+
+// ------------------------------------------------------------ CSV export (server function: admin + MFA, logged)
+function wireExports() {
+  view().querySelectorAll('[data-export]').forEach((b) => {
+    b.onclick = () => {
+      const tabName = b.dataset.export;
+      const filters = b.dataset.filters ? JSON.parse(b.dataset.filters) : (tabName === 'users' ? usersFilters() : {});
+      if (tabName === 'users') return confirmPii(() => doExport(tabName, filters));
+      doExport(tabName, filters);
+    };
+  });
+}
+function confirmPii(go) {
+  const m = document.getElementById('xm-users');
+  m.innerHTML = `<span class="warn">${tr('piiWarn')}</span> <button type="button" id="piiGo">${tr('piiGo')}</button> <button type="button" class="ghost" id="piiNo">${tr('piiCancel')}</button>`;
+  document.getElementById('piiGo').onclick = () => { m.textContent = ''; go(); };
+  document.getElementById('piiNo').onclick = () => { m.textContent = ''; };
+}
+async function doExport(tabName, filters) {
+  const m = document.getElementById('xm-' + tabName);
+  if (m) m.textContent = tr('exporting');
+  const { data, error } = await sb.rpc('admin_export_csv', { p_tab: tabName, p_filters: filters });
+  if (error) { if (m) m.textContent = errText(rpcErr(error)); return; }
+  const url = URL.createObjectURL(new Blob([data.csv], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a');
+  a.href = url; a.download = data.filename; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  if (m) m.textContent = tr('exported', { f: data.filename, n: data.rows }) + (data.truncated ? ' ' + tr('exportCut', { n: data.rows }) : '');
+}
+
+// ------------------------------------------------------------ summary
+async function summaryView() {
+  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  const { data: s, error } = await sb.rpc('admin_summary');
+  if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
+  const st = s.states || {}, cl = s.claims || {};
+  const box = (label, n) => `<div class="card stat"><div class="muted">${label}</div><div class="big">${esc(n ?? 0)}</div></div>`;
+  view().innerHTML = `<div class="stats">
+      ${box(tr('sumAccounts'), s.accounts)}${box(tr('sumNew7'), s.new_7d)}${box(tr('sumTrialActive'), st.prueba_activa)}
+      ${box(tr('sumTrialExpired'), st.prueba_vencida)}${box(tr('sumFull'), st.acceso_completo)}${box(tr('sumGift'), st.regalo)}${box(tr('sumBlocked'), st.bloqueado)}
+    </div>
+    <div class="card"><h2>${tr('sumClaims')}</h2><div class="stats">
+      ${['pendiente', 'en_revision', 'rechazado', 'activado', 'vencido_o_cancelado'].map((k) => box(tr('cl_' + k), cl[k])).join('')}
+    </div><p>${tr('sumUsdc')}: <b class="mono">${esc(Number(s.usdc_activated || 0).toFixed(4))} USDC</b></p></div>`;
+}
+
+// ------------------------------------------------------------ users (read-only)
+const PAGE = 50;
+const US = { search: '', state: '', offset: 0 };
+const USER_STATES = ['prueba_activa', 'prueba_vencida', 'acceso_completo', 'regalo', 'bloqueado', 'sin_prueba'];
+const usersFilters = () => ({ search: US.search, state: US.state });
+async function usersView() {
+  view().innerHTML = `<div class="card">
+      <div class="row"><input id="usQ" placeholder="${esc(tr('usSearchPh'))}" value="${esc(US.search)}" style="max-width:280px">
+        <select id="usS">${['', ...USER_STATES].map((v) => `<option value="${v}"${v === US.state ? ' selected' : ''}>${v ? tr('us_' + v) : tr('usAllStates')}</option>`).join('')}</select>
+        <button id="usGo">${tr('usSearch')}</button>
+        <button class="ghost" data-export="users">${tr('exportCsv')}</button></div>
+      <p class="msg" id="xm-users"></p></div>
+    <div class="card scroll" id="usList"><p class="muted">${tr('loading')}</p></div>`;
+  const go = () => { US.search = document.getElementById('usQ').value.trim(); US.state = document.getElementById('usS').value; US.offset = 0; loadUsers(); };
+  document.getElementById('usGo').onclick = go;
+  document.getElementById('usQ').onkeydown = (e) => { if (e.key === 'Enter') go(); };
+  wireExports();
+  loadUsers();
+}
+async function loadUsers() {
+  const box = document.getElementById('usList');
+  const { data, error } = await sb.rpc('admin_list_users', { p_search: US.search || null, p_state: US.state || null, p_limit: PAGE, p_offset: US.offset });
+  if (error) { box.innerHTML = `<p class="bad">${esc(errText(rpcErr(error)))}</p>`; return; }
+  const total = data.length ? Number(data[0].total) : 0;
+  const d = (x) => (x ? new Date(x).toLocaleDateString(LOCALE[lang]) : '—');
+  box.innerHTML = !data.length ? `<p class="muted">${tr('empty')}</p>` : `
+    <table><tr><th>${tr('thEmail')}</th><th>${tr('thName')}</th><th>${tr('thCountry')}</th><th>${tr('thLang')}</th><th>${tr('thState')}</th><th>${tr('thSignup')}</th><th>${tr('thTrialEnd')}</th><th>${tr('thUntil')}</th><th>${tr('thContact')}</th><th></th></tr>
+    ${data.map((u) => `<tr><td>${emailCell(u.email)}</td><td>${esc(u.display_name || '')}</td><td>${esc(u.country || '')}</td><td>${esc((u.lang || '').toUpperCase())}</td>
+      <td>${esc(tr('us_' + u.state))}</td><td>${d(u.created_at)}</td><td>${d(u.trial_ends_at)}</td><td>${d(u.access_until)}</td>
+      <td>${esc(u.contact_name || '')}${u.contact_phone ? `<br><span class="mono">${esc(u.contact_phone)}</span>` : ''}</td>
+      <td><button type="button" class="ghost mini" data-file="${esc(u.user_id)}">${tr('openFile')}</button></td></tr>`).join('')}</table>
+    <div class="row" style="margin-top:10px">
+      <button class="ghost" id="usPrev" ${US.offset === 0 ? 'disabled' : ''}>${tr('prev')}</button>
+      <span class="muted">${tr('pageInfo', { a: US.offset + 1, b: US.offset + data.length, n: total })}</span>
+      <button class="ghost" id="usNext" ${US.offset + data.length >= total ? 'disabled' : ''}>${tr('next')}</button></div>`;
+  document.getElementById('usPrev')?.addEventListener('click', () => { US.offset = Math.max(0, US.offset - PAGE); loadUsers(); });
+  document.getElementById('usNext')?.addEventListener('click', () => { US.offset += PAGE; loadUsers(); });
+  box.querySelectorAll('[data-file]').forEach((b) => { b.onclick = () => userFile(b.dataset.file); });
+}
+// One account's file — opening it is logged by the server (user_viewed).
+async function userFile(id) {
+  redraw = () => userFile(id);
+  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  const { data: u, error } = await sb.rpc('admin_get_user', { p_user_id: id });
+  if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
+  const d = (x) => (x ? when(x) : '—');
+  view().innerHTML = `<button class="ghost" id="usBack">${tr('back')}</button>
+    <div class="card" style="margin-top:10px"><h2>${tr('fileH')}</h2><p class="muted">${tr('fileNote')}</p>
+      <table>
+        <tr><th>${tr('thEmail')}</th><td>${emailCell(u.email, true)}</td></tr>
+        <tr><th>${tr('thName')}</th><td>${esc(u.display_name || '—')}</td></tr>
+        <tr><th>${tr('thCountry')}</th><td>${esc(u.country || '—')}</td></tr>
+        <tr><th>${tr('thLang')}</th><td>${esc((u.lang || '').toUpperCase())}</td></tr>
+        <tr><th>${tr('thState')}</th><td>${esc(tr('us_' + u.state))}</td></tr>
+        <tr><th>${tr('thSignup')}</th><td>${d(u.created_at)}</td></tr>
+        <tr><th>${tr('thTrialEnd')}</th><td>${d(u.trial_ends_at)}</td></tr>
+        <tr><th>${tr('thUntil')}</th><td>${d(u.access_until)}</td></tr>
+        <tr><th>${tr('contactName')}</th><td>${esc(u.contact_name || '—')}</td></tr>
+        <tr><th>${tr('contactPhone')}</th><td class="mono">${esc(u.contact_phone || '—')}</td></tr>
+      </table></div>
+    <div class="card"><h2>${tr('fileClaims')}</h2>${(u.claims || []).length ? `<table>${u.claims.map((c) => `<tr><td>#${c.id}</td><td>${esc(tr('st_' + c.status) || c.status)}</td><td class="mono">${esc(Number(c.amount_usdc).toFixed(4))} USDC</td><td>${d(c.created_at)}</td><td class="mono">${esc(c.tx_hash || '')}</td><td>${esc(c.review_reason || '')}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>
+    <div class="card"><h2>${tr('fileGifts')}</h2>${(u.gift_codes || []).length ? `<table>${u.gift_codes.map((g) => `<tr><td>#${g.id}</td><td>${g.days} d</td><td>${d(g.used_at)}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>`;
+  document.getElementById('usBack').onclick = () => { redraw = () => panel(currentEmail); usersView(); };
 }
 
 start();

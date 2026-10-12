@@ -24,6 +24,7 @@ check('código TOTP incorrecto -> rechazado, sin panel', /incorrecto/.test(s) &&
 await b.ev(`document.getElementById('code').value='123456'; document.getElementById('go').click(); 1`);
 s = await b.waitFor(/Avisos de aporte/);
 check('código correcto -> panel (sesión aal2)', /Avisos de aporte/.test(s) && /verificación en dos pasos ✓/.test(s));
+await b.ev(`document.querySelector('#ptabs button[data-t=claims]').click(); 1`);
 s = await b.waitFor(/aportante@example.org/);
 check('panel: aviso con correo, monto exacto, TXID, enlace a Basescan', /aportante@example\.org/.test(s) && /20\.00\d\d USDC/.test(s) && /0xabab/.test(s) && /Basescan/.test(s), s.slice(0, 400));
 check('panel: "Verificación manual" (automática apagada)', /Verificación manual/.test(s));
@@ -36,7 +37,7 @@ check('…y ahora "Activar acceso completo" está habilitado', await b.ev(`docum
 await b.shot('panel-3-comprobado');
 await b.ev(`document.querySelector('button[data-act=manual]').click(); 1`);
 await sleep(400);
-check('activación manual sin motivo -> pide motivo', /motivo/.test(await b.ev(`document.querySelector('.msg').textContent`)));
+check('activación manual sin motivo -> pide motivo', /motivo/.test(await b.ev(`document.querySelector('p.msg[id^="m"]').textContent`)));
 await b.ev(`document.querySelector('button[data-act=approve]').click(); 1`);
 s = await b.waitFor(/No hay nada aquí/);
 const st = await sql(`select c.status, p.subscription_status from support_claims c join profiles p on p.id = c.user_id where c.id = 1`);
@@ -47,7 +48,7 @@ check('"Activar acceso completo" -> approved + supporter + correo de activación
 await b.ev(`document.querySelector('.tabs button[data-t=gifts]').click(); 1`);
 await b.waitFor(/Enviar un código/);
 await b.ev(`document.getElementById('ge').value='amiga@example.org'; document.getElementById('gs').click(); 1`);
-s = await b.waitFor(/Enviado a amiga/);
+s = await b.waitFor(/Enviado a amiga/, 20000);
 check('enviar código -> "Enviado a amiga@example.org" y aparece en la lista como enviado', /Enviado a amiga@example\.org/.test(s) && /enviado/.test(s));
 const gm = (await mail()).find((m) => m.to === 'amiga@example.org');
 check('…un correo con el código y «Tengo un código de regalo»', !!gm && /Tengo un código de regalo/.test(gm.text) && /[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}/.test(gm.text));

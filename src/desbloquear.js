@@ -46,6 +46,8 @@ function totalLine() {
 // Statuses: awaiting_payment -> submitted -> (manual_review) -> approved |
 // rejected; awaiting_payment can also end as expired or canceled.
 const TX_RE = /^0x[0-9a-fA-F]{64}$/;
+// Same rule as the database (support_claims.contact_phone).
+const PHONE_RE = /^[+]?[0-9][0-9 ().-]{5,23}$/;
 const OPEN = ['submitted', 'manual_review'];
 let syncedFromClaim = null; // claim id whose flower count the picker already took
 
@@ -59,6 +61,7 @@ function awaiting(c) { return c && c.status === 'awaiting_payment' && new Date(c
 
 const RPC_ERR = {
   email_not_confirmed: 'dsErrConfirm', no_free_amount: 'dsErrBusy', expired: 'dsErrExpired',
+  bad_contact_name: 'dsErrContactoNombre', bad_contact_phone: 'dsErrContactoTel',
   bad_tx_format: 'dsFormErrTx', tx_already_used: 'dsFormErrDup', already_supporter: 'dsYaTienes',
 };
 const errKey = (error) => { const m = (error && error.message) || ''; const k = Object.keys(RPC_ERR).find((x) => m.includes(x)); return k ? RPC_ERR[k] : 'dsFormErrGeneric'; };
@@ -92,13 +95,19 @@ async function submitTx(ev) {
   const msg = document.getElementById('dsClaimMsg');
   const btn = document.getElementById('dsClaimBtn');
   const tx = document.getElementById('dsClaimTx').value.trim();
+  const contactName = document.getElementById('dsContactName').value.replace(/\s+/g, ' ').trim();
+  const contactPhone = document.getElementById('dsContactPhone').value.replace(/\s+/g, ' ').trim();
   if (!TX_RE.test(tx)) { msg.textContent = t('dsFormErrTx'); return; }
+  if (contactName && (contactName.length > 80 || /[<>\u0000-\u001f]/.test(contactName))) { msg.textContent = t('dsErrContactoNombre'); return; }
+  if (contactPhone && !PHONE_RE.test(contactPhone)) { msg.textContent = t('dsErrContactoTel'); return; }
   const c = claimNow();
   if (isLocalPreview()) { window.mvLatestClaim = { ...c, status: 'submitted', tx_hash: tx.toLowerCase() }; window.mvApplyAccessState?.(); renderDesbloquear(); return; }
   if (!window.mvSupabase || !window.mvCurrentUser || !c) { msg.textContent = t('dsFormErrGeneric'); return; }
   btn.disabled = true;
   msg.textContent = t('dsFormSending');
-  const { data, error } = await window.mvSupabase.rpc('submit_support_claim_tx', { p_claim_id: c.id, p_tx_hash: tx });
+  const { data, error } = await window.mvSupabase.rpc('submit_support_claim_tx', {
+    p_claim_id: c.id, p_tx_hash: tx, p_contact_name: contactName || null, p_contact_phone: contactPhone || null,
+  });
   if (error) { msg.textContent = t(errKey(error)); btn.disabled = false; return; }
   window.mvLatestClaim = data;
   // Automatic verification (only does anything if it was switched on).
@@ -144,6 +153,11 @@ function claimHtml() {
       <label for="dsClaimTx">${t('dsFormTx')}</label>
       <input type="text" id="dsClaimTx" maxlength="66" autocomplete="off" spellcheck="false" placeholder="0x…">
       <p class="ds-claim-help">${t('dsFormAyuda')}</p>
+      <label for="dsContactName">${t('dsContactoNombre')}</label>
+      <input type="text" id="dsContactName" maxlength="80" autocomplete="name">
+      <label for="dsContactPhone">${t('dsContactoTel')}</label>
+      <input type="tel" id="dsContactPhone" maxlength="25" autocomplete="tel" inputmode="tel">
+      <p class="ds-claim-help">${t('dsContactoNota')}</p>
       <button type="submit" class="btn btn-primary" id="dsClaimBtn">${t('dsFormBtn')}</button>
       <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
       <button type="button" class="ds-cancel-link" id="dsCancelBtn">${t('dsCancelar')}</button>
@@ -153,7 +167,7 @@ function claimHtml() {
 function paymentHtml() {
   const addr = SUPPORT.ADDRESS;
   if (!awaiting(claimNow())) {
-    return `<div class="card-block ds-pay"><h3>${t('dsComoH3')}</h3>${claimHtml()}</div>`;
+    return `<div class="card-block ds-pay"><h3>${t('dsComoH3')}</h3>${claimHtml()}${helpHtml()}</div>`;
   }
   return `
     <div class="card-block ds-pay">
@@ -178,7 +192,14 @@ function paymentHtml() {
         <li>${fmt(t('dsPaso4'), { h: SUPPORT.VERIFY_MAX_HOURS })}</li>
       </ol>
       ${claimHtml()}
+      ${helpHtml()}
     </div>`;
+}
+
+// "¿Tienes problemas?" — manual help by e-mail only (no other payment method).
+function helpHtml() {
+  const mail = '<a href="mailto:hello@motherverdeny.com?subject=Mother%20Verde">hello@motherverdeny.com</a>';
+  return `<div class="ds-help"><h4>${t('dsProblemasH')}</h4><p>${t('dsCriptoAyuda').replace('{mail}', mail)}</p></div>`;
 }
 
 function visitorHtml() {

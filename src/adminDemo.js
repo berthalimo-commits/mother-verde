@@ -31,7 +31,20 @@ const AUDIT = [
   { at: iso(-72), actor_label: 'sql-editor', action: 'admin_granted', target_email: 'hello@motherverdeny.com', reason: 'grant-admin.sql' },
 ];
 
+const USERS = [
+  { user_id: 'u1', email: 'ana.ejemplo@example.com', display_name: 'Ana', country: 'PE', lang: 'es', state: 'prueba_vencida', created_at: iso(-80), trial_ends_at: iso(-56), access_until: null, contact_name: 'Ana Ejemplo', contact_phone: '+51 900 000 000' },
+  { user_id: 'u2', email: 'ben.example@example.org', display_name: 'Ben', country: 'US', lang: 'en', state: 'acceso_completo', created_at: iso(-300), trial_ends_at: iso(-276), access_until: null, contact_name: null, contact_phone: null },
+  { user_id: 'u3', email: 'clara.beispiel@example.de', display_name: null, country: null, lang: 'de', state: 'prueba_activa', created_at: iso(-5), trial_ends_at: iso(19), access_until: null, contact_name: null, contact_phone: null },
+  { user_id: 'u4', email: 'primo@example.com', display_name: 'Primo', country: 'MX', lang: 'es', state: 'regalo', created_at: iso(-200), trial_ends_at: iso(-176), access_until: iso(100), contact_name: null, contact_phone: null },
+];
 const RPC = {
+  admin_summary: () => ({ accounts: 4, new_7d: 2, states: { prueba_activa: 1, prueba_vencida: 1, acceso_completo: 1, regalo: 1 }, claims: { pendiente: 2, en_revision: 1, activado: 1 }, usdc_activated: 10.0031 }),
+  admin_list_users: (a) => {
+    const q = (a?.p_search || '').toLowerCase();
+    const rows = USERS.filter((u) => (!q || u.email.includes(q) || (u.display_name || '').toLowerCase().includes(q)) && (!a?.p_state || u.state === a.p_state));
+    return rows.map((u) => ({ ...u, total: rows.length }));
+  },
+  admin_get_user: (a) => ({ ...USERS.find((u) => u.user_id === a.p_user_id), claims: [], gift_codes: [] }),
   admin_whoami: () => ({ admin: true, aal: 'aal2' }),
   admin_list_claims: (a) => CLAIMS.filter((c) => (a?.p_statuses || ['submitted', 'manual_review']).includes(c.status)),
   admin_list_gift_codes: () => GIFTS,

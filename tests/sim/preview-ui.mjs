@@ -47,6 +47,7 @@ await b.close();
 b = await browser(null, null, 420);
 await b.send('Network.enable');
 await b.send('Page.navigate', { url: 'http://localhost:5174/panel-mv.html?demo=1' }); await sleep(3500);
+await b.ev(`document.querySelector('#ptabs button[data-t=claims]').click(); 1`); await sleep(800);
 let t = await b.ev(`document.body.innerText`);
 check('panel de ejemplo: aviso «VISTA PREVIA con datos de ejemplo» y avisos de aporte de ejemplo', /VISTA PREVIA con datos de ejemplo/.test(t) && /ana\.ejemplo@example\.com/.test(t) && /monto_distinto/.test(t), t.slice(0, 300));
 await b.ev(`document.querySelector('button[data-act=approve]').click(); 1`); await sleep(800);
