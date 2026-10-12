@@ -129,7 +129,7 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   check('verificación automática (service_role) aprueba cuando todo pasa', auto.rows?.[0]?.status === 'approved' && await hfa(U4) === true);
   { const cx = (await as('service_role', null, `select svc_claim_context(${c4.id}) v`)).rows?.[0]?.v; check('svc_claim_context: aviso + correo + idioma + ajustes (auto OFF por defecto)', cx?.email === 'u4@example.org' && cx.lang === 'es' && cx.auto_enabled === false && cx.min_confirmations === 30 && cx.auto_max_usdc === 201, JSON.stringify(cx)); }
   check('el navegador NO llama svc_claim_context', !!(await as('authenticated', U4, `select svc_claim_context(${c4.id})`)).error);
-  check('cada persona ve solo sus solicitudes', (await cnt('authenticated', U1, 'select * from support_claims')) === 2 && (await cnt('authenticated', THIRD, 'select * from support_claims')) === 0);
+  check('cada persona ve solo sus solicitudes', (await cnt('authenticated', U1, 'select id, status from support_claims')) === 2 && (await cnt('authenticated', THIRD, 'select id, status from support_claims')) === 0);
 
   console.log('12. Códigos de regalo:');
   const mk = await as(null, null, `select * from admin_create_gift_codes(2, 7, 30)`);
@@ -193,4 +193,5 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   check('publicaciones con contador de intentos (0) y estado gave_up permitido', !(await as(null, null, `update community_posts set translation_status='gave_up', translation_attempts=5 where id = (select id from community_posts limit 1)`)).error);
   check('estado inválido rechazado', !!(await as(null, null, `update community_posts set translation_status='xyz' where id = (select id from community_posts limit 1)`)).error);
   check('el navegador NO toca intentos ni estado de traducción', !!(await as('authenticated', MV, `update community_posts set translation_attempts=0 where user_id='${MV}'`)).error);
+  await (await import('./test-part3.mjs')).run({ db, as, q, check, newUser, ADMIN });
 }

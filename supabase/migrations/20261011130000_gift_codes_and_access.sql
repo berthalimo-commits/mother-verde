@@ -330,4 +330,208 @@ grant execute on function public.admin_revoke_gift_code(bigint, text) to authent
 grant execute on function public.admin_grant_days(text, integer, text) to authenticated;
 grant execute on function public.admin_revoke_access(text, text) to authenticated;
 
+-- ---------------------------------------------------------------- admin views
+-- Users, one user's file, summary and CSV export, for the admin panel.
+-- Admins with MFA (aal2) or the SQL Editor only. Account and access data
+-- ONLY: never Bitácora entries, photos, posts or comments (only the person
+-- sees those). Opening one user's file and every CSV export are written to
+-- admin_audit_log (never the exported data itself); loading a list is not.
+
+insert into public.app_config (key, value, note) values
+  ('csv_export_max_rows', 5000, 'Maximum rows in one CSV export from the admin panel.')
+on conflict (key) do nothing;
+
+-- Access state shown in the panel (Spanish codes, translated in the panel).
+create or replace function public.admin_access_state(p public.profiles)
+returns text language sql stable security definer set search_path = public as $$
+  select case
+    when p.subscription_status = 'revoked' then 'bloqueado'
+    when p.subscription_status = 'supporter' then 'acceso_completo'
+    when p.access_until is not null and p.access_until > now() then 'regalo'
+    when p.subscription_status = 'trialing' and p.trial_ends_at > now() then 'prueba_activa'
+    when public.is_premium(p.id) then 'acceso_completo'
+    when p.trial_started_at is not null then 'prueba_vencida'
+    else 'sin_prueba' end;
+$$;
+
+-- Internal: one row per account with what the panel may show.
+create or replace function public.svc_users_view()
+returns table (user_id uuid, email text, display_name text, country text, lang text, state text,
+               created_at timestamptz, trial_ends_at timestamptz, access_until timestamptz,
+               contact_name text, contact_phone text)
+language sql stable security definer set search_path = public as $$
+  select u.id, u.email::text, coalesce(m.display_name, p.display_name), m.country, p.preferred_lang,
+         public.admin_access_state(p), u.created_at, p.trial_ends_at, p.access_until,
+         ct.contact_name, ct.contact_phone
+    from auth.users u
+    join public.profiles p on p.id = u.id
+    left join public.community_members m on m.user_id = u.id
+    left join lateral (
+      select c.contact_name, c.contact_phone from public.support_claims c
+       where c.user_id = u.id and (c.contact_name is not null or c.contact_phone is not null)
+       order by c.created_at desc limit 1) ct on true;
+$$;
+
+create or replace function public.admin_list_users(p_search text default null, p_state text default null,
+                                                   p_limit integer default 50, p_offset integer default 0)
+returns table (user_id uuid, email text, display_name text, country text, lang text, state text,
+               created_at timestamptz, trial_ends_at timestamptz, access_until timestamptz,
+               contact_name text, contact_phone text, total bigint)
+language plpgsql stable security definer set search_path = public as $$
+declare
+  v_q text := nullif(trim(coalesce(p_search, '')), '');
+begin
+  if not (public.is_admin_aal2() or public.is_sql_editor()) then raise exception 'not_allowed'; end if;
+  if nullif(p_state, '') is not null and p_state not in ('prueba_activa', 'prueba_vencida', 'acceso_completo', 'regalo', 'bloqueado', 'sin_prueba') then
+    raise exception 'bad_state';
+  end if;
+  if v_q is not null then v_q := '%' || replace(replace(replace(v_q, '\', '\\'), '%', '\%'), '_', '\_') || '%'; end if;
+  return query
+    select v.*, count(*) over ()
+      from public.svc_users_view() v
+     where (v_q is null or v.email ilike v_q or v.display_name ilike v_q)
+       and (nullif(p_state, '') is null or v.state = p_state)
+     order by v.created_at desc
+     limit least(greatest(coalesce(p_limit, 50), 1), 200) offset greatest(coalesce(p_offset, 0), 0);
+end;
+$$;
+
+-- One user's file: account data + contribution claims + redeemed gift codes.
+-- Every call is logged ('user_viewed').
+create or replace function public.admin_get_user(p_user_id uuid)
+returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare
+  v jsonb;
+  v_email text;
+begin
+  if not (public.is_admin_aal2() or public.is_sql_editor()) then raise exception 'not_allowed'; end if;
+  select to_jsonb(x), x.email into v, v_email from public.svc_users_view() x where x.user_id = p_user_id;
+  if v is null then raise exception 'not_found'; end if;
+  v := v || jsonb_build_object(
+    'claims', coalesce((select jsonb_agg(jsonb_build_object('id', c.id, 'status', c.status, 'flowers', c.flowers,
+                          'amount_usdc', round(c.amount_units / 1000000.0, 4), 'created_at', c.created_at,
+                          'submitted_at', c.submitted_at, 'tx_hash', c.tx_hash, 'review_reason', c.review_reason,
+                          'reviewed_at', c.reviewed_at) order by c.created_at desc)
+                         from public.support_claims c where c.user_id = p_user_id), '[]'::jsonb),
+    'gift_codes', coalesce((select jsonb_agg(jsonb_build_object('id', g.id, 'days', g.days, 'used_at', g.used_at) order by g.used_at desc)
+                             from public.gift_codes g where g.used_by = p_user_id), '[]'::jsonb));
+  insert into public.admin_audit_log (actor_user_id, actor_label, action, target_user_id, target_email)
+  values (auth.uid(), public.admin_actor_label(), 'user_viewed', p_user_id, v_email);
+  return v;
+end;
+$$;
+
+create or replace function public.admin_summary()
+returns jsonb
+language plpgsql stable security definer set search_path = public as $$
+declare v jsonb;
+begin
+  if not (public.is_admin_aal2() or public.is_sql_editor()) then raise exception 'not_allowed'; end if;
+  select jsonb_build_object(
+    'accounts', (select count(*) from auth.users),
+    'new_7d', (select count(*) from auth.users where created_at > now() - interval '7 days'),
+    'states', coalesce((select jsonb_object_agg(st, n) from (select public.admin_access_state(p) st, count(*) n from public.profiles p group by 1) s), '{}'::jsonb),
+    'claims', coalesce((select jsonb_object_agg(k, n) from (
+                 select case when status in ('awaiting_payment', 'submitted') then 'pendiente'
+                             when status = 'manual_review' then 'en_revision'
+                             when status = 'rejected' then 'rechazado'
+                             when status = 'approved' then 'activado'
+                             else 'vencido_o_cancelado' end k, count(*) n
+                   from public.support_claims group by 1) s), '{}'::jsonb),
+    'usdc_activated', coalesce((select round(sum(amount_units) / 1000000.0, 4) from public.support_claims where status = 'approved'), 0))
+  into v;
+  return v;
+end;
+$$;
+
+-- One CSV cell: neutralises formula injection (=, +, -, @, tab, CR at the
+-- start get a leading apostrophe) and quotes the value.
+create or replace function public.csv_cell(p text)
+returns text language sql immutable set search_path = public as $$
+  select case when p is null then ''
+              else '"' || replace(case when p ~ '^[-=+@\t\r]' then '''' || p else p end, '"', '""') || '"' end;
+$$;
+
+-- CSV export (UTF-8 with BOM, comma separated, CRLF). Tabs: users, claims,
+-- gifts, audit. At most app_config csv_export_max_rows rows (5000). Logged
+-- with tab, filters, rows and whether it was cut — never the data.
+create or replace function public.admin_export_csv(p_tab text, p_filters jsonb default '{}'::jsonb)
+returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare
+  v_max integer := public.app_config_value('csv_export_max_rows', 5000);
+  v_head text;
+  v_lines text[];
+  v_q text := nullif(trim(coalesce(p_filters ->> 'search', '')), '');
+  v_state text := nullif(p_filters ->> 'state', '');
+  v_statuses text[];
+  v_truncated boolean := false;
+  ts constant text := 'YYYY-MM-DD HH24:MI';
+begin
+  if not (public.is_admin_aal2() or public.is_sql_editor()) then raise exception 'not_allowed'; end if;
+  if v_q is not null then v_q := '%' || replace(replace(replace(v_q, '\', '\\'), '%', '\%'), '_', '\_') || '%'; end if;
+  if p_tab = 'users' then
+    v_head := 'email,display_name,country,language,access_state,created_utc,trial_ends_utc,access_until_utc,contact_name,contact_phone';
+    select array_agg(line) into v_lines from (
+      select concat_ws(',', csv_cell(v.email), csv_cell(v.display_name), csv_cell(v.country), csv_cell(v.lang), csv_cell(v.state),
+                       csv_cell(to_char(v.created_at at time zone 'UTC', ts)), csv_cell(to_char(v.trial_ends_at at time zone 'UTC', ts)),
+                       csv_cell(to_char(v.access_until at time zone 'UTC', ts)), csv_cell(v.contact_name), csv_cell(v.contact_phone)) line
+        from public.svc_users_view() v
+       where (v_q is null or v.email ilike v_q or v.display_name ilike v_q) and (v_state is null or v.state = v_state)
+       order by v.created_at desc limit v_max + 1) s;
+  elsif p_tab = 'claims' then
+    v_head := 'id,email,flowers,amount_usdc,status,created_utc,submitted_utc,expires_utc,tx_hash,review_reason,reviewed_utc,reviewed_by';
+    select coalesce(array_agg(x), null) into v_statuses from jsonb_array_elements_text(coalesce(p_filters -> 'statuses', '[]'::jsonb)) x;
+    select array_agg(line) into v_lines from (
+      select concat_ws(',', c.id::text, csv_cell(u.email::text), c.flowers::text, round(c.amount_units / 1000000.0, 4)::text, csv_cell(c.status),
+                       csv_cell(to_char(c.created_at at time zone 'UTC', ts)), csv_cell(to_char(c.submitted_at at time zone 'UTC', ts)),
+                       csv_cell(to_char(c.expires_at at time zone 'UTC', ts)), csv_cell(c.tx_hash), csv_cell(c.review_reason),
+                       csv_cell(to_char(c.reviewed_at at time zone 'UTC', ts)), csv_cell(c.reviewed_label)) line
+        from public.support_claims c join auth.users u on u.id = c.user_id
+       where v_statuses is null or c.status = any(v_statuses)
+       order by c.created_at desc limit v_max + 1) s;
+  elsif p_tab = 'gifts' then
+    v_head := 'id,created_utc,created_by,sent_to,days,expires_utc,state,used_by,used_utc,void_reason';
+    select array_agg(line) into v_lines from (
+      select concat_ws(',', g.id::text, csv_cell(to_char(g.created_at at time zone 'UTC', ts)), csv_cell(g.created_label), csv_cell(g.sent_to_email),
+                       g.days::text, csv_cell(to_char(g.expires_at at time zone 'UTC', ts)),
+                       csv_cell(case when g.status = 'revoked' then 'anulado' when g.status = 'used' then 'usado'
+                                     when g.expires_at <= now() then 'vencido' when g.send_status = 'sent' then 'enviado' else 'creado' end),
+                       csv_cell(u.email::text), csv_cell(to_char(g.used_at at time zone 'UTC', ts)), csv_cell(g.revoked_reason)) line
+        from public.gift_codes g left join auth.users u on u.id = g.used_by
+       order by g.created_at desc limit v_max + 1) s;
+  elsif p_tab = 'audit' then
+    v_head := 'when_utc,who,action,account,reason';
+    select array_agg(line) into v_lines from (
+      select concat_ws(',', csv_cell(to_char(a.at at time zone 'UTC', ts)), csv_cell(a.actor_label), csv_cell(a.action),
+                       csv_cell(a.target_email), csv_cell(a.reason)) line
+        from public.admin_audit_log a order by a.at desc limit v_max + 1) s;
+  else
+    raise exception 'bad_tab';
+  end if;
+  v_lines := coalesce(v_lines, '{}');
+  if array_length(v_lines, 1) > v_max then v_truncated := true; v_lines := v_lines[1:v_max]; end if;
+  insert into public.admin_audit_log (actor_user_id, actor_label, action, reason, details)
+  values (auth.uid(), public.admin_actor_label(), 'csv_export', p_tab,
+          jsonb_build_object('tab', p_tab, 'filters', coalesce(p_filters, '{}'::jsonb), 'rows', coalesce(array_length(v_lines, 1), 0), 'truncated', v_truncated));
+  return jsonb_build_object(
+    'csv', chr(65279) || v_head || E'\r\n' || array_to_string(v_lines, E'\r\n') || case when array_length(v_lines, 1) > 0 then E'\r\n' else '' end,
+    'rows', coalesce(array_length(v_lines, 1), 0), 'truncated', v_truncated,
+    'filename', 'mother-verde-' || p_tab || '-' || to_char(now() at time zone 'UTC', 'YYYY-MM-DD') || '.csv');
+end;
+$$;
+
+revoke execute on function public.admin_access_state(public.profiles) from public, anon, authenticated;
+revoke execute on function public.svc_users_view() from public, anon, authenticated;
+revoke execute on function public.csv_cell(text) from public, anon, authenticated;
+revoke execute on function public.admin_list_users(text, text, integer, integer) from public, anon;
+revoke execute on function public.admin_get_user(uuid) from public, anon;
+revoke execute on function public.admin_summary() from public, anon;
+revoke execute on function public.admin_export_csv(text, jsonb) from public, anon;
+grant execute on function public.admin_list_users(text, text, integer, integer) to authenticated;
+grant execute on function public.admin_get_user(uuid) to authenticated;
+grant execute on function public.admin_summary() to authenticated;
+grant execute on function public.admin_export_csv(text, jsonb) to authenticated;
+
 commit;

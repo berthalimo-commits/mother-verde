@@ -57,7 +57,12 @@ create table if not exists public.support_claims (
   review_reason  text check (review_reason is null or char_length(review_reason) <= 500),
   reviewed_at    timestamptz,
   reviewed_by    uuid,
-  reviewed_label text
+  reviewed_label text,
+  -- Optional, given by the person with the transaction code, only to help them
+  -- with this contribution. Readable ONLY by admins (column privileges below +
+  -- admin functions). Deleted with the account (user_id ... on delete cascade).
+  contact_name   text check (contact_name is null or (char_length(contact_name) between 1 and 80 and contact_name !~ '[[:cntrl:]<>]')),
+  contact_phone  text check (contact_phone is null or contact_phone ~ '^[+]?[0-9][0-9 ().-]{5,23}$')
 );
 
 -- One open claim per person; an open amount belongs to one claim only;
@@ -71,7 +76,10 @@ create unique index if not exists support_claims_tx_once
 
 alter table public.support_claims enable row level security;
 revoke all on public.support_claims from anon, authenticated;
-grant select on public.support_claims to authenticated;
+-- Column privileges: the browser reads its own claims (policy below) but never
+-- the contact fields nor who reviewed them.
+grant select (id, user_id, flowers, amount_units, status, created_at, expires_at, tx_hash,
+              submitted_at, verification, review_reason, reviewed_at) on public.support_claims to authenticated;
 drop policy if exists "support_claims_select_own" on public.support_claims;
 create policy "support_claims_select_own" on public.support_claims
   for select to authenticated using (user_id = auth.uid());
@@ -172,7 +180,9 @@ end;
 $$;
 
 -- 2. Give the transaction code of the payment.
-create or replace function public.submit_support_claim_tx(p_claim_id bigint, p_tx_hash text)
+-- Optional contact fields: empty -> null; otherwise validated (format, length).
+create or replace function public.submit_support_claim_tx(p_claim_id bigint, p_tx_hash text,
+                                                          p_contact_name text default null, p_contact_phone text default null)
 returns public.support_claims
 language plpgsql
 security definer
@@ -180,10 +190,14 @@ set search_path = public
 as $$
 declare
   v_tx text := lower(trim(coalesce(p_tx_hash, '')));
+  v_name text := nullif(regexp_replace(trim(coalesce(p_contact_name, '')), '\s+', ' ', 'g'), '');
+  v_phone text := nullif(regexp_replace(trim(coalesce(p_contact_phone, '')), '\s+', ' ', 'g'), '');
   c public.support_claims;
 begin
   if auth.uid() is null then raise exception 'not_authenticated'; end if;
   if v_tx !~ '^0x[0-9a-f]{64}$' then raise exception 'bad_tx_format'; end if;
+  if v_name is not null and (char_length(v_name) > 80 or v_name ~ '[[:cntrl:]<>]') then raise exception 'bad_contact_name'; end if;
+  if v_phone is not null and v_phone !~ '^[+]?[0-9][0-9 ().-]{5,23}$' then raise exception 'bad_contact_phone'; end if;
   select * into c from public.support_claims where id = p_claim_id and user_id = auth.uid();
   if c.id is null then raise exception 'not_found'; end if;
   if c.status <> 'awaiting_payment' then raise exception 'not_awaiting_payment'; end if;
@@ -192,7 +206,8 @@ begin
     raise exception 'expired';
   end if;
   if exists (select 1 from public.support_claims where tx_hash = v_tx) then raise exception 'tx_already_used'; end if;
-  update public.support_claims set status = 'submitted', tx_hash = v_tx, submitted_at = now()
+  update public.support_claims set status = 'submitted', tx_hash = v_tx, submitted_at = now(),
+         contact_name = v_name, contact_phone = v_phone
    where id = c.id returning * into c;
   return c;
 end;
@@ -288,7 +303,8 @@ $$;
 create or replace function public.admin_list_claims(p_statuses text[] default array['submitted', 'manual_review'])
 returns table (id bigint, user_id uuid, account_email text, flowers integer, amount_usdc numeric,
                tx_hash text, status text, created_at timestamptz, submitted_at timestamptz,
-               expires_at timestamptz, review_reason text, verification jsonb, explorer_url text)
+               expires_at timestamptz, review_reason text, verification jsonb, explorer_url text,
+               contact_name text, contact_phone text)
 language plpgsql
 stable
 security definer
@@ -299,7 +315,8 @@ begin
   return query
     select c.id, c.user_id, u.email::text, c.flowers, round(c.amount_units / 1000000.0, 4), c.tx_hash, c.status,
            c.created_at, c.submitted_at, c.expires_at, c.review_reason, c.verification,
-           case when c.tx_hash is null then null else 'https://basescan.org/tx/' || c.tx_hash end
+           case when c.tx_hash is null then null else 'https://basescan.org/tx/' || c.tx_hash end,
+           c.contact_name, c.contact_phone
       from public.support_claims c join auth.users u on u.id = c.user_id
      where c.status = any(p_statuses)
      order by coalesce(c.submitted_at, c.created_at);
@@ -371,13 +388,13 @@ grant execute on function public.svc_record_claim_check(bigint, jsonb, boolean, 
 grant execute on function public.svc_approve_claim(bigint, uuid, text, text) to service_role;
 grant execute on function public.svc_claim_context(bigint) to service_role;
 revoke execute on function public.create_support_claim(integer) from public, anon;
-revoke execute on function public.submit_support_claim_tx(bigint, text) from public, anon;
+revoke execute on function public.submit_support_claim_tx(bigint, text, text, text) from public, anon;
 revoke execute on function public.cancel_my_support_claim(bigint) from public, anon;
 revoke execute on function public.admin_list_claims(text[]) from public, anon;
 revoke execute on function public.admin_approve_claim(bigint, text) from public, anon;
 revoke execute on function public.admin_reject_claim(bigint, text) from public, anon;
 grant execute on function public.create_support_claim(integer) to authenticated;
-grant execute on function public.submit_support_claim_tx(bigint, text) to authenticated;
+grant execute on function public.submit_support_claim_tx(bigint, text, text, text) to authenticated;
 grant execute on function public.cancel_my_support_claim(bigint) to authenticated;
 grant execute on function public.admin_list_claims(text[]) to authenticated;
 grant execute on function public.admin_approve_claim(bigint, text) to authenticated;
