@@ -6503,6 +6503,16 @@ document.documentElement.dataset.accessModel = ACCESS_MODEL;
 
 let isPremium = false;
 const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+// Preview mode (fake access states and sample data, never writes anything):
+// on localhost, and in builds made with the dev-preview flag (the Vercel build
+// of branch dev marks <html data-mv-preview="1">). The production build
+// REMOVES every block between the @mv-preview markers (vite.config.js), so
+// there mvPreviewOn is always false and the preview functions don't exist.
+let mvPreviewOn = false;
+/* @mv-preview-start */
+mvPreviewOn = MV_IS_LOCAL || document.documentElement.dataset.mvPreview === '1';
+/* @mv-preview-end */
+window.mvPreviewOn = function(){ return mvPreviewOn; };
 
 /* ===================== ACCESS STATE (ACCESS_MODEL 'support') =====================
    One place decides what a person may see:
@@ -6518,7 +6528,7 @@ const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
    Lock mode only HIDES things in the browser (html.mv-locked). The educational
    content still ships in the page and can be revealed from the console; the
    Community is closed on the server (RLS + publish functions). */
-var mvAccessPreviewState = null;   // localhost only, see window.mvAccessPreview
+var mvAccessPreviewState = null;   // preview mode only (always null in the production build)
 var mvPreviewTrialEnd = 0;
 var mvPreviewGrantedEnd = 0;
 var mvLastAccessState = null;
@@ -6536,7 +6546,7 @@ window.mvSetPendingConfirm = function(email){
 
 function mvAccessState(){
   if(ACCESS_MODEL !== 'support') return 'supporter';
-  if(MV_IS_LOCAL && mvAccessPreviewState){
+  if(mvPreviewOn && mvAccessPreviewState){
     // A previewed trial runs out like a real one (to test locking with the app open).
     if(mvAccessPreviewState === 'trial' && Date.now() >= mvPreviewTrialEnd) return 'expired';
     return mvAccessPreviewState;
@@ -6564,14 +6574,14 @@ function mvScreenAllowedLocked(id){
 window.mvAccessStateNow = function(){ return mvAccessState(); };
 // Localhost previews pretend to be signed in for these states.
 window.mvIsPreviewSignedIn = function(){
-  return MV_IS_LOCAL && ['trial', 'expired', 'no_trial', 'supporter', 'granted', 'revoked'].includes(mvAccessPreviewState);
+  return mvPreviewOn && ['trial', 'expired', 'no_trial', 'supporter', 'granted', 'revoked'].includes(mvAccessPreviewState);
 };
 // A support-contribution claim waiting for the owner's manual check.
 // 'submitted' = transaction code given; 'manual_review' = being checked by hand.
 function mvClaimPending(){ return !!(window.mvLatestClaim && ['submitted', 'manual_review'].includes(window.mvLatestClaim.status)); }
 // End of gift / admin-granted days ('granted' state).
 function mvGrantedUntilMs(){
-  if(MV_IS_LOCAL && mvAccessPreviewState === 'granted') return mvPreviewGrantedEnd;
+  if(mvPreviewOn && mvAccessPreviewState === 'granted') return mvPreviewGrantedEnd;
   const p = window.mvCurrentProfile;
   return p && p.access_until ? new Date(p.access_until).getTime() : 0;
 }
@@ -6582,7 +6592,7 @@ function mvPendingNoteHtml(){
 }
 
 function mvTrialEndMs(){
-  if(MV_IS_LOCAL && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
+  if(mvPreviewOn && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
   const p = window.mvCurrentProfile;
   return p && p.trial_ends_at ? new Date(p.trial_ends_at).getTime() : 0;
 }
@@ -6652,7 +6662,7 @@ function mvRenderAcceso(){
       + '<div class="acc-actions"><button class="btn btn-primary" onclick="mvGoAuth(\'signup\')">' + t('accCrearCuenta') + '</button>'
       + '<button class="btn btn-ghost" onclick="mvGoAuth(\'login\')">' + t('accEntrar') + '</button></div>';
   } else if(st === 'unconfirmed'){
-    const email = mvPendingConfirmEmail() || (MV_IS_LOCAL ? 'tu@correo.com' : '');
+    const email = mvPendingConfirmEmail() || (mvPreviewOn ? 'tu@correo.com' : '');
     html = '<h2 class="acc-title">' + t('accConfirmaH') + '</h2>'
       + '<p class="acc-text">' + t('accConfirmaP').replace('{email}', '<b>' + esc(email) + '</b>') + '</p>'
       + '<div class="acc-actions"><button class="btn btn-primary" id="accResendBtn" onclick="mvResendClick()">' + t('accReenviar') + '</button>'
@@ -6775,7 +6785,7 @@ async function mvRedeemGift(ev){
   const msg = document.getElementById('giftMsg'), btn = document.getElementById('giftBtn');
   const code = (document.getElementById('giftCode').value || '').trim();
   if(code.replace(/[^A-Za-z0-9]/g, '').length < 12){ msg.textContent = t('giftErrInvalid'); return; }
-  if(MV_IS_LOCAL && mvAccessPreviewState){ msg.textContent = t('giftOk').replace('{d}', mvFmtDate(Date.now() + 7 * 86400000)); return; }
+  if(mvPreviewOn && mvAccessPreviewState){ msg.textContent = t('giftOk').replace('{d}', mvFmtDate(Date.now() + 7 * 86400000)); return; }
   if(!window.mvSupabase || !window.mvCurrentUser){ msg.textContent = t('giftErrGeneric'); return; }
   btn.disabled = true; msg.textContent = '…';
   const { data, error } = await window.mvSupabase.rpc('redeem_gift_code', { p_code: code });
@@ -6802,9 +6812,10 @@ setInterval(() => {
   else if(st === 'trial'){ mvRenderTrialStrip(); mvRenderCuentaAcceso(); }
 }, 15000);
 
-// Localhost only: preview every state without touching the database, e.g.
+// Preview mode only: show every state without touching the database, e.g.
 // mvAccessPreview('expired'), mvAccessPreview('trial', 0.5) (minutes left), mvAccessPreview(null).
-if(MV_IS_LOCAL){
+/* @mv-preview-start */
+if(mvPreviewOn){
   window.mvClaimPreview = function(status){
     window.mvLatestClaim = status ? { id: 0, status: status, flowers: 1, amount_units: 10004700, expires_at: new Date(Date.now() + (status === 'expired' ? -1 : 72) * 3600000).toISOString() } : null;
     mvApplyAccessState();
@@ -6816,6 +6827,7 @@ if(MV_IS_LOCAL){
     mvApplyAccessState();
   };
 }
+/* @mv-preview-end */
 
 // window.setIsPremium(true) used to flip isPremium directly, so any visitor
 // could open devtools in production and unlock every Premium gate for free.

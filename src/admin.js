@@ -11,7 +11,11 @@
 // with its own ES/EN/DE/FR switch; every view is redrawn on change.
 import { createClient } from '@supabase/supabase-js';
 
-const sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
+let sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
+// Sample-data panel (/panel-mv.html?demo=1): dev-preview builds only; in the
+// production build this is the constant false and adminDemo.js isn't emitted.
+const DEMO = import.meta.env.VITE_MV_PREVIEW === '1' && new URLSearchParams(location.search).has('demo');
+let demoFn = null;
 const app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const usdc = (units) => (Number(units) / 1e6).toFixed(4);
@@ -67,7 +71,7 @@ const T = {
     e_bad_email: 'Ese correo no parece válido.', e_blocked_domain: 'Ese dominio de correo está bloqueado (correo desechable).',
     e_daily_limit_20: 'Ya se crearon 20 códigos hoy (límite diario).', e_email_limit_3: 'Ese correo ya recibió 3 códigos (límite).',
     e_email_failed: 'No se pudo enviar el correo. El código quedó ANULADO.', e_not_found_or_not_active: 'Ese código ya no está activo.',
-    e_could_not_verify_admin: 'No se pudo comprobar el permiso de administración.', e_server_error: 'Error del servidor. Inténtalo de nuevo.',
+    e_could_not_verify_admin: 'No se pudo comprobar el permiso de administración.', e_server_error: 'Error del servidor. Inténtalo de nuevo.', e_demo: 'Vista previa: no se guarda nada.', demoBanner: 'VISTA PREVIA con datos de ejemplo — nada de esto es real y no se guarda nada.',
   },
   en: {
     title: 'Mother Verde · Admin panel', loading: 'Loading…', wait: 'One moment…',
@@ -113,7 +117,7 @@ const T = {
     e_bad_email: 'That e-mail address doesn’t look valid.', e_blocked_domain: 'That e-mail domain is blocked (disposable e-mail).',
     e_daily_limit_20: '20 codes were already created today (daily limit).', e_email_limit_3: 'That address already got 3 codes (limit).',
     e_email_failed: 'The e-mail could not be sent. The code was VOIDED.', e_not_found_or_not_active: 'That code is no longer active.',
-    e_could_not_verify_admin: 'The admin permission could not be checked.', e_server_error: 'Server error. Try again.',
+    e_could_not_verify_admin: 'The admin permission could not be checked.', e_server_error: 'Server error. Try again.', e_demo: 'Preview: nothing is saved.', demoBanner: 'PREVIEW with sample data — none of this is real and nothing is saved.',
   },
   de: {
     title: 'Mother Verde · Verwaltungsbereich', loading: 'Wird geladen…', wait: 'Einen Moment…',
@@ -159,7 +163,7 @@ const T = {
     e_bad_email: 'Diese E-Mail-Adresse scheint ungültig.', e_blocked_domain: 'Diese E-Mail-Domain ist gesperrt (Wegwerf-E-Mail).',
     e_daily_limit_20: 'Heute wurden schon 20 Codes erstellt (Tagesgrenze).', e_email_limit_3: 'Diese Adresse hat schon 3 Codes erhalten (Grenze).',
     e_email_failed: 'Die E-Mail konnte nicht gesendet werden. Der Code wurde UNGÜLTIG gemacht.', e_not_found_or_not_active: 'Dieser Code ist nicht mehr aktiv.',
-    e_could_not_verify_admin: 'Die Verwaltungsberechtigung konnte nicht geprüft werden.', e_server_error: 'Serverfehler. Versuch es noch einmal.',
+    e_could_not_verify_admin: 'Die Verwaltungsberechtigung konnte nicht geprüft werden.', e_server_error: 'Serverfehler. Versuch es noch einmal.', e_demo: 'Vorschau: Es wird nichts gespeichert.', demoBanner: 'VORSCHAU mit Beispieldaten — nichts davon ist echt und es wird nichts gespeichert.',
   },
   fr: {
     title: 'Mother Verde · Espace d’administration', loading: 'Chargement…', wait: 'Un instant…',
@@ -205,7 +209,7 @@ const T = {
     e_bad_email: 'Cette adresse e-mail ne semble pas valide.', e_blocked_domain: 'Ce domaine e-mail est bloqué (e-mail jetable).',
     e_daily_limit_20: '20 codes ont déjà été créés aujourd’hui (limite quotidienne).', e_email_limit_3: 'Cette adresse a déjà reçu 3 codes (limite).',
     e_email_failed: 'L’e-mail n’a pas pu être envoyé. Le code a été ANNULÉ.', e_not_found_or_not_active: 'Ce code n’est plus actif.',
-    e_could_not_verify_admin: 'Impossible de vérifier l’autorisation d’administration.', e_server_error: 'Erreur du serveur. Réessaie.',
+    e_could_not_verify_admin: 'Impossible de vérifier l’autorisation d’administration.', e_server_error: 'Erreur du serveur. Réessaie.', e_demo: 'Aperçu : rien n’est enregistré.', demoBanner: 'APERÇU avec des données d’exemple — rien de tout cela n’est réel et rien n’est enregistré.',
   },
 };
 const tr = (k, vars = {}) => Object.entries(vars).reduce((s, [a, b]) => s.split('{' + a + '}').join(String(b)), T[lang][k] ?? T.es[k] ?? k);
@@ -214,6 +218,7 @@ const errText = (e, detail) => (ERR_KEYS.includes(e) ? tr('e_' + e) : e || 'Erro
 const rpcErr = (error) => { const m = error?.message || ''; return ERR_KEYS.find((k) => m.includes(k)) || m; };
 
 async function fn(name, body) {
+  if (demoFn) return demoFn(name, body);
   const { data: { session } } = await sb.auth.getSession();
   const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
     method: 'POST',
@@ -250,6 +255,14 @@ function header() {
 // ------------------------------------------------------------ gatekeeping
 async function start() {
   redraw = start;
+  if (DEMO && !demoFn) {
+    const d = await import('./adminDemo.js');
+    sb = d.sb; demoFn = d.fn;
+    const banner = document.createElement('div');
+    banner.style.cssText = 'border:2px dashed #E8A33D;color:#E8A33D;border-radius:8px;padding:8px 12px;margin:0 0 12px;font-weight:600';
+    banner.textContent = tr('demoBanner');
+    app.before(banner);
+  }
   header();
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { app.innerHTML = `<div class="card"><p>${tr('signInFirst')}</p></div>`; return; }

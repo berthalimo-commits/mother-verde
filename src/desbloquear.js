@@ -50,7 +50,8 @@ const OPEN = ['submitted', 'manual_review'];
 let syncedFromClaim = null; // claim id whose flower count the picker already took
 
 const claimNow = () => window.mvLatestClaim || null;
-const isLocalPreview = () => ['localhost', '127.0.0.1'].includes(location.hostname)
+// Preview mode (localhost / dev build): simulated, never calls the database.
+const isLocalPreview = () => !!(window.mvPreviewOn && window.mvPreviewOn())
   && ((claimNow() && claimNow().id === 0) || !!(window.mvIsPreviewSignedIn && window.mvIsPreviewSignedIn()));
 const amountText = (units) => (Number(units) / 1e6).toFixed(4);
 const fmtWhen = (iso) => (window.mvFmtDateTime ? window.mvFmtDateTime(iso) : new Date(iso).toLocaleString());

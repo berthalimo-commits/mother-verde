@@ -294,3 +294,8 @@ document.getElementById('cuentaGuardarBtn')?.addEventListener('click', async () 
 
 renderAuthMode();
 refreshAuthState();
+
+// Dev-preview state selector: only in builds made with the preview flag
+// (vite.config.js). In the production build this condition is the constant
+// false, so the module is not even emitted.
+if (import.meta.env.VITE_MV_PREVIEW === '1') import('./devPreview.js');

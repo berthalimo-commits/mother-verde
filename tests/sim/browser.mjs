@@ -16,16 +16,16 @@ export async function browser(uid, aal, w = 420) {
   const chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, '--no-first-run', '--hide-scrollbars', 'about:blank'], { stdio: 'ignore' });
   let target; for (let i = 0; i < 50 && !target; i++) { await sleep(200); try { target = (await (await fetch(`http://127.0.0.1:${port}/json`)).json()).find((t) => t.type === 'page'); } catch {} }
   const ws = new WebSocket(target.webSocketDebuggerUrl); await new Promise((r) => (ws.onopen = r));
-  let id = 0; const pend = {}; ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && pend[d.id]) { pend[d.id](d); delete pend[d.id]; } };
+  let id = 0; const pend = {}; const events = []; ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && pend[d.id]) { pend[d.id](d); delete pend[d.id]; } else if (d.method) { events.push(d); if (events.length > 5000) events.shift(); } };
   const send = (method, params = {}) => new Promise((r) => { const i = ++id; pend[i] = r; ws.send(JSON.stringify({ id: i, method, params })); });
   const ev = async (e) => (await send('Runtime.evaluate', { expression: e, awaitPromise: true, returnByValue: true })).result?.result?.value;
   await send('Page.enable'); await send('Runtime.enable');
   await send('Emulation.setDeviceMetricsOverride', { width: w, height: 900, deviceScaleFactor: 1, mobile: w < 600 });
   const sess = { access_token: `u:${uid}:${aal}`, refresh_token: `r:${uid}:${aal}`, token_type: 'bearer', expires_in: 360000, expires_at: Math.floor(Date.now() / 1000) + 360000, user: { id: uid, aud: 'authenticated', role: 'authenticated', email: 'x', app_metadata: {}, user_metadata: {}, created_at: '' } };
-  await send('Page.addScriptToEvaluateOnNewDocument', { source: `if (location.port === '5174' && !sessionStorage.getItem('seeded')) { localStorage.setItem('sb-localhost-auth-token', ${JSON.stringify(JSON.stringify(sess))}); sessionStorage.setItem('seeded', '1'); }` });
+  if (uid) await send('Page.addScriptToEvaluateOnNewDocument', { source: `if (location.port === '5174' && !sessionStorage.getItem('seeded')) { localStorage.setItem('sb-localhost-auth-token', ${JSON.stringify(JSON.stringify(sess))}); sessionStorage.setItem('seeded', '1'); }` });
   const shot = async (label) => { const r = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true }); fs.writeFileSync(`${OUT}/${label}.png`, Buffer.from(r.result.data, 'base64')); };
   const text = () => ev('document.getElementById("app").innerText');
   const waitFor = async (re, ms = 8000) => { for (let t = 0; t < ms; t += 250) { const s = await text(); if (re.test(s)) return s; await sleep(250); } return await text(); };
   const close = async () => { ws.close(); chrome.kill(); await sleep(300); try { fs.rmSync(profile, { recursive: true, force: true }); } catch {} };
-  return { send, ev, shot, text, waitFor, close };
+  return { send, ev, shot, text, waitFor, close, events };
 }
