@@ -55,7 +55,9 @@ const claimNow = () => window.mvLatestClaim || null;
 // Preview mode (localhost / dev build): simulated, never calls the database.
 const isLocalPreview = () => !!(window.mvPreviewOn && window.mvPreviewOn())
   && ((claimNow() && claimNow().id === 0) || !!(window.mvIsPreviewSignedIn && window.mvIsPreviewSignedIn()));
-const amountText = (units) => (Number(units) / 1e6).toFixed(4);
+// Exact amount: text from integer units (main.js mvUsdcText), 4 decimals always.
+const amountText = (units) => window.mvUsdcText(units, true);  // shown: language's separator
+const amountCopy = (units) => window.mvUsdcText(units, false); // copied: always a dot
 const fmtWhen = (iso) => (window.mvFmtDateTime ? window.mvFmtDateTime(iso) : new Date(iso).toLocaleString());
 function awaiting(c) { return c && c.status === 'awaiting_payment' && new Date(c.expires_at).getTime() > Date.now(); }
 
@@ -69,7 +71,7 @@ const errKey = (error) => { const m = (error && error.message) || ''; const k = 
 async function reserve() {
   const msg = document.getElementById('dsClaimMsg');
   if (isLocalPreview()) {
-    window.mvLatestClaim = { id: 0, status: 'awaiting_payment', flowers, amount_units: flowers * 10000000 + 4700, expires_at: new Date(Date.now() + 72 * 3600000).toISOString() };
+    window.mvLatestClaim = { id: 0, status: 'awaiting_payment', flowers, amount_units: flowers * 10000000 + 4000, expires_at: new Date(Date.now() + 72 * 3600000).toISOString() };
     renderDesbloquear(); return;
   }
   if (msg) msg.textContent = t('dsFormSending');
@@ -121,7 +123,7 @@ function claimHtml() {
   const access = window.mvAccessStateNow ? window.mvAccessStateNow() : '';
   if (access === 'supporter') return `<div class="note-box">${t('dsYaTienes')}</div>`;
   if (c && OPEN.includes(c.status)) {
-    return `<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}</div>`;
+    return `<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}${c.amount_units ? `<br>${fmt(t('dsMontoPendiente'), { a: `<b class="ds-amount-inline">${amountText(c.amount_units)}</b>` })}` : ''}</div>`;
   }
   const notes = (c && c.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : '')
     + (c && (c.status === 'expired' || (c.status === 'awaiting_payment' && !awaiting(c))) ? `<p class="ds-claim-rejected">${t('dsVencidoP')}</p>` : '');
@@ -142,7 +144,7 @@ function claimHtml() {
       <div class="ds-amount-big"><span id="dsAmount">${amount}</span> ${SUPPORT.CURRENCY}</div>
       <div class="ds-amount-net">${fmt(t('dsEnRed'), { net: SUPPORT.NETWORK })}</div>
       <p class="ds-amount-warn">${t('dsExactoAviso')}</p>
-      <button type="button" class="btn btn-ghost ds-copy" id="dsCopyAmount">${t('dsCopiarMonto')}</button>
+      <button type="button" class="btn btn-ghost ds-copy" id="dsCopyAmount" data-amount="${amountCopy(c.amount_units)}">${t('dsCopiarMonto')}</button>
       <span class="ds-copied" id="dsAmountCopied" aria-live="polite"></span>
       <p class="ds-amount-note">${t('dsDecimalesP')}</p>
       <p class="ds-amount-note">${fmt(t('dsValidoHasta'), { d: fmtWhen(c.expires_at) })}</p>
@@ -186,7 +188,8 @@ function paymentHtml() {
         </div>
       </div>
       <ol class="ds-steps">
-        <li>${fmt(t('dsPaso1'), { cur: SUPPORT.CURRENCY, net: SUPPORT.NETWORK })}</li>
+        <li>${fmt(t('dsPaso1'), { cur: SUPPORT.CURRENCY, net: SUPPORT.NETWORK })}
+          <p class="ds-why">${t('dsPorQueDecimales')}</p></li>
         <li>${t('dsPaso2')}</li>
         <li>${t('dsPaso3')}</li>
         <li>${fmt(t('dsPaso4'), { h: SUPPORT.VERIFY_MAX_HOURS })}</li>
@@ -238,6 +241,7 @@ export function renderDesbloquear() {
         <button type="button" class="ds-step" id="dsMas" aria-label="${t('dsMas')}" ${flowers >= SUPPORT.MAX_FLOWERS ? 'disabled' : ''}>+</button>
       </div>
       <div class="ds-total" id="dsTotal" aria-live="polite">${totalLine()}</div>
+      <p class="ds-extra-note" id="dsPorFlor">${fmt(t('dsPorFlorNota'), { usdc: SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
       <p class="ds-extra-note">${t('dsExtraNota')}</p>
     </div>
 
@@ -276,7 +280,7 @@ export function renderDesbloquear() {
   root.querySelector('#dsClaimForm')?.addEventListener('submit', submitTx);
   root.querySelector('#dsCopyAmount')?.addEventListener('click', async () => {
     const m = document.getElementById('dsAmountCopied');
-    try { await navigator.clipboard.writeText(document.getElementById('dsAmount').textContent); m.textContent = t('dsMontoCopiado'); }
+    try { await navigator.clipboard.writeText(document.getElementById('dsCopyAmount').dataset.amount); m.textContent = t('dsMontoCopiado'); }
     catch (e) { m.textContent = ''; }
   });
   if (!awaiting(claimNow())) return;

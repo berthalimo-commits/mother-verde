@@ -48,11 +48,12 @@ Resultado: **29 / 29**. Antes del arreglo daba 10 / 29.
 
 | Batería | Qué cubre | Resultado |
 |---|---|---|
-| Base de datos (PGlite) | migraciones, permisos, aportes 1–20 flores, contacto opcional, admin (`hello@motherverdeny.com`) + MFA, códigos, Usuarios/ficha/Resumen/CSV, auditoría, borrado de cuenta, reversas con esquema idéntico | **217 / 217** |
-| Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **74 / 74** |
+| Base de datos (PGlite) | migraciones, permisos, aportes 1–20 flores, contacto opcional, admin (`hello@motherverdeny.com`) + MFA, códigos, Usuarios/ficha/Resumen/CSV, auditoría, borrado de cuenta, reversas con esquema idéntico | **225 / 225** |
+| Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **103 / 103** |
 | Panel en navegador | admin con la prueba terminada usa el panel, MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **20 / 20** |
 | Panel: Usuarios, Resumen, CSV | ficha registrada, botones de correo, contacto, exportación real (BOM, acentos, fórmulas), idiomas en vivo y al recargar, ninguna app de pago en los textos | **32 / 32** |
 | Vista previa (dev) | selector de estados y panel de ejemplo, 0 escrituras en la base | **14 / 14** |
+| Monto exacto (texto, 4 decimales) | 20,0040 / 20.0040 según idioma, copia con punto, texto «¿Por qué el monto lleva decimales?», aviso pendiente, panel, CSV, vista previa | **19 / 19** |
 | Versión desplegada en dev (Vercel) | abierta como visitante: flag de vista previa, idioma, 20 flores, panel; 0 escrituras en producción | **9 / 9** |
 | App en navegador | Desbloquear con monto exacto, envío del TXID, código de regalo | **10 / 10** |
 | Idioma en vivo | cambio ES/EN/DE/FR con la pantalla abierta + recarga, 6 pantallas | **29 / 29** |
@@ -240,7 +241,8 @@ Comprobación real: en el panel, **Códigos de regalo → «Enviar correo de pru
 - **Tope de la verificación automática: `claim_auto_max_usdc = 201`** en `public.app_config`. Cubre de 1 a 20 flores (200,00xx entra). Se compara el monto completo, decimales incluidos. Cambiarlo es una línea:
   `update public.app_config set value = 201 where key = 'claim_auto_max_usdc';`
 - Cualquier diferencia o monto por encima del tope pasa **siempre** a revisión manual, con el motivo escrito en códigos: `monto_alto`, `monto_distinto`, `destino_distinto`, `no_es_usdc`, `tx_fallida`, `tx_no_encontrada`, `tx_anterior_a_la_reserva`, `txid_ya_usado`, `solicitud_no_vigente`, `red_no_disponible`. Si hay varios, van separados por comas (p. ej. `monto_distinto, monto_alto`).
-- **Monto único**: N × 10 USDC + un sufijo aleatorio de 4 decimales (0,0001–0,0099), p. ej. 1 flor = 10,0042 y 20 flores = 200,0073. Nunca 6 decimales. Hay **99 sufijos por cada cantidad de flores** → como máximo 99 solicitudes abiertas a la vez de 1 flor, otras 99 de 2 flores… y así hasta 20 (1.980 en total). Entre cantidades distintas nunca chocan (están separadas por 10 USDC). Si se agotan los 99 de una cantidad, la función da el error `no_free_amount` y la app muestra «Ahora mismo no queda ningún monto libre para N flores… elige otra cantidad o vuelve en unas horas»; **nunca repite un monto**. Si dos personas reservan el mismo monto en el mismo instante, el índice único de la base rechaza una de las dos y la función elige otro sufijo sola (probado simulando la carrera).
+- **Formato del monto**: siempre texto con 4 decimales construido desde las unidades enteras (10.0420, nunca 10.042); en pantalla con coma (ES/DE/FR) o punto (EN); el botón copia siempre con punto; panel, CSV y correo de activación usan el mismo formato. La comparación con la red Base se hace en unidades enteras (6 decimales).
+- **Monto único**: N × 10 USDC + un sufijo aleatorio de 4 decimales (0,0001–0,0099), sumado **una vez** al total, p. ej. 1 flor = 10,0042 y 20 flores = 200,0073. Nunca 6 decimales. Hay **99 sufijos por cada cantidad de flores** → como máximo 99 solicitudes abiertas a la vez de 1 flor, otras 99 de 2 flores… y así hasta 20 (1.980 en total). Entre cantidades distintas nunca chocan (están separadas por 10 USDC). Si se agotan los 99 de una cantidad, la función da el error `no_free_amount` y la app muestra «Ahora mismo no queda ningún monto libre para N flores… elige otra cantidad o vuelve en unas horas»; **nunca repite un monto**. Si dos personas reservan el mismo monto en el mismo instante, el índice único de la base rechaza una de las dos y la función elige otro sufijo sola (probado simulando la carrera).
 - Estado: la parte automática está **apagada**. Para encenderla (solo con tu aprobación escrita): `update public.app_config set value = 1 where key = 'claim_auto_verify_enabled';`
 - Si algún día hace falta más capacidad: Alchemy (gratis, con clave) en `BASE_RPC_URL`. Etherscan gratis no cubre Base.
 

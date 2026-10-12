@@ -410,7 +410,7 @@ begin
   if v is null then raise exception 'not_found'; end if;
   v := v || jsonb_build_object(
     'claims', coalesce((select jsonb_agg(jsonb_build_object('id', c.id, 'status', c.status, 'flowers', c.flowers,
-                          'amount_usdc', round(c.amount_units / 1000000.0, 4), 'created_at', c.created_at,
+                          'amount_usdc', public.usdc_text(c.amount_units), 'created_at', c.created_at,
                           'submitted_at', c.submitted_at, 'tx_hash', c.tx_hash, 'review_reason', c.review_reason,
                           'reviewed_at', c.reviewed_at) order by c.created_at desc)
                          from public.support_claims c where c.user_id = p_user_id), '[]'::jsonb),
@@ -439,7 +439,7 @@ begin
                              when status = 'approved' then 'activado'
                              else 'vencido_o_cancelado' end k, count(*) n
                    from public.support_claims group by 1) s), '{}'::jsonb),
-    'usdc_activated', coalesce((select round(sum(amount_units) / 1000000.0, 4) from public.support_claims where status = 'approved'), 0))
+    'usdc_activated', coalesce((select public.usdc_text(sum(amount_units)::bigint) from public.support_claims where status = 'approved'), '0.0000'))
   into v;
   return v;
 end;
@@ -484,7 +484,7 @@ begin
     v_head := 'id,email,flowers,amount_usdc,status,created_utc,submitted_utc,expires_utc,tx_hash,review_reason,reviewed_utc,reviewed_by';
     select coalesce(array_agg(x), null) into v_statuses from jsonb_array_elements_text(coalesce(p_filters -> 'statuses', '[]'::jsonb)) x;
     select array_agg(line) into v_lines from (
-      select concat_ws(',', c.id::text, csv_cell(u.email::text), c.flowers::text, round(c.amount_units / 1000000.0, 4)::text, csv_cell(c.status),
+      select concat_ws(',', c.id::text, csv_cell(u.email::text), c.flowers::text, public.usdc_text(c.amount_units), csv_cell(c.status),
                        csv_cell(to_char(c.created_at at time zone 'UTC', ts)), csv_cell(to_char(c.submitted_at at time zone 'UTC', ts)),
                        csv_cell(to_char(c.expires_at at time zone 'UTC', ts)), csv_cell(c.tx_hash), csv_cell(c.review_reason),
                        csv_cell(to_char(c.reviewed_at at time zone 'UTC', ts)), csv_cell(c.reviewed_label)) line

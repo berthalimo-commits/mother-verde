@@ -21,11 +21,11 @@ for (const [w, cols, label] of [[390, 5, 'móvil'], [1280, 10, 'pantalla grande'
   }
   const amt = await b.ev(`document.getElementById('dsAmount')?.textContent`);
   const db = await sql(`select amount_units from support_claims where user_id = '${NEWBIE}' and status = 'awaiting_payment'`);
-  check(`${label}: monto reservado de 20 flores = 200,00xx, igual en pantalla y en la base (${amt})`, /^200\.00\d\d$/.test(amt || '') && db.length === 1 && (db[0].amount_units / 1e6).toFixed(4) === amt, JSON.stringify(db));
+  check(`${label}: monto reservado de 20 flores = 200,00xx, igual en pantalla y en la base (${amt})`, /^200,00\d\d$/.test(amt || '') && db.length === 1 && String(db[0].amount_units).replace(/^(\d+)(\d{4})00$/, '$1,$2') === amt, JSON.stringify(db));
   for (const lang of ['es', 'en', 'de', 'fr']) {
     await b.ev(`document.querySelector('#langSwitch button[data-lang=${lang}]').click(); 1`); await sleep(400);
     const x = await b.ev(`({ warn: document.querySelector('.ds-amount-warn')?.innerText || '', copy: document.getElementById('dsCopyAmount')?.innerText || '', amt: document.getElementById('dsAmount')?.textContent, over: document.documentElement.scrollWidth > innerWidth })`);
-    check(`${label} · ${lang.toUpperCase()}: aviso de monto exacto + «${COPY[lang]}», sin desbordar`, x.warn.startsWith(L[lang]) && x.copy === COPY[lang] && x.amt === amt && !x.over, JSON.stringify(x));
+    check(`${label} · ${lang.toUpperCase()}: aviso de monto exacto + «${COPY[lang]}», sin desbordar`, x.warn.startsWith(L[lang]) && x.copy === COPY[lang] && x.amt === (lang === 'en' ? amt.replace(',', '.') : amt) && !x.over, JSON.stringify(x));
     if (lang === 'es' || lang === 'de') await b.shot(`flores20-${w}-${lang}`);
   }
   await b.ev(`document.querySelector('#langSwitch button[data-lang=es]').click(); 1`);

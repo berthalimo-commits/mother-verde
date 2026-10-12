@@ -6196,6 +6196,18 @@ translations.es.dsErrContactoTel = "Revisa el teléfono: solo números, espacios
 translations.en.dsErrContactoTel = "Check the phone number: only digits, spaces and + ( ) - . (6 to 24 characters).";
 translations.de.dsErrContactoTel = "Prüfe die Telefonnummer: nur Ziffern, Leerzeichen und + ( ) - . (6 bis 24 Zeichen).";
 translations.fr.dsErrContactoTel = "Vérifie le numéro : seulement des chiffres, des espaces et + ( ) - . (6 à 24 caractères).";
+translations.es.dsPorFlorNota = "{usdc} {cur} por flor, más un código decimal único que verás al reservar.";
+translations.en.dsPorFlorNota = "{usdc} {cur} per flower, plus a unique decimal code you’ll see when you reserve.";
+translations.de.dsPorFlorNota = "{usdc} {cur} pro Blüte, plus ein einmaliger Dezimalcode, den du beim Reservieren siehst.";
+translations.fr.dsPorFlorNota = "{usdc} {cur} par fleur, plus un code décimal unique que tu verras en réservant.";
+translations.es.dsPorQueDecimales = "<b>¿Por qué el monto lleva decimales?</b> Esos decimales son tu código personal: nos permiten reconocer que el pago es tuyo. Se suman una sola vez al total. Si no los envías exactos, tu aporte pasa a revisión manual y tarda más.";
+translations.en.dsPorQueDecimales = "<b>Why does the amount have decimals?</b> Those decimals are your personal code: they let us recognize that the payment is yours. They are added only once to the total. If you don't send them exactly, your contribution goes to manual review and takes longer.";
+translations.de.dsPorQueDecimales = "<b>Warum hat der Betrag Dezimalstellen?</b> Diese Dezimalstellen sind dein persönlicher Code: Sie zeigen uns, dass die Zahlung von dir ist. Sie werden nur einmal zum Gesamtbetrag addiert. Wenn du sie nicht genau sendest, wird dein Beitrag manuell geprüft und dauert länger.";
+translations.fr.dsPorQueDecimales = "<b>Pourquoi le montant comporte-t-il des décimales ?</b> Ces décimales sont ton code personnel : elles nous permettent de reconnaître que le paiement est le tien. Elles s'ajoutent une seule fois au total. Si tu ne les envoies pas exactement, ta contribution passe en vérification manuelle et prend plus de temps.";
+translations.es.dsMontoPendiente = "Monto reservado: {a} USDC";
+translations.en.dsMontoPendiente = "Reserved amount: {a} USDC";
+translations.de.dsMontoPendiente = "Reservierter Betrag: {a} USDC";
+translations.fr.dsMontoPendiente = "Montant réservé : {a} USDC";
 translations.es.dsCopiarMonto = "Copiar monto exacto";
 translations.en.dsCopiarMonto = "Copy exact amount";
 translations.de.dsCopiarMonto = "Genauen Betrag kopieren";
@@ -6613,9 +6625,24 @@ function mvGrantedUntilMs(){
   const p = window.mvCurrentProfile;
   return p && p.access_until ? new Date(p.access_until).getTime() : 0;
 }
+// USDC amounts: TEXT built from the integer base units (6 decimals), always
+// with 4 decimals (10.0420, never 10.042) — never a JavaScript float.
+// Shown with the language's decimal separator; copied with a dot (wallets).
+const MV_DEC_SEP = { es: ',', en: '.', de: ',', fr: ',' };
+// (Not named mvUsdcText: a top-level function in this classic script IS
+// window.<name>, so reassigning window.mvUsdcText would call itself.)
+function mvUsdcFormat(units, sep){
+  const s = String(units == null ? '' : units).trim();
+  if(!/^\d+$/.test(s)) return '';
+  const p = s.padStart(7, '0');
+  return p.slice(0, -6).replace(/^0+(?=\d)/, '') + (sep || '.') + p.slice(-6, -2);
+}
+window.mvUsdcText = function(units, forDisplay){ return mvUsdcFormat(units, forDisplay ? (MV_DEC_SEP[currentLang] || '.') : '.'); };
 function mvPendingNoteHtml(){
+  const c = window.mvLatestClaim;
   return mvClaimPending()
-    ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + t('dsPendingP').replace('{h}', window.MV_VERIFY_MAX_HOURS || 48) + '</div>'
+    ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + t('dsPendingP').replace('{h}', window.MV_VERIFY_MAX_HOURS || 48)
+      + (c && c.amount_units ? '<br>' + t('dsMontoPendiente').replace('{a}', '<b class="ds-amount-inline">' + window.mvUsdcText(c.amount_units, true) + '</b>') : '') + '</div>'
     : '';
 }
 
@@ -6845,7 +6872,7 @@ setInterval(() => {
 /* @mv-preview-start */
 if(mvPreviewOn){
   window.mvClaimPreview = function(status){
-    window.mvLatestClaim = status ? { id: 0, status: status, flowers: 1, amount_units: 10004700, expires_at: new Date(Date.now() + (status === 'expired' ? -1 : 72) * 3600000).toISOString() } : null;
+    window.mvLatestClaim = status ? { id: 0, status: status, flowers: 2, amount_units: 20004000, expires_at: new Date(Date.now() + (status === 'expired' ? -1 : 72) * 3600000).toISOString() } : null;
     mvApplyAccessState();
   };
   window.mvAccessPreview = function(st, minutesLeft){

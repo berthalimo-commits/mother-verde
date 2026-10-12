@@ -9,13 +9,13 @@ const iso = (h) => new Date(now + h * 3600000).toISOString();
 const okChecks = { tx_found: true, tx_success: true, usdc_contract: true, destination: true, exact_amount: true, after_claim: true, confirmations: true, tx_unused: true, claim_open: true, auto_limit: true };
 
 const CLAIMS = [
-  { id: 101, user_id: 'u1', account_email: 'ana.ejemplo@example.com', flowers: 2, amount_usdc: 20.0042, tx_hash: '0x' + '4a'.repeat(32), status: 'submitted',
+  { id: 101, user_id: 'u1', account_email: 'ana.ejemplo@example.com', flowers: 2, amount_usdc: '20.0040', tx_hash: '0x' + '4a'.repeat(32), status: 'submitted',
     created_at: iso(-30), submitted_at: iso(-29), expires_at: iso(42), review_reason: null, explorer_url: 'https://basescan.org/tx/0x' + '4a'.repeat(32),
-    verification: { all_pass: true, checks: okChecks, detail: { confirmations: 812, received_units: ['20004200'] }, checked_at: iso(-28) } },
-  { id: 102, user_id: 'u2', account_email: 'ben.example@example.org', flowers: 5, amount_usdc: 50.0017, tx_hash: '0x' + '7c'.repeat(32), status: 'manual_review',
+    verification: { all_pass: true, checks: okChecks, detail: { confirmations: 812, received_units: ['20004000'] }, checked_at: iso(-28) } },
+  { id: 102, user_id: 'u2', account_email: 'ben.example@example.org', flowers: 5, amount_usdc: '50.0017', tx_hash: '0x' + '7c'.repeat(32), status: 'manual_review',
     created_at: iso(-50), submitted_at: iso(-49), expires_at: iso(22), review_reason: 'monto_distinto', explorer_url: 'https://basescan.org/tx/0x' + '7c'.repeat(32),
     verification: { all_pass: false, checks: { ...okChecks, exact_amount: false }, detail: { confirmations: 1500, received_units: ['50000000'] }, checked_at: iso(-48) } },
-  { id: 103, user_id: 'u3', account_email: 'clara.beispiel@example.de', flowers: 20, amount_usdc: 200.0073, tx_hash: null, status: 'awaiting_payment',
+  { id: 103, user_id: 'u3', account_email: 'clara.beispiel@example.de', flowers: 20, amount_usdc: '200.0090', tx_hash: null, status: 'awaiting_payment',
     created_at: iso(-3), submitted_at: null, expires_at: iso(69), review_reason: null, explorer_url: null, verification: null },
 ];
 const GIFTS = [
@@ -38,7 +38,7 @@ const USERS = [
   { user_id: 'u4', email: 'primo@example.com', display_name: 'Primo', country: 'MX', lang: 'es', state: 'regalo', created_at: iso(-200), trial_ends_at: iso(-176), access_until: iso(100), contact_name: null, contact_phone: null },
 ];
 const RPC = {
-  admin_summary: () => ({ accounts: 4, new_7d: 2, states: { prueba_activa: 1, prueba_vencida: 1, acceso_completo: 1, regalo: 1 }, claims: { pendiente: 2, en_revision: 1, activado: 1 }, usdc_activated: 10.0031 }),
+  admin_summary: () => ({ accounts: 4, new_7d: 2, states: { prueba_activa: 1, prueba_vencida: 1, acceso_completo: 1, regalo: 1 }, claims: { pendiente: 2, en_revision: 1, activado: 1 }, usdc_activated: '10.0030' }),
   admin_list_users: (a) => {
     const q = (a?.p_search || '').toLowerCase();
     const rows = USERS.filter((u) => (!q || u.email.includes(q) || (u.display_name || '').toLowerCase().includes(q)) && (!a?.p_state || u.state === a.p_state));

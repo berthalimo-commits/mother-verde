@@ -19,7 +19,8 @@ await b.ev(`document.getElementById('dsMas').click(); 1`); await sleep(300);
 await b.ev(`document.getElementById('dsReservarBtn').click(); 1`);
 s = await waitApp(b, /Envía exactamente/);
 const db1 = await sql(`select id, flowers, amount_units, status from support_claims where user_id = '${NEWBIE}' and status = 'awaiting_payment'`);
-const shown = (s.match(/(\d+\.\d{4}) USDC/) || [])[1];
+// shown in Spanish with a decimal comma (20,0042); compared as text with the database
+const shown = ((s.match(/(\d+,\d{4}) USDC/) || [])[1] || '').replace(',', '.');
 check('«Ver mi monto» con 2 flores -> el monto mostrado = el reservado en la base (20,00xx)', db1.length === 1 && db1[0].flowers === 2 && shown === (db1[0].amount_units / 1e6).toFixed(4), JSON.stringify({ shown, db1 }));
 check('…con dirección, QR, «en la red Base», vencimiento y aviso de decimales', /0x63bbacca9add146c93d5e3e4f77eb053809792d0/.test(s) && /en la red Base/.test(s) && /reservado para ti hasta/.test(s) && /decimales/.test(s) && await b.ev(`!!document.querySelector('#dsQr svg')`));
 await b.shot('app-1-monto');

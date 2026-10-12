@@ -24,6 +24,13 @@ export async function run({ db, as, q, check, newUser, ADMIN }) {
   const sub2 = (await as('authenticated', Q, 'select * from create_support_claim(1)')).rows[0];
   check('los campos son opcionales (enviar sin contacto funciona)', (await as('authenticated', Q, `select * from submit_support_claim_tx(${sub2.id}, '0x${'ce'.repeat(32)}')`)).rows?.[0]?.status === 'submitted');
 
+  console.log('15b. Monto como texto con 4 decimales (sin números decimales):');
+  for (const [u, t] of [[10042000, '10.0420'], [10004200, '10.0042'], [20042000, '20.0420'], [200009900, '200.0099'], [10001000, '10.0010'], [20000100, '20.0001'], [100000000, '100.0000']]) {
+    check(`usdc_text(${u}) = ${t}`, (await q(`select public.usdc_text(${u}) v`))[0].v === t);
+  }
+  const lt = (await A2(`select amount_usdc, pg_typeof(amount_usdc)::text ty from admin_list_claims(array['submitted']) limit 1`)).rows?.[0];
+  check('admin_list_claims devuelve el monto como texto con 4 decimales', lt?.ty === 'text' && /^\d+\.\d{4}$/.test(lt.amount_usdc), JSON.stringify(lt));
+
   console.log('16. Panel: Usuarios, ficha, Resumen, exportar CSV:');
   for (const [name, sql] of [['admin_list_users', `select * from admin_list_users()`], ['admin_get_user', `select admin_get_user('${P}')`], ['admin_summary', `select admin_summary()`], ['admin_export_csv', `select admin_export_csv('users')`]]) {
     check(`${name}: persona normal (con MFA) -> not_allowed`, err(await as('authenticated', Q, sql, [], 'aal2')).includes('not_allowed'));

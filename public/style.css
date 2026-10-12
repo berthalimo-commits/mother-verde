@@ -546,6 +546,9 @@ html.mv-locked .bit-entry-del{display:none !important;}
 .ds-amount-label{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft);}
 .ds-amount-big{font-family:'IBM Plex Mono',monospace; font-size:30px; font-weight:600; color:var(--ink); margin:4px 0; overflow-wrap:anywhere;}
 .ds-amount-net{font-size:14px; font-weight:600; color:var(--moss); margin-bottom:10px;}
+.ds-why{margin:6px 0 4px; font-size:13px; line-height:1.5; color:var(--ink-soft);}
+.ds-why b{color:var(--ink);}
+.ds-amount-inline{font-family:'IBM Plex Mono',monospace;}
 .ds-help{margin-top:18px; padding-top:14px; border-top:1px solid var(--line);}
 .ds-help h4{margin:0 0 6px; font-size:14px;}
 .ds-help p{margin:0; font-size:13.5px; line-height:1.5;}

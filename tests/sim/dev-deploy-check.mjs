@@ -36,7 +36,7 @@ await b.ev(`document.querySelector('.ds-slot[data-n="20"]').click(); 1`); await 
 await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(800);
 const amt = await b.ev(`document.getElementById('dsAmount')?.textContent`);
 const warn = await b.ev(`document.querySelector('.ds-amount-warn')?.innerText`);
-check(`vista previa: monto de ejemplo para 20 flores (${amt}) + aviso de monto exacto`, /^200\.00\d\d$/.test(amt || '') && /Envía exactamente este monto/.test(warn || ''));
+check(`vista previa: monto de ejemplo para 20 flores (${amt}) + aviso de monto exacto`, /^200,00\d\d$/.test(amt || '') && /Envía exactamente este monto/.test(warn || ''));
 await b.shot('dev-desbloquear-20');
 await b.send('Page.navigate', { url: base + '/panel-mv.html?demo=1' }); await sleep(5000);
 check('panel de ejemplo con datos de ejemplo', /VISTA PREVIA con datos de ejemplo/.test(await b.ev(`document.body.innerText`)));

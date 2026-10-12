@@ -26,7 +26,7 @@ s = await b.waitFor(/Avisos de aporte/);
 check('código correcto -> panel (sesión aal2)', /Avisos de aporte/.test(s) && /verificación en dos pasos ✓/.test(s));
 await b.ev(`document.querySelector('#ptabs button[data-t=claims]').click(); 1`);
 s = await b.waitFor(/aportante@example.org/);
-check('panel: aviso con correo, monto exacto, TXID, enlace a Basescan', /aportante@example\.org/.test(s) && /20\.00\d\d USDC/.test(s) && /0xabab/.test(s) && /Basescan/.test(s), s.slice(0, 400));
+check('panel: aviso con correo, monto exacto, TXID, enlace a Basescan', /aportante@example\.org/.test(s) && /20,00\d\d USDC/.test(s) && /0xabab/.test(s) && /Basescan/.test(s), s.slice(0, 400));
 check('panel: "Verificación manual" (automática apagada)', /Verificación manual/.test(s));
 check('"Activar acceso completo" deshabilitado antes de comprobar', await b.ev(`[...document.querySelectorAll('button[data-act=approve]')][0].disabled`) === true);
 await b.shot('panel-2-avisos');

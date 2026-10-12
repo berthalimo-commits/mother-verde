@@ -18,7 +18,12 @@ const DEMO = import.meta.env.VITE_MV_PREVIEW === '1' && new URLSearchParams(loca
 let demoFn = null;
 const app = document.getElementById('app');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const usdc = (units) => (Number(units) / 1e6).toFixed(4);
+// Amounts are TEXT (never JavaScript floats): the server sends '20.0420';
+// shown with the language's decimal separator. Received on-chain amounts are
+// integer base units, shown with all 6 decimals.
+const DEC_SEP = { es: ',', en: '.', de: ',', fr: ',' };
+const amt = (text) => (text == null ? '' : String(text).replace('.', DEC_SEP[lang] || '.'));
+const usdc = (units) => { const t = String(units ?? ''); if (!/^\d+$/.test(t)) return ''; const p = t.padStart(7, '0'); return p.slice(0, -6).replace(/^0+(?=\d)/, '') + (DEC_SEP[lang] || '.') + p.slice(-6); };
 
 // ------------------------------------------------------------ texts (4 languages)
 const LANGS = ['es', 'en', 'de', 'fr'];
@@ -447,7 +452,7 @@ function claimCard(c) {
   return `<div class="card">
     <div class="row" style="justify-content:space-between"><span>${emailCell(c.account_email, true)}</span><span class="pill">${esc(tr('st_' + c.status))}</span></div>
     ${c.contact_name || c.contact_phone ? `<p class="muted">${c.contact_name ? `${tr('contactName')}: <b>${esc(c.contact_name)}</b>` : ''}${c.contact_name && c.contact_phone ? ' · ' : ''}${c.contact_phone ? `${tr('contactPhone')}: <b class="mono">${esc(c.contact_phone)}</b>` : ''}</p>` : ''}
-    <p><b class="mono" style="font-size:18px">${esc(Number(c.amount_usdc).toFixed(4))} USDC</b> · ${c.flowers} ${c.flowers === 1 ? tr('flower') : tr('flowers')}</p>
+    <p><b class="mono" style="font-size:18px">${esc(amt(c.amount_usdc))} USDC</b> · ${c.flowers} ${c.flowers === 1 ? tr('flower') : tr('flowers')}</p>
     <p class="muted">${tr('reserved')}: ${when(c.created_at)} · ${tr('received')}: ${when(c.submitted_at)} · ${tr('expires')}: ${when(c.expires_at)}</p>
     ${c.tx_hash ? `<p>TXID: <span class="mono">${esc(c.tx_hash)}</span><br><a href="${esc(c.explorer_url)}" target="_blank" rel="noopener noreferrer">${tr('explorer')}</a></p>` : ''}
     ${c.review_reason ? `<p class="warn">${tr('reason')}: ${esc(c.review_reason)}</p>` : ''}
@@ -615,7 +620,7 @@ async function summaryView() {
     </div>
     <div class="card"><h2>${tr('sumClaims')}</h2><div class="stats">
       ${['pendiente', 'en_revision', 'rechazado', 'activado', 'vencido_o_cancelado'].map((k) => box(tr('cl_' + k), cl[k])).join('')}
-    </div><p>${tr('sumUsdc')}: <b class="mono">${esc(Number(s.usdc_activated || 0).toFixed(4))} USDC</b></p></div>`;
+    </div><p>${tr('sumUsdc')}: <b class="mono">${esc(amt(s.usdc_activated || '0.0000'))} USDC</b></p></div>`;
 }
 
 // ------------------------------------------------------------ users (read-only)
@@ -678,7 +683,7 @@ async function userFile(id) {
         <tr><th>${tr('contactName')}</th><td>${esc(u.contact_name || '—')}</td></tr>
         <tr><th>${tr('contactPhone')}</th><td class="mono">${esc(u.contact_phone || '—')}</td></tr>
       </table></div>
-    <div class="card"><h2>${tr('fileClaims')}</h2>${(u.claims || []).length ? `<table>${u.claims.map((c) => `<tr><td>#${c.id}</td><td>${esc(tr('st_' + c.status) || c.status)}</td><td class="mono">${esc(Number(c.amount_usdc).toFixed(4))} USDC</td><td>${d(c.created_at)}</td><td class="mono">${esc(c.tx_hash || '')}</td><td>${esc(c.review_reason || '')}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>
+    <div class="card"><h2>${tr('fileClaims')}</h2>${(u.claims || []).length ? `<table>${u.claims.map((c) => `<tr><td>#${c.id}</td><td>${esc(tr('st_' + c.status) || c.status)}</td><td class="mono">${esc(amt(c.amount_usdc))} USDC</td><td>${d(c.created_at)}</td><td class="mono">${esc(c.tx_hash || '')}</td><td>${esc(c.review_reason || '')}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>
     <div class="card"><h2>${tr('fileGifts')}</h2>${(u.gift_codes || []).length ? `<table>${u.gift_codes.map((g) => `<tr><td>#${g.id}</td><td>${g.days} d</td><td>${d(g.used_at)}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>`;
   document.getElementById('usBack').onclick = () => { redraw = () => panel(currentEmail); usersView(); };
 }

@@ -222,22 +222,31 @@ const REASON: Record<string, string> = {
   auto_limit: "monto_alto",
 };
 
-function activationEmail(flowers: number, appUrl: string): Mail & { to: "" } {
+// Exact amount as text from integer base units: always 4 decimals (20.0420).
+function usdcText(units: unknown, sep: string): string {
+  const s = String(units ?? "").trim();
+  if (!/^\d+$/.test(s)) return "";
+  const p = s.padStart(7, "0");
+  return p.slice(0, -6).replace(/^0+(?=\d)/, "") + sep + p.slice(-6, -2);
+}
+
+function activationEmail(flowers: number, units: unknown, appUrl: string): Mail & { to: "" } {
+  const es = usdcText(units, ","), en = usdcText(units, ".");
   const blocks: [string, string, string[]][] = [
     ["es", "Tu acceso completo está activo", [
-      `Recibimos tu aporte de ${flowers} ${flowers === 1 ? "flor" : "flores"} y ya activamos el acceso completo en tu cuenta de Mother Verde.`,
+      `Recibimos tu aporte de ${flowers} ${flowers === 1 ? "flor" : "flores"} (${es} USDC) y ya activamos el acceso completo en tu cuenta de Mother Verde.`,
       "Gracias por apoyar Canna Wasi. Si no hiciste este aporte, responde a este correo.",
     ]],
     ["en", "Your full access is active", [
-      `We received your contribution of ${flowers} ${flowers === 1 ? "flower" : "flowers"} and full access is now active on your Mother Verde account.`,
+      `We received your contribution of ${flowers} ${flowers === 1 ? "flower" : "flowers"} (${en} USDC) and full access is now active on your Mother Verde account.`,
       "Thank you for supporting Canna Wasi. If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
-      `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
+      `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} (${es} USDC) erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
       "Danke, dass du Canna Wasi unterstützt. Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [
-      `Nous avons reçu ta contribution de ${flowers} ${flowers === 1 ? "fleur" : "fleurs"} et l'accès complet est maintenant actif sur ton compte Mother Verde.`,
+      `Nous avons reçu ta contribution de ${flowers} ${flowers === 1 ? "fleur" : "fleurs"} (${es} USDC) et l'accès complet est maintenant actif sur ton compte Mother Verde.`,
       "Merci de soutenir Canna Wasi. Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
     ]],
   ];
@@ -252,7 +261,7 @@ function activationEmail(flowers: number, appUrl: string): Mail & { to: "" } {
 // deno-lint-ignore no-explicit-any
 async function sendActivation(svc: any, ctx: Ctx, actor: string | null, label: string) {
   const flowers = Number((ctx.claim as unknown as { flowers: number }).flowers ?? 1);
-  const m = activationEmail(flowers, Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com");
+  const m = activationEmail(flowers, (ctx.claim as unknown as { amount_units: unknown }).amount_units, Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com");
   const r = await sendMail({ ...m, to: ctx.email });
   await svc.rpc("admin_log", {
     p_action: r.ok ? "activation_email_sent" : "activation_email_failed", p_target_user: ctx.claim.user_id,

@@ -175,6 +175,7 @@ n = globalThis.__mail.length;
 r = await call('claims', A2, { action: 'admin_approve', claim_id: P1.c.id });
 check('"Activar acceso completo" (todo pasó) -> approved sin motivo + correo enviado', r.body.status === 'approved' && r.body.email_sent === true && globalThis.__mail.length === n + 1, JSON.stringify(r));
 const am = globalThis.__mail.at(-1);
+check('correo de activación: monto exacto con 4 decimales (coma en ES/DE/FR, punto en EN)', /\(\d+,\d{4} USDC\)/.test(am.text) && /\(\d+\.\d{4} USDC\)/.test(am.text) && am.text.includes('(' + (P1.c.amount_units / 1e6).toFixed(4) + ' USDC)'), am.text.slice(0, 300));
 check('correo de activación: a la cuenta, 4 idiomas, 2 flores, sin precios', am.to === 'pago10@example.org' && ['Tu acceso completo está activo', 'Your full access is active', 'Dein Vollzugriff ist aktiv', 'Ton accès complet est actif', '2 flores'].every((s) => am.text.includes(s)) && !BANNED.some((b) => am.text.includes(b)));
 check('…la cuenta pasa a supporter', (await q(`select subscription_status s from profiles where id = '${P1.u}'`))[0].s === 'supporter');
 const cases = [
@@ -200,6 +201,27 @@ for (const [name, setup, why] of cases) {
   if (name === 'destino incorrecto') {
     check('…rechazar sin motivo -> reason_required', (await call('claims', A2, { action: 'admin_reject', claim_id: p.c.id })).body.error === 'reason_required');
     check('…rechazar con motivo -> rejected', (await call('claims', A2, { action: 'admin_reject', claim_id: p.c.id, reason: 'La transferencia fue a otra dirección.' })).body.status === 'rejected');
+  }
+}
+// Exact amounts with leading/trailing zeros in the code: the comparison is in
+// integer base units (6 decimals) — 10.0420 = 10042000, 10.0042 = 10004200 …
+let kk = 70;
+for (const [label, units] of [['10.0420', 10042000], ['10.0042', 10004200], ['20.0420', 20042000], ['200.0099', 200009900], ['10.0010', 10001000], ['20.0001', 20000100], ['110.0400', 110040000]]) {
+  const flowers = Math.floor(units / 10000000);
+  const p = await payer(kk++, flowers);
+  await db.exec(`update support_claims set amount_units = ${units} where id = ${p.c.id}`);
+  putTx(p.tx, { amount: units });
+  r = await call('claims', A2, { action: 'admin_check', claim_id: p.c.id });
+  check(`${label} USDC enviado exacto (${units} unidades) -> todas las comprobaciones pasan`, r.body.result?.all_pass === true, JSON.stringify(r.body.result?.checks));
+  for (const [what, sent] of [['1 millonésima de más', units + 1], ['1 millonésima de menos', units - 1], ['un decimal de menos (redondeado)', Math.floor(units / 100000) * 100000]]) {
+    if (sent === units) continue;
+    const q2 = await payer(kk++, flowers);
+    await db.exec(`update support_claims set amount_units = ${units + (kk % 7 + 1) * 100} where id = ${q2.c.id}`);
+    const want = (await q(`select amount_units from support_claims where id = ${q2.c.id}`))[0].amount_units;
+    putTx(q2.tx, { amount: want === units ? sent : (sent - units) + Number(want) });
+    r = await call('claims', A2, { action: 'admin_check', claim_id: q2.c.id });
+    const row = (await q(`select status, review_reason from support_claims where id = ${q2.c.id}`))[0];
+    check(`${label}: ${what} -> revisión manual «monto_distinto»`, row.status === 'manual_review' && row.review_reason === 'monto_distinto', JSON.stringify(row));
   }
 }
 const PC = await payer(40); putTx(PC.tx, { amount: PC.c.amount_units, block: 990 });

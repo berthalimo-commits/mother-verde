@@ -300,8 +300,16 @@ $$;
 
 -- ---------------------------------------------------------------- admins
 -- List claims (admins with MFA, or the SQL Editor).
+-- Amount in USDC as TEXT with exactly 4 decimals (10.0420, never 10.042),
+-- computed with integers only from the base units (6 decimals).
+create or replace function public.usdc_text(p_units bigint)
+returns text language sql immutable set search_path = public as $$
+  select case when p_units is null then null
+              else (p_units / 1000000)::text || '.' || lpad(((p_units % 1000000) / 100)::text, 4, '0') end;
+$$;
+
 create or replace function public.admin_list_claims(p_statuses text[] default array['submitted', 'manual_review'])
-returns table (id bigint, user_id uuid, account_email text, flowers integer, amount_usdc numeric,
+returns table (id bigint, user_id uuid, account_email text, flowers integer, amount_usdc text,
                tx_hash text, status text, created_at timestamptz, submitted_at timestamptz,
                expires_at timestamptz, review_reason text, verification jsonb, explorer_url text,
                contact_name text, contact_phone text)
@@ -313,7 +321,7 @@ as $$
 begin
   if not (public.is_admin_aal2() or public.is_sql_editor()) then raise exception 'not_allowed'; end if;
   return query
-    select c.id, c.user_id, u.email::text, c.flowers, round(c.amount_units / 1000000.0, 4), c.tx_hash, c.status,
+    select c.id, c.user_id, u.email::text, c.flowers, public.usdc_text(c.amount_units), c.tx_hash, c.status,
            c.created_at, c.submitted_at, c.expires_at, c.review_reason, c.verification,
            case when c.tx_hash is null then null else 'https://basescan.org/tx/' || c.tx_hash end,
            c.contact_name, c.contact_phone
@@ -378,6 +386,7 @@ $$;
 -- Privileges: the browser gets the three own-claim functions and the two
 -- admin functions (which check admin + MFA inside); the rest is server-only.
 revoke execute on function public.app_config_value(text, integer) from public, anon, authenticated;
+revoke execute on function public.usdc_text(bigint) from public, anon, authenticated;
 revoke execute on function public.expire_support_claims() from public, anon, authenticated;
 revoke execute on function public.svc_record_claim_check(bigint, jsonb, boolean, text) from public, anon, authenticated;
 revoke execute on function public.svc_approve_claim(bigint, uuid, text, text) from public, anon, authenticated;
