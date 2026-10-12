@@ -48,9 +48,12 @@ Resultado: **29 / 29**. Antes del arreglo daba 10 / 29.
 
 | Batería | Qué cubre | Resultado |
 |---|---|---|
-| Base de datos (PGlite) | migraciones, permisos, aportes, admin (`hello@motherverdeny.com`) + MFA, códigos, auditoría, 1–20 flores y unicidad del monto (incluida una carrera simultánea), reversas con esquema idéntico | **178 / 178** |
+| Base de datos (PGlite) | migraciones, permisos, aportes 1–20 flores, contacto opcional, admin (`hello@motherverdeny.com`) + MFA, códigos, Usuarios/ficha/Resumen/CSV, auditoría, borrado de cuenta, reversas con esquema idéntico | **217 / 217** |
 | Funciones de punta a punta | admin-send-gift-code, support-claims, community-retranslate, cron de Vercel | **74 / 74** |
-| Panel en navegador | admin con la prueba de 24 h terminada (ve el bloqueo en la app y aun así usa el panel), MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **20 / 20** |
+| Panel en navegador | admin con la prueba terminada usa el panel, MFA, comprobar en Base, activar, códigos, anular, correo de prueba, registro | **20 / 20** |
+| Panel: Usuarios, Resumen, CSV | ficha registrada, botones de correo, contacto, exportación real (BOM, acentos, fórmulas), idiomas en vivo y al recargar, ninguna app de pago en los textos | **32 / 32** |
+| Vista previa (dev) | selector de estados y panel de ejemplo, 0 escrituras en la base | **14 / 14** |
+| Versión desplegada en dev (Vercel) | abierta como visitante: flag de vista previa, idioma, 20 flores, panel; 0 escrituras en producción | **9 / 9** |
 | App en navegador | Desbloquear con monto exacto, envío del TXID, código de regalo | **10 / 10** |
 | Idioma en vivo | cambio ES/EN/DE/FR con la pantalla abierta + recarga, 6 pantallas | **29 / 29** |
 | 20 flores en navegador | 5×4 en móvil, 10×2 en pantalla grande, 200,00xx, «copiar monto exacto» y aviso en 4 idiomas | **14 / 14** |
@@ -258,6 +261,30 @@ En la app, el código de regalo está en el icono de persona (arriba a la derech
 
 ---
 
+### Pestañas del panel (nuevas)
+- **Resumen**: cuentas totales, altas de los últimos 7 días, pruebas activas, pruebas vencidas sin aporte, acceso completo, accesos por regalo vigentes, bloqueadas, avisos de aporte por estado (pendiente, en revisión, rechazado, activado, vencido o cancelado) y el total de USDC activado.
+- **Usuarios** (solo lectura): correo, nombre visible (de Comunidad), país, idioma, estado de acceso, alta, fin de la prueba, acceso hasta y, si los dio en un aviso de aporte, nombre y teléfono de contacto. Tiene búsqueda por correo o nombre, filtro por estado y 50 por página. **Nunca** muestra Bitácora, fotos ni publicaciones. Cargar la lista **no** se anota; abrir la **ficha** de una persona **sí** (`user_viewed`).
+- **Correos**: en cada aviso de aporte, en cada código canjeado y en cada usuario hay «Copiar correo» y «Escribir». «Escribir» abre tu programa de correo con el asunto «Mother Verde»; el panel nunca envía correos libres ni masivos.
+- **Exportar CSV** (Usuarios, Avisos de aporte, Códigos de regalo, Registro):
+  - Lo hace la función de servidor `admin_export_csv`, que exige admin + MFA.
+  - El archivo va en UTF-8 con BOM, separado por comas, y protegido contra fórmulas (una celda que empiece por =, +, -, @, tabulador o salto lleva una comilla delante).
+  - Como máximo **5000 filas** por exportación (se cambia con `update public.app_config set value = N where key = 'csv_export_max_rows';`). Si se corta, el panel lo avisa.
+  - Antes de exportar Usuarios aparece el aviso de datos personales en tu idioma.
+  - Cada exportación queda anotada en el registro (quién, pestaña, filtros, filas, si se cortó), **nunca** los datos.
+  - Separador: si tu Excel muestra todo en una sola columna, ábrelo con Datos → Desde texto/CSV.
+
+### Vista previa con datos de ejemplo (solo dev)
+- Dónde: https://mother-verde-git-dev-bertha2.vercel.app. Abajo a la izquierda aparece un recuadro naranja **«VISTA PREVIA · solo dev»**; el «–» lo minimiza.
+- **Estado de acceso**: visitante, correo sin confirmar, prueba de 24 h activa, prueba terminada, cuenta antigua sin prueba, acceso por regalo, acceso completo, acceso retirado.
+- **Aviso de aporte**: ninguno, monto reservado, TXID enviado, en revisión, rechazado, vencido.
+- Botones para ir a Desbloquear, Cuenta y la pantalla de acceso, y el enlace **«Panel de ejemplo»** (`/panel-mv.html?demo=1`).
+- Qué puedes hacer ahí: reservar un monto, enviar un TXID o canjear un código; todo está **simulado**.
+- **Nunca escribe en la base de datos**; está comprobado registrando todas las peticiones.
+- **No existe en producción**:
+  - El build de `main` no incluye el selector ni los datos de ejemplo.
+  - Además, recorta del `main.js` las funciones de vista previa y falla si quedara alguna.
+  - Está comprobado compilando como `main`.
+
 ## 9. Qué revisar tú fuera del código (D.5)
 
 1. Supabase → Authentication → Emails: pegar las 13 plantillas y sus asuntos; activar las notificaciones de seguridad.
@@ -267,8 +294,21 @@ En la app, el código de regalo está en el icono de persona (arriba a la derech
 5. PaymentCloud: la solicitud en revisión ya no hace falta con este modelo (decide si la retiras).
 6. Google: los resultados de búsqueda pueden mostrar durante días la descripción vieja. Puedes pedir que se vuelva a rastrear en Search Console.
 7. Perfiles o enlaces externos (redes, bio) que mencionen el precio de $7.10 o la prueba de 3 días.
+8. **Supabase → Database → Backups**: revisa qué copias de seguridad incluye tu plan (cada cuánto y cuántos días se guardan) y define cada cuánto sacas tú una copia a mano (por ejemplo, una vez por semana y siempre antes de pegar migraciones).
 
 ---
+
+### Para la Política de Privacidad (punto 8): campos de contacto opcionales
+- **Qué**: nombre y WhatsApp o teléfono, **opcionales**, en el aviso de aporte.
+- **Para qué**: solo para ayudar a la persona con ese aporte si hace falta (por ejemplo, si el monto no coincide).
+- **Quién lo ve**: únicamente quien administra Mother Verde, en el panel protegido con verificación en dos pasos. Otras cuentas no pueden leerlo; ni siquiera la propia persona puede leerlo desde la app.
+- **Cuánto tiempo**: mientras exista la cuenta; **se borra al eliminar la cuenta**. La base de datos borra en cascada los avisos de aporte con la cuenta, sin tocar `delete-account`; está comprobado en la simulación.
+- **Ojo:**
+  - El **registro de auditoría** conserva el correo de la cuenta en las acciones de administración (aprobaciones, envíos de códigos, fichas abiertas), también después de borrarse la cuenta, pero **no** el nombre ni el teléfono.
+  - Los **CSV que exportes** quedan fuera de la app: la Política debe decir que se guardan de forma segura y se borran cuando ya no hagan falta.
+  - **Propuesta para decidir con el abogado:** borrar o anonimizar el correo del registro pasado un plazo (por ejemplo, 24 meses).
+- **Base legal** a confirmar con el abogado: consentimiento (es opcional y se explica al lado del campo).
+- `[PENDIENTE: confirmar con contador y abogado]`
 
 ## 10. Checklist de lanzamiento (numerada)
 
@@ -282,6 +322,8 @@ En la app, el código de regalo está en el icono de persona (arriba a la derech
 8. ☐ Al día siguiente: `select * from public.cron_runs order by started_at desc limit 3;` debe mostrar `ok = true`.
 9. ☐ Activar el hook siguiendo `hook-activation-plan.md` (solo después del punto 6).
 10. ☐ (Opcional, más adelante) Encender la verificación automática, solo con tu aprobación escrita.
+11. ☐ Revisar Supabase → Database → Backups (qué incluye tu plan) y decidir cada cuánto sacas una copia a mano.
+12. ☐ Probar en el panel «Exportar CSV» de Usuarios y abrir el archivo en tu Excel (acentos y columnas).
 
 ---
 
