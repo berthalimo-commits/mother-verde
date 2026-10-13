@@ -3457,6 +3457,24 @@
     <div class="eyebrow" data-i18n="cuentaEyebrow">Ajustes</div>
     <h2 class="title" data-i18n="cuentaTitle">Tu cuenta</h2>
 
+    <!-- Result of opening an e-mail link (expired / already used / e-mail
+         change half done). Filled by src/auth.js. -->
+    <div class="card-block auth-link-card" id="authLinkCard" hidden></div>
+
+    <!-- Opened a "reset password" link: choose the new one. Logic in src/auth.js. -->
+    <div class="card-block" id="authRecoveryCard" hidden>
+      <h3 data-i18n="recH">Elige una contraseña nueva</h3>
+      <p class="acc-text" data-i18n="recP">Abriste el enlace para cambiar tu contraseña. Escríbela dos veces.</p>
+      <form id="authRecoveryForm" class="auth-mini-form">
+        <label for="recPass1" data-i18n="recNueva">Contraseña nueva</label>
+        <input type="password" id="recPass1" required minlength="8" autocomplete="new-password" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres">
+        <label for="recPass2" data-i18n="recRepite">Repítela</label>
+        <input type="password" id="recPass2" required minlength="8" autocomplete="new-password">
+        <button type="submit" class="btn btn-primary" id="recSaveBtn" data-i18n="recGuardar">Guardar contraseña</button>
+        <div id="recMsg" class="acc-note" role="status"></div>
+      </form>
+    </div>
+
     <div class="card-block" id="cuentaAuthCard">
       <div id="authTabs" style="display:flex; gap:8px; margin-bottom:18px;">
         <button type="button" class="sub-pill on" data-auth-tab="login" data-i18n="authTabLogin">Iniciar sesión</button>
@@ -3469,6 +3487,7 @@
         <button type="submit" class="btn btn-primary" id="authSubmitBtn" data-i18n="authLoginBtn">Entrar</button>
         <div id="authMsg" style="font-size:12.5px; min-height:16px;"></div>
         <span id="authSwitchLink" style="cursor:pointer; font-size:12.5px; color:var(--moss-deep); text-decoration:underline;" data-i18n="authSwitchToSignup">¿No tienes cuenta? Crear una</span>
+        <button type="button" id="authForgotLink" class="auth-link-btn" data-i18n="authOlvido">¿Olvidaste tu contraseña?</button>
       </form>
     </div>
 
@@ -3484,6 +3503,16 @@
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
+        </div>
+        <!-- Sign-in e-mail (auth), not the contact e-mail above. Logic in src/auth.js. -->
+        <div class="auth-email-box">
+          <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ceH">Correo para iniciar sesión</label>
+          <div><b id="ceActual"></b> <button type="button" class="auth-link-btn" id="ceOpenBtn" data-i18n="ceBtn">Cambiar</button></div>
+          <form id="ceForm" class="auth-mini-form" hidden>
+            <input type="email" id="ceInput" required autocomplete="email" placeholder="nuevo@correo.com" aria-labelledby="ceOpenBtn">
+            <button type="submit" class="btn btn-ghost" id="ceSendBtn" data-i18n="ceEnviar">Enviar enlace de confirmación</button>
+          </form>
+          <div id="ceMsg" class="acc-note" role="status"></div>
         </div>
         <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
           <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>

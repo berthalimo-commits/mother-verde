@@ -571,3 +571,12 @@ html.mv-locked .bit-entry-del{display:none !important;}
 .gift-form .btn{align-self:flex-start;}
 .acc-note a{color:var(--teal); cursor:pointer; text-decoration:underline;}
 .cmy-pending-tr{display:block; margin-top:4px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-soft);}
+
+/* E-mail links, password recovery and sign-in e-mail change (src/auth.js). */
+.auth-link-btn{background:none; border:0; padding:0; font:inherit; font-size:12.5px; color:var(--moss-deep); text-decoration:underline; cursor:pointer; text-align:left;}
+.auth-mini-form{display:flex; flex-direction:column; gap:8px; max-width:360px; margin-top:8px;}
+.auth-mini-form label{font-family:'IBM Plex Mono',monospace; font-size:11px;}
+.auth-mini-form input{width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;}
+.auth-email-box{margin-top:16px; padding-top:14px; border-top:1px solid var(--line); max-width:360px; overflow-wrap:anywhere;}
+.auth-link-card{border-left:3px solid var(--resin);}
+.auth-link-card .acc-actions{justify-content:flex-start; margin:10px 0 4px;}

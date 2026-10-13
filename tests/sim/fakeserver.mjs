@@ -68,7 +68,8 @@ const users = { [ADMIN]: 'hello@motherverdeny.com', [PAYER]: 'aportante@example.
 const session = (uid, aal) => ({ access_token: `u:${uid}:${aal}`, refresh_token: `r:${uid}:${aal}`, token_type: 'bearer', expires_in: 360000, expires_at: Math.floor(Date.now() / 1000) + 360000, user: userObj(uid) });
 const userObj = (uid) => ({ id: uid, aud: 'authenticated', role: 'authenticated', email: users[uid], email_confirmed_at: new Date().toISOString(), app_metadata: {}, user_metadata: {}, factors: (factors[uid] || []).map((f) => ({ id: f.id, factor_type: 'totp', status: f.status, friendly_name: 'Mother Verde admin', created_at: '', updated_at: '' })), created_at: '' });
 
-const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Methods': 'GET,POST,PATCH,DELETE,OPTIONS', 'Access-Control-Expose-Headers': '*' };
+const authMail = []; let authFail = null;
+const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS', 'Access-Control-Expose-Headers': '*' };
 http.createServer(async (rq, rs) => {
   try {
     if (rq.method === 'OPTIONS') { rs.writeHead(204, CORS); rs.end(); return; }
@@ -79,7 +80,27 @@ http.createServer(async (rq, rs) => {
     const [, uid, aal] = tok.split(':');
     let res;
     const J = (d, st = 200) => new Response(JSON.stringify(d), { status: st, headers: { 'content-type': 'application/json' } });
+    // Auth e-mails (signup / resend / recover / e-mail change): recorded in
+    // authMail, never sent. authFail simulates Supabase refusing to send.
+    const authSend = (type, email, extra = {}) => {
+      if (authFail === 'rate') return J({ code: 'over_email_send_rate_limit', msg: 'email rate limit exceeded' }, 429);
+      if (authFail === 'smtp') return J({ code: 'unexpected_failure', msg: 'Error sending confirmation email' }, 500);
+      authMail.push({ type, email, redirect_to: u.searchParams.get('redirect_to') || '', at: Date.now(), ...extra });
+      return null;
+    };
     if (u.pathname === '/auth/v1/user' && rq.method === 'GET') res = users[uid] ? J(userObj(uid)) : J({ msg: 'bad jwt' }, 401);
+    else if (u.pathname === '/auth/v1/signup' && rq.method === 'POST') {
+      const b = JSON.parse(body);
+      res = authSend('signup', b.email, { lang: b.data?.preferred_lang }) || J({ id: 'pending-' + b.email, aud: 'authenticated', role: '', email: b.email, user_metadata: b.data || {}, identities: [{}], created_at: '' });
+    } else if (u.pathname === '/auth/v1/resend' && rq.method === 'POST') {
+      const b = JSON.parse(body); res = authSend('resend_' + b.type, b.email) || J({});
+    } else if (u.pathname === '/auth/v1/recover' && rq.method === 'POST') {
+      const b = JSON.parse(body); res = authSend('recovery', b.email) || J({});
+    } else if (u.pathname === '/auth/v1/user' && rq.method === 'PUT') {
+      const b = JSON.parse(body);
+      if (b.email) res = authSend('email_change', b.email, { from: users[uid] }) || J({ ...userObj(uid), new_email: b.email });
+      else { authMail.push({ type: 'password_set', email: users[uid], at: Date.now() }); res = J(userObj(uid)); }
+    }
     else if (u.pathname === '/auth/v1/factors' && rq.method === 'POST') {
       const id = 'f-' + Math.random().toString(16).slice(2, 10);
       (factors[uid] ||= []).push({ id, status: 'unverified' });
@@ -105,6 +126,8 @@ http.createServer(async (rq, rs) => {
 }).listen(54321, () => console.log('fake supabase on 54321; mails:', 'GET /__mail'));
 // expose sent mail + a seed helper for the test driver
 http.createServer(async (rq, rs) => {
+  if (rq.url === '/__auth') { rs.end(JSON.stringify(authMail)); return; }
+  if (rq.url.startsWith('/__authfail')) { authFail = new URL('http://x' + rq.url).searchParams.get('m') || null; authMail.length = rq.url.includes('reset') ? 0 : authMail.length; rs.end('ok'); return; }
   if (rq.url === '/__mail') { rs.end(JSON.stringify(globalThis.__mail.map((m) => ({ to: m.to, subject: m.subject, text: m.text })))); return; }
   if (rq.url.startsWith('/__sql')) { const sql = decodeURIComponent(rq.url.split('?q=')[1]); try { rs.end(JSON.stringify((await db.query(sql)).rows, (k, v) => typeof v === 'bigint' ? Number(v) : v)); } catch (e) { rs.end(JSON.stringify({ error: e.message })); } return; }
   if (rq.url.startsWith('/__chain')) { const tx = decodeURIComponent(rq.url.split('tx=')[1].split('&')[0]); const units = rq.url.split('units=')[1]; chain.receipts[tx] = { status: '0x1', blockNumber: '0x384', logs: [{ address: USDC, topics: [TOPIC, '0x' + '0'.repeat(24) + '22'.repeat(20), '0x' + '0'.repeat(24) + DEST.slice(2)], data: '0x' + BigInt(units).toString(16).padStart(64, '0') }] }; rs.end('ok'); return; }
