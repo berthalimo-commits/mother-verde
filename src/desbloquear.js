@@ -12,8 +12,12 @@ window.MV_VERIFY_MAX_HOURS = SUPPORT.VERIFY_MAX_HOURS;
 const t = (k) => (window.t ? window.t(k) : k);
 const lang = () => (window.getCurrentLang ? window.getCurrentLang() : 'es');
 
+// Approved flower (outline v2, never filled): #mvBud full drawing, #mvBudS
+// simplified for small sizes. "ds-bud-on" = chosen: app green, amber hairs,
+// thicker line (style.css); otherwise a soft grey outline.
 function bud(size, extraClass = '') {
-  return `<svg class="ds-bud ${extraClass}" width="${size}" height="${Math.round(size * 1.6)}" viewBox="0 0 60 96" aria-hidden="true"><use href="#mvBud"/></svg>`;
+  const sym = size <= 40 ? '#mvBudS' : '#mvBud';
+  return `<svg class="ds-bud ${extraClass}" width="${size}" height="${Math.round(size * 96 / 84)}" viewBox="0 0 84 96" aria-hidden="true" focusable="false"><use href="${sym}"/></svg>`;
 }
 
 function fmt(template, vars) {
@@ -27,8 +31,8 @@ function gardenHtml() {
   let html = '';
   for (let i = 1; i <= SUPPORT.MAX_FLOWERS; i++) {
     const on = i <= flowers;
-    const label = fmt(t(i === 1 ? 'dsRamoUna' : 'dsRamoVarias'), { n: i, usdc: i * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY });
-    html += `<button type="button" class="ds-slot${on ? ' on' : ''}" data-n="${i}" aria-pressed="${on}" aria-label="${label}">${bud(30, on ? '' : 'ds-bud-off')}</button>`;
+    const label = fmt(t(i === 1 ? 'dsFlorN1' : 'dsFlorN'), { n: i });
+    html += `<button type="button" class="ds-slot${on ? ' on' : ''}" data-n="${i}" aria-pressed="${on}" aria-label="${label}">${bud(30, on ? 'ds-bud-on' : 'ds-bud-off')}<span class="ds-slot-mark" aria-hidden="true"></span></button>`;
   }
   return html;
 }
@@ -228,7 +232,7 @@ export function renderDesbloquear() {
     <p class="subhead ds-intro">${t('dsIntro')}</p>
 
     <div class="ds-scale" aria-hidden="true">
-      ${bud(26)}${bud(34)}${bud(42)}${bud(52)}${bud(64)}
+      ${bud(26, 'ds-bud-on')}${bud(34, 'ds-bud-on')}${bud(42, 'ds-bud-on')}${bud(52, 'ds-bud-on')}${bud(64, 'ds-bud-on')}
     </div>
     <p class="ds-scale-msg">${t('dsImportante')}</p>
 

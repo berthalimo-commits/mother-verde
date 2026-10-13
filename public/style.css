@@ -461,17 +461,23 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 .ds-intro{max-width:640px;}
 .ds-scale{display:flex; align-items:flex-end; gap:14px; margin:22px 0 8px;}
 .ds-scale-msg{font-family:'Manrope',sans-serif; font-weight:600; font-size:18px; color:var(--ink); margin:0 0 22px;}
-.ds-bud{display:block; flex:none;}
+/* Desbloquear flower (outline only, never filled). Colours as variables so
+   the same drawing works on dark and light backgrounds. */
+:root{ --mv-flower-off:#8AA398; --mv-flower-on:var(--moss); --mv-pistil-on:#E8A33D; }
+.ds-bud{display:block; flex:none; color:var(--mv-flower-off); --mvk:1; --mv-pistil:currentColor;}
+.ds-bud.ds-bud-on{color:var(--mv-flower-on); --mvk:1.45; --mv-pistil:var(--mv-pistil-on);}
 .ds-bud-pop{animation:dsPop .35s ease-out;}
 @keyframes dsPop{from{transform:scale(.6); opacity:0;} to{transform:scale(1); opacity:1;}}
 .ds-picker{display:flex; align-items:center; gap:12px; margin:14px 0 8px;}
 /* 20 places: 5 columns × 4 rows on phones, 10 × 2 from 720 px. */
 .ds-garden{flex:1; display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:4px 6px; padding:8px 10px; border:1px dashed var(--line-strong); border-radius:10px; max-width:420px;}
 @media (min-width:720px){ .ds-garden{grid-template-columns:repeat(10, minmax(0, 1fr)); max-width:560px;} }
-.ds-slot{display:flex; justify-content:center; align-items:flex-end; padding:2px 0; background:none; border:0; border-radius:6px; cursor:pointer; min-height:44px;}
+.ds-slot{display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:3px; padding:2px 0; background:none; border:0; border-radius:6px; cursor:pointer; min-height:44px;}
+/* Chosen is not shown by colour only: thicker outline + a bar underneath. */
+.ds-slot-mark{display:block; width:14px; height:3px; border-radius:2px; background:transparent;}
+.ds-slot.on .ds-slot-mark{background:var(--mv-flower-on);}
 .ds-slot:focus-visible{outline:2px solid var(--moss); outline-offset:1px;}
 .ds-slot .ds-bud{width:100%; max-width:30px; height:auto;}
-.ds-bud-off{opacity:.22; filter:grayscale(1);}
 .ds-step{flex:none; width:40px; height:40px; border-radius:50%; border:1px solid var(--line-strong); background:transparent; color:var(--ink); font-size:20px; line-height:1; cursor:pointer;}
 .ds-step:disabled{opacity:.35; cursor:default;}
 .ds-step:not(:disabled):hover{border-color:var(--moss);}
