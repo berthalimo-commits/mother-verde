@@ -72,7 +72,7 @@ export async function run({ db, as, q, check, newUser, ADMIN }) {
 
   console.log('17. Al borrar la cuenta:');
   await db.exec(`delete from auth.users where id = '${P}'`);
-  check('sus avisos de aporte (con nombre y teléfono) se borran en cascada', (await q(`select count(*)::int c from support_claims where user_id = '${P}'`))[0].c === 0 && (await q(`select count(*)::int c from support_claims where contact_phone = '+51 987 654 321'`))[0].c === 0);
+  check('sus avisos ya no son suyos: ninguno queda con su cuenta ni con su nombre o teléfono (los pagados se conservan anónimos, ver a1-money)', (await q(`select count(*)::int c from support_claims where user_id = '${P}'`))[0].c === 0 && (await q(`select count(*)::int c from support_claims where contact_phone = '+51 987 654 321'`))[0].c === 0);
   const kept = (await q(`select count(*)::int c from admin_audit_log where target_email = 'u700@example.org'`))[0].c;
   check(`el registro de auditoría conserva el correo en ${kept} anotación(es) (a tener en cuenta en la Política)`, kept >= 1);
 }

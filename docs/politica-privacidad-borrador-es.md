@@ -137,7 +137,18 @@ te sigue, tu actividad en Descubrir y las traducciones guardadas de tus
 publicaciones y comentarios actuales. También se borran los comentarios que
 otras personas dejaron en tus publicaciones. **No se puede deshacer.**
 
+**Avisos de aporte.** Si solo habías reservado un monto (sin enviar el código
+de la transacción, TXID), ese aviso se borra con la cuenta. Si ya habías
+enviado un TXID, el aviso **se conserva como constancia del pago**, pero
+separado de ti: se borran tu correo, tu nombre y tu teléfono de contacto, y
+solo quedan el TXID, el monto, la cantidad de flores, las fechas y el estado
+de la revisión. Ese TXID y el pago son además públicos e imborrables en la
+red Base (es cómo funciona una cadena de bloques).
+[PENDIENTE: revisión de abogada — base legal para conservar la constancia
+del pago (obligación contable o interés legítimo) y cuánto tiempo se guarda.]
+
 Lo que este borrado no alcanza:
+- Los avisos de aporte con TXID, en la forma anónima que se explica arriba.
 - Las traducciones de versiones anteriores de una publicación que editaste.
 - Los textos que DeepL ya recibió (ver sección 4).
 - Capturas o copias que otras personas hayan hecho de tu contenido público.

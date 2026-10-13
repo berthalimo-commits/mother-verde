@@ -191,11 +191,11 @@ async function baseRpc(method: string, params: unknown[]) {
 }
 
 interface Claim {
-  id: number; user_id: string; amount_units: number | string; status: string;
+  id: number; user_id: string | null; amount_units: number | string; status: string;
   created_at: string; expires_at: string; tx_hash: string | null; submitted_at: string | null;
   verification: { checked_at?: string } | null;
 }
-interface Ctx { claim: Claim; email: string; lang: string; min_confirmations: number; auto_max_usdc: number; auto_enabled: boolean }
+interface Ctx { claim: Claim; email: string | null; lang: string; account_deleted?: boolean; min_confirmations: number; auto_max_usdc: number; auto_enabled: boolean }
 
 type Checks = Record<string, boolean>;
 interface CheckResult { checks: Checks; all_pass: boolean; pending: boolean; reason: string | null; detail: Record<string, unknown> }
@@ -303,6 +303,9 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
 
 // deno-lint-ignore no-explicit-any
 async function sendActivation(svc: any, ctx: Ctx, actor: string | null, label: string) {
+  // Account deleted after giving the TXID: the payment is recorded, but there
+  // is nobody to activate and no address to write to.
+  if (!ctx.email) return { ok: false, provider: "", attempts: 0, error: "account_deleted" };
   const flowers = Number((ctx.claim as unknown as { flowers: number }).flowers ?? 1);
   const m = activationEmail(flowers, (ctx.claim as unknown as { amount_units: unknown }).amount_units, Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com");
   const r = await deliver(svc, { ...m, to: ctx.email }, "activation", ctx.claim.user_id, `claim:${ctx.claim.id}`);

@@ -1,6 +1,7 @@
 -- READ-ONLY precheck. Paste in the Supabase SQL Editor BEFORE migrations
 -- 20261010120000, 20261010130000, 20261011100000, 20261011120000,
--- 20261011130000, 20261013100000, 20261013110000 and 20261013120000.
+-- 20261011130000, 20261013100000, 20261013110000, 20261013120000 and the
+-- 20261014* migrations.
 -- It changes nothing.
 --
 -- It checks that production has exactly the objects those migrations expect
@@ -57,7 +58,8 @@ with expected(kind, name) as (values
   ('function', 'public.svc_signup_email_fix(p_old text, p_new text)'),
   ('function', 'public.admin_mail_failures_24h()'),
   ('trigger',  'auth.users.on_auth_email_changed'),
-  ('table',    'public.signup_fix_attempts')
+  ('table',    'public.signup_fix_attempts'),
+  ('trigger',  'auth.users.on_auth_user_delete_claims')
 ), present as (
   select 'policy' kind, schemaname || '.' || tablename || '.' || policyname name from pg_policies
   union all

@@ -223,6 +223,7 @@ const T2 = {
     mailFailH: 'Correos fallidos en las últimas 24 h', mailSentH: 'Correos enviados en las últimas 24 h', mailBanner: 'Correos fallidos en las últimas 24 h: {n}. Míralos en Registro.',
     mailListH: 'Envíos de correo (códigos, activaciones, pruebas)', mailListP: 'Cada envío de nuestras funciones. Si falló, ya se reintentó (y se probó Resend si MAIL_PROVIDER lo permite). Un código que no se pudo enviar queda anulado: envía otro.', thKind: 'Tipo', thResult: 'Resultado', thProvider: 'Salida', thAttempts: 'Intentos', thError: 'Error',
     mk_gift_code: 'Código de regalo', mk_activation: 'Activación', mk_test: 'Prueba', mk_signup_email_fixed: 'Correo de registro corregido', resOk: 'enviado', resFail: 'FALLÓ', mailRetried: 'Ojo: hubo que reintentar ({a} intentos, salió por {p}).',
+    accountDeletedH: 'Cuenta borrada', accountDeletedP: 'La persona borró su cuenta. Se conservan solo el TXID, el monto, las fechas y el estado (sin correo, nombre ni teléfono). Aprobar registra el pago como recibido: no hay cuenta que activar ni correo que enviar.',
     tabSummary: 'Resumen', tabUsers: 'Usuarios', copyEmail: 'Copiar correo', copied: 'Copiado', writeEmail: 'Escribir',
     contactName: 'Nombre de contacto', contactPhone: 'WhatsApp o teléfono',
     sumAccounts: 'Cuentas en total', sumNew7: 'Altas en los últimos 7 días', sumTrialActive: 'Pruebas activas', sumTrialExpired: 'Pruebas vencidas sin aporte',
@@ -242,6 +243,7 @@ const T2 = {
     mailFailH: 'Failed e-mails in the last 24 h', mailSentH: 'E-mails sent in the last 24 h', mailBanner: 'Failed e-mails in the last 24 h: {n}. See them in Log.',
     mailListH: 'E-mail sends (codes, activations, tests)', mailListP: 'Every send from our functions. A failure was already retried (and Resend tried if MAIL_PROVIDER allows it). A code that could not be sent is voided: send another one.', thKind: 'Type', thResult: 'Result', thProvider: 'Output', thAttempts: 'Attempts', thError: 'Error',
     mk_gift_code: 'Gift code', mk_activation: 'Activation', mk_test: 'Test', mk_signup_email_fixed: 'Sign-up e-mail corrected', resOk: 'sent', resFail: 'FAILED', mailRetried: 'Note: it needed a retry ({a} attempts, sent via {p}).',
+    accountDeletedH: 'Account deleted', accountDeletedP: 'The person deleted their account. Only the TXID, amount, dates and status are kept (no e-mail, name or phone). Approving records the payment as received: there is no account to activate and no e-mail to send.',
     tabSummary: 'Summary', tabUsers: 'Users', copyEmail: 'Copy e-mail', copied: 'Copied', writeEmail: 'Write',
     contactName: 'Contact name', contactPhone: 'WhatsApp or phone',
     sumAccounts: 'Accounts in total', sumNew7: 'Sign-ups in the last 7 days', sumTrialActive: 'Active trials', sumTrialExpired: 'Expired trials without contribution',
@@ -261,6 +263,7 @@ const T2 = {
     mailFailH: 'Fehlgeschlagene E-Mails (letzte 24 h)', mailSentH: 'Gesendete E-Mails (letzte 24 h)', mailBanner: 'Fehlgeschlagene E-Mails in den letzten 24 h: {n}. Siehe Protokoll.',
     mailListH: 'E-Mail-Versand (Codes, Freischaltungen, Tests)', mailListP: 'Jeder Versand unserer Funktionen. Ein Fehler wurde schon wiederholt (und Resend versucht, wenn MAIL_PROVIDER es erlaubt). Ein Code, der nicht gesendet werden konnte, ist ungültig: Sende einen neuen.', thKind: 'Art', thResult: 'Ergebnis', thProvider: 'Weg', thAttempts: 'Versuche', thError: 'Fehler',
     mk_gift_code: 'Geschenkcode', mk_activation: 'Freischaltung', mk_test: 'Test', mk_signup_email_fixed: 'Registrierungs-E-Mail korrigiert', resOk: 'gesendet', resFail: 'FEHLGESCHLAGEN', mailRetried: 'Hinweis: Es brauchte einen neuen Versuch ({a} Versuche, gesendet über {p}).',
+    accountDeletedH: 'Konto gelöscht', accountDeletedP: 'Die Person hat ihr Konto gelöscht. Erhalten bleiben nur TXID, Betrag, Daten und Status (keine E-Mail, kein Name, kein Telefon). Freischalten vermerkt die Zahlung als erhalten: Es gibt kein Konto zum Freischalten und keine E-Mail zum Senden.',
     tabSummary: 'Übersicht', tabUsers: 'Nutzer', copyEmail: 'E-Mail kopieren', copied: 'Kopiert', writeEmail: 'Schreiben',
     contactName: 'Kontaktname', contactPhone: 'WhatsApp oder Telefon',
     sumAccounts: 'Konten insgesamt', sumNew7: 'Neue Konten (letzte 7 Tage)', sumTrialActive: 'Aktive Testphasen', sumTrialExpired: 'Abgelaufene Testphasen ohne Beitrag',
@@ -280,6 +283,7 @@ const T2 = {
     mailFailH: 'E-mails en échec (dernières 24 h)', mailSentH: 'E-mails envoyés (dernières 24 h)', mailBanner: 'E-mails en échec au cours des dernières 24 h : {n}. Voir le Journal.',
     mailListH: 'Envois d’e-mails (codes, activations, tests)', mailListP: 'Chaque envoi de nos fonctions. Un échec a déjà été réessayé (et Resend tenté si MAIL_PROVIDER le permet). Un code qui n’a pas pu être envoyé est annulé : envoies-en un autre.', thKind: 'Type', thResult: 'Résultat', thProvider: 'Sortie', thAttempts: 'Tentatives', thError: 'Erreur',
     mk_gift_code: 'Code cadeau', mk_activation: 'Activation', mk_test: 'Test', mk_signup_email_fixed: 'E-mail d’inscription corrigé', resOk: 'envoyé', resFail: 'ÉCHEC', mailRetried: 'Attention : il a fallu réessayer ({a} tentatives, envoyé via {p}).',
+    accountDeletedH: 'Compte supprimé', accountDeletedP: 'La personne a supprimé son compte. Seuls le TXID, le montant, les dates et le statut sont conservés (ni e-mail, ni nom, ni téléphone). Approuver enregistre le paiement comme reçu : il n’y a ni compte à activer ni e-mail à envoyer.',
     tabSummary: 'Résumé', tabUsers: 'Utilisateurs', copyEmail: 'Copier l’e-mail', copied: 'Copié', writeEmail: 'Écrire',
     contactName: 'Nom de contact', contactPhone: 'WhatsApp ou téléphone',
     sumAccounts: 'Comptes au total', sumNew7: 'Inscriptions des 7 derniers jours', sumTrialActive: 'Essais en cours', sumTrialExpired: 'Essais expirés sans contribution',
@@ -472,7 +476,8 @@ function claimCard(c) {
   const extra = [v?.detail?.confirmations != null ? tr('confirmations', { n: v.detail.confirmations }) : '',
     v?.detail?.received_units?.length ? tr('receivedAmt', { a: v.detail.received_units.map(usdc).join(', ') }) : ''].filter(Boolean).join(' · ');
   return `<div class="card">
-    <div class="row" style="justify-content:space-between"><span>${emailCell(c.account_email, true)}</span><span class="pill">${esc(tr('st_' + c.status))}</span></div>
+    <div class="row" style="justify-content:space-between"><span>${c.account_deleted ? `<b class="warn" data-deleted="1">${tr('accountDeletedH')}</b>` : emailCell(c.account_email, true)}</span><span class="pill">${esc(tr('st_' + c.status))}</span></div>
+    ${c.account_deleted ? `<p class="warn">${tr('accountDeletedP')}</p>` : ''}
     ${c.contact_name || c.contact_phone ? `<p class="muted">${c.contact_name ? `${tr('contactName')}: <b>${esc(c.contact_name)}</b>` : ''}${c.contact_name && c.contact_phone ? ' · ' : ''}${c.contact_phone ? `${tr('contactPhone')}: <b class="mono">${esc(c.contact_phone)}</b>` : ''}</p>` : ''}
     <p><b class="mono" style="font-size:18px">${esc(amt(c.amount_usdc))} USDC</b> · ${c.flowers} ${c.flowers === 1 ? tr('flower') : tr('flowers')}</p>
     <p class="muted">${tr('reserved')}: ${when(c.created_at)} · ${tr('received')}: ${when(c.submitted_at)} · ${tr('expires')}: ${when(c.expires_at)}</p>
