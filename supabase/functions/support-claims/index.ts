@@ -67,6 +67,9 @@ function json(body: unknown, status = 200): Response {
 //   smtp   -> Hostinger SMTP, port 465 with SSL (Supabase blocks 25 and 587)
 //   resend -> Resend HTTPS API (plan B if port 465 is blocked too)
 // sendMail never throws: it returns { ok, error? }.
+// Every e-mail: one sender (MAIL_FROM, "Mother Verde <hello@...>"), replies
+// to hello@, an HTML part and a plain-text part.
+const REPLY_TO = "hello@motherverdeny.com";
 interface Mail { to: string; subject: string; html: string; text: string }
 
 async function sendMail(m: Mail): Promise<{ ok: boolean; error?: string }> {
@@ -79,7 +82,7 @@ async function sendMail(m: Mail): Promise<{ ok: boolean; error?: string }> {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ from, to: [m.to], subject: m.subject, html: m.html, text: m.text }),
+        body: JSON.stringify({ from, to: [m.to], reply_to: REPLY_TO, subject: m.subject, html: m.html, text: m.text }),
         signal: AbortSignal.timeout(15000),
       });
       if (!res.ok) return { ok: false, error: `Resend ${res.status}: ${(await res.text()).slice(0, 200)}` };
@@ -96,7 +99,7 @@ async function sendMail(m: Mail): Promise<{ ok: boolean; error?: string }> {
       auth: { user, pass },
       connectionTimeout: 10000, greetingTimeout: 10000, socketTimeout: 15000,
     });
-    await transport.sendMail({ from, to: m.to, subject: m.subject, html: m.html, text: m.text });
+    await transport.sendMail({ from, to: m.to, replyTo: REPLY_TO, subject: m.subject, html: m.html, text: m.text });
     return { ok: true };
   } catch (e) {
     return { ok: false, error: String((e as Error)?.message ?? e).slice(0, 200) };
@@ -105,30 +108,32 @@ async function sendMail(m: Mail): Promise<{ ok: boolean; error?: string }> {
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
-// One e-mail, four languages (Spanish first), inline styles, no images.
-// blocks: [lang, title, paragraphs[]]; "highlight" is shown big in every block.
+// One e-mail, four languages (Spanish first), inline styles, no images, light
+// colours declared for dark-mode clients. blocks: [lang, title, paragraphs[]];
+// "highlight" is shown big in every block.
 function layout(blocks: [string, string, string[]][], highlight?: string, button?: { url: string; label: string }) {
   const sec = blocks.map(([lang, title, ps], i) => `
-    <tr><td style="padding:${i ? "28px" : "8px"} 32px 8px 32px;${i ? "border-top:1px solid #e3e8e2;" : ""}" lang="${lang}">
+    <tr><td style="padding:${i ? "28px" : "8px"} 24px 8px 24px;${i ? "border-top:1px solid #e3e8e2;" : ""}" lang="${lang}">
       <h2 style="margin:0 0 12px 0;font-size:19px;color:#1f3d2b;font-family:Georgia,serif;">${esc(title)}</h2>
       ${ps.map((p) => `<p style="margin:0 0 12px 0;font-size:15px;line-height:1.55;color:#2b2b2b;">${p}</p>`).join("")}
       ${highlight ? `<p style="margin:16px 0;text-align:center;"><span style="display:inline-block;padding:12px 18px;background:#f1f6ef;border:1px solid #c9dbc4;border-radius:8px;font-family:Consolas,Menlo,monospace;font-size:22px;letter-spacing:2px;color:#1f3d2b;">${esc(highlight)}</span></p>` : ""}
       ${button ? `<p style="margin:16px 0;text-align:center;"><a href="${esc(button.url)}" style="display:inline-block;padding:12px 22px;background:#2f6b45;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:bold;font-size:15px;">${esc(button.label)}</a></p>` : ""}
     </td></tr>`).join("");
-  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>Mother Verde</title></head>
 <body style="margin:0;padding:0;background:#f4f6f3;font-family:Arial,Helvetica,sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f3;"><tr><td align="center" style="padding:24px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:12px;">
-<tr><td style="padding:24px 32px 8px 32px;font-family:Georgia,serif;font-size:22px;color:#2f6b45;font-weight:bold;">Mother Verde</td></tr>
+<tr><td style="padding:24px 24px 8px 24px;font-family:Georgia,serif;font-size:22px;color:#2f6b45;font-weight:bold;">Mother Verde</td></tr>
 ${sec}
-<tr><td style="padding:20px 32px 24px 32px;font-size:12px;line-height:1.5;color:#6b6b6b;border-top:1px solid #e3e8e2;">Mother Verde · hello@motherverdeny.com</td></tr>
+<tr><td style="padding:20px 24px 24px 24px;font-size:12px;line-height:1.5;color:#6b6b6b;border-top:1px solid #e3e8e2;">Mother Verde · hello@motherverdeny.com</td></tr>
 </table></td></tr></table></body></html>`;
 }
+// Plain-text part: same words, the link once at the end.
 function plain(blocks: [string, string, string[]][], highlight?: string, url?: string) {
   const strip = (s: string) => s.replace(/<[^>]+>/g, "").replace(/&laquo;/g, "«").replace(/&raquo;/g, "»");
   return "Mother Verde\n\n" + blocks.map(([, t, ps]) =>
-    `${t}\n\n${ps.map(strip).join("\n\n")}${highlight ? `\n\n    ${highlight}` : ""}${url ? `\n\n${url}` : ""}`).join("\n\n----------\n\n") +
-    "\n\n--\nMother Verde · hello@motherverdeny.com\n";
+    `${t}\n\n${ps.map(strip).join("\n\n")}${highlight ? `\n\n    ${highlight}` : ""}`).join("\n\n----------\n\n") +
+    (url ? `\n\n----------\n\n${url}` : "") + "\n\n--\nMother Verde · hello@motherverdeny.com\n";
 }
 // =================================================================== /MAIL
 
@@ -252,7 +257,7 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
   ];
   return {
     to: "",
-    subject: "Acceso completo activo · Full access active · Vollzugriff aktiv · Accès complet actif — Mother Verde",
+    subject: "Tu acceso completo está activo · Your full access is active",
     html: layout(blocks, undefined, { url: appUrl, label: "Mother Verde" }),
     text: plain(blocks, undefined, appUrl),
   };
