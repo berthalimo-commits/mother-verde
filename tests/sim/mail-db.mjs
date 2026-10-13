@@ -48,7 +48,7 @@ check('…dominio desechable -> not_allowed', /not_allowed/.test(JSON.stringify(
 await db.exec(`insert into auth.users (id, email) values ('c0000004-0000-4000-8000-000000000000', 'p.e.r.s.o.n.a@gmail.com')`);
 check('…la misma dirección de Gmail escrita de otra forma -> not_allowed (una cuenta por persona)', /not_allowed/.test(JSON.stringify((await fix('pendiente.uno@gmail.com', 'persona+x@gmail.com')).body)));
 await db.exec(`update auth.users set created_at = now() - interval '8 days' where id = '${N}'`);
-check('…cuenta de hace más de 7 días -> not_found', /not_found/.test(JSON.stringify((await fix('pendiente.uno@gmail.com', 'otro.correo@example.org')).body)));
+check('…cuenta de hace más de 7 días -> too_old', /too_old/.test(JSON.stringify((await fix('pendiente.uno@gmail.com', 'otro.correo@example.org')).body)));
 await db.exec(`update auth.users set created_at = now() where id = '${N}'`);
 
 // email_normalized follows the sign-in e-mail

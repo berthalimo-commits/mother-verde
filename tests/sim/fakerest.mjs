@@ -71,12 +71,13 @@ export function makeRest(db) {
     // Only for accounts whose password is known (globalThis.__pw).
     if (u.pathname === '/auth/v1/token' && u.searchParams.get('grant_type') === 'password' && globalThis.__pw) {
       const b = JSON.parse(init.body || '{}');
+      (globalThis.__tokenCalls ||= []).push(b);
       const row = (await handle.q('select id, email, email_confirmed_at from auth.users where lower(email) = lower($1)', [b.email])).rows[0];
       if (!row || globalThis.__pw[row.id] !== b.password) return J({ code: 400, error_code: 'invalid_credentials', msg: 'Invalid login credentials' }, 400);
       if (!row.email_confirmed_at) return J({ code: 400, error_code: 'email_not_confirmed', msg: 'Email not confirmed' }, 400);
       return J({ access_token: `u:${row.id}:aal1`, token_type: 'bearer', expires_in: 3600, refresh_token: 'r', user: { id: row.id, email: row.email } });
     }
-    if (u.pathname.startsWith('/auth/v1/logout')) return new Response(null, { status: 204 });
+    if (u.pathname.startsWith('/auth/v1/logout')) { globalThis.__logouts = (globalThis.__logouts || 0) + 1; return new Response(null, { status: 204 }); }
     if (/^\/auth\/v1\/admin\/users\/[^/]+$/.test(u.pathname) && m === 'PUT') {
       if (w?.role !== 'service_role') return J({ msg: 'not admin' }, 403);
       const b = JSON.parse(init.body || '{}');

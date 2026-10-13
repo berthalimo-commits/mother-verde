@@ -91,6 +91,7 @@ no funciona bien con la base nueva y la nueva no funciona con la vieja).
 | Paso que deshace | Archivo de reversa | Qué se pierde |
 |---|---|---|
 | Hook | (sin SQL) Authentication → Hooks → apagar «Before User Created». **Primero esto.** | — |
+| `20261013120000` límites de «Corrígelo» | `rollback-20261013120000.sql` | el registro de intentos de corrección |
 | `20261013110000` panel de correos | `rollback-20261013110000.sql` | nada |
 | `20261013100000` correos | `rollback-20261013100000.sql` | el registro de envíos (`mail_events`) |
 | `20261011130000` códigos de regalo | `rollback-20261011130000.sql` | todos los códigos; los días ya dados se quedan hasta la última reversa |
@@ -134,7 +135,7 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
 5. ☐ **Tú**: SQL Editor → `precheck-before-20261010.sql`. Todas las filas `ok`. Si no: paras y me escribes.
 6. ☐ **Tú**: SQL Editor, cada archivo entero y en orden:
    `20261010120000` → `seed-blocked-email-domains/part-01` … `part-07` → `20261010130000` → `20261011100000` →
-   `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` →
+   `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),

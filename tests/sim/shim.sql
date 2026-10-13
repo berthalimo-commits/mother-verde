@@ -15,7 +15,18 @@ create table auth.users (
   email_confirmed_at timestamptz,
   raw_user_meta_data jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now(),
-  last_sign_in_at timestamptz
+  last_sign_in_at timestamptz,
+  confirmation_token varchar(255) default '',
+  confirmation_sent_at timestamptz
+);
+-- Newer Supabase projects also keep one-time tokens here.
+create table auth.one_time_tokens (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null,
+  token_type text not null,
+  token_hash text not null,
+  relates_to text not null default '',
+  created_at timestamptz not null default now()
 );
 
 -- Supabase: auth.uid() reads the JWT "sub" claim of the current request.

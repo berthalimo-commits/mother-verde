@@ -6120,6 +6120,18 @@ translations.es.accCorregirIgual = "Es el mismo correo de antes.";
 translations.en.accCorregirIgual = "That is the same email as before.";
 translations.de.accCorregirIgual = "Das ist dieselbe E-Mail wie vorher.";
 translations.fr.accCorregirIgual = "C’est le même e-mail qu’avant.";
+translations.es.accCorregirMuchos = "Demasiados intentos. Espera una hora y vuelve a probar, o escríbenos a hello@motherverdeny.com.";
+translations.en.accCorregirMuchos = "Too many attempts. Wait an hour and try again, or write to us at hello@motherverdeny.com.";
+translations.de.accCorregirMuchos = "Zu viele Versuche. Warte eine Stunde und versuch es noch einmal, oder schreib uns an hello@motherverdeny.com.";
+translations.fr.accCorregirMuchos = "Trop de tentatives. Attends une heure et réessaie, ou écris-nous à hello@motherverdeny.com.";
+translations.es.accCorregirViejo = "Esta cuenta lleva más de 7 días sin confirmar y ya no se puede corregir aquí. Escríbenos a hello@motherverdeny.com y te ayudamos.";
+translations.en.accCorregirViejo = "This account has been unconfirmed for more than 7 days and can’t be fixed here any more. Write to us at hello@motherverdeny.com and we’ll help you.";
+translations.de.accCorregirViejo = "Dieses Konto ist seit mehr als 7 Tagen unbestätigt und kann hier nicht mehr korrigiert werden. Schreib uns an hello@motherverdeny.com, wir helfen dir.";
+translations.fr.accCorregirViejo = "Ce compte n’est pas confirmé depuis plus de 7 jours et ne peut plus être corrigé ici. Écris-nous à hello@motherverdeny.com et nous t’aiderons.";
+translations.es.accCorregirLimite = "El correo de esta cuenta ya se corrigió 3 veces. Escríbenos a hello@motherverdeny.com y te ayudamos.";
+translations.en.accCorregirLimite = "This account’s email has already been fixed 3 times. Write to us at hello@motherverdeny.com and we’ll help you.";
+translations.de.accCorregirLimite = "Die E-Mail dieses Kontos wurde schon 3 Mal korrigiert. Schreib uns an hello@motherverdeny.com, wir helfen dir.";
+translations.fr.accCorregirLimite = "L’e-mail de ce compte a déjà été corrigé 3 fois. Écris-nous à hello@motherverdeny.com et nous t’aiderons.";
 translations.es.accTerminoH = "Tu prueba gratis terminó";
 translations.en.accTerminoH = "Your free trial has ended";
 translations.de.accTerminoH = "Deine kostenlose Testphase ist vorbei";
@@ -7010,7 +7022,7 @@ async function mvFixEmailSubmit(e){
     if(m){ m.dataset.sticky = '1'; m.innerHTML = r.sendError ? t(r.sendError) : t('accCorregirOk').replace('{email}', '<b>' + esc(newEmail) + '</b>'); setTimeout(() => { delete m.dataset.sticky; }, 8000); }
     return;
   }
-  msg.textContent = t({ wrong_password: 'accCorregirClave', already_confirmed: 'accCorregirYa', not_allowed: 'accCorregirNo', bad_email: 'authErrInvalidEmail', same_email: 'accCorregirIgual' }[r.error] || 'authErrSend');
+  msg.textContent = t({ wrong_password: 'accCorregirClave', already_confirmed: 'accCorregirYa', not_allowed: 'accCorregirNo', bad_email: 'authErrInvalidEmail', same_email: 'accCorregirIgual', too_many_attempts: 'accCorregirMuchos', too_old: 'accCorregirViejo', limit_reached: 'accCorregirLimite' }[r.error] || 'authErrSend');
 }
 
 // Countdown strip (trial only). Can be closed for this browser session.
