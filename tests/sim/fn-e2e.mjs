@@ -22,7 +22,7 @@ const env = {
   SUPABASE_URL: 'https://fake.supabase.co', SUPABASE_ANON_KEY: 'anon', SUPABASE_SERVICE_ROLE_KEY: 'svc',
   DEEPL_API_KEY: 'k:fx', RETRANSLATE_SECRET: 'r'.repeat(40), SUPPORT_ADDRESS: DEST,
   MAIL_PROVIDER: 'smtp', SMTP_USER: 'hello@motherverdeny.com', SMTP_PASS: 'x', MAIL_FROM: 'Mother Verde <hello@motherverdeny.com>',
-  RESEND_API_KEY: 're_test', APP_URL: 'https://example.test',
+  RESEND_API_KEY: 're_test', APP_URL: 'https://example.test', MAIL_RETRY_MS: '0',
 };
 globalThis.__mail = []; globalThis.__smtpFail = null; globalThis.__smtpCfg = null;
 const handlers = {}; let current = null;
@@ -62,7 +62,7 @@ globalThis.fetch = async (url, init = {}) => {
 
 // ---------------------------------------------------------------- bundle
 const mailerMock = new URL('./nodemailer-mock.mjs', import.meta.url);
-fs.writeFileSync(mailerMock, `export default { createTransport: (cfg) => { globalThis.__smtpCfg = cfg; return { sendMail: async (m) => { if (globalThis.__smtpFail) throw new Error(globalThis.__smtpFail); globalThis.__mail.push(m); return { messageId: 'x' }; } }; } };`);
+fs.writeFileSync(mailerMock, `export default { createTransport: (cfg) => { globalThis.__smtpCfg = cfg; return { sendMail: async (m) => { if (globalThis.__smtpFail && (globalThis.__smtpFailTimes == null || globalThis.__smtpFailTimes-- > 0)) throw new Error(globalThis.__smtpFail); globalThis.__mail.push(m); return { messageId: 'x' }; } }; } };`);
 const plugin = { name: 'deno', setup(b) {
   b.onResolve({ filter: /^jsr:@supabase\/supabase-js/ }, () => ({ path: req.resolve('@supabase/supabase-js') }));
   b.onResolve({ filter: /^npm:nodemailer/ }, () => ({ path: mailerMock.pathname.replace(/^\/([A-Z]:)/, '$1') }));
@@ -135,6 +135,40 @@ resend.status = 403;
 r = await call('gift', A2, { action: 'send', email: 'resend2@example.org' });
 check('Resend rechaza -> código anulado y error mostrado', r.status === 502 && (await q(`select status from gift_codes where sent_to_email = 'resend2@example.org'`))[0].status === 'revoked');
 resend.status = 200; env.MAIL_PROVIDER = 'smtp';
+
+console.log('A2. si el envío falla (reintento, Resend automático, registro):');
+const lastEv = async (kind) => (await q(`select ok, provider, attempts, error, user_id from mail_events where kind = '${kind}' order by id desc limit 1`))[0];
+globalThis.__smtpFail = '421 4.7.0 temporary failure'; globalThis.__smtpFailTimes = 1;
+r = await call('gift', A2, { action: 'send', email: 'reintento@example.org' });
+let e1 = await lastEv('gift_code');
+check('Hostinger falla una vez -> se reintenta y sale (2 intentos), código enviado', r.status === 200 && r.body.attempts === 2 && r.body.provider === 'smtp' && e1.ok === true && e1.attempts === 2 && (await q(`select send_status from gift_codes where sent_to_email = 'reintento@example.org'`))[0].send_status === 'sent', JSON.stringify(r.body));
+env.MAIL_PROVIDER = 'smtp,resend'; globalThis.__smtpFail = 'Invalid login: 535 authentication failed'; globalThis.__smtpFailTimes = null; resend.calls.length = 0;
+r = await call('gift', A2, { action: 'send', email: 'planb@example.org' });
+e1 = await lastEv('gift_code');
+check('MAIL_PROVIDER smtp,resend: Hostinger falla 2 veces -> sale por Resend automáticamente', r.status === 200 && r.body.provider === 'resend' && r.body.attempts === 3 && resend.calls.length === 1 && resend.calls[0].body.to[0] === 'planb@example.org' && e1.ok === true && e1.provider === 'resend', JSON.stringify(r.body));
+check('…Resend lleva el mismo remitente, Reply-To hello@ y texto plano', resend.calls[0].body.from === 'Mother Verde <hello@motherverdeny.com>' && resend.calls[0].body.reply_to === 'hello@motherverdeny.com' && resend.calls[0].body.text.length > 200);
+check('…el panel puede decir que hubo que reintentar (first_error = fallo de Hostinger)', /smtp#1: Invalid login: 535/.test(r.body.first_error || ''), r.body.first_error);
+resend.status = 500; globalThis.__smtpFail = '550 5.1.1 <nadie@example.org>: mailbox unavailable';
+r = await call('gift', A2, { action: 'send', email: 'nadie@example.org' });
+e1 = await lastEv('gift_code');
+const g1 = (await q(`select status, send_status, revoked_reason from gift_codes where sent_to_email = 'nadie@example.org'`))[0];
+check('todo falla (Hostinger ×2, Resend ×2) -> 502 con error claro, 4 intentos, código ANULADO', r.status === 502 && r.body.error === 'email_failed' && r.body.attempts === 4 && g1.status === 'revoked' && g1.send_status === 'failed', JSON.stringify(r.body));
+check('…queda en mail_events como fallido (para el panel)', e1.ok === false && e1.attempts === 4 && e1.provider === 'smtp,resend');
+const lastAudit = (await q(`select reason from admin_audit_log where action = 'gift_code_send_failed' order by id desc limit 1`))[0].reason;
+check('…la dirección no queda en el error: ni en mail_events, ni en la respuesta, ni en el código anulado, ni en la auditoría', !e1.error.includes('nadie@') && e1.error.includes('<correo>') && !r.body.detail.includes('nadie@') && !g1.revoked_reason.includes('nadie@') && !lastAudit.includes('nadie@'), e1.error);
+delete env.RESEND_API_KEY; resend.calls.length = 0;
+r = await call('gift', A2, { action: 'send', email: 'sinclave@example.org' });
+check('Resend sin clave: no reintenta en vano (3 intentos) y el error lo dice', r.status === 502 && r.body.attempts === 3 && /RESEND_API_KEY not set/.test(r.body.detail) && resend.calls.length === 0, JSON.stringify(r.body));
+env.RESEND_API_KEY = 're_test'; resend.status = 200; globalThis.__smtpFail = null; env.MAIL_PROVIDER = 'smtp';
+const rpcAs = (t, fn) => rest(`https://fake.supabase.co/rest/v1/rpc/${fn}`, { method: 'POST', headers: { Authorization: 'Bearer ' + t }, body: '{}' });
+const f24 = await (await rpcAs(A2, 'admin_mail_failures_24h')).json();
+const failsDb = (await q(`select count(*)::int c from mail_events where not ok`))[0].c;
+check('panel: «Correos fallidos en las últimas 24 h» los cuenta (los 4 fallos de esta prueba)', f24 === failsDb && failsDb === 4, JSON.stringify({ f24, failsDb }));
+const sm = await (await rpcAs(A2, 'admin_summary')).json();
+check('…también en Resumen (fallidos y enviados)', sm.mail_failed_24h === 4 && sm.mail_sent_24h >= 4, JSON.stringify(sm));
+check('…un usuario normal no puede leerlo', (await rpcAs(tok(NORMAL, 'aal2'), 'admin_mail_failures_24h')).status >= 400 && (await rpcAs(tok(NORMAL, 'aal2'), 'admin_list_mail_events')).status >= 400);
+const ml = await (await rpcAs(A2, 'admin_list_mail_events')).json();
+check('…lista de envíos para Registro, sin direcciones guardadas en mail_events', ml.length >= 6 && !JSON.stringify(await q('select * from mail_events')).includes('@example.org'));
 const today = (await q(`select count(*)::int c from gift_codes where created_at >= date_trunc('day', now())`))[0].c;
 for (let i = today; i < 20; i++) await call('gift', A2, { action: 'send', email: `lote${i}@example.org` });
 n = globalThis.__mail.length;
@@ -178,6 +212,14 @@ const am = globalThis.__mail.at(-1);
 check('correo de activación: monto exacto con 4 decimales (coma en ES/DE/FR, punto en EN)', /\(\d+,\d{4} USDC\)/.test(am.text) && /\(\d+\.\d{4} USDC\)/.test(am.text) && am.text.includes('(' + (P1.c.amount_units / 1e6).toFixed(4) + ' USDC)'), am.text.slice(0, 300));
 check('correo de activación: a la cuenta, 4 idiomas, 2 flores, sin precios', am.to === 'pago10@example.org' && ['Tu acceso completo está activo', 'Your full access is active', 'Dein Vollzugriff ist aktiv', 'Ton accès complet est actif', '2 flores'].every((s) => am.text.includes(s)) && !BANNED.some((b) => am.text.includes(b)));
 check('…la cuenta pasa a supporter', (await q(`select subscription_status s from profiles where id = '${P1.u}'`))[0].s === 'supporter');
+const P0 = await payer(200, 1);
+putTx(P0.tx, { amount: P0.c.amount_units });
+globalThis.__smtpFail = '421 try again later';
+r = await call('claims', A2, { action: 'admin_approve', claim_id: P0.c.id, reason: 'Pago revisado a mano en Basescan' });
+globalThis.__smtpFail = null;
+const ea = (await q(`select ok, attempts, user_id, ref from mail_events where kind = 'activation' order by id desc limit 1`))[0];
+check('correo de activación falla tras reintento -> acceso activado igual, el panel recibe el error y queda en mail_events', r.body.status === 'approved' && r.body.email_sent === false && /smtp#2: 421/.test(r.body.email_error || '') && ea.ok === false && ea.attempts === 2 && ea.user_id === P0.u && ea.ref === `claim:${P0.c.id}`, JSON.stringify(r.body));
+check('…y en el registro de auditoría (activation_email_failed)', (await q(`select count(*)::int c from admin_audit_log where action = 'activation_email_failed' and target_user_id = '${P0.u}'`))[0].c === 1);
 const cases = [
   ['monto incorrecto', (p) => putTx(p.tx, { amount: BigInt(p.c.amount_units) - 100n }), 'monto_distinto'],
   ['destino incorrecto', (p) => putTx(p.tx, { amount: p.c.amount_units, to: '0x' + '33'.repeat(20) }), 'destino_distinto'],
@@ -216,7 +258,10 @@ for (const [label, units] of [['10.0420', 10042000], ['10.0042', 10004200], ['20
   for (const [what, sent] of [['1 millonésima de más', units + 1], ['1 millonésima de menos', units - 1], ['un decimal de menos (redondeado)', Math.floor(units / 100000) * 100000]]) {
     if (sent === units) continue;
     const q2 = await payer(kk++, flowers);
-    await db.exec(`update support_claims set amount_units = ${units + (kk % 7 + 1) * 100} where id = ${q2.c.id}`);
+    // A nearby amount that no other open claim holds (amounts are unique while open).
+    let off = kk % 7 + 1;
+    while ((await q(`select 1 from support_claims where amount_units = ${units + off * 100} and status in ('awaiting_payment', 'submitted', 'manual_review') and id <> ${q2.c.id}`)).length) off++;
+    await db.exec(`update support_claims set amount_units = ${units + off * 100} where id = ${q2.c.id}`);
     const want = (await q(`select amount_units from support_claims where id = ${q2.c.id}`))[0].amount_units;
     putTx(q2.tx, { amount: want === units ? sent : (sent - units) + Number(want) });
     r = await call('claims', A2, { action: 'admin_check', claim_id: q2.c.id });

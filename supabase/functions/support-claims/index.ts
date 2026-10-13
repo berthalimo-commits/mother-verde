@@ -63,22 +63,60 @@ function json(body: unknown, status = 200): Response {
 }
 
 // ===================================================================== MAIL
-// Two outputs, chosen with the MAIL_PROVIDER secret:
-//   smtp   -> Hostinger SMTP, port 465 with SSL (Supabase blocks 25 and 587)
-//   resend -> Resend HTTPS API (plan B if port 465 is blocked too)
-// sendMail never throws: it returns { ok, error? }.
+// Outputs, chosen with the MAIL_PROVIDER secret (tried in that order):
+//   smtp         -> Hostinger SMTP, port 465 with SSL (Supabase blocks 25 and 587)
+//   resend       -> Resend HTTPS API
+//   smtp,resend  -> Hostinger first; if it still fails after its retry,
+//                   Resend automatically (needs RESEND_API_KEY and the domain
+//                   verified in Resend)
+// Each output gets 2 tries (MAIL_RETRY_MS apart, default 2 s), except when a
+// secret is missing. sendMail never throws: { ok, provider, attempts, error? }.
+// deliver() also writes one mail_events row (kind, ok, provider, attempts,
+// error) — never the address or the content — so a failure always shows up
+// in the panel ("Correos fallidos en las últimas 24 h", Registro).
 // Every e-mail: one sender (MAIL_FROM, "Mother Verde <hello@...>"), replies
 // to hello@, an HTML part and a plain-text part.
 const REPLY_TO = "hello@motherverdeny.com";
 interface Mail { to: string; subject: string; html: string; text: string }
+interface Sent { ok: boolean; provider: string; attempts: number; error?: string }
+// E-mail addresses never go into a log or an error shown in the panel.
+const redact = (s: string) => s.replace(/[^\s<>"'(),;:]+@[^\s<>"'(),;:]+/g, "<correo>");
 
-async function sendMail(m: Mail): Promise<{ ok: boolean; error?: string }> {
-  const provider = (Deno.env.get("MAIL_PROVIDER") ?? "smtp").toLowerCase();
+async function sendMail(m: Mail): Promise<Sent> {
+  const chain = (Deno.env.get("MAIL_PROVIDER") ?? "smtp").toLowerCase().split(/[\s,+]+/).filter(Boolean);
+  const pause = Number(Deno.env.get("MAIL_RETRY_MS") ?? "2000");
+  const errors: string[] = [];
+  let attempts = 0;
+  for (const provider of chain) {
+    for (let i = 1; i <= 2; i++) {
+      attempts++;
+      const r = await sendVia(provider, m);
+      if (r.ok) return { ok: true, provider, attempts, error: errors.length ? redact(errors.join("; ")).slice(0, 300) : undefined };
+      errors.push(`${provider}#${i}: ${r.error}`);
+      if (r.config) break;                       // a missing secret: trying again won't help
+      if (i === 1 && pause > 0) await new Promise((res) => setTimeout(res, pause));
+    }
+  }
+  return { ok: false, provider: chain.join(","), attempts, error: redact(errors.join("; ")).slice(0, 300) };
+}
+
+// deno-lint-ignore no-explicit-any
+async function deliver(svc: any, m: Mail, kind: string, userId: string | null, ref: string | null): Promise<Sent> {
+  const r = await sendMail(m);
+  const { error } = await svc.rpc("svc_mail_event", {
+    p_kind: kind, p_ok: r.ok, p_provider: r.provider, p_attempts: r.attempts, p_error: r.error ?? null, p_user: userId, p_ref: ref,
+  });
+  if (error) console.error("svc_mail_event:", error.message);
+  if (!r.ok) console.error(`mail ${kind} failed after ${r.attempts} attempts:`, r.error);
+  return r;
+}
+
+async function sendVia(provider: string, m: Mail): Promise<{ ok: boolean; error?: string; config?: boolean }> {
   const from = Deno.env.get("MAIL_FROM") ?? "Mother Verde <hello@motherverdeny.com>";
   try {
     if (provider === "resend") {
       const key = Deno.env.get("RESEND_API_KEY");
-      if (!key) return { ok: false, error: "RESEND_API_KEY not set" };
+      if (!key) return { ok: false, error: "RESEND_API_KEY not set", config: true };
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
@@ -88,9 +126,9 @@ async function sendMail(m: Mail): Promise<{ ok: boolean; error?: string }> {
       if (!res.ok) return { ok: false, error: `Resend ${res.status}: ${(await res.text()).slice(0, 200)}` };
       return { ok: true };
     }
-    if (provider !== "smtp") return { ok: false, error: `unknown MAIL_PROVIDER "${provider}"` };
+    if (provider !== "smtp") return { ok: false, error: `unknown MAIL_PROVIDER "${provider}"`, config: true };
     const user = Deno.env.get("SMTP_USER"), pass = Deno.env.get("SMTP_PASS");
-    if (!user || !pass) return { ok: false, error: "SMTP_USER / SMTP_PASS not set" };
+    if (!user || !pass) return { ok: false, error: "SMTP_USER / SMTP_PASS not set", config: true };
     const port = Number(Deno.env.get("SMTP_PORT") ?? "465");
     const transport = nodemailer.createTransport({
       host: Deno.env.get("SMTP_HOST") ?? "smtp.hostinger.com",
@@ -267,10 +305,10 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
 async function sendActivation(svc: any, ctx: Ctx, actor: string | null, label: string) {
   const flowers = Number((ctx.claim as unknown as { flowers: number }).flowers ?? 1);
   const m = activationEmail(flowers, (ctx.claim as unknown as { amount_units: unknown }).amount_units, Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com");
-  const r = await sendMail({ ...m, to: ctx.email });
+  const r = await deliver(svc, { ...m, to: ctx.email }, "activation", ctx.claim.user_id, `claim:${ctx.claim.id}`);
   await svc.rpc("admin_log", {
     p_action: r.ok ? "activation_email_sent" : "activation_email_failed", p_target_user: ctx.claim.user_id,
-    p_reason: r.ok ? null : r.error, p_details: { claim_id: ctx.claim.id, by: actor }, p_actor_label: label,
+    p_reason: r.ok ? null : r.error, p_details: { claim_id: ctx.claim.id, by: actor, provider: r.provider, attempts: r.attempts }, p_actor_label: label,
   });
   return r;
 }

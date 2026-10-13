@@ -220,6 +220,9 @@ const T = {
 // Texts for Summary, Users, contact, e-mail buttons and CSV export.
 const T2 = {
   es: {
+    mailFailH: 'Correos fallidos en las últimas 24 h', mailSentH: 'Correos enviados en las últimas 24 h', mailBanner: 'Correos fallidos en las últimas 24 h: {n}. Míralos en Registro.',
+    mailListH: 'Envíos de correo (códigos, activaciones, pruebas)', mailListP: 'Cada envío de nuestras funciones. Si falló, ya se reintentó (y se probó Resend si MAIL_PROVIDER lo permite). Un código que no se pudo enviar queda anulado: envía otro.', thKind: 'Tipo', thResult: 'Resultado', thProvider: 'Salida', thAttempts: 'Intentos', thError: 'Error',
+    mk_gift_code: 'Código de regalo', mk_activation: 'Activación', mk_test: 'Prueba', mk_signup_email_fixed: 'Correo de registro corregido', resOk: 'enviado', resFail: 'FALLÓ', mailRetried: 'Ojo: hubo que reintentar ({a} intentos, salió por {p}).',
     tabSummary: 'Resumen', tabUsers: 'Usuarios', copyEmail: 'Copiar correo', copied: 'Copiado', writeEmail: 'Escribir',
     contactName: 'Nombre de contacto', contactPhone: 'WhatsApp o teléfono',
     sumAccounts: 'Cuentas en total', sumNew7: 'Altas en los últimos 7 días', sumTrialActive: 'Pruebas activas', sumTrialExpired: 'Pruebas vencidas sin aporte',
@@ -236,6 +239,9 @@ const T2 = {
     e_bad_state: 'Estado no válido.', e_bad_tab: 'Pestaña no válida.',
   },
   en: {
+    mailFailH: 'Failed e-mails in the last 24 h', mailSentH: 'E-mails sent in the last 24 h', mailBanner: 'Failed e-mails in the last 24 h: {n}. See them in Log.',
+    mailListH: 'E-mail sends (codes, activations, tests)', mailListP: 'Every send from our functions. A failure was already retried (and Resend tried if MAIL_PROVIDER allows it). A code that could not be sent is voided: send another one.', thKind: 'Type', thResult: 'Result', thProvider: 'Output', thAttempts: 'Attempts', thError: 'Error',
+    mk_gift_code: 'Gift code', mk_activation: 'Activation', mk_test: 'Test', mk_signup_email_fixed: 'Sign-up e-mail corrected', resOk: 'sent', resFail: 'FAILED', mailRetried: 'Note: it needed a retry ({a} attempts, sent via {p}).',
     tabSummary: 'Summary', tabUsers: 'Users', copyEmail: 'Copy e-mail', copied: 'Copied', writeEmail: 'Write',
     contactName: 'Contact name', contactPhone: 'WhatsApp or phone',
     sumAccounts: 'Accounts in total', sumNew7: 'Sign-ups in the last 7 days', sumTrialActive: 'Active trials', sumTrialExpired: 'Expired trials without contribution',
@@ -252,6 +258,9 @@ const T2 = {
     e_bad_state: 'Invalid state.', e_bad_tab: 'Invalid tab.',
   },
   de: {
+    mailFailH: 'Fehlgeschlagene E-Mails (letzte 24 h)', mailSentH: 'Gesendete E-Mails (letzte 24 h)', mailBanner: 'Fehlgeschlagene E-Mails in den letzten 24 h: {n}. Siehe Protokoll.',
+    mailListH: 'E-Mail-Versand (Codes, Freischaltungen, Tests)', mailListP: 'Jeder Versand unserer Funktionen. Ein Fehler wurde schon wiederholt (und Resend versucht, wenn MAIL_PROVIDER es erlaubt). Ein Code, der nicht gesendet werden konnte, ist ungültig: Sende einen neuen.', thKind: 'Art', thResult: 'Ergebnis', thProvider: 'Weg', thAttempts: 'Versuche', thError: 'Fehler',
+    mk_gift_code: 'Geschenkcode', mk_activation: 'Freischaltung', mk_test: 'Test', mk_signup_email_fixed: 'Registrierungs-E-Mail korrigiert', resOk: 'gesendet', resFail: 'FEHLGESCHLAGEN', mailRetried: 'Hinweis: Es brauchte einen neuen Versuch ({a} Versuche, gesendet über {p}).',
     tabSummary: 'Übersicht', tabUsers: 'Nutzer', copyEmail: 'E-Mail kopieren', copied: 'Kopiert', writeEmail: 'Schreiben',
     contactName: 'Kontaktname', contactPhone: 'WhatsApp oder Telefon',
     sumAccounts: 'Konten insgesamt', sumNew7: 'Neue Konten (letzte 7 Tage)', sumTrialActive: 'Aktive Testphasen', sumTrialExpired: 'Abgelaufene Testphasen ohne Beitrag',
@@ -268,6 +277,9 @@ const T2 = {
     e_bad_state: 'Ungültiger Status.', e_bad_tab: 'Ungültiger Reiter.',
   },
   fr: {
+    mailFailH: 'E-mails en échec (dernières 24 h)', mailSentH: 'E-mails envoyés (dernières 24 h)', mailBanner: 'E-mails en échec au cours des dernières 24 h : {n}. Voir le Journal.',
+    mailListH: 'Envois d’e-mails (codes, activations, tests)', mailListP: 'Chaque envoi de nos fonctions. Un échec a déjà été réessayé (et Resend tenté si MAIL_PROVIDER le permet). Un code qui n’a pas pu être envoyé est annulé : envoies-en un autre.', thKind: 'Type', thResult: 'Résultat', thProvider: 'Sortie', thAttempts: 'Tentatives', thError: 'Erreur',
+    mk_gift_code: 'Code cadeau', mk_activation: 'Activation', mk_test: 'Test', mk_signup_email_fixed: 'E-mail d’inscription corrigé', resOk: 'envoyé', resFail: 'ÉCHEC', mailRetried: 'Attention : il a fallu réessayer ({a} tentatives, envoyé via {p}).',
     tabSummary: 'Résumé', tabUsers: 'Utilisateurs', copyEmail: 'Copier l’e-mail', copied: 'Copié', writeEmail: 'Écrire',
     contactName: 'Nom de contact', contactPhone: 'WhatsApp ou téléphone',
     sumAccounts: 'Comptes au total', sumNew7: 'Inscriptions des 7 derniers jours', sumTrialActive: 'Essais en cours', sumTrialExpired: 'Essais expirés sans contribution',
@@ -404,6 +416,7 @@ async function panel(email) {
       <button data-t="claims">${tr('tabClaims')}</button>
       <button data-t="gifts">${tr('tabGifts')}</button>
       <button data-t="audit">${tr('tabAudit')}</button></div>
+    <div id="mailAlert"></div>
     <div id="view"></div>`;
   document.getElementById('out').onclick = async () => { await sb.auth.signOut(); location.href = '/'; };
   app.querySelectorAll('#ptabs button').forEach((b) => { b.onclick = () => { tab = b.dataset.t; show(); }; });
@@ -411,9 +424,18 @@ async function panel(email) {
 }
 function show() {
   app.querySelectorAll('#ptabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
+  mailAlert();
   ({ summary: summaryView, users: usersView, claims: claimsView, gifts: giftsView, audit: auditView })[tab]();
 }
 const view = () => document.getElementById('view');
+
+// "Correos fallidos en las últimas 24 h": above every tab when there is any.
+async function mailAlert() {
+  const box = document.getElementById('mailAlert');
+  if (!box) return;
+  const { data: n, error } = await sb.rpc('admin_mail_failures_24h');
+  box.innerHTML = !error && n > 0 ? `<div class="card bad" id="mailAlertCard" role="alert"><b>${esc(tr('mailBanner', { n }))}</b></div>` : '';
+}
 
 // ------------------------------------------------------------ claims
 const CHECKS = ['tx_found', 'tx_success', 'usdc_contract', 'destination', 'exact_amount', 'after_claim', 'confirmations', 'tx_unused', 'claim_open', 'auto_limit'];
@@ -511,16 +533,18 @@ async function giftsView() {
     const r = await fn('admin-send-gift-code', { action: 'send', email });
     document.getElementById('gs').disabled = false;
     m.className = 'msg ' + (r.ok ? 'ok' : 'bad');
-    m.textContent = r.ok ? tr('sentTo', { to: r.to, d: when(r.expires_at) }) : errText(r.error, r.detail);
+    m.textContent = r.ok ? tr('sentTo', { to: r.to, d: when(r.expires_at) }) + (r.attempts > 1 ? ' ' + tr('mailRetried', { a: r.attempts, p: r.provider }) : '') : errText(r.error, r.detail);
     if (r.ok) document.getElementById('ge').value = '';
     loadGifts();
+    mailAlert();
   };
   wireExports();
   document.getElementById('gt').onclick = async () => {
     const m = document.getElementById('gtm'); m.textContent = tr('sending');
     const r = await fn('admin-send-gift-code', { action: 'test_email' });
     m.className = 'msg ' + (r.ok ? 'ok' : 'bad');
-    m.textContent = r.ok ? tr('testSent', { to: r.to }) : errText(r.error, r.detail);
+    m.textContent = r.ok ? tr('testSent', { to: r.to }) + (r.attempts > 1 ? ' ' + tr('mailRetried', { a: r.attempts, p: r.provider }) : '') : errText(r.error, r.detail);
+    mailAlert();
   };
   loadGifts();
 }
@@ -555,9 +579,13 @@ async function loadGifts() {
 // ------------------------------------------------------------ audit log
 async function auditView() {
   view().innerHTML = `<div class="card scroll"><p class="muted">${tr('loading')}</p></div>`;
-  const { data, error } = await sb.rpc('admin_list_audit', { p_limit: 300 });
+  const [{ data, error }, mails] = await Promise.all([sb.rpc('admin_list_audit', { p_limit: 300 }), sb.rpc('admin_list_mail_events', { p_limit: 100 })]);
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
-  view().innerHTML = `<div class="card scroll"><div class="row" style="justify-content:space-between"><p class="muted">${tr('auditP')}</p><button class="ghost" data-export="audit">${tr('exportCsv')}</button></div><p class="msg" id="xm-audit"></p>
+  const me = mails.data || [];
+  view().innerHTML = `<div class="card scroll" id="mailList"><h2>${tr('mailListH')}</h2><p class="muted">${tr('mailListP')}</p>
+    ${me.length ? `<table><tr><th>${tr('thWhen')}</th><th>${tr('thKind')}</th><th>${tr('thResult')}</th><th>${tr('thProvider')}</th><th>${tr('thAttempts')}</th><th>${tr('thAccount')}</th><th>${tr('thError')}</th></tr>
+    ${me.map((e) => `<tr><td>${when(e.at)}</td><td>${esc(tr('mk_' + e.kind))}</td><td class="${e.ok ? 'ok' : 'bad'}">${tr(e.ok ? 'resOk' : 'resFail')}</td><td>${esc(e.provider || '')}</td><td>${esc(e.attempts)}</td><td>${esc(e.account_email || e.ref || '')}</td><td class="muted">${esc(e.error || '')}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('empty')}</p>`}</div>
+    <div class="card scroll"><div class="row" style="justify-content:space-between"><p class="muted">${tr('auditP')}</p><button class="ghost" data-export="audit">${tr('exportCsv')}</button></div><p class="msg" id="xm-audit"></p>
     <table><tr><th>${tr('thWhen')}</th><th>${tr('thWho')}</th><th>${tr('thAction')}</th><th>${tr('thAccount')}</th><th>${tr('thReason')}</th></tr>
     ${data.map((a) => `<tr><td>${when(a.at)}</td><td>${esc(a.actor_label)}</td><td>${esc(a.action)}</td><td>${esc(a.target_email || '')}</td><td>${esc(a.reason || '')}</td></tr>`).join('')}</table></div>`;
   wireExports();
@@ -614,7 +642,9 @@ async function summaryView() {
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const st = s.states || {}, cl = s.claims || {};
   const box = (label, n) => `<div class="card stat"><div class="muted">${label}</div><div class="big">${esc(n ?? 0)}</div></div>`;
+  const mf = Number(s.mail_failed_24h || 0);
   view().innerHTML = `<div class="stats">
+      <div class="card stat" id="sumMailFailed"><div class="muted">${tr('mailFailH')}</div><div class="big ${mf ? 'bad' : 'ok'}">${esc(mf)}</div></div>${box(tr('mailSentH'), s.mail_sent_24h)}
       ${box(tr('sumAccounts'), s.accounts)}${box(tr('sumNew7'), s.new_7d)}${box(tr('sumTrialActive'), st.prueba_activa)}
       ${box(tr('sumTrialExpired'), st.prueba_vencida)}${box(tr('sumFull'), st.acceso_completo)}${box(tr('sumGift'), st.regalo)}${box(tr('sumBlocked'), st.bloqueado)}
     </div>
