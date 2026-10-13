@@ -45,7 +45,7 @@ function diff(a, b) {
 // ---------------------------------------------------------------- setup
 await db.exec(fs.readFileSync(new URL('./shim.sql', import.meta.url), 'utf8'));
 const files = fs.readdirSync(path.join(REPO, 'migrations')).filter(f => f.endsWith('.sql')).sort();
-const NEW = ['20261010120000_access_support_model.sql', '20261010130000_community_full_access.sql', '20261011100000_admin_and_audit.sql', '20261011120000_support_claims.sql', '20261011130000_gift_codes_and_access.sql'];
+const NEW = ['20261010120000_access_support_model.sql', '20261010130000_community_full_access.sql', '20261011100000_admin_and_audit.sql', '20261011120000_support_claims.sql', '20261011130000_gift_codes_and_access.sql', '20261013100000_mail_delivery.sql', '20261013110000_mail_failures_panel.sql'];
 console.log('1. Migraciones anteriores (las que ya están en producción):');
 for (const f of files.filter(f => !NEW.includes(f))) {
   try { await db.exec(read('migrations/' + f)); } catch (e) { check(f, false, e.message); continue; }
@@ -175,7 +175,7 @@ let refused = false; try { await db.exec(read('admin/rollback-20261010120000.sql
 try { await db.exec('rollback'); } catch {}
 check('reversa 120000 ANTES que la 130000 -> se niega (depende de has_full_access)', refused);
 check('…y no deja nada a medias (has_full_access sigue existiendo)', (await q(`select count(*)::int c from pg_proc where proname='has_full_access'`))[0].c === 1);
-for (const rb of ['rollback-20261011130000.sql', 'rollback-20261011120000.sql', 'rollback-20261011100000.sql']) { try { await db.exec(read('admin/' + rb)); check(rb, true); } catch (e) { check(rb, false, e.message); } }
+for (const rb of ['rollback-20261013110000.sql', 'rollback-20261013100000.sql', 'rollback-20261011130000.sql', 'rollback-20261011120000.sql', 'rollback-20261011100000.sql']) { try { await db.exec(read('admin/' + rb)); check(rb, true); } catch (e) { check(rb, false, e.message); } }
 try { await db.exec(read('admin/rollback-20261010130000.sql')); check('reversa 130000', true); } catch (e) { check('reversa 130000', false, e.message); }
 try { await db.exec(read('admin/rollback-20261010120000.sql')); check('reversa 120000', true); } catch (e) { check('reversa 120000', false, e.message); }
 const after = await snapshot();

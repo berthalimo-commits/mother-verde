@@ -63,7 +63,7 @@ const REPLY_TO = "hello@motherverdeny.com";
 interface Mail { to: string; subject: string; html: string; text: string }
 interface Sent { ok: boolean; provider: string; attempts: number; error?: string }
 // E-mail addresses never go into a log or an error shown in the panel.
-const redact = (s: string) => s.replace(/[^\s<>"'(),;:]+@[^\s<>"'(),;:]+/g, "<correo>");
+const redact = (s: string) => s.replace(/[^\s<>"'(),;:=]+@[^\s<>"'(),;:=]+/g, "<correo>");
 
 async function sendMail(m: Mail): Promise<Sent> {
   const chain = (Deno.env.get("MAIL_PROVIDER") ?? "smtp").toLowerCase().split(/[\s,+]+/).filter(Boolean);

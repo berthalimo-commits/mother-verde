@@ -35,7 +35,7 @@ revoke all on public.mail_events from anon, authenticated;
 -- Any e-mail address in an error message becomes <correo>.
 create or replace function public.redact_emails(p text)
 returns text language sql immutable set search_path = public as $$
-  select regexp_replace(coalesce(p, ''), '[^[:space:]<>"''(),;:]+@[^[:space:]<>"''(),;:]+', '<correo>', 'g');
+  select regexp_replace(coalesce(p, ''), '[^[:space:]<>"''(),;:=]+@[^[:space:]<>"''(),;:=]+', '<correo>', 'g');
 $$;
 
 create or replace function public.svc_mail_event(p_kind text, p_ok boolean, p_provider text, p_attempts integer,

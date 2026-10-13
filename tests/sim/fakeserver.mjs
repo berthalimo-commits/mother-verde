@@ -69,6 +69,15 @@ const session = (uid, aal) => ({ access_token: `u:${uid}:${aal}`, refresh_token:
 const userObj = (uid) => ({ id: uid, aud: 'authenticated', role: 'authenticated', email: users[uid], email_confirmed_at: new Date().toISOString(), app_metadata: {}, user_metadata: {}, factors: (factors[uid] || []).map((f) => ({ id: f.id, factor_type: 'totp', status: f.status, friendly_name: 'Mother Verde admin', created_at: '', updated_at: '' })), created_at: '' });
 
 const authMail = []; let authFail = null;
+// One-time e-mail links, like Supabase: GET /auth/v1/verify?token=… works
+// once, within an hour; after that it sends the person back with
+// #error=access_denied&error_code=otp_expired.
+const links = {};
+const makeLink = (type, info, redirect) => {
+  const t = 'tk' + Math.random().toString(16).slice(2, 12);
+  links[t] = { type, ...info, at: Date.now(), used: false };
+  return `${BASE}/auth/v1/verify?token=${t}&type=${type}&redirect_to=${encodeURIComponent(redirect || 'http://localhost:5174/')}`;
+};
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS', 'Access-Control-Expose-Headers': '*' };
 http.createServer(async (rq, rs) => {
   try {
@@ -88,6 +97,12 @@ http.createServer(async (rq, rs) => {
       authMail.push({ type, email, redirect_to: u.searchParams.get('redirect_to') || '', at: Date.now(), ...extra });
       return null;
     };
+    // The link that e-mail would carry (only when there is an account for it).
+    const linkFor = async (type, email, extra = {}) => {
+      const row = (await rest.q('select id from auth.users where lower(email) = lower($1)', [email])).rows[0];
+      const m = authMail.at(-1);
+      if (row && m && m.email === email) m.link = makeLink(type, { uid: row.id, ...extra }, m.redirect_to);
+    };
     if (u.pathname === '/auth/v1/user' && rq.method === 'GET') res = users[uid] ? J(userObj(uid)) : J({ msg: 'bad jwt' }, 401);
     else if (u.pathname === '/auth/v1/signup' && rq.method === 'POST') {
       const b = JSON.parse(body);
@@ -97,15 +112,36 @@ http.createServer(async (rq, rs) => {
         let row = (await rest.q('select id from auth.users where lower(email) = $1', [email])).rows[0];
         if (!row) { row = (await rest.q('insert into auth.users (email, raw_user_meta_data) values ($1, $2) returning id', [email, JSON.stringify(b.data || {})])).rows[0]; (globalThis.__pw ||= {})[row.id] = b.password; }
         res = J({ id: row.id, aud: 'authenticated', role: '', email, user_metadata: b.data || {}, identities: [{}], created_at: '' });
+        await linkFor('signup', email);
       }
     } else if (u.pathname === '/auth/v1/resend' && rq.method === 'POST') {
-      const b = JSON.parse(body); res = authSend('resend_' + b.type, b.email) || J({});
+      const b = JSON.parse(body); res = authSend('resend_' + b.type, b.email);
+      if (!res) { await linkFor(b.type, b.email); res = J({}); }
     } else if (u.pathname === '/auth/v1/recover' && rq.method === 'POST') {
-      const b = JSON.parse(body); res = authSend('recovery', b.email) || J({});
+      const b = JSON.parse(body); res = authSend('recovery', b.email);
+      if (!res) { await linkFor('recovery', b.email); res = J({}); }
     } else if (u.pathname === '/auth/v1/user' && rq.method === 'PUT') {
       const b = JSON.parse(body);
-      if (b.email) res = authSend('email_change', b.email, { from: users[uid] }) || J({ ...userObj(uid), new_email: b.email });
+      if (b.email) {
+        res = authSend('email_change', b.email, { from: users[uid] });
+        if (!res) { authMail.at(-1).link = makeLink('email_change', { uid, newEmail: b.email.toLowerCase() }, authMail.at(-1).redirect_to); res = J({ ...userObj(uid), new_email: b.email }); }
+      }
       else { authMail.push({ type: 'password_set', email: users[uid], at: Date.now() }); res = J(userObj(uid)); }
+    }
+    else if (u.pathname === '/auth/v1/verify' && rq.method === 'GET') {
+      const L = links[u.searchParams.get('token')];
+      const to = u.searchParams.get('redirect_to') || 'http://localhost:5174/';
+      let loc;
+      if (!L || L.used || Date.now() - L.at > 3600000) loc = to + '#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid+or+has+expired';
+      else {
+        L.used = true;
+        if (L.type === 'signup') await rest.q('update auth.users set email_confirmed_at = now() where id = $1 and email_confirmed_at is null', [L.uid]);
+        if (L.type === 'email_change') await rest.q('update auth.users set email = $2 where id = $1', [L.uid, L.newEmail]);
+        users[L.uid] = (await rest.q('select email from auth.users where id = $1', [L.uid])).rows[0].email;
+        const exp = Math.floor(Date.now() / 1000) + 3600;
+        loc = `${to}#access_token=u:${L.uid}:aal1&expires_at=${exp}&expires_in=3600&refresh_token=r:${L.uid}:aal1&token_type=bearer&type=${L.type}`;
+      }
+      res = new Response(null, { status: 303, headers: { Location: loc } });
     }
     else if (u.pathname === '/auth/v1/factors' && rq.method === 'POST') {
       const id = 'f-' + Math.random().toString(16).slice(2, 10);
@@ -126,13 +162,14 @@ http.createServer(async (rq, rs) => {
       res = await H[name](new Request(url, { method: rq.method, headers: rq.headers, body }));
     } else res = await rest(url, { method: rq.method, headers: rq.headers, body: body || undefined });
     const out = Buffer.from(await res.arrayBuffer());
-    rs.writeHead(res.status, { ...CORS, 'content-type': res.headers.get('content-type') || 'application/json' });
+    rs.writeHead(res.status, { ...CORS, 'content-type': res.headers.get('content-type') || 'application/json', ...(res.headers.get('location') ? { Location: res.headers.get('location') } : {}) });
     rs.end(out);
   } catch (e) { rs.writeHead(500, CORS); rs.end(JSON.stringify({ message: e.message })); }
 }).listen(54321, () => console.log('fake supabase on 54321; mails:', 'GET /__mail'));
 // expose sent mail + a seed helper for the test driver
 http.createServer(async (rq, rs) => {
   if (rq.url === '/__auth') { rs.end(JSON.stringify(authMail)); return; }
+  if (rq.url.startsWith('/__expire')) { const t = new URL('http://x' + rq.url).searchParams.get('token'); if (links[t]) links[t].at = 0; rs.end(links[t] ? 'ok' : '?'); return; }
   if (rq.url.startsWith('/__authfail')) { authFail = new URL('http://x' + rq.url).searchParams.get('m') || null; authMail.length = rq.url.includes('reset') ? 0 : authMail.length; rs.end('ok'); return; }
   if (rq.url === '/__mail') { rs.end(JSON.stringify(globalThis.__mail.map((m) => ({ to: m.to, subject: m.subject, text: m.text })))); return; }
   if (rq.url.startsWith('/__sql')) { const sql = decodeURIComponent(rq.url.split('?q=')[1]); try { rs.end(JSON.stringify((await db.query(sql)).rows, (k, v) => typeof v === 'bigint' ? Number(v) : v)); } catch (e) { rs.end(JSON.stringify({ error: e.message })); } return; }
