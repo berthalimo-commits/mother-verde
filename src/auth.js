@@ -192,8 +192,11 @@ function mailSends(kind){
 // Milliseconds until the next e-mail of this kind may be asked for (0 = now).
 function mailWaitMs(kind){
   const s = mailSends(kind);
-  if(!s.length) return 0;
-  const gap = Math.max(...s) + MAIL_GAP_MS - Date.now();
+  // The first confirmation e-mail (sent by the sign-up itself) starts the
+  // 60 s gap but isn't one of the 3 resends.
+  const last = Math.max(0, ...s, ...(kind === 'signup' ? mailSends('signup0') : []));
+  if(!last) return 0;
+  const gap = last + MAIL_GAP_MS - Date.now();
   const hour = s.length >= MAIL_MAX_PER_HOUR ? Math.min(...s) + 3600000 - Date.now() : 0;
   return Math.max(0, gap, hour);
 }
@@ -217,6 +220,26 @@ window.mvResendConfirmation = async function(email){
   const { error } = await supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: MV_REDIRECT, ...captchaOptions() } });
   captchaReset();
   return error ? mapAuthError(error) : null;
+};
+
+// Correct a mistyped sign-up e-mail (unconfirmed account, password needed;
+// supabase/functions/signup-fix-email), then send the confirmation to the
+// corrected address. Returns { ok, sendError? } or { error }.
+window.mvFixSignupEmail = async function(oldEmail, newEmail, password){
+  const { data, error } = await supabase.functions.invoke('signup-fix-email', {
+    body: { old_email: oldEmail, new_email: newEmail, password, ...(captchaToken ? { captcha_token: captchaToken } : {}) },
+  });
+  captchaReset();
+  if(error){
+    let code = '';
+    try { code = (await error.context.json()).error || ''; } catch(e){}
+    return { ok: false, error: code || 'server_error' };
+  }
+  if(!data?.ok) return { ok: false, error: 'server_error' };
+  // Sent at once (new address), but counted in the hourly limit.
+  mailNoteSent('signup');
+  const { error: sendErr } = await supabase.auth.resend({ type: 'signup', email: newEmail, options: { emailRedirectTo: MV_REDIRECT } });
+  return { ok: true, sendError: sendErr ? mapAuthError(sendErr) : null };
 };
 
 // "Forgot your password?": always the same answer, whether the account
@@ -375,6 +398,7 @@ document.getElementById('authForm')?.addEventListener('submit', async (e) => {
       if(!data.session){
         // E-mail not confirmed yet: the access screen explains it and offers
         // to resend. The 24 h trial starts only once it's confirmed.
+        mailNoteSent('signup0');
         setAuthMsg(window.t('authSignupCheckEmail'), false);
         window.mvSetPendingConfirm?.(email);
         window.showScreen?.('acceso');

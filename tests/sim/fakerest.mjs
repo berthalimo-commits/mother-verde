@@ -67,6 +67,24 @@ export function makeRest(db) {
       const r = await db.query('select id, email from auth.users where id = $1', [w.uid]);
       return r.rows[0] ? J({ id: r.rows[0].id, email: r.rows[0].email, aud: 'authenticated', role: 'authenticated' }) : J({ msg: 'user not found' }, 401);
     }
+    // Password sign-in like GoTrue: password first, then "confirmed?".
+    // Only for accounts whose password is known (globalThis.__pw).
+    if (u.pathname === '/auth/v1/token' && u.searchParams.get('grant_type') === 'password' && globalThis.__pw) {
+      const b = JSON.parse(init.body || '{}');
+      const row = (await handle.q('select id, email, email_confirmed_at from auth.users where lower(email) = lower($1)', [b.email])).rows[0];
+      if (!row || globalThis.__pw[row.id] !== b.password) return J({ code: 400, error_code: 'invalid_credentials', msg: 'Invalid login credentials' }, 400);
+      if (!row.email_confirmed_at) return J({ code: 400, error_code: 'email_not_confirmed', msg: 'Email not confirmed' }, 400);
+      return J({ access_token: `u:${row.id}:aal1`, token_type: 'bearer', expires_in: 3600, refresh_token: 'r', user: { id: row.id, email: row.email } });
+    }
+    if (u.pathname.startsWith('/auth/v1/logout')) return new Response(null, { status: 204 });
+    if (/^\/auth\/v1\/admin\/users\/[^/]+$/.test(u.pathname) && m === 'PUT') {
+      if (w?.role !== 'service_role') return J({ msg: 'not admin' }, 403);
+      const b = JSON.parse(init.body || '{}');
+      const id = u.pathname.split('/').pop();
+      if (globalThis.__adminUpdateFail) return J({ msg: 'boom' }, 500);
+      const r = await handle.q('update auth.users set email = coalesce($2, email) where id = $1 returning id, email', [id, b.email ?? null]);
+      return r.rows[0] ? J({ id, email: r.rows[0].email }) : J({ msg: 'User not found' }, 404);
+    }
     if (!w) return J({ message: 'JWSError' }, 401);
     const body = init.body ? JSON.parse(init.body) : undefined;
     const wantsOne = (hdr.get('accept') || '').includes('vnd.pgrst.object');
@@ -126,5 +144,7 @@ export function makeRest(db) {
       return J({ message: e.message, code: e.code || 'P0001' }, 400);
     }
   }
+  // Direct queries as superuser, queued with the role-switching ones.
+  handle.q = (sql, params) => lock(() => db.query(sql, params));
   return handle;
 }

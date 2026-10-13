@@ -42,7 +42,7 @@ const plugin = { name: 'deno', setup(b) {
   b.onResolve({ filter: /^jsr:@supabase\/supabase-js/ }, () => ({ path: req.resolve('@supabase/supabase-js') }));
   b.onResolve({ filter: /^npm:nodemailer/ }, () => ({ path: mock.pathname.replace(/^\/([A-Z]:)/, '$1') }));
 } };
-for (const dir of ['admin-send-gift-code', 'support-claims', 'community-retranslate']) {
+for (const dir of ['admin-send-gift-code', 'support-claims', 'community-retranslate', 'signup-fix-email']) {
   const out = new URL(`./fnbuild/srv-${dir}.mjs`, import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1');
   await build({ entryPoints: [`${APP}/supabase/functions/${dir}/index.ts`], bundle: true, format: 'esm', platform: 'node', outfile: out, plugins: [plugin], logLevel: 'error' });
   await import('file:///' + out + '?' + Date.now()); H[dir] = current;
@@ -91,7 +91,13 @@ http.createServer(async (rq, rs) => {
     if (u.pathname === '/auth/v1/user' && rq.method === 'GET') res = users[uid] ? J(userObj(uid)) : J({ msg: 'bad jwt' }, 401);
     else if (u.pathname === '/auth/v1/signup' && rq.method === 'POST') {
       const b = JSON.parse(body);
-      res = authSend('signup', b.email, { lang: b.data?.preferred_lang }) || J({ id: 'pending-' + b.email, aud: 'authenticated', role: '', email: b.email, user_metadata: b.data || {}, identities: [{}], created_at: '' });
+      res = authSend('signup', b.email, { lang: b.data?.preferred_lang });
+      if (!res) {
+        const email = String(b.email).toLowerCase();
+        let row = (await rest.q('select id from auth.users where lower(email) = $1', [email])).rows[0];
+        if (!row) { row = (await rest.q('insert into auth.users (email, raw_user_meta_data) values ($1, $2) returning id', [email, JSON.stringify(b.data || {})])).rows[0]; (globalThis.__pw ||= {})[row.id] = b.password; }
+        res = J({ id: row.id, aud: 'authenticated', role: '', email, user_metadata: b.data || {}, identities: [{}], created_at: '' });
+      }
     } else if (u.pathname === '/auth/v1/resend' && rq.method === 'POST') {
       const b = JSON.parse(body); res = authSend('resend_' + b.type, b.email) || J({});
     } else if (u.pathname === '/auth/v1/recover' && rq.method === 'POST') {

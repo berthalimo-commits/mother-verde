@@ -5918,10 +5918,10 @@ translations.es.accConfirmaH = "Confirma tu correo para empezar tus 24 horas";
 translations.en.accConfirmaH = "Confirm your email to start your 24 hours";
 translations.de.accConfirmaH = "Bestätige deine E-Mail, um deine 24 Stunden zu starten";
 translations.fr.accConfirmaH = "Confirme ton e-mail pour commencer tes 24 heures";
-translations.es.accConfirmaP = "Te enviamos un enlace a {email}. Ábrelo para confirmar tu cuenta: tus 24 horas de acceso completo empiezan en ese momento. Si no lo ves, revisa la carpeta de spam.";
-translations.en.accConfirmaP = "We sent a link to {email}. Open it to confirm your account: your 24 hours of full access start at that moment. If you don’t see it, check your spam folder.";
-translations.de.accConfirmaP = "Wir haben einen Link an {email} geschickt. Öffne ihn, um dein Konto zu bestätigen: Deine 24 Stunden Vollzugriff beginnen in diesem Moment. Wenn du ihn nicht siehst, schau im Spam-Ordner nach.";
-translations.fr.accConfirmaP = "Nous avons envoyé un lien à {email}. Ouvre-le pour confirmer ton compte : tes 24 heures d’accès complet commencent à ce moment-là. Si tu ne le vois pas, regarde dans tes spams.";
+translations.es.accConfirmaP = "Te enviamos un enlace a {email}. Ábrelo para confirmar tu cuenta: tus 24 horas de acceso completo empiezan en ese momento.";
+translations.en.accConfirmaP = "We sent a link to {email}. Open it to confirm your account: your 24 hours of full access start at that moment.";
+translations.de.accConfirmaP = "Wir haben einen Link an {email} geschickt. Öffne ihn, um dein Konto zu bestätigen: Deine 24 Stunden Vollzugriff beginnen in diesem Moment.";
+translations.fr.accConfirmaP = "Nous avons envoyé un lien à {email}. Ouvre-le pour confirmer ton compte : tes 24 heures d’accès complet commencent à ce moment-là.";
 translations.es.accReenviar = "Reenviar correo";
 translations.en.accReenviar = "Resend email";
 translations.de.accReenviar = "E-Mail erneut senden";
@@ -6059,6 +6059,67 @@ translations.es.ceIgual = "Ese ya es tu correo.";
 translations.en.ceIgual = "That is already your email.";
 translations.de.ceIgual = "Das ist bereits deine E-Mail.";
 translations.fr.ceIgual = "C’est déjà ton e-mail.";
+// "Check your e-mail" screen: spam help, resend limits, contact, fix a mistyped e-mail.
+translations.es.accSpamTip = "Si no lo ves en unos minutos, revisa la carpeta de spam o correo no deseado y marca el mensaje como «no es spam».";
+translations.en.accSpamTip = "If you don’t see it in a few minutes, check your spam or junk folder and mark the message as “not spam”.";
+translations.de.accSpamTip = "Wenn du sie in ein paar Minuten nicht siehst, schau im Spam- oder Junk-Ordner nach und markiere die Nachricht als „kein Spam“.";
+translations.fr.accSpamTip = "Si tu ne le vois pas d’ici quelques minutes, regarde dans le dossier spam ou courrier indésirable et marque le message comme « non spam ».";
+translations.es.accGmailTip = "Consejo para Gmail: mira también en «Spam» y en la pestaña «Promociones».";
+translations.en.accGmailTip = "Gmail tip: also look in Spam and in the Promotions tab.";
+translations.de.accGmailTip = "Tipp für Gmail: Schau auch im Spam und im Tab „Werbung“ nach.";
+translations.fr.accGmailTip = "Astuce Gmail : regarde aussi dans Spam et dans l’onglet « Promotions ».";
+translations.es.accOutlookTip = "Consejo para Outlook y Hotmail: mira también en «Correo no deseado» y en la pestaña «Otros».";
+translations.en.accOutlookTip = "Outlook and Hotmail tip: also look in Junk Email and in the Other tab.";
+translations.de.accOutlookTip = "Tipp für Outlook und Hotmail: Schau auch in „Junk-E-Mail“ und im Tab „Sonstige“ nach.";
+translations.fr.accOutlookTip = "Astuce Outlook et Hotmail : regarde aussi dans « Courrier indésirable » et dans l’onglet « Autres ».";
+translations.es.accContacto = "¿Sigues sin recibirlo? Escríbenos a {mail}";
+translations.en.accContacto = "Still haven’t received it? Write to us at {mail}";
+translations.de.accContacto = "Immer noch nichts angekommen? Schreib uns an {mail}";
+translations.fr.accContacto = "Toujours rien reçu ? Écris-nous à {mail}";
+translations.es.accReenviarMax = "Ya pediste 3 reenvíos en la última hora. Podrás pedir otro en {m} min.";
+translations.en.accReenviarMax = "You already asked for 3 resends in the last hour. You can ask again in {m} min.";
+translations.de.accReenviarMax = "Du hast in der letzten Stunde schon 3 Mal erneut senden lassen. In {m} Min. kannst du es wieder anfordern.";
+translations.fr.accReenviarMax = "Tu as déjà demandé 3 renvois au cours de la dernière heure. Tu pourras en redemander un dans {m} min.";
+translations.es.accYaConfirme = "Ya lo confirmé: iniciar sesión";
+translations.en.accYaConfirme = "I already confirmed: sign in";
+translations.de.accYaConfirme = "Schon bestätigt: anmelden";
+translations.fr.accYaConfirme = "Déjà confirmé : me connecter";
+translations.es.accCorregirBtn = "¿Escribiste mal tu correo? Corrígelo";
+translations.en.accCorregirBtn = "Typed your email wrong? Fix it";
+translations.de.accCorregirBtn = "E-Mail falsch eingegeben? Korrigiere sie";
+translations.fr.accCorregirBtn = "Erreur dans ton e-mail ? Corrige-la";
+translations.es.accCorregirP = "Escribe el correo correcto y la contraseña que elegiste al crear la cuenta. Corregimos esta misma cuenta (no se crea otra) y te enviamos el enlace a la dirección nueva.";
+translations.en.accCorregirP = "Enter the correct email and the password you chose when you created the account. We fix this same account (no new one is created) and send the link to the new address.";
+translations.de.accCorregirP = "Gib die richtige E-Mail ein und das Passwort, das du beim Erstellen des Kontos gewählt hast. Wir korrigieren genau dieses Konto (es wird kein neues erstellt) und schicken den Link an die neue Adresse.";
+translations.fr.accCorregirP = "Saisis le bon e-mail et le mot de passe choisi à la création du compte. Nous corrigeons ce même compte (aucun autre n’est créé) et envoyons le lien à la nouvelle adresse.";
+translations.es.accCorregirNuevo = "Correo correcto";
+translations.en.accCorregirNuevo = "Correct email";
+translations.de.accCorregirNuevo = "Richtige E-Mail";
+translations.fr.accCorregirNuevo = "Bon e-mail";
+translations.es.accCorregirGuardar = "Corregir y reenviar";
+translations.en.accCorregirGuardar = "Fix and resend";
+translations.de.accCorregirGuardar = "Korrigieren und erneut senden";
+translations.fr.accCorregirGuardar = "Corriger et renvoyer";
+translations.es.accCorregirOk = "Listo: corregimos tu correo y te enviamos el enlace a {email}.";
+translations.en.accCorregirOk = "Done: we fixed your email and sent the link to {email}.";
+translations.de.accCorregirOk = "Erledigt: Wir haben deine E-Mail korrigiert und den Link an {email} geschickt.";
+translations.fr.accCorregirOk = "C’est fait : nous avons corrigé ton e-mail et envoyé le lien à {email}.";
+translations.es.accCorregirClave = "La contraseña no coincide con la de esta cuenta.";
+translations.en.accCorregirClave = "The password doesn’t match this account.";
+translations.de.accCorregirClave = "Das Passwort passt nicht zu diesem Konto.";
+translations.fr.accCorregirClave = "Le mot de passe ne correspond pas à ce compte.";
+translations.es.accCorregirYa = "Esta cuenta ya está confirmada: inicia sesión y, si quieres, cambia el correo en Tu cuenta.";
+translations.en.accCorregirYa = "This account is already confirmed: sign in and, if you like, change the email in Your account.";
+translations.de.accCorregirYa = "Dieses Konto ist bereits bestätigt: Melde dich an und ändere die E-Mail bei Bedarf unter Dein Konto.";
+translations.fr.accCorregirYa = "Ce compte est déjà confirmé : connecte-toi et, si tu veux, change l’e-mail dans Ton compte.";
+translations.es.accCorregirNo = "No podemos usar ese correo. Prueba con otro.";
+translations.en.accCorregirNo = "We can’t use that email. Please try another one.";
+translations.de.accCorregirNo = "Diese E-Mail können wir nicht verwenden. Versuch eine andere.";
+translations.fr.accCorregirNo = "Nous ne pouvons pas utiliser cet e-mail. Essaie-en un autre.";
+translations.es.accCorregirIgual = "Es el mismo correo de antes.";
+translations.en.accCorregirIgual = "That is the same email as before.";
+translations.de.accCorregirIgual = "Das ist dieselbe E-Mail wie vorher.";
+translations.fr.accCorregirIgual = "C’est le même e-mail qu’avant.";
 translations.es.accTerminoH = "Tu prueba gratis terminó";
 translations.en.accTerminoH = "Your free trial has ended";
 translations.de.accTerminoH = "Deine kostenlose Testphase ist vorbei";
@@ -6844,11 +6905,23 @@ function mvRenderAcceso(){
       + '<button class="btn btn-ghost" onclick="mvGoAuth(\'login\')">' + t('accEntrar') + '</button></div>';
   } else if(st === 'unconfirmed'){
     const email = mvPendingConfirmEmail() || (mvPreviewOn ? 'tu@correo.com' : '');
+    const tip = mvMailboxTip(email);
     html = '<h2 class="acc-title">' + t('accConfirmaH') + '</h2>'
       + '<p class="acc-text">' + t('accConfirmaP').replace('{email}', '<b>' + esc(email) + '</b>') + '</p>'
+      + '<p class="acc-text">' + t('accSpamTip') + '</p>'
+      + (tip ? '<p class="acc-note acc-tip">' + t(tip) + '</p>' : '')
       + '<div class="acc-actions"><button class="btn btn-primary" id="accResendBtn" onclick="mvResendClick()">' + t('accReenviar') + '</button>'
-      + '<button class="btn btn-ghost" onclick="window.mvSetPendingConfirm(\'\'); mvGoAuth(\'signup\')">' + t('accOtroCorreo') + '</button></div>'
-      + '<p class="acc-note" id="accResendMsg"></p>';
+      + '<button class="btn btn-ghost" onclick="window.mvSetPendingConfirm(\'\'); mvGoAuth(\'login\')">' + t('accYaConfirme') + '</button></div>'
+      + '<p class="acc-note" id="accResendMsg" role="status"></p>'
+      + '<p class="acc-note"><a onclick="mvToggleFixEmail()">' + t('accCorregirBtn') + '</a></p>'
+      + '<form id="accFixForm" class="auth-mini-form acc-fix" hidden onsubmit="mvFixEmailSubmit(event)">'
+      +   '<p class="acc-note">' + t('accCorregirP') + '</p>'
+      +   '<label for="accFixEmail">' + t('accCorregirNuevo') + '</label><input type="email" id="accFixEmail" required autocomplete="email">'
+      +   '<label for="accFixPass">' + t('authPasswordLabel') + '</label><input type="password" id="accFixPass" required autocomplete="current-password">'
+      +   '<button type="submit" class="btn btn-ghost" id="accFixBtn">' + t('accCorregirGuardar') + '</button>'
+      +   '<p class="acc-note" id="accFixMsg" role="status"></p>'
+      + '</form>'
+      + '<p class="acc-note">' + t('accContacto').replace('{mail}', '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>') + '</p>';
   } else if(st === 'expired' || st === 'no_trial'){
     const h = st === 'expired' ? 'accTerminoH' : 'accSinAccesoH';
     const p = st === 'expired' ? 'accTerminoP' : 'accSinAccesoP';
@@ -6869,14 +6942,17 @@ function mvRenderAcceso(){
   mvUpdateResendCooldown();
 }
 
-// "Resend confirmation e-mail": at most once a minute from this browser (Supabase
-// also rate-limits it on its side).
-const MV_RESEND_COOLDOWN_MS = 60000;
-function mvResendWaitMs(){
-  let last = 0;
-  try { last = Number(localStorage.getItem('mv-resend-at')) || 0; } catch(e){}
-  return Math.max(0, last + MV_RESEND_COOLDOWN_MS - Date.now());
+// Extra, discreet hint for the big webmail providers.
+function mvMailboxTip(email){
+  const d = String(email || '').toLowerCase().split('@')[1] || '';
+  if(/^(gmail|googlemail)\.com$/.test(d)) return 'accGmailTip';
+  if(/^(hotmail|outlook|live)\.[a-z.]+$/.test(d) || d === 'msn.com') return 'accOutlookTip';
+  return '';
 }
+
+// "Resend confirmation e-mail": 60 s between two and at most 3 an hour from
+// this browser (limits in src/auth.js; Supabase also limits on its side).
+function mvResendWaitMs(){ return window.mvMailWaitMs ? window.mvMailWaitMs('signup') : 0; }
 function mvUpdateResendCooldown(){
   const btn = document.getElementById('accResendBtn');
   if(!btn) return;
@@ -6884,18 +6960,57 @@ function mvUpdateResendCooldown(){
   btn.disabled = wait > 0;
   if(wait > 0){
     const msg = document.getElementById('accResendMsg');
-    if(msg && !msg.dataset.sticky) msg.textContent = t('accReenviarEspera').replace('{s}', Math.ceil(wait / 1000));
-    setTimeout(mvUpdateResendCooldown, 1000);
+    const capped = window.mvMailSendsLeft && window.mvMailSendsLeft('signup') === 0;
+    if(msg && !msg.dataset.sticky) msg.textContent = capped
+      ? t('accReenviarMax').replace('{m}', Math.ceil(wait / 60000))
+      : t('accReenviarEspera').replace('{s}', Math.ceil(wait / 1000));
+    clearTimeout(mvUpdateResendCooldown.timer);
+    mvUpdateResendCooldown.timer = setTimeout(mvUpdateResendCooldown, 1000);
+  } else {
+    const msg = document.getElementById('accResendMsg');
+    if(msg && !msg.dataset.sticky && /\d/.test(msg.textContent)) msg.textContent = '';
   }
 }
 async function mvResendClick(){
   const msg = document.getElementById('accResendMsg');
   const email = mvPendingConfirmEmail();
   if(!email || mvResendWaitMs() > 0 || !window.mvResendConfirmation) return;
-  try { localStorage.setItem('mv-resend-at', String(Date.now())); } catch(e){}
   const err = await window.mvResendConfirmation(email);
-  if(msg){ msg.dataset.sticky = '1'; msg.textContent = t(err ? 'accReenviarError' : 'accReenviarOk'); setTimeout(() => { delete msg.dataset.sticky; }, 4000); }
+  // null = sent; authErrRate / authErrSend = Supabase said no, with the reason.
+  const key = !err ? 'accReenviarOk' : (err === 'authErrRate' || err === 'authErrSend') ? err : 'accReenviarError';
+  if(msg){ msg.dataset.sticky = '1'; msg.textContent = t(key); setTimeout(() => { delete msg.dataset.sticky; }, 4000); }
   mvUpdateResendCooldown();
+}
+
+// "Typed your e-mail wrong?": fixes THIS unconfirmed account (function
+// signup-fix-email, which checks the password), then sends the confirmation
+// to the corrected address. No second account.
+function mvToggleFixEmail(){
+  const f = document.getElementById('accFixForm');
+  if(!f) return;
+  f.hidden = !f.hidden;
+  if(!f.hidden) document.getElementById('accFixEmail')?.focus();
+}
+async function mvFixEmailSubmit(e){
+  e.preventDefault();
+  const msg = document.getElementById('accFixMsg'), btn = document.getElementById('accFixBtn');
+  const oldEmail = mvPendingConfirmEmail();
+  const newEmail = document.getElementById('accFixEmail').value.trim().toLowerCase();
+  const password = document.getElementById('accFixPass').value;
+  if(!oldEmail || !window.mvFixSignupEmail) return;
+  if(newEmail === oldEmail.toLowerCase()){ msg.textContent = t('accCorregirIgual'); return; }
+  btn.disabled = true;
+  msg.textContent = t('authLoading');
+  const r = await window.mvFixSignupEmail(oldEmail, newEmail, password);
+  btn.disabled = false;
+  if(r.ok){
+    window.mvSetPendingConfirm(newEmail);   // redraws this screen with the new address
+    const m = document.getElementById('accResendMsg');
+    const esc = (x) => String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    if(m){ m.dataset.sticky = '1'; m.innerHTML = r.sendError ? t(r.sendError) : t('accCorregirOk').replace('{email}', '<b>' + esc(newEmail) + '</b>'); setTimeout(() => { delete m.dataset.sticky; }, 8000); }
+    return;
+  }
+  msg.textContent = t({ wrong_password: 'accCorregirClave', already_confirmed: 'accCorregirYa', not_allowed: 'accCorregirNo', bad_email: 'authErrInvalidEmail', same_email: 'accCorregirIgual' }[r.error] || 'authErrSend');
 }
 
 // Countdown strip (trial only). Can be closed for this browser session.

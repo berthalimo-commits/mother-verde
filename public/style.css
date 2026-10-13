@@ -580,3 +580,5 @@ html.mv-locked .bit-entry-del{display:none !important;}
 .auth-email-box{margin-top:16px; padding-top:14px; border-top:1px solid var(--line); max-width:360px; overflow-wrap:anywhere;}
 .auth-link-card{border-left:3px solid var(--resin);}
 .auth-link-card .acc-actions{justify-content:flex-start; margin:10px 0 4px;}
+.acc-tip{font-style:italic;}
+.acc-fix{margin:8px auto 14px; text-align:left;}
