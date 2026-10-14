@@ -8,7 +8,8 @@
 --    Flowers: 1–20 (10–200 USDC + 0.0001–0.0099). review_reason codes:
 --    monto_alto (over claim_auto_max_usdc), monto_distinto, destino_distinto,
 --    no_es_usdc, tx_fallida, tx_no_encontrada, tx_anterior_a_la_reserva,
---    txid_ya_usado, solicitud_no_vigente, red_no_disponible.
+--    txid_ya_usado, solicitud_no_vigente, red_no_disponible, reserva_vencida
+--    (TXID given after the reservation expired: always checked by hand).
 select id, account_email, flowers, amount_usdc, status, submitted_at, expires_at,
        review_reason, verification ->> 'all_pass' as all_checks_passed, explorer_url
 from public.admin_list_claims(array['submitted', 'manual_review']);

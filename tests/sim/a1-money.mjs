@@ -86,5 +86,47 @@ r = await call(A2, { action: 'admin_reject', claim_id: c3.id, reason: 'Monto dis
 check('rechazar un aviso de cuenta borrada también funciona', r.status === 200 && (await q('select status from support_claims where id = $1', [c3.id]))[0].status === 'rejected');
 check('la base no admite un aviso sin cuenta que no esté marcado como borrado', await db.query(`insert into support_claims (user_id, flowers, amount_units, expires_at) values (null, 1, 10000100, now())`).then(() => false, () => true));
 
+// ================================================================ 2
+console.log('2. Pago tardío (la reserva de 72 h venció)');
+const L = await person('tarde@example.org');
+const lc = (await rpc(tok(L), 'create_support_claim', { p_flowers: 1 })).body;
+await db.query(`update support_claims set expires_at = now() - interval '1 hour', status = 'expired' where id = $1`, [lc.id]);
+// someone else now holds the same amount
+const O = await person('otra@example.org');
+const oc = (await rpc(tok(O), 'create_support_claim', { p_flowers: 1 })).body;
+await db.query('update support_claims set amount_units = $1 where id = $2', [lc.amount_units, oc.id]);
+const LTX = tx();
+r = await rpc(tok(L), 'submit_support_claim_tx', { p_claim_id: lc.id, p_tx_hash: LTX });
+let lrow = (await q('select status, late, review_reason, tx_hash from support_claims where id = $1', [lc.id]))[0];
+check('reserva vencida + TXID -> aceptado, en revisión manual con motivo «reserva_vencida»', r.status === 200 && lrow.status === 'manual_review' && lrow.late === true && lrow.review_reason === 'reserva_vencida' && lrow.tx_hash === LTX, JSON.stringify({ r, lrow }));
+check('…aunque otra persona tenga ahora ese mismo monto reservado (su reserva sigue intacta)', (await q('select status from support_claims where id = $1', [oc.id]))[0].status === 'awaiting_payment');
+const L2 = await person('tarde2@example.org');
+const l2 = (await rpc(tok(L2), 'create_support_claim', { p_flowers: 3 })).body;
+await db.query(`update support_claims set expires_at = now() - interval '5 minutes' where id = $1`, [l2.id]);
+const l2new = (await rpc(tok(L2), 'create_support_claim', { p_flowers: 2 })).body;
+r = await rpc(tok(L2), 'submit_support_claim_tx', { p_claim_id: l2.id, p_tx_hash: tx() });
+check('reserva vencida aún sin marcar + una reserva nueva sin pagar -> se acepta la tardía y se cancela la nueva', r.status === 200 && (await q('select status from support_claims where id = $1', [l2.id]))[0].status === 'manual_review' && (await q('select status from support_claims where id = $1', [l2new.id]))[0].status === 'canceled', JSON.stringify(r));
+const L3 = await person('tarde3@example.org');
+const l3a = (await rpc(tok(L3), 'create_support_claim', { p_flowers: 1 })).body;
+await db.query(`update support_claims set expires_at = now() - interval '1 hour', status = 'expired' where id = $1`, [l3a.id]);
+const l3b = (await rpc(tok(L3), 'create_support_claim', { p_flowers: 1 })).body;
+await rpc(tok(L3), 'submit_support_claim_tx', { p_claim_id: l3b.id, p_tx_hash: tx() });
+r = await rpc(tok(L3), 'submit_support_claim_tx', { p_claim_id: l3a.id, p_tx_hash: tx() });
+check('si ya tiene otro aviso en revisión -> «claim_in_review», no toca nada', r.status >= 400 && JSON.stringify(r.body).includes('claim_in_review') && (await q('select status from support_claims where id = $1', [l3a.id]))[0].status === 'expired');
+check('TXID ya usado -> rechazado también en el pago tardío', JSON.stringify((await rpc(tok(L3), 'submit_support_claim_tx', { p_claim_id: l3a.id, p_tx_hash: LTX })).body).includes('tx_already_used'));
+const OT = await person('a-tiempo@example.org');
+const ot = (await rpc(tok(OT), 'create_support_claim', { p_flowers: 1 })).body;
+await rpc(tok(OT), 'submit_support_claim_tx', { p_claim_id: ot.id, p_tx_hash: tx() });
+check('a tiempo: sigue como antes («submitted», sin marca de tardío)', (await q('select status, late from support_claims where id = $1', [ot.id]))[0].status === 'submitted');
+await db.exec(`update app_config set value = 1 where key = 'claim_auto_verify_enabled'`);
+r = await call(tok(L), { action: 'verify', claim_id: lc.id });
+check('con la verificación automática ENCENDIDA, un tardío nunca se activa solo', (await q('select status from support_claims where id = $1', [lc.id]))[0].status === 'manual_review' && (await q('select subscription_status s from profiles where id = $1', [L]))[0].s !== 'supporter', JSON.stringify(r));
+await db.exec(`update app_config set value = 0 where key = 'claim_auto_verify_enabled'`);
+check('aprobar un tardío sin motivo escrito -> reason_required', (await call(A2, { action: 'admin_approve', claim_id: lc.id })).body.error === 'reason_required');
+r = await call(A2, { action: 'admin_approve', claim_id: lc.id, reason: 'Pago visto en Basescan, llegó tarde' });
+check('…con motivo -> activado y la cuenta pasa a acceso completo', r.status === 200 && (await q('select subscription_status s from profiles where id = $1', [L]))[0].s === 'supporter', JSON.stringify(r));
+const migr = fs.readFileSync(APP + '/supabase/migrations/20261014110000_late_payment.sql', 'utf8');
+check('textos del pago tardío en los 4 idiomas', ['es', 'en', 'de', 'fr'].every((l) => ['dsTardeH', 'dsTardeP', 'dsTardeBtn', 'dsTardeOk', 'dsErrEnRevision'].every((k) => fs.readFileSync(APP + '/public/main.js', 'utf8').includes(`translations.${l}.${k} = `))) && migr.includes("'reserva_vencida'"));
+
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 process.exit(0);

@@ -69,6 +69,7 @@ const RPC_ERR = {
   email_not_confirmed: 'dsErrConfirm', no_free_amount: 'dsErrBusy', expired: 'dsErrExpired',
   bad_contact_name: 'dsErrContactoNombre', bad_contact_phone: 'dsErrContactoTel',
   bad_tx_format: 'dsFormErrTx', tx_already_used: 'dsFormErrDup', already_supporter: 'dsYaTienes',
+  claim_in_review: 'dsErrEnRevision',
 };
 const errKey = (error) => { const m = (error && error.message) || ''; const k = Object.keys(RPC_ERR).find((x) => m.includes(x)); return k ? RPC_ERR[k] : 'dsFormErrGeneric'; };
 
@@ -122,12 +123,51 @@ async function submitTx(ev) {
   renderDesbloquear();
 }
 
+// A reservation that ran out without a transaction code: the person may have
+// paid anyway (late payment, migration 20261014110000). They can still give
+// the TXID; it always goes to manual review ('reserva_vencida').
+function lateCandidate(c) {
+  return !!c && !c.tx_hash && (c.status === 'expired' || (c.status === 'awaiting_payment' && !awaiting(c)));
+}
+let lateJustSent = false;
+function lateFormHtml(c) {
+  return `
+    <form class="ds-claim ds-late" id="dsLateForm" novalidate>
+      <h3>${t('dsTardeH')}</h3>
+      <p>${fmt(t('dsTardeP'), { a: `<b class="ds-amount-inline">${amountText(c.amount_units)}</b>` })}</p>
+      <label for="dsLateTx">${t('dsFormTx')}</label>
+      <input type="text" id="dsLateTx" maxlength="66" autocomplete="off" spellcheck="false" placeholder="0x…">
+      <p class="ds-claim-help">${t('dsFormAyuda')}</p>
+      <button type="submit" class="btn btn-ghost" id="dsLateBtn">${t('dsTardeBtn')}</button>
+      <p class="ds-claim-msg" id="dsLateMsg" aria-live="polite"></p>
+    </form>`;
+}
+async function submitLate(ev) {
+  ev.preventDefault();
+  const msg = document.getElementById('dsLateMsg');
+  const btn = document.getElementById('dsLateBtn');
+  const tx = document.getElementById('dsLateTx').value.trim();
+  const c = claimNow();
+  if (!TX_RE.test(tx)) { msg.textContent = t('dsFormErrTx'); return; }
+  if (isLocalPreview()) { window.mvLatestClaim = { ...c, status: 'manual_review', late: true, review_reason: 'reserva_vencida', tx_hash: tx.toLowerCase() }; lateJustSent = true; window.mvApplyAccessState?.(); renderDesbloquear(); return; }
+  if (!window.mvSupabase || !window.mvCurrentUser || !c) { msg.textContent = t('dsFormErrGeneric'); return; }
+  btn.disabled = true;
+  msg.textContent = t('dsFormSending');
+  const { data, error } = await window.mvSupabase.rpc('submit_support_claim_tx', { p_claim_id: c.id, p_tx_hash: tx });
+  if (error) { msg.textContent = t(errKey(error)); btn.disabled = false; return; }
+  window.mvLatestClaim = data;
+  lateJustSent = true;
+  try { await window.mvSupabase.functions.invoke('support-claims', { body: { action: 'verify', claim_id: data.id } }); } catch (e) {}
+  await window.mvRefreshAuth?.();
+  renderDesbloquear();
+}
+
 function claimHtml() {
   const c = claimNow();
   const access = window.mvAccessStateNow ? window.mvAccessStateNow() : '';
   if (access === 'supporter') return `<div class="note-box">${t('dsYaTienes')}</div>`;
   if (c && OPEN.includes(c.status)) {
-    return `<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}${c.amount_units ? `<br>${fmt(t('dsMontoPendiente'), { a: `<b class="ds-amount-inline">${amountText(c.amount_units)}</b>` })}` : ''}</div>`;
+    return `${lateJustSent || c.late ? `<p class="ds-claim-late-ok" role="status">${t('dsTardeOk')}</p>` : ''}<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}${c.amount_units ? `<br>${fmt(t('dsMontoPendiente'), { a: `<b class="ds-amount-inline">${amountText(c.amount_units)}</b>` })}` : ''}</div>`;
   }
   const notes = (c && c.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : '')
     + (c && (c.status === 'expired' || (c.status === 'awaiting_payment' && !awaiting(c))) ? `<p class="ds-claim-rejected">${t('dsVencidoP')}</p>` : '');
@@ -139,7 +179,7 @@ function claimHtml() {
         <p>${fmt(t('dsReservarP'), { usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
         <button type="button" class="btn btn-primary" id="dsReservarBtn">${t('dsReservarBtn')}</button>
         <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
-      </div>`;
+      </div>${lateCandidate(c) ? lateFormHtml(c) : ''}`;
   }
   const amount = amountText(c.amount_units);
   return `
@@ -282,6 +322,7 @@ export function renderDesbloquear() {
   root.querySelector('#dsReservarBtn')?.addEventListener('click', reserve);
   root.querySelector('#dsCancelBtn')?.addEventListener('click', cancelReservation);
   root.querySelector('#dsClaimForm')?.addEventListener('submit', submitTx);
+  root.querySelector('#dsLateForm')?.addEventListener('submit', submitLate);
   root.querySelector('#dsCopyAmount')?.addEventListener('click', async () => {
     const m = document.getElementById('dsAmountCopied');
     try { await navigator.clipboard.writeText(document.getElementById('dsCopyAmount').dataset.amount); m.textContent = t('dsMontoCopiado'); }

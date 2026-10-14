@@ -38,7 +38,8 @@
 //   monto_distinto, tx_anterior_a_la_reserva, txid_ya_usado,
 //   solicitud_no_vigente, monto_alto (over the automatic cap), sin_txid,
 //   direccion_no_configurada, red_no_disponible (Base endpoint failed or
-//   rate limited). Never activation on doubt.
+//   rate limited). Never activation on doubt. (reserva_vencida is set by
+//   submit_support_claim_tx for a TXID given after the 72 h reservation.)
 // Not enough confirmations yet -> stays 'submitted', checked again later.
 //
 // Secrets: SUPPORT_ADDRESS (the receiving address, lower case),

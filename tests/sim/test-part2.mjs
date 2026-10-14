@@ -109,7 +109,9 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   const U3 = await newUser(3); const c3 = (await create(U3, 1)).rows[0];
   check('TXID repetido (otra cuenta) -> rechazado', err(await as('authenticated', U3, `select * from submit_support_claim_tx(${c3.id}, '${TX}')`)).includes('tx_already_used'));
   await db.exec(`update support_claims set expires_at = now() - interval '1 minute' where id = ${c3.id}`);
-  check('solicitud vencida -> no acepta código', err(await as('authenticated', U3, `select * from submit_support_claim_tx(${c3.id}, '0x${'cd'.repeat(32)}')`)).includes('expired'));
+  // since 20261014110000 (late payment): accepted, but always manual review, never 'submitted'
+  const late = await as('authenticated', U3, `select * from submit_support_claim_tx(${c3.id}, '0x${'cd'.repeat(32)}')`);
+  check('solicitud vencida -> el código queda en revisión manual («reserva_vencida»), nunca «submitted»', late.rows?.[0]?.status === 'manual_review' && late.rows[0].late === true && late.rows[0].review_reason === 'reserva_vencida', JSON.stringify(late));
   // automatic check says "wrong amount" -> manual review with the reason
   const rec = await as('service_role', null, `select * from svc_record_claim_check(${c1b.id}, '{"all_pass": false, "checks": {"amount": false}}'::jsonb, true, 'monto distinto: llegaron 29.9 USDC')`);
   check('verificación con monto incorrecto -> revisión manual con motivo', rec.rows?.[0]?.status === 'manual_review' && rec.rows[0].review_reason.includes('monto'));

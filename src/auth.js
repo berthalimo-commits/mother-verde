@@ -90,7 +90,7 @@ async function loadLatestClaim(){
   window.mvLatestClaim = null;
   if(!window.mvCurrentUser) return;
   const { data, error } = await supabase.from('support_claims')
-    .select('id, status, flowers, amount_units, created_at, expires_at, tx_hash, submitted_at, review_reason, reviewed_at')
+    .select('id, status, flowers, amount_units, created_at, expires_at, tx_hash, submitted_at, review_reason, reviewed_at, late')
     .order('created_at', { ascending: false }).limit(1).maybeSingle();
   if(!error) window.mvLatestClaim = data || null;
 }
