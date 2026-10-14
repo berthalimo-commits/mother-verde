@@ -303,6 +303,7 @@ const T2 = {
 // Late payment marks, reason history and TXID conflicts (20261014120000).
 const T3 = {
   es: {
+    pendingBanner: 'Avisos sin revisar: {n}', pendingOld: '{m} esperan más de 12 h', pendingGo: 'Ver avisos', waitingLong: 'Esperando hace más de 12 h', mk_txid_notice: 'Aviso de TXID nuevo',
     lateBadge: 'Pago tardío / reserva vencida', lateP: 'El TXID llegó después de que venciera la reserva de 72 h. Nunca se activa solo: revisa y escribe el motivo.',
     conflictBadge: 'Conflicto abierto', conflictP: 'Este aviso está en un conflicto (abajo). No se puede activar hasta resolverlo.',
     historyH: 'Historial de motivos', h_pago_tardio: 'pago tardío', h_comprobacion: 'comprobación en Base', h_envio: 'envío del TXID', h_conflicto: 'conflicto',
@@ -314,6 +315,7 @@ const T3 = {
     lateYes: 'tardío', deletedAcc: 'cuenta borrada',
   },
   en: {
+    pendingBanner: 'Claims to review: {n}', pendingOld: '{m} waiting more than 12 h', pendingGo: 'See claims', waitingLong: 'Waiting more than 12 h', mk_txid_notice: 'New TXID notice',
     lateBadge: 'Late payment / reservation expired', lateP: 'The TXID arrived after the 72 h reservation had expired. It never activates on its own: check it and write a reason.',
     conflictBadge: 'Open conflict', conflictP: 'This claim is in a conflict (below). It cannot be activated until the conflict is resolved.',
     historyH: 'Reason history', h_pago_tardio: 'late payment', h_comprobacion: 'Base check', h_envio: 'TXID sent', h_conflicto: 'conflict',
@@ -325,6 +327,7 @@ const T3 = {
     lateYes: 'late', deletedAcc: 'account deleted',
   },
   de: {
+    pendingBanner: 'Ungeprüfte Meldungen: {n}', pendingOld: '{m} warten länger als 12 Std.', pendingGo: 'Meldungen ansehen', waitingLong: 'Wartet länger als 12 Std.', mk_txid_notice: 'Hinweis: neue TXID',
     lateBadge: 'Verspätete Zahlung / Reservierung abgelaufen', lateP: 'Die TXID kam, nachdem die 72-h-Reservierung abgelaufen war. Sie wird nie automatisch freigeschaltet: prüfen und Grund angeben.',
     conflictBadge: 'Offener Konflikt', conflictP: 'Diese Meldung steckt in einem Konflikt (unten). Sie kann erst freigeschaltet werden, wenn er gelöst ist.',
     historyH: 'Verlauf der Gründe', h_pago_tardio: 'verspätete Zahlung', h_comprobacion: 'Prüfung in Base', h_envio: 'TXID gesendet', h_conflicto: 'Konflikt',
@@ -336,6 +339,7 @@ const T3 = {
     lateYes: 'verspätet', deletedAcc: 'Konto gelöscht',
   },
   fr: {
+    pendingBanner: 'Avis à vérifier : {n}', pendingOld: '{m} attendent depuis plus de 12 h', pendingGo: 'Voir les avis', waitingLong: 'En attente depuis plus de 12 h', mk_txid_notice: 'Avis de nouveau TXID',
     lateBadge: 'Paiement tardif / réservation expirée', lateP: 'Le TXID est arrivé après l’expiration de la réservation de 72 h. Il ne s’active jamais tout seul : vérifie et écris un motif.',
     conflictBadge: 'Conflit ouvert', conflictP: 'Cet avis est dans un conflit (ci-dessous). Il ne peut pas être activé avant sa résolution.',
     historyH: 'Historique des motifs', h_pago_tardio: 'paiement tardif', h_comprobacion: 'vérification sur Base', h_envio: 'envoi du TXID', h_conflicto: 'conflit',
@@ -467,6 +471,7 @@ async function panel(email) {
       <button data-t="claims">${tr('tabClaims')}</button>
       <button data-t="gifts">${tr('tabGifts')}</button>
       <button data-t="audit">${tr('tabAudit')}</button></div>
+    <div id="pendingAlert"></div>
     <div id="mailAlert"></div>
     <div id="view"></div>`;
   document.getElementById('out').onclick = async () => { await sb.auth.signOut(); location.href = '/'; };
@@ -476,9 +481,22 @@ async function panel(email) {
 function show() {
   app.querySelectorAll('#ptabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
   mailAlert();
+  pendingAlert();
   ({ summary: summaryView, users: usersView, claims: claimsView, gifts: giftsView, audit: auditView })[tab]();
 }
 const view = () => document.getElementById('view');
+
+// "Avisos sin revisar": above every tab, red part for the ones older than 12 h.
+async function pendingAlert() {
+  const box = document.getElementById('pendingAlert');
+  if (!box) return;
+  const { data, error } = await sb.rpc('admin_pending_claims');
+  if (error || !data || !data.open) { box.innerHTML = ''; return; }
+  box.innerHTML = `<div class="card ${data.older_12h ? 'bad' : 'warn'}" id="pendingAlertCard" role="status">
+    <b>${esc(tr('pendingBanner', { n: data.open }))}</b>${data.older_12h ? ` · <b data-old="${data.older_12h}">${esc(tr('pendingOld', { m: data.older_12h }))}</b>` : ''}
+    ${tab !== 'claims' ? ` <button class="ghost" id="pendingGo">${tr('pendingGo')}</button>` : ''}</div>`;
+  document.getElementById('pendingGo')?.addEventListener('click', () => { tab = 'claims'; show(); });
+}
 
 // "Correos fallidos en las últimas 24 h": above every tab when there is any.
 async function mailAlert() {
@@ -494,6 +512,7 @@ let showAwaiting = false;
 let autoMax = 201; // claim_auto_max_usdc, read from the server
 
 async function claimsView() {
+  pendingAlert();
   view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
   const [cfg, list, conf] = await Promise.all([
     fn('support-claims', { action: 'config' }),
@@ -567,7 +586,9 @@ function claimCard(c) {
   const open = c.status === 'submitted' || c.status === 'manual_review';
   const extra = [v?.detail?.confirmations != null ? tr('confirmations', { n: v.detail.confirmations }) : '',
     v?.detail?.received_units?.length ? tr('receivedAmt', { a: v.detail.received_units.map(usdc).join(', ') }) : ''].filter(Boolean).join(' · ');
-  return `<div class="card">
+  const waitedLong = (c.status === 'submitted' || c.status === 'manual_review') && Date.now() - new Date(c.submitted_at || c.created_at).getTime() > 12 * 3600000;
+  return `<div class="card${waitedLong ? ' bad' : ''}"${waitedLong ? ' data-waiting-long="1" style="border-width:2px"' : ''}>
+    ${waitedLong ? `<p><b class="pill bad">${tr('waitingLong')}</b></p>` : ''}
     <div class="row" style="justify-content:space-between"><span>${c.account_deleted ? `<b class="warn" data-deleted="1">${tr('accountDeletedH')}</b>` : emailCell(c.account_email, true)}</span><span class="pill">${esc(tr('st_' + c.status))}</span></div>
     ${c.account_deleted ? `<p class="warn">${tr('accountDeletedP')}</p>` : ''}
     ${c.late ? `<p><b class="pill warn" data-late="1">${tr('lateBadge')}</b></p><p class="warn">${tr('lateP')}</p>` : ''}

@@ -13,6 +13,8 @@ await sql(`insert into support_claims (user_id, flowers, amount_units, status, c
 const late = (await sql(`select id from support_claims where user_id = '${NEWBIE}'`))[0];
 await sql(`select public.svc_submit_late_claim(${late.id}, '${NEWBIE}', '${TX}', '{"late": true}'::jsonb)`);
 
+// the payer's TXID arrived 13 hours ago (A1.3: highlight after 12 h)
+await sql(`update support_claims set submitted_at = now() - interval '13 hours' where id = ${payer.id}`);
 const b = await browser(ADMIN, 'aal1', 1280);
 const bodyWait = async (re, ms = 10000) => { let t = ''; for (let i = 0; i < ms; i += 250) { t = await b.ev('document.body.innerText'); if (re.test(t)) return t; await sleep(250); } return t; };
 await b.send('Page.navigate', { url: 'http://localhost:5174/panel-mv.html' });
@@ -26,6 +28,8 @@ check('el aviso tardío lleva la marca «Pago tardío / reserva vencida»', awai
 check('los dos avisos llevan «Conflicto abierto» y no se pueden activar', await b.ev(`document.querySelectorAll('[data-conflict-open="1"]').length`) === 2);
 check('historial de motivos visible (pago tardío, conflicto)', await b.ev(`[...document.querySelectorAll('details.history')].some((d) => /pago tardío/.test(d.textContent) && /conflicto_txid/.test(d.textContent))`));
 await b.shot('panel-conflicto');
+check('arriba de todo: «Avisos sin revisar: 2 · 1 esperan más de 12 h»', /Avisos sin revisar: 2/i.test(s) && /1 esperan más de 12 h/i.test(s), s.slice(0, 600));
+check('el aviso que espera más de 12 h está resaltado', await b.ev(`!!document.querySelector('[data-waiting-long="1"]')`));
 
 // "Comprobar en Base" on the payer's claim keeps its earlier reasons
 const payerCard = `[...document.querySelectorAll('#view .card')].find((c) => c.querySelector('[data-act="check"][data-id="${payer.id}"]'))`;

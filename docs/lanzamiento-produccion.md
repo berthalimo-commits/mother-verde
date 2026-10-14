@@ -96,6 +96,7 @@ no funciona bien con la base nueva y la nueva no funciona con la vieja).
 |---|---|---|
 | Hook | (sin SQL) Authentication → Hooks → apagar «Before User Created». **Primero esto.** | — |
 | `grant-admin.sql` (hello@ admin + acceso completo) | `rollback-grant-admin.sql` (PARTE 1 solo lectura, luego PARTE 2) | hello@ deja de ser admin y vuelve al estado de acceso que tenía antes (lo guarda el registro de auditoría) |
+| `20261014130000` contador «Avisos sin revisar» | `rollback-20261014130000.sql` | nada (solo un contador de lectura) |
 | `20261014120000` conflictos de TXID y historial de motivos | `rollback-20261014120000.sql` | la lista de conflictos y el historial de motivos (exportarlos antes: `select * from public.admin_list_claim_conflicts(true);`); vuelve el pago tardío directo desde el navegador |
 | `20261014110000` pago tardío | `rollback-20261014110000.sql` | nada (los avisos tardíos se conservan); si hay un tardío abierto con el mismo monto que otro aviso abierto, ciérralo antes |
 | `20261014100000` avisos de cuentas borradas | `rollback-20261014100000.sql` | **borra** los avisos de cuentas ya borradas (expórtalos antes con el CSV) |
@@ -144,11 +145,12 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
 6. ☐ **Tú**: SQL Editor, cada archivo entero y en orden:
    `20261010120000` → `seed-blocked-email-domains/part-01` … `part-07` → `20261010130000` → `20261011100000` →
    `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
-   `20261014100000` → `20261014110000` → `20261014120000` →
+   `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
    y `RESEND_API_KEY` si toca.
+   Opcional: `NOTIFY_TO` = dirección que recibe el aviso de cada TXID nuevo (si no se pone: hello@motherverdeny.com).
 8. ☐ **Tú**: Edge Functions, pegar cada `index.ts` entero: `community-publish-post`, `community-publish-comment`,
    `support-claims`, `admin-send-gift-code`, `community-retranslate` (**Verify JWT apagado**) y
    `signup-fix-email` (**Verify JWT apagado**). `delete-account` no se toca.

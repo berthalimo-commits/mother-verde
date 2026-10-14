@@ -219,5 +219,48 @@ r = await late(L3, l3a, L3T);
 check('si ya tiene otro aviso en revisión -> «claim_in_review», no toca nada', r.body.error === 'claim_in_review' && (await crow(l3a.id)).status === 'expired', JSON.stringify(r));
 check('textos nuevos en los 4 idiomas', ['es', 'en', 'de', 'fr'].every((l) => ['dsTardeH', 'dsTardeP', 'dsTardeBtn', 'dsTardeOk', 'dsErrEnRevision', 'dsErrTardeMonto', 'dsErrTardeNoEncontrada', 'dsRevisionManual'].every((k) => fs.readFileSync(APP + '/public/main.js', 'utf8').includes(`translations.${l}.${k} = `))));
 
+
+// ================================================================ 3
+console.log('3. Aviso a soporte cuando llega un TXID + contador del panel (A1.3)');
+const notices = () => globalThis.__mail.filter((m) => /Nuevo aviso de aporte/.test(m.subject || ''));
+globalThis.__mail = [];
+const N1 = await person('nueva.aportante@example.org');
+const n1 = (await rpc(tok(N1), 'create_support_claim', { p_flowers: 3 })).body;
+await rpc(tok(N1), 'submit_support_claim_tx', { p_claim_id: n1.id, p_tx_hash: tx(), p_contact_name: 'Ana Prueba', p_contact_phone: '+51 999 888 777' });
+await call(tok(N1), { action: 'verify', claim_id: n1.id });
+let nm = notices();
+check('TXID a tiempo -> un correo a soporte (hello@), en español', nm.length === 1 && nm[0].to === 'hello@motherverdeny.com' && /Nuevo aviso de aporte n\.º/.test(nm[0].subject) && /Aviso n\.º/.test(nm[0].text), JSON.stringify(nm.map((m) => [m.to, m.subject])));
+const body = nm[0]?.text + nm[0]?.html;
+check('…con número de aviso, monto, estado y enlace al panel', body.includes(String(n1.id)) && /USDC/.test(body) && /código recibido/.test(body) && /panel-mv\.html/.test(body));
+check('…y SIN datos personales (ni correo, ni nombre, ni teléfono, ni TXID)', !/nueva\.aportante|Ana Prueba|999 888|0x[0-9a-f]{20}/.test(body));
+await call(tok(N1), { action: 'verify', claim_id: n1.id });
+await call(tok(N1), { action: 'verify', claim_id: n1.id });
+check('volver a llamar no repite el correo (uno por aviso)', notices().length === 1);
+const N2 = await person('tardia2@example.org');
+const n2 = (await rpc(tok(N2), 'create_support_claim', { p_flowers: 4 })).body;
+await expire(n2.id);
+const N2T = tx(); putTx(N2T, n2.amount_units);
+r = await late(N2, n2, N2T);
+check('pago tardío aceptado -> también avisa, marcado como tardío', r.status === 200 && notices().length === 2 && /pago tardío/.test(notices()[1].text));
+// e-mail fails: the claim is kept and the failure shows in "Correos fallidos"
+globalThis.__smtpFail = 'SMTP 535 simulated';
+const N3 = await person('falla@example.org');
+const n3 = (await rpc(tok(N3), 'create_support_claim', { p_flowers: 5 })).body;
+await rpc(tok(N3), 'submit_support_claim_tx', { p_claim_id: n3.id, p_tx_hash: tx() });
+const failBefore = (await rpc(A2, 'admin_mail_failures_24h')).body;
+r = await call(tok(N3), { action: 'verify', claim_id: n3.id });
+globalThis.__smtpFail = null;
+check('si el correo falla, el aviso se guarda igual', r.status === 200 && (await crow(n3.id)).status === 'submitted', JSON.stringify(r));
+check('…y el fallo queda en «Correos fallidos» (sin direcciones)', (await rpc(A2, 'admin_mail_failures_24h')).body === failBefore + 1
+  && (await q(`select count(*)::int c from mail_events where kind = 'txid_notice' and not ok and ref = $1`, ['claim:' + n3.id]))[0].c === 1);
+// panel counter
+let pc = (await rpc(A2, 'admin_pending_claims')).body;
+const openNow = (await q(`select count(*)::int c from support_claims where status in ('submitted', 'manual_review')`))[0].c;
+check('«Avisos sin revisar» cuenta los avisos abiertos', pc.open === openNow, JSON.stringify(pc));
+await db.query(`update support_claims set submitted_at = now() - interval '13 hours' where id = $1`, [n1.id]);
+pc = (await rpc(A2, 'admin_pending_claims')).body;
+check('…y cuántos esperan más de 12 h', pc.older_12h >= 1, JSON.stringify(pc));
+check('una cuenta normal no puede leer el contador', JSON.stringify((await rpc(tok(N1), 'admin_pending_claims')).body).includes('not_allowed'));
+
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 process.exit(0);

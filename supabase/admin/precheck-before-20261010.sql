@@ -62,7 +62,8 @@ with expected(kind, name) as (values
   ('trigger',  'auth.users.on_auth_user_delete_claims'),
   ('column',   'public.support_claims.late'),
   ('table',    'public.support_claim_conflicts'),
-  ('column',   'public.support_claims.review_history')
+  ('column',   'public.support_claims.review_history'),
+  ('function', 'public.admin_pending_claims()')
 ), present as (
   select 'policy' kind, schemaname || '.' || tablename || '.' || policyname name from pg_policies
   union all

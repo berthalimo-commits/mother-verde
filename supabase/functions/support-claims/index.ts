@@ -15,6 +15,12 @@
 //       then stores it (svc_submit_late_claim) — always manual review, never
 //       activates. A TXID already on another claim becomes a conflict for the
 //       panel; the person only hears "we'll review it by hand".
+// A new TXID (on time or late) sends ONE short notice to the support address
+// (NOTIFY_TO, default hello@motherverdeny.com): Spanish, no personal data —
+// claim number, amount, status and a link to the panel. Sent at most once per
+// claim (mail_events kind 'txid_notice', ref claim:<id>); a failure stays in
+// "Correos fallidos" and the panel's "Avisos sin revisar" counter shows the
+// claim anyway.
 //   { action: "config" }                  admin: is automatic verification on?
 //   { action: "admin_check", claim_id }   admin: run the checks, store the
 //       result, never activates.
@@ -308,6 +314,30 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
   };
 }
 
+const STATUS_ES: Record<string, string> = { submitted: "código recibido, sin revisar", manual_review: "en revisión manual" };
+
+// deno-lint-ignore no-explicit-any
+async function notifySupport(svc: any, c: { id: number; amount_units: unknown; status: string; late?: boolean }) {
+  if (!["submitted", "manual_review"].includes(c.status)) return null;
+  const ref = `claim:${c.id}`;
+  const { data: prev } = await svc.from("mail_events").select("id").eq("kind", "txid_notice").eq("ref", ref).limit(1);
+  if (prev && prev.length) return null; // already notified (or tried) for this claim
+  const panel = (Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com").replace(/\/$/, "") + "/panel-mv.html";
+  const amount = usdcText(c.amount_units, ",");
+  const lines = [
+    `Aviso n.º ${c.id}`,
+    `Monto: ${amount} USDC`,
+    `Estado: ${STATUS_ES[c.status] ?? c.status}${c.late ? " (pago tardío: la reserva había vencido)" : ""}`,
+    "Revísalo en el panel (pide la verificación en dos pasos).",
+  ];
+  const blocks: [string, string, string[]][] = [["es", "Nuevo código de transacción", lines]];
+  const to = Deno.env.get("NOTIFY_TO") ?? REPLY_TO;
+  return await deliver(svc, {
+    to, subject: `Nuevo aviso de aporte n.º ${c.id}`,
+    html: layout(blocks, undefined, { url: panel, label: "Abrir el panel" }), text: plain(blocks, undefined, panel),
+  }, "txid_notice", null, ref);
+}
+
 // deno-lint-ignore no-explicit-any
 async function sendActivation(svc: any, ctx: Ctx, actor: string | null, label: string) {
   // Account deleted after giving the TXID: the payment is recorded, but there
@@ -377,12 +407,14 @@ Deno.serve(async (req) => {
         return json({ error: known ?? "could_not_save" }, known ? 400 : 500);
       }
       // Neutral answer: never says whether another claim holds this TXID.
+      await notifySupport(svc, { id: c.id, amount_units: c.amount_units, status: (data as { status: string }).status, late: true });
       return json({ ok: true, status: (data as { status: string }).status, review: "manual" });
     }
 
     if (body.action === "verify") {
       const ctx = await loadCtx();
       if (!ctx || ctx.claim.user_id !== user.id) return json({ error: "not_found" }, 404);
+      await notifySupport(svc, ctx.claim as unknown as { id: number; amount_units: unknown; status: string; late?: boolean });
       if (!ctx.auto_enabled) return json({ ok: true, mode: "manual", status: ctx.claim.status });
       if (ctx.claim.status !== "submitted") return json({ ok: true, mode: "auto", status: ctx.claim.status });
       const last = ctx.claim.verification?.checked_at ? new Date(ctx.claim.verification.checked_at).getTime() : 0;
