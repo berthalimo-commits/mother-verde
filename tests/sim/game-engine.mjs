@@ -15,8 +15,8 @@ const db = await makeDb();
 const serverOk = async (s) => (await db.query('select public.game_state_valid($1::jsonb) v', [JSON.stringify(s)])).rows[0].v === true;
 
 const IDEAL = {
-  plantula: { fotoperiodo: '18/6', intensidad: 'baja', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'media' },
-  vegetativo: { fotoperiodo: '18/6', intensidad: 'media', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'media' },
+  plantula: { fotoperiodo: '18/6', intensidad: 'baja', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'media_alta' },
+  vegetativo: { fotoperiodo: '18/6', intensidad: 'media', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'media_alta' },
   floracion: { fotoperiodo: '12/12', intensidad: 'alta', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'baja' },
 };
 const states = [];
@@ -85,6 +85,7 @@ for (let i = 0; i < 12; i++) if (a.stage === 'floracion') a = E.applyWeek(a, IDE
 states.push(a);
 check('si nadie cosecha, se cosecha sola al final (ámbar)', a.stage === 'fin' && a.result.trich === 'ambar' && a.notes.includes('cosechaAuto'), JSON.stringify(a.result));
 const replay = () => { let x = E.start(E.newGame()); for (let i = 0; i < 2; i++) x = E.applyWeek(x, { ...IDEAL.plantula, humedad: 'alta' }, RULES); return JSON.stringify(x); };
+check('una elección guardada que ya no existe (humedad «media» antigua) vuelve a la opción del medio', E.defaultChoices({ last: { humedad: 'media' } }, RULES).humedad === 'media_alta');
 check('mismas decisiones -> mismo resultado (sin azar)', replay() === replay());
 const again = E.newGame(s);
 check('«Plantar otra» sigue contando (seq y partida) y conserva las lecciones vistas', again.seq > s.seq && again.run === s.run + 1 && again.stage === 'intro');

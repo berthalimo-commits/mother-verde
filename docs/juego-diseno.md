@@ -41,7 +41,7 @@ semana 3 de vegetativo, el científico avisa de que es pronto y resta salud).
 | Riego | poco · moderado · mucho | «moderado» = dejar secar el sustrato entre riegos |
 | Nutrientes | bajo · medio · alto | EC por debajo de 1,2 · 1,2–2,2 · por encima de 2,2 mS/cm |
 | Temperatura | fresca · templada · cálida | por debajo de 24 · 24–28 · por encima de 28 °C (de día) |
-| Humedad | baja · media · alta | HR 40–50 % en floración; en vegetativo la plataforma solo da VPD |
+| Humedad | baja · media-alta · alta | HR 40–50 % (ideal en floración) · ≈ 65–75 % (ideal en vegetativo: VPD 0,8–1,0 kPa a 24–25 °C, indicado por la dueña, lo confirmará Bertha) · por encima de ≈ 75 % |
 
 Lo ideal de cada etapa está en `src/game/rules.json`. Donde la plataforma **no da un dato** (por ejemplo, la
 temperatura en floración o la humedad de la plántula), el valor es `null` y **esa decisión no puntúa** en esa etapa.
@@ -102,9 +102,8 @@ de texto del guía.
 **Fase 2 — secado, curado y prensa de rosin.** Secado (sala fresca y con humedad media, 7–14 días según la
 plataforma), curado en frasco (HR 58–62 %, mínimo 2–4 semanas) y una prensa de rosin **solo cualitativa**: niveles
 bajo/medio/alto de calor y presión, sin temperaturas, tiempos ni cantidades, y con avisos de seguridad (superficies
-calientes, quemaduras). *Duda para ti:* la propia plataforma (Elaboración) ya publica una temperatura y un tiempo
-para el rosin con plancha de pelo (unos 90–120 °C, 5–10 s). En el juego **no** se repetirán. ¿Quieres revisar
-también ese texto de la plataforma?
+calientes, quemaduras). **Decidido (14-10-2026):** el texto de la plataforma sobre el rosin se queda tal cual;
+dentro del juego, solo niveles cualitativos, sin ninguna cifra.
 
 **Fase 3 — BHO y CO2 (conceptual y de seguridad).** Sin ninguna cifra, cantidad, presión, temperatura ni paso que se
 pueda copiar. El jugador **no** «hace» una extracción: recorre un laboratorio y aprende **por qué** es peligrosa y

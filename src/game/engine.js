@@ -21,7 +21,11 @@ export function start(s) {
 // Choices the person sees pre-selected: last week's, or the middle option.
 export function defaultChoices(s, rules) {
   const out = {};
-  for (const d of DECISIONS) out[d] = s.last?.[d] ?? (d === 'fotoperiodo' ? '18/6' : rules.opciones[d][1]);
+  for (const d of DECISIONS) {
+    const prev = s.last?.[d];
+    // a saved choice that no longer exists (rules changed) falls back to the middle option
+    out[d] = rules.opciones[d].includes(prev) ? prev : (d === 'fotoperiodo' ? '18/6' : rules.opciones[d][1]);
+  }
   return out;
 }
 

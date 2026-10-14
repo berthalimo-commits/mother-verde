@@ -74,8 +74,8 @@ compiló la vista de la rama `juego` con la variable encendida.
    también esos textos de la plataforma?
 2. **Datos que la plataforma no da** (no los inventé; esa decisión no puntúa): temperatura en floración y
    temperatura, humedad y nutrientes en plántula. Si Bertha los da, se añaden en `rules.json` sin tocar el código.
-3. **Humedad en vegetativo:** la plataforma da VPD 0,8–1,0 kPa, no un porcentaje. Puse «media» como deducción y lo
-   marqué como DERIVADO. Que Bertha lo confirme.
+3. **Humedad en vegetativo (respondida):** «media-alta», ≈ 65–75 % HR (VPD 0,8–1,0 kPa a 24–25 °C). Pendiente de
+   confirmación de Bertha.
 4. **Poses nuevas del científico** (lista en el diseño, punto 7): preocupado, contento, explicando, con lupa, con
    casco y gafas, pensando.
 5. **Modo claro:** ver la tabla de arriba.
