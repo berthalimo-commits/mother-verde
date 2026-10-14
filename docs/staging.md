@@ -25,6 +25,8 @@ El mismo que en producción, sobre el proyecto de pruebas y con una cuenta de pr
    donde aparece) y **no** subas ese cambio. Para deshacerlo: `rollback-grant-admin.sql`.
 5. Activar el panel con la verificación en dos pasos.
 6. Hook «Before User Created», siempre al final.
+7. **Solo si se prueba el juego** (rama `juego`): `precheck-game.sql` → `20261015100000_game_progress.sql`. Es
+   independiente; va en cualquier momento después del paso 2. Reversa: `rollback-20261015100000.sql`.
 
 ## Lo que hay que comprobar en Vercel antes de dar staging por bueno
 - Settings → Environment Variables: `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` de **Preview** deben ser los del
