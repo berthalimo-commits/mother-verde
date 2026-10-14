@@ -15,7 +15,7 @@ El mismo que en producción, sobre el proyecto de pruebas y con una cuenta de pr
 1. `precheck-before-20261010.sql` (todas las filas `ok`).
 2. Migraciones en orden: `20261010120000` → `seed-blocked-email-domains/part-01…07` → `20261010130000` →
    `20261011100000` → `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` →
-   `20261013120000` → `20261014100000` → `20261014110000`.
+   `20261013120000` → `20261014100000` → `20261014110000` → `20261014120000`.
 3. Secretos → funciones (`support-claims`, `admin-send-gift-code`, `community-retranslate` y `signup-fix-email` con
    «Verify JWT» apagado; `community-publish-post` y `community-publish-comment`) → variables de Vercel del entorno
    **Preview** apuntando al proyecto de **pruebas** → plantillas de correo.
