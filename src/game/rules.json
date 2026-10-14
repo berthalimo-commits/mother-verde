@@ -1,0 +1,119 @@
+{
+  "_leeme": "Reglas del juego de cultivo (fase 1). Cada valor viene de un texto que la plataforma YA enseña (campo 'fuente'). Todo va marcado [POR VERIFICAR POR BERTHA] hasta que Bertha lo revise. 'null' = la plataforma no da ese dato: el juego no puntúa esa decisión en esa etapa (no se inventa). 'VALOR DE JUEGO' = ritmo del juego, no un dato de cultivo.",
+  "estado_revision": "[POR VERIFICAR POR BERTHA]",
+  "turno": { "dura": "1 semana", "fuente": "VALOR DE JUEGO", "verificar": "[POR VERIFICAR POR BERTHA]" },
+
+  "opciones": {
+    "fotoperiodo": ["18/6", "12/12"],
+    "intensidad": ["baja", "media", "alta"],
+    "riego": ["poco", "moderado", "mucho"],
+    "nutrientes": ["bajo", "medio", "alto"],
+    "temperatura": ["fresca", "templada", "calida"],
+    "humedad": ["baja", "media", "alta"]
+  },
+
+  "equivalencias": {
+    "_nota": "Qué significa cada nivel, con las cifras de la plataforma. Son cifras de cultivo en ambiente controlado (no de extracción).",
+    "intensidad": {
+      "baja":  { "texto": "PPFD 100–300 µmol/m²/s", "fuente": "Cultivo → Iluminación (Plántula)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "media": { "texto": "PPFD 300–600 µmol/m²/s · DLI 20–40 mol/m²/día", "fuente": "Cultivo → Iluminación (Vegetativo)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "alta":  { "texto": "PPFD 600–1.000 µmol/m²/s · DLI 30–50 mol/m²/día", "fuente": "Cultivo → Iluminación (Floración)", "verificar": "[POR VERIFICAR POR BERTHA]" }
+    },
+    "nutrientes": {
+      "bajo":  { "texto": "EC por debajo de 1,2 mS/cm", "fuente": "Cultivo → Sistemas (Sustrato y riego: EC 1,2–2,2)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "medio": { "texto": "EC 1,2–2,2 mS/cm · pH 5,8–6,2", "fuente": "Cultivo → Sistemas (Sustrato y riego)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "alto":  { "texto": "EC por encima de 2,2 mS/cm", "fuente": "Cultivo → Sistemas (Sustrato y riego)", "verificar": "[POR VERIFICAR POR BERTHA]" }
+    },
+    "temperatura": {
+      "fresca":   { "texto": "por debajo de 24 °C", "fuente": "Cultivo → Sistemas (Vegetativo: 24–28 °C diurna)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "templada": { "texto": "24–28 °C de día", "fuente": "Cultivo → Sistemas (Vegetativo)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "calida":   { "texto": "por encima de 28 °C", "fuente": "Cultivo → Sistemas (Vegetativo)", "verificar": "[POR VERIFICAR POR BERTHA]" }
+    },
+    "humedad": {
+      "baja":  { "texto": "HR 40–50 %", "fuente": "Cultivo → Sistemas (Floración: HR 40–50 %)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "media": { "texto": "HR algo más alta que en floración (la plataforma da VPD 0,8–1,0 kPa en vegetativo, no un % de HR)", "fuente": "Cultivo → Sistemas (Vegetativo: VPD) — DERIVADO", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "alta":  { "texto": "HR alta (la plataforma la asocia a oídio y botrytis)", "fuente": "Cultivo → Diagnóstico", "verificar": "[POR VERIFICAR POR BERTHA]" }
+    },
+    "riego": {
+      "poco":     { "texto": "el sustrato se queda seco", "fuente": "VALOR DE JUEGO", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "moderado": { "texto": "dejar secar el sustrato entre riegos", "fuente": "Cultivo → Diagnóstico (Exceso de riego: tratamiento)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "mucho":    { "texto": "sustrato saturado todo el tiempo", "fuente": "Cultivo → Diagnóstico (Exceso de riego: causa)", "verificar": "[POR VERIFICAR POR BERTHA]" }
+    }
+  },
+
+  "etapas": {
+    "plantula": {
+      "semanas": { "valor": 2, "fuente": "Cultivo → Ciclo (Germinación días 1–10; vegetativo desde la semana 3)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "ideal": {
+        "fotoperiodo": { "valor": "18/6", "fuente": "Cultivo → Iluminación (Plántula)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "intensidad":  { "valor": "baja", "fuente": "Cultivo → Iluminación (Plántula: PPFD 100–300)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "riego":       { "valor": "moderado", "fuente": "Cultivo → Diagnóstico (Exceso de riego)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "nutrientes":  null,
+        "temperatura": null,
+        "humedad":     null
+      },
+      "leccion": ["cultivo", "propagacion"]
+    },
+    "vegetativo": {
+      "semanas": { "min": 3, "max": 6, "fuente": "Cultivo → Ciclo (Vegetativo: semanas 3–8 del ciclo = hasta 6 semanas)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "ideal": {
+        "fotoperiodo": { "valor": "18/6", "fuente": "Cultivo → Sistemas y Ciclo (18/6)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "intensidad":  { "valor": "media", "fuente": "Cultivo → Iluminación (Vegetativo: PPFD 300–600)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "riego":       { "valor": "moderado", "fuente": "Cultivo → Diagnóstico (Exceso de riego)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "nutrientes":  { "valor": "medio", "fuente": "Cultivo → Sistemas (EC 1,2–2,2) y Diagnóstico (Deficiencia de nitrógeno en vegetativo)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "temperatura": { "valor": "templada", "fuente": "Cultivo → Sistemas (Temp. diurna 24–28 °C)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "humedad":     { "valor": "media", "fuente": "Cultivo → Sistemas (VPD 0,8–1,0 kPa, más bajo que en floración) — DERIVADO", "verificar": "[POR VERIFICAR POR BERTHA]" }
+      },
+      "leccion": ["cultivo", "sistemas"]
+    },
+    "floracion": {
+      "semanas": { "valor": "la decide el jugador según los tricomas", "fuente": "Cultivo → Cosecha (punto de cosecha por tricomas)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "ideal": {
+        "fotoperiodo": { "valor": "12/12", "fuente": "Cultivo → Sistemas y Ciclo (12/12 induce la floración)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "intensidad":  { "valor": "alta", "fuente": "Cultivo → Iluminación (Floración: PPFD 600–1.000)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "riego":       { "valor": "moderado", "fuente": "Cultivo → Diagnóstico (Exceso de riego)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "nutrientes":  { "valor": "medio", "fuente": "Cultivo → Sistemas (EC 1,2–2,2)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+        "temperatura": null,
+        "humedad":     { "valor": "baja", "fuente": "Cultivo → Sistemas (Floración: HR 40–50 %) y Diagnóstico (Botrytis)", "verificar": "[POR VERIFICAR POR BERTHA]" }
+      },
+      "leccion": ["cultivo", "iluminacion"]
+    }
+  },
+
+  "tricomas": {
+    "_nota": "Semanas de floración en que la plantita del juego muestra cada estado: VALOR DE JUEGO. El significado de cada estado viene de Cultivo → Cosecha.",
+    "fuente": "Cultivo → Cosecha (checklist de tricomas)",
+    "verificar": "[POR VERIFICAR POR BERTHA]",
+    "estados": [
+      { "id": "transparentes", "desde_semana": 1, "puntos": -15, "significado": "Todavía no — el THC sigue desarrollándose." },
+      { "id": "lechosas",      "desde_semana": 6, "puntos": 15,  "significado": "Pico de THC." },
+      { "id": "mezcla",        "desde_semana": 8, "puntos": 20,  "significado": "Lechosas + algo de ámbar (10–30 %): el punto más buscado." },
+      { "id": "ambar",         "desde_semana": 10, "puntos": 5,  "significado": "Pasado el pico — el THC se degrada hacia CBN." }
+    ],
+    "max_semanas_floracion": { "valor": 12, "fuente": "VALOR DE JUEGO (la cosecha se hace sola si nadie cosecha)" }
+  },
+
+  "eventos": {
+    "_nota": "Un evento aparece cuando su condición se repite 2 semanas seguidas (sin azar: nada de sorpresas). Causas y respuestas copiadas de Cultivo → Diagnóstico.",
+    "semanas_para_aparecer": { "valor": 2, "fuente": "VALOR DE JUEGO" },
+    "lista": {
+      "oidio":      { "si": { "humedad": "alta" }, "etapas": ["plantula", "vegetativo", "floracion"], "respuesta_correcta": "ventilar", "fuente": "Cultivo → Diagnóstico (Oídio: alta humedad + poca circulación; mejorar ventilación)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "botrytis":   { "si": { "humedad": "alta" }, "etapas": ["floracion"], "respuesta_correcta": "bajar_humedad", "fuente": "Cultivo → Diagnóstico (Botrytis: humedad alta en floración; bajar la HR y retirar tejido)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "acaros":     { "si": { "temperatura": "calida", "humedad": "baja" }, "etapas": ["vegetativo", "floracion"], "respuesta_correcta": "depredadores", "fuente": "Cultivo → Diagnóstico (Ácaros: ambiente seco y caluroso; depredadores naturales)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "carencia_n": { "si": { "nutrientes": "bajo" }, "etapas": ["vegetativo"], "respuesta_correcta": "ajustar_nutricion", "fuente": "Cultivo → Diagnóstico (Deficiencia de nitrógeno: falta de N en vegetativo; ajustar EC y fuente de N)", "verificar": "[POR VERIFICAR POR BERTHA]" },
+      "exceso_riego": { "si": { "riego": "mucho" }, "etapas": ["plantula", "vegetativo", "floracion"], "respuesta_correcta": "dejar_secar", "fuente": "Cultivo → Diagnóstico (Exceso de riego: dejar secar entre riegos)", "verificar": "[POR VERIFICAR POR BERTHA]" }
+    },
+    "respuestas": ["ventilar", "bajar_humedad", "depredadores", "ajustar_nutricion", "dejar_secar", "esperar"]
+  },
+
+  "puntuacion": {
+    "_nota": "VALOR DE JUEGO. Salud de 0 a 100. Una decisión ideal no resta; un nivel de distancia resta 4; dos niveles, 8; fotoperiodo equivocado, 8. Un evento sin resolver resta 6 por semana; resolverlo bien devuelve 4.",
+    "salud_inicial": 100,
+    "resta_un_nivel": 4,
+    "resta_dos_niveles": 8,
+    "resta_fotoperiodo": 8,
+    "evento_por_semana": 6,
+    "evento_resuelto": 4,
+    "verificar": "[POR VERIFICAR POR BERTHA]"
+  }
+}
