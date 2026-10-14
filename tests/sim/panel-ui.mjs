@@ -9,11 +9,11 @@ await b.send('Page.navigate', { url: 'http://localhost:5174/panel-mv.html' });
 check('cuenta normal (aunque tenga MFA) -> "no tiene acceso al panel"', /no tiene acceso al panel/.test(await b.waitFor(/acceso al panel|Avisos/)));
 await b.close();
 
-// 2) admin (hello@motherverdeny.com, 24 h trial over, no full access) without MFA -> enrollment -> panel
+// 2) admin (hello@motherverdeny.com, 24 h trial over; grant-admin.sql gives it full access) without MFA -> enrollment -> panel
 b = await browser(ADMIN, 'aal1');
 await b.send('Page.navigate', { url: 'http://localhost:5174/' }); await sleep(5000);
 const appState = await b.ev(`({ access: document.documentElement.dataset.access, locked: document.documentElement.classList.contains('mv-locked'), acceso: document.getElementById('acceso').classList.contains('active') })`);
-check('en la app, la admin con la prueba terminada ve la pantalla de bloqueo (sin acceso completo)', appState.access === 'expired' && appState.locked && appState.acceso, JSON.stringify(appState));
+check('en la app, hello@ con la prueba terminada tiene acceso completo (grant-admin.sql): sin bloqueo', appState.access === 'supporter' && !appState.locked && !appState.acceso, JSON.stringify(appState));
 await b.send('Page.navigate', { url: 'http://localhost:5174/panel-mv.html' });
 let s = await b.waitFor(/Activa la verificación|Escribe el código/);
 check('admin sin MFA -> pantalla para activar la verificación en dos pasos (QR + clave)', /Activa la verificación en dos pasos/.test(s) && /JBSWY3DPEHPK3PXP/.test(s), s.slice(0, 200));

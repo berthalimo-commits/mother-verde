@@ -24,16 +24,31 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   g = await grant();
   check('grant-admin.sql con hello@ sin confirmar -> se detiene, nadie es admin', g.includes('no está confirmado') && (await admins()).length === 0, g);
   await db.exec(`update auth.users set email_confirmed_at = now() where id = '${ADMIN}'`);
+  // Betian is never touched by grant-admin.sql (it only lists the admins in its read-only part).
   await db.exec(`insert into admin_users (user_id, note) values ('${BETIAN}', 'por error')`);
+  const betianBefore = JSON.stringify(await q(`select p.subscription_status, p.access_until, p.trial_ends_at from profiles p where p.id = '${BETIAN}'`));
+  const statusBefore = (await q(`select subscription_status s from profiles where id = '${ADMIN}'`))[0].s;
   g = await grant();
-  check('grant-admin.sql con hello@ confirmada -> SOLO hello@ es admin (Betian, si lo era, deja de serlo)', g === 'ok' && JSON.stringify(await admins()) === '["hello@motherverdeny.com"]', JSON.stringify(await admins()));
-  check('…y queda en el registro de auditoría', (await q(`select count(*)::int c from admin_audit_log where action = 'admin_granted' and target_email = 'hello@motherverdeny.com'`))[0].c === 1);
+  check('grant-admin.sql con hello@ confirmada -> hello@ es admin; no toca ninguna otra cuenta (Betian queda igual)', g === 'ok' && JSON.stringify(await admins()) === '["berthalimo@gmail.com","hello@motherverdeny.com"]' && JSON.stringify(await q(`select p.subscription_status, p.access_until, p.trial_ends_at from profiles p where p.id = '${BETIAN}'`)) === betianBefore, JSON.stringify(await admins()));
+  check('…y acceso completo sin fecha de fin (supporter)', (await q(`select subscription_status s from profiles where id = '${ADMIN}'`))[0].s === 'supporter' && await hfa(ADMIN) === true);
+  check('…con una línea de cada cosa en el registro de auditoría (estado anterior guardado)', (await q(`select count(*)::int c from admin_audit_log where action = 'admin_granted' and target_email = 'hello@motherverdeny.com'`))[0].c === 1
+    && (await q(`select details ->> 'previous_status' p from admin_audit_log where action = 'owner_full_access' and target_email = 'hello@motherverdeny.com'`)).map((r) => r.p).join() === statusBefore);
   g = await grant();
-  check('pegarlo dos veces no duplica nada', g === 'ok' && (await admins()).length === 1);
-  // A freshly registered admin: 24 h trial over, no full access — the panel must still work.
+  check('pegarlo dos veces no duplica nada (ni filas ni registro)', g === 'ok' && (await admins()).length === 2
+    && (await q(`select count(*)::int c from admin_audit_log where action in ('admin_granted', 'owner_full_access')`))[0].c === 2);
+  await db.exec(`delete from admin_users where user_id = '${BETIAN}'`);
+  // The trial ends: hello@ keeps full access (no end date) and the panel.
   await db.exec(`update profiles set trial_ends_at = now() - interval '1 hour' where id = '${ADMIN}'`);
-  check('admin con la prueba terminada NO tiene acceso completo (has_full_access = false)', await hfa(ADMIN) === false);
-  check('…pero con MFA es admin y usa el panel (no depende de has_full_access)', (await as('authenticated', ADMIN, 'select is_admin_aal2() v', [], 'aal2')).rows?.[0]?.v === true && !(await as('authenticated', ADMIN, 'select * from admin_list_claims()', [], 'aal2')).error && !(await as('authenticated', ADMIN, 'select * from admin_list_gift_codes(10)', [], 'aal2')).error);
+  check('hello@ con la prueba terminada SIGUE con acceso completo (has_full_access = true)', await hfa(ADMIN) === true);
+  check('…y con MFA es admin y usa el panel', (await as('authenticated', ADMIN, 'select is_admin_aal2() v', [], 'aal2')).rows?.[0]?.v === true && !(await as('authenticated', ADMIN, 'select * from admin_list_claims()', [], 'aal2')).error && !(await as('authenticated', ADMIN, 'select * from admin_list_gift_codes(10)', [], 'aal2')).error);
+  // Rollback: back to the previous state, then granted again for the rest of the tests.
+  await db.exec(await read('admin/rollback-grant-admin.sql'));
+  check('rollback-grant-admin.sql -> deja de ser admin y vuelve al estado anterior (prueba terminada = sin acceso)', (await admins()).length === 0 && (await q(`select subscription_status s from profiles where id = '${ADMIN}'`))[0].s === statusBefore && await hfa(ADMIN) === false);
+  await db.exec(await read('admin/rollback-grant-admin.sql'));
+  check('…pegarla dos veces no cambia nada más', (await admins()).length === 0 && (await q(`select subscription_status s from profiles where id = '${ADMIN}'`))[0].s === statusBefore);
+  check('…y el panel (aunque fuera admin) no depende del acceso: con MFA pero sin rol -> no admin', (await as('authenticated', ADMIN, 'select is_admin_aal2() v', [], 'aal2')).rows?.[0]?.v === false);
+  g = await grant();
+  check('volver a darlo después de la reversa funciona', g === 'ok' && (await admins()).length === 1 && await hfa(ADMIN) === true);
   check('Betian (berthalimo@gmail.com) con MFA NO es admin', (await as('authenticated', BETIAN, 'select is_admin_aal2() v', [], 'aal2')).rows?.[0]?.v === false);
   const isAdm = async (u, aal) => (await as('authenticated', u, 'select is_admin_aal2() v', [], aal)).rows?.[0]?.v;
   check('admin SIN MFA (aal1) -> no cuenta como admin', await isAdm(ADMIN, 'aal1') === false);

@@ -4,9 +4,9 @@
 // 5174 (see README). Usage: node tests/sim/run-all.mjs [name-filter]
 import { spawn } from 'child_process';
 const DIR = new URL('.', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
-const plain = ['test.mjs', 'mail-db.mjs', 'signup-fix-attacks.mjs', 'a1-money.mjs', 'fn-e2e.mjs', 'mail-content.mjs'];
+const plain = ['test.mjs', 'mail-db.mjs', 'signup-fix-attacks.mjs', 'a1-money.mjs', 'owner-account.mjs', 'fn-e2e.mjs', 'mail-content.mjs'];
 const browserTests = ['lang-live.mjs', 'app-ui.mjs', 'panel-ui.mjs', 'panel-users-ui.mjs', 'screens-scan.mjs', 'amount-ui.mjs', 'preview-ui.mjs',
-  'flowers20-ui.mjs', 'flower-shots.mjs', 'mail-links-ui.mjs', 'mail-signup-ui.mjs', 'mail-flow-ui.mjs', 'mail-panel-ui.mjs'];
+  'flowers20-ui.mjs', 'flower-shots.mjs', 'mail-links-ui.mjs', 'mail-signup-ui.mjs', 'mail-flow-ui.mjs', 'mail-panel-ui.mjs', 'owner-ui.mjs'];
 const filter = process.argv[2] || '';
 // screens-scan prints its own summary instead of "RESULTADO: …".
 const verdict = (out) => (out.match(/RESULTADO: .*/g) || []).at(-1)

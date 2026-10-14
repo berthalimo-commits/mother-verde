@@ -52,6 +52,8 @@ El merge a `main` se hace solo cuando escribas exactamente: «APRUEBO EL MERGE A
   y el botón Desbloquear.
 - Si tenía una prueba o un periodo del modelo viejo **todavía vigente**, lo conserva hasta que termine.
 - **Betian y la cuenta oficial Mother Verde**: acceso completo, sin fecha (SQL `supporters-betian-mother-verde.sql`).
+- **hello@motherverdeny.com (tú, administradora)**: acceso completo sin fecha **y** panel (SQL `grant-admin.sql`,
+  paso 13). Nunca ve la pantalla de bloqueo; para revisarla, en la web de dev: «Ver como persona con prueba vencida».
 - Su Bitácora, sus publicaciones y su perfil no se borran. Si está bloqueada, puede leer y descargar
   su Bitácora y eliminar su cuenta.
 - Ya no tiene que cancelar ninguna suscripción: no se cobra nada automáticamente.
@@ -76,7 +78,9 @@ Comunidad rechaza a quien no tenga acceso completo. Por eso todo va **seguido, e
 
 **Orden seguro confirmado** (el del informe, con lo nuevo de correos):
 SQL → secretos → funciones → variables de Vercel → plantillas y ajustes de correo → merge →
-cuenta de administradora → hook al final.
+cuenta de administradora (`grant-admin.sql`: admin + acceso completo) → hook al final.
+La cuenta de administradora va **después del merge** porque hello@ se registra y confirma en la web nueva, y
+**antes del hook** para que el hook no pueda impedir ese registro.
 
 ## 4. Plan de vuelta atrás
 
@@ -91,12 +95,15 @@ no funciona bien con la base nueva y la nueva no funciona con la vieja).
 | Paso que deshace | Archivo de reversa | Qué se pierde |
 |---|---|---|
 | Hook | (sin SQL) Authentication → Hooks → apagar «Before User Created». **Primero esto.** | — |
+| `grant-admin.sql` (hello@ admin + acceso completo) | `rollback-grant-admin.sql` (PARTE 1 solo lectura, luego PARTE 2) | hello@ deja de ser admin y vuelve al estado de acceso que tenía antes (lo guarda el registro de auditoría) |
+| `20261014110000` pago tardío | `rollback-20261014110000.sql` | nada (los avisos tardíos se conservan); si hay un tardío abierto con el mismo monto que otro aviso abierto, ciérralo antes |
+| `20261014100000` avisos de cuentas borradas | `rollback-20261014100000.sql` | **borra** los avisos de cuentas ya borradas (expórtalos antes con el CSV) |
 | `20261013120000` límites de «Corrígelo» | `rollback-20261013120000.sql` | el registro de intentos de corrección |
 | `20261013110000` panel de correos | `rollback-20261013110000.sql` | nada |
 | `20261013100000` correos | `rollback-20261013100000.sql` | el registro de envíos (`mail_events`) |
 | `20261011130000` códigos de regalo | `rollback-20261011130000.sql` | todos los códigos; los días ya dados se quedan hasta la última reversa |
 | `20261011120000` aportes | `rollback-20261011120000.sql` | todos los avisos de aporte (quien ya es `supporter` lo sigue siendo) |
-| `20261011100000` admin y registro (incluye `grant-admin.sql`) | `rollback-20261011100000.sql` | la lista de admins y todo el registro de auditoría |
+| `20261011100000` admin y registro | `rollback-20261011100000.sql` | la lista de admins y todo el registro de auditoría |
 | `20261010130000` Comunidad | `rollback-20261010130000.sql` | nada (vuelven las reglas viejas) |
 | `20261010120000` modelo de acceso + dominios bloqueados + `supporters-…sql` | `rollback-20261010120000.sql` | la lista de dominios; `supporter` pasa al estado antiguo de acceso completo |
 
@@ -136,6 +143,7 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
 6. ☐ **Tú**: SQL Editor, cada archivo entero y en orden:
    `20261010120000` → `seed-blocked-email-domains/part-01` … `part-07` → `20261010130000` → `20261011100000` →
    `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
+   `20261014100000` → `20261014110000` →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
@@ -153,7 +161,11 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
 11. ☐ **Tú**: escribirme «APRUEBO EL MERGE A MAIN». **Yo**: fusiono el pull request, espero a que Vercel
     diga READY y compruebo la web publicada sin iniciar sesión.
 12. ☐ **Tú**: registrarte en la web con `hello@motherverdeny.com` y confirmar el correo (comprueba que llega).
-13. ☐ **Tú**: SQL Editor → `grant-admin.sql` (al final muestra una sola fila: hello@).
+13. ☐ **Tú**: SQL Editor → `grant-admin.sql`. Primero **PARTE 1** sola (solo lectura): debe salir una fila,
+    hello@motherverdeny.com, `email_confirmed = true`. Después el archivo entero: al final, una fila con
+    `is_admin = true`, `subscription_status = supporter`, `full_access = true`. Si dice «NO SE HIZO NADA», lee el
+    mensaje (cuenta sin crear o sin confirmar), arréglalo y vuelve a pegarlo: se puede pegar las veces que haga falta.
+    Para deshacerlo: `rollback-grant-admin.sql`.
 14. ☐ **Tú**: abrir `/panel-mv.html`, activar la verificación en dos pasos y **guardar la clave**.
 15. ☐ **Tú**: en el panel, «Enviar correo de prueba a mi correo». Llega a hello@.
 16. ☐ **Tú**: con una cuenta de prueba **sin confirmar**, probar «Corrígelo» con una contraseña equivocada:

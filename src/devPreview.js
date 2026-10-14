@@ -44,6 +44,10 @@ function mount() {
         <select id="mvDpState" style="width:100%;margin-top:2px">${opts(STATES, '')}</select></label>
       <label style="display:block;margin-bottom:8px">Aviso de aporte<br>
         <select id="mvDpClaim" style="width:100%;margin-top:2px">${opts(CLAIMS, '')}</select></label>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">
+        <button type="button" id="mvDpExpired" style="font-weight:600">Ver como persona con prueba vencida</button>
+        <button type="button" id="mvDpReal">Volver a mi cuenta real</button>
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px">
         <button type="button" data-go="desbloquear">Desbloquear</button>
         <button type="button" data-go="cuenta">Cuenta</button>
@@ -60,6 +64,16 @@ function mount() {
   };
   box.querySelector('#mvDpState').onchange = apply;
   box.querySelector('#mvDpClaim').onchange = apply;
+  // The owner's account (hello@, full access) never sees the lock screen:
+  // one click shows it exactly as a person whose 24 h trial is over.
+  const preset = (st) => {
+    box.querySelector('#mvDpState').value = st;
+    box.querySelector('#mvDpClaim').value = '';
+    apply();
+    window.showScreen?.(st ? 'acceso' : 'home');
+  };
+  box.querySelector('#mvDpExpired').onclick = () => preset('expired');
+  box.querySelector('#mvDpReal').onclick = () => preset('');
   box.querySelectorAll('[data-go]').forEach((b) => { b.onclick = () => window.showScreen?.(b.dataset.go); });
   box.querySelector('#mvDpMin').onclick = () => {
     const body = box.querySelector('#mvDpBody');
