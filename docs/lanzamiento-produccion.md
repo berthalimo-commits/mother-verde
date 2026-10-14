@@ -8,7 +8,7 @@ El merge a `main` se hace solo cuando escribas exactamente: «APRUEBO EL MERGE A
 - **Compilación de producción** (como la haría `main`): termina bien. Quita la vista previa de dev
   (el selector de estados y el panel de ejemplo no salen). El `main.js` pesa ~3 MB (~165 KB comprimido
   el paquete principal): sigue siendo lenta la primera visita (pendiente de «velocidad»).
-- **Pruebas** (`node tests/sim/run-all.mjs`): **17 de 17 sin fallos, 613 comprobaciones**, más
+- **Pruebas** (`node tests/sim/run-all.mjs`): **25 de 25 sin fallos, 835 comprobaciones** (14 de octubre de 2026), más
   880 combinaciones de pantalla × idioma × estado revisadas (0 textos del modelo viejo, 0 errores de JavaScript).
 
 | Prueba | Resultado |
@@ -46,12 +46,21 @@ El merge a `main` se hace solo cuando escribas exactamente: «APRUEBO EL MERGE A
 - Ya no aparecen precios mensuales, «$7.10», «prueba de 3 días», «suscripción» ni «Premium».
 - Nuevo: «¿Olvidaste tu contraseña?», aviso claro si un enlace caducó y cambio del correo de inicio de sesión en Cuenta.
 - La Comunidad solo funciona con acceso completo (lo controla el servidor, no solo la pantalla).
+- Pago tardío: con la reserva vencida se puede registrar el TXID; antes de guardarlo se comprueba en Base que sea el
+  monto exacto de **su** reserva, y siempre pasa a revisión manual. Un TXID que ya registró otra cuenta abre un conflicto
+  que solo ve el panel; la persona solo lee «Lo revisaremos manualmente».
+- Si la administradora activa o retira el acceso, la app abierta se entera sola: al volver a la pestaña o, en la
+  pantalla de bloqueo, en un minuto como mucho.
+- La pantalla de Privacidad describe lo que la plataforma hace de verdad (con lo legal marcado `[PENDIENTE]`).
 
 ### Lo que verá una persona que ya tiene cuenta
 - **No recibe la prueba de 24 h**: en su primer inicio de sesión ve «Esta cuenta no tiene acceso activo»
   y el botón Desbloquear.
 - Si tenía una prueba o un periodo del modelo viejo **todavía vigente**, lo conserva hasta que termine.
 - **Betian y la cuenta oficial Mother Verde**: acceso completo, sin fecha (SQL `supporters-betian-mother-verde.sql`).
+- **Cuentas del modelo viejo «active» sin fecha de fin:** desde `20261014140000` la app y el servidor dicen lo mismo
+  (sin acceso; antes la app decía que sí). No se cambia ninguna: `supabase/admin/legacy-active-accounts.sql` (solo
+  lectura) las lista para que decidas.
 - **hello@motherverdeny.com (tú, administradora)**: acceso completo sin fecha **y** panel (SQL `grant-admin.sql`,
   paso 13). Nunca ve la pantalla de bloqueo; para revisarla, en la web de dev: «Ver como persona con prueba vencida».
 - Su Bitácora, sus publicaciones y su perfil no se borran. Si está bloqueada, puede leer y descargar
