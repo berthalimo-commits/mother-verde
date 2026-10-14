@@ -6861,17 +6861,26 @@ function mvAccessState(){
     if(mvAccessPreviewState === 'trial' && Date.now() >= mvPreviewTrialEnd) return 'expired';
     return mvAccessPreviewState;
   }
-  const user = window.mvCurrentUser, p = window.mvCurrentProfile;
+  // ONE rule, in the database (access_info, migration 20261014140000): auth.js
+  // asks my_access() and this only reads the answer. The only thing checked
+  // here is whether "until" has passed, against the SERVER clock.
+  const user = window.mvCurrentUser, p = window.mvCurrentProfile, a = window.mvCurrentAccess;
   if(!user) return mvPendingConfirmEmail() ? 'unconfirmed' : 'visitor';
-  if(!p) return 'loading';
-  if(p.subscription_status === 'supporter') return 'supporter';
-  if(p.subscription_status === 'revoked') return 'revoked';
-  if(p.access_until && new Date(p.access_until).getTime() > Date.now()) return 'granted';
-  if(p.subscription_status === 'trialing' && p.trial_ends_at && new Date(p.trial_ends_at).getTime() > Date.now()) return 'trial';
-  if(window.mvComputeIsPremium && window.mvComputeIsPremium(p)) return 'supporter';
-  if(p.trial_started_at) return 'expired';
-  return 'no_trial';
+  if(!p || !a) return 'loading';
+  const ended = !!a.until && new Date(a.until).getTime() <= mvNow();
+  const after = a.trial_started ? 'expired' : 'no_trial';
+  switch(a.state){
+    case 'supporter': return 'supporter';
+    case 'legacy': return ended ? after : 'supporter';
+    case 'revoked': return 'revoked';
+    case 'granted': return ended ? after : 'granted';
+    case 'trial': return ended ? 'expired' : 'trial';
+    case 'expired': return 'expired';
+    default: return 'no_trial';
+  }
 }
+// "Now" for every access countdown: the server clock when known (auth.js).
+function mvNow(){ return window.mvServerNow ? window.mvServerNow() : Date.now(); }
 function mvIsLockedState(st){
   return st === 'visitor' || st === 'unconfirmed' || st === 'expired' || st === 'no_trial' || st === 'revoked' || st === 'loading';
 }
@@ -6892,8 +6901,8 @@ function mvClaimPending(){ return !!(window.mvLatestClaim && ['submitted', 'manu
 // End of gift / admin-granted days ('granted' state).
 function mvGrantedUntilMs(){
   if(mvPreviewOn && mvAccessPreviewState === 'granted') return mvPreviewGrantedEnd;
-  const p = window.mvCurrentProfile;
-  return p && p.access_until ? new Date(p.access_until).getTime() : 0;
+  const a = window.mvCurrentAccess;
+  return a && a.state === 'granted' && a.until ? new Date(a.until).getTime() : 0;
 }
 // USDC amounts: TEXT built from the integer base units (6 decimals), always
 // with 4 decimals (10.0420, never 10.042) — never a JavaScript float.
@@ -6918,8 +6927,8 @@ function mvPendingNoteHtml(){
 
 function mvTrialEndMs(){
   if(mvPreviewOn && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
-  const p = window.mvCurrentProfile;
-  return p && p.trial_ends_at ? new Date(p.trial_ends_at).getTime() : 0;
+  const a = window.mvCurrentAccess;
+  return a && a.state === 'trial' && a.until ? new Date(a.until).getTime() : 0;
 }
 function mvFmtLeft(ms){
   const mins = Math.max(0, Math.floor(ms / 60000));
@@ -7104,7 +7113,7 @@ function mvRenderTrialStrip(){
   try { dismissed = sessionStorage.getItem('mv-strip-dismissed') === '1'; } catch(e){}
   if(mvAccessState() !== 'trial' || dismissed){ el.hidden = true; return; }
   const txt = document.getElementById('trialCountdownText');
-  if(txt) txt.innerHTML = t('accStripText').replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>');
+  if(txt) txt.innerHTML = t('accStripText').replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>');
   el.hidden = false;
 }
 document.getElementById('trialCountdownClose')?.addEventListener('click', () => {
@@ -7121,7 +7130,7 @@ function mvRenderCuentaAcceso(){
   const txt = document.getElementById('cuentaAccesoTexto');
   const btn = document.getElementById('cuentaAccesoBtn');
   const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial', granted: 'accCuentaGranted', revoked: 'accCuentaRevoked' }[st] || 'subLoading';
-  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
+  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
     + (st !== 'supporter' && mvClaimPending() ? '<br><br>' + mvPendingNoteHtml() : '');
   if(btn) btn.hidden = st === 'supporter' || st === 'revoked' || st === 'loading' || mvClaimPending();
   mvRenderGiftBox(st);
@@ -7211,12 +7220,12 @@ if(mvPreviewOn){
 // window.setIsPremium(true) used to flip isPremium directly, so any visitor
 // could open devtools in production and unlock every Premium gate for free.
 // The real source of truth is the profile row auth.js already fetched from
-// Supabase (billing columns aren't client-writable, see the subscription_trial
-// migration) via computeIsPremium(). Off localhost we ignore whatever value a
+// Supabase: the server's own access answer (my_access, see auth.js), never a
+// value computed in the browser. Off localhost we ignore whatever value a
 // caller passes and recompute from that profile ourselves; only on localhost
 // (QA / the #tierSwitch preview) do we still trust an explicit override.
 window.setIsPremium = function(value){
-  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvComputeIsPremium && window.mvComputeIsPremium(window.mvCurrentProfile));
+  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvHasFullAccess && window.mvHasFullAccess());
   applyTier();
 };
 const LOCK_SVG = '<svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>';

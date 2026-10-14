@@ -31,35 +31,26 @@ window.mvSupabase = supabase;
 window.mvCurrentUser = null;
 window.mvCurrentProfile = null;
 
-// Canonical client-side full-access check. Mirrors public.is_premium(uid) in
-// supabase/migrations/20261010120000_access_support_model.sql — keep the two
-// in sync. Full access = verified contribution ('supporter'), the 24 h trial,
-// or days from a gift code / an admin (access_until), unless an admin took
-// access away ('revoked'). Rows from the old card model are still honoured.
-// Exposed so main.js can recompute Premium itself instead of trusting a
-// caller-supplied value (see the window.setIsPremium guard in main.js).
-window.mvComputeIsPremium = computeIsPremium;
-function computeIsPremium(profile){
-  if(!profile) return false;
-  const now = Date.now();
-  const status = profile.subscription_status || 'none';
-  // One-time support contribution, verified by hand: full access, no end date.
-  if(status === 'supporter') return true;
-  if(status === 'revoked') return false;
-  if(profile.access_until && new Date(profile.access_until).getTime() > now) return true;
-  if(status === 'trialing'){
-    return !!profile.trial_ends_at && new Date(profile.trial_ends_at).getTime() > now;
-  }
-  if(status === 'active'){
-    return !profile.subscription_expires_at || new Date(profile.subscription_expires_at).getTime() > now;
-  }
-  // Legacy rows written before the trial system existed.
-  if(status === 'none' && profile.subscription_active){
-    return !profile.subscription_expires_at || new Date(profile.subscription_expires_at).getTime() > now;
-  }
-  // canceled (period over) / past_due / blocked -> no access.
-  return false;
+// Access: ONE rule, in the database (public.access_info, migration
+// 20261014140000), used by RLS, the Edge Functions, the panel and — through
+// my_access() — this app. Nothing here recomputes it: the app keeps the
+// server's answer and only compares "until" with the SERVER clock (offset
+// measured from server_now), so a wrong device clock doesn't matter.
+let accessOffset = 0;
+window.mvCurrentAccess = null;
+window.mvServerNow = () => Date.now() + accessOffset;
+async function loadAccess(){
+  if(!window.mvCurrentUser){ window.mvCurrentAccess = null; return; }
+  const { data, error } = await supabase.rpc('my_access');
+  if(error || !data){ console.error('my_access', error); window.mvCurrentAccess = null; return; }
+  if(data.server_now) accessOffset = new Date(data.server_now).getTime() - Date.now();
+  window.mvCurrentAccess = data;
 }
+function hasFullAccess(){
+  const x = window.mvCurrentAccess;
+  return !!x && x.full === true && (!x.until || new Date(x.until).getTime() > window.mvServerNow());
+}
+window.mvHasFullAccess = hasFullAccess;
 
 async function loadProfile(userId){
   const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
@@ -71,7 +62,8 @@ async function refreshAuthState(){
   const { data: { session } } = await supabase.auth.getSession();
   window.mvCurrentUser = session?.user || null;
   window.mvCurrentProfile = window.mvCurrentUser ? await loadProfile(window.mvCurrentUser.id) : null;
-  window.setIsPremium?.(computeIsPremium(window.mvCurrentProfile));
+  await loadAccess();
+  window.setIsPremium?.(hasFullAccess());
   window.renderCuenta?.();
   window.renderBitacoraGate?.();
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
