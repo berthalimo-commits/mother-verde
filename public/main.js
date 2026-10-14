@@ -5586,6 +5586,8 @@ let currentLang = (function(){
   try { const l = localStorage.getItem('mv-lang'); return MV_LANGS.includes(l) ? l : 'es'; } catch(e){ return 'es'; }
 })();
 window.getCurrentLang = function(){ return currentLang; };
+// Modules loaded later (the game) add their texts to the same translations.
+window.mvAddTexts = function(pack){ for(const l in pack) if(translations[l]) Object.assign(translations[l], pack[l]); };
 /* Edibles safety reference title (free content). */
 translations.es.cmDoseRefTitle = "Qué significa cada rango de mg por porción";
 translations.en.cmDoseRefTitle = "What each mg-per-serving range means";
@@ -6652,6 +6654,7 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     if(document.getElementById('perfil')?.classList.contains('active')) renderProfileScreen();
     if(document.getElementById('cuenta')?.classList.contains('active')) renderCuenta();
     if(document.getElementById('desbloquear')?.classList.contains('active')) window.mvRenderDesbloquear?.();
+    if(document.getElementById('juego')?.classList.contains('active')) window.mvRenderJuego?.();
     // Médico condition-picker result is built in JS — re-run it if one is showing.
     if(document.getElementById('mdBuscarResultado')?.innerHTML.trim()) buscarEspecialista();
   };
@@ -6675,7 +6678,7 @@ function mvRedrawAccessTexts(){
 }
 
 // Screens reachable only from the "Más ▾" menu (not their own top-bar tab).
-const MORE_SCREENS = ['comunidad', 'seguridad', 'historia', 'glosario', 'calculadoras', 'bitacora', 'variedades', 'negocio'];
+const MORE_SCREENS = ['comunidad', 'seguridad', 'historia', 'glosario', 'calculadoras', 'bitacora', 'variedades', 'negocio', 'juego'];
 function toggleMoreMenu(e){
   if(e) e.stopPropagation();
   const menu = document.getElementById('tabsMoreMenu');
@@ -6714,6 +6717,7 @@ function showScreen(id){
   if(id === 'comunidad') renderComunidadScreen();
   if(id === 'perfil') renderProfileScreen();
   if(id === 'legal') renderLegalMap();
+  if(id === 'juego') window.mvRenderJuego?.();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>{

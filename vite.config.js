@@ -13,9 +13,13 @@ import fs from 'fs';
 //     is cut out of dist/main.js (public/main.js isn't processed by Vite, so
 //     this plugin does it after the build, and fails the build if any is left).
 export default defineConfig(({ command }) => {
-  const preview = command === 'serve' || process.env.VERCEL_GIT_COMMIT_REF === 'dev' || process.env.MV_DEV_PREVIEW === '1';
+  const preview = command === 'serve' || ['dev', 'juego'].includes(process.env.VERCEL_GIT_COMMIT_REF) || process.env.MV_DEV_PREVIEW === '1';
+  // Zona del juego: only on the local dev server, the Vercel build of branch
+  // "juego", or MV_GAME=1 by hand. OFF for main and dev (nothing of the game
+  // is compiled; see src/gameFlag.js).
+  const game = command === 'serve' || process.env.VERCEL_GIT_COMMIT_REF === 'juego' || process.env.MV_GAME === '1';
   return {
-    define: { 'import.meta.env.VITE_MV_PREVIEW': JSON.stringify(preview ? '1' : '0') },
+    define: { 'import.meta.env.VITE_MV_PREVIEW': JSON.stringify(preview ? '1' : '0'), 'import.meta.env.VITE_MV_GAME': JSON.stringify(game ? '1' : '0') },
     plugins: [{
       name: 'mv-dev-preview',
       transformIndexHtml(html) {
