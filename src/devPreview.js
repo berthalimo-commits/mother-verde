@@ -52,6 +52,7 @@ function mount() {
         <button type="button" data-go="desbloquear">Desbloquear</button>
         <button type="button" data-go="cuenta">Cuenta</button>
         <button type="button" data-go="acceso">Pantalla de acceso</button>
+        ${import.meta.env.VITE_MV_GAME === '1' ? '<button type="button" data-go="juego">Juego</button>' : ''}
         <a href="/panel-mv.html?demo=1" style="color:#8fd3a6">Panel de ejemplo</a>
       </div>
     </div>`;

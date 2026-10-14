@@ -1,0 +1,154 @@
+// Browser test — Zona del juego (fakeserver.mjs, all migrations incl. 20261015100000).
+// Access (trial / expired / contribution / gift), lazy loading, progress
+// (save, reload, another device, offline, lock + unlock), 4 languages live,
+// mobile + desktop, light + dark (the platform is dark-only: same colours),
+// 44 px targets, contrast, dev preview.
+import { check, sleep, sql, browser, summary, ADMIN, PAYER } from './browser.mjs';
+
+const NEWBIE = 'b0000003-0000-4000-8000-000000000000';
+const open = async (b) => { await b.send('Page.navigate', { url: 'http://localhost:5174/' }); await sleep(5500); await b.ev(`document.getElementById('ageGateModal').style.display='none'; document.getElementById('mvDevPreview')?.remove(); 1`); };
+const screen = (b) => b.ev(`document.querySelector('.screen.active')?.id`);
+const gameLoaded = (b) => b.ev(`performance.getEntriesByType('resource').some((r) => /\\/src\\/game\\/game\\.js/.test(r.name))`);
+const gs = (b) => b.ev(`window.mvGameDebug ? JSON.parse(JSON.stringify(window.mvGameDebug.state)) : null`);
+const goGame = async (b) => { await b.ev(`goMore('juego'); 1`); for (let i = 0; i < 30; i++) { if (await b.ev(`!!document.getElementById('jgBubble') || document.querySelector('.screen.active')?.id !== 'juego'`)) break; await sleep(200); } await sleep(300); };
+const click = (b, id) => b.ev(`document.getElementById('${id}').click(); 1`);
+const serverRow = async (uid) => (await sql(`select seq, state->>'week' as week, state->>'stage' as stage from game_progress where user_id = '${uid}'`))[0] || null;
+
+// ------------------------------------------------------------ access
+await sql(`update profiles set subscription_status = 'trialing', trial_ends_at = now() + interval '20 hours', trial_started_at = now() where id = '${NEWBIE}'`);
+let b = await browser(PAYER, 'aal1', 390);
+await open(b);
+check('el juego NO se descarga si no se entra (solo existe la entrada del menú)', await gameLoaded(b) === false && await b.ev(`!!document.getElementById('tabsMoreJuego')`));
+await goGame(b);
+const lockTxt = await b.ev(`document.getElementById('acceso').innerText`);
+check('prueba vencida sin aporte -> la misma pantalla de bloqueo que las demás zonas', await screen(b) === 'acceso' && /Tu prueba gratis terminó/.test(lockTxt), await screen(b));
+check('…y el juego ni siquiera se descargó', await gameLoaded(b) === false);
+await b.close();
+
+b = await browser(NEWBIE, 'aal1', 390);
+await open(b);
+await goGame(b);
+check('prueba de 24 h activa -> entra al juego', await screen(b) === 'juego' && await gameLoaded(b) === true);
+const intro = await b.ev(`document.getElementById('juegoRoot').innerText`);
+check('avisos visibles: simulación educativa, solo mayores de 18, sin dinero ni rankings', /Simulación educativa/.test(intro) && /mayores de 18/.test(intro) && /sin rankings/.test(intro));
+check('el científico de la plataforma es el guía (mismo dibujo)', await b.ev(`document.querySelector('#juego .jg-sci svg path[d="M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z"]') !== null`));
+
+// ------------------------------------------------------------ playing + saving
+await click(b, 'jgStart'); await sleep(800);
+for (let i = 0; i < 3; i++) { await click(b, 'jgNext'); await sleep(900); }
+let st = await gs(b);
+const row = await serverRow(NEWBIE);
+check('jugar 3 semanas -> se guarda en la cuenta (semana y seq iguales en el servidor)', st.week === 4 && row && Number(row.week) === 4 && row.seq === st.seq, JSON.stringify({ st: st.week, row }));
+check('mensaje «Guardado en tu cuenta.»', /Guardado en tu cuenta/.test(await b.ev(`document.getElementById('jgSync').innerText`)));
+await b.send('Page.reload'); await sleep(5500);
+await b.ev(`document.getElementById('ageGateModal').style.display='none'; 1`);
+await goGame(b);
+st = await gs(b);
+check('recargar -> continúa exactamente en la misma semana, sin repetir', st.week === 4 && st.stage === 'vegetativo' && await b.ev(`!document.getElementById('jgStart')`), JSON.stringify({ week: st.week, stage: st.stage }));
+
+// ------------------------------------------------------------ offline
+await b.send('Network.enable');
+await b.send('Network.emulateNetworkConditions', { offline: true, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+await b.ev(`window.dispatchEvent(new Event('offline')); 1`);
+await click(b, 'jgNext'); await sleep(1200);
+const offMsg = await b.ev(`document.getElementById('jgSync').innerText`);
+check('sin internet -> la semana se juega igual y queda guardada en el dispositivo', (await gs(b)).week === 5 && /este dispositivo/.test(offMsg) && Number((await serverRow(NEWBIE)).week) === 4, offMsg);
+await b.send('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+await b.ev(`window.dispatchEvent(new Event('online')); 1`); await sleep(1500);
+check('vuelve la conexión -> se envía sola a la cuenta', Number((await serverRow(NEWBIE)).week) === 5);
+await b.close();
+
+// ------------------------------------------------------------ another device
+let b2 = await browser(NEWBIE, 'aal1', 1280);
+await open(b2);
+await goGame(b2);
+check('otro dispositivo (navegador nuevo, sin copia local) -> sigue en la semana 5', (await gs(b2)).week === 5);
+await click(b2, 'jgNext'); await sleep(1000);
+await b2.close();
+b = await browser(NEWBIE, 'aal1', 390); // this "first device" has an older local copy (week 5)? new profile: fresh -> server
+await open(b);
+await b.ev(`localStorage.setItem('mv-game:${NEWBIE}', JSON.stringify({ state: Object.assign(${JSON.stringify(st)}, { seq: 1, week: 2 }), pending: false })); 1`);
+await goGame(b);
+check('un dispositivo con una copia vieja -> toma la más nueva de la cuenta (semana 6)', (await gs(b)).week === 6);
+
+// ------------------------------------------------------------ lock + unlock
+await sql(`update profiles set trial_ends_at = now() - interval '1 minute' where id = '${NEWBIE}'`);
+await b.ev(`window.mvRefreshAuth(); 1`); await sleep(1500);
+check('vence la prueba con el juego abierto -> pantalla de bloqueo', await screen(b) === 'acceso');
+check('…el progreso sigue en la cuenta', Number((await serverRow(NEWBIE)).week) === 6);
+await sql(`update profiles set subscription_status = 'supporter' where id = '${NEWBIE}'`);
+await b.ev(`window.mvRefreshAuth(); 1`); await sleep(1500);
+await goGame(b);
+check('tras el aporte -> vuelve a entrar y sigue en la semana 6', await screen(b) === 'juego' && (await gs(b)).week === 6);
+
+// ------------------------------------------------------------ 4 languages live
+const titles = {};
+for (const L of ['en', 'de', 'fr', 'es']) {
+  await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(500);
+  titles[L] = await b.ev(`document.getElementById('jgH1').textContent + ' | ' + document.querySelector('#juego legend').textContent + ' | ' + document.getElementById('jgNext').textContent`);
+}
+check('cambio de idioma en vivo (EN, DE, FR, ES) redibuja el juego', /Grow your plant/.test(titles.en) && /Zieh deine Pflanze/.test(titles.de) && /Cultive ta plante/.test(titles.fr) && /Cultiva tu planta/.test(titles.es), JSON.stringify(titles));
+const raw = await b.ev(`(() => { const out = []; for (const L of ['es','en','de','fr']) { /* no visible text may be a raw key */ } return document.getElementById('juego').innerText.match(/\\bjg[A-Z][A-Za-z_]+/g) || []; })()`);
+check('ningún texto sin traducir (claves «jg…» a la vista)', raw.length === 0, raw.join(','));
+await b.close();
+
+// ------------------------------------------------------------ gift + contribution
+await sql(`update profiles set subscription_status = 'trialing', trial_ends_at = now() - interval '3 days', access_until = now() + interval '7 days' where id = '${PAYER}'`);
+b = await browser(PAYER, 'aal1', 390);
+await open(b);
+await goGame(b);
+check('acceso por código de regalo (días vigentes) -> entra al juego', await screen(b) === 'juego');
+await b.close();
+b = await browser(ADMIN, 'aal1', 390);
+await open(b);
+await goGame(b);
+check('acceso completo (aporte) -> entra al juego', await screen(b) === 'juego');
+await b.close();
+
+// ------------------------------------------------------------ mobile / desktop, light / dark, a11y
+for (const [w, label] of [[390, 'movil'], [1280, 'escritorio']]) {
+  for (const scheme of ['dark', 'light']) {
+    b = await browser(ADMIN, 'aal1', w);
+    await b.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: scheme }] });
+    await open(b);
+    await goGame(b);
+    if (await b.ev(`!!document.getElementById('jgStart')`)) { await click(b, 'jgStart'); await sleep(700); }
+    const a = await b.ev(`(() => {
+      const lum = (c) => { const m = c.match(/\\d+(\\.\\d+)?/g).map(Number); const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(m[0]) + 0.7152 * f(m[1]) + 0.0722 * f(m[2]); };
+      const bg = (el) => { while (el) { const c = getComputedStyle(el).backgroundColor; if (c && !/rgba\\(\\d+, \\d+, \\d+, 0\\)|transparent/.test(c)) return c; el = el.parentElement; } return getComputedStyle(document.body).backgroundColor; };
+      const ratio = (el) => { const l1 = lum(getComputedStyle(el).color), l2 = lum(bg(el)); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); };
+      const texts = [...document.querySelectorAll('#juego .jg-bubble, #juego legend, #juego .jg-opts label span, #juego .jg-opts label small, #juego .jg-badges li, #juego .jg-title, #juego .jg-sync')].filter((e) => e.offsetParent && e.textContent.trim());
+      const minRatio = Math.min(...texts.map(ratio));
+      const targets = [...document.querySelectorAll('#juego button, #juego .jg-opts label')].filter((e) => e.offsetParent);
+      const small = targets.filter((e) => e.getBoundingClientRect().height < 44).map((e) => e.textContent.trim().slice(0, 20));
+      const unlabelled = [...document.querySelectorAll('#juego input')].filter((i) => !document.querySelector('label[for="' + i.id + '"]')).length;
+      const fieldsets = [...document.querySelectorAll('#juego fieldset')].every((f) => f.querySelector('legend')?.textContent.trim());
+      return { minRatio: Math.round(minRatio * 100) / 100, small, unlabelled, fieldsets, overflow: document.documentElement.scrollWidth > innerWidth, meter: !!document.querySelector('#juego meter[aria-labelledby]') };
+    })()`);
+    check(`${label} ${scheme === 'dark' ? 'oscuro' : 'claro'}: contraste ≥ 4,5 (${a.minRatio}), botones y opciones ≥ 44 px, etiquetas y grupos con nombre, sin desborde`,
+      a.minRatio >= 4.5 && a.small.length === 0 && a.unlabelled === 0 && a.fieldsets && !a.overflow && a.meter, JSON.stringify(a));
+    // real keyboard: from the guide's bubble, Tab goes to the first option
+    await b.ev(`document.getElementById('jgBubble').focus(); 1`);
+    await b.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+    await b.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+    await sleep(200);
+    const focusOutline = await b.ev(`(() => { const l = document.querySelector('#juego input[type=radio]:focus-visible + label'); return l ? getComputedStyle(l).outlineStyle : 'sin foco: ' + document.activeElement?.id; })()`);
+    if (w === 390 && scheme === 'dark') check('el foco del teclado se ve en las opciones', focusOutline === 'solid', focusOutline);
+    await b.shot(`juego-${label}-${scheme === 'dark' ? 'oscuro' : 'claro'}`);
+    await b.close();
+  }
+}
+
+// ------------------------------------------------------------ dev preview
+b = await browser(ADMIN, 'aal1', 390);
+await b.send('Page.navigate', { url: 'http://localhost:5174/' }); await sleep(5500);
+await b.ev(`document.getElementById('ageGateModal').style.display='none'; 1`);
+check('vista previa de dev: botón «Juego»', await b.ev(`!!document.querySelector('#mvDevPreview [data-go="juego"]')`));
+await b.ev(`document.getElementById('mvDpExpired').click(); 1`); await sleep(400);
+await b.ev(`document.querySelector('#mvDevPreview [data-go="juego"]').click(); 1`); await sleep(600);
+check('vista previa «prueba vencida» + Juego -> pantalla de bloqueo', await screen(b) === 'acceso');
+await b.ev(`document.getElementById('mvDpReal').click(); 1`); await sleep(400);
+await b.ev(`document.querySelector('#mvDevPreview [data-go="juego"]').click(); 1`); await sleep(1500);
+check('vista previa «cuenta real» + Juego -> juego', await screen(b) === 'juego');
+await b.close();
+summary();
