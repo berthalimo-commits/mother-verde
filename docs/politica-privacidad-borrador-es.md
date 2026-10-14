@@ -32,8 +32,9 @@ tú puedes verlas.
 
 ### 2.3 Tu perfil público de Comunidad
 Si te unes al directorio de Comunidad: tu **nombre visible**, **país**, **tipo
-de perfil**, **biografía** y **foto de perfil**. Este perfil es **público**:
-puede verlo cualquier persona que abra la app, aunque no tenga cuenta.
+de perfil**, **biografía** y **foto de perfil**. Este perfil lo ven **solo las
+personas con acceso completo** a la plataforma (lo controla la base de datos). Las fotos se guardan en un
+almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla.
 
 ### 2.4 Tus publicaciones y comentarios
 - **Publicaciones:** el texto, la foto si la añades, el tipo de publicación y
