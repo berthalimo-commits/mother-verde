@@ -21,7 +21,8 @@ for (const l of L) {
   const t = all(l);
   check(`${l}: Supabase, Vercel, Hostinger, Resend, DeepL, red Base, Google Fonts y flagcdn`, ['Supabase', 'Vercel', 'Hostinger', 'Resend', 'DeepL', 'Base', 'Google Fonts', 'flagcdn'].every((w) => t.includes(w)));
   check(`${l}: TXID público y permanente en la cadena, nombre/teléfono opcionales, hello@`, /TXID/.test(t) && /hello@motherverdeny\.com/.test(t) && /(públicas y permanentes|public and permanent|öffentlich und dauerhaft|publics et permanents)/.test(t));
-  check(`${l}: lo que depende de la ley queda marcado como pendiente de revisión`, (t.match(/\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/g) || []).length >= 6);
+  check(`${l}: lo que depende de la ley queda marcado como pendiente de revisión`, (t.match(/\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/g) || []).length >= 5);
+  check(`${l}: dice la región del servidor (Central EU, Fráncfort) y ya no la deja pendiente`, /Central EU/.test(t) && /(Fráncfort|Frankfurt|Francfort)/.test(t) && !/(región del servidor|server region|Serverregion|région du serveur)/.test(t));
 }
 check('no promete lo que no existe (cookies de analítica, exportar datos)', !/Google Analytics|exportar tus datos|export your data/i.test(L.map(all).join(' ')));
 
