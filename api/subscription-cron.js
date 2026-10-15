@@ -1,104 +1,52 @@
 // ===========================================================================
-// Trial / subscription lifecycle job  —  runs on a schedule (once connected).
+// Daily job — tidies access states. Nothing is billed here:
+// access is free for 24 h, then by contribution or gift days, and is decided
+// by time in public.is_premium(), so nothing here grants or removes access.
 // ===========================================================================
-// What it does every run:
-//   1. Trials ending within 24h, no reminder sent yet -> send the day-2
-//      reminder + stamp trial_reminder_sent_at.
-//      EMAIL IS DESIGNED ONLY. No transactional email provider is connected
-//      (domain + hello@motherverdeny.com live on Hostinger; DNS will be set up
-//      there when we wire sending). Template: docs/trial-reminder-email.md.
-//      Until then the in-app banner (#trialReminderBanner) is the channel.
-//   2. Trials whose trial_ends_at has passed:
-//        - cancel_at_period_end = true  -> status 'canceled' (no charge)
-//        - otherwise                    -> TODO(payment-nerds): charge $7.10.
-//          success -> 'active', subscription_expires_at = +1 month
-//          failure -> 'blocked' IMMEDIATELY (no grace period — owner's call)
-//      While the processor is offline we cannot charge, so an un-cancelled
-//      expired trial goes straight to 'blocked'. That's the honest state:
-//      the user had full access for 3 days and we can't bill them yet.
-//   3. Active subs past subscription_expires_at:
-//        - cancel_at_period_end = true  -> 'canceled'
-//        - otherwise                    -> TODO(payment-nerds): renewal charge.
-//          success -> extend +1 month ; failure -> 'blocked'
+// Every run:
+//   1. Support contributions: reserved amounts past their expiry -> 'expired'
+//      (public.expire_support_claims(), migration 20261011120000).
+//   2. Leftovers of the old card model: rows still marked 'active' /
+//      'past_due' whose period ended -> 'canceled'; legacy 'none' rows with an
+//      ended period -> subscription_active false. Tidy-up only: is_premium()
+//      already gives them no access.
+//   3. Calls the Edge Function community-retranslate (retries up to 20
+//      untranslated posts/comments within the global DeepL daily cap).
+//   4. Records the run in public.cron_runs (Vercel Hobby keeps logs 1 hour).
 //
-// Scheduled in vercel.json, daily at 08:00 UTC (Hobby allows one run a day).
+// Scheduled in vercel.json at 23:00 UTC (Hobby: once a day, may run up to
+// 59 minutes late).
 //
-// Every authorized run is recorded in public.cron_runs (migration
-// 20261005120000_cron_runs.sql): counts, the profile ids touched, and every
-// error. Vercel Hobby keeps runtime logs for only 1 hour, so that table is
-// the place to check whether the job ran and what it did.
-//
-// supabase-js does NOT throw on a failed query — it returns { error }. Every
-// call below goes through must(), so a failed select/update is recorded as an
-// error instead of being counted as done.
-//
-// Auth: set CRON_SECRET in the Vercel project; the scheduler is configured to
-// send it as `Authorization: Bearer <CRON_SECRET>`. Manual runs must match.
+// Vercel environment variables: CRON_SECRET (the scheduler sends it as
+// `Authorization: Bearer <CRON_SECRET>`), SUPABASE_URL or VITE_SUPABASE_URL,
+// SUPABASE_SERVICE_ROLE_KEY, VITE_SUPABASE_ANON_KEY, RETRANSLATE_SECRET (same
+// value as the Supabase secret of community-retranslate).
 // ===========================================================================
 
 import { createClient } from '@supabase/supabase-js';
 import { timingSafeEqual } from 'node:crypto';
 
-const PRICE_USD = '7.10';
-const REMINDER_WINDOW_HOURS = 24;
+const JOB = 'subscription-cron';
+const RUN_LOG_RETENTION_DAYS = 180;
 
-// Must match src/subscription.js. While false, NO charge can succeed and every
-// trial that reaches day 3 is set to 'blocked' — never left with free access.
-const PAYMENTS_ENABLED = false; // TODO(payment-nerds): flip on when the processor is live
+function supabaseUrl() { return process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL; }
 
 function admin() {
-  const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+  const url = supabaseUrl();
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error('supabase admin env not configured');
   return createClient(url, key, { auth: { persistSession: false } });
 }
 
-// -- TODO(payment-nerds): real charge. Return { ok: true } / { ok: false }. ----
-async function chargeCard(/* profile, amountUsd */) {
-  if (!PAYMENTS_ENABLED) return { ok: false, pending: true, reason: 'payment-nerds-not-connected' };
-  // TODO(payment-nerds): call the processor here.
-  return { ok: false, pending: true, reason: 'not-implemented' };
-}
-
-// Fail-closed wrapper: a charge counts as successful ONLY if payments are live
-// AND the processor explicitly said ok. Anything else -> block.
-async function chargeSucceeded(profile) {
-  if (!PAYMENTS_ENABLED) return false;
-  try {
-    const r = await chargeCard(profile, PRICE_USD);
-    return r && r.ok === true;
-  } catch (e) {
-    return false;
-  }
-}
-
-// -- TODO(email): real send via the provider we set up on Hostinger DNS. -------
-async function sendTrialReminderEmail(/* profile */) {
-  // Template + copy: docs/trial-reminder-email.md (4 languages).
-  return { ok: false, pending: true };
-}
-
-function addOneMonth(from) {
-  const d = new Date(from);
-  d.setMonth(d.getMonth() + 1);
-  return d.toISOString();
-}
-
-// Unwrap a supabase-js result: return its data, or throw with the step name.
+// supabase-js does NOT throw on a failed query — it returns { error }.
 async function must(query, step) {
   const { data, error } = await query;
   if (error) throw new Error(`${step}: ${error.message}`);
   return data;
 }
 
-// Keep the run log from growing forever.
-const RUN_LOG_RETENTION_DAYS = 180;
-
 export default async function handler(req, res) {
-  // Fail closed: a missing CRON_SECRET must reject every request, not skip
-  // the check. This endpoint runs with the service-role key and can mutate
-  // any profile's subscription_status, so an unauthenticated hole here is a
-  // way to mass-block or mass-cancel every account, not just a config nit.
+  // Fail closed: without CRON_SECRET every request is rejected.
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.authorization || '';
   const expected = secret ? `Bearer ${secret}` : null;
@@ -113,127 +61,73 @@ export default async function handler(req, res) {
   let db;
   try { db = admin(); }
   catch (e) {
-    console.error('subscription-cron:', e.message);
+    console.error(`${JOB}:`, e.message);
     res.status(500).json({ error: e.message });
     return;
   }
 
   const now = new Date();
-  const soon = new Date(now.getTime() + REMINDER_WINDOW_HOURS * 3600000);
-  const counts = { remindersSent: 0, trialsCharged: 0, trialsBlocked: 0, trialsCanceled: 0, renewals: 0, renewalsBlocked: 0, subsCanceled: 0 };
-  const touched = { reminded: [], trialCharged: [], trialBlocked: [], trialCanceled: [], renewed: [], renewalBlocked: [], subCanceled: [] };
+  const summary = { claimsExpired: 0, legacyCanceled: [], legacyDeactivated: [], retranslate: null };
   const errors = [];
 
-  // Apply one profile update; on failure record it and return false instead
-  // of counting the row as handled.
-  async function updateProfile(step, id, fields) {
-    try {
-      await must(db.from('profiles').update(fields).eq('id', id), step);
-      return true;
-    } catch (e) {
-      errors.push({ step, profile_id: id, message: e.message });
-      return false;
-    }
-  }
-
-  // --- 1. Day-2 reminders -------------------------------------------------
+  // --- 1. Expired reserved amounts -------------------------------------
   try {
-    const due = await must(db
-      .from('profiles')
-      .select('id, contact_email, preferred_lang, trial_ends_at')
-      .eq('subscription_status', 'trialing')
-      .is('trial_reminder_sent_at', null)
-      .eq('cancel_at_period_end', false)
-      .lte('trial_ends_at', soon.toISOString())
-      .gt('trial_ends_at', now.toISOString()), 'reminders: select');
-    for (const p of due || []) {
-      await sendTrialReminderEmail(p); // TODO(email): currently a no-op stub
-      if (await updateProfile('reminders', p.id, { trial_reminder_sent_at: now.toISOString() })) {
-        counts.remindersSent++; touched.reminded.push(p.id);
-      }
-    }
-  } catch (e) { errors.push({ step: 'reminders', message: e.message }); }
+    summary.claimsExpired = await must(db.rpc('expire_support_claims'), 'claims: expire');
+  } catch (e) { errors.push({ step: 'claims', message: e.message }); }
 
-  // --- 2. Trials that have ended ----------------------------------------
+  // --- 2. Old card-model leftovers -------------------------------------
   try {
-    const ended = await must(db
-      .from('profiles')
-      .select('id, cancel_at_period_end, trial_ends_at, payment_customer_id')
-      .eq('subscription_status', 'trialing')
-      .lte('trial_ends_at', now.toISOString()), 'trial-end: select');
-    for (const p of ended || []) {
-      if (p.cancel_at_period_end) {
-        if (await updateProfile('trial-end: cancel', p.id, { subscription_status: 'canceled', canceled_at: now.toISOString() })) {
-          counts.trialsCanceled++; touched.trialCanceled.push(p.id);
-        }
-        continue;
-      }
-      if (await chargeSucceeded(p)) {
-        if (await updateProfile('trial-end: activate', p.id, {
-          subscription_status: 'active',
-          subscription_active: true,
-          subscription_expires_at: addOneMonth(now),
-        })) { counts.trialsCharged++; touched.trialCharged.push(p.id); }
-      } else {
-        // Default outcome on ANY doubt: immediate block, no grace period.
-        if (await updateProfile('trial-end: block', p.id, {
-          subscription_status: 'blocked',
-          subscription_active: false,
-        })) { counts.trialsBlocked++; touched.trialBlocked.push(p.id); }
-      }
-    }
-  } catch (e) { errors.push({ step: 'trial-end', message: e.message }); }
+    const rows = await must(db.from('profiles')
+      .update({ subscription_status: 'canceled', subscription_active: false })
+      .in('subscription_status', ['active', 'past_due'])
+      .lte('subscription_expires_at', now.toISOString())
+      .select('id'), 'legacy: cancel');
+    summary.legacyCanceled = (rows || []).map((r) => r.id);
+    const rows2 = await must(db.from('profiles')
+      .update({ subscription_active: false })
+      .eq('subscription_status', 'none')
+      .eq('subscription_active', true)
+      .lte('subscription_expires_at', now.toISOString())
+      .select('id'), 'legacy: deactivate');
+    summary.legacyDeactivated = (rows2 || []).map((r) => r.id);
+  } catch (e) { errors.push({ step: 'legacy', message: e.message }); }
 
-  // --- 3. Paid subscriptions past their period -------------------------
+  // --- 3. Retry untranslated posts/comments ----------------------------
   try {
-    const expired = await must(db
-      .from('profiles')
-      .select('id, cancel_at_period_end, subscription_expires_at, payment_customer_id')
-      .eq('subscription_status', 'active')
-      .lte('subscription_expires_at', now.toISOString()), 'renewal: select');
-    for (const p of expired || []) {
-      if (p.cancel_at_period_end) {
-        if (await updateProfile('renewal: cancel', p.id, {
-          subscription_status: 'canceled',
-          subscription_active: false,
-          canceled_at: now.toISOString(),
-        })) { counts.subsCanceled++; touched.subCanceled.push(p.id); }
-        continue;
-      }
-      if (await chargeSucceeded(p)) {
-        if (await updateProfile('renewal: extend', p.id, { subscription_expires_at: addOneMonth(now) })) {
-          counts.renewals++; touched.renewed.push(p.id);
-        }
-      } else {
-        if (await updateProfile('renewal: block', p.id, {
-          subscription_status: 'blocked',
-          subscription_active: false,
-        })) { counts.renewalsBlocked++; touched.renewalBlocked.push(p.id); }
-      }
-    }
-  } catch (e) { errors.push({ step: 'renewal', message: e.message }); }
+    const rSecret = process.env.RETRANSLATE_SECRET;
+    const anonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+    if (!rSecret) throw new Error('RETRANSLATE_SECRET not set');
+    const r = await fetch(`${supabaseUrl()}/functions/v1/community-retranslate`, {
+      method: 'POST',
+      headers: {
+        'x-retranslate-secret': rSecret,
+        ...(anonKey ? { apikey: anonKey, Authorization: `Bearer ${anonKey}` } : {}),
+        'Content-Type': 'application/json',
+      },
+      body: '{}',
+      signal: AbortSignal.timeout(50000),
+    });
+    const body = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(`HTTP ${r.status}: ${JSON.stringify(body).slice(0, 200)}`);
+    summary.retranslate = { done: body.done, failed: body.failed, gave_up: body.gave_up, stopped: body.stopped };
+    if (body.errors?.length) errors.push({ step: 'retranslate: rows', message: body.errors.slice(0, 5).join(' | ') });
+  } catch (e) { errors.push({ step: 'retranslate', message: e.message }); }
 
-  // --- 4. Record the run ----------------------------------------------
+  // --- 4. Record the run -----------------------------------------------
   const ok = errors.length === 0;
-  const summary = { ...counts, profiles: touched, payments_enabled: PAYMENTS_ENABLED };
   let logged = true;
   try {
     await must(db.from('cron_runs').insert({
-      job: 'subscription-cron',
-      started_at: now.toISOString(),
-      finished_at: new Date().toISOString(),
-      ok,
-      summary,
-      errors,
+      job: JOB, started_at: now.toISOString(), finished_at: new Date().toISOString(), ok, summary, errors,
     }), 'cron_runs: insert');
     const cutoff = new Date(now.getTime() - RUN_LOG_RETENTION_DAYS * 86400000).toISOString();
-    await must(db.from('cron_runs').delete().eq('job', 'subscription-cron').lt('started_at', cutoff), 'cron_runs: prune');
+    await must(db.from('cron_runs').delete().eq('job', JOB).lt('started_at', cutoff), 'cron_runs: prune');
   } catch (e) {
     logged = false;
     errors.push({ step: 'run-log', message: e.message });
   }
 
-  if (!ok || !logged) console.error('subscription-cron errors:', JSON.stringify(errors));
+  if (!ok || !logged) console.error(`${JOB} errors:`, JSON.stringify(errors));
   // A non-2xx status makes the run show as failed in Vercel's Cron Jobs view.
   res.status(ok && logged ? 200 : 500).json({ ok: ok && logged, ran_at: now.toISOString(), ...summary, errors });
 }
