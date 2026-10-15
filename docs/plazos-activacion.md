@@ -51,3 +51,15 @@ no encuentra ese valor. **Hoy las tres pantallas dicen 48 horas.**
      «Lo revisaremos manualmente y te escribiremos». Así no se promete un plazo que un conflicto podría no permitir cumplir.
 
 Dime **1 + 2** y **(a) o (b)**, y lo aplico con su prueba.
+
+## 5. Aplicado (15 de octubre de 2026)
+Aprobado: puntos 1 y 2, y la opción **(b)**.
+- `src/supportConfig.js`: `VERIFY_MAX_HOURS` se llama ahora **`NORMAL_REVIEW_HOURS: 24`**. Un comentario aclara que solo
+  se muestra durante la revisión normal y que no es un temporizador.
+- `dsPaso4` y `dsPendingP` dicen **«hasta {h} horas»** en los 4 idiomas.
+- **Revisión manual** (pago tardío, conflicto, monto distinto…): ningún número de horas. Solo se muestra «Lo revisaremos
+  manualmente y te escribiremos», o el texto propio del pago tardío.
+- **Una sola línea** decide el mensaje: `pendingLine()` en `src/desbloquear.js`. La usan Desbloquear y la pantalla de
+  bloqueo, así que nunca aparecen dos plazos a la vez.
+- Prueba: `tests/sim/deadline-ui.mjs` (21 comprobaciones: normal, manual, pago tardío y pantalla de bloqueo, en los 4
+  idiomas).
