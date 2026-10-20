@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { CAPTCHA, captchaIsOn } from './captchaConfig.js';
+import './stageBadge.js'; // «STAGING · pruebas» when this build uses the test project
 
 // What an e-mail link brought back, read BEFORE the client consumes the URL.
 // Supabase sends the person to the site with, in the hash (or the query):

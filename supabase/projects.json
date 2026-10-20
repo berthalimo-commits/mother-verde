@@ -1,0 +1,18 @@
+{
+  "_leeme": "Qué proyecto de Supabase es cuál. Son datos públicos (la dirección del proyecto va dentro del JavaScript de la web): NO son secretos. vite.config.js los usa para que ningún entorno que no sea producción pueda compilarse contra la base de producción.",
+  "production": {
+    "ref": "uobailsjmjoubvnagxht",
+    "name": "mother-verde",
+    "region": "eu-central-1 (Frankfurt)",
+    "hosts": [
+      "www.motherverdeny.com",
+      "motherverdeny.com"
+    ]
+  },
+  "staging": {
+    "ref": null,
+    "name": "mother-verde-staging",
+    "region": "us-west-2 (Oregon)",
+    "_nota": "ref: opcional; si la pones (Project Settings → General → Reference ID), el build de Preview comprueba además que apunta exactamente a staging."
+  }
+}

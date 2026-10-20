@@ -10,8 +10,9 @@
 // Language: the one chosen in the app (localStorage 'mv-lang', same browser),
 // with its own ES/EN/DE/FR switch; every view is redrawn on change.
 import { createClient } from '@supabase/supabase-js';
+import './stageBadge.js'; // «STAGING · pruebas» when this build uses the test project
 
-let sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
+let sb =createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
 // Sample-data panel (/panel-mv.html?demo=1): dev-preview builds only; in the
 // production build this is the constant false and adminDemo.js isn't emitted.
 const DEMO = import.meta.env.VITE_MV_PREVIEW === '1' && new URLSearchParams(location.search).has('demo');
