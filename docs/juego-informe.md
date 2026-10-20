@@ -147,9 +147,9 @@ saltar el rosin, errores y su resta, opciones inventadas rechazadas, el servidor
 guardar y recargar en mitad del curado, 4 idiomas en la pantalla del rosin sin claves a la vista, móvil sin
 desborde y con opciones de 44 px, y el botón de repasar abre Elaboración → Procesos & SOP. `game-db` 37 sin cambios.
 
-**Dudas para ti / Bertha.**
-1. ¿Te parece bien que el rosin tenga **veredicto propio** y no baje la nota del cogollo?
-2. **Presión del rosin:** la plataforma no da un nivel; no puntúa. Si Bertha quiere uno (bajo / medio / alto), se
-   cambia en `rules.json` sin tocar el código.
-3. **Protección (guantes y superficie estable):** es un aviso de seguridad del diseño, no un texto de la plataforma.
-   Bertha puede confirmar la redacción.
+**Decisiones de la dueña (20-10-2026).**
+1. **Rosin con veredicto propio:** aprobado. No baja la nota del cogollo.
+2. **Presión del rosin:** se queda **sin puntuar** por ahora. Bertha decidirá más adelante un nivel **cualitativo**
+   (bajo / medio / alto), sin cifras; se cambia en `rules.json` sin tocar el código.
+3. **Protección (guantes y superficie estable):** sigue pendiente de que Bertha confirme la redacción.
+4. **Guion de la fase 3** (`docs/juego-fase3-guion.md`): **todavía NO aprobado**, en revisión. No se programa nada de la fase 3.
