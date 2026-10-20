@@ -3,6 +3,7 @@
 // and drawings. Same look, access, memory and guide as the rest of the game.
 import TEXTS from './i18n-lab.js';
 import * as L from './lab-engine.js';
+import { KITCHEN } from './lab-art.js';
 
 window.mvAddTexts?.(TEXTS);
 export const open = L.open;
@@ -13,7 +14,8 @@ export function guide(state, { t }) {
   const out = [];
   for (const n of state.notes || []) {
     const [, kind, scene, opt] = n.split(':');
-    if (kind === 'ok') out.push(t(`jl${up(scene)}_x_${L.QUESTIONS[scene].ok}`));
+    if (kind === 'tap') out.push(t(`${SPOT_KEY[scene]}x_${opt}`));
+    else if (kind === 'ok') out.push(t(`jl${up(scene)}_x_${L.QUESTIONS[scene].ok}`));
     else if (kind === 'no') out.push(t(`jl${up(scene)}_x_${opt}`));
   }
   if (lab.at === 'intro') return t('jlIntro');
@@ -21,6 +23,31 @@ export function guide(state, { t }) {
   return out.join(' ');
 }
 const up = (s) => s.toUpperCase();
+// text keys of the things to tap: jlK_<id> (name) and jlKx_<id> (what the guide says)
+const SPOT_KEY = { s2: 'jlK' };
+const ART = { s2: KITCHEN };
+
+// A drawing with buttons on top of each thing (44 px or more, real buttons for
+// the keyboard and screen readers). A found thing keeps a mark: ✓ for a hazard,
+// – for something that is not one.
+function drawing(state, { t, esc }) {
+  const at = state.lab.at;
+  const art = ART[at];
+  const T = L.TAPS[at];
+  const k = SPOT_KEY[at];
+  const spots = T.all.map((id) => {
+    const [x, y] = art.spots[id];
+    const found = state.lab.f.includes(id);
+    const hazard = T.need.includes(id);
+    const name = t(`${k}_${id}`) + (found ? ' — ' + t(hazard ? 'jlEncontrado' : 'jlNoEsPeligro') : '');
+    return `<button type="button" class="jl-spot${found ? ' jl-found' + (hazard ? '' : ' jl-decoy') : ''}" data-spot="${id}" style="left:${(x / 360 * 100).toFixed(2)}%;top:${(y / 240 * 100).toFixed(2)}%" aria-label="${esc(name)}" title="${esc(name)}"><span aria-hidden="true">${found ? (hazard ? '✓' : '–') : '?'}</span></button>`;
+  }).join('');
+  const done = T.need.every((id) => state.lab.f.includes(id));
+  const list = T.need.filter((id) => state.lab.f.includes(id)).map((id) => `<li>${esc(t(`${k}_${id}`))}</li>`).join('');
+  return `<div class="jl-art">${art.svg}${spots}</div>
+    <p class="jl-progress" role="status">${esc(t(done ? 'jlTodos_' + at : 'jlFaltan_' + at))}</p>
+    ${list ? `<ul class="jl-list" aria-label="${esc(t('jlEncontradosLbl'))}">${list}</ul>` : ''}`;
+}
 
 function cards(ids, scene, { t, esc }) {
   return `<div class="jl-cards">${ids.map((id) => `<div class="card-block jl-card"><h4>${esc(t(`jl${up(scene)}_${id}_h`))}</h4><p>${esc(t(`jl${up(scene)}_${id}_p`))}</p></div>`).join('')}</div>`;
@@ -29,7 +56,7 @@ function cards(ids, scene, { t, esc }) {
 function question(state, { t, esc }) {
   const at = state.lab.at;
   const q = L.QUESTIONS[at];
-  if (!q) return '';
+  if (!q || !L.questionOpen(state)) return '';
   const done = state.lab.q.includes(at);
   return `<div class="card-block jl-q" role="group" aria-labelledby="jlQ">
     <h3 id="jlQ">${esc(t(`jl${up(at)}_q`))}</h3>
@@ -50,6 +77,7 @@ function scene(state, ctx) {
   }
   let body = '';
   if (at === 's1') body = cards(['solvente', 'purgar', 'sin'], 's1', ctx) + question(state, ctx);
+  if (at === 's2') body = drawing(state, ctx) + question(state, ctx);
   return `<h3 class="jl-h">${esc(t(`jl${up(at)}_t`))}</h3>
     ${body}
     <div class="jg-actions">
@@ -70,7 +98,13 @@ export function html(state, ctx) {
 export function bind(root, state, ctx) {
   root.querySelector('#jlNext')?.addEventListener('click', () => ctx.act(L.next(state)));
   root.querySelector('#jlClose')?.addEventListener('click', () => ctx.act(L.close(state)));
-  root.querySelectorAll('.jl-answer').forEach((b) => b.addEventListener('click', () => ctx.act(L.answer(state, b.dataset.answer))));
+  // a tap stays on this device; it is sent with the next scene
+  root.querySelectorAll('.jl-spot').forEach((b) => b.addEventListener('click', () => ctx.act(L.tap(state, b.dataset.spot), false)));
+  // a wrong answer changes nothing worth sending on its own (it goes with the next save)
+  root.querySelectorAll('.jl-answer').forEach((b) => b.addEventListener('click', () => {
+    const n = L.answer(state, b.dataset.answer);
+    ctx.act(n, n.lab.q !== state.lab.q);
+  }));
 }
 
 export const CSS = `
@@ -81,4 +115,15 @@ export const CSS = `
 #juego .jl-card p{margin:0;font-size:14px;line-height:1.55;color:var(--ink)}
 #juego .jl-q h3{font-family:'Manrope',sans-serif;font-size:16px;margin:2px 0 10px;color:var(--ink)}
 #juego .jl-answer.jl-right{border:2px solid var(--moss);opacity:1}
+#juego .jl-art{position:relative;max-width:560px;margin:0 auto 10px;aspect-ratio:3/2;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+#juego .jl-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#juego .jl-spot{position:absolute;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:2px dashed var(--teal);background:transparent;color:var(--ink);cursor:pointer;padding:0}
+#juego .jl-spot:hover{background:rgba(95,212,224,.12)}
+#juego .jl-spot span{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;background:var(--paper-raised);border:1.5px solid var(--teal);font:700 12px/17px 'Manrope',sans-serif;text-align:center}
+#juego .jl-spot:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+#juego .jl-spot.jl-found{border:2px solid var(--moss);color:var(--moss)}
+#juego .jl-spot.jl-found span{border-color:var(--moss)}
+#juego .jl-spot.jl-decoy,#juego .jl-spot.jl-decoy span{border-color:var(--ink-soft);color:var(--ink-soft)}
+#juego .jl-progress{font-weight:600;color:var(--ink);margin:4px 0 6px}
+#juego .jl-list{margin:0 0 12px;padding-left:20px;color:var(--ink);font-size:14px;line-height:1.6}
 `;

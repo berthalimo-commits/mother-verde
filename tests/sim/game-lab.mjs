@@ -61,6 +61,30 @@ threw = 0;
 for (const f of [() => L.answer(L.open(finished()), 'inflamable'), () => L.answer(keep(L.next(L.open(finished()))), 'inventada')]) { try { f(); } catch { threw++; } }
 check('responder fuera de una pregunta o con una opción inventada -> rechazado', threw === 2);
 
+console.log('1b. Escena 2: la cocina (BHO)');
+let k = keep(L.next(L.answer(keep(L.next(L.open(finished()))), 'inflamable')));
+check('después de los conceptos viene la cocina', k.lab.at === 's2' && k.lab.f.length === 0);
+threw = 0; try { L.answer(k, 'no_casa'); } catch { threw++; } try { L.next(k); } catch { threw++; }
+check('la pregunta final y «Seguir» no se abren hasta encontrar los seis peligros', threw === 2 && !L.questionOpen(k));
+for (const id of L.TAPS.s2.decoys) k = keep(L.tap(k, id));
+check('tocar lo que no es peligro no cuenta como peligro (el guía lo dice)', !L.questionOpen(k) && k.notes[0] === 'jl:tap:s2:frasco');
+for (const id of L.TAPS.s2.need) k = keep(L.tap(k, id));
+check('los seis peligros encontrados -> se abre la pregunta', L.questionOpen(k) && L.TAPS.s2.need.length === 6 && L.TAPS.s2.decoys.length === 2);
+const unsafe = L.QUESTIONS.s2.opts.filter((o) => o !== L.QUESTIONS.s2.ok).map((o) => keep(L.answer(k, o)));
+check('toda respuesta insegura lleva a «Detener todo y llamar a un profesional» (en los 4 idiomas)', unsafe.length === 2 && unsafe.every((x) => x.lab.q.length === 1 && x.notes[0].startsWith('jl:no:s2:'))
+  && LANGS.every((l) => unsafe.every((x) => /profesional|professional|Fachperson|professionnel/.test(LT[l]['jlS2_x_' + x.notes[0].split(':')[3]]))));
+k = keep(L.answer(k, 'no_casa'));
+check('la respuesta segura: no se hace en casa, aléjate y llama a emergencias', k.lab.q.includes('s2') && /aléjate y llama a emergencias/.test(LT.es.jlS2_o_no_casa));
+threw = false; try { L.tap(k, 'receta'); } catch { threw = true; }
+check('tocar algo que no está en el dibujo -> rechazado', threw);
+const ART = await import('file:///' + APP + '/src/game/lab-art.js');
+check('cada cosa de la cocina tiene su sitio en el dibujo y su nombre y explicación en los 4 idiomas',
+  L.TAPS.s2.all.every((id) => ART.KITCHEN.spots[id] && LANGS.every((l) => LT[l]['jlK_' + id] && LT[l]['jlKx_' + id])));
+const svgs = Object.values(ART).map((a) => a.svg);
+check('los dibujos no llevan texto, imágenes externas ni enlaces (los nombres van en los botones)', svgs.every((v) => !/<text|<image|<a|href|<foreignObject/i.test(v) && /aria-hidden="true"/.test(v)));
+const spotsOk = Object.values(ART).every((a) => { const p = Object.values(a.spots); return p.every(([x, y], i) => p.every(([u, w], j) => i === j || Math.hypot(x - u, y - w) >= 52)); });
+check('los botones del dibujo no se tapan entre sí (separados al menos 52 de 360)', spotsOk);
+
 console.log('2. El servidor acepta todos los estados del laboratorio');
 let allOk = true, bad = null;
 for (const x of states) if (!(await serverOk(x))) { allOk = false; bad = x.lab; break; }

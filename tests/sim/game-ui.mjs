@@ -170,7 +170,7 @@ const shownDigits = [];
 const tries = {};
 for (let i = 0; i < 60; i++) {
   const sc = await b.ev(`document.querySelector('#juego .jl')?.dataset.scene`);
-  if (!seen.includes(sc)) seen.push(sc);
+  if (!seen.includes(sc)) { seen.push(sc); if (['s2', 's3'].includes(sc)) { await b.ev(`document.getElementById('mvDevPreview')?.remove(); document.querySelector('#juego .jl-art')?.scrollIntoView(); 1`); await sleep(300); await b.shot('juego-lab-' + sc); check(`escena ${sc} en el móvil: botones del dibujo ≥ 44 px, sin desborde`, await a11y()); } }
   const txt = await b.ev(`document.querySelector('#juego .jl').innerText + ' ' + document.getElementById('jgBubble').innerText`);
   if (/[0-9]/.test(txt)) shownDigits.push(sc + ': ' + (txt.match(/.{0,30}[0-9].{0,30}/) || [''])[0]);
   if (sc === 'fin') break;
@@ -182,7 +182,7 @@ for (let i = 0; i < 60; i++) {
 }
 check('se recorre el laboratorio entero hasta «Laboratorio visitado»', seen.at(-1) === 'fin' && /Laboratorio visitado/.test(await labTxt()), seen.join(' > '));
 check('ninguna cifra en ninguna pantalla del laboratorio', shownDigits.length === 0, shownDigits.join(' | '));
-check('el final se guarda en la cuenta (visita contada)', await (async () => { await sleep(800); const r = await sql(`select state->'lab'->>'at' as at, state->'lab'->>'v' as v from game_progress where user_id = '${PAYER}'`); return r[0]?.at === 'fin' && Number(r[0]?.v) === 1; })());
+check('el final se guarda en la cuenta (visita contada; si hubo muchos guardados seguidos, en el minuto siguiente)', await (async () => { for (let i = 0; i < 72; i++) { const r0 = await sql(`select state->'lab'->>'at' as at from game_progress where user_id = '${PAYER}'`); if (r0[0]?.at === 'fin') break; await sleep(1000); } const r = await sql(`select state->'lab'->>'at' as at, state->'lab'->>'v' as v from game_progress where user_id = '${PAYER}'`); return r[0]?.at === 'fin' && Number(r[0]?.v) === 1; })());
 const labLangs = {};
 for (const L of ['en', 'de', 'fr', 'es']) {
   await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(500);
