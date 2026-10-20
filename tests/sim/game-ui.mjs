@@ -180,7 +180,7 @@ for (let i = 0; i < 60; i++) {
   if (await b.ev(`!!document.querySelector('#juego .jl-answer:not([disabled])')`)) { const n = tries[sc] = (tries[sc] ?? -1) + 1; await b.ev(`document.querySelectorAll('#juego .jl-answer')[${n}].click(); 1`); await sleep(450); continue; }
   await click(b, 'jlNext'); await sleep(900);
 }
-check('se recorre el laboratorio entero hasta «Laboratorio visitado»', seen.at(-1) === 'fin' && /Laboratorio visitado/.test(await labTxt()), seen.join(' > '));
+check('se recorre el laboratorio entero: entrada, conceptos, cocina, laboratorio, CO₂ y «Laboratorio visitado»', seen.join(' > ') === 'intro > s1 > s2 > s3 > s4 > fin' && /Laboratorio visitado/.test(await labTxt()), seen.join(' > '));
 check('ninguna cifra en ninguna pantalla del laboratorio', shownDigits.length === 0, shownDigits.join(' | '));
 check('el final se guarda en la cuenta (visita contada; si hubo muchos guardados seguidos, en el minuto siguiente)', await (async () => { for (let i = 0; i < 72; i++) { const r0 = await sql(`select state->'lab'->>'at' as at from game_progress where user_id = '${PAYER}'`); if (r0[0]?.at === 'fin') break; await sleep(1000); } const r = await sql(`select state->'lab'->>'at' as at, state->'lab'->>'v' as v from game_progress where user_id = '${PAYER}'`); return r[0]?.at === 'fin' && Number(r[0]?.v) === 1; })());
 const labLangs = {};

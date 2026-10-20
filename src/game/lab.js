@@ -79,6 +79,7 @@ function scene(state, ctx) {
   if (at === 's1') body = cards(['solvente', 'purgar', 'sin'], 's1', ctx) + question(state, ctx);
   if (at === 's2') body = drawing(state, ctx) + question(state, ctx);
   if (at === 's3') body = drawing(state, ctx);
+  if (at === 's4') body = cards(['presion', 'peligro', 'solo'], 's4', ctx) + question(state, ctx);
   return `<h3 class="jl-h">${esc(t(`jl${up(at)}_t`))}</h3>
     ${body}
     <div class="jg-actions">

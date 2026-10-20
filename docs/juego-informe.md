@@ -153,3 +153,57 @@ desborde y con opciones de 44 px, y el botón de repasar abre Elaboración → P
    (bajo / medio / alto), sin cifras; se cambia en `rules.json` sin tocar el código.
 3. **Protección (guantes y superficie estable):** sigue pendiente de que Bertha confirme la redacción.
 4. **Guion de la fase 3** (`docs/juego-fase3-guion.md`): **todavía NO aprobado**, en revisión. No se programa nada de la fase 3.
+
+## 9. Fase 3: laboratorio de seguridad (20-10-2026, rama `juego`)
+
+**Programada según el guion aprobado** (`docs/juego-fase3-guion.md`), un commit por escena:
+
+| Commit | Escena |
+|---|---|
+| `301eaf4` | Base y escena 1: entrada (frase aprobada) y «¿Qué es una extracción?» (3 tarjetas y una pregunta) |
+| `1f5c06b` | Escena 2: BHO, encuentra los peligros en una cocina (6 peligros y 2 cosas que no lo son) |
+| `e0181a2` | Escena 3: el laboratorio con licencia (6 cosas que lo hacen seguro) |
+| (ver git log) | Escena 4: CO₂, alta presión (3 tarjetas y una pregunta), final «Laboratorio visitado», peso y este informe |
+
+**Cómo se entra.** Al terminar una partida de la fase 2 aparece «Visitar el laboratorio de seguridad». Es opcional, no
+da puntos, y se guarda solo «laboratorio visitado» (cuántas veces). Se puede salir en cualquier momento.
+
+**Reglas que comprueba la prueba automática** (`tests/sim/game-lab.mjs`, 35 comprobaciones, en los 4 idiomas):
+- **Ni una cifra** en ningún texto del laboratorio ni en el botón para entrar; y en el navegador, ninguna cifra en
+  ninguna pantalla del laboratorio. «CO₂» va con el ₂ pequeño para que esta regla no tenga excepciones.
+- **Sin palabras de procedimiento** (paso, llenar, cargar el gas, tiempo de purga, vacío, unidades, válvulas,
+  mangueras, tanques…) ni piezas de equipo por dentro.
+- **Sin marcas, modelos, tiendas ni enlaces.**
+- **Sin número de emergencias**: solo «llama a emergencias».
+- **Toda respuesta insegura** termina en «Detener todo y llamar a un profesional».
+- **Sin manera de «ganar» extrayendo**: sin puntos ni ranking en el laboratorio.
+- Los dibujos no llevan texto, imágenes externas ni enlaces; los botones del dibujo no se tapan entre sí.
+
+**Dibujos.** Cocina y laboratorio en SVG plano, mismo estilo que el científico, con los colores de la app. Ningún
+equipo muestra su interior: el «aparato hecho en casa» es una caja cerrada con cinta y el «sistema cerrado» es un
+armario sellado con candado y sello. Sobre cada cosa hay un botón real (48 px, con nombre en los 4 idiomas) para el
+teclado y los lectores de pantalla.
+
+**Guía.** Con casco y gafas en todo el laboratorio.
+
+**Guardado.** Los toques en los dibujos y las respuestas equivocadas se guardan en el dispositivo y viajan con el
+siguiente guardado (al cambiar de escena), para no chocar con el límite de 20 guardados por minuto. La migración
+`20261015100000` (sin pegar) acepta una clave `lab` pequeña (máx. 600 bytes, solo escenas conocidas).
+
+**Peso añadido** (compilación con el juego encendido, comparada con la de antes de la fase 3):
+
+| Archivo | Antes | Después | Cuándo se descarga |
+|---|---|---|---|
+| `main.js` (la plataforma) | 501,46 KB | 501,46 KB (sin cambio) | siempre |
+| entrada del juego (`entry`) | 2,07 KB (1,07 comprimido) | 2,25 KB (1,14 comprimido) | siempre, solo en la rama `juego` |
+| juego (`game`) | 84,71 KB (27,06 comprimido) | 86,46 KB (27,71 comprimido) | al entrar al juego |
+| **laboratorio (`lab`, nuevo)** | — | **36,69 KB (12,97 comprimido)** | **solo al pulsar «Visitar el laboratorio»** |
+
+Con el juego apagado (`main` y `dev`) no se compila ningún archivo del juego ni del laboratorio.
+
+**Pruebas.** `game-lab` 35 (nueva), `game-ui` 54, `game-engine` 44, `game-db` 37.
+
+**Pendiente.** Añadir al Glosario los textos aprobados (lista en el guion, punto 9). Las explicaciones de las cosas
+del laboratorio («luces, enchufes y aparatos están hechos para no provocar chispas», «el aire se renueva y un
+detector avisa si hay gas», «todo se revisa con frecuencia siguiendo guías de buenas prácticas») desarrollan los
+puntos aprobados y también podrían ir al Glosario.

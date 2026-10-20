@@ -4,7 +4,7 @@
 // Every unsafe answer ends in "stop and call a professional".
 // State: s.lab = { at: scene | null, f: [found ids], q: [scenes answered], v: visits }.
 
-export const SCENES = ['intro', 's1', 's2', 's3', 'fin'];
+export const SCENES = ['intro', 's1', 's2', 's3', 's4', 'fin'];
 
 // Things to tap in a drawing. "need" = what has to be found to go on;
 // "all" also has the objects that are not a hazard (the guide says so).
@@ -21,6 +21,8 @@ export const QUESTIONS = {
   s1: { ok: 'inflamable', opts: ['caro', 'inflamable', 'tarda'] },
   // asked once every hazard of the kitchen is found; both wrong options end in "stop and call a professional"
   s2: { ok: 'no_casa', opts: ['ventana', 'no_casa', 'quemador'] },
+  // CO₂: the unsafe idea "it does not burn, so it can be done at home" also ends in "stop and call a professional"
+  s4: { ok: 'certificado', opts: ['casa', 'certificado'] },
 };
 
 // What a scene needs before "Seguir" works.

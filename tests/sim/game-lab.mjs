@@ -96,6 +96,16 @@ check('las seis encontradas -> se puede seguir, y cada una tiene su sitio, su no
 check('el laboratorio solo muestra qué lo hace seguro (licencia, sistema cerrado, a prueba de explosiones, ventilación y detección, protección, inspecciones)',
   ['licencia', 'cerrado', 'explosion', 'ventilacion', 'proteccion', 'inspeccion'].every((id) => L.TAPS.s3.need.includes(id)));
 
+console.log('1d. Escena 4: CO₂ y el final');
+k = keep(L.next(k));
+check('después del laboratorio viene el CO₂ (tarjetas y pregunta)', k.lab.at === 's4' && L.questionOpen(k) && ['presion', 'peligro', 'solo'].every((c) => LANGS.every((l) => LT[l]['jlS4_' + c + '_h'] && LT[l]['jlS4_' + c + '_p'])));
+const co2bad = keep(L.answer(k, 'casa'));
+check('«el CO₂ se puede hacer en casa porque no se enciende» -> no, y «Detener todo y llamar a un profesional» (4 idiomas)', !co2bad.lab.q.includes('s4')
+  && LANGS.every((l) => /profesional|professional|Fachperson|professionnel/.test(LT[l].jlS4_x_casa)));
+k = keep(L.next(keep(L.answer(k, 'certificado'))));
+check('respuesta correcta -> «Laboratorio visitado», sin nota, con repaso de Concentrados', k.lab.at === 'fin' && k.lab.v === 1 && fs.readFileSync(APP + '/src/game/lab.js', 'utf8').includes("lessonBtn('concentrados')"));
+check('las cuatro escenas en el orden del guion: conceptos, cocina, laboratorio, CO₂', L.SCENES.join(',') === 'intro,s1,s2,s3,s4,fin');
+
 console.log('2. El servidor acepta todos los estados del laboratorio');
 let allOk = true, bad = null;
 for (const x of states) if (!(await serverOk(x))) { allOk = false; bad = x.lab; break; }

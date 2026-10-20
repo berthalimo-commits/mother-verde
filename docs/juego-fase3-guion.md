@@ -1,6 +1,6 @@
 # Zona del juego — Fase 3: guion para aprobar (BHO y CO2)
 
-**Estado:** APROBADO por la dueña el 20-10-2026, con los cambios de abajo. Se programa en la rama `juego` únicamente,
+**Estado:** APROBADO por la dueña el 20-10-2026, con los cambios de abajo, y PROGRAMADO el mismo día (ver `juego-informe.md`, punto 9). Rama `juego` únicamente,
 un commit por escena.
 
 **Cambios de la aprobación (20-10-2026):**
