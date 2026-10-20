@@ -3,8 +3,13 @@
 // every non-production host). Every screen and sub-section, the 4 languages,
 // the panel with all its tabs, installing as an app (manifest + service
 // worker) and the 404: no CSP violation, no JavaScript error, nothing broken.
-import { spawn } from 'child_process';
+import { spawn, spawnSync } from 'child_process';
 import { check, sleep, browser, summary, ADMIN } from './browser.mjs';
+
+// Build the app against the fake Supabase first (dist/ is not in git).
+const ROOT = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const built = spawnSync('npx vite build', { cwd: ROOT, shell: true, stdio: 'ignore', env: { ...process.env, VITE_SUPABASE_URL: 'http://localhost:54321', VITE_SUPABASE_ANON_KEY: 'anon' } });
+check('compilación de la app (como en Vercel)', built.status === 0);
 
 const SITE = 'http://localhost:5175';
 const srv = spawn(process.execPath, ['static-headers.mjs'], { cwd: new URL('.', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'), stdio: 'ignore' });
