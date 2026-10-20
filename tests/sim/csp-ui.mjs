@@ -8,7 +8,7 @@ import { check, sleep, browser, summary, ADMIN } from './browser.mjs';
 
 // Build the app against the fake Supabase first (dist/ is not in git).
 const ROOT = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
-const built = spawnSync('npx vite build', { cwd: ROOT, shell: true, stdio: 'ignore', env: { ...process.env, VITE_SUPABASE_URL: 'http://localhost:54321', VITE_SUPABASE_ANON_KEY: 'anon' } });
+const built = spawnSync('npx vite build', { cwd: ROOT, shell: true, stdio: 'ignore', env: { ...process.env, VITE_SUPABASE_URL: 'http://localhost:54321', VITE_SUPABASE_ANON_KEY: 'anon', MV_GAME: '1' } }); // MV_GAME: the game too, on branch juego
 check('compilación de la app (como en Vercel)', built.status === 0);
 
 const SITE = 'http://localhost:5175';
@@ -43,6 +43,16 @@ for (const L of ['es', 'en', 'de', 'fr']) {
     const subs = await b.ev(`[...document.querySelectorAll('#${sc} .subview')].map((s) => s.id.replace('${sc}-', ''))`);
     for (const sub of subs || []) { await b.ev(`showSub('${sc}', '${sub}'); 1`); await sleep(80); visited++; }
   }
+}
+// Branch juego: the game (lazy file) and the safety lab (another lazy file) under the CSP.
+if (await b.ev(`!!document.getElementById('tabsMoreJuego')`)) {
+  await b.ev(`goMore('juego'); 1`); await sleep(2500);
+  await b.ev(`document.getElementById('jgStart')?.click(); 1`); await sleep(800);
+  await b.ev(`document.getElementById('jgNext')?.click(); 1`); await sleep(800);
+  const lab = (await import('fs')).readdirSync(new URL('../../dist/assets', import.meta.url)).find((f) => /^lab-.*\.js$/.test(f));
+  const labOk = await b.ev(`import('/assets/${lab}').then((m) => typeof m.html === 'function', () => false)`);
+  check('juego: entra, juega una semana y descarga el laboratorio con la CSP aplicada', await b.ev(`document.querySelector('.screen.active')?.id`) === 'juego'
+    && await b.ev(`!!document.getElementById('jgBubble')`) && labOk === true);
 }
 await sleep(1500);
 const viol = await b.ev(`window.__csp`);
