@@ -105,6 +105,7 @@ no funciona bien con la base nueva y la nueva no funciona con la vieja).
 |---|---|---|
 | Hook | (sin SQL) Authentication → Hooks → apagar «Before User Created». **Primero esto.** | — |
 | `grant-admin.sql` (hello@ admin + acceso completo) | `rollback-grant-admin.sql` (PARTE 1 solo lectura, luego PARTE 2) | hello@ deja de ser admin y vuelve al estado de acceso que tenía antes (lo guarda el registro de auditoría) |
+| `20261020100000` Bitácora de solo lectura sin acceso | `rollback-20261020100000.sql` | nada: vuelven las reglas anteriores (sin acceso se podía escribir) |
 | `20261014140000` regla de acceso única | `rollback-20261014140000.sql` (deshacer antes la web) | nada: vuelve la versión anterior de `is_premium`, con los mismos resultados |
 | `20261014130000` contador «Avisos sin revisar» | `rollback-20261014130000.sql` | nada (solo un contador de lectura) |
 | `20261014120000` conflictos de TXID y historial de motivos | `rollback-20261014120000.sql` | la lista de conflictos y el historial de motivos (exportarlos antes: `select * from public.admin_list_claim_conflicts(true);`); vuelve el pago tardío directo desde el navegador |
@@ -156,7 +157,10 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    `20261010120000` → `seed-blocked-email-domains/part-01` … `part-07` → `20261010130000` → `20261011100000` →
    `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
    `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` →
+   `20261020100000` (Bitácora de solo lectura sin acceso, también en el servidor) →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
+   (La del juego, `20261015100000_game_progress.sql`, **no** va en producción hasta que el juego se fusione: vive
+   en la rama `juego` y se prueba en staging.)
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
    y `RESEND_API_KEY` si toca.
@@ -193,3 +197,31 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
 20. ☐ **Tú**: mail-tester.com con el correo de prueba y una confirmación de registro: objetivo 9/10 o más.
     Configurar SPF, DKIM y DMARC en Hostinger si no lo están.
 21. ☐ **Si algo sale mal**: sección 4 (primero la web en Vercel, luego el SQL en orden).
+22. ☐ **Tú, durante la primera semana**: abre la web publicada con la consola del navegador (F12 → Console) en
+    Inicio, Cuenta, la Comunidad y el panel. Si aparece algún aviso que empieza por
+    «[Report Only] Refused to…», mándamelo. Si en una semana no aparece ninguno: **Yo** cambio en `vercel.json`
+    la clave `Content-Security-Policy-Report-Only` por `Content-Security-Policy` (la de producción) y lo publico.
+
+## 7. Robustez y seguridad (A2, 20 de octubre de 2026, en `dev`)
+
+| Qué | Cómo queda | Dónde |
+|---|---|---|
+| «Cargando…» eterno | Si la sesión, el perfil o el acceso no cargan: salida con «Reintentar», «Cerrar sesión» y hello@motherverdeny.com, **enseguida** si la carga falló y **a los 12 s** si se queda colgada. En la pantalla de bloqueo, en Cuenta → «Tu acceso» y en cada recuadro del panel (inicio, Resumen, Usuarios, Avisos, Regalos, Registro, ficha). «Cerrar sesión» funciona aunque el servidor no responda. 4 idiomas. | `src/auth.js`, `public/main.js`, `src/admin.js`; prueba `stuck-ui` |
+| Cabeceras de seguridad | `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy` (cámara, micrófono, ubicación, pagos… apagados), HSTS de 2 años (sin «preload»: se añade solo si se decide). **CSP**: solo nuestro dominio, Supabase, Google Fonts y flagcdn.com (**quitar estos dos cuando alojemos las fuentes y las banderas**) y Turnstile si se activa el captcha; `frame-ancestors 'none'`. En producción va primero en **Report-Only** (no bloquea, solo avisa: paso 22) y fijada al proyecto de producción; en Preview, `dev` y `juego` va **aplicada**, con el proyecto de staging. | `vercel.json`; prueba `csp-ui` (20 pantallas y sus secciones × 4 idiomas, panel, instalación como app, 404: 0 infracciones) |
+| Página 404 | Propia, oscura, 4 idiomas, botón «Ir a Inicio». No afecta a ninguna ruta válida ni a los enlaces de los correos (`/`, `/?…`, `/#…`, `/panel-mv.html`). | `public/404.html` |
+| Bitácora sin acceso | El servidor ahora también es de solo lectura (antes solo lo era la pantalla): sin acceso se puede leer y bajar el PDF, pero no añadir, editar ni borrar. | migración `20261020100000`; prueba `bitacora-db` (20) |
+| Límite de correos al registrarse | Mensaje propio en 4 idiomas: «Estamos recibiendo muchos registros. Inténtalo de nuevo en unos minutos.» | `src/auth.js`; prueba `mail-flow-ui` |
+| Finales de línea | `.gitattributes`: todo LF en el repositorio y en la copia de trabajo, en cualquier equipo. `fn-e2e` pasa completa. | `.gitattributes` |
+
+### Límite de correos de Supabase: qué cambiar (tú)
+- **Hoy**: con SMTP propio, Supabase permite por defecto **unos 30 correos por hora para todo el proyecto**
+  (cada confirmación, reenvío, recuperación y cambio de correo cuenta). No puedo ver tu panel: mira el número real
+  en **Authentication → Rate Limits → «Rate limit for sending emails»**.
+- **La persona número 31** en la misma hora: Supabase rechaza el registro con «límite de correos» y la cuenta
+  **no se crea** (según el funcionamiento de Supabase Auth; lo comprobamos en staging, prueba 3 de
+  `docs/staging.md`). La web le dice «Estamos recibiendo muchos registros. Inténtalo de nuevo en unos minutos» y,
+  pasado el pico, puede registrarse con el mismo correo.
+- **Ajustes (Authentication → Rate Limits)**: «Rate limit for sending emails» a **150 por hora** el día del lanzamiento
+  (cabe en los 1.000 correos al día de Hostinger Business Starter si el pico dura pocas horas); «Rate limit for
+  sign ups and sign ins» déjalo en **30 cada 5 minutos por IP** (el valor por defecto; frena robots, no a personas);
+  «Rate limit for token verifications» igual (**30 cada 5 minutos por IP**). En staging: **20 por hora** (solo pruebas).
