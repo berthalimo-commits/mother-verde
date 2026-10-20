@@ -367,7 +367,7 @@ check('cron: sin precios ni cobros en el código', !/7\.10|7\.99|19\.99|charge|P
 check('vercel.json: 23:00 UTC', JSON.parse(fs.readFileSync(`${APP}/vercel.json`, 'utf8')).crons[0].schedule === '0 23 * * *');
 
 // ================================================================ shared block
-const blk = (f) => { const s = fs.readFileSync(`${APP}/supabase/functions/${f}/index.ts`, 'utf8'); return s.slice(s.indexOf('// ===== '.slice(0, 5)), s.length) && s.match(/\/\/ =+ MAIL\n[\s\S]*?\/\/ =+ \/MAIL/)[0]; };
+const blk = (f) => { const s = fs.readFileSync(`${APP}/supabase/functions/${f}/index.ts`, 'utf8').replace(/\r\n/g, '\n'); return s.slice(s.indexOf('// ===== '.slice(0, 5)), s.length) && s.match(/\/\/ =+ MAIL\n[\s\S]*?\/\/ =+ \/MAIL/)[0]; };
 check('bloque MAIL idéntico en las dos funciones', blk('admin-send-gift-code') === blk('support-claims'));
 
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
