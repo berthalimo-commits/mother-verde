@@ -85,10 +85,13 @@ async function persist(s) {
 window.addEventListener('online', () => { if (pending && state) persist(state); });
 
 // ---------------------------------------------------------------- actions
-function act(next) {
+// save = false: keep the step on this device only (marked pending); the next
+// saved step sends it to the account. Used for quick taps in the lab.
+function act(next, save = true) {
   state = next;
   feedback = next.notes || [];
-  persist(state);
+  if (save) persist(state);
+  else { pending = true; writeLocal(who().key, state, true); }
   const root = document.getElementById('juegoRoot');
   paint(root);
   root.querySelector('#jgBubble')?.focus();
@@ -239,8 +242,25 @@ function resultHtml() {
       <p>${esc(rosinLine)}</p>` : ''}
     ${lessons.length ? `<p><b>${t('jgFinRepasar')}</b></p><div class="jg-actions">${lessons.map(lessonBtn).join('')}</div>` : ''}
     <div class="jg-actions"><button type="button" class="btn btn-primary" id="jgAgain">${t('jgPlantarOtra')}</button>${r.dead ? '' : lessonBtn('cosecha')}</div>
+    ${hasFinal ? `<div class="jg-actions"><button type="button" class="btn btn-ghost" id="jgLab">${t('jgLabBtn')}</button></div>` : ''}
   </div>`;
 }
+
+// ---------------------------------------------------------------- phase 3: the safety lab
+// Its screen, texts and drawings are a separate file, downloaded only when the
+// lab is opened (or when a saved game is inside it).
+let LAB = null;
+let labLoading = null;
+function ensureLab() {
+  labLoading = labLoading || import('./lab.js').then((m) => {
+    if (!document.getElementById('jlStyle')) {
+      const st = document.createElement('style'); st.id = 'jlStyle'; st.textContent = m.CSS; document.head.appendChild(st);
+    }
+    LAB = m;
+  }).catch((e) => { labLoading = null; throw e; });
+  return labLoading;
+}
+const LAB_CTX = { t, fmt, esc, lessonBtn: (l) => lessonBtn(l), act: (n, save) => act(n, save) };
 
 function syncText() {
   return { ok: 'jgSync_ok', local: 'jgSync_local', stale: 'jgSync_stale', preview: 'jgSync_preview', lento: 'jgSync_lento', err: 'jgErrGuardar' }[sync];
@@ -251,6 +271,19 @@ function paintSync() {
 }
 
 function paint(root) {
+  const inLab = !!state.lab?.at;
+  if (inLab && !LAB) {
+    root.innerHTML = `<p class="subhead" id="jgLabMsg" role="status">${t('jgLabCargando')}</p>`;
+    ensureLab().then(() => paint(root), () => { root.querySelector('#jgLabMsg').textContent = t('jgLabErr'); });
+    return;
+  }
+  const bubble = inLab ? LAB.guide(state, LAB_CTX) : guideText();
+  const main = inLab ? LAB.html(state, LAB_CTX) : `${state.stage === 'intro' ? `<div class="jg-actions"><button type="button" class="btn btn-primary" id="jgStart">${t('jgEmpezar')}</button></div>` : ''}
+    ${statusHtml()}
+    ${eventHtml()}
+    ${decisionsHtml()}
+    ${postHtml()}
+    ${resultHtml()}`;
   root.innerHTML = `<div class="jg">
     <button type="button" class="detail-back jg-back" id="jgBack">${t('jgVolverInicio')}</button>
     <div class="eyebrow">${t('jgEyebrow')}</div>
@@ -260,18 +293,20 @@ function paint(root) {
     </ul>
     <div class="jg-guide">
       <div class="jg-sci">${poseSvg(poseFor(state, feedback))}</div>
-      <p class="jg-bubble" id="jgBubble" tabindex="-1" role="status">${esc(guideText())}</p>
+      <p class="jg-bubble" id="jgBubble" tabindex="-1" role="status">${esc(bubble)}</p>
     </div>
-    ${state.stage === 'intro' ? `<div class="jg-actions"><button type="button" class="btn btn-primary" id="jgStart">${t('jgEmpezar')}</button></div>` : ''}
-    ${statusHtml()}
-    ${eventHtml()}
-    ${decisionsHtml()}
-    ${postHtml()}
-    ${resultHtml()}
+    ${main}
     <p class="jg-sync" id="jgSync" role="status"></p>
   </div>`;
   paintSync();
   root.querySelector('#jgBack').addEventListener('click', () => window.showScreen?.('home'));
+  if (inLab) LAB.bind(root, state, LAB_CTX);
+  root.querySelector('#jgLab')?.addEventListener('click', async (ev) => {
+    const btn = ev.currentTarget;
+    btn.disabled = true;
+    try { await ensureLab(); } catch (e) { btn.disabled = false; btn.textContent = t('jgLabErr'); return; }
+    act(LAB.open(state));
+  });
   root.querySelector('#jgStart')?.addEventListener('click', () => act(E.start(state)));
   root.querySelector('#jgForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();

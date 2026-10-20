@@ -1,7 +1,17 @@
 # Zona del juego — Fase 3: guion para aprobar (BHO y CO2)
 
-**Estado:** BORRADOR PARA APROBACIÓN (20-10-2026). **No hay nada programado.** Hasta que lo apruebes (tú y, en los
-datos, Bertha), la fase 3 no se empieza. Rama `juego` únicamente.
+**Estado:** APROBADO por la dueña el 20-10-2026, con los cambios de abajo. Se programa en la rama `juego` únicamente,
+un commit por escena.
+
+**Cambios de la aprobación (20-10-2026):**
+- Frase de entrada nueva (ya no dice que lo anterior «se puede practicar en casa»), en los 4 idiomas.
+- Los textos **[NUEVO — APROBAR]** quedan **aprobados** y se apuntan para añadirlos después al Glosario (punto 9).
+- Sin número de emergencias: solo «llama a emergencias».
+- Cocina y laboratorio dibujados en SVG plano, mismo estilo que el científico, sin ningún detalle interno de
+  equipos, descargados solo al entrar al laboratorio.
+- En la escena 1, la pregunta pasa a ser «¿Qué diferencia al BHO del rosin?» (la anterior decía que el rosin «se puede
+  practicar», lo mismo que se quitó de la entrada).
+- «CO₂» se escribe con el ₂ pequeño en los textos del juego, para que la prueba de «sin cifras» no tenga excepciones.
 
 ## 0. Reglas que el guion cumple (y que una prueba revisará al programarlo)
 
@@ -22,9 +32,9 @@ Se desbloquea al terminar una partida de la fase 2 (sea cual sea la nota). En el
 **«Visitar el laboratorio (seguridad de extracciones)»**. Es opcional y no da puntos a la planta.
 
 Pantalla de entrada (texto del guía):
-> «Hasta ahora todo lo que hiciste se puede practicar en casa con cuidado. Lo que viene **no**: las extracciones con
-> butano o con CO2 solo se hacen en **laboratorios con licencia**, con equipo certificado y personal formado. Aquí no
-> vas a aprender a hacerlas: vas a aprender **por qué son peligrosas** y **qué las hace seguras**.»
+> «Hasta ahora practicaste cultivo y procesos sin solventes. Lo que viene es distinto: las extracciones con butano o
+> con CO2 solo se hacen en laboratorios con licencia, con equipo certificado y personal formado. Aquí no vas a
+> aprender a hacerlas: vas a aprender por qué son peligrosas y qué las hace seguras.» *(aprobada el 20-10-2026)*
 
 ## 2. Escena 1 — ¿Qué es una extracción? (concepto, sin práctica)
 
@@ -58,7 +68,7 @@ abre una explicación corta. Hay **6 peligros** y **2 objetos que no son peligro
 | (no es peligro) Un frasco de curado | — «Esto es de la fase 2, no es un peligro.» | — |
 
 Al encontrar los 6, la pregunta final: «¿Qué haces en esta cocina?» Opciones:
-1. **«Nada de esto: no se hace en casa. Si alguien lo está haciendo, alejarse y llamar a emergencias.»** ✔
+1. **«Nada de esto: no se hace en casa. Si alguien lo está haciendo, aléjate y llama a emergencias.»** ✔ (sin número)
 2. «Abrir la ventana y seguir» ✘
 3. «Apagar el quemador y seguir» ✘
 
@@ -113,3 +123,19 @@ seguro un laboratorio y por qué el CO2 también es peligroso.» Botones: **Repa
 3. ¿Mostramos el número de emergencias? Cambia por país; propongo decir solo «llamar a emergencias», sin número.
 4. ¿Ilustración de la cocina y del laboratorio dibujada en el mismo estilo plano de la app (la hago como el
    científico, en SVG) o solo tarjetas de texto?
+
+## 9. Pendiente para el Glosario de la plataforma (textos aprobados el 20-10-2026)
+
+Estos textos ya están en el juego y quedan aprobados; falta **añadirlos al Glosario** (o a Concentrados) para que la
+plataforma también los enseñe. No se ha tocado el Glosario todavía.
+
+1. **Purgar:** «si no se purga bien, quedan restos que no deben consumirse».
+2. **Gas acumulado:** «el gas se acumula en un espacio cerrado y puede explotar».
+3. **Detección de gases:** «en un laboratorio hay detección de gases y personal formado».
+4. **Extracción casera:** «Detener todo y llamar a un profesional. Arreglar un peligro no hace segura una extracción
+   casera: el problema es hacerla en casa.»
+5. **Laboratorio con licencia:** «licencia del laboratorio y personal formado».
+6. **Ventilación y detección de gases** como parte de lo que hace seguro un laboratorio.
+7. **CO2, alta presión:** «el CO2 se usa como solvente dentro de equipos a alta presión».
+8. **Peligros del CO2:** «un equipo a presión que falla puede soltar el gas de golpe, y mucho CO2 en un cuarto cerrado
+   desplaza el aire que respiramos».

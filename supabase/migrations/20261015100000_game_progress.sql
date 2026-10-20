@@ -54,7 +54,7 @@ begin
   if s is null or jsonb_typeof(s) <> 'object' then return false; end if;
   for k in select jsonb_object_keys(s) loop
     if not k = any(array['v', 'seq', 'run', 'stage', 'week', 'stageWeek', 'health', 'risks', 'event', 'log',
-                         'result', 'last', 'lessons', 'trich', 'notes', 'post']) then
+                         'result', 'last', 'lessons', 'trich', 'notes', 'post', 'lab']) then
       return false;
     end if;
   end loop;
@@ -96,6 +96,18 @@ begin
     for k in select jsonb_object_keys(v) loop
       if not k = any(array['secado', 'curado', 'rosin']) or jsonb_typeof(v -> k) <> 'object' then return false; end if;
     end loop;
+  end if;
+  -- the safety lab (phase 3): null or { at: scene | null, f: [...], q: [...], v: visits }, small
+  v := s -> 'lab';
+  if v is not null and jsonb_typeof(v) <> 'null' then
+    if jsonb_typeof(v) <> 'object' or octet_length(v::text) > 600 then return false; end if;
+    for k in select jsonb_object_keys(v) loop
+      if not k = any(array['at', 'f', 'q', 'v']) then return false; end if;
+    end loop;
+    if v -> 'at' is not null and jsonb_typeof(v -> 'at') <> 'null'
+       and not (v ->> 'at') = any(array['intro', 's1', 's2', 's3', 's4', 'fin']) then return false; end if;
+    if jsonb_typeof(coalesce(v -> 'f', '[]'::jsonb)) <> 'array' or jsonb_typeof(coalesce(v -> 'q', '[]'::jsonb)) <> 'array' then return false; end if;
+    if v -> 'v' is not null and (jsonb_typeof(v -> 'v') <> 'number' or (v ->> 'v')::numeric not between 0 and 1000) then return false; end if;
   end if;
   v := s -> 'trich';
   if v is not null and jsonb_typeof(v) not in ('null', 'string') then return false; end if;

@@ -56,6 +56,7 @@ export const POSES = {
 // its notes). Decorative only: the text bubble carries the message.
 export function poseFor(state, notes = []) {
   const has = (k) => notes.some((n) => n === k || n.startsWith(k + ':'));
+  if (state.lab?.at) return 'casco'; // phase 3: the safety lab
   if (state.stage === 'intro') return 'explicando';
   if (state.stage === 'fin') {
     const r = state.result || {};

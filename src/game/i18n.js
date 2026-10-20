@@ -64,6 +64,7 @@ export default {
     jgSync_stale: 'Ibas más adelante en otro dispositivo: seguimos desde ahí.', jgSync_preview: 'Vista previa: se guarda solo en este navegador.',
     jgSync_lento: 'Muchos guardados seguidos: lo enviamos a tu cuenta en un minuto. En este dispositivo ya está guardado.',
     jgErrGuardar: 'No pudimos guardar en tu cuenta. Tu partida está a salvo en este dispositivo.',
+    jgLabBtn: 'Visitar el laboratorio de seguridad', jgLabCargando: 'Cargando el laboratorio…', jgLabErr: 'No se pudo cargar el laboratorio. Toca para reintentar.',
     // phase 2: drying, curing, rosin (qualitative)
     jgEtapa_secado: 'Secado',
     jgEtapa_curado: 'Curado en frasco',
@@ -251,6 +252,7 @@ export default {
     jgSync_stale: 'You were further ahead on another device: we continue from there.', jgSync_preview: 'Preview: saved in this browser only.',
     jgSync_lento: "Lots of saves in a row: we'll send it to your account in a minute. It's already saved on this device.",
     jgErrGuardar: "We couldn't save to your account. Your game is safe on this device.",
+    jgLabBtn: 'Visit the safety lab', jgLabCargando: 'Loading the lab…', jgLabErr: 'The lab could not be loaded. Tap to try again.',
     // phase 2: drying, curing, rosin (qualitative)
     jgEtapa_secado: 'Drying',
     jgEtapa_curado: 'Curing in jars',
@@ -438,6 +440,7 @@ export default {
     jgSync_stale: 'Auf einem anderen Gerät warst du schon weiter: Wir machen dort weiter.', jgSync_preview: 'Vorschau: Nur in diesem Browser gespeichert.',
     jgSync_lento: 'Viele Speicherungen hintereinander: Wir senden es in einer Minute an dein Konto. Auf diesem Gerät ist es schon gespeichert.',
     jgErrGuardar: 'Wir konnten nicht in deinem Konto speichern. Dein Spiel ist auf diesem Gerät sicher.',
+    jgLabBtn: 'Das Sicherheitslabor besuchen', jgLabCargando: 'Labor wird geladen…', jgLabErr: 'Das Labor konnte nicht geladen werden. Tippe, um es erneut zu versuchen.',
     // phase 2: drying, curing, rosin (qualitative)
     jgEtapa_secado: 'Trocknen',
     jgEtapa_curado: 'Fermentieren im Glas',
@@ -625,6 +628,7 @@ export default {
     jgSync_stale: 'Tu étais plus avancé·e sur un autre appareil : on reprend à partir de là.', jgSync_preview: 'Aperçu : enregistré uniquement dans ce navigateur.',
     jgSync_lento: 'Beaucoup d’enregistrements d’affilée : nous l’enverrons à ton compte dans une minute. Il est déjà enregistré sur cet appareil.',
     jgErrGuardar: 'Impossible d’enregistrer dans ton compte. Ta partie est à l’abri sur cet appareil.',
+    jgLabBtn: 'Visiter le laboratoire de sécurité', jgLabCargando: 'Chargement du laboratoire…', jgLabErr: 'Le laboratoire n’a pas pu être chargé. Touche pour réessayer.',
     // phase 2: drying, curing, rosin (qualitative)
     jgEtapa_secado: 'Séchage',
     jgEtapa_curado: 'Affinage en bocal',

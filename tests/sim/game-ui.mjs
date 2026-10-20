@@ -156,6 +156,42 @@ check('sin protección -> el guía avisa de las quemaduras', /guantes resistente
 check('«Repasar» lleva a Elaboración → Procesos & SOP', await b.ev(`(() => { const x = [...document.querySelectorAll('#juego .jg-lesson')].find((e) => e.dataset.lesson === 'procesos'); if (!x) return false; x.click(); return true; })()`)
   && (await sleep(600), await screen(b)) === 'elaboracion' && await b.ev(`document.getElementById('elaboracion-procesos').classList.contains('active')`));
 check('el final queda guardado en la cuenta', (await serverRow(PAYER))?.stage === 'fin');
+
+// ------------------------------------------------------------ phase 3: the safety lab
+await b.ev(`window.showScreen('juego'); window.mvRenderJuego?.(); 1`); await sleep(1200);
+const labLoaded = () => b.ev(`performance.getEntriesByType('resource').some((r) => /\\/src\\/game\\/lab\\.js/.test(r.name))`);
+check('el laboratorio NO se descarga hasta pulsar «Visitar el laboratorio de seguridad»', await labLoaded() === false && !!(await b.ev(`document.getElementById('jgLab')`)));
+await click(b, 'jgLab'); await sleep(1500);
+const labTxt = () => b.ev(`document.getElementById('juegoRoot').innerText`);
+check('al pulsarlo se descarga y abre la entrada con la frase aprobada y el guía con casco', await labLoaded() === true
+  && /Hasta ahora practicaste cultivo y procesos sin solventes/.test(await labTxt()) && await b.ev(`document.querySelector('#juego .jg-sci svg').dataset.pose`) === 'casco');
+const seen = [];
+const shownDigits = [];
+const tries = {};
+for (let i = 0; i < 60; i++) {
+  const sc = await b.ev(`document.querySelector('#juego .jl')?.dataset.scene`);
+  if (!seen.includes(sc)) seen.push(sc);
+  const txt = await b.ev(`document.querySelector('#juego .jl').innerText + ' ' + document.getElementById('jgBubble').innerText`);
+  if (/[0-9]/.test(txt)) shownDigits.push(sc + ': ' + (txt.match(/.{0,30}[0-9].{0,30}/) || [''])[0]);
+  if (sc === 'fin') break;
+  // tap every spot not found yet (one per loop, like a person)
+  if (await b.ev(`(() => { const x = document.querySelector('#juego .jl-spot:not(.jl-found)'); if (!x) return false; x.click(); return true; })()`)) { await sleep(350); continue; }
+  // a question not answered yet: try the options in order until the right one is marked
+  if (await b.ev(`!!document.querySelector('#juego .jl-answer:not([disabled])')`)) { const n = tries[sc] = (tries[sc] ?? -1) + 1; await b.ev(`document.querySelectorAll('#juego .jl-answer')[${n}].click(); 1`); await sleep(450); continue; }
+  await click(b, 'jlNext'); await sleep(900);
+}
+check('se recorre el laboratorio entero hasta «Laboratorio visitado»', seen.at(-1) === 'fin' && /Laboratorio visitado/.test(await labTxt()), seen.join(' > '));
+check('ninguna cifra en ninguna pantalla del laboratorio', shownDigits.length === 0, shownDigits.join(' | '));
+check('el final se guarda en la cuenta (visita contada)', await (async () => { await sleep(800); const r = await sql(`select state->'lab'->>'at' as at, state->'lab'->>'v' as v from game_progress where user_id = '${PAYER}'`); return r[0]?.at === 'fin' && Number(r[0]?.v) === 1; })());
+const labLangs = {};
+for (const L of ['en', 'de', 'fr', 'es']) {
+  await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(500);
+  labLangs[L] = await b.ev(`document.querySelector('#juego .jg-result h3').textContent + ' | ' + ((document.getElementById('juego').innerText.match(/\\bj[gl][A-Z][A-Za-z_]+/g) || []).join(','))`);
+}
+check('laboratorio en 4 idiomas en vivo, sin claves a la vista', /^Lab visited \| $/.test(labLangs.en) && /^Labor besucht \| $/.test(labLangs.de) && /^Laboratoire visité \| $/.test(labLangs.fr) && /^Laboratorio visitado \| $/.test(labLangs.es), JSON.stringify(labLangs));
+check('laboratorio en el móvil: botones ≥ 44 px, sin desborde', await a11y());
+await click(b, 'jlClose'); await sleep(900);
+check('«Volver a la partida» -> el resultado de la cosecha otra vez', !!(await b.ev(`document.getElementById('jgAgain')`)) && !(await b.ev(`document.querySelector('#juego .jl')`)));
 await b.close();
 b = await browser(ADMIN, 'aal1', 390);
 await open(b);

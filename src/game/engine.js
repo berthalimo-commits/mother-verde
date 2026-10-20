@@ -11,7 +11,8 @@ const ideal = (rules, stage, d) => rules.etapas[stage]?.ideal?.[d]?.valor ?? nul
 
 export function newGame(prev = null) {
   return { v: 1, seq: (prev?.seq ?? 0) + 1, run: (prev?.run ?? 0) + 1, stage: 'intro', week: 0, stageWeek: 0,
-    health: 100, risks: {}, event: null, log: [], lessons: prev?.lessons ?? [], result: null, last: null, trich: null, post: null, notes: [] };
+    health: 100, risks: {}, event: null, log: [], lessons: prev?.lessons ?? [], result: null, last: null, trich: null, post: null,
+    lab: prev?.lab ? { at: null, f: [], q: [], v: prev.lab.v || 0 } : null, notes: [] };
 }
 
 export function start(s) {
