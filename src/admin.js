@@ -351,7 +351,18 @@ const T3 = {
     lateYes: 'tardif', deletedAcc: 'compte supprimé',
   },
 };
-for (const l of LANGS) Object.assign(T[l], T2[l], T3[l]);
+// «Cargando…» never stays forever (A2): texts of the way out.
+const T4 = {
+  es: { stuckH: 'No pudimos cargar esta parte del panel', stuckP: 'La conexión está tardando más de lo normal o algo falló.', stuckRetry: 'Reintentar',
+    stuckMail: 'Si sigue pasando, escribe a {mail}.', e_network: 'No hay conexión con el servidor. Inténtalo de nuevo.' },
+  en: { stuckH: 'We couldn’t load this part of the panel', stuckP: 'The connection is taking longer than usual or something went wrong.', stuckRetry: 'Try again',
+    stuckMail: 'If it keeps happening, write to {mail}.', e_network: 'No connection to the server. Please try again.' },
+  de: { stuckH: 'Dieser Teil des Bereichs konnte nicht geladen werden', stuckP: 'Die Verbindung dauert länger als üblich oder etwas ist schiefgelaufen.', stuckRetry: 'Erneut versuchen',
+    stuckMail: 'Wenn es weiter passiert, schreib an {mail}.', e_network: 'Keine Verbindung zum Server. Bitte versuche es erneut.' },
+  fr: { stuckH: 'Impossible de charger cette partie de l’espace', stuckP: 'La connexion prend plus de temps que d’habitude ou quelque chose a échoué.', stuckRetry: 'Réessayer',
+    stuckMail: 'Si ça continue, écris à {mail}.', e_network: 'Pas de connexion avec le serveur. Réessaie.' },
+};
+for (const l of LANGS) Object.assign(T[l], T2[l], T3[l], T4[l]);
 const tr = (k, vars = {}) => Object.entries(vars).reduce((s, [a, b]) => s.split('{' + a + '}').join(String(b)), T[lang][k] ?? T.es[k] ?? k);
 const ERR_KEYS = Object.keys(T.es).filter((k) => k.startsWith('e_')).map((k) => k.slice(2));
 const errText = (e, detail) => (ERR_KEYS.includes(e) ? tr('e_' + e) : e || 'Error') + (detail ? ` (${detail})` : '');
@@ -359,13 +370,33 @@ const rpcErr = (error) => { const m = error?.message || ''; return ERR_KEYS.find
 
 async function fn(name, body) {
   if (demoFn) return demoFn(name, body);
-  const { data: { session } } = await sb.auth.getSession();
-  const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${session?.access_token ?? ''}`, apikey: import.meta.env.VITE_SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  return res.json().catch(() => ({ error: 'server_error' }));
+  try {
+    const { data: { session } } = await sb.auth.getSession();
+    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${session?.access_token ?? ''}`, apikey: import.meta.env.VITE_SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    return res.json().catch(() => ({ error: 'server_error' }));
+  } catch (e) { return { error: 'network' }; } // no connection: say so instead of hanging
+}
+
+// «Cargando…» never stays forever: if a loading line is still there after
+// STUCK_MS (a request that hangs or throws), its box shows «Reintentar»,
+// «Cerrar sesión» and hello@ instead.
+const STUCK_MS = 12000;
+let loadSeq = 0;
+function loadingP() {
+  const id = ++loadSeq;
+  setTimeout(() => { const el = document.querySelector(`[data-mv-loading="${id}"]`); if (el) stuck(el.parentElement); }, STUCK_MS);
+  return `<p class="muted" data-mv-loading="${id}">${tr('loading')}</p>`;
+}
+function stuck(box) {
+  box.innerHTML = `<div class="card bad" role="alert" id="mvStuck"><h2>${tr('stuckH')}</h2><p>${tr('stuckP')}</p>
+    <div class="row"><button id="stRetry">${tr('stuckRetry')}</button><button class="ghost" id="stOut">${tr('signOut')}</button></div>
+    <p class="muted">${tr('stuckMail', { mail: '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>' })}</p></div>`;
+  box.querySelector('#stRetry').onclick = () => { Promise.resolve().then(() => redraw()).catch(() => stuck(box)); };
+  box.querySelector('#stOut').onclick = async () => { try { await sb.auth.signOut({ scope: 'local' }); } catch (e) {} location.href = '/'; };
 }
 
 // ------------------------------------------------------------ language switch
@@ -404,9 +435,13 @@ async function start() {
     app.before(banner);
   }
   header();
-  const { data: { session } } = await sb.auth.getSession();
+  app.innerHTML = loadingP();
+  let session = null, who = null, error = null;
+  try {
+    ({ data: { session } } = await sb.auth.getSession());
+    if (session) ({ data: who, error } = await sb.rpc('admin_whoami'));
+  } catch (e) { return stuck(app); }
   if (!session) { app.innerHTML = `<div class="card"><p>${tr('signInFirst')}</p></div>`; return; }
-  const { data: who, error } = await sb.rpc('admin_whoami');
   if (error || !who?.admin) {
     app.innerHTML = `<div class="card"><p>${tr('notAdmin')}</p><p class="muted"><a href="/">${tr('backApp')}</a></p></div>`;
     return;
@@ -513,7 +548,7 @@ let autoMax = 201; // claim_auto_max_usdc, read from the server
 
 async function claimsView() {
   pendingAlert();
-  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  view().innerHTML = `${loadingP()}`;
   const [cfg, list, conf] = await Promise.all([
     fn('support-claims', { action: 'config' }),
     sb.rpc('admin_list_claims', { p_statuses: showAwaiting ? ['awaiting_payment'] : ['submitted', 'manual_review'] }),
@@ -646,7 +681,7 @@ async function giftsView() {
       <p class="muted">${tr('giftLimits')}</p>
       <div class="row"><button class="ghost" id="gt">${tr('testBtn')}</button></div>
       <p class="msg" id="gtm"></p></div>
-    <div class="card"><div class="row" style="justify-content:space-between"><h2>${tr('codesH')}</h2><button class="ghost" data-export="gifts">${tr('exportCsv')}</button></div><p class="msg" id="xm-gifts"></p><div id="gl" class="scroll"><p class="muted">${tr('loading')}</p></div></div>`;
+    <div class="card"><div class="row" style="justify-content:space-between"><h2>${tr('codesH')}</h2><button class="ghost" data-export="gifts">${tr('exportCsv')}</button></div><p class="msg" id="xm-gifts"></p><div id="gl" class="scroll">${loadingP()}</div></div>`;
   document.getElementById('gs').onclick = async () => {
     const m = document.getElementById('gm'); const email = document.getElementById('ge').value.trim();
     if (!email) { m.textContent = tr('e_bad_email'); return; }
@@ -699,7 +734,7 @@ async function loadGifts() {
 
 // ------------------------------------------------------------ audit log
 async function auditView() {
-  view().innerHTML = `<div class="card scroll"><p class="muted">${tr('loading')}</p></div>`;
+  view().innerHTML = `<div class="card scroll">${loadingP()}</div>`;
   const [{ data, error }, mails] = await Promise.all([sb.rpc('admin_list_audit', { p_limit: 300 }), sb.rpc('admin_list_mail_events', { p_limit: 100 })]);
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const me = mails.data || [];
@@ -758,7 +793,7 @@ async function doExport(tabName, filters) {
 
 // ------------------------------------------------------------ summary
 async function summaryView() {
-  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  view().innerHTML = `${loadingP()}`;
   const { data: s, error } = await sb.rpc('admin_summary');
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const st = s.states || {}, cl = s.claims || {};
@@ -786,7 +821,7 @@ async function usersView() {
         <button id="usGo">${tr('usSearch')}</button>
         <button class="ghost" data-export="users">${tr('exportCsv')}</button></div>
       <p class="msg" id="xm-users"></p></div>
-    <div class="card scroll" id="usList"><p class="muted">${tr('loading')}</p></div>`;
+    <div class="card scroll" id="usList">${loadingP()}</div>`;
   const go = () => { US.search = document.getElementById('usQ').value.trim(); US.state = document.getElementById('usS').value; US.offset = 0; loadUsers(); };
   document.getElementById('usGo').onclick = go;
   document.getElementById('usQ').onkeydown = (e) => { if (e.key === 'Enter') go(); };
@@ -816,7 +851,7 @@ async function loadUsers() {
 // One account's file — opening it is logged by the server (user_viewed).
 async function userFile(id) {
   redraw = () => userFile(id);
-  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  view().innerHTML = `${loadingP()}`;
   const { data: u, error } = await sb.rpc('admin_get_user', { p_user_id: id });
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const d = (x) => (x ? when(x) : '—');

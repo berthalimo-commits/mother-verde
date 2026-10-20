@@ -5525,15 +5525,31 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
 /* Account status strings (appended so overrides win). */
 translations.es = Object.assign(translations.es, {
   "subLoading": "Cargando el estado de tu cuenta…",
+  "stuckH": "No pudimos cargar tu cuenta",
+  "stuckP": "La conexión está tardando más de lo normal o algo falló. Tus datos están a salvo.",
+  "stuckRetry": "Reintentar", "stuckSignOut": "Cerrar sesión",
+  "stuckMail": "Si sigue pasando, escríbenos a {mail}.",
 });
 translations.en = Object.assign(translations.en, {
   "subLoading": "Loading your account status…",
+  "stuckH": "We couldn’t load your account",
+  "stuckP": "The connection is taking longer than usual or something went wrong. Your data is safe.",
+  "stuckRetry": "Try again", "stuckSignOut": "Sign out",
+  "stuckMail": "If it keeps happening, write to us at {mail}.",
 });
 translations.de = Object.assign(translations.de, {
   "subLoading": "Kontostatus wird geladen…",
+  "stuckH": "Wir konnten dein Konto nicht laden",
+  "stuckP": "Die Verbindung dauert länger als üblich oder etwas ist schiefgelaufen. Deine Daten sind sicher.",
+  "stuckRetry": "Erneut versuchen", "stuckSignOut": "Abmelden",
+  "stuckMail": "Wenn es weiter passiert, schreib uns an {mail}.",
 });
 translations.fr = Object.assign(translations.fr, {
   "subLoading": "Chargement de l'état de ton compte…",
+  "stuckH": "Nous n’avons pas pu charger ton compte",
+  "stuckP": "La connexion prend plus de temps que d’habitude ou quelque chose a échoué. Tes données sont en sécurité.",
+  "stuckRetry": "Réessayer", "stuckSignOut": "Se déconnecter",
+  "stuckMail": "Si ça continue, écris-nous à {mail}.",
 });
 
 // Language chosen last time in this browser (kept across reloads); Spanish otherwise.
@@ -5955,6 +5971,11 @@ translations.es.authErrRate = "Ahora mismo no podemos enviar más correos. Esper
 translations.en.authErrRate = "We can’t send more emails right now. Please wait a few minutes and try again.";
 translations.de.authErrRate = "Wir können gerade keine weiteren E-Mails senden. Warte ein paar Minuten und versuch es noch einmal.";
 translations.fr.authErrRate = "Nous ne pouvons pas envoyer plus d’e-mails pour l’instant. Attends quelques minutes et réessaie.";
+// At sign-up (Supabase's e-mails-per-hour limit): the account was not created.
+translations.es.authErrRateSignup = "Estamos recibiendo muchos registros. Inténtalo de nuevo en unos minutos.";
+translations.en.authErrRateSignup = "We’re receiving a lot of sign-ups. Please try again in a few minutes.";
+translations.de.authErrRateSignup = "Wir bekommen gerade sehr viele Registrierungen. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.authErrRateSignup = "Nous recevons beaucoup d’inscriptions. Réessaie dans quelques minutes.";
 translations.es.authErrSend = "No pudimos enviar el correo. Inténtalo en unos minutos; si sigue fallando, escríbenos a hello@motherverdeny.com.";
 translations.en.authErrSend = "We couldn’t send the email. Try again in a few minutes; if it keeps failing, write to us at hello@motherverdeny.com.";
 translations.de.authErrSend = "Wir konnten die E-Mail nicht senden. Versuch es in ein paar Minuten noch einmal; wenn es weiter nicht klappt, schreib uns an hello@motherverdeny.com.";
@@ -6938,9 +6959,37 @@ function mvFmtLeft(ms){
   return t('accFmtLess1');
 }
 
+// «Cargando…» never stays forever: when the profile or the access did not load
+// (auth.js, window.mvAuthLoad) — at once if it failed, after 12 s if it hangs —
+// the lock screen and Cuenta offer «Reintentar», «Cerrar sesión» and hello@.
+const MV_STUCK_MS = 12000;
+function mvLoadStuck(){
+  const l = window.mvAuthLoad;
+  return !!l && (l.failed || Date.now() - l.since >= MV_STUCK_MS);
+}
+function mvStuckHtml(){
+  return '<div class="mv-stuck" role="alert">'
+    + '<h2 class="acc-title">' + t('stuckH') + '</h2>'
+    + '<p class="acc-text">' + t('stuckP') + '</p>'
+    + '<div class="acc-actions"><button type="button" class="btn btn-primary" id="mvStuckRetry" onclick="window.mvRefreshAuth && window.mvRefreshAuth()">' + t('stuckRetry') + '</button>'
+    + '<button type="button" class="btn btn-ghost" id="mvStuckOut" onclick="window.mvSignOutLocal && window.mvSignOutLocal()">' + t('stuckSignOut') + '</button></div>'
+    + '<p class="acc-note">' + t('stuckMail').replace('{mail}', '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>') + '</p>'
+    + '</div>';
+}
+let mvStuckTimer = 0;
+function mvArmStuckTimer(st){
+  clearTimeout(mvStuckTimer);
+  if(st !== 'loading' || mvLoadStuck()) return;
+  const left = MV_STUCK_MS - (Date.now() - (window.mvAuthLoad?.since || Date.now()));
+  mvStuckTimer = setTimeout(mvApplyAccessState, Math.max(0, left) + 50);
+}
+// (main.js is a classic script: mvArmStuckTimer is already a global, so the alias needs its own name)
+window.mvArmStuck = () => mvArmStuckTimer(mvAccessState());
+
 function mvApplyAccessState(){
   if(ACCESS_MODEL !== 'support') return;
   const st = mvAccessState();
+  mvArmStuckTimer(st);
   const locked = mvIsLockedState(st);
   const changed = st !== mvLastAccessState;
   mvLastAccessState = st;
@@ -7028,7 +7077,7 @@ function mvRenderAcceso(){
       + '<p class="acc-text">' + t('accRevocadoP') + '</p>'
       + keep;
   } else if(st === 'loading'){
-    html = '<p class="acc-text">' + t('subLoading') + '</p>';
+    html = mvLoadStuck() ? mvStuckHtml() : '<p class="acc-text">' + t('subLoading') + '</p>';
   }
   root.innerHTML = '<div class="acc-wrap">' + html + links + '</div>';
   mvUpdateResendCooldown();
@@ -7130,7 +7179,8 @@ function mvRenderCuentaAcceso(){
   const txt = document.getElementById('cuentaAccesoTexto');
   const btn = document.getElementById('cuentaAccesoBtn');
   const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial', granted: 'accCuentaGranted', revoked: 'accCuentaRevoked' }[st] || 'subLoading';
-  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
+  if(txt && st === 'loading' && mvLoadStuck()) txt.innerHTML = mvStuckHtml();
+  else if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
     + (st !== 'supporter' && mvClaimPending() ? '<br><br>' + mvPendingNoteHtml() : '');
   if(btn) btn.hidden = st === 'supporter' || st === 'revoked' || st === 'loading' || mvClaimPending();
   mvRenderGiftBox(st);

@@ -108,7 +108,7 @@ for (const [L, re] of [['en', /Confirm your email to start your 24 hours/], ['de
 }
 
 // ---------------------------------------------------------------- 6. Supabase can't send at sign-up
-for (const [mode, re, label] of [['smtp', /No pudimos enviar el correo\..*hello@motherverdeny\.com/, 'fallo del SMTP'], ['rate', /no podemos enviar más correos/, 'límite por hora']]) {
+for (const [mode, re, label] of [['smtp', /No pudimos enviar el correo\..*hello@motherverdeny\.com/, 'fallo del SMTP'], ['rate', /Estamos recibiendo muchos registros\. Inténtalo de nuevo en unos minutos/, 'límite por hora']]) {
   await authFail(mode);
   b = await browser(null, null, 390);
   await go(b, APP);

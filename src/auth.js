@@ -57,16 +57,36 @@ function hasFullAccess(){
 window.mvHasFullAccess = hasFullAccess;
 
 async function loadProfile(userId){
-  const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
+  let res;
+  try { res = await supabase.from('profiles').select('*').eq('id', userId).single(); } catch(e){ res = { error: e }; }
+  const { data, error } = res;
   if(error){ console.error('loadProfile', error); return null; }
   return data;
 }
 
+// How the last load of session + profile + access went. main.js shows a way
+// out («Reintentar», «Cerrar sesión», hello@) instead of an endless «Cargando…»:
+// at once when a load failed, after MV_STUCK_MS when it simply hangs.
+window.mvAuthLoad = { since: Date.now(), failed: false };
+// Sign out on this device even when the server can't be reached.
+window.mvSignOutLocal = async () => {
+  await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+  location.reload();
+};
+
 async function refreshAuthState(){
-  const { data: { session } } = await supabase.auth.getSession();
+  const load = window.mvAuthLoad = { since: Date.now(), failed: false };
+  window.mvApplyAccessState?.(); // a retry shows «Cargando…» again (and re-arms the 12 s)
+  let session = null;
+  try { ({ data: { session } } = await supabase.auth.getSession()); }
+  catch(e){ console.error('getSession', e); load.failed = true; }
   window.mvCurrentUser = session?.user || null;
+  // signed in, profile not here yet: «Cargando…» now, and the way out at 12 s if it hangs
+  if(window.mvCurrentUser && !window.mvCurrentProfile) window.mvApplyAccessState?.();
+  else window.mvArmStuck?.();
   window.mvCurrentProfile = window.mvCurrentUser ? await loadProfile(window.mvCurrentUser.id) : null;
-  await loadAccess();
+  const accessOk = await loadAccess();
+  if(window.mvCurrentUser && (!window.mvCurrentProfile || !accessOk)) load.failed = true;
   window.setIsPremium?.(hasFullAccess());
   window.renderCuenta?.();
   window.renderBitacoraGate?.();
@@ -444,7 +464,11 @@ document.getElementById('authForm')?.addEventListener('submit', async (e) => {
     }
     document.getElementById('authForm').reset();
   } catch(err){
-    setAuthMsg(window.t(mapAuthError(err)), true);
+    // Supabase's e-mails-per-hour limit reached at sign-up (person number 31
+    // with the default of 30): say it plainly — the account was not created,
+    // trying again in a few minutes works.
+    const key = mapAuthError(err);
+    setAuthMsg(window.t(authMode === 'signup' && key === 'authErrRate' ? 'authErrRateSignup' : key), true);
   } finally {
     captchaReset();
     setAuthBusy(false);
