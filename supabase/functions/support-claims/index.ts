@@ -9,6 +9,18 @@
 //       giving the transaction code. Does something ONLY if automatic
 //       verification is on (app_config claim_auto_verify_enabled = 1);
 //       otherwise answers { mode: "manual" }.
+//   { action: "submit_late", claim_id, tx_hash }  the person, when their own
+//       72 h reservation has expired: checks on Base FIRST that the transfer
+//       is USDC, to our address, for EXACTLY that reservation's amount; only
+//       then stores it (svc_submit_late_claim) — always manual review, never
+//       activates. A TXID already on another claim becomes a conflict for the
+//       panel; the person only hears "we'll review it by hand".
+// A new TXID (on time or late) sends ONE short notice to the support address
+// (NOTIFY_TO, default hello@motherverdeny.com): Spanish, no personal data —
+// claim number, amount, status and a link to the panel. Sent at most once per
+// claim (mail_events kind 'txid_notice', ref claim:<id>); a failure stays in
+// "Correos fallidos" and the panel's "Avisos sin revisar" counter shows the
+// claim anyway.
 //   { action: "config" }                  admin: is automatic verification on?
 //   { action: "admin_check", claim_id }   admin: run the checks, store the
 //       result, never activates.
@@ -302,6 +314,30 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
   };
 }
 
+const STATUS_ES: Record<string, string> = { submitted: "código recibido, sin revisar", manual_review: "en revisión manual" };
+
+// deno-lint-ignore no-explicit-any
+async function notifySupport(svc: any, c: { id: number; amount_units: unknown; status: string; late?: boolean }) {
+  if (!["submitted", "manual_review"].includes(c.status)) return null;
+  const ref = `claim:${c.id}`;
+  const { data: prev } = await svc.from("mail_events").select("id").eq("kind", "txid_notice").eq("ref", ref).limit(1);
+  if (prev && prev.length) return null; // already notified (or tried) for this claim
+  const panel = (Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com").replace(/\/$/, "") + "/panel-mv.html";
+  const amount = usdcText(c.amount_units, ",");
+  const lines = [
+    `Aviso n.º ${c.id}`,
+    `Monto: ${amount} USDC`,
+    `Estado: ${STATUS_ES[c.status] ?? c.status}${c.late ? " (pago tardío: la reserva había vencido)" : ""}`,
+    "Revísalo en el panel (pide la verificación en dos pasos).",
+  ];
+  const blocks: [string, string, string[]][] = [["es", "Nuevo código de transacción", lines]];
+  const to = Deno.env.get("NOTIFY_TO") ?? REPLY_TO;
+  return await deliver(svc, {
+    to, subject: `Nuevo aviso de aporte n.º ${c.id}`,
+    html: layout(blocks, undefined, { url: panel, label: "Abrir el panel" }), text: plain(blocks, undefined, panel),
+  }, "txid_notice", null, ref);
+}
+
 // deno-lint-ignore no-explicit-any
 async function sendActivation(svc: any, ctx: Ctx, actor: string | null, label: string) {
   // Account deleted after giving the TXID: the payment is recorded, but there
@@ -347,9 +383,38 @@ Deno.serve(async (req) => {
 
   try {
     // ---------------------------------------------------------- the person
+    if (body.action === "submit_late") {
+      const tx = typeof (body as { tx_hash?: unknown }).tx_hash === "string" ? String((body as { tx_hash: string }).tx_hash).trim().toLowerCase() : "";
+      if (!/^0x[0-9a-f]{64}$/.test(tx)) return json({ error: "bad_tx_format" }, 400);
+      const ctx = await loadCtx();
+      if (!ctx || ctx.claim.user_id !== user.id) return json({ error: "not_found" }, 404);
+      const c = ctx.claim;
+      const expired = !c.tx_hash && (c.status === "expired" || (c.status === "awaiting_payment" && new Date(c.expires_at) < new Date()));
+      if (!expired) return json({ error: "not_late" }, 409);
+      const r = await checkOnChain({ ...ctx, claim: { ...c, tx_hash: tx } }, false);
+      const network = (r.reason ?? "").startsWith("red_no_disponible") || r.reason === "direccion_no_configurada";
+      // Found on Base but not USDC to us for exactly THIS reservation: nothing is stored.
+      if (!network && !r.checks.tx_found) return json({ error: "late_tx_not_found" }, 400);
+      if (!network && !(r.checks.tx_success && r.checks.usdc_contract && r.checks.destination && r.checks.exact_amount && r.checks.after_claim)) {
+        return json({ error: "late_amount_mismatch" }, 400);
+      }
+      // Base unreachable: stored for the admin to check by hand (never activates).
+      const { data, error } = await svc.rpc("svc_submit_late_claim", {
+        p_claim_id: c.id, p_user: user.id, p_tx_hash: tx, p_verification: { ...r, checked_at: new Date().toISOString(), late: true },
+      });
+      if (error) {
+        const known = ["claim_in_review", "not_late", "bad_tx_format", "not_found"].find((k) => error.message.includes(k));
+        return json({ error: known ?? "could_not_save" }, known ? 400 : 500);
+      }
+      // Neutral answer: never says whether another claim holds this TXID.
+      await notifySupport(svc, { id: c.id, amount_units: c.amount_units, status: (data as { status: string }).status, late: true });
+      return json({ ok: true, status: (data as { status: string }).status, review: "manual" });
+    }
+
     if (body.action === "verify") {
       const ctx = await loadCtx();
       if (!ctx || ctx.claim.user_id !== user.id) return json({ error: "not_found" }, 404);
+      await notifySupport(svc, ctx.claim as unknown as { id: number; amount_units: unknown; status: string; late?: boolean });
       if (!ctx.auto_enabled) return json({ ok: true, mode: "manual", status: ctx.claim.status });
       if (ctx.claim.status !== "submitted") return json({ ok: true, mode: "auto", status: ctx.claim.status });
       const last = ctx.claim.verification?.checked_at ? new Date(ctx.claim.verification.checked_at).getTime() : 0;
@@ -396,7 +461,7 @@ Deno.serve(async (req) => {
       if (!ctx) return json({ error: "not_found" }, 404);
       const { error } = await asCaller.rpc("admin_approve_claim", { p_claim_id: claimId, p_reason: reason });
       if (error) {
-        const known = ["reason_required", "not_found_or_closed", "not_allowed"].find((k) => error.message.includes(k));
+        const known = ["reason_required", "conflict_open", "not_found_or_closed", "not_allowed"].find((k) => error.message.includes(k));
         return json({ error: known ?? "could_not_approve" }, known ? 400 : 500);
       }
       const mail = await sendActivation(svc, ctx, user.id, label);

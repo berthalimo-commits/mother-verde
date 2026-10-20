@@ -10,8 +10,9 @@
 // Language: the one chosen in the app (localStorage 'mv-lang', same browser),
 // with its own ES/EN/DE/FR switch; every view is redrawn on change.
 import { createClient } from '@supabase/supabase-js';
+import './stageBadge.js'; // «STAGING · pruebas» when this build uses the test project
 
-let sb = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
+let sb =createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
 // Sample-data panel (/panel-mv.html?demo=1): dev-preview builds only; in the
 // production build this is the constant false and adminDemo.js isn't emitted.
 const DEMO = import.meta.env.VITE_MV_PREVIEW === '1' && new URLSearchParams(location.search).has('demo');
@@ -300,7 +301,69 @@ const T2 = {
     e_bad_state: 'État non valide.', e_bad_tab: 'Onglet non valide.',
   },
 };
-for (const l of LANGS) Object.assign(T[l], T2[l]);
+// Late payment marks, reason history and TXID conflicts (20261014120000).
+const T3 = {
+  es: {
+    pendingBanner: 'Avisos sin revisar: {n}', pendingOld: '{m} esperan más de 12 h', pendingGo: 'Ver avisos', waitingLong: 'Esperando hace más de 12 h', mk_txid_notice: 'Aviso de TXID nuevo',
+    lateBadge: 'Pago tardío / reserva vencida', lateP: 'El TXID llegó después de que venciera la reserva de 72 h. Nunca se activa solo: revisa y escribe el motivo.',
+    conflictBadge: 'Conflicto abierto', conflictP: 'Este aviso está en un conflicto (abajo). No se puede activar hasta resolverlo.',
+    historyH: 'Historial de motivos', h_pago_tardio: 'pago tardío', h_comprobacion: 'comprobación en Base', h_envio: 'envío del TXID', h_conflicto: 'conflicto',
+    conflictsH: 'Conflictos por resolver ({n})', conflictsP: 'Dos avisos reclaman el mismo pago. Ninguna persona ve el aviso de la otra; a las dos se les dijo solo «lo revisaremos manualmente». Compara fechas y montos en Basescan y elige de quién es el pago. El motivo es obligatorio y queda en el registro.',
+    k_mismo_txid: 'Mismo TXID en dos avisos', k_mismo_monto: 'Pago tardío con el mismo monto que otro aviso',
+    claimA: 'Aviso nuevo', claimB: 'Aviso con el que choca', winnerBtn: 'El pago es del aviso #{id}', noWinnerBtn: 'Resolver sin elegir (solo revisado)',
+    conflictReasonPh: 'Motivo (obligatorio, al menos 10 caracteres)…', e_conflict_open: 'Ese aviso tiene un conflicto abierto: resuélvelo primero (arriba).',
+    e_reason_required10: 'Escribe un motivo de al menos 10 caracteres.', resolvedOk: 'Conflicto resuelto.', e_already_resolved: 'Ese conflicto ya estaba resuelto.',
+    lateYes: 'tardío', deletedAcc: 'cuenta borrada',
+  },
+  en: {
+    pendingBanner: 'Claims to review: {n}', pendingOld: '{m} waiting more than 12 h', pendingGo: 'See claims', waitingLong: 'Waiting more than 12 h', mk_txid_notice: 'New TXID notice',
+    lateBadge: 'Late payment / reservation expired', lateP: 'The TXID arrived after the 72 h reservation had expired. It never activates on its own: check it and write a reason.',
+    conflictBadge: 'Open conflict', conflictP: 'This claim is in a conflict (below). It cannot be activated until the conflict is resolved.',
+    historyH: 'Reason history', h_pago_tardio: 'late payment', h_comprobacion: 'Base check', h_envio: 'TXID sent', h_conflicto: 'conflict',
+    conflictsH: 'Conflicts to resolve ({n})', conflictsP: "Two claims ask for the same payment. Neither person sees the other's claim; both were only told “we’ll review it by hand”. Compare dates and amounts on Basescan and choose whose payment it is. The reason is required and recorded in the log.",
+    k_mismo_txid: 'Same TXID on two claims', k_mismo_monto: 'Late payment with the same amount as another claim',
+    claimA: 'New claim', claimB: 'Claim it collides with', winnerBtn: 'The payment belongs to claim #{id}', noWinnerBtn: 'Resolve without choosing (reviewed only)',
+    conflictReasonPh: 'Reason (required, at least 10 characters)…', e_conflict_open: 'That claim has an open conflict: resolve it first (above).',
+    e_reason_required10: 'Write a reason of at least 10 characters.', resolvedOk: 'Conflict resolved.', e_already_resolved: 'That conflict was already resolved.',
+    lateYes: 'late', deletedAcc: 'account deleted',
+  },
+  de: {
+    pendingBanner: 'Ungeprüfte Meldungen: {n}', pendingOld: '{m} warten länger als 12 Std.', pendingGo: 'Meldungen ansehen', waitingLong: 'Wartet länger als 12 Std.', mk_txid_notice: 'Hinweis: neue TXID',
+    lateBadge: 'Verspätete Zahlung / Reservierung abgelaufen', lateP: 'Die TXID kam, nachdem die 72-h-Reservierung abgelaufen war. Sie wird nie automatisch freigeschaltet: prüfen und Grund angeben.',
+    conflictBadge: 'Offener Konflikt', conflictP: 'Diese Meldung steckt in einem Konflikt (unten). Sie kann erst freigeschaltet werden, wenn er gelöst ist.',
+    historyH: 'Verlauf der Gründe', h_pago_tardio: 'verspätete Zahlung', h_comprobacion: 'Prüfung in Base', h_envio: 'TXID gesendet', h_conflicto: 'Konflikt',
+    conflictsH: 'Zu lösende Konflikte ({n})', conflictsP: 'Zwei Meldungen beanspruchen dieselbe Zahlung. Keine Person sieht die Meldung der anderen; beiden wurde nur „wir prüfen es von Hand“ gesagt. Vergleiche Daten und Beträge auf Basescan und wähle, wem die Zahlung gehört. Der Grund ist Pflicht und wird protokolliert.',
+    k_mismo_txid: 'Dieselbe TXID in zwei Meldungen', k_mismo_monto: 'Verspätete Zahlung mit demselben Betrag wie eine andere Meldung',
+    claimA: 'Neue Meldung', claimB: 'Meldung, mit der sie kollidiert', winnerBtn: 'Die Zahlung gehört zu Meldung #{id}', noWinnerBtn: 'Ohne Auswahl lösen (nur geprüft)',
+    conflictReasonPh: 'Grund (Pflicht, mindestens 10 Zeichen)…', e_conflict_open: 'Diese Meldung hat einen offenen Konflikt: zuerst lösen (oben).',
+    e_reason_required10: 'Schreib einen Grund mit mindestens 10 Zeichen.', resolvedOk: 'Konflikt gelöst.', e_already_resolved: 'Dieser Konflikt war schon gelöst.',
+    lateYes: 'verspätet', deletedAcc: 'Konto gelöscht',
+  },
+  fr: {
+    pendingBanner: 'Avis à vérifier : {n}', pendingOld: '{m} attendent depuis plus de 12 h', pendingGo: 'Voir les avis', waitingLong: 'En attente depuis plus de 12 h', mk_txid_notice: 'Avis de nouveau TXID',
+    lateBadge: 'Paiement tardif / réservation expirée', lateP: 'Le TXID est arrivé après l’expiration de la réservation de 72 h. Il ne s’active jamais tout seul : vérifie et écris un motif.',
+    conflictBadge: 'Conflit ouvert', conflictP: 'Cet avis est dans un conflit (ci-dessous). Il ne peut pas être activé avant sa résolution.',
+    historyH: 'Historique des motifs', h_pago_tardio: 'paiement tardif', h_comprobacion: 'vérification sur Base', h_envio: 'envoi du TXID', h_conflicto: 'conflit',
+    conflictsH: 'Conflits à résoudre ({n})', conflictsP: 'Deux avis réclament le même paiement. Aucune personne ne voit l’avis de l’autre ; on leur a seulement dit « nous le vérifierons à la main ». Compare dates et montants sur Basescan et choisis à qui appartient le paiement. Le motif est obligatoire et enregistré dans le journal.',
+    k_mismo_txid: 'Même TXID sur deux avis', k_mismo_monto: 'Paiement tardif avec le même montant qu’un autre avis',
+    claimA: 'Nouvel avis', claimB: 'Avis avec lequel il entre en conflit', winnerBtn: 'Le paiement appartient à l’avis #{id}', noWinnerBtn: 'Résoudre sans choisir (seulement vérifié)',
+    conflictReasonPh: 'Motif (obligatoire, au moins 10 caractères)…', e_conflict_open: 'Cet avis a un conflit ouvert : résous-le d’abord (ci-dessus).',
+    e_reason_required10: 'Écris un motif d’au moins 10 caractères.', resolvedOk: 'Conflit résolu.', e_already_resolved: 'Ce conflit était déjà résolu.',
+    lateYes: 'tardif', deletedAcc: 'compte supprimé',
+  },
+};
+// «Cargando…» never stays forever (A2): texts of the way out.
+const T4 = {
+  es: { stuckH: 'No pudimos cargar esta parte del panel', stuckP: 'La conexión está tardando más de lo normal o algo falló.', stuckRetry: 'Reintentar',
+    stuckMail: 'Si sigue pasando, escribe a {mail}.', e_network: 'No hay conexión con el servidor. Inténtalo de nuevo.' },
+  en: { stuckH: 'We couldn’t load this part of the panel', stuckP: 'The connection is taking longer than usual or something went wrong.', stuckRetry: 'Try again',
+    stuckMail: 'If it keeps happening, write to {mail}.', e_network: 'No connection to the server. Please try again.' },
+  de: { stuckH: 'Dieser Teil des Bereichs konnte nicht geladen werden', stuckP: 'Die Verbindung dauert länger als üblich oder etwas ist schiefgelaufen.', stuckRetry: 'Erneut versuchen',
+    stuckMail: 'Wenn es weiter passiert, schreib an {mail}.', e_network: 'Keine Verbindung zum Server. Bitte versuche es erneut.' },
+  fr: { stuckH: 'Impossible de charger cette partie de l’espace', stuckP: 'La connexion prend plus de temps que d’habitude ou quelque chose a échoué.', stuckRetry: 'Réessayer',
+    stuckMail: 'Si ça continue, écris à {mail}.', e_network: 'Pas de connexion avec le serveur. Réessaie.' },
+};
+for (const l of LANGS) Object.assign(T[l], T2[l], T3[l], T4[l]);
 const tr = (k, vars = {}) => Object.entries(vars).reduce((s, [a, b]) => s.split('{' + a + '}').join(String(b)), T[lang][k] ?? T.es[k] ?? k);
 const ERR_KEYS = Object.keys(T.es).filter((k) => k.startsWith('e_')).map((k) => k.slice(2));
 const errText = (e, detail) => (ERR_KEYS.includes(e) ? tr('e_' + e) : e || 'Error') + (detail ? ` (${detail})` : '');
@@ -308,13 +371,33 @@ const rpcErr = (error) => { const m = error?.message || ''; return ERR_KEYS.find
 
 async function fn(name, body) {
   if (demoFn) return demoFn(name, body);
-  const { data: { session } } = await sb.auth.getSession();
-  const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${session?.access_token ?? ''}`, apikey: import.meta.env.VITE_SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  return res.json().catch(() => ({ error: 'server_error' }));
+  try {
+    const { data: { session } } = await sb.auth.getSession();
+    const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${name}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${session?.access_token ?? ''}`, apikey: import.meta.env.VITE_SUPABASE_ANON_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    return res.json().catch(() => ({ error: 'server_error' }));
+  } catch (e) { return { error: 'network' }; } // no connection: say so instead of hanging
+}
+
+// «Cargando…» never stays forever: if a loading line is still there after
+// STUCK_MS (a request that hangs or throws), its box shows «Reintentar»,
+// «Cerrar sesión» and hello@ instead.
+const STUCK_MS = 12000;
+let loadSeq = 0;
+function loadingP() {
+  const id = ++loadSeq;
+  setTimeout(() => { const el = document.querySelector(`[data-mv-loading="${id}"]`); if (el) stuck(el.parentElement); }, STUCK_MS);
+  return `<p class="muted" data-mv-loading="${id}">${tr('loading')}</p>`;
+}
+function stuck(box) {
+  box.innerHTML = `<div class="card bad" role="alert" id="mvStuck"><h2>${tr('stuckH')}</h2><p>${tr('stuckP')}</p>
+    <div class="row"><button id="stRetry">${tr('stuckRetry')}</button><button class="ghost" id="stOut">${tr('signOut')}</button></div>
+    <p class="muted">${tr('stuckMail', { mail: '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>' })}</p></div>`;
+  box.querySelector('#stRetry').onclick = () => { Promise.resolve().then(() => redraw()).catch(() => stuck(box)); };
+  box.querySelector('#stOut').onclick = async () => { try { await sb.auth.signOut({ scope: 'local' }); } catch (e) {} location.href = '/'; };
 }
 
 // ------------------------------------------------------------ language switch
@@ -353,9 +436,13 @@ async function start() {
     app.before(banner);
   }
   header();
-  const { data: { session } } = await sb.auth.getSession();
+  app.innerHTML = loadingP();
+  let session = null, who = null, error = null;
+  try {
+    ({ data: { session } } = await sb.auth.getSession());
+    if (session) ({ data: who, error } = await sb.rpc('admin_whoami'));
+  } catch (e) { return stuck(app); }
   if (!session) { app.innerHTML = `<div class="card"><p>${tr('signInFirst')}</p></div>`; return; }
-  const { data: who, error } = await sb.rpc('admin_whoami');
   if (error || !who?.admin) {
     app.innerHTML = `<div class="card"><p>${tr('notAdmin')}</p><p class="muted"><a href="/">${tr('backApp')}</a></p></div>`;
     return;
@@ -420,6 +507,7 @@ async function panel(email) {
       <button data-t="claims">${tr('tabClaims')}</button>
       <button data-t="gifts">${tr('tabGifts')}</button>
       <button data-t="audit">${tr('tabAudit')}</button></div>
+    <div id="pendingAlert"></div>
     <div id="mailAlert"></div>
     <div id="view"></div>`;
   document.getElementById('out').onclick = async () => { await sb.auth.signOut(); location.href = '/'; };
@@ -429,9 +517,22 @@ async function panel(email) {
 function show() {
   app.querySelectorAll('#ptabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
   mailAlert();
+  pendingAlert();
   ({ summary: summaryView, users: usersView, claims: claimsView, gifts: giftsView, audit: auditView })[tab]();
 }
 const view = () => document.getElementById('view');
+
+// "Avisos sin revisar": above every tab, red part for the ones older than 12 h.
+async function pendingAlert() {
+  const box = document.getElementById('pendingAlert');
+  if (!box) return;
+  const { data, error } = await sb.rpc('admin_pending_claims');
+  if (error || !data || !data.open) { box.innerHTML = ''; return; }
+  box.innerHTML = `<div class="card ${data.older_12h ? 'bad' : 'warn'}" id="pendingAlertCard" role="status">
+    <b>${esc(tr('pendingBanner', { n: data.open }))}</b>${data.older_12h ? ` · <b data-old="${data.older_12h}">${esc(tr('pendingOld', { m: data.older_12h }))}</b>` : ''}
+    ${tab !== 'claims' ? ` <button class="ghost" id="pendingGo">${tr('pendingGo')}</button>` : ''}</div>`;
+  document.getElementById('pendingGo')?.addEventListener('click', () => { tab = 'claims'; show(); });
+}
 
 // "Correos fallidos en las últimas 24 h": above every tab when there is any.
 async function mailAlert() {
@@ -447,10 +548,12 @@ let showAwaiting = false;
 let autoMax = 201; // claim_auto_max_usdc, read from the server
 
 async function claimsView() {
-  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
-  const [cfg, list] = await Promise.all([
+  pendingAlert();
+  view().innerHTML = `${loadingP()}`;
+  const [cfg, list, conf] = await Promise.all([
     fn('support-claims', { action: 'config' }),
     sb.rpc('admin_list_claims', { p_statuses: showAwaiting ? ['awaiting_payment'] : ['submitted', 'manual_review'] }),
+    sb.rpc('admin_list_claim_conflicts', { p_include_resolved: false }),
   ]);
   if (list.error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(list.error)))}</div>`; return; }
   if (typeof cfg.auto_max_usdc === 'number') autoMax = cfg.auto_max_usdc;
@@ -460,11 +563,55 @@ async function claimsView() {
       <button class="ghost" id="rl">${tr('refresh')}</button>
       <button class="ghost" data-export="claims" data-filters='${JSON.stringify({ statuses: showAwaiting ? ['awaiting_payment'] : ['submitted', 'manual_review'] })}'>${tr('exportCsv')}</button></div>
       <p class="msg" id="xm-claims"></p></div>
+    ${conflictsBox(conf.data || [])}
     ${list.data.length ? list.data.map(claimCard).join('') : `<p class="muted">${tr('empty')}</p>`}`;
   document.getElementById('tg').onclick = () => { showAwaiting = !showAwaiting; claimsView(); };
   document.getElementById('rl').onclick = claimsView;
   view().querySelectorAll('[data-act]').forEach((b) => { b.onclick = () => claimAction(b.dataset.act, Number(b.dataset.id)); });
+  view().querySelectorAll('[data-resolve]').forEach((b) => { b.onclick = () => resolveConflict(Number(b.dataset.resolve), b.dataset.winner ? Number(b.dataset.winner) : null); });
   wireExports();
+}
+
+// Two claims asking for the same payment, side by side (admin only).
+function conflictsBox(list) {
+  if (!list.length) return '';
+  const side = (x, label) => x ? `<div class="card" style="flex:1;min-width:240px;margin:0">
+      <p class="muted">${label} · #${x.id}</p>
+      <p>${x.account_deleted ? `<b class="warn">${tr('deletedAcc')}</b>` : emailCell(x.account_email, true)}</p>
+      <p><b class="mono">${esc(amt(x.amount_usdc))} USDC</b> · ${esc(tr('st_' + x.status))}${x.late ? ` · <b class="warn">${tr('lateYes')}</b>` : ''}</p>
+      <p class="muted">${tr('reserved')}: ${when(x.created_at)} · ${tr('expires')}: ${when(x.expires_at)} · ${tr('received')}: ${when(x.submitted_at)}</p>
+      ${x.tx_hash ? `<p class="mono" style="word-break:break-all">${esc(x.tx_hash)}</p>` : ''}</div>` : '';
+  return `<div class="card bad" id="conflictsCard" role="region" aria-labelledby="conflictsH">
+    <h2 id="conflictsH">${esc(tr('conflictsH', { n: list.length }))}</h2>
+    <p>${tr('conflictsP')}</p>
+    ${list.map((k) => `<div class="card" data-conflict="${k.id}">
+      <p><b>${tr('k_' + k.kind)}</b>${k.tx_hash ? ` · <a class="mono" href="https://basescan.org/tx/${esc(k.tx_hash)}" target="_blank" rel="noopener noreferrer">${esc(k.tx_hash.slice(0, 18))}…</a>` : ''} · ${when(k.created_at)}</p>
+      <div class="row" style="align-items:stretch">${side(k.a, tr('claimA'))}${side(k.b, tr('claimB'))}</div>
+      <textarea id="kr${k.id}" maxlength="500" placeholder="${esc(tr('conflictReasonPh'))}"></textarea>
+      <div class="row" style="margin-top:6px">
+        ${[k.a, k.b].filter(Boolean).map((x) => `<button data-resolve="${k.id}" data-winner="${x.id}">${esc(tr('winnerBtn', { id: x.id }))}</button>`).join('')}
+        <button class="ghost" data-resolve="${k.id}" data-winner="">${tr('noWinnerBtn')}</button>
+      </div>
+      <p class="msg" id="km${k.id}"></p></div>`).join('')}
+  </div>`;
+}
+
+async function resolveConflict(id, winner) {
+  const msg = document.getElementById('km' + id);
+  const reason = document.getElementById('kr' + id)?.value.trim() || '';
+  if (reason.length < 10) { msg.textContent = tr('e_reason_required10'); return; }
+  view().querySelectorAll(`[data-resolve="${id}"]`).forEach((b) => { b.disabled = true; });
+  msg.textContent = tr('wait');
+  const { error } = await sb.rpc('admin_resolve_claim_conflict', { p_conflict_id: id, p_winner_claim_id: winner, p_reason: reason });
+  if (error) {
+    const m = String(error.message || '');
+    msg.textContent = m.includes('reason_required') ? tr('e_reason_required10') : m.includes('already_resolved') ? tr('e_already_resolved') : errText(rpcErr(error));
+    view().querySelectorAll(`[data-resolve="${id}"]`).forEach((b) => { b.disabled = false; });
+    return;
+  }
+  await claimsView();
+  const d = document.createElement('div'); d.className = 'card ok'; d.setAttribute('role', 'status'); d.textContent = tr('resolvedOk');
+  view().prepend(d);
 }
 
 function claimCard(c) {
@@ -475,14 +622,19 @@ function claimCard(c) {
   const open = c.status === 'submitted' || c.status === 'manual_review';
   const extra = [v?.detail?.confirmations != null ? tr('confirmations', { n: v.detail.confirmations }) : '',
     v?.detail?.received_units?.length ? tr('receivedAmt', { a: v.detail.received_units.map(usdc).join(', ') }) : ''].filter(Boolean).join(' · ');
-  return `<div class="card">
+  const waitedLong = (c.status === 'submitted' || c.status === 'manual_review') && Date.now() - new Date(c.submitted_at || c.created_at).getTime() > 12 * 3600000;
+  return `<div class="card${waitedLong ? ' bad' : ''}"${waitedLong ? ' data-waiting-long="1" style="border-width:2px"' : ''}>
+    ${waitedLong ? `<p><b class="pill bad">${tr('waitingLong')}</b></p>` : ''}
     <div class="row" style="justify-content:space-between"><span>${c.account_deleted ? `<b class="warn" data-deleted="1">${tr('accountDeletedH')}</b>` : emailCell(c.account_email, true)}</span><span class="pill">${esc(tr('st_' + c.status))}</span></div>
     ${c.account_deleted ? `<p class="warn">${tr('accountDeletedP')}</p>` : ''}
+    ${c.late ? `<p><b class="pill warn" data-late="1">${tr('lateBadge')}</b></p><p class="warn">${tr('lateP')}</p>` : ''}
+    ${c.conflict_open ? `<p><b class="pill bad" data-conflict-open="1">${tr('conflictBadge')}</b></p><p class="bad">${tr('conflictP')}</p>` : ''}
     ${c.contact_name || c.contact_phone ? `<p class="muted">${c.contact_name ? `${tr('contactName')}: <b>${esc(c.contact_name)}</b>` : ''}${c.contact_name && c.contact_phone ? ' · ' : ''}${c.contact_phone ? `${tr('contactPhone')}: <b class="mono">${esc(c.contact_phone)}</b>` : ''}</p>` : ''}
     <p><b class="mono" style="font-size:18px">${esc(amt(c.amount_usdc))} USDC</b> · ${c.flowers} ${c.flowers === 1 ? tr('flower') : tr('flowers')}</p>
     <p class="muted">${tr('reserved')}: ${when(c.created_at)} · ${tr('received')}: ${when(c.submitted_at)} · ${tr('expires')}: ${when(c.expires_at)}</p>
     ${c.tx_hash ? `<p>TXID: <span class="mono">${esc(c.tx_hash)}</span><br><a href="${esc(c.explorer_url)}" target="_blank" rel="noopener noreferrer">${tr('explorer')}</a></p>` : ''}
     ${c.review_reason ? `<p class="warn">${tr('reason')}: ${esc(c.review_reason)}</p>` : ''}
+    ${(c.review_history || []).length ? `<details class="history"><summary>${tr('historyH')} (${c.review_history.length})</summary><ol>${c.review_history.map((h) => `<li>${when(h.at)} · ${esc(T[lang]['h_' + h.by] ? tr('h_' + h.by) : h.by)} · <span class="mono">${esc(h.codes)}</span></li>`).join('')}</ol></details>` : ''}
     ${v ? `<p class="muted">${tr('lastCheck')}: ${when(v.checked_at)}${extra ? ' · ' + extra : ''}</p><ul class="checks">${checks}</ul>` : `<p class="muted">${tr('notChecked')}</p>`}
     ${open ? `
       <div class="row">
@@ -530,7 +682,7 @@ async function giftsView() {
       <p class="muted">${tr('giftLimits')}</p>
       <div class="row"><button class="ghost" id="gt">${tr('testBtn')}</button></div>
       <p class="msg" id="gtm"></p></div>
-    <div class="card"><div class="row" style="justify-content:space-between"><h2>${tr('codesH')}</h2><button class="ghost" data-export="gifts">${tr('exportCsv')}</button></div><p class="msg" id="xm-gifts"></p><div id="gl" class="scroll"><p class="muted">${tr('loading')}</p></div></div>`;
+    <div class="card"><div class="row" style="justify-content:space-between"><h2>${tr('codesH')}</h2><button class="ghost" data-export="gifts">${tr('exportCsv')}</button></div><p class="msg" id="xm-gifts"></p><div id="gl" class="scroll">${loadingP()}</div></div>`;
   document.getElementById('gs').onclick = async () => {
     const m = document.getElementById('gm'); const email = document.getElementById('ge').value.trim();
     if (!email) { m.textContent = tr('e_bad_email'); return; }
@@ -583,7 +735,7 @@ async function loadGifts() {
 
 // ------------------------------------------------------------ audit log
 async function auditView() {
-  view().innerHTML = `<div class="card scroll"><p class="muted">${tr('loading')}</p></div>`;
+  view().innerHTML = `<div class="card scroll">${loadingP()}</div>`;
   const [{ data, error }, mails] = await Promise.all([sb.rpc('admin_list_audit', { p_limit: 300 }), sb.rpc('admin_list_mail_events', { p_limit: 100 })]);
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const me = mails.data || [];
@@ -642,7 +794,7 @@ async function doExport(tabName, filters) {
 
 // ------------------------------------------------------------ summary
 async function summaryView() {
-  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  view().innerHTML = `${loadingP()}`;
   const { data: s, error } = await sb.rpc('admin_summary');
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const st = s.states || {}, cl = s.claims || {};
@@ -670,7 +822,7 @@ async function usersView() {
         <button id="usGo">${tr('usSearch')}</button>
         <button class="ghost" data-export="users">${tr('exportCsv')}</button></div>
       <p class="msg" id="xm-users"></p></div>
-    <div class="card scroll" id="usList"><p class="muted">${tr('loading')}</p></div>`;
+    <div class="card scroll" id="usList">${loadingP()}</div>`;
   const go = () => { US.search = document.getElementById('usQ').value.trim(); US.state = document.getElementById('usS').value; US.offset = 0; loadUsers(); };
   document.getElementById('usGo').onclick = go;
   document.getElementById('usQ').onkeydown = (e) => { if (e.key === 'Enter') go(); };
@@ -700,7 +852,7 @@ async function loadUsers() {
 // One account's file — opening it is logged by the server (user_viewed).
 async function userFile(id) {
   redraw = () => userFile(id);
-  view().innerHTML = `<p class="muted">${tr('loading')}</p>`;
+  view().innerHTML = `${loadingP()}`;
   const { data: u, error } = await sb.rpc('admin_get_user', { p_user_id: id });
   if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const d = (x) => (x ? when(x) : '—');

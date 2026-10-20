@@ -2306,17 +2306,7 @@ const translations = {
     tc8H3:'8. Limitación de responsabilidad', tc8P:'En la medida permitida por la ley, Mother Verde LLC no será responsable por daños derivados del uso o la imposibilidad de uso de la App, incluyendo decisiones tomadas con base en la información proporcionada. La App se ofrece "tal cual", sin garantías de ningún tipo.',
     tc9H3:'9. Cambios a estos términos', tc9P:'Podemos actualizar estos Términos periódicamente. Te notificaremos de cambios significativos dentro de la App. El uso continuado tras la publicación de cambios constituye aceptación de los nuevos términos.',
     tc10H3:'10. Contacto', tc10P:'Para preguntas sobre estos Términos, contáctanos en el correo de soporte indicado dentro de la App.',
-    ppEyebrow:'Legal', ppTitle:'Política de Privacidad', ppUpdated:'Última actualización: julio de 2026',
-    ppDraftNote:'<b>Nota sobre este documento:</b> esta es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en privacidad de datos (incluidas normativas como GDPR o CCPA según dónde operes) antes de un lanzamiento real.',
-    ppv1H3:'1. Qué información recopilamos', ppv1P:'La App puede almacenar: tu confirmación de edad, tu idioma preferido, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.',
-    ppv2H3:'2. Dónde se almacena tu información', ppv2P:'La mayoría de los datos mencionados se guardan localmente en tu propio dispositivo, no en nuestros servidores. Esto significa que, en su forma actual, gran parte de tu actividad en la App permanece en tu teléfono o navegador, y no la recopilamos de forma centralizada.',
-    ppv2AdminP:'Dentro del directorio de comunidad, tu nombre, país y tipo de perfil son visibles para otras personas que usen la App. Datos como tu correo electrónico nunca se muestran públicamente — solo el equipo administrador de Mother Verde LLC tiene acceso a esa información, con controles de seguridad específicos para eso (verificación en dos pasos, registro de accesos).',
-    ppv3H3:'3. Cómo usamos tu información', ppv3P:'Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.',
-    ppv4H3:'4. Servicios de terceros', ppv4P:'[PENDIENTE: lista de proveedores (Supabase, Vercel, DeepL, Hostinger) y tratamiento de los aportes recibidos en la red Base — confirmar con contador y abogado.]',
-    ppv5H3:'5. Tus derechos', ppv5P:'Puedes eliminar la información almacenada localmente borrando los datos de la App desde la configuración de tu dispositivo. Si en el futuro almacenamos datos en servidores, tendrás derecho a solicitar acceso, corrección o eliminación de tu información, según lo permita la ley de tu jurisdicción.',
-    ppv6H3:'6. Privacidad de menores', ppv6P:'La App está restringida a personas mayores de 18 años mediante verificación de edad al ingresar. No recopilamos intencionalmente información de menores de edad.',
-    ppv7H3:'7. Cambios a esta política', ppv7P:'Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos dentro de la App.',
-    ppv8H3:'8. Contacto', ppv8P:'Para preguntas sobre privacidad, contáctanos en el correo de soporte indicado dentro de la App.',
+    ppEyebrow:'Legal', ppTitle:'Política de Privacidad',
     heroTitle:'El codex global del cannabis, <em>organizado de verdad</em>.', heroSub:'Cultivo con evidencia, elaboración de productos, marco legal por país y ciencia curada — todo en un solo lugar, para cultivadores, fabricantes, pacientes y viajeros.',
     heroBtn1:'Explorar cultivo', heroBtn2:'Ver estatus legal',
     statCountries:'Países mapeados', statMetodos:'Métodos de cultivo', statSources:'Fuentes oficiales', statHistory:'Cobertura histórica',
@@ -2380,7 +2370,7 @@ const translations = {
     bitSinFecha:'sin fecha', bitEliminar:'Eliminar', bitSinNotas:'(sin notas)', bitVacio:'Todavía no hay entradas — agrega la primera arriba.',
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
     cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.',
-    cuentaPremiumActivo:'✓ Acceso completo activo.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', 
+    cuentaPremiumActivo:'✓ Acceso completo activo.', 
     pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', 
     alertasEyebrow:'Incluido en el acceso completo', alertasTitle:'Alertas de cambio legal', alertasSub:'Sigue países específicos — te avisamos apenas cambie su estatus, sin que tengas que revisar manualmente.', alertasSigues:'Países que sigues', alertasSeguirBtn:'Seguir', alertasEjemploTitle:'Así se vería una alerta real', alertasEjemploH4:'Alemania actualizó su límite de posesión personal', alertasEjemploTag:'Cambio confirmado', alertasEjemploMeta:'Hace 2 días · Fuente: BfArM', alertasEjemploBody:'Ejemplo ilustrativo de cómo llegaría una notificación real cuando un país que sigues actualiza su marco legal.',
     alertaSemillasH4:'EE. UU.: prohibición federal al comercio interestatal de semillas con 0.3%+ THC', alertaSemillasTag:'Alerta real — no ilustrativa', alertaSemillasMeta:'21 de julio de 2026 · Fuente: MJBizDaily',
@@ -2817,14 +2807,13 @@ const translations = {
     ngCar4h4:'Compliance officer', ngCar4role:'Cumplimiento normativo · $70K–$120K', ngCar4p:'Garantiza que la operación cumpla trazabilidad, etiquetado y requisitos de licencia. Uno de los roles con mejor proyección de crecimiento de toda la industria, según múltiples reportes salariales.',
     ngCar5h4:'Técnico de extracción', ngCar5role:'Procesamiento · $55K–$75K', ngCar5p:'Opera sistemas cerrados de extracción por hidrocarburo o CO2, convirtiendo flor en los aceites que ya viste en Elaboración → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> y <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrados</a>. Requiere formación en química o ingeniería, además de capacitación específica en seguridad de laboratorio.',
     ngCar6h4:'Chef de comestibles', ngCar6role:'Elaboración · $45K–$90K', ngCar6p:'Diseña y produce comestibles, con dominio real de decarboxilación y cálculo de dosis precisa por porción — la misma matemática que viste en <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Elaboración → Comestibles</a>, aplicada a escala comercial.',
-    cmyEyebrow:'Comunidad — próximamente', cmyTitle:'Reportes de campo, verificados', cmySub:'Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.',
-    cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.',
-    cmyCorreoLabel:'Correo', cmyCorreoPrivado:'(privado, no se muestra)', cmyCorreoPh:'tu@correo.com',
-    cmyEnDesarrollo:'🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.', cmySecViajeroReal:'Reportes de viajero', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
+    cmyEyebrow:'Comunidad', cmyTitle:'Reportes de campo de la comunidad', cmySub:'Comparte reportes de cultivo, diagnósticos y preguntas, comenta y sigue a otras personas. La Comunidad y su directorio solo los ven las personas con acceso completo. Cada publicación se traduce automáticamente a los 4 idiomas.',
+    cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país, tipo de perfil, foto y biografía los ven las personas con acceso completo a la plataforma. Las fotos se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla. Nunca compartas apellido completo, teléfono ni ubicación exacta de tu cultivo aquí.',
+    cmyCorreoLabel:'Correo', cmyCorreoPrivado:'(privado, no se muestra)', cmyCorreoPh:'tu@correo.com', cmySecViajeroReal:'Reportes de viajero', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
     cmyViajeroPaisLabel:'País donde viajaste', cmyViajeroTextoLabel:'Tu experiencia', cmyViajeroTextoPh:'Qué pasó en la frontera o aduana, sin datos personales', cmyViajeroBtn:'Compartir experiencia', cmyViajeroExito:'¡Gracias! Tu experiencia ya está en la lista de abajo.', cmyViajeroVacio:'Todavía no hay experiencias compartidas — sé la primera persona.',
     cmySecCultivoReal:'Reportes de cultivo', cmyCultivoIntro:'Bitácoras cortas ligadas a un método específico, para cruzar experiencia real contra la ficha oficial de Cultivo.', cmyCultivoMetodoLabel:'Método que usaste', cmyCultivoTextoLabel:'Tu experiencia', cmyCultivoTextoPh:'Qué te funcionó o qué no, con ese método', cmyCultivoBtn:'Compartir reporte', cmyCultivoExito:'¡Gracias! Tu reporte ya está en la lista de abajo.', cmyCultivoVacio:'Todavía no hay reportes — sé la primera persona.',
     cmySecDiagReal:'Confirmaciones de diagnóstico', cmyDiagIntro:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>.', cmyDiagProblemaLabel:'Qué tuviste', cmyDiagTextoLabel:'Qué te funcionó', cmyDiagTextoPh:'Qué hiciste y cómo te fue', cmyDiagBtn:'Compartir confirmación', cmyDiagExito:'¡Gracias! Tu confirmación ya está en la lista de abajo.', cmyDiagVacio:'Todavía no hay confirmaciones — sé la primera persona.',
-    cmySecPreguntasReal:'Preguntas abiertas', cmyPreguntasNota:'Aquí solo se publican preguntas, no respuestas — responder de forma segura necesita moderación real, que todavía no existe. Por ahora, esto es un lugar para ver qué se pregunta la comunidad.', cmyPreguntaPh:'Tu pregunta para la comunidad', cmyPreguntaBtn:'Publicar pregunta', cmyPreguntaExito:'¡Listo! Tu pregunta ya está en la lista de abajo.', cmyPreguntaVacio:'Todavía no hay preguntas — sé la primera persona.',
+    cmySecPreguntasReal:'Preguntas abiertas', cmyPreguntasNota:'Publica tu pregunta: pueden responderte en los comentarios las personas con las que se siguen mutuamente. Nadie revisa las respuestas antes de publicarse, así que compáralas siempre con las lecciones de la plataforma.', cmyPreguntaPh:'Tu pregunta para la comunidad', cmyPreguntaBtn:'Publicar pregunta', cmyPreguntaExito:'¡Listo! Tu pregunta ya está en la lista de abajo.', cmyPreguntaVacio:'Todavía no hay preguntas — sé la primera persona.',
     cmy5porque:'Por qué este necesita más cuidado que el resto: sin moderación real, alguien podría escribir algo que suene a consejo médico específico sin que nadie lo revise antes de publicarse — es justo el que más necesita supervisión antes de abrirse.',
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
@@ -3144,17 +3133,7 @@ const translations = {
     tc8H3:'8. Limitation of liability', tc8P:'To the extent permitted by law, Mother Verde LLC will not be liable for damages arising from the use or inability to use the App, including decisions made based on the information provided. The App is offered "as is", without warranties of any kind.',
     tc9H3:'9. Changes to these terms', tc9P:'We may update these Terms periodically. We will notify you of significant changes within the App. Continued use after changes are posted constitutes acceptance of the new terms.',
     tc10H3:'10. Contact', tc10P:'For questions about these Terms, contact us at the support email listed within the App.',
-    ppEyebrow:'Legal', ppTitle:'Privacy Policy', ppUpdated:'Last updated: July 2026',
-    ppDraftNote:'<b>Note about this document:</b> this is a complete, good-faith starting point — it does not replace review by a lawyer specialized in data privacy (including regulations like GDPR or CCPA depending on where you operate) before a real launch.',
-    ppv1H3:'1. What information we collect', ppv1P:'The App may store: your age confirmation, your preferred language, entries you record in your Grow Log, and countries you follow in Alerts. On the Account screen you may optionally enter a name, email, and country — these fields are part of the prototype mockup and are not currently sent to any server.',
-    ppv2H3:'2. Where your information is stored', ppv2P:'Most of the data mentioned is stored locally on your own device, not on our servers. This means that, in its current form, most of your activity in the App stays on your phone or browser, and we do not collect it centrally.',
-    ppv2AdminP:'Within the community directory, your name, country, and profile type are visible to other people using the App. Data such as your email address is never shown publicly — only the Mother Verde LLC admin team has access to that information, with specific security controls for it (two-factor verification, access logging).',
-    ppv3H3:'3. How we use your information', ppv3P:'We use the stored information only so the App works as you expect: remembering your language, your age verification, and the content you yourself enter into tools like the Grow Log. We do not sell your information to third parties.',
-    ppv4H3:'4. Third-party services', ppv4P:'[PENDING: list of providers (Supabase, Vercel, DeepL, Hostinger) and how contributions received on the Base network are handled — to confirm with the accountant and the lawyer.]',
-    ppv5H3:'5. Your rights', ppv5P:'You can delete locally stored information by clearing the App\u2019s data from your device settings. If in the future we store data on servers, you will have the right to request access, correction, or deletion of your information, as permitted by the law of your jurisdiction.',
-    ppv6H3:'6. Children\u2019s privacy', ppv6P:'The App is restricted to people 18 and older through age verification on entry. We do not knowingly collect information from minors.',
-    ppv7H3:'7. Changes to this policy', ppv7P:'We may update this Privacy Policy periodically. We will notify you of significant changes within the App.',
-    ppv8H3:'8. Contact', ppv8P:'For privacy questions, contact us at the support email listed within the App.',
+    ppEyebrow:'Legal', ppTitle:'Privacy Policy',
     heroTitle:'The global cannabis codex, <em>actually organized</em>.', heroSub:'Evidence-based growing, product-making, legal status by country and curated science — all in one place, for growers, makers, patients and travelers.',
     heroBtn1:'Explore growing', heroBtn2:'View legal status',
     statCountries:'Countries mapped', statMetodos:'Growing methods', statSources:'Official sources', statHistory:'Historical coverage',
@@ -3218,7 +3197,7 @@ const translations = {
     bitSinFecha:'no date', bitEliminar:'Delete', bitSinNotas:'(no notes)', bitVacio:'No entries yet — add the first one above.',
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
     cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and your data are stored on our server, not only on this device.',
-    cuentaPremiumActivo:'✓ Full access active.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', 
+    cuentaPremiumActivo:'✓ Full access active.', 
     pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', 
     alertasEyebrow:'Included in full access', alertasTitle:'Legal change alerts', alertasSub:'Follow specific countries — we notify you as soon as their status changes, no need to check manually.', alertasSigues:'Countries you follow', alertasSeguirBtn:'Follow', alertasEjemploTitle:'This is what a real alert would look like', alertasEjemploH4:'Germany updated its personal possession limit', alertasEjemploTag:'Confirmed change', alertasEjemploMeta:'2 days ago · Source: BfArM', alertasEjemploBody:'Illustrative example of how a real notification would arrive when a country you follow updates its legal framework.',
     alertaSemillasH4:'U.S.: federal ban on interstate trade of seeds with 0.3%+ THC', alertaSemillasTag:'Real alert — not illustrative', alertaSemillasMeta:'July 21, 2026 · Source: MJBizDaily',
@@ -3655,14 +3634,13 @@ const translations = {
     ngCar4h4:'Compliance officer', ngCar4role:'Regulatory compliance · $70K\u2013$120K', ngCar4p:'Ensures the operation meets traceability, labeling, and licensing requirements. One of the roles with the best growth outlook in the entire industry, according to multiple salary reports.',
     ngCar5h4:'Extraction technician', ngCar5role:'Processing · $55K\u2013$75K', ngCar5p:'Operates closed-loop hydrocarbon or CO2 extraction systems, turning flower into the oils you already saw in Making → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> and <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrates</a>. Requires training in chemistry or engineering, plus specific lab safety training.',
     ngCar6h4:'Edibles chef', ngCar6role:'Manufacturing · $45K\u2013$90K', ngCar6p:'Designs and produces edibles, with real command of decarboxylation and precise per-serving dosing calculation — the same math you saw in <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Making → Edibles</a>, applied at commercial scale.',
-    cmyEyebrow:'Community — coming soon', cmyTitle:'Field reports, verified', cmySub:'What follows below (reports, confirmed diagnoses, moderated questions) needs user accounts and real moderation (backend) — it is the build plan, not a simulation. But the basic directory right below is real: it actually saves, and anyone using the app can see it.',
-    cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, profile type, photo and bio are public — anyone using the app can see them. Never share a full last name, phone number, or exact grow location here.',
-    cmyCorreoLabel:'Email', cmyCorreoPrivado:'(private, not shown)', cmyCorreoPh:'you@email.com',
-    cmyEnDesarrollo:'🚧 This feature is in development — you can\'t submit or see reports here yet. It\'s on the build list, not a simulation.', cmySecViajeroReal:'Traveler reports', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
+    cmyEyebrow:'Community', cmyTitle:'Field reports from the community', cmySub:'Share grow reports, diagnoses and questions, comment and follow other people. The Community and its directory are only visible to people with full access. Every post is translated automatically into the 4 languages.',
+    cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, profile type, photo and bio are seen by people with full access to the platform. Photos are kept in public storage: anyone with the direct link to an image can open it. Never share your full surname, phone number or the exact location of your grow here.',
+    cmyCorreoLabel:'Email', cmyCorreoPrivado:'(private, not shown)', cmyCorreoPh:'you@email.com', cmySecViajeroReal:'Traveler reports', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
     cmyViajeroPaisLabel:'Country you traveled to', cmyViajeroTextoLabel:'Your experience', cmyViajeroTextoPh:'What happened at the border or customs, no personal details', cmyViajeroBtn:'Share experience', cmyViajeroExito:'Thanks! Your experience is now in the list below.', cmyViajeroVacio:'No experiences shared yet — be the first.',
     cmySecCultivoReal:'Grow reports', cmyCultivoIntro:'Short logs tied to a specific method, to cross-check real experience against the official Growing card.', cmyCultivoMetodoLabel:'Method you used', cmyCultivoTextoLabel:'Your experience', cmyCultivoTextoPh:'What worked or did not, with that method', cmyCultivoBtn:'Share report', cmyCultivoExito:'Thanks! Your report is now in the list below.', cmyCultivoVacio:'No reports yet — be the first.',
     cmySecDiagReal:'Diagnosis confirmations', cmyDiagIntro:'The most valuable of all: "I had exactly this and this worked for me," linked to a real <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis card</a>.', cmyDiagProblemaLabel:'What you had', cmyDiagTextoLabel:'What worked for you', cmyDiagTextoPh:'What you did and how it went', cmyDiagBtn:'Share confirmation', cmyDiagExito:'Thanks! Your confirmation is now in the list below.', cmyDiagVacio:'No confirmations yet — be the first.',
-    cmySecPreguntasReal:'Open questions', cmyPreguntasNota:'Only questions are posted here, not answers — answering safely needs real moderation, which does not exist yet. For now, this is a place to see what the community is asking.', cmyPreguntaPh:'Your question for the community', cmyPreguntaBtn:'Post question', cmyPreguntaExito:'Done! Your question is now in the list below.', cmyPreguntaVacio:'No questions yet — be the first.',
+    cmySecPreguntasReal:'Open questions', cmyPreguntasNota:'Post your question: people you follow each other with can answer in the comments. Nobody reviews answers before they are published, so always compare them with the platform’s lessons.', cmyPreguntaPh:'Your question for the community', cmyPreguntaBtn:'Post question', cmyPreguntaExito:'Done! Your question is now in the list below.', cmyPreguntaVacio:'No questions yet — be the first.',
     cmy5porque:'Why this one needs more care than the rest: without real moderation, someone could write something that sounds like specific medical advice without anyone reviewing it before it is published — it is exactly the one that most needs oversight before opening up.',
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
@@ -3981,17 +3959,7 @@ const translations = {
     tc8H3:'8. Haftungsbeschränkung', tc8P:'Soweit gesetzlich zulässig, haftet Mother Verde LLC nicht für Schäden, die aus der Nutzung oder der Unmöglichkeit der Nutzung der App entstehen, einschließlich Entscheidungen, die auf Basis der bereitgestellten Informationen getroffen wurden. Die App wird "wie besehen" ohne jegliche Gewährleistung angeboten.',
     tc9H3:'9. Änderungen dieser Bedingungen', tc9P:'Wir können diese Bedingungen regelmäßig aktualisieren. Wir werden dich über wesentliche Änderungen innerhalb der App informieren. Die fortgesetzte Nutzung nach Veröffentlichung von Änderungen stellt die Annahme der neuen Bedingungen dar.',
     tc10H3:'10. Kontakt', tc10P:'Für Fragen zu diesen Bedingungen kontaktiere uns über die in der App angegebene Support-E-Mail.',
-    ppEyebrow:'Rechtliches', ppTitle:'Datenschutzrichtlinie', ppUpdated:'Zuletzt aktualisiert: Juli 2026',
-    ppDraftNote:'<b>Hinweis zu diesem Dokument:</b> dies ist eine vollständige, nach bestem Wissen erstellte Ausgangsbasis — sie ersetzt nicht die Prüfung durch einen auf Datenschutz spezialisierten Anwalt (einschließlich Vorschriften wie DSGVO oder CCPA, je nachdem wo du tätig bist) vor einem echten Launch.',
-    ppv1H3:'1. Welche Informationen wir sammeln', ppv1P:'Die App kann Folgendes speichern: deine Altersbestätigung, deine bevorzugte Sprache, Einträge, die du in deinem Anbautagebuch erfasst, und Länder, die du in Benachrichtigungen verfolgst. Auf dem Konto-Bildschirm kannst du optional Name, E-Mail und Land eingeben — diese Felder sind Teil des Prototyp-Mockups und werden derzeit an keinen Server gesendet.',
-    ppv2H3:'2. Wo deine Informationen gespeichert werden', ppv2P:'Die meisten der genannten Daten werden lokal auf deinem eigenen Gerät gespeichert, nicht auf unseren Servern. Das bedeutet, dass in der aktuellen Form der Großteil deiner Aktivität in der App auf deinem Telefon oder Browser verbleibt und wir sie nicht zentral erfassen.',
-    ppv2AdminP:'Im Community-Verzeichnis sind dein Name, dein Land und dein Profiltyp für andere Personen sichtbar, die die App nutzen. Daten wie deine E-Mail-Adresse werden niemals öffentlich angezeigt — nur das Admin-Team von Mother Verde LLC hat Zugriff auf diese Informationen, mit spezifischen Sicherheitskontrollen dafür (Zwei-Faktor-Verifizierung, Zugriffsprotokollierung).',
-    ppv3H3:'3. Wie wir deine Informationen verwenden', ppv3P:'Wir verwenden die gespeicherten Informationen nur, damit die App wie erwartet funktioniert: um deine Sprache, deine Altersverifizierung und die Inhalte zu merken, die du selbst in Werkzeuge wie das Anbautagebuch eingibst. Wir verkaufen deine Informationen nicht an Dritte.',
-    ppv4H3:'4. Dienste Dritter', ppv4P:'[AUSSTEHEND: Liste der Anbieter (Supabase, Vercel, DeepL, Hostinger) und Umgang mit den im Base-Netzwerk erhaltenen Beiträgen — mit Steuerberatung und Anwalt zu bestätigen.]',
-    ppv5H3:'5. Deine Rechte', ppv5P:'Du kannst lokal gespeicherte Informationen löschen, indem du die App-Daten über die Geräteeinstellungen entfernst. Sollten wir in Zukunft Daten auf Servern speichern, hast du das Recht, Zugang, Berichtigung oder Löschung deiner Informationen zu verlangen, soweit das Recht deiner Rechtsprechung dies zulässt.',
-    ppv6H3:'6. Datenschutz für Kinder', ppv6P:'Die App ist durch Altersverifizierung beim Zugriff auf Personen ab 18 Jahren beschränkt. Wir sammeln nicht wissentlich Informationen von Minderjährigen.',
-    ppv7H3:'7. Änderungen dieser Richtlinie', ppv7P:'Wir können diese Datenschutzrichtlinie regelmäßig aktualisieren. Wir werden dich über wesentliche Änderungen innerhalb der App informieren.',
-    ppv8H3:'8. Kontakt', ppv8P:'Für Datenschutzfragen kontaktiere uns über die in der App angegebene Support-E-Mail.',
+    ppEyebrow:'Rechtliches', ppTitle:'Datenschutzrichtlinie',
     heroTitle:'Der globale Cannabis-Codex, <em>endlich geordnet</em>.', heroSub:'Wissenschaftlich fundierter Anbau, Produktverarbeitung, Rechtsstatus je Land und kuratierte Wissenschaft — alles an einem Ort, für Anbauer, Hersteller, Patienten und Reisende.',
     heroBtn1:'Anbau erkunden', heroBtn2:'Rechtsstatus ansehen',
     statCountries:'Erfasste Länder', statMetodos:'Anbaumethoden', statSources:'Offizielle Quellen', statHistory:'Historische Abdeckung',
@@ -4055,7 +4023,7 @@ const translations = {
     bitSinFecha:'kein Datum', bitEliminar:'Löschen', bitSinNotas:'(keine Notizen)', bitVacio:'Noch keine Einträge — füge oben den ersten hinzu.',
     bitFotoLabel:'Foto (optional)', bitFotoNota:'Wird automatisch komprimiert, um Speicherplatz zu sparen. Bei vielen Einträgen mit Foto kann der Speicherplatz des Prototyps voll werden — in der Produktion würde dies auf einem echten Server ohne dieses Limit liegen.',
     cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden auf unserem Server gespeichert, nicht nur auf diesem Gerät.',
-    cuentaPremiumActivo:'✓ Vollzugriff aktiv.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', 
+    cuentaPremiumActivo:'✓ Vollzugriff aktiv.', 
     pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', 
     alertaSemillasH4:'USA: Bundesweites Verbot des zwischenstaatlichen Handels mit Samen mit 0,3 %+ THC', alertaSemillasTag:'Echte Benachrichtigung — nicht illustrativ', alertaSemillasMeta:'21. Juli 2026 · Quelle: MJBizDaily',
     alertaSemillasBody:'Die bundesweite Neudefinition von Hanf macht es ab dem <b>12. November 2026</b> illegal, Samen von Sorten mit 0,3 % THC oder mehr über Bundesstaatsgrenzen zu versenden. Samenbanken diversifizieren ihre Aktivitäten bereits auf verschiedene Bundesstaaten, um nach diesem Datum weiter operieren zu können.',
@@ -4491,14 +4459,13 @@ const translations = {
     ngCar4h4:'Compliance Officer', ngCar4role:'Regulatorische Compliance · 70–120 Tsd. $', ngCar4p:'Stellt sicher, dass der Betrieb Rückverfolgbarkeit, Kennzeichnung und Lizenzanforderungen erfüllt. Einer der Berufe mit der besten Wachstumsaussicht der gesamten Branche, laut mehreren Gehaltsberichten.',
     ngCar5h4:'Extraktionstechniker', ngCar5role:'Verarbeitung · 55–75 Tsd. $', ngCar5p:'Betreibt geschlossene Kohlenwasserstoff- oder CO2-Extraktionssysteme und verwandelt Blüte in die Öle, die du bereits in Verarbeitung → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> und <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Konzentrate</a> gesehen hast. Erfordert Ausbildung in Chemie oder Ingenieurwesen, plus spezifische Laborsicherheitsschulung.',
     ngCar6h4:'Esswaren-Koch', ngCar6role:'Herstellung · 45–90 Tsd. $', ngCar6p:'Entwirft und produziert Esswaren, mit echter Beherrschung von Decarboxylierung und präziser Dosisberechnung pro Portion — dieselbe Mathematik, die du in <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Verarbeitung → Esswaren</a> gesehen hast, angewandt im kommerziellen Maßstab.',
-    cmyEyebrow:'Community — demnächst', cmyTitle:'Felderfahrungen, verifiziert', cmySub:'Was unten folgt (Berichte, bestätigte Diagnosen, moderierte Fragen) benötigt Nutzerkonten und echte Moderation (Backend) — das ist der Bauplan, keine Simulation. Aber das grundlegende Verzeichnis direkt unten ist echt: es wird tatsächlich gespeichert, und jeder, der die App nutzt, kann es sehen.',
-    cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Dein Name, Land, Profiltyp, Foto und Biografie sind öffentlich — alle, die die App nutzen, können sie sehen. Teile hier niemals einen vollständigen Nachnamen, Telefonnummer oder genaue Anbauadresse.',
-    cmyCorreoLabel:'E-Mail', cmyCorreoPrivado:'(privat, nicht angezeigt)', cmyCorreoPh:'du@email.com',
-    cmyEnDesarrollo:'🚧 Diese Funktion ist in Entwicklung — du kannst hier noch keine Berichte senden oder sehen. Sie steht auf der To-do-Liste, ist keine Simulation.', cmySecViajeroReal:'Reiseberichte', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
+    cmyEyebrow:'Community', cmyTitle:'Feldberichte aus der Community', cmySub:'Teile Anbauberichte, Diagnosen und Fragen, kommentiere und folge anderen. Die Community und ihr Verzeichnis sehen nur Personen mit Vollzugriff. Jeder Beitrag wird automatisch in die 4 Sprachen übersetzt.',
+    cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Deinen Namen, dein Land, deinen Profiltyp, dein Foto und deine Bio sehen Personen mit Vollzugriff auf die Plattform. Fotos liegen in einem öffentlichen Speicher: Wer den direkten Link zu einem Bild hat, kann es öffnen. Teile hier nie deinen vollständigen Nachnamen, deine Telefonnummer oder den genauen Ort deines Anbaus.',
+    cmyCorreoLabel:'E-Mail', cmyCorreoPrivado:'(privat, nicht angezeigt)', cmyCorreoPh:'du@email.com', cmySecViajeroReal:'Reiseberichte', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
     cmyViajeroPaisLabel:'Land, in das du gereist bist', cmyViajeroTextoLabel:'Deine Erfahrung', cmyViajeroTextoPh:'Was an der Grenze oder beim Zoll passiert ist, ohne persönliche Daten', cmyViajeroBtn:'Erfahrung teilen', cmyViajeroExito:'Danke! Deine Erfahrung steht jetzt in der Liste unten.', cmyViajeroVacio:'Noch keine Erfahrungen geteilt — sei die erste Person.',
     cmySecCultivoReal:'Anbauberichte', cmyCultivoIntro:'Kurze Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Anbau-Karte abzugleichen.', cmyCultivoMetodoLabel:'Verwendete Methode', cmyCultivoTextoLabel:'Deine Erfahrung', cmyCultivoTextoPh:'Was mit dieser Methode funktioniert hat oder nicht', cmyCultivoBtn:'Bericht teilen', cmyCultivoExito:'Danke! Dein Bericht steht jetzt in der Liste unten.', cmyCultivoVacio:'Noch keine Berichte — sei die erste Person.',
     cmySecDiagReal:'Diagnosebestätigungen', cmyDiagIntro:'Das Wertvollste von allem: "Ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>-Karte.', cmyDiagProblemaLabel:'Was du hattest', cmyDiagTextoLabel:'Was bei dir funktioniert hat', cmyDiagTextoPh:'Was du getan hast und wie es lief', cmyDiagBtn:'Bestätigung teilen', cmyDiagExito:'Danke! Deine Bestätigung steht jetzt in der Liste unten.', cmyDiagVacio:'Noch keine Bestätigungen — sei die erste Person.',
-    cmySecPreguntasReal:'Offene Fragen', cmyPreguntasNota:'Hier werden nur Fragen veröffentlicht, keine Antworten — sicheres Antworten braucht echte Moderation, die es noch nicht gibt. Vorerst ist dies ein Ort, um zu sehen, was die Community fragt.', cmyPreguntaPh:'Deine Frage an die Community', cmyPreguntaBtn:'Frage veröffentlichen', cmyPreguntaExito:'Fertig! Deine Frage steht jetzt in der Liste unten.', cmyPreguntaVacio:'Noch keine Fragen — sei die erste Person.',
+    cmySecPreguntasReal:'Offene Fragen', cmyPreguntasNota:'Stell deine Frage: Personen, denen du gegenseitig folgst, können in den Kommentaren antworten. Niemand prüft die Antworten vor der Veröffentlichung, vergleiche sie also immer mit den Lektionen der Plattform.', cmyPreguntaPh:'Deine Frage an die Community', cmyPreguntaBtn:'Frage veröffentlichen', cmyPreguntaExito:'Fertig! Deine Frage steht jetzt in der Liste unten.', cmyPreguntaVacio:'Noch keine Fragen — sei die erste Person.',
     cmy5porque:'Warum das mehr Sorgfalt braucht als der Rest: ohne echte Moderation könnte jemand etwas schreiben, das wie ein spezifischer medizinischer Rat klingt, ohne dass es jemand vor der Veröffentlichung prüft — genau das braucht am meisten Aufsicht, bevor es geöffnet wird.',
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
@@ -4817,17 +4784,7 @@ const translations = {
     tc8H3:'8. Limitation de responsabilité', tc8P:'Dans la mesure permise par la loi, Mother Verde LLC ne sera pas responsable des dommages découlant de l\u2019utilisation ou de l\u2019impossibilité d\u2019utiliser l\u2019App, y compris les décisions prises sur la base des informations fournies. L\u2019App est proposée « telle quelle », sans garantie d\u2019aucune sorte.',
     tc9H3:'9. Modifications de ces conditions', tc9P:'Nous pouvons mettre à jour ces Conditions périodiquement. Nous te notifierons des changements significatifs au sein de l\u2019App. L\u2019utilisation continue après la publication des changements constitue une acceptation des nouvelles conditions.',
     tc10H3:'10. Contact', tc10P:'Pour toute question concernant ces Conditions, contacte-nous à l\u2019adresse e-mail de support indiquée dans l\u2019App.',
-    ppEyebrow:'Mentions légales', ppTitle:'Politique de confidentialité', ppUpdated:'Dernière mise à jour : juillet 2026',
-    ppDraftNote:'<b>Remarque sur ce document :</b> ceci est une base complète, rédigée de bonne foi comme point de départ — elle ne remplace pas la révision par un avocat spécialisé en confidentialité des données (y compris des réglementations comme le RGPD ou le CCPA selon ton lieu d\u2019exploitation) avant un lancement réel.',
-    ppv1H3:'1. Quelles informations nous collectons', ppv1P:'L\u2019App peut stocker : ta confirmation d\u2019âge, ta langue préférée, les entrées que tu enregistres dans ton Journal de culture, et les pays que tu suis dans Alertes. Sur l\u2019écran Compte, tu peux saisir facultativement un nom, un e-mail et un pays — ces champs font partie de la maquette du prototype et ne sont actuellement envoyés à aucun serveur.',
-    ppv2H3:'2. Où tes informations sont stockées', ppv2P:'La plupart des données mentionnées sont stockées localement sur ton propre appareil, pas sur nos serveurs. Cela signifie que, sous sa forme actuelle, la majeure partie de ton activité dans l\u2019App reste sur ton téléphone ou navigateur, et nous ne la collectons pas de manière centralisée.',
-    ppv2AdminP:'Au sein de l\u2019annuaire de la communauté, ton nom, ton pays et ton type de profil sont visibles par les autres personnes utilisant l\u2019App. Des données comme ton adresse e-mail ne sont jamais affichées publiquement — seule l\u2019équipe d\u2019administration de Mother Verde LLC a accès à cette information, avec des contrôles de sécurité spécifiques pour cela (vérification à deux facteurs, journalisation des accès).',
-    ppv3H3:'3. Comment nous utilisons tes informations', ppv3P:'Nous utilisons les informations stockées uniquement pour que l\u2019App fonctionne comme tu l\u2019attends : mémoriser ta langue, ta vérification d\u2019âge, et le contenu que tu saisis toi-même dans des outils comme le Journal de culture. Nous ne vendons pas tes informations à des tiers.',
-    ppv4H3:'4. Services tiers', ppv4P:'[EN ATTENTE : liste des prestataires (Supabase, Vercel, DeepL, Hostinger) et traitement des contributions reçues sur le réseau Base — à confirmer avec le comptable et l’avocat.]',
-    ppv5H3:'5. Tes droits', ppv5P:'Tu peux supprimer les informations stockées localement en effaçant les données de l\u2019App depuis les paramètres de ton appareil. Si à l\u2019avenir nous stockons des données sur des serveurs, tu auras le droit de demander l\u2019accès, la correction ou la suppression de tes informations, selon ce que permet la loi de ta juridiction.',
-    ppv6H3:'6. Confidentialité des mineurs', ppv6P:'L\u2019App est réservée aux personnes de 18 ans et plus grâce à une vérification d\u2019âge à l\u2019entrée. Nous ne collectons pas sciemment d\u2019informations auprès de mineurs.',
-    ppv7H3:'7. Modifications de cette politique', ppv7P:'Nous pouvons mettre à jour cette Politique de confidentialité périodiquement. Nous te notifierons des changements significatifs au sein de l\u2019App.',
-    ppv8H3:'8. Contact', ppv8P:'Pour toute question sur la confidentialité, contacte-nous à l\u2019adresse e-mail de support indiquée dans l\u2019App.',
+    ppEyebrow:'Mentions légales', ppTitle:'Politique de confidentialité',
     heroTitle:'Le codex mondial du cannabis, <em>enfin organisé</em>.', heroSub:'Culture fondée sur des preuves, élaboration de produits, statut légal par pays et science organisée — le tout en un seul endroit, pour cultivateurs, fabricants, patients et voyageurs.',
     heroBtn1:'Explorer la culture', heroBtn2:'Voir le statut légal',
     statCountries:'Pays cartographiés', statMetodos:'Méthodes de culture', statSources:'Sources officielles', statHistory:'Couverture historique',
@@ -4891,7 +4848,7 @@ const translations = {
     bitSinFecha:'sans date', bitEliminar:'Supprimer', bitSinNotas:'(sans notes)', bitVacio:'Pas encore d’entrées — ajoute la première ci-dessus.', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
     bitFotoLabel:'Photo (facultatif)', bitFotoNota:'Automatiquement compressée pour économiser de l\u2019espace. Avec de nombreuses entrées avec photo, l\u2019espace de stockage du prototype peut se remplir — en production, cela vivrait sur un vrai serveur, sans cette limite.',
     cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés sur notre serveur, pas seulement sur cet appareil.',
-    cuentaPremiumActivo:'✓ Accès complet actif.', cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', 
+    cuentaPremiumActivo:'✓ Accès complet actif.', 
     pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', 
     alertaSemillasH4:'États-Unis : interdiction fédérale du commerce interétatique de graines à 0,3 %+ de THC', alertaSemillasTag:'Alerte réelle — non illustrative', alertaSemillasMeta:'21 juillet 2026 · Source : MJBizDaily',
     alertaSemillasBody:'La redéfinition fédérale du chanvre rend illégal l\u2019envoi de graines de cultivars à 0,3 % de THC ou plus entre États, à partir du <b>12 novembre 2026</b>. Les banques de graines diversifient déjà leurs opérations vers différents États pour pouvoir continuer à fonctionner après cette date.',
@@ -5327,14 +5284,13 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     ngCar4h4:'Compliance officer', ngCar4role:'Conformité réglementaire · 70-120 k $', ngCar4p:'Garantit que l\u2019exploitation respecte la traçabilité, l\u2019étiquetage et les exigences de licence. L\u2019un des rôles avec les meilleures perspectives de croissance de toute l\u2019industrie, selon plusieurs rapports salariaux.',
     ngCar5h4:'Technicien d\u2019extraction', ngCar5role:'Transformation · 55-75 k $', ngCar5p:'Exploite des systèmes d\u2019extraction en circuit fermé à l\u2019hydrocarbure ou au CO2, transformant la fleur en huiles que tu as déjà vues dans Élaboration → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> et <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrés</a>. Nécessite une formation en chimie ou en ingénierie, plus une formation spécifique en sécurité de laboratoire.',
     ngCar6h4:'Chef comestibles', ngCar6role:'Élaboration · 45-90 k $', ngCar6p:'Conçoit et produit des comestibles, avec une véritable maîtrise de la décarboxylation et du calcul précis de dosage par portion — les mêmes mathématiques que tu as vues dans <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Élaboration → Comestibles</a>, appliquées à l\u2019échelle commerciale.',
-    cmyEyebrow:'Communauté — bientôt', cmyTitle:'Rapports de terrain, vérifiés', cmySub:'Ce qui suit ci-dessous (rapports, diagnostics confirmés, questions modérées) nécessite des comptes utilisateurs et une modération réelle (backend) — c\u2019est le plan de construction, pas une simulation. Mais l\u2019annuaire de base juste en dessous est réel : il est vraiment enregistré, et toute personne utilisant l\u2019app peut le voir.',
-    cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays, ton type de profil, ta photo et ta bio sont publics — toute personne utilisant l’app peut les voir. Ne partage jamais ici de nom de famille complet, de téléphone, ni d’emplacement exact de culture.',
-    cmyCorreoLabel:'E-mail', cmyCorreoPrivado:'(privé, non affiché)', cmyCorreoPh:'toi@email.com',
-    cmyEnDesarrollo:'🚧 Cette fonctionnalité est en cours de développement — tu ne peux pas encore envoyer ni voir de rapports ici. C’est prévu, ce n’est pas une simulation.', cmySecViajeroReal:'Rapports de voyageurs', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
+    cmyEyebrow:'Communauté', cmyTitle:'Rapports de terrain de la communauté', cmySub:'Partage des rapports de culture, des diagnostics et des questions, commente et suis d’autres personnes. La Communauté et son annuaire ne sont visibles que par les personnes avec l’accès complet. Chaque publication est traduite automatiquement dans les 4 langues.',
+    cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays, ton type de profil, ta photo et ta bio sont vus par les personnes avec l’accès complet à la plateforme. Les photos sont dans un stockage public : quiconque a le lien direct d’une image peut l’ouvrir. Ne partage jamais ici ton nom de famille complet, ton téléphone ni l’emplacement exact de ta culture.',
+    cmyCorreoLabel:'E-mail', cmyCorreoPrivado:'(privé, non affiché)', cmyCorreoPh:'toi@email.com', cmySecViajeroReal:'Rapports de voyageurs', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
     cmyViajeroPaisLabel:'Pays où tu as voyagé', cmyViajeroTextoLabel:'Ton expérience', cmyViajeroTextoPh:'Ce qui s\u2019est passé à la frontière ou à la douane, sans données personnelles', cmyViajeroBtn:'Partager l\u2019expérience', cmyViajeroExito:'Merci ! Ton expérience est maintenant dans la liste ci-dessous.', cmyViajeroVacio:'Aucune expérience partagée pour l\u2019instant — sois la première personne.',
     cmySecCultivoReal:'Rapports de culture', cmyCultivoIntro:'De courts journaux liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle de Culture.', cmyCultivoMetodoLabel:'Méthode utilisée', cmyCultivoTextoLabel:'Ton expérience', cmyCultivoTextoPh:'Ce qui a fonctionné ou non avec cette méthode', cmyCultivoBtn:'Partager le rapport', cmyCultivoExito:'Merci ! Ton rapport est maintenant dans la liste ci-dessous.', cmyCultivoVacio:'Aucun rapport pour l\u2019instant — sois la première personne.',
     cmySecDiagReal:'Confirmations de diagnostic', cmyDiagIntro:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a fonctionné pour moi », lié à une véritable fiche <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>.', cmyDiagProblemaLabel:'Ce que tu as eu', cmyDiagTextoLabel:'Ce qui a fonctionné pour toi', cmyDiagTextoPh:'Ce que tu as fait et comment ça s\u2019est passé', cmyDiagBtn:'Partager la confirmation', cmyDiagExito:'Merci ! Ta confirmation est maintenant dans la liste ci-dessous.', cmyDiagVacio:'Aucune confirmation pour l\u2019instant — sois la première personne.',
-    cmySecPreguntasReal:'Questions ouvertes', cmyPreguntasNota:'Seules les questions sont publiées ici, pas les réponses — répondre en toute sécurité nécessite une vraie modération, qui n\u2019existe pas encore. Pour l\u2019instant, c\u2019est un endroit pour voir ce que la communauté se demande.', cmyPreguntaPh:'Ta question pour la communauté', cmyPreguntaBtn:'Publier la question', cmyPreguntaExito:'C\u2019est fait ! Ta question est maintenant dans la liste ci-dessous.', cmyPreguntaVacio:'Aucune question pour l\u2019instant — sois la première personne.',
+    cmySecPreguntasReal:'Questions ouvertes', cmyPreguntasNota:'Publie ta question : les personnes avec qui vous vous suivez mutuellement peuvent répondre dans les commentaires. Personne ne vérifie les réponses avant leur publication, compare-les donc toujours avec les leçons de la plateforme.', cmyPreguntaPh:'Ta question pour la communauté', cmyPreguntaBtn:'Publier la question', cmyPreguntaExito:'C\u2019est fait ! Ta question est maintenant dans la liste ci-dessous.', cmyPreguntaVacio:'Aucune question pour l\u2019instant — sois la première personne.',
     cmy5porque:'Pourquoi celle-ci demande plus de soin que les autres : sans modération réelle, quelqu\u2019un pourrait écrire quelque chose qui ressemble à un conseil médical précis sans que personne ne le révise avant publication — c\u2019est justement celui qui a le plus besoin de supervision avant d\u2019être ouvert.',
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
@@ -5569,15 +5525,31 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
 /* Account status strings (appended so overrides win). */
 translations.es = Object.assign(translations.es, {
   "subLoading": "Cargando el estado de tu cuenta…",
+  "stuckH": "No pudimos cargar tu cuenta",
+  "stuckP": "La conexión está tardando más de lo normal o algo falló. Tus datos están a salvo.",
+  "stuckRetry": "Reintentar", "stuckSignOut": "Cerrar sesión",
+  "stuckMail": "Si sigue pasando, escríbenos a {mail}.",
 });
 translations.en = Object.assign(translations.en, {
   "subLoading": "Loading your account status…",
+  "stuckH": "We couldn’t load your account",
+  "stuckP": "The connection is taking longer than usual or something went wrong. Your data is safe.",
+  "stuckRetry": "Try again", "stuckSignOut": "Sign out",
+  "stuckMail": "If it keeps happening, write to us at {mail}.",
 });
 translations.de = Object.assign(translations.de, {
   "subLoading": "Kontostatus wird geladen…",
+  "stuckH": "Wir konnten dein Konto nicht laden",
+  "stuckP": "Die Verbindung dauert länger als üblich oder etwas ist schiefgelaufen. Deine Daten sind sicher.",
+  "stuckRetry": "Erneut versuchen", "stuckSignOut": "Abmelden",
+  "stuckMail": "Wenn es weiter passiert, schreib uns an {mail}.",
 });
 translations.fr = Object.assign(translations.fr, {
   "subLoading": "Chargement de l'état de ton compte…",
+  "stuckH": "Nous n’avons pas pu charger ton compte",
+  "stuckP": "La connexion prend plus de temps que d’habitude ou quelque chose a échoué. Tes données sont en sécurité.",
+  "stuckRetry": "Réessayer", "stuckSignOut": "Se déconnecter",
+  "stuckMail": "Si ça continue, écris-nous à {mail}.",
 });
 
 // Language chosen last time in this browser (kept across reloads); Spanish otherwise.
@@ -5850,10 +5822,10 @@ translations.es.dsPaso3 = "Guarda el código de la transacción (también llamad
 translations.en.dsPaso3 = "Keep the transaction code (also called “hash” or “transaction ID”).";
 translations.de.dsPaso3 = "Bewahre den Transaktionscode auf (auch „Hash“ oder „Transaktions-ID“ genannt).";
 translations.fr.dsPaso3 = "Garde le code de la transaction (aussi appelé « hash » ou « ID de transaction »).";
-translations.es.dsPaso4 = "Pega aquí ese código. Revisamos cada aporte en un máximo de {h} horas y activamos tu acceso completo.";
-translations.en.dsPaso4 = "Paste that code here. We check every contribution within {h} hours at most and turn on your full access.";
-translations.de.dsPaso4 = "Füge diesen Code hier ein. Wir prüfen jeden Beitrag innerhalb von höchstens {h} Stunden und schalten deinen Vollzugriff frei.";
-translations.fr.dsPaso4 = "Colle ce code ici. Nous vérifions chaque contribution en {h} heures maximum et activons ton accès complet.";
+translations.es.dsPaso4 = "Pega aquí ese código. Revisamos cada aporte y activamos tu acceso completo en hasta {h} horas.";
+translations.en.dsPaso4 = "Paste that code here. We check every contribution and turn on your full access within up to {h} hours.";
+translations.de.dsPaso4 = "Füge diesen Code hier ein. Wir prüfen jeden Beitrag und schalten deinen Vollzugriff in bis zu {h} Stunden frei.";
+translations.fr.dsPaso4 = "Colle ce code ici. Nous vérifions chaque contribution et activons ton accès complet en jusqu’à {h} heures.";
 translations.es.dsFormProximamente = "El formulario para avisarnos de tu aporte estará aquí muy pronto. Todavía no envíes nada: espera a que aparezca.";
 translations.en.dsFormProximamente = "The form to tell us about your contribution will be here very soon. Please don’t send anything yet: wait until it appears.";
 translations.de.dsFormProximamente = "Das Formular, mit dem du uns über deinen Beitrag informierst, kommt sehr bald hierher. Bitte sende noch nichts: Warte, bis es erscheint.";
@@ -6001,6 +5973,11 @@ translations.es.authErrRate = "Ahora mismo no podemos enviar más correos. Esper
 translations.en.authErrRate = "We can’t send more emails right now. Please wait a few minutes and try again.";
 translations.de.authErrRate = "Wir können gerade keine weiteren E-Mails senden. Warte ein paar Minuten und versuch es noch einmal.";
 translations.fr.authErrRate = "Nous ne pouvons pas envoyer plus d’e-mails pour l’instant. Attends quelques minutes et réessaie.";
+// At sign-up (Supabase's e-mails-per-hour limit): the account was not created.
+translations.es.authErrRateSignup = "Estamos recibiendo muchos registros. Inténtalo de nuevo en unos minutos.";
+translations.en.authErrRateSignup = "We’re receiving a lot of sign-ups. Please try again in a few minutes.";
+translations.de.authErrRateSignup = "Wir bekommen gerade sehr viele Registrierungen. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.authErrRateSignup = "Nous recevons beaucoup d’inscriptions. Réessaie dans quelques minutes.";
 translations.es.authErrSend = "No pudimos enviar el correo. Inténtalo en unos minutos; si sigue fallando, escríbenos a hello@motherverdeny.com.";
 translations.en.authErrSend = "We couldn’t send the email. Try again in a few minutes; if it keeps failing, write to us at hello@motherverdeny.com.";
 translations.de.authErrSend = "Wir konnten die E-Mail nicht senden. Versuch es in ein paar Minuten noch einmal; wenn es weiter nicht klappt, schreib uns an hello@motherverdeny.com.";
@@ -6309,10 +6286,10 @@ translations.es.dsPendingH = "Recibimos tu aporte, lo estamos verificando";
 translations.en.dsPendingH = "We received your contribution and are verifying it";
 translations.de.dsPendingH = "Wir haben deinen Beitrag erhalten und prüfen ihn";
 translations.fr.dsPendingH = "Nous avons reçu ta contribution et nous la vérifions";
-translations.es.dsPendingP = "Lo revisamos en un máximo de {h} horas. Te avisaremos por correo cuando tu acceso esté activo.";
-translations.en.dsPendingP = "We check it within {h} hours at most. We’ll e-mail you when your access is active.";
-translations.de.dsPendingP = "Wir prüfen ihn innerhalb von höchstens {h} Stunden. Wir schreiben dir eine E-Mail, sobald dein Zugang aktiv ist.";
-translations.fr.dsPendingP = "Nous la vérifions en {h} heures maximum. Nous t’écrirons par e-mail quand ton accès sera actif.";
+translations.es.dsPendingP = "Lo revisamos en hasta {h} horas. Te avisaremos por correo cuando tu acceso esté activo.";
+translations.en.dsPendingP = "We check it within up to {h} hours. We’ll e-mail you when your access is active.";
+translations.de.dsPendingP = "Wir prüfen ihn in bis zu {h} Stunden. Wir schreiben dir eine E-Mail, sobald dein Zugang aktiv ist.";
+translations.fr.dsPendingP = "Nous la vérifions en jusqu’à {h} heures. Nous t’écrirons par e-mail quand ton accès sera actif.";
 translations.es.dsRejectedP = "No pudimos verificar tu último aporte. Si crees que es un error, escríbenos a hello@motherverdeny.com con el código de la transacción.";
 translations.en.dsRejectedP = "We couldn’t verify your last contribution. If you think this is a mistake, write to hello@motherverdeny.com with the transaction code.";
 translations.de.dsRejectedP = "Wir konnten deinen letzten Beitrag nicht bestätigen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com mit dem Transaktionscode.";
@@ -6461,6 +6438,100 @@ translations.es.dsErrEnRevision = "Ya tienes otro aviso en revisión. Espera a q
 translations.en.dsErrEnRevision = "You already have another notice under review. Wait until we check it or write to us at hello@motherverdeny.com.";
 translations.de.dsErrEnRevision = "Du hast schon eine andere Meldung in Prüfung. Warte, bis wir sie geprüft haben, oder schreib uns an hello@motherverdeny.com.";
 translations.fr.dsErrEnRevision = "Tu as déjà un autre avis en cours de vérification. Attends que nous le vérifiions ou écris-nous à hello@motherverdeny.com.";
+// Late payment checked on Base (20261014120000) + neutral manual-review line.
+// Privacy screen rewritten 14-10-2026: only what the code really does (audit N7).
+translations.es.pvUpdated = "Última actualización: 14 de octubre de 2026 · borrador";
+translations.en.pvUpdated = "Last updated: 14 October 2026 · draft";
+translations.de.pvUpdated = "Letzte Aktualisierung: 14. Oktober 2026 · Entwurf";
+translations.fr.pvUpdated = "Dernière mise à jour : 14 octobre 2026 · brouillon";
+translations.es.pvIntro = "Esta página describe lo que la plataforma hace hoy con tus datos, tal como funciona por dentro. [PENDIENTE: revisión de abogada: responsable del tratamiento, base legal, plazos de conservación, transferencias internacionales y derechos según cada país.]";
+translations.en.pvIntro = "This page describes what the platform does with your data today, exactly as it works inside. [PENDING: lawyer review: data controller, legal basis, retention periods, international transfers and rights in each country.]";
+translations.de.pvIntro = "Diese Seite beschreibt, was die Plattform heute mit deinen Daten macht, so wie sie intern funktioniert. [AUSSTEHEND: Prüfung durch eine Anwältin: Verantwortliche Stelle, Rechtsgrundlage, Speicherfristen, internationale Übermittlungen und Rechte je nach Land.]";
+translations.fr.pvIntro = "Cette page décrit ce que la plateforme fait aujourd’hui de tes données, tel qu’elle fonctionne en interne. [EN ATTENTE : relecture par une avocate : responsable du traitement, base légale, durées de conservation, transferts internationaux et droits selon chaque pays.]";
+translations.es.pv1H = "1. Quién es responsable";
+translations.en.pv1H = "1. Who is responsible";
+translations.de.pv1H = "1. Wer verantwortlich ist";
+translations.fr.pv1H = "1. Qui est responsable";
+translations.es.pv1P = "Mother Verde LLC. Contacto para todo lo relacionado con tus datos: <b>hello@motherverdeny.com</b>. [PENDIENTE: revisión de abogada: datos completos del responsable y, si corresponde, representante en la Unión Europea.]";
+translations.en.pv1P = "Mother Verde LLC. Contact for anything about your data: <b>hello@motherverdeny.com</b>. [PENDING: lawyer review: full details of the controller and, if required, a representative in the European Union.]";
+translations.de.pv1P = "Mother Verde LLC. Kontakt für alles rund um deine Daten: <b>hello@motherverdeny.com</b>. [AUSSTEHEND: Prüfung durch eine Anwältin: vollständige Angaben zur verantwortlichen Stelle und, falls nötig, ein Vertreter in der Europäischen Union.]";
+translations.fr.pv1P = "Mother Verde LLC. Contact pour tout ce qui concerne tes données : <b>hello@motherverdeny.com</b>. [EN ATTENTE : relecture par une avocate : coordonnées complètes du responsable et, si nécessaire, représentant dans l’Union européenne.]";
+translations.es.pv2H = "2. Lo que se guarda solo en tu navegador";
+translations.en.pv2H = "2. What is kept only in your browser";
+translations.de.pv2H = "2. Was nur in deinem Browser gespeichert wird";
+translations.fr.pv2H = "2. Ce qui reste uniquement dans ton navigateur";
+translations.es.pv2P = "Tu confirmación de mayoría de edad, el idioma elegido, las casillas marcadas en la lista de cosecha, cuántas veces pediste reenviar un correo (para limitar los reenvíos) y, si tienes cuenta, tu sesión. La web también guarda una copia de sus páginas para cargar más rápido. Puedes borrarlo todo desde los ajustes de tu navegador. <b>La plataforma no usa cookies propias ni herramientas de analítica o de publicidad.</b>";
+translations.en.pv2P = "Your confirmation that you are of age, your chosen language, the boxes ticked in the harvest checklist, how many times you asked to resend an e-mail (to limit resends) and, if you have an account, your session. The site also keeps a copy of its pages so it loads faster. You can delete all of this in your browser settings. <b>The platform uses no cookies of its own and no analytics or advertising tools.</b>";
+translations.de.pv2P = "Deine Bestätigung, volljährig zu sein, die gewählte Sprache, die angehakten Kästchen der Ernte-Checkliste, wie oft du eine E-Mail erneut angefordert hast (um das zu begrenzen) und, wenn du ein Konto hast, deine Sitzung. Die Website speichert außerdem eine Kopie ihrer Seiten, damit sie schneller lädt. Du kannst das alles in deinen Browser-Einstellungen löschen. <b>Die Plattform verwendet keine eigenen Cookies und keine Analyse- oder Werbewerkzeuge.</b>";
+translations.fr.pv2P = "Ta confirmation d’être majeur·e, la langue choisie, les cases cochées de la liste de récolte, le nombre de fois où tu as demandé à renvoyer un e-mail (pour limiter les renvois) et, si tu as un compte, ta session. Le site garde aussi une copie de ses pages pour charger plus vite. Tu peux tout effacer dans les réglages de ton navigateur. <b>La plateforme n’utilise ni cookies propres ni outils d’analyse ou de publicité.</b>";
+translations.es.pv3H = "3. Lo que se guarda en tu cuenta";
+translations.en.pv3H = "3. What is stored in your account";
+translations.de.pv3H = "3. Was in deinem Konto gespeichert wird";
+translations.fr.pv3H = "3. Ce qui est enregistré dans ton compte";
+translations.es.pv3P = "Si creas una cuenta, estos datos se guardan en los servidores de Supabase en la Unión Europea (región Central EU, Fráncfort, Alemania):<ul><li><b>Cuenta:</b> correo y contraseña (Supabase guarda la contraseña cifrada; nadie de Mother Verde puede verla), idioma, nombre visible, correo de contacto opcional y el estado de tu acceso (prueba de 24 horas, aporte o días de regalo) con sus fechas.</li><li><b>Bitácora:</b> fecha, etapa, notas, pH, EC, temperatura, humedad, porcentajes de tricomas y la foto si la añades. Solo tú puedes verla.</li><li><b>Comunidad</b> (si la usas): perfil (nombre visible, país, tipo de perfil, biografía y foto), publicaciones, comentarios, fotos, a quién sigues y los reportes que envías. Lo ven solo las personas con acceso completo. Las fotos de Comunidad se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla.</li><li><b>Aportes:</b> cantidad de flores, monto, código de la transacción (TXID), fechas, estado y revisión; nombre y teléfono de contacto solo si los escribes (solo los ve la administradora).</li><li><b>Códigos de regalo:</b> el correo al que se envió un código. El código solo se guarda como huella cifrada.</li><li><b>Registros técnicos:</b> envíos de correo (sin direcciones), intentos de corregir el correo de registro (solo una huella, sin la dirección), cuántas publicaciones hiciste en el día (para los límites) y un registro de las acciones de la administradora, que incluye el correo de la cuenta afectada.</li></ul>";
+translations.en.pv3P = "If you create an account, this data is stored on Supabase servers in the European Union (Central EU region, Frankfurt, Germany):<ul><li><b>Account:</b> e-mail and password (Supabase stores the password encrypted; nobody at Mother Verde can see it), language, display name, optional contact e-mail and the state of your access (24-hour trial, contribution or gift days) with its dates.</li><li><b>Grow log:</b> date, stage, notes, pH, EC, temperature, humidity, trichome percentages and the photo if you add one. Only you can see it.</li><li><b>Community</b> (if you use it): profile (display name, country, profile type, bio and photo), posts, comments, photos, who you follow and the reports you send. Only people with full access can see it. Community photos are kept in public storage: anyone with the direct link to an image can open it.</li><li><b>Contributions:</b> number of flowers, amount, transaction code (TXID), dates, status and review; contact name and phone only if you write them (only the administrator sees them).</li><li><b>Gift codes:</b> the e-mail a code was sent to. The code itself is only stored as an encrypted fingerprint.</li><li><b>Technical logs:</b> e-mails sent (without addresses), attempts to correct the sign-up e-mail (only a fingerprint, not the address), how many posts you made that day (for the limits) and a log of the administrator’s actions, which includes the e-mail of the account concerned.</li></ul>";
+translations.de.pv3P = "Wenn du ein Konto erstellst, werden diese Daten auf Servern von Supabase in der Europäischen Union gespeichert (Region Central EU, Frankfurt, Deutschland):<ul><li><b>Konto:</b> E-Mail und Passwort (Supabase speichert das Passwort verschlüsselt; niemand bei Mother Verde kann es sehen), Sprache, Anzeigename, optionale Kontakt-E-Mail und der Stand deines Zugangs (24-Stunden-Test, Beitrag oder Geschenktage) mit den Daten.</li><li><b>Anbau-Logbuch:</b> Datum, Phase, Notizen, pH, EC, Temperatur, Luftfeuchtigkeit, Trichom-Anteile und das Foto, wenn du eines hinzufügst. Nur du kannst es sehen.</li><li><b>Community</b> (wenn du sie nutzt): Profil (Anzeigename, Land, Profiltyp, Bio und Foto), Beiträge, Kommentare, Fotos, wem du folgst und die Meldungen, die du sendest. Nur Personen mit Vollzugriff sehen das. Community-Fotos liegen in einem öffentlichen Speicher: Wer den direkten Link zu einem Bild hat, kann es öffnen.</li><li><b>Beiträge (Unterstützung):</b> Anzahl der Blüten, Betrag, Transaktionscode (TXID), Daten, Status und Prüfung; Kontaktname und Telefon nur, wenn du sie angibst (nur die Administratorin sieht sie).</li><li><b>Geschenkcodes:</b> die E-Mail-Adresse, an die ein Code ging. Der Code selbst wird nur als verschlüsselter Fingerabdruck gespeichert.</li><li><b>Technische Protokolle:</b> gesendete E-Mails (ohne Adressen), Versuche, die Anmelde-E-Mail zu korrigieren (nur ein Fingerabdruck, nicht die Adresse), wie viele Beiträge du am Tag geschrieben hast (für die Limits) und ein Protokoll der Aktionen der Administratorin, das die E-Mail des betroffenen Kontos enthält.</li></ul>";
+translations.fr.pv3P = "Si tu crées un compte, ces données sont enregistrées sur les serveurs de Supabase dans l’Union européenne (région Central EU, Francfort, Allemagne) :<ul><li><b>Compte :</b> e-mail et mot de passe (Supabase garde le mot de passe chiffré ; personne chez Mother Verde ne peut le voir), langue, nom affiché, e-mail de contact facultatif et l’état de ton accès (essai de 24 heures, contribution ou jours offerts) avec ses dates.</li><li><b>Journal de culture :</b> date, étape, notes, pH, EC, température, humidité, pourcentages de trichomes et la photo si tu en ajoutes une. Toi seul·e peux le voir.</li><li><b>Communauté</b> (si tu l’utilises) : profil (nom affiché, pays, type de profil, bio et photo), publications, commentaires, photos, les personnes que tu suis et les signalements que tu envoies. Seules les personnes avec l’accès complet le voient. Les photos de la Communauté sont dans un stockage public : quiconque a le lien direct d’une image peut l’ouvrir.</li><li><b>Contributions :</b> nombre de fleurs, montant, code de transaction (TXID), dates, statut et vérification ; nom et téléphone de contact seulement si tu les écris (seule l’administratrice les voit).</li><li><b>Codes cadeaux :</b> l’e-mail auquel un code a été envoyé. Le code lui-même n’est gardé que sous forme d’empreinte chiffrée.</li><li><b>Journaux techniques :</b> e-mails envoyés (sans adresses), tentatives de corriger l’e-mail d’inscription (seulement une empreinte, pas l’adresse), le nombre de publications du jour (pour les limites) et un journal des actions de l’administratrice, qui inclut l’e-mail du compte concerné.</li></ul>";
+translations.es.pv4H = "4. Aportes en USDC y la cadena de bloques";
+translations.en.pv4H = "4. USDC contributions and the blockchain";
+translations.de.pv4H = "4. Beiträge in USDC und die Blockchain";
+translations.fr.pv4H = "4. Contributions en USDC et la blockchain";
+translations.es.pv4P = "Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. [PENDIENTE: revisión de abogada: base legal y plazo de conservación de esa constancia.]";
+translations.en.pv4P = "Transfers on the Base network are <b>public and permanent</b>: anyone can see in an explorer the sending address, the receiving address, the amount and the date. Mother Verde cannot delete or change them. Our records link the transaction code to your account, and only the administrator sees that. If you delete your account, notices without a transaction code are deleted; those with a code are kept without your name, phone or account, as proof of the payment. [PENDING: lawyer review: legal basis and retention period for that proof.]";
+translations.de.pv4P = "Überweisungen im Base-Netzwerk sind <b>öffentlich und dauerhaft</b>: Jeder kann in einem Explorer die sendende und die empfangende Adresse, den Betrag und das Datum sehen. Mother Verde kann sie weder löschen noch ändern. Unsere Aufzeichnung verbindet den Transaktionscode mit deinem Konto, und das sieht nur die Administratorin. Wenn du dein Konto löschst, werden Meldungen ohne Transaktionscode gelöscht; die mit Code bleiben ohne deinen Namen, dein Telefon und dein Konto als Nachweis der Zahlung erhalten. [AUSSTEHEND: Prüfung durch eine Anwältin: Rechtsgrundlage und Aufbewahrungsfrist dieses Nachweises.]";
+translations.fr.pv4P = "Les transferts sur le réseau Base sont <b>publics et permanents</b> : n’importe qui peut voir dans un explorateur l’adresse d’envoi, celle de réception, le montant et la date. Mother Verde ne peut ni les effacer ni les modifier. Notre registre relie le code de transaction à ton compte, et seule l’administratrice le voit. Si tu supprimes ton compte, les avis sans code de transaction sont supprimés ; ceux avec un code sont conservés sans ton nom, ton téléphone ni ton compte, comme preuve du paiement. [EN ATTENTE : relecture par une avocate : base légale et durée de conservation de cette preuve.]";
+translations.es.pv5H = "5. Quién procesa tus datos";
+translations.en.pv5H = "5. Who processes your data";
+translations.de.pv5H = "5. Wer deine Daten verarbeitet";
+translations.fr.pv5H = "5. Qui traite tes données";
+translations.es.pv5P = "<ul><li><b>Supabase:</b> base de datos, cuentas, archivos y funciones del servidor.</li><li><b>Vercel:</b> aloja la web.</li><li><b>Hostinger:</b> envía los correos desde hello@motherverdeny.com.</li><li><b>Resend:</b> envío de correos de respaldo, solo si está activado.</li><li><b>DeepL:</b> traduce automáticamente el texto de publicaciones y comentarios de Comunidad a los 4 idiomas.</li><li><b>Red Base:</b> se consulta para comprobar las transferencias.</li><li><b>Google Fonts y flagcdn:</b> sirven las tipografías y las banderas, y reciben la dirección IP de cada visita.</li></ul>El formulario «Anunciar en Mother Verde» envía tu nombre, empresa, correo y mensaje por correo a hello@motherverdeny.com; no se guarda en la base de datos. [PENDIENTE: revisión de abogada: contratos con los proveedores y transferencias fuera de la UE.]";
+translations.en.pv5P = "<ul><li><b>Supabase:</b> database, accounts, files and server functions.</li><li><b>Vercel:</b> hosts the website.</li><li><b>Hostinger:</b> sends the e-mails from hello@motherverdeny.com.</li><li><b>Resend:</b> backup e-mail sending, only if switched on.</li><li><b>DeepL:</b> automatically translates the text of Community posts and comments into the 4 languages.</li><li><b>Base network:</b> queried to check transfers.</li><li><b>Google Fonts and flagcdn:</b> serve the fonts and flags, and receive the IP address of every visit.</li></ul>The “Advertise on Mother Verde” form sends your name, company, e-mail and message by e-mail to hello@motherverdeny.com; it is not stored in the database. [PENDING: lawyer review: agreements with the providers and transfers outside the EU.]";
+translations.de.pv5P = "<ul><li><b>Supabase:</b> Datenbank, Konten, Dateien und Serverfunktionen.</li><li><b>Vercel:</b> hostet die Website.</li><li><b>Hostinger:</b> versendet die E-Mails von hello@motherverdeny.com.</li><li><b>Resend:</b> Ersatzversand von E-Mails, nur wenn eingeschaltet.</li><li><b>DeepL:</b> übersetzt den Text von Community-Beiträgen und -Kommentaren automatisch in die 4 Sprachen.</li><li><b>Base-Netzwerk:</b> wird abgefragt, um Überweisungen zu prüfen.</li><li><b>Google Fonts und flagcdn:</b> liefern Schriften und Flaggen und erhalten die IP-Adresse jedes Besuchs.</li></ul>Das Formular „Auf Mother Verde werben“ schickt deinen Namen, deine Firma, E-Mail und Nachricht per E-Mail an hello@motherverdeny.com; es wird nicht in der Datenbank gespeichert. [AUSSTEHEND: Prüfung durch eine Anwältin: Verträge mit den Anbietern und Übermittlungen außerhalb der EU.]";
+translations.fr.pv5P = "<ul><li><b>Supabase :</b> base de données, comptes, fichiers et fonctions serveur.</li><li><b>Vercel :</b> héberge le site.</li><li><b>Hostinger :</b> envoie les e-mails depuis hello@motherverdeny.com.</li><li><b>Resend :</b> envoi d’e-mails de secours, seulement s’il est activé.</li><li><b>DeepL :</b> traduit automatiquement le texte des publications et commentaires de la Communauté dans les 4 langues.</li><li><b>Réseau Base :</b> consulté pour vérifier les transferts.</li><li><b>Google Fonts et flagcdn :</b> fournissent les polices et les drapeaux, et reçoivent l’adresse IP de chaque visite.</li></ul>Le formulaire « Annoncer sur Mother Verde » envoie ton nom, ton entreprise, ton e-mail et ton message par e-mail à hello@motherverdeny.com ; il n’est pas enregistré dans la base de données. [EN ATTENTE : relecture par une avocate : contrats avec les prestataires et transferts hors de l’UE.]";
+translations.es.pv6H = "6. Quién ve tus datos";
+translations.en.pv6H = "6. Who sees your data";
+translations.de.pv6H = "6. Wer deine Daten sieht";
+translations.fr.pv6H = "6. Qui voit tes données";
+translations.es.pv6P = "Tus datos privados (Bitácora, aportes, correo, estado de acceso) solo los ves tú y la administradora, que entra al panel con verificación en dos pasos. Tu correo nunca se muestra a otras personas. Tu perfil y tus publicaciones de Comunidad los ven las personas con acceso completo.";
+translations.en.pv6P = "Your private data (grow log, contributions, e-mail, access state) is seen only by you and the administrator, who signs in to the panel with two-step verification. Your e-mail is never shown to other people. Your Community profile and posts are seen by people with full access.";
+translations.de.pv6P = "Deine privaten Daten (Logbuch, Beiträge, E-Mail, Zugangsstand) siehst nur du und die Administratorin, die sich mit Zwei-Faktor-Bestätigung im Panel anmeldet. Deine E-Mail wird anderen Personen nie angezeigt. Dein Community-Profil und deine Beiträge sehen Personen mit Vollzugriff.";
+translations.fr.pv6P = "Tes données privées (journal, contributions, e-mail, état d’accès) ne sont vues que par toi et par l’administratrice, qui se connecte au panneau avec une vérification en deux étapes. Ton e-mail n’est jamais montré à d’autres personnes. Ton profil et tes publications de la Communauté sont vus par les personnes avec l’accès complet.";
+translations.es.pv7H = "7. Lo que puedes hacer";
+translations.en.pv7H = "7. What you can do";
+translations.de.pv7H = "7. Was du tun kannst";
+translations.fr.pv7H = "7. Ce que tu peux faire";
+translations.es.pv7P = "Cambiar tu idioma, tu nombre y tu perfil; descargar tu Bitácora en PDF; borrar tu cuenta desde Cuenta (borra la cuenta, el perfil, la Bitácora, tu actividad y tus fotos de Comunidad, salvo las constancias de pago sin datos personales y el registro de acciones de la administradora); y escribir a hello@motherverdeny.com para cualquier otra solicitud. [PENDIENTE: revisión de abogada: derechos que corresponden según la ley aplicable y plazos de respuesta.]";
+translations.en.pv7P = "Change your language, name and profile; download your grow log as a PDF; delete your account from Account (it deletes the account, profile, grow log, your Community activity and photos, except the payment records without personal data and the log of the administrator’s actions); and write to hello@motherverdeny.com for any other request. [PENDING: lawyer review: rights that apply under the applicable law and response times.]";
+translations.de.pv7P = "Deine Sprache, deinen Namen und dein Profil ändern; dein Logbuch als PDF herunterladen; dein Konto unter Konto löschen (das löscht Konto, Profil, Logbuch, deine Community-Aktivität und -Fotos, außer den Zahlungsnachweisen ohne persönliche Daten und dem Protokoll der Aktionen der Administratorin); und für jede andere Anfrage an hello@motherverdeny.com schreiben. [AUSSTEHEND: Prüfung durch eine Anwältin: Rechte nach geltendem Recht und Antwortfristen.]";
+translations.fr.pv7P = "Changer ta langue, ton nom et ton profil ; télécharger ton journal en PDF ; supprimer ton compte depuis Compte (cela supprime le compte, le profil, le journal, ton activité et tes photos de la Communauté, sauf les preuves de paiement sans données personnelles et le journal des actions de l’administratrice) ; et écrire à hello@motherverdeny.com pour toute autre demande. [EN ATTENTE : relecture par une avocate : droits applicables selon la loi et délais de réponse.]";
+translations.es.pv8H = "8. Menores de edad";
+translations.en.pv8H = "8. Minors";
+translations.de.pv8H = "8. Minderjährige";
+translations.fr.pv8H = "8. Mineurs";
+translations.es.pv8P = "La plataforma es solo para personas mayores de 18 años: lo pregunta al entrar.";
+translations.en.pv8P = "The platform is for adults (18+) only: it asks when you arrive.";
+translations.de.pv8P = "Die Plattform ist nur für Erwachsene ab 18 Jahren: Sie fragt beim Betreten danach.";
+translations.fr.pv8P = "La plateforme est réservée aux personnes majeures (18 ans et plus) : elle le demande à l’arrivée.";
+translations.es.pv9H = "9. Cambios";
+translations.en.pv9H = "9. Changes";
+translations.de.pv9H = "9. Änderungen";
+translations.fr.pv9H = "9. Modifications";
+translations.es.pv9P = "Si esta política cambia de forma importante, lo avisaremos dentro de la plataforma.";
+translations.en.pv9P = "If this policy changes in an important way, we will say so inside the platform.";
+translations.de.pv9P = "Wenn sich diese Richtlinie wesentlich ändert, sagen wir es innerhalb der Plattform.";
+translations.fr.pv9P = "Si cette politique change de façon importante, nous le dirons dans la plateforme.";
+translations.es.dsErrTardeMonto = "Esa transacción no coincide exactamente con el monto de tu reserva. Revisa que el código sea el de tu envío y vuelve a intentarlo, o escríbenos a hello@motherverdeny.com.";
+translations.en.dsErrTardeMonto = "That transaction doesn’t exactly match the amount of your reservation. Check that it’s the code of your transfer and try again, or write to hello@motherverdeny.com.";
+translations.de.dsErrTardeMonto = "Diese Transaktion stimmt nicht genau mit dem Betrag deiner Reservierung überein. Prüfe, ob es der Code deiner Überweisung ist, und versuch es noch einmal, oder schreib an hello@motherverdeny.com.";
+translations.fr.dsErrTardeMonto = "Cette transaction ne correspond pas exactement au montant de ta réservation. Vérifie que c’est bien le code de ton envoi et réessaie, ou écris à hello@motherverdeny.com.";
+translations.es.dsErrTardeNoEncontrada = "Todavía no encontramos esa transacción en la red Base. Revisa el código o vuelve a intentarlo en unos minutos. Si sigue sin aparecer, escríbenos a hello@motherverdeny.com.";
+translations.en.dsErrTardeNoEncontrada = "We can’t find that transaction on the Base network yet. Check the code or try again in a few minutes. If it still doesn’t show up, write to hello@motherverdeny.com.";
+translations.de.dsErrTardeNoEncontrada = "Wir finden diese Transaktion im Base-Netzwerk noch nicht. Prüfe den Code oder versuch es in ein paar Minuten noch einmal. Wenn sie weiterhin nicht erscheint, schreib an hello@motherverdeny.com.";
+translations.fr.dsErrTardeNoEncontrada = "Nous ne trouvons pas encore cette transaction sur le réseau Base. Vérifie le code ou réessaie dans quelques minutes. Si elle n’apparaît toujours pas, écris à hello@motherverdeny.com.";
+translations.es.dsRevisionManual = "Lo revisaremos manualmente y te escribiremos.";
+translations.en.dsRevisionManual = "We’ll review it manually and write to you.";
+translations.de.dsRevisionManual = "Wir prüfen es manuell und schreiben dir.";
+translations.fr.dsRevisionManual = "Nous le vérifierons manuellement et nous t’écrirons.";
 translations.es.accRevocadoH = "Esta cuenta no tiene acceso";
 translations.en.accRevocadoH = "This account has no access";
 translations.de.accRevocadoH = "Dieses Konto hat keinen Zugang";
@@ -6815,17 +6886,26 @@ function mvAccessState(){
     if(mvAccessPreviewState === 'trial' && Date.now() >= mvPreviewTrialEnd) return 'expired';
     return mvAccessPreviewState;
   }
-  const user = window.mvCurrentUser, p = window.mvCurrentProfile;
+  // ONE rule, in the database (access_info, migration 20261014140000): auth.js
+  // asks my_access() and this only reads the answer. The only thing checked
+  // here is whether "until" has passed, against the SERVER clock.
+  const user = window.mvCurrentUser, p = window.mvCurrentProfile, a = window.mvCurrentAccess;
   if(!user) return mvPendingConfirmEmail() ? 'unconfirmed' : 'visitor';
-  if(!p) return 'loading';
-  if(p.subscription_status === 'supporter') return 'supporter';
-  if(p.subscription_status === 'revoked') return 'revoked';
-  if(p.access_until && new Date(p.access_until).getTime() > Date.now()) return 'granted';
-  if(p.subscription_status === 'trialing' && p.trial_ends_at && new Date(p.trial_ends_at).getTime() > Date.now()) return 'trial';
-  if(window.mvComputeIsPremium && window.mvComputeIsPremium(p)) return 'supporter';
-  if(p.trial_started_at) return 'expired';
-  return 'no_trial';
+  if(!p || !a) return 'loading';
+  const ended = !!a.until && new Date(a.until).getTime() <= mvNow();
+  const after = a.trial_started ? 'expired' : 'no_trial';
+  switch(a.state){
+    case 'supporter': return 'supporter';
+    case 'legacy': return ended ? after : 'supporter';
+    case 'revoked': return 'revoked';
+    case 'granted': return ended ? after : 'granted';
+    case 'trial': return ended ? 'expired' : 'trial';
+    case 'expired': return 'expired';
+    default: return 'no_trial';
+  }
 }
+// "Now" for every access countdown: the server clock when known (auth.js).
+function mvNow(){ return window.mvServerNow ? window.mvServerNow() : Date.now(); }
 function mvIsLockedState(st){
   return st === 'visitor' || st === 'unconfirmed' || st === 'expired' || st === 'no_trial' || st === 'revoked' || st === 'loading';
 }
@@ -6846,8 +6926,8 @@ function mvClaimPending(){ return !!(window.mvLatestClaim && ['submitted', 'manu
 // End of gift / admin-granted days ('granted' state).
 function mvGrantedUntilMs(){
   if(mvPreviewOn && mvAccessPreviewState === 'granted') return mvPreviewGrantedEnd;
-  const p = window.mvCurrentProfile;
-  return p && p.access_until ? new Date(p.access_until).getTime() : 0;
+  const a = window.mvCurrentAccess;
+  return a && a.state === 'granted' && a.until ? new Date(a.until).getTime() : 0;
 }
 // USDC amounts: TEXT built from the integer base units (6 decimals), always
 // with 4 decimals (10.0420, never 10.042) — never a JavaScript float.
@@ -6865,15 +6945,15 @@ window.mvUsdcText = function(units, forDisplay){ return mvUsdcFormat(units, forD
 function mvPendingNoteHtml(){
   const c = window.mvLatestClaim;
   return mvClaimPending()
-    ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + t('dsPendingP').replace('{h}', window.MV_VERIFY_MAX_HOURS || 48)
+    ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + (window.mvPendingLine ? window.mvPendingLine(c) : '')
       + (c && c.amount_units ? '<br>' + t('dsMontoPendiente').replace('{a}', '<b class="ds-amount-inline">' + window.mvUsdcText(c.amount_units, true) + '</b>') : '') + '</div>'
     : '';
 }
 
 function mvTrialEndMs(){
   if(mvPreviewOn && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
-  const p = window.mvCurrentProfile;
-  return p && p.trial_ends_at ? new Date(p.trial_ends_at).getTime() : 0;
+  const a = window.mvCurrentAccess;
+  return a && a.state === 'trial' && a.until ? new Date(a.until).getTime() : 0;
 }
 function mvFmtLeft(ms){
   const mins = Math.max(0, Math.floor(ms / 60000));
@@ -6883,9 +6963,37 @@ function mvFmtLeft(ms){
   return t('accFmtLess1');
 }
 
+// «Cargando…» never stays forever: when the profile or the access did not load
+// (auth.js, window.mvAuthLoad) — at once if it failed, after 12 s if it hangs —
+// the lock screen and Cuenta offer «Reintentar», «Cerrar sesión» and hello@.
+const MV_STUCK_MS = 12000;
+function mvLoadStuck(){
+  const l = window.mvAuthLoad;
+  return !!l && (l.failed || Date.now() - l.since >= MV_STUCK_MS);
+}
+function mvStuckHtml(){
+  return '<div class="mv-stuck" role="alert">'
+    + '<h2 class="acc-title">' + t('stuckH') + '</h2>'
+    + '<p class="acc-text">' + t('stuckP') + '</p>'
+    + '<div class="acc-actions"><button type="button" class="btn btn-primary" id="mvStuckRetry" onclick="window.mvRefreshAuth && window.mvRefreshAuth()">' + t('stuckRetry') + '</button>'
+    + '<button type="button" class="btn btn-ghost" id="mvStuckOut" onclick="window.mvSignOutLocal && window.mvSignOutLocal()">' + t('stuckSignOut') + '</button></div>'
+    + '<p class="acc-note">' + t('stuckMail').replace('{mail}', '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>') + '</p>'
+    + '</div>';
+}
+let mvStuckTimer = 0;
+function mvArmStuckTimer(st){
+  clearTimeout(mvStuckTimer);
+  if(st !== 'loading' || mvLoadStuck()) return;
+  const left = MV_STUCK_MS - (Date.now() - (window.mvAuthLoad?.since || Date.now()));
+  mvStuckTimer = setTimeout(mvApplyAccessState, Math.max(0, left) + 50);
+}
+// (main.js is a classic script: mvArmStuckTimer is already a global, so the alias needs its own name)
+window.mvArmStuck = () => mvArmStuckTimer(mvAccessState());
+
 function mvApplyAccessState(){
   if(ACCESS_MODEL !== 'support') return;
   const st = mvAccessState();
+  mvArmStuckTimer(st);
   const locked = mvIsLockedState(st);
   const changed = st !== mvLastAccessState;
   mvLastAccessState = st;
@@ -6973,7 +7081,7 @@ function mvRenderAcceso(){
       + '<p class="acc-text">' + t('accRevocadoP') + '</p>'
       + keep;
   } else if(st === 'loading'){
-    html = '<p class="acc-text">' + t('subLoading') + '</p>';
+    html = mvLoadStuck() ? mvStuckHtml() : '<p class="acc-text">' + t('subLoading') + '</p>';
   }
   root.innerHTML = '<div class="acc-wrap">' + html + links + '</div>';
   mvUpdateResendCooldown();
@@ -7058,7 +7166,7 @@ function mvRenderTrialStrip(){
   try { dismissed = sessionStorage.getItem('mv-strip-dismissed') === '1'; } catch(e){}
   if(mvAccessState() !== 'trial' || dismissed){ el.hidden = true; return; }
   const txt = document.getElementById('trialCountdownText');
-  if(txt) txt.innerHTML = t('accStripText').replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>');
+  if(txt) txt.innerHTML = t('accStripText').replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>');
   el.hidden = false;
 }
 document.getElementById('trialCountdownClose')?.addEventListener('click', () => {
@@ -7075,7 +7183,8 @@ function mvRenderCuentaAcceso(){
   const txt = document.getElementById('cuentaAccesoTexto');
   const btn = document.getElementById('cuentaAccesoBtn');
   const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial', granted: 'accCuentaGranted', revoked: 'accCuentaRevoked' }[st] || 'subLoading';
-  if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - Date.now()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
+  if(txt && st === 'loading' && mvLoadStuck()) txt.innerHTML = mvStuckHtml();
+  else if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
     + (st !== 'supporter' && mvClaimPending() ? '<br><br>' + mvPendingNoteHtml() : '');
   if(btn) btn.hidden = st === 'supporter' || st === 'revoked' || st === 'loading' || mvClaimPending();
   mvRenderGiftBox(st);
@@ -7165,12 +7274,12 @@ if(mvPreviewOn){
 // window.setIsPremium(true) used to flip isPremium directly, so any visitor
 // could open devtools in production and unlock every Premium gate for free.
 // The real source of truth is the profile row auth.js already fetched from
-// Supabase (billing columns aren't client-writable, see the subscription_trial
-// migration) via computeIsPremium(). Off localhost we ignore whatever value a
+// Supabase: the server's own access answer (my_access, see auth.js), never a
+// value computed in the browser. Off localhost we ignore whatever value a
 // caller passes and recompute from that profile ourselves; only on localhost
 // (QA / the #tierSwitch preview) do we still trust an explicit override.
 window.setIsPremium = function(value){
-  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvComputeIsPremium && window.mvComputeIsPremium(window.mvCurrentProfile));
+  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvHasFullAccess && window.mvHasFullAccess());
   applyTier();
 };
 const LOCK_SVG = '<svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>';

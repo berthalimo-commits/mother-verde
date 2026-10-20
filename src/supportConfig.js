@@ -20,8 +20,12 @@ export const SUPPORT = {
   // One flower = this many USDC. One flower unlocks full access; more is extra, voluntary support.
   FLOWER_USDC: 10,
   MAX_FLOWERS: 20, // 200 USDC; the database accepts 1–20 (support_claims)
-  // Promise shown on the page for the manual verification.
-  VERIFY_MAX_HOURS: 48,
+  // Hours shown to the person ONLY while a claim waits for the NORMAL check
+  // (status 'submitted'), always worded "hasta {h} horas" (approved text,
+  // 15-10-2026). A claim in MANUAL review (late payment, conflict, different
+  // amount…) never shows a number of hours: only "lo revisaremos manualmente y
+  // te escribiremos". This is not a timer: nothing in the code enforces it.
+  NORMAL_REVIEW_HOURS: 24,
 };
 
 // Who receives the contribution and what it is for. Final Spanish text

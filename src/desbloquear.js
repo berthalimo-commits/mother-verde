@@ -7,7 +7,14 @@ import { SUPPORT, SUPPORT_RECIPIENT_TEXT, supportAddressIsValid } from './suppor
 
 let flowers = 1;
 // main.js (classic script) can't import the config; it reads this.
-window.MV_VERIFY_MAX_HOURS = SUPPORT.VERIFY_MAX_HOURS;
+// The one line that tells the person how their claim is being checked. Normal
+// check: "hasta {h} horas". Manual review: no hours at all (and only ONE line).
+function pendingLine(c) {
+  if (c && c.late) return t('dsTardeOk');
+  if (c && c.status === 'manual_review') return t('dsRevisionManual');
+  return fmt(t('dsPendingP'), { h: SUPPORT.NORMAL_REVIEW_HOURS });
+}
+window.mvPendingLine = pendingLine;
 
 const t = (k) => (window.t ? window.t(k) : k);
 const lang = () => (window.getCurrentLang ? window.getCurrentLang() : 'es');
@@ -71,6 +78,8 @@ const RPC_ERR = {
   bad_tx_format: 'dsFormErrTx', tx_already_used: 'dsFormErrDup', already_supporter: 'dsYaTienes',
   claim_in_review: 'dsErrEnRevision',
 };
+// Late payment answers from the support-claims function.
+const LATE_ERR = { late_amount_mismatch: 'dsErrTardeMonto', late_tx_not_found: 'dsErrTardeNoEncontrada', not_late: 'dsFormErrGeneric' };
 const errKey = (error) => { const m = (error && error.message) || ''; const k = Object.keys(RPC_ERR).find((x) => m.includes(x)); return k ? RPC_ERR[k] : 'dsFormErrGeneric'; };
 
 async function reserve() {
@@ -153,11 +162,17 @@ async function submitLate(ev) {
   if (!window.mvSupabase || !window.mvCurrentUser || !c) { msg.textContent = t('dsFormErrGeneric'); return; }
   btn.disabled = true;
   msg.textContent = t('dsFormSending');
-  const { data, error } = await window.mvSupabase.rpc('submit_support_claim_tx', { p_claim_id: c.id, p_tx_hash: tx });
-  if (error) { msg.textContent = t(errKey(error)); btn.disabled = false; return; }
-  window.mvLatestClaim = data;
+  // Checked on Base first by the server (exact amount of THIS reservation);
+  // only then stored, always for manual review (migration 20261014120000).
+  const { error } = await window.mvSupabase.functions.invoke('support-claims', { body: { action: 'submit_late', claim_id: c.id, tx_hash: tx } });
+  if (error) {
+    let code = '';
+    try { code = (await error.context.json()).error || ''; } catch (e) {}
+    msg.textContent = t(LATE_ERR[code] || errKey({ message: code }));
+    btn.disabled = false;
+    return;
+  }
   lateJustSent = true;
-  try { await window.mvSupabase.functions.invoke('support-claims', { body: { action: 'verify', claim_id: data.id } }); } catch (e) {}
   await window.mvRefreshAuth?.();
   renderDesbloquear();
 }
@@ -167,7 +182,7 @@ function claimHtml() {
   const access = window.mvAccessStateNow ? window.mvAccessStateNow() : '';
   if (access === 'supporter') return `<div class="note-box">${t('dsYaTienes')}</div>`;
   if (c && OPEN.includes(c.status)) {
-    return `${lateJustSent || c.late ? `<p class="ds-claim-late-ok" role="status">${t('dsTardeOk')}</p>` : ''}<div class="ds-claim-pending"><b>${t('dsPendingH')}</b><br>${fmt(t('dsPendingP'), { h: SUPPORT.VERIFY_MAX_HOURS })}${c.amount_units ? `<br>${fmt(t('dsMontoPendiente'), { a: `<b class="ds-amount-inline">${amountText(c.amount_units)}</b>` })}` : ''}</div>`;
+    return `<div class="ds-claim-pending" role="status"><b>${t('dsPendingH')}</b><br><span class="ds-pending-line">${pendingLine(lateJustSent ? { ...c, late: true } : c)}</span>${c.amount_units ? `<br>${fmt(t('dsMontoPendiente'), { a: `<b class="ds-amount-inline">${amountText(c.amount_units)}</b>` })}` : ''}</div>`;
   }
   const notes = (c && c.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : '')
     + (c && (c.status === 'expired' || (c.status === 'awaiting_payment' && !awaiting(c))) ? `<p class="ds-claim-rejected">${t('dsVencidoP')}</p>` : '');
@@ -236,7 +251,7 @@ function paymentHtml() {
           <p class="ds-why">${t('dsPorQueDecimales')}</p></li>
         <li>${t('dsPaso2')}</li>
         <li>${t('dsPaso3')}</li>
-        <li>${fmt(t('dsPaso4'), { h: SUPPORT.VERIFY_MAX_HOURS })}</li>
+        <li>${fmt(t('dsPaso4'), { h: SUPPORT.NORMAL_REVIEW_HOURS })}</li>
       </ol>
       ${claimHtml()}
       ${helpHtml()}

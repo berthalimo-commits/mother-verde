@@ -232,7 +232,7 @@
         <p data-i18n="modNegocioDesc">Licencias, trazabilidad semilla-a-venta, directorio de proveedores y carreras del rubro.</p>
       </div>
       <div class="module-card" onclick="showScreen('comunidad')">
-        <h3><span data-i18n="modComunidadTitle">Comunidad</span> <span style="font-size:11px; font-family:'IBM Plex Mono',monospace; color:var(--resin);" data-i18n="soon">próximamente</span></h3>
+        <h3><span data-i18n="modComunidadTitle">Comunidad</span></h3>
         <p data-i18n="modComunidadDesc">Reportes de campo de usuarios verificados, moderados contra la evidencia oficial.</p>
       </div>
       <div class="module-card" onclick="showScreen('variedades')">
@@ -2828,10 +2828,10 @@
   <!-- ============ COMUNIDAD (spec / plan) ============ -->
   <section class="screen" id="comunidad">
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
-    <div class="eyebrow" data-i18n="cmyEyebrow">Comunidad — próximamente</div>
-    <h2 class="title" data-i18n="cmyTitle">Reportes de campo, verificados</h2>
+    <div class="eyebrow" data-i18n="cmyEyebrow">Comunidad</div>
+    <h2 class="title" data-i18n="cmyTitle">Reportes de campo de la comunidad</h2>
     <svg viewBox="0 0 70 40" width="100%" style="max-width:130px; display:block; margin:6px auto 16px;"><circle cx="20" cy="14" r="7" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><path d="M20,21 Q9,21 8,34" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><circle cx="50" cy="14" r="7" fill="none" stroke="var(--teal)" stroke-width="1.5"/><path d="M50,21 Q61,21 62,34" fill="none" stroke="var(--teal)" stroke-width="1.5"/><circle cx="35" cy="8" r="6" fill="none" stroke="var(--resin)" stroke-width="1.5"/><path d="M35,14 Q24,15 23,28 M35,14 Q46,15 47,28" fill="none" stroke="var(--resin)" stroke-width="1.5"/></svg>
-    <p class="subhead" data-i18n="cmySub">Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.</p>
+    <p class="subhead" data-i18n="cmySub">Comparte reportes de cultivo, diagnósticos y preguntas, comenta y sigue a otras personas. La Comunidad y su directorio solo los ven las personas con acceso completo. Cada publicación se traduce automáticamente a los 4 idiomas.</p>
 
     <div class="section-title" data-i18n="cmySecDescubrir">Descubrir</div>
     <p class="subhead" data-i18n="cmyDescubrirIntro">Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.</p>
@@ -2911,7 +2911,7 @@
 
     <div id="perfilEditCard" class="card-block" style="display:none; margin-top:18px;">
       <div class="section-title" style="margin-top:0;" data-i18n="perfilEditar">Tu perfil</div>
-      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
+      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía los ven las personas con acceso completo a la plataforma. Las fotos se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla. Nunca compartas apellido completo, teléfono ni ubicación exacta de tu cultivo aquí.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
         <div style="display:flex; align-items:center; gap:14px;">
           <div id="cmyAvatarPreview"></div>
@@ -3641,42 +3641,43 @@
     <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
     <div class="eyebrow" data-i18n="ppEyebrow">Legal</div>
     <h2 class="title" data-i18n="ppTitle">Política de Privacidad</h2>
-    <p class="subhead" style="margin-bottom:24px;" data-i18n="ppUpdated">Última actualización: julio de 2026</p>
-
-    <div class="note-box" data-i18n="ppDraftNote"><b>Nota sobre este documento:</b> esta es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en privacidad de datos (incluidas normativas como GDPR o CCPA según dónde operes) antes de un lanzamiento real.</div>
-
+    <p class="subhead" style="margin-bottom:24px;" data-i18n="pvUpdated">Última actualización: 14 de octubre de 2026 · borrador</p>
+    <div class="note-box" data-i18n="pvIntro">Esta página describe lo que la plataforma hace hoy con tus datos, tal como funciona por dentro. [PENDIENTE: revisión de abogada: responsable del tratamiento, base legal, plazos de conservación, transferencias internacionales y derechos según cada país.]</div>
     <div class="card-block">
-      <h3 data-i18n="ppv1H3">1. Qué información recopilamos</h3>
-      <p data-i18n="ppv1P">La App puede almacenar: tu confirmación de edad, tu idioma preferido, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.</p>
+      <h3 data-i18n="pv1H">1. Quién es responsable</h3>
+      <p data-i18n="pv1P">Mother Verde LLC. Contacto para todo lo relacionado con tus datos: <b>hello@motherverdeny.com</b>. [PENDIENTE: revisión de abogada: datos completos del responsable y, si corresponde, representante en la Unión Europea.]</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv2H3">2. Dónde se almacena tu información</h3>
-      <p data-i18n="ppv2P">La mayoría de los datos mencionados se guardan localmente en tu propio dispositivo, no en nuestros servidores. Esto significa que, en su forma actual, gran parte de tu actividad en la App permanece en tu teléfono o navegador, y no la recopilamos de forma centralizada.</p>
-      <p data-i18n="ppv2AdminP">Dentro del directorio de comunidad, tu nombre, país y tipo de perfil son visibles para otras personas que usen la App. Datos como tu correo electrónico nunca se muestran públicamente — solo el equipo administrador de Mother Verde LLC tiene acceso a esa información, con controles de seguridad específicos para eso (verificación en dos pasos, registro de accesos).</p>
+      <h3 data-i18n="pv2H">2. Lo que se guarda solo en tu navegador</h3>
+      <p data-i18n="pv2P">Tu confirmación de mayoría de edad, el idioma elegido, las casillas marcadas en la lista de cosecha, cuántas veces pediste reenviar un correo (para limitar los reenvíos) y, si tienes cuenta, tu sesión. La web también guarda una copia de sus páginas para cargar más rápido. Puedes borrarlo todo desde los ajustes de tu navegador. <b>La plataforma no usa cookies propias ni herramientas de analítica o de publicidad.</b></p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv3H3">3. Cómo usamos tu información</h3>
-      <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
+      <h3 data-i18n="pv3H">3. Lo que se guarda en tu cuenta</h3>
+      <div data-i18n="pv3P">Si creas una cuenta, estos datos se guardan en los servidores de Supabase en la Unión Europea (región Central EU, Fráncfort, Alemania):<ul><li><b>Cuenta:</b> correo y contraseña (Supabase guarda la contraseña cifrada; nadie de Mother Verde puede verla), idioma, nombre visible, correo de contacto opcional y el estado de tu acceso (prueba de 24 horas, aporte o días de regalo) con sus fechas.</li><li><b>Bitácora:</b> fecha, etapa, notas, pH, EC, temperatura, humedad, porcentajes de tricomas y la foto si la añades. Solo tú puedes verla.</li><li><b>Comunidad</b> (si la usas): perfil (nombre visible, país, tipo de perfil, biografía y foto), publicaciones, comentarios, fotos, a quién sigues y los reportes que envías. Lo ven solo las personas con acceso completo. Las fotos de Comunidad se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla.</li><li><b>Aportes:</b> cantidad de flores, monto, código de la transacción (TXID), fechas, estado y revisión; nombre y teléfono de contacto solo si los escribes (solo los ve la administradora).</li><li><b>Códigos de regalo:</b> el correo al que se envió un código. El código solo se guarda como huella cifrada.</li><li><b>Registros técnicos:</b> envíos de correo (sin direcciones), intentos de corregir el correo de registro (solo una huella, sin la dirección), cuántas publicaciones hiciste en el día (para los límites) y un registro de las acciones de la administradora, que incluye el correo de la cuenta afectada.</li></ul></div>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv4H3">4. Servicios de terceros</h3>
-      <p data-i18n="ppv4P">[PENDIENTE: lista de proveedores (Supabase, Vercel, DeepL, Hostinger) y tratamiento de los aportes recibidos en la red Base — confirmar con contador y abogado.]</p>
+      <h3 data-i18n="pv4H">4. Aportes en USDC y la cadena de bloques</h3>
+      <p data-i18n="pv4P">Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. [PENDIENTE: revisión de abogada: base legal y plazo de conservación de esa constancia.]</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv5H3">5. Tus derechos</h3>
-      <p data-i18n="ppv5P">Puedes eliminar la información almacenada localmente borrando los datos de la App desde la configuración de tu dispositivo. Si en el futuro almacenamos datos en servidores, tendrás derecho a solicitar acceso, corrección o eliminación de tu información, según lo permita la ley de tu jurisdicción.</p>
+      <h3 data-i18n="pv5H">5. Quién procesa tus datos</h3>
+      <div data-i18n="pv5P"><ul><li><b>Supabase:</b> base de datos, cuentas, archivos y funciones del servidor.</li><li><b>Vercel:</b> aloja la web.</li><li><b>Hostinger:</b> envía los correos desde hello@motherverdeny.com.</li><li><b>Resend:</b> envío de correos de respaldo, solo si está activado.</li><li><b>DeepL:</b> traduce automáticamente el texto de publicaciones y comentarios de Comunidad a los 4 idiomas.</li><li><b>Red Base:</b> se consulta para comprobar las transferencias.</li><li><b>Google Fonts y flagcdn:</b> sirven las tipografías y las banderas, y reciben la dirección IP de cada visita.</li></ul>El formulario «Anunciar en Mother Verde» envía tu nombre, empresa, correo y mensaje por correo a hello@motherverdeny.com; no se guarda en la base de datos. [PENDIENTE: revisión de abogada: contratos con los proveedores y transferencias fuera de la UE.]</div>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv6H3">6. Privacidad de menores</h3>
-      <p data-i18n="ppv6P">La App está restringida a personas mayores de 18 años mediante verificación de edad al ingresar. No recopilamos intencionalmente información de menores de edad.</p>
+      <h3 data-i18n="pv6H">6. Quién ve tus datos</h3>
+      <p data-i18n="pv6P">Tus datos privados (Bitácora, aportes, correo, estado de acceso) solo los ves tú y la administradora, que entra al panel con verificación en dos pasos. Tu correo nunca se muestra a otras personas. Tu perfil y tus publicaciones de Comunidad los ven las personas con acceso completo.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv7H3">7. Cambios a esta política</h3>
-      <p data-i18n="ppv7P">Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos dentro de la App.</p>
+      <h3 data-i18n="pv7H">7. Lo que puedes hacer</h3>
+      <p data-i18n="pv7P">Cambiar tu idioma, tu nombre y tu perfil; descargar tu Bitácora en PDF; borrar tu cuenta desde Cuenta (borra la cuenta, el perfil, la Bitácora, tu actividad y tus fotos de Comunidad, salvo las constancias de pago sin datos personales y el registro de acciones de la administradora); y escribir a hello@motherverdeny.com para cualquier otra solicitud. [PENDIENTE: revisión de abogada: derechos que corresponden según la ley aplicable y plazos de respuesta.]</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv8H3">8. Contacto</h3>
-      <p data-i18n="ppv8P">Para preguntas sobre privacidad, contáctanos en el correo de soporte indicado dentro de la App.</p>
+      <h3 data-i18n="pv8H">8. Menores de edad</h3>
+      <p data-i18n="pv8P">La plataforma es solo para personas mayores de 18 años: lo pregunta al entrar.</p>
+    </div>
+    <div class="card-block">
+      <h3 data-i18n="pv9H">9. Cambios</h3>
+      <p data-i18n="pv9P">Si esta política cambia de forma importante, lo avisaremos dentro de la plataforma.</p>
     </div>
   </section>
 

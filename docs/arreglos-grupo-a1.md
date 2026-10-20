@@ -27,3 +27,27 @@ se anota `account_deleted_at`. Quedan TXID, monto, flores, fechas, estado y revi
 - Migración `20261014110000_late_payment.sql` · reversa `rollback-20261014110000.sql` (si hay un tardío abierto con el mismo
   monto que otro aviso abierto, cerrarlo antes) · prueba `tests/sim/a1-money.mjs` (ahora 21 comprobaciones); la prueba
   vieja «solicitud vencida -> no acepta código» de `test-part2.mjs` se cambió a la regla nueva.
+
+## Paso 2b — El agujero del pago tardío, cerrado (Prioritario 1)
+Ver `docs/prioritario-1.md`: comprobación en Base antes de guardar, conflictos que solo ve el panel, sin activación
+con conflicto abierto, historial de motivos. Migración `20261014120000`.
+
+## Paso 3 — Aviso cuando llega un TXID nuevo
+Un correo corto en español a soporte (`NOTIFY_TO`, por defecto hello@) con número de aviso, monto, estado y enlace
+al panel, sin datos personales y uno solo por aviso. Si falla, el aviso se guarda igual y el fallo sale en «Correos
+fallidos». Panel: «Avisos sin revisar» arriba de todas las pestañas y resaltado de los que esperan más de 12 h.
+Migración `20261014130000` (contador).
+
+## Paso 4 — Un solo plazo
+Solo revisión, sin cambios: `docs/plazos-activacion.md`. Hoy las pantallas dicen 48 h frente al texto aprobado
+«hasta 24 horas»; la corrección propuesta está ahí, a la espera de tu aprobación.
+
+## Paso 5 — Regla de acceso única
+`access_info(uid)` en la base es el único sitio donde vive la regla. La leen `is_premium`/`has_full_access` (RLS
+y funciones), el panel y la app (`my_access()`). La app solo compara «hasta cuándo» con la hora del servidor. Da los
+mismos resultados que antes en las 432 combinaciones probadas. Las cuentas «active» sin fecha no se tocan; para verlas,
+el SQL de solo lectura `supabase/admin/legacy-active-accounts.sql`. Migración `20261014140000`.
+
+## Paso 6 — Activación en vivo
+Al volver a la pestaña y cada 60 s en la pantalla de bloqueo o en Desbloquear. Como mucho una consulta cada 30 s y
+ninguna con la pestaña oculta. Si una consulta falla, se queda con la última respuesta.

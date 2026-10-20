@@ -122,11 +122,25 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
   const sub = await as('authenticated', U1, `select * from submit_support_claim_tx(${c1b.id}, '${TX.toUpperCase().replace('0X', '0x')}')`);
   check('código válido -> submitted (guardado en minúsculas)', sub.rows?.[0]?.status === 'submitted' && sub.rows[0].tx_hash === TX, JSON.stringify(sub));
   const U3 = await newUser(3); const c3 = (await create(U3, 1)).rows[0];
-  check('TXID repetido (otra cuenta) -> rechazado', err(await as('authenticated', U3, `select * from submit_support_claim_tx(${c3.id}, '${TX}')`)).includes('tx_already_used'));
-  await db.exec(`update support_claims set expires_at = now() - interval '1 minute' where id = ${c3.id}`);
-  // since 20261014110000 (late payment): accepted, but always manual review, never 'submitted'
-  const late = await as('authenticated', U3, `select * from submit_support_claim_tx(${c3.id}, '0x${'cd'.repeat(32)}')`);
-  check('solicitud vencida -> el código queda en revisión manual («reserva_vencida»), nunca «submitted»', late.rows?.[0]?.status === 'manual_review' && late.rows[0].late === true && late.rows[0].review_reason === 'reserva_vencida', JSON.stringify(late));
+  // since 20261014120000: a TXID already on another claim is a CONFLICT (no dead-end "already used")
+  const dup = await as('authenticated', U3, `select * from submit_support_claim_tx(${c3.id}, '${TX}')`);
+  check('TXID repetido (otra cuenta) -> sin «ya usado»: revisión manual, sin guardarle el TXID, y conflicto para el panel', dup.rows?.[0]?.status === 'manual_review' && dup.rows[0].tx_hash === null
+    && (await q(`select count(*)::int c from support_claim_conflicts where kind = 'mismo_txid' and claim_id = ${c3.id} and other_claim_id = ${c1b.id} and status = 'open'`))[0].c === 1, JSON.stringify(dup));
+  check('…y el aviso que ya tenía ese TXID tampoco se activa solo (pasa a revisión manual)', (await q(`select status from support_claims where id = ${c1b.id}`))[0].status === 'manual_review');
+  const K = (await q(`select id from support_claim_conflicts where claim_id = ${c3.id}`))[0].id;
+  check('el navegador no puede leer la tabla de conflictos (ni con MFA)', !!(await as('authenticated', ADMIN, 'select * from support_claim_conflicts', [], 'aal2')).error);
+  check('resolver el conflicto exige un motivo escrito', err(await as('authenticated', ADMIN, `select * from admin_resolve_claim_conflict(${K}, ${c1b.id}, 'corto')`, [], 'aal2')).includes('reason_required'));
+  const res = await as('authenticated', ADMIN, `select * from admin_resolve_claim_conflict(${K}, ${c1b.id}, 'El TXID es del primer aviso: visto en Basescan')`, [], 'aal2');
+  check('resuelto a favor de un aviso (con motivo) -> el otro queda rechazado y queda en el registro', res.rows?.[0]?.status === 'resolved' && (await q(`select status from support_claims where id = ${c3.id}`))[0].status === 'rejected'
+    && (await q(`select count(*)::int c from admin_audit_log where action = 'claim_conflict_resolved'`))[0].c === 1, JSON.stringify(res));
+  // since 20261014120000: an expired reservation can't take a TXID from the browser; only the
+  // Edge Function (after checking the exact amount on Base) via svc_submit_late_claim.
+  const U3b = await newUser(931); const c3b = (await create(U3b, 1)).rows[0];
+  await db.exec(`update support_claims set expires_at = now() - interval '1 minute' where id = ${c3b.id}`);
+  check('solicitud vencida -> el navegador ya no puede poner un TXID directamente (expired)', err(await as('authenticated', U3b, `select * from submit_support_claim_tx(${c3b.id}, '0x${'cd'.repeat(32)}')`)).includes('expired'));
+  check('…ni llamar a svc_submit_late_claim', !!(await as('authenticated', U3b, `select svc_submit_late_claim(${c3b.id}, '${U3b}', '0x${'cd'.repeat(32)}', '{}'::jsonb)`)).error);
+  const late = await as('service_role', null, `select svc_submit_late_claim(${c3b.id}, '${U3b}', '0x${'cd'.repeat(32)}', '{"late": true}'::jsonb) v`);
+  check('desde el servidor -> revisión manual («reserva_vencida»), nunca «submitted»', late.rows?.[0]?.v?.status === 'manual_review' && (await q(`select late, review_reason r from support_claims where id = ${c3b.id}`))[0].r === 'reserva_vencida', JSON.stringify(late));
   // automatic check says "wrong amount" -> manual review with the reason
   const rec = await as('service_role', null, `select * from svc_record_claim_check(${c1b.id}, '{"all_pass": false, "checks": {"amount": false}}'::jsonb, true, 'monto distinto: llegaron 29.9 USDC')`);
   check('verificación con monto incorrecto -> revisión manual con motivo', rec.rows?.[0]?.status === 'manual_review' && rec.rows[0].review_reason.includes('monto'));

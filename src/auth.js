@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { CAPTCHA, captchaIsOn } from './captchaConfig.js';
+import './stageBadge.js'; // «STAGING · pruebas» when this build uses the test project
 
 // What an e-mail link brought back, read BEFORE the client consumes the URL.
 // Supabase sends the person to the site with, in the hash (or the query):
@@ -31,47 +32,63 @@ window.mvSupabase = supabase;
 window.mvCurrentUser = null;
 window.mvCurrentProfile = null;
 
-// Canonical client-side full-access check. Mirrors public.is_premium(uid) in
-// supabase/migrations/20261010120000_access_support_model.sql — keep the two
-// in sync. Full access = verified contribution ('supporter'), the 24 h trial,
-// or days from a gift code / an admin (access_until), unless an admin took
-// access away ('revoked'). Rows from the old card model are still honoured.
-// Exposed so main.js can recompute Premium itself instead of trusting a
-// caller-supplied value (see the window.setIsPremium guard in main.js).
-window.mvComputeIsPremium = computeIsPremium;
-function computeIsPremium(profile){
-  if(!profile) return false;
-  const now = Date.now();
-  const status = profile.subscription_status || 'none';
-  // One-time support contribution, verified by hand: full access, no end date.
-  if(status === 'supporter') return true;
-  if(status === 'revoked') return false;
-  if(profile.access_until && new Date(profile.access_until).getTime() > now) return true;
-  if(status === 'trialing'){
-    return !!profile.trial_ends_at && new Date(profile.trial_ends_at).getTime() > now;
-  }
-  if(status === 'active'){
-    return !profile.subscription_expires_at || new Date(profile.subscription_expires_at).getTime() > now;
-  }
-  // Legacy rows written before the trial system existed.
-  if(status === 'none' && profile.subscription_active){
-    return !profile.subscription_expires_at || new Date(profile.subscription_expires_at).getTime() > now;
-  }
-  // canceled (period over) / past_due / blocked -> no access.
-  return false;
+// Access: ONE rule, in the database (public.access_info, migration
+// 20261014140000), used by RLS, the Edge Functions, the panel and — through
+// my_access() — this app. Nothing here recomputes it: the app keeps the
+// server's answer and only compares "until" with the SERVER clock (offset
+// measured from server_now), so a wrong device clock doesn't matter.
+let accessOffset = 0;
+window.mvCurrentAccess = null;
+window.mvServerNow = () => Date.now() + accessOffset;
+// keepOnError: a failed live check keeps the last answer (a network blip never locks anyone).
+async function loadAccess(keepOnError = false){
+  if(!window.mvCurrentUser){ window.mvCurrentAccess = null; return false; }
+  let res;
+  try { res = await supabase.rpc('my_access'); } catch(e){ res = { error: e }; }
+  const { data, error } = res;
+  if(error || !data){ console.error('my_access', error); if(!keepOnError) window.mvCurrentAccess = null; return false; }
+  if(data.server_now) accessOffset = new Date(data.server_now).getTime() - Date.now();
+  window.mvCurrentAccess = data;
+  return true;
 }
+function hasFullAccess(){
+  const x = window.mvCurrentAccess;
+  return !!x && x.full === true && (!x.until || new Date(x.until).getTime() > window.mvServerNow());
+}
+window.mvHasFullAccess = hasFullAccess;
 
 async function loadProfile(userId){
-  const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
+  let res;
+  try { res = await supabase.from('profiles').select('*').eq('id', userId).single(); } catch(e){ res = { error: e }; }
+  const { data, error } = res;
   if(error){ console.error('loadProfile', error); return null; }
   return data;
 }
 
+// How the last load of session + profile + access went. main.js shows a way
+// out («Reintentar», «Cerrar sesión», hello@) instead of an endless «Cargando…»:
+// at once when a load failed, after MV_STUCK_MS when it simply hangs.
+window.mvAuthLoad = { since: Date.now(), failed: false };
+// Sign out on this device even when the server can't be reached.
+window.mvSignOutLocal = async () => {
+  await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+  location.reload();
+};
+
 async function refreshAuthState(){
-  const { data: { session } } = await supabase.auth.getSession();
+  const load = window.mvAuthLoad = { since: Date.now(), failed: false };
+  window.mvApplyAccessState?.(); // a retry shows «Cargando…» again (and re-arms the 12 s)
+  let session = null;
+  try { ({ data: { session } } = await supabase.auth.getSession()); }
+  catch(e){ console.error('getSession', e); load.failed = true; }
   window.mvCurrentUser = session?.user || null;
+  // signed in, profile not here yet: «Cargando…» now, and the way out at 12 s if it hangs
+  if(window.mvCurrentUser && !window.mvCurrentProfile) window.mvApplyAccessState?.();
+  else window.mvArmStuck?.();
   window.mvCurrentProfile = window.mvCurrentUser ? await loadProfile(window.mvCurrentUser.id) : null;
-  window.setIsPremium?.(computeIsPremium(window.mvCurrentProfile));
+  const accessOk = await loadAccess();
+  if(window.mvCurrentUser && (!window.mvCurrentProfile || !accessOk)) load.failed = true;
+  window.setIsPremium?.(hasFullAccess());
   window.renderCuenta?.();
   window.renderBitacoraGate?.();
   if(document.getElementById('bitacora')?.classList.contains('active')) window.loadBitEntries?.();
@@ -87,18 +104,48 @@ async function refreshAuthState(){
 // Latest support-contribution claim of the signed-in person (support_claims,
 // RLS: own rows only). null when none, signed out, or the table isn't there.
 async function loadLatestClaim(){
-  window.mvLatestClaim = null;
-  if(!window.mvCurrentUser) return;
+  if(!window.mvCurrentUser){ window.mvLatestClaim = null; return; }
+  if(loadLatestClaim.owner !== window.mvCurrentUser.id){ window.mvLatestClaim = null; loadLatestClaim.owner = window.mvCurrentUser.id; }
   const { data, error } = await supabase.from('support_claims')
     .select('id, status, flowers, amount_units, created_at, expires_at, tx_hash, submitted_at, review_reason, reviewed_at, late')
     .order('created_at', { ascending: false }).limit(1).maybeSingle();
-  if(!error) window.mvLatestClaim = data || null;
+  if(!error) window.mvLatestClaim = data || null; // on error the last known claim stays
 }
 window.mvLoadLatestClaim = loadLatestClaim;
 
 // Let public/main.js and src/desbloquear.js force a full auth/profile reload
 // after an access change, so gating updates everywhere at once.
 window.mvRefreshAuth = refreshAuthState;
+
+// Live access: when a contribution is activated or access is revoked, the open
+// app finds out without a reload — when the person comes back to the tab, and
+// every 60 s while the lock screen (or Desbloquear) is showing. At most one
+// check every 30 s, none while the tab is hidden; a check is 2 small requests
+// (my_access + latest claim) and only a real change reloads everything.
+const LIVE_MIN_GAP_MS = 30000, LIVE_LOCK_EVERY_MS = 60000;
+let liveLast = 0, liveBusy = false;
+const accessKey = () => JSON.stringify([window.mvCurrentAccess?.state, window.mvCurrentAccess?.until, window.mvCurrentAccess?.full,
+  window.mvLatestClaim?.id, window.mvLatestClaim?.status]);
+async function refreshAccessLive(){
+  if(!window.mvCurrentUser || liveBusy || document.visibilityState !== 'visible') return false;
+  if(Date.now() - liveLast < LIVE_MIN_GAP_MS) return false;
+  liveBusy = true; liveLast = Date.now();
+  try{
+    const before = accessKey();
+    if(!(await loadAccess(true))) return false;
+    await loadLatestClaim();
+    if(accessKey() !== before) await refreshAuthState();
+    else window.mvApplyAccessState?.(); // same answer: only re-check "until" against the server clock
+  } finally { liveBusy = false; }
+  return true;
+}
+window.mvRefreshAccessLive = refreshAccessLive;
+window.mvLiveAccessStats = () => ({ last: liveLast, gap: LIVE_MIN_GAP_MS, every: LIVE_LOCK_EVERY_MS });
+document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') refreshAccessLive(); });
+setInterval(() => {
+  const onLock = ['acceso', 'desbloquear'].includes(document.querySelector('.screen.active')?.id);
+  if(onLock) refreshAccessLive();
+}, LIVE_LOCK_EVERY_MS);
 
 supabase.auth.onAuthStateChange((event) => {
   if(event === 'PASSWORD_RECOVERY') recoveryPending = true;
@@ -418,7 +465,11 @@ document.getElementById('authForm')?.addEventListener('submit', async (e) => {
     }
     document.getElementById('authForm').reset();
   } catch(err){
-    setAuthMsg(window.t(mapAuthError(err)), true);
+    // Supabase's e-mails-per-hour limit reached at sign-up (person number 31
+    // with the default of 30): say it plainly — the account was not created,
+    // trying again in a few minutes works.
+    const key = mapAuthError(err);
+    setAuthMsg(window.t(authMode === 'signup' && key === 'authErrRate' ? 'authErrRateSignup' : key), true);
   } finally {
     captchaReset();
     setAuthBusy(false);

@@ -278,7 +278,8 @@ await db.exec(`update app_config set value = 1 where key = 'claim_auto_verify_en
 const PA = await payer(50, 3); putTx(PA.tx, { amount: PA.c.amount_units });
 n = globalThis.__mail.length;
 r = await call('claims', tok(PA.u), { action: 'verify', claim_id: PA.c.id });
-check('auto ON + todo correcto -> activada sola + correo', r.body.status === 'approved' && r.body.email_sent === true && globalThis.__mail.length === n + 1, JSON.stringify(r));
+check('auto ON + todo correcto -> activada sola + correo (y el aviso a soporte del TXID nuevo)', r.body.status === 'approved' && r.body.email_sent === true && globalThis.__mail.length === n + 2
+  && globalThis.__mail.slice(n).filter((m) => /Nuevo aviso de aporte/.test(m.subject)).length === 1, JSON.stringify(r));
 check('…auditada como auto-verify', (await q(`select count(*)::int c from admin_audit_log where action = 'claim_approved' and actor_label = 'auto-verify' and target_email = 'pago50@example.org'`))[0].c === 1);
 const PT = await payer(51, 10); putTx(PT.tx, { amount: PT.c.amount_units });
 r = await call('claims', tok(PT.u), { action: 'verify', claim_id: PT.c.id });
