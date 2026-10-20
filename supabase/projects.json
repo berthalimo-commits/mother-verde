@@ -10,9 +10,9 @@
     ]
   },
   "staging": {
-    "ref": null,
+    "ref": "ciqdnrdtaxbmcjvxljvq",
     "name": "mother-verde-staging",
     "region": "us-west-2 (Oregon)",
-    "_nota": "ref: opcional; si la pones (Project Settings → General → Reference ID), el build de Preview comprueba además que apunta exactamente a staging."
+    "_nota": "ref escrito el 20-10-2026: el build de Preview comprueba que apunta exactamente a staging."
   }
 }
