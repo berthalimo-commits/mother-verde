@@ -3,7 +3,7 @@
 // and drawings. Same look, access, memory and guide as the rest of the game.
 import TEXTS from './i18n-lab.js';
 import * as L from './lab-engine.js';
-import { KITCHEN } from './lab-art.js';
+import { KITCHEN, LAB } from './lab-art.js';
 
 window.mvAddTexts?.(TEXTS);
 export const open = L.open;
@@ -23,9 +23,9 @@ export function guide(state, { t }) {
   return out.join(' ');
 }
 const up = (s) => s.toUpperCase();
-// text keys of the things to tap: jlK_<id> (name) and jlKx_<id> (what the guide says)
-const SPOT_KEY = { s2: 'jlK' };
-const ART = { s2: KITCHEN };
+// text keys of the things to tap: jlK_<id> / jlL_<id> (name) and jlKx_<id> / jlLx_<id> (what the guide says)
+const SPOT_KEY = { s2: 'jlK', s3: 'jlL' };
+const ART = { s2: KITCHEN, s3: LAB };
 
 // A drawing with buttons on top of each thing (44 px or more, real buttons for
 // the keyboard and screen readers). A found thing keeps a mark: ✓ for a hazard,
@@ -39,14 +39,14 @@ function drawing(state, { t, esc }) {
     const [x, y] = art.spots[id];
     const found = state.lab.f.includes(id);
     const hazard = T.need.includes(id);
-    const name = t(`${k}_${id}`) + (found ? ' — ' + t(hazard ? 'jlEncontrado' : 'jlNoEsPeligro') : '');
+    const name = t(`${k}_${id}`) + (found ? ' — ' + t(hazard ? 'jlEncontrado_' + at : 'jlNoEsPeligro') : '');
     return `<button type="button" class="jl-spot${found ? ' jl-found' + (hazard ? '' : ' jl-decoy') : ''}" data-spot="${id}" style="left:${(x / 360 * 100).toFixed(2)}%;top:${(y / 240 * 100).toFixed(2)}%" aria-label="${esc(name)}" title="${esc(name)}"><span aria-hidden="true">${found ? (hazard ? '✓' : '–') : '?'}</span></button>`;
   }).join('');
   const done = T.need.every((id) => state.lab.f.includes(id));
   const list = T.need.filter((id) => state.lab.f.includes(id)).map((id) => `<li>${esc(t(`${k}_${id}`))}</li>`).join('');
   return `<div class="jl-art">${art.svg}${spots}</div>
     <p class="jl-progress" role="status">${esc(t(done ? 'jlTodos_' + at : 'jlFaltan_' + at))}</p>
-    ${list ? `<ul class="jl-list" aria-label="${esc(t('jlEncontradosLbl'))}">${list}</ul>` : ''}`;
+    ${list ? `<ul class="jl-list" aria-label="${esc(t('jlEncontradosLbl_' + at))}">${list}</ul>` : ''}`;
 }
 
 function cards(ids, scene, { t, esc }) {
@@ -78,6 +78,7 @@ function scene(state, ctx) {
   let body = '';
   if (at === 's1') body = cards(['solvente', 'purgar', 'sin'], 's1', ctx) + question(state, ctx);
   if (at === 's2') body = drawing(state, ctx) + question(state, ctx);
+  if (at === 's3') body = drawing(state, ctx);
   return `<h3 class="jl-h">${esc(t(`jl${up(at)}_t`))}</h3>
     ${body}
     <div class="jg-actions">

@@ -4,12 +4,14 @@
 // Every unsafe answer ends in "stop and call a professional".
 // State: s.lab = { at: scene | null, f: [found ids], q: [scenes answered], v: visits }.
 
-export const SCENES = ['intro', 's1', 's2', 'fin'];
+export const SCENES = ['intro', 's1', 's2', 's3', 'fin'];
 
 // Things to tap in a drawing. "need" = what has to be found to go on;
 // "all" also has the objects that are not a hazard (the guide says so).
 export const TAPS = {
   s2: { need: ['llama', 'ventana', 'tubo', 'enchufe', 'fumar', 'detector'], decoys: ['planta', 'frasco'] },
+  // the licensed lab: what makes it safe (never how anything works inside)
+  s3: { need: ['licencia', 'cerrado', 'explosion', 'ventilacion', 'proteccion', 'inspeccion'], decoys: [] },
 };
 for (const v of Object.values(TAPS)) v.all = [...v.need, ...v.decoys];
 const foundAll = (lab) => !TAPS[lab.at] || TAPS[lab.at].need.every((id) => lab.f.includes(id));

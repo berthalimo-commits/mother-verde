@@ -85,6 +85,17 @@ check('los dibujos no llevan texto, imágenes externas ni enlaces (los nombres v
 const spotsOk = Object.values(ART).every((a) => { const p = Object.values(a.spots); return p.every(([x, y], i) => p.every(([u, w], j) => i === j || Math.hypot(x - u, y - w) >= 52)); });
 check('los botones del dibujo no se tapan entre sí (separados al menos 52 de 360)', spotsOk);
 
+console.log('1c. Escena 3: el laboratorio con licencia');
+k = keep(L.next(k));
+check('después de la cocina viene el laboratorio con licencia (lo encontrado se vacía)', k.lab.at === 's3' && k.lab.f.length === 0);
+threw = false; try { L.next(k); } catch { threw = true; }
+check('no se sigue hasta tocar las seis cosas que lo hacen seguro', threw && L.TAPS.s3.need.length === 6 && L.TAPS.s3.decoys.length === 0);
+for (const id of L.TAPS.s3.need) k = keep(L.tap(k, id));
+check('las seis encontradas -> se puede seguir, y cada una tiene su sitio, su nombre y su explicación en los 4 idiomas', L.canGoOn(k)
+  && L.TAPS.s3.need.every((id) => ART.LAB.spots[id] && LANGS.every((l) => LT[l]['jlL_' + id] && LT[l]['jlLx_' + id])));
+check('el laboratorio solo muestra qué lo hace seguro (licencia, sistema cerrado, a prueba de explosiones, ventilación y detección, protección, inspecciones)',
+  ['licencia', 'cerrado', 'explosion', 'ventilacion', 'proteccion', 'inspeccion'].every((id) => L.TAPS.s3.need.includes(id)));
+
 console.log('2. El servidor acepta todos los estados del laboratorio');
 let allOk = true, bad = null;
 for (const x of states) if (!(await serverOk(x))) { allOk = false; bad = x.lab; break; }

@@ -43,3 +43,39 @@ export const KITCHEN = {
     + '<path d="M111 186 Q104 172 96 168 Q106 166 111 180 Q114 164 124 160 Q118 172 111 186 Z" fill="var(--moss)"/>'
     + '</svg>',
 };
+
+export const LAB = {
+  spots: { licencia: [58, 52], ventilacion: [200, 42], explosion: [302, 44], proteccion: [56, 148], cerrado: [190, 150], inspeccion: [306, 150] },
+  svg: '<svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet">'
+    // clean wall and floor
+    + box(0, 0, 360, 200, 'var(--paper-raised)') + box(0, 200, 360, 40, 'var(--paper)', ' stroke="var(--line-strong)"')
+    // licence on the wall: a frame with a seal (no text)
+    + box(34, 28, 48, 46, 'var(--paper)', ' stroke="var(--ink-soft)" stroke-width="2" rx="3"')
+    + line('M42 40 L74 40', 'var(--line-strong)', 2) + line('M42 48 L70 48', 'var(--line-strong)', 2) + line('M42 56 L64 56', 'var(--line-strong)', 2)
+    + '<circle cx="70" cy="64" r="6" fill="var(--resin)"/>' + '<path d="M66 69 L64 76 L70 73 L76 76 L74 69 Z" fill="var(--resin)" opacity="0.8"/>'
+    // ventilation duct along the ceiling and a gas detector with its light
+    + box(126, 16, 130, 16, 'var(--ink-soft)', ' fill-opacity="0.35" stroke="var(--ink-soft)" stroke-width="1.4" rx="3"')
+    + line('M150 20 L150 28', 'var(--ink-soft)', 1.4) + line('M170 20 L170 28', 'var(--ink-soft)', 1.4) + line('M190 20 L190 28', 'var(--ink-soft)', 1.4) + line('M210 20 L210 28', 'var(--ink-soft)', 1.4)
+    + box(214, 46, 18, 18, 'var(--paper)', ' stroke="var(--ink-soft)" stroke-width="1.4" rx="4"') + '<circle cx="223" cy="55" r="3.2" fill="var(--moss)"/>'
+    // explosion-proof light: a closed, caged lamp
+    + line('M302 0 L302 26', 'var(--ink-soft)', 2)
+    + '<path d="M288 30 Q302 22 316 30 L316 50 Q302 60 288 50 Z" fill="var(--teal)" fill-opacity="0.28" stroke="var(--ink-soft)" stroke-width="2"/>'
+    + line('M288 40 L316 40', 'var(--ink-soft)', 1.6) + line('M302 26 L302 56', 'var(--ink-soft)', 1.6)
+    // protective equipment on a hook: goggles and gloves
+    + line('M30 116 L82 116', 'var(--ink-soft)', 3)
+    + '<path d="M36 128 Q46 122 56 128 Q66 122 76 128 L74 138 Q66 142 58 136 L54 136 Q46 142 38 138 Z" fill="var(--teal)" fill-opacity="0.5" stroke="var(--ink-soft)" stroke-width="1.4"/>'
+    + '<path d="M40 150 L40 172 Q40 180 48 180 L52 180 Q58 180 58 172 L58 156 L54 156 L54 150 Z" fill="var(--moss)" opacity="0.8"/>'
+    + '<path d="M62 150 L62 172 Q62 180 70 180 L74 180 Q80 180 80 172 L80 156 L76 156 L76 150 Z" fill="var(--moss)" opacity="0.8"/>'
+    // the closed, certified system: a sealed cabinet with a lock and a check seal (no inside)
+    + box(146, 104, 88, 96, 'var(--ink-soft)', ' fill-opacity="0.3" stroke="var(--ink-soft)" stroke-width="2" rx="8"')
+    + box(154, 112, 72, 80, 'none', ' stroke="var(--line-strong)" stroke-width="1.6" rx="5"')
+    + box(184, 144, 12, 12, 'var(--ink-soft)', ' rx="2"') + '<path d="M186 144 L186 139 Q190 134 194 139 L194 144" fill="none" stroke="var(--ink-soft)" stroke-width="2"/>'
+    + '<circle cx="222" cy="120" r="8" fill="var(--moss)"/>' + line('M218 120 L221 123 L226 116', 'var(--paper-raised)', 2)
+    // inspections: a clipboard with ticks on a stand
+    + line('M306 178 L306 200', 'var(--ink-soft)', 3) + line('M294 200 L318 200', 'var(--ink-soft)', 3)
+    + box(290, 126, 32, 52, 'var(--paper)', ' stroke="var(--ink-soft)" stroke-width="2" rx="3"') + box(299, 122, 14, 7, 'var(--ink-soft)', ' rx="2"')
+    + line('M296 140 L299 143 L304 137', 'var(--moss)', 2) + line('M308 140 L316 140', 'var(--line-strong)', 2)
+    + line('M296 154 L299 157 L304 151', 'var(--moss)', 2) + line('M308 154 L316 154', 'var(--line-strong)', 2)
+    + line('M296 168 L299 171 L304 165', 'var(--moss)', 2) + line('M308 168 L316 168', 'var(--line-strong)', 2)
+    + '</svg>',
+};
