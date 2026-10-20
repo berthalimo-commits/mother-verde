@@ -8,6 +8,7 @@
 import RULES from './rules.json';
 import TEXTS from './i18n.js';
 import * as E from './engine.js';
+import { poseFor, poseSvg } from './poses.js';
 
 window.mvAddTexts?.(TEXTS);
 const t = (k) => (window.t ? window.t(k) : k);
@@ -94,18 +95,6 @@ function act(next) {
 }
 
 // ---------------------------------------------------------------- view
-const SCIENTIST = '<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
-  // the same drawing as the mini scientist that flies across the platform (main.js)
-  + '<ellipse cx="10" cy="46" rx="7" ry="3" fill="var(--moss-deep)" opacity="0.35"/>'
-  + '<ellipse cx="18" cy="40" rx="5" ry="2.4" fill="var(--moss-deep)" opacity="0.5"/>'
-  + '<path d="M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z" fill="var(--moss)" opacity="0.92"/>'
-  + '<path d="M26 24 Q34 20 40 30 Q42 40 34 48" fill="none" stroke="var(--moss-deep)" stroke-width="1.2" opacity="0.6"/>'
-  + '<circle cx="40" cy="24" r="9" fill="var(--paper-raised)" stroke="var(--line-strong)" stroke-width="1"/>'
-  + '<circle cx="37" cy="23" r="2.6" fill="var(--teal)" opacity="0.9"/>'
-  + '<circle cx="43" cy="23" r="2.6" fill="var(--teal)" opacity="0.9"/>'
-  + '<path d="M35 20 Q40 17 45 20" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>'
-  + '<path d="M32 30 Q40 34 48 28" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>'
-  + '</svg>';
 const TRICH_KEY = { transparentes: 'trClearLabel', lechosas: 'trMilkyLabel', mezcla: 'trMixLabel', ambar: 'trAmberLabel' };
 const LESSON_KEY = { propagacion: 'subPropagacion', sistemas: 'subSistemas', iluminacion: 'subIluminacion', cosecha: 'subCosecha',
   diagnostico: 'subDiagnostico', sustrato: 'subSustrato', ciclo: 'subCiclo' };
@@ -217,7 +206,7 @@ function paint(root) {
       <li>${t('jgAvisoSim')}</li><li>${t('jgAviso18')}</li><li>${t('jgSinDinero')}</li>
     </ul>
     <div class="jg-guide">
-      <div class="jg-sci">${SCIENTIST}</div>
+      <div class="jg-sci">${poseSvg(poseFor(state, feedback))}</div>
       <p class="jg-bubble" id="jgBubble" tabindex="-1" role="status">${esc(guideText())}</p>
     </div>
     ${state.stage === 'intro' ? `<div class="jg-actions"><button type="button" class="btn btn-primary" id="jgStart">${t('jgEmpezar')}</button></div>` : ''}

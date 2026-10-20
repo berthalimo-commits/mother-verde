@@ -115,5 +115,22 @@ check('cada valor de cultivo de rules.json está marcado [POR VERIFICAR POR BERT
   return walk(RULES.etapas) && walk(RULES.equivalencias);
 })());
 
+// ------------------------------------------------------------ the guide's poses (src/game/poses.js)
+const P = await import('file:///' + APP + '/src/game/poses.js');
+const base = { stage: 'vegetativo', event: null, result: null };
+check('poses: portada -> explicando; evento sin responder -> preocupado; respuesta correcta -> contento',
+  P.poseFor({ ...base, stage: 'intro' }) === 'explicando' && P.poseFor({ ...base, event: { id: 'x', answered: false } }, ['evento:x']) === 'preocupado'
+  && P.poseFor({ ...base, event: { id: 'x', answered: true } }, ['eventoBien:x']) === 'contento');
+check('poses: semana mal / respuesta mal / cambio temprano -> preocupado; falta un dato -> pensando; floración -> lupa',
+  ['semanaMal', 'eventoMal:x', 'flipTemprano'].every((n) => P.poseFor(base, [n]) === 'preocupado')
+  && P.poseFor(base, ['semanaBien', 'sinDato:temperatura']) === 'pensando' && P.poseFor({ ...base, stage: 'floracion' }, ['semanaBien']) === 'lupa'
+  && P.poseFor(base, ['semanaBien']) === 'contento');
+check('poses: final -> planta muerta preocupado, buena cosecha contento, cosecha floja pensando',
+  P.poseFor({ ...base, stage: 'fin', result: { dead: true } }) === 'preocupado' && P.poseFor({ ...base, stage: 'fin', result: { score: 85 } }) === 'contento'
+  && P.poseFor({ ...base, stage: 'fin', result: { score: 40 } }) === 'pensando');
+check('poses: todas reutilizan el mismo cuerpo, cabeza y gafas del científico, decorativas (aria-hidden) y sin colores fijos',
+  Object.keys(P.POSES).every((id) => { const v = P.poseSvg(id); return v.includes('M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z') && v.includes('r="9"') && /aria-hidden="true"/.test(v) && !/#[0-9a-f]{3,6}/i.test(v); })
+  && P.poseSvg('nada').includes('data-pose="original"'));
+
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 process.exit(0);

@@ -77,7 +77,7 @@ compiló la vista de la rama `juego` con la variable encendida.
 3. **Humedad en vegetativo (respondida):** «media-alta», ≈ 65–75 % HR (VPD 0,8–1,0 kPa a 24–25 °C). Pendiente de
    confirmación de Bertha.
 4. **Poses nuevas del científico** (lista en el diseño, punto 7): preocupado, contento, explicando, con lupa, con
-   casco y gafas, pensando.
+   casco y gafas, pensando. **Aprobadas (20-10-2026) y ya en el juego** (`src/game/poses.js`; la hoja está en `design/scientist/poses-sheet.png`). «Con casco» queda reservada para la fase 3.
 5. **Modo claro:** ver la tabla de arriba.
 
 ## 7. Búsqueda de «Verdi» y de un tutor de IA

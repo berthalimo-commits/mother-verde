@@ -33,9 +33,12 @@ const intro = await b.ev(`document.getElementById('juegoRoot').innerText`);
 check('avisos visibles: simulación educativa, solo mayores de 18, sin dinero ni rankings', /Simulación educativa/.test(intro) && /mayores de 18/.test(intro) && /sin rankings/.test(intro));
 check('el científico de la plataforma es el guía (mismo dibujo)', await b.ev(`document.querySelector('#juego .jg-sci svg path[d="M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z"]') !== null`));
 
+check('portada: el científico explica (pose «explicando»)', await b.ev(`document.querySelector('#juego .jg-sci svg')?.dataset.pose`) === 'explicando');
+
 // ------------------------------------------------------------ playing + saving
 await click(b, 'jgStart'); await sleep(800);
 for (let i = 0; i < 3; i++) { await click(b, 'jgNext'); await sleep(900); }
+check('tras jugar semanas la pose cambia según lo que pasa', ['contento', 'pensando', 'preocupado', 'lupa'].includes(await b.ev(`document.querySelector('#juego .jg-sci svg')?.dataset.pose`)));
 let st = await gs(b);
 const row = await serverRow(NEWBIE);
 check('jugar 3 semanas -> se guarda en la cuenta (semana y seq iguales en el servidor)', st.week === 4 && row && Number(row.week) === 4 && row.seq === st.seq, JSON.stringify({ st: st.week, row }));

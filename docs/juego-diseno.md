@@ -89,7 +89,7 @@ Se reutiliza **el mismo dibujo** del científico que vuela por la plataforma (`c
 cuerpo verde, cabeza con gafas turquesa y sonrisa, sin texto). En la fase 1 aparece tal cual, sin animación de vuelo, junto al globo
 de texto del guía.
 
-**Poses y expresiones nuevas que harían falta** (para pedir al diseño, ninguna dibujada todavía):
+**Poses y expresiones nuevas que harían falta** (aprobadas el 20-10-2026; dibujadas en `src/game/poses.js`, el juego elige la pose según lo que pasa):
 1. **Preocupado** (boca hacia abajo, cejas inclinadas): cuando aparece un evento.
 2. **Contento** (sonrisa grande, brazos arriba): decisión correcta o buena cosecha.
 3. **Explicando** (un brazo señalando): portada y consejos de cada etapa.
