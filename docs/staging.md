@@ -41,8 +41,8 @@ VITE_SUPABASE_URL»). La versión anterior sigue publicada. Se detiene también 
 - **Production** apunta a cualquier base que no sea la de producción.
 
 Eso lo decide `vite.config.js` con `supabase/projects.json` (los nombres de los dos proyectos; son datos públicos,
-no secretos). Si quieres que Preview compruebe además que es exactamente staging, escribe el *Reference ID* de
-staging en `supabase/projects.json` → `staging.ref` (Project Settings → General). La tarea diaria (`/api/…`) no
+no secretos): producción `uobailsjmjoubvnagxht` y staging `ciqdnrdtaxbmcjvxljvq`. Con los dos escritos, Preview
+comprueba además que apunta **exactamente** a staging (cualquier otro proyecto también detiene la compilación). La tarea diaria (`/api/…`) no
 compila: si le falta `SUPABASE_SERVICE_ROLE_KEY` responde con error y lo verás en Vercel → Logs.
 
 Después de crear las variables: Vercel → *Deployments* → el último de `dev` → «…» → **Redeploy** (y lo mismo

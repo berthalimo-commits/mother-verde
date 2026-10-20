@@ -8,9 +8,11 @@ import fs from 'fs';
 import { check, sleep, browser, summary } from './browser.mjs';
 
 const ROOT = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
-const PROD = JSON.parse(fs.readFileSync(ROOT + 'supabase/projects.json', 'utf8')).production.ref;
+const PROJECTS = JSON.parse(fs.readFileSync(ROOT + 'supabase/projects.json', 'utf8'));
+const PROD = PROJECTS.production.ref;
 const PROD_URL = `https://${PROD}.supabase.co`;
-const STAGING_URL = 'https://abcdefghijklmnopqrst.supabase.co'; // any other project
+const STAGING_URL = `https://${PROJECTS.staging.ref}.supabase.co`;
+const OTHER_URL = 'https://abcdefghijklmnopqrst.supabase.co'; // a project that is neither
 const clean = (o) => { const e = { ...process.env }; for (const k of ['VITE_SUPABASE_URL', 'VITE_SUPABASE_ANON_KEY', 'VERCEL_ENV', 'MV_STAGE', 'MV_ALLOW_PRODUCTION_DB']) delete e[k]; return { ...e, ...o }; };
 const build = (env) => {
   const r = spawnSync('npx vite build', { cwd: ROOT, shell: true, encoding: 'utf8', env: clean(env) });
@@ -34,7 +36,10 @@ r = build({ VERCEL_ENV: 'production', VITE_SUPABASE_URL: PROD_URL, VITE_SUPABASE
 const prodJs = r.ok ? fs.readdirSync(ROOT + 'dist/assets').filter((f) => f.endsWith('.js')).map((f) => fs.readFileSync(ROOT + 'dist/assets/' + f, 'utf8')).join('\n') : '';
 check('Production con la base de producción -> compila, y sin la marca de staging activa', r.ok && !/"staging"\s*!==|stage\s*!==\s*"staging"/.test('') && /"production"/.test(prodJs), r.out.slice(-200));
 r = build({ VERCEL_ENV: 'preview', VITE_SUPABASE_URL: STAGING_URL, VITE_SUPABASE_ANON_KEY: 'x' });
-check('Preview con otra base (staging) -> compila', r.ok, r.out.slice(-200));
+check('Preview con mother-verde-staging -> compila', r.ok, r.out.slice(-200));
+r = build({ VERCEL_ENV: 'preview', VITE_SUPABASE_URL: OTHER_URL, VITE_SUPABASE_ANON_KEY: 'x' });
+check('Preview con un proyecto que no es staging -> detenida (ahora que el identificador de staging está escrito)', !r.ok && /Preview debe usar el proyecto mother-verde-staging/.test(r.out), r.out.slice(-200));
+check('supabase/projects.json: producción y staging con sus identificadores, distintos', /^[a-z0-9]{20}$/.test(PROD) && /^[a-z0-9]{20}$/.test(PROJECTS.staging.ref) && PROD !== PROJECTS.staging.ref);
 
 console.log('2. Aviso «STAGING · pruebas»');
 r = build({ VITE_SUPABASE_URL: 'http://localhost:54321', VITE_SUPABASE_ANON_KEY: 'anon', MV_STAGE: 'staging' });
