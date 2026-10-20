@@ -60,11 +60,13 @@ export function poseFor(state, notes = []) {
   if (state.stage === 'fin') {
     const r = state.result || {};
     if (r.dead) return 'preocupado';
-    return r.score >= 70 ? 'contento' : 'pensando';
+    return (r.final ?? r.score) >= 70 ? 'contento' : 'pensando';
   }
-  if ((state.event && !state.event.answered) || has('eventoMal') || has('semanaMal') || has('flipTemprano')) return 'preocupado';
-  if (has('eventoBien')) return 'contento';
-  if (has('sinDato')) return 'pensando';
+  if ((state.event && !state.event.answered) || has('eventoMal') || has('semanaMal') || has('flipTemprano') || has('postMal')) return 'preocupado';
+  // the rosin screen is about safety (hot plates): helmet and goggles
+  if (state.stage === 'rosin') return 'casco';
+  if (has('eventoBien') || has('postBien') || has('cosechado')) return 'contento';
+  if (has('sinDato') || has('postSinDato')) return 'pensando';
   if (state.stage === 'floracion') return 'lupa';
   if (has('semanaBien')) return 'contento';
   return 'explicando';

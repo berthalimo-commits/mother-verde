@@ -77,7 +77,7 @@ compiló la vista de la rama `juego` con la variable encendida.
 3. **Humedad en vegetativo (respondida):** «media-alta», ≈ 65–75 % HR (VPD 0,8–1,0 kPa a 24–25 °C). Pendiente de
    confirmación de Bertha.
 4. **Poses nuevas del científico** (lista en el diseño, punto 7): preocupado, contento, explicando, con lupa, con
-   casco y gafas, pensando. **Aprobadas (20-10-2026) y ya en el juego** (`src/game/poses.js`; la hoja está en `design/scientist/poses-sheet.png`). «Con casco» queda reservada para la fase 3.
+   casco y gafas, pensando. **Aprobadas (20-10-2026) y ya en el juego** (`src/game/poses.js`; la hoja está en `design/scientist/poses-sheet.png`). «Con casco» se usa en la pantalla del rosin (seguridad) y volverá en la fase 3.
 5. **Modo claro:** ver la tabla de arriba.
 
 ## 7. Búsqueda de «Verdi» y de un tutor de IA
@@ -95,3 +95,61 @@ compiló la vista de la rama `juego` con la variable encendida.
   ninguna similar). Los únicos servicios externos con datos son Supabase, DeepL (**traducción automática** de las
   publicaciones de la Comunidad), la red Base, Resend/SMTP para correos y Cloudflare Turnstile (si se activa). DeepL
   es traducción automática, no un tutor; ya figura en la lista de proveedores pendiente de la política.
+
+## 8. Fase 2: secado, curado y rosin (20-10-2026, rama `juego`)
+
+**Cómo se juega.** Al cosechar, la planta ya no va directa al resultado: pasa por **Secado → Curado → Prensa de
+rosin (opcional)**. Cada etapa es **una sola pantalla de decisiones** (no semanas) y **no hay nada elegido de
+antemano**; si falta un grupo, aparece «Elige una opción en cada grupo para seguir». Una planta que no sobrevive va
+directa al resultado. El rosin se puede saltar («Terminar sin hacer rosin»).
+
+**De dónde sale cada valor ideal** (`src/game/rules.json` → `post`, todo marcado [POR VERIFICAR POR BERTHA]):
+
+| Etapa | Decisión | Ideal | Fuente en la plataforma |
+|---|---|---|---|
+| Secado | temperatura de la sala | fresca (15–18 °C) | Elaboración → Procesos & SOP, SOP-01 |
+| Secado | humedad de la sala | media (HR 55–60 %) | SOP-01 |
+| Secado | ventilador | a la pared | Equipamiento → 5. Secado («nunca directo a las flores») |
+| Secado | luz | a oscuras | Equipamiento → 5. Secado («espacio 100 % oscuro») |
+| Secado | hasta cuándo | hasta el chasquido (≈ 7–14 días) | SOP-01 y Temporizador de secado («prueba del chasquido») |
+| Curado | envase | frasco de vidrio hermético | Equipamiento → 6. Curado |
+| Curado | humedad en el frasco | media (HR 58–62 %) | SOP-02 |
+| Curado | abrir los frascos | cada día la primera semana | Temporizador de secado («burping diario») |
+| Curado | tiempo | 2–4 semanas o más | SOP-02 («duración mínima 2–4 semanas») |
+| Rosin | material | ya curado | Concentrados → Rosin («flor, hash o kief ya curado») |
+| Rosin | calor | medio | Técnicas caseras («a temperatura media»); en el juego **solo el nivel** |
+| Rosin | presión | **no puntúa** | la plataforma no da un nivel (no lo inventé) |
+| Rosin | papel | pergamino | Concentrados → Rosin («sobre papel pergamino, sin solventes») |
+| Rosin | protección | guantes y superficie estable | diseño aprobado de la fase 2 (avisos de quemaduras) |
+
+**Puntuación (VALOR DE JUEGO).** Igual que en el cultivo: un nivel de distancia resta 4 y dos niveles, 8. Lo del
+secado y el curado se resta de la nota de la cosecha → **nota final del cogollo**. El rosin **no cambia esa nota**:
+tiene su propio veredicto («bien hecho» o «para mejorar: …»), y sin protección el guía avisa de las quemaduras.
+
+**Rosin solo cualitativo** (decisión del 14-10-2026): bajo / medio / alto, **sin temperaturas, tiempos, presiones
+ni cantidades**. Una prueba revisa que ninguno de sus textos (4 idiomas) ni sus reglas tengan una sola cifra, y otra
+lo comprueba en la pantalla real. El aviso de seguridad se ve siempre en la pantalla del rosin. Siguen prohibidos
+en todo el juego butano, BHO, CO2 y unidades de presión (eso es la fase 3, que requiere tu aprobación del guion).
+
+**El guía.** Contento si todo va bien, preocupado si algo restó, pensando si falta un dato, y **con casco y gafas en
+la pantalla del rosin** (es la pantalla de seguridad; en la fase 3 se volverá a usar).
+
+**Lecciones.** «Repasar la lección» lleva a **Elaboración → Procesos & SOP** (secado y curado) y a **Elaboración →
+Concentrados** (rosin).
+
+**Base de datos.** Como la migración `20261015100000_game_progress.sql` **todavía no se ha pegado en ningún
+Supabase**, la amplié en el mismo archivo (no hace falta una migración nueva): acepta las etapas `secado`, `curado`
+y `rosin` y una clave `post` pequeña (máx. 1000 bytes, solo esas tres etapas). Si alguien ya la hubiera pegado en
+staging, basta con volver a pegar el archivo entero: es `create or replace`.
+
+**Pruebas.** `game-engine` 44 (antes 30), `game-ui` 44 (antes 28): partida completa con secado, curado y rosin,
+saltar el rosin, errores y su resta, opciones inventadas rechazadas, el servidor acepta todos los estados nuevos,
+guardar y recargar en mitad del curado, 4 idiomas en la pantalla del rosin sin claves a la vista, móvil sin
+desborde y con opciones de 44 px, y el botón de repasar abre Elaboración → Procesos & SOP. `game-db` 37 sin cambios.
+
+**Dudas para ti / Bertha.**
+1. ¿Te parece bien que el rosin tenga **veredicto propio** y no baje la nota del cogollo?
+2. **Presión del rosin:** la plataforma no da un nivel; no puntúa. Si Bertha quiere uno (bajo / medio / alto), se
+   cambia en `rules.json` sin tocar el código.
+3. **Protección (guantes y superficie estable):** es un aviso de seguridad del diseño, no un texto de la plataforma.
+   Bertha puede confirmar la redacción.

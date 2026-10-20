@@ -99,7 +99,7 @@ de texto del guía.
 
 ## 8. Plan de las fases siguientes
 
-**Fase 2 — secado, curado y prensa de rosin.** Secado (sala fresca y con humedad media, 7–14 días según la
+**Fase 2 — secado, curado y prensa de rosin (hecha el 20-10-2026, ver `juego-informe.md`, punto 8).** Secado (sala fresca y con humedad media, 7–14 días según la
 plataforma), curado en frasco (HR 58–62 %, mínimo 2–4 semanas) y una prensa de rosin **solo cualitativa**: niveles
 bajo/medio/alto de calor y presión, sin temperaturas, tiempos ni cantidades, y con avisos de seguridad (superficies
 calientes, quemaduras). **Decidido (14-10-2026):** el texto de la plataforma sobre el rosin se queda tal cual;

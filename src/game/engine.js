@@ -11,7 +11,7 @@ const ideal = (rules, stage, d) => rules.etapas[stage]?.ideal?.[d]?.valor ?? nul
 
 export function newGame(prev = null) {
   return { v: 1, seq: (prev?.seq ?? 0) + 1, run: (prev?.run ?? 0) + 1, stage: 'intro', week: 0, stageWeek: 0,
-    health: 100, risks: {}, event: null, log: [], lessons: prev?.lessons ?? [], result: null, last: null, trich: null, notes: [] };
+    health: 100, risks: {}, event: null, log: [], lessons: prev?.lessons ?? [], result: null, last: null, trich: null, post: null, notes: [] };
 }
 
 export function start(s) {
@@ -134,7 +134,54 @@ export function harvest(s, rules, auto = false) {
   const trich = trichomes(s.stageWeek, rules);
   const pts = rules.tricomas.estados.find((e) => e.id === trich).puntos;
   const score = clamp(s.health + pts, 0, 100);
-  return finish({ ...s, seq: s.seq + (auto ? 0 : 1), trich, notes: auto ? ['cosechaAuto'] : [] }, rules, false, { score, trich, pts });
+  const done = finish({ ...s, seq: s.seq + (auto ? 0 : 1), trich, notes: auto ? ['cosechaAuto'] : [] }, rules, false, { score, trich, pts });
+  // Phase 2: a harvested plant goes on to drying, curing and (optional) rosin.
+  return { ...done, stage: 'secado', post: {}, notes: [...done.notes, 'cosechado'] };
+}
+
+// ---------------------------------------------------------------- phase 2: after the harvest
+// One screen of decisions per stage (not weeks). Each wrong decision takes
+// points off the harvest's score (drying, curing). Rosin is optional and only
+// qualitative (levels, no figures); it gets its own verdict, not a number.
+export const POST = ['secado', 'curado', 'rosin'];
+export const postDecisions = (rules, stage) => Object.keys(rules.post[stage].decisiones);
+
+export function applyPost(s, choices, rules) {
+  if (!POST.includes(s.stage)) throw new Error('not_post');
+  const R = rules.post;
+  const defs = R[s.stage].decisiones;
+  if (!Object.entries(defs).every(([d, def]) => def.opciones.includes(choices?.[d]))) throw new Error('bad_choices');
+  const lost = {};
+  const notes = [];
+  for (const [d, def] of Object.entries(defs)) {
+    const want = def.ideal.valor;
+    if (want === null) { notes.push('postSinDato:' + s.stage + '_' + d); continue; }
+    if (choices[d] === want) continue;
+    const dist = Math.abs(def.opciones.indexOf(choices[d]) - def.opciones.indexOf(want));
+    lost[d] = dist >= 2 ? R.resta_dos_niveles : R.resta_un_nivel;
+  }
+  notes.unshift((Object.keys(lost).length ? 'postMal:' : 'postBien:') + s.stage);
+  if (s.stage === 'rosin' && lost.proteccion) notes.push('quemadura');
+  const c = {};
+  for (const d of Object.keys(defs)) c[d] = choices[d];
+  const post = { ...(s.post || {}), [s.stage]: { c, l: lost } };
+  const next = POST[POST.indexOf(s.stage) + 1] || 'fin';
+  const out = { ...s, seq: s.seq + 1, stage: next, post, notes };
+  return next === 'fin' ? closePost(out) : out;
+}
+
+export function skipRosin(s) {
+  if (s.stage !== 'rosin') throw new Error('not_rosin');
+  return closePost({ ...s, seq: s.seq + 1, notes: ['rosinNo'] });
+}
+
+function closePost(s) {
+  const lostOf = (st) => Object.entries(s.post?.[st]?.l || {}).map(([d, v]) => [st + '_' + d, v]);
+  const flower = [...lostOf('secado'), ...lostOf('curado')];
+  const total = flower.reduce((a, [, v]) => a + v, 0);
+  const postCauses = flower.sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => k);
+  const rosin = s.post?.rosin ? { causes: lostOf('rosin').sort((a, b) => b[1] - a[1]).map(([k]) => k) } : null;
+  return { ...s, stage: 'fin', result: { ...s.result, final: clamp(s.result.score - total, 0, 100), postCauses, rosin } };
 }
 
 function finish(s, rules, dead, extra = {}) {
@@ -150,5 +197,6 @@ function addLesson(list, l) { return list.includes(l) ? list : [...list, l].slic
 
 // Lesson of the platform for each stage / cause (showSub('cultivo', …)).
 export const LESSON = { plantula: 'propagacion', vegetativo: 'sistemas', floracion: 'iluminacion', fin: 'cosecha',
+  secado: 'procesos', curado: 'procesos', rosin: 'concentrados',
   fotoperiodo: 'ciclo', intensidad: 'iluminacion', riego: 'diagnostico', nutrientes: 'sustrato', temperatura: 'sistemas',
   humedad: 'sistemas', evento: 'diagnostico', flip: 'ciclo' };

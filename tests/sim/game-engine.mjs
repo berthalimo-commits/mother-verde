@@ -2,6 +2,7 @@
 // a whole plant from seed to harvest, events, scoring, no randomness, and
 // every state passes the SAME server check (game_state_valid) on PGlite.
 // Also: no extraction figures in the game's files, texts in 4 languages.
+// Phase 2: drying, curing and a qualitative rosin press after the harvest.
 import fs from 'fs';
 import { makeDb } from './fakerest.mjs';
 
@@ -34,7 +35,35 @@ check('en floración se ven los tricomas (transparentes al principio)', s.trich 
 for (let i = 0; i < 8; i++) s = play(s, IDEAL.floracion);
 check('a la semana 9 de floración los tricomas están en «mezcla»', E.trichomes(s.stageWeek, RULES) === 'mezcla', s.stageWeek);
 s = E.harvest(s, RULES); states.push(s);
-check('cosecha en su punto -> 100/100 (salud 100 + 20, con tope)', s.stage === 'fin' && s.result.score === 100 && s.result.trich === 'mezcla' && s.result.causes.length === 0, JSON.stringify(s.result));
+check('cosecha en su punto -> 100/100 (salud 100 + 20, con tope) y pasa al secado', s.stage === 'secado' && s.notes.includes('cosechado') && s.result.score === 100 && s.result.trich === 'mezcla' && s.result.causes.length === 0, JSON.stringify(s.result));
+
+console.log('1b. Fase 2: secado, curado y rosin (cualitativo)');
+const PI = (st) => Object.fromEntries(Object.entries(RULES.post[st].decisiones).map(([d, v]) => [d, v.ideal.valor ?? v.opciones[1]]));
+const harvested = s;
+let p = E.applyPost(s, PI('secado'), RULES); states.push(p);
+check('secado ideal (sala fresca, HR media, ventilador a la pared, a oscuras, hasta el chasquido) -> curado sin restar', p.stage === 'curado' && p.notes[0] === 'postBien:secado' && !Object.keys(p.post.secado.l).length);
+p = E.applyPost(p, PI('curado'), RULES); states.push(p);
+check('curado ideal (vidrio, HR media, abrir cada día, semanas) -> prensa de rosin', p.stage === 'rosin' && p.notes[0] === 'postBien:curado');
+const pr = E.applyPost(p, PI('rosin'), RULES); states.push(pr);
+check('rosin ideal -> final 100/100, rosin «bien hecho»; la presión no puntúa (la plataforma no da el dato)', pr.stage === 'fin' && pr.result.final === 100 && pr.result.rosin.causes.length === 0
+  && pr.notes.includes('postSinDato:rosin_presion'), JSON.stringify(pr.result));
+const skip = E.skipRosin(p); states.push(skip);
+check('el rosin es opcional: terminar sin prensar -> final igual, sin veredicto de rosin', skip.stage === 'fin' && skip.result.final === 100 && skip.result.rosin === null && skip.notes[0] === 'rosinNo');
+let q = E.applyPost(harvested, { ...PI('secado'), temperatura: 'calida', humedad: 'alta', aire: 'directo' }, RULES); states.push(q);
+check('secado con calor, humedad alta y ventilador directo -> resta (8 + 4 + 4) y se dice por qué', q.stage === 'curado' && q.notes[0] === 'postMal:secado'
+  && q.post.secado.l.temperatura === 8 && q.post.secado.l.humedad === 4 && q.post.secado.l.aire === 4, JSON.stringify(q.post));
+q = E.applyPost(q, { ...PI('curado'), envase: 'abierto', tiempo: 'pocos_dias' }, RULES); states.push(q);
+const qr = E.applyPost(q, { ...PI('rosin'), material: 'fresco', proteccion: 'sin_proteccion' }, RULES); states.push(qr);
+check('los errores de secado y curado bajan la nota final (100 - 24 = 76); lo que más restó va primero', qr.result.final === 76 && qr.result.score === 100
+  && qr.result.postCauses[0] === 'secado_temperatura' && qr.result.postCauses.length === 3, JSON.stringify(qr.result));
+check('rosin con material fresco y sin protección -> veredicto «para mejorar» y aviso de quemadura (no cambia la nota del cogollo)',
+  qr.result.rosin.causes.includes('rosin_material') && qr.result.rosin.causes.includes('rosin_proteccion') && qr.notes.includes('quemadura'));
+let threw = 0;
+for (const f of [() => E.applyPost(harvested, { ...PI('secado'), luz: 'neon' }, RULES), () => E.applyPost(harvested, {}, RULES),
+  () => E.applyPost(E.start(E.newGame()), PI('secado'), RULES), () => E.skipRosin(harvested)]) { try { f(); } catch { threw++; } }
+check('opciones inventadas, decisiones vacías, fase 2 sin cosechar o saltar el rosin antes de tiempo -> rechazado', threw === 4);
+check('cada ideal de la fase 2 viene de un texto de la plataforma y está marcado [POR VERIFICAR POR BERTHA]',
+  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA/.test(v.ideal.verificar) && v.ideal.fuente.length > 10)));
 
 console.log('2. Errores, eventos y respuestas');
 let b = E.start(E.newGame());
@@ -76,14 +105,14 @@ for (let i = 0; i < 30 && d.stage !== 'fin'; i++) {
   d = E.applyWeek(d, worst, RULES);
 }
 states.push(d);
-check('salud a 0 -> la planta no sobrevive y el resumen dice qué restó más', d.stage === 'fin' && d.result.dead === true && d.health === 0 && d.result.causes.length > 0, JSON.stringify(d.result));
+check('salud a 0 -> la planta no sobrevive (sin secado) y el resumen dice qué restó más', d.stage === 'fin' && !d.post && d.result.dead === true && d.health === 0 && d.result.causes.length > 0, JSON.stringify(d.result));
 let a = E.start(E.newGame());
 for (let i = 0; i < 2; i++) a = E.applyWeek(a, IDEAL.plantula, RULES);
 for (let i = 0; i < 3; i++) a = E.applyWeek(a, IDEAL.vegetativo, RULES);
 a = E.applyWeek(a, { ...IDEAL.vegetativo, fotoperiodo: '12/12' }, RULES);
 for (let i = 0; i < 12; i++) if (a.stage === 'floracion') a = E.applyWeek(a, IDEAL.floracion, RULES);
 states.push(a);
-check('si nadie cosecha, se cosecha sola al final (ámbar)', a.stage === 'fin' && a.result.trich === 'ambar' && a.notes.includes('cosechaAuto'), JSON.stringify(a.result));
+check('si nadie cosecha, se cosecha sola al final (ámbar) y pasa al secado', a.stage === 'secado' && a.result.trich === 'ambar' && a.notes.includes('cosechaAuto'), JSON.stringify(a.result));
 const replay = () => { let x = E.start(E.newGame()); for (let i = 0; i < 2; i++) x = E.applyWeek(x, { ...IDEAL.plantula, humedad: 'alta' }, RULES); return JSON.stringify(x); };
 check('una elección guardada que ya no existe (humedad «media» antigua) vuelve a la opción del medio', E.defaultChoices({ last: { humedad: 'media' } }, RULES).humedad === 'media_alta');
 check('mismas decisiones -> mismo resultado (sin azar)', replay() === replay());
@@ -98,7 +127,10 @@ check(`${states.length + 1} estados del juego pasan game_state_valid y miden men
 
 console.log('5. Seguridad del contenido y textos');
 const files = ['src/game/rules.json', 'src/game/i18n.js', 'src/game/game.js', 'src/game/engine.js', 'src/game/entry.js'].map((f) => fs.readFileSync(APP + '/' + f, 'utf8')).join('\n');
-check('el juego no menciona butano, BHO, CO2, presiones ni temperaturas de extracción (fase 1 = cultivo)', !/butan|\bBHO\b|\bCO2\b|\bpsi\b|\bbar\b|prensa|rosin|extracci/i.test(files.replace(/no de extracción/g, '')));
+check('el juego no menciona butano, BHO, CO2, solventes de extracción ni unidades de presión', !/butan|\bBHO\b|\bCO2\b|\bpsi\b|\bbar\b|extracci/i.test(files.replace(/no de extracción/g, '')));
+const rosinTexts = ['es', 'en', 'de', 'fr'].flatMap((l) => Object.entries(TEXTS[l]).filter(([k]) => /rosin|Rosin/.test(k)).map(([, v]) => v));
+check(`rosin solo cualitativo: ninguno de sus ${rosinTexts.length} textos ni sus reglas tienen cifras (temperaturas, tiempos, presiones, cantidades)`,
+  rosinTexts.length > 40 && rosinTexts.every((v) => !/\d/.test(v)) && Object.values(RULES.post.rosin.decisiones).every((v) => v.opciones.concat(v.ideal.valor ?? []).every((o) => !/\d/.test(o))));
 check('sin dinero, apuestas, cajas sorpresa ni rankings en el código del juego', !/leaderboard|ranking\b|apuesta|loot|gacha|compra|purchase/i.test(files.replace(/sin apuestas|sin rankings|no rankings|keine Ranglisten|pas de classements/g, '')));
 const keys = Object.keys(TEXTS.es);
 check(`textos del juego en los 4 idiomas (${keys.length} claves, ninguna vacía)`, ['en', 'de', 'fr'].every((l) => keys.every((k) => typeof TEXTS[l][k] === 'string' && TEXTS[l][k].length > 0)) && ['en', 'de', 'fr'].every((l) => Object.keys(TEXTS[l]).length === keys.length));
@@ -108,7 +140,10 @@ check('cada texto fijo que usa la pantalla existe', usedKeys.every((k) => keys.i
 const dyn = [...E.DECISIONS.flatMap((dd) => RULES.opciones[dd].flatMap((o) => [`jgO_${dd}_${o}`, `jgH_${dd}_${o}`])),
   ...E.DECISIONS.map((dd) => 'jgD_' + dd), ...Object.keys(RULES.eventos.lista).flatMap((id) => ['jgEvN_' + id, 'jgEvS_' + id, 'jgEvX_' + id]),
   ...RULES.eventos.respuestas.map((r) => 'jgR_' + r), ...['plantula', 'vegetativo', 'floracion'].map((x) => 'jgGuia_' + x),
-  ...['fotoperiodo', 'intensidad', 'riego', 'nutrientes', 'temperatura', 'humedad', 'evento', 'flip'].map((c) => 'jgCausa_' + c)];
+  ...['fotoperiodo', 'intensidad', 'riego', 'nutrientes', 'temperatura', 'humedad', 'evento', 'flip'].map((c) => 'jgCausa_' + c),
+  ...E.POST.flatMap((st) => ['jgEtapa_', 'jgGuia_', 'jgPostDecide_', 'jgPost_btn_'].map((p) => p + st)),
+  ...E.POST.flatMap((st) => Object.entries(RULES.post[st].decisiones).flatMap(([d, v]) => ['jgPD_' + st + '_' + d, 'jgPC_' + st + '_' + d,
+    ...v.opciones.flatMap((o) => [`jgPO_${st}_${d}_${o}`, `jgPH_${st}_${d}_${o}`])]))];
 check('cada texto que se arma con variables (opciones, eventos, causas) existe', dyn.every((k) => keys.includes(k)), dyn.filter((k) => !keys.includes(k)).join(','));
 check('cada valor de cultivo de rules.json está marcado [POR VERIFICAR POR BERTHA]', (() => {
   const walk = (o) => o && typeof o === 'object' ? (('valor' in o || 'min' in o) ? /POR VERIFICAR POR BERTHA/.test(o.verificar || '') || /VALOR DE JUEGO/.test(o.fuente || '') : true) && Object.values(o).every(walk) : true;

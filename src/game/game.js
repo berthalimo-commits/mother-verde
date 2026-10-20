@@ -97,11 +97,15 @@ function act(next) {
 // ---------------------------------------------------------------- view
 const TRICH_KEY = { transparentes: 'trClearLabel', lechosas: 'trMilkyLabel', mezcla: 'trMixLabel', ambar: 'trAmberLabel' };
 const LESSON_KEY = { propagacion: 'subPropagacion', sistemas: 'subSistemas', iluminacion: 'subIluminacion', cosecha: 'subCosecha',
-  diagnostico: 'subDiagnostico', sustrato: 'subSustrato', ciclo: 'subCiclo' };
+  diagnostico: 'subDiagnostico', sustrato: 'subSustrato', ciclo: 'subCiclo', procesos: 'subProcesos', concentrados: 'subConcentrados' };
+// Lessons outside Cultivo (phase 2: Elaboración → Procesos & SOP / Concentrados).
+const LESSON_SCREEN = { procesos: 'elaboracion', concentrados: 'elaboracion' };
+const unent = (x) => String(x).replace(/&amp;/g, '&');
 
 function lessonBtn(lesson) {
-  return `<button type="button" class="btn btn-ghost jg-lesson" data-lesson="${esc(lesson)}">${esc(fmt(t('jgLeccion'), { l: t(LESSON_KEY[lesson]) }))}</button>`;
+  return `<button type="button" class="btn btn-ghost jg-lesson" data-lesson="${esc(lesson)}">${esc(fmt(t('jgLeccion'), { l: unent(t(LESSON_KEY[lesson])) }))}</button>`;
 }
+const postCause = (k) => t('jgPC_' + k);
 
 function guideText() {
   const out = [];
@@ -114,14 +118,27 @@ function guideText() {
     } else if (kind === 'sinDato') out.push(fmt(t('jgFb_sinDato'), { d: t('jgD_' + arg).toLowerCase() }));
     else if (kind === 'eventoBien') out.push(fmt(t('jgEvBien'), { x: t('jgEvX_' + arg) }));
     else if (kind === 'eventoMal') out.push(t('jgEvMal'));
+    else if (kind === 'cosechado') out.push(fmt(t('jgFb_cosechado'), { n: state.result?.score ?? 0 }));
+    else if (kind === 'postBien') out.push(t('jgFb_postBien'));
+    else if (kind === 'postMal') {
+      const lost = state.post?.[arg]?.l || {};
+      out.push(fmt(t('jgFb_postMal'), { lista: Object.keys(lost).map((d) => postCause(arg + '_' + d)).join(', ') }));
+    } else if (kind === 'postSinDato') out.push(fmt(t('jgFb_sinDato'), { d: t('jgPD_' + arg).toLowerCase() }));
     else out.push(t('jgFb_' + n));
   }
   if (state.stage === 'intro') return t('jgIntro');
-  if (['plantula', 'vegetativo', 'floracion'].includes(state.stage)) out.push(t('jgGuia_' + state.stage));
+  if (['plantula', 'vegetativo', 'floracion', ...E.POST].includes(state.stage)) out.push(t('jgGuia_' + state.stage));
   return out.filter(Boolean).join(' ');
 }
 
 function statusHtml() {
+  if (E.POST.includes(state.stage)) {
+    return `<div class="card-block jg-status">
+    <dl>
+      <div><dt>${t('jgEtapa_' + state.stage)}</dt><dd>${esc(fmt(t('jgCosechaNota'), { n: state.result?.score ?? 0 }))}</dd></div>
+    </dl>
+  </div>`;
+  }
   if (!['plantula', 'vegetativo', 'floracion'].includes(state.stage)) return '';
   const h = state.health;
   return `<div class="card-block jg-status">
@@ -174,17 +191,53 @@ function decisionsHtml() {
   </form>`;
 }
 
+// Phase 2: one screen of decisions after the harvest. Nothing is pre-selected
+// (the person has to choose); the rosin screen can be skipped.
+function postHtml() {
+  const st = state.stage;
+  if (!E.POST.includes(st)) return '';
+  const defs = RULES.post[st].decisiones;
+  const fields = E.postDecisions(RULES, st).map((d) => `<fieldset class="jg-field">
+      <legend>${t(`jgPD_${st}_${d}`)}</legend>
+      <div class="jg-opts">${defs[d].opciones.map((o) => {
+        const id = `jgp-${st}-${d}-${o}`;
+        return `<input type="radio" name="jgp-${d}" id="${id}" value="${o}">
+          <label for="${id}"><span>${t(`jgPO_${st}_${d}_${o}`)}</span><small>${t(`jgPH_${st}_${d}_${o}`)}</small></label>`;
+      }).join('')}</div>
+    </fieldset>`).join('');
+  return `<form class="jg-form" id="jgPostForm" novalidate>
+    <h3>${t('jgPostDecide_' + st)}</h3>
+    ${st === 'rosin' ? `<p class="jg-warn">${t('jgRosinAviso')}</p>` : ''}
+    ${fields}
+    <p class="jg-missing" id="jgMissing" role="alert"></p>
+    <div class="jg-actions">
+      <button type="submit" class="btn btn-primary" id="jgPostNext">${t('jgPost_btn_' + st)}</button>
+      ${st === 'rosin' ? `<button type="button" class="btn btn-ghost" id="jgSkipRosin">${t('jgRosinNo')}</button>` : ''}
+      ${lessonBtn(E.LESSON[st])}
+    </div>
+  </form>`;
+}
+
 function resultHtml() {
   if (state.stage !== 'fin' || !state.result) return '';
   const r = state.result;
   const causes = r.causes || [];
+  const post = r.postCauses || [];
+  const hasFinal = !r.dead && typeof r.final === 'number';
+  const rosinLine = !hasFinal ? '' : !r.rosin ? t('jgFinRosinNo')
+    : r.rosin.causes.length ? fmt(t('jgFinRosinMal'), { lista: r.rosin.causes.map(postCause).join(', ') }) : t('jgFinRosinBien');
+  const lessons = [...new Set([...causes.map((c) => E.LESSON[c]), ...post.map((c) => E.LESSON[c.split('_')[0]]),
+    ...(r.rosin?.causes.length ? ['concentrados'] : [])])];
   return `<div class="card-block jg-result">
     <h3>${t('jgFinTitulo')}</h3>
-    ${r.dead ? `<p class="jg-big">${t('jgFinMuerta')}</p>` : `<p class="jg-big">${esc(fmt(t('jgFinPuntos'), { n: r.score }))}</p>
+    ${r.dead ? `<p class="jg-big">${t('jgFinMuerta')}</p>` : `<p class="jg-big">${esc(fmt(t('jgFinPuntos'), { n: hasFinal ? r.final : r.score }))}</p>
+      ${hasFinal ? `<p>${esc(fmt(t('jgFinCosecha'), { n: r.score, f: r.final }))}</p>` : ''}
       <p>${esc(fmt(t('jgFinSalud'), { h: r.health }))}</p>
       <p>${esc(fmt(t('jgFinTricomas'), { t: t(TRICH_KEY[r.trich]) }))}</p>`}
     <p><b>${t('jgFinCausas')}</b> ${causes.length ? causes.map((c) => t('jgCausa_' + c)).join(', ') : t('jgFinNada')}</p>
-    ${causes.length ? `<p><b>${t('jgFinRepasar')}</b></p><div class="jg-actions">${[...new Set(causes.map((c) => E.LESSON[c]))].map(lessonBtn).join('')}</div>` : ''}
+    ${hasFinal ? `<p><b>${t('jgFinPostCausas')}</b> ${post.length ? post.map(postCause).join(', ') : t('jgFinNada')}</p>
+      <p>${esc(rosinLine)}</p>` : ''}
+    ${lessons.length ? `<p><b>${t('jgFinRepasar')}</b></p><div class="jg-actions">${lessons.map(lessonBtn).join('')}</div>` : ''}
     <div class="jg-actions"><button type="button" class="btn btn-primary" id="jgAgain">${t('jgPlantarOtra')}</button>${r.dead ? '' : lessonBtn('cosecha')}</div>
   </div>`;
 }
@@ -213,6 +266,7 @@ function paint(root) {
     ${statusHtml()}
     ${eventHtml()}
     ${decisionsHtml()}
+    ${postHtml()}
     ${resultHtml()}
     <p class="jg-sync" id="jgSync" role="status"></p>
   </div>`;
@@ -226,14 +280,29 @@ function paint(root) {
     act(E.applyWeek(state, choices, RULES));
   });
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));
+  root.querySelector('#jgPostForm')?.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const fd = new FormData(ev.target);
+    const ds = E.postDecisions(RULES, state.stage);
+    const choices = Object.fromEntries(ds.map((d) => [d, fd.get('jgp-' + d)]));
+    const missing = ds.filter((d) => !choices[d]);
+    if (missing.length) {
+      root.querySelector('#jgMissing').textContent = t('jgFaltaElegir');
+      root.querySelector(`input[name="jgp-${missing[0]}"]`)?.focus();
+      return;
+    }
+    act(E.applyPost(state, choices, RULES));
+  });
+  root.querySelector('#jgSkipRosin')?.addEventListener('click', () => act(E.skipRosin(state)));
   root.querySelectorAll('.jg-answer').forEach((b) => b.addEventListener('click', () => act(E.answerEvent(state, b.dataset.answer, RULES))));
   root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.newGame(state)));
   root.querySelectorAll('.jg-lesson').forEach((b) => b.addEventListener('click', () => {
     const l = b.dataset.lesson;
     state = E.markLesson(state, l);
     writeLocal(who().key, state, pending);
-    window.showScreen?.('cultivo');
-    window.showSub?.('cultivo', l);
+    const scr = LESSON_SCREEN[l] || 'cultivo';
+    window.showScreen?.(scr);
+    window.showSub?.(scr, l);
   }));
 }
 
@@ -272,6 +341,8 @@ const CSS = `
 #juego .jg-event{border-color:var(--resin)}
 #juego .jg-big{font-size:22px;font-weight:700;color:var(--ink)}
 #juego .jg-sync{font-size:12.5px;color:var(--ink-soft);min-height:1.5em}
+#juego .jg-warn{font-size:13.5px;line-height:1.55;color:var(--ink);background:var(--paper-raised);border:1px solid var(--resin);border-left:4px solid var(--resin);border-radius:8px;padding:10px 12px;margin:0 0 12px}
+#juego .jg-missing{color:var(--resin);font-weight:600;font-size:13.5px;min-height:1.2em;margin:0}
 `;
 
 export async function render(root) {

@@ -47,14 +47,14 @@ as $$
 declare
   k text;
   v jsonb;
-  stages constant text[] := array['intro', 'plantula', 'vegetativo', 'floracion', 'fin'];
+  stages constant text[] := array['intro', 'plantula', 'vegetativo', 'floracion', 'secado', 'curado', 'rosin', 'fin'];
   events constant text[] := array['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego'];
   num_in constant text := 'number';
 begin
   if s is null or jsonb_typeof(s) <> 'object' then return false; end if;
   for k in select jsonb_object_keys(s) loop
     if not k = any(array['v', 'seq', 'run', 'stage', 'week', 'stageWeek', 'health', 'risks', 'event', 'log',
-                         'result', 'last', 'lessons', 'trich', 'notes']) then
+                         'result', 'last', 'lessons', 'trich', 'notes', 'post']) then
       return false;
     end if;
   end loop;
@@ -89,6 +89,14 @@ begin
     if v is not null and jsonb_typeof(v) not in ('null', 'object') then return false; end if;
     if v is not null and octet_length(v::text) > 1000 then return false; end if;
   end loop;
+  -- after the harvest (phase 2): null or { secado | curado | rosin: {...} }, small
+  v := s -> 'post';
+  if v is not null and jsonb_typeof(v) <> 'null' then
+    if jsonb_typeof(v) <> 'object' or octet_length(v::text) > 1000 then return false; end if;
+    for k in select jsonb_object_keys(v) loop
+      if not k = any(array['secado', 'curado', 'rosin']) or jsonb_typeof(v -> k) <> 'object' then return false; end if;
+    end loop;
+  end if;
   v := s -> 'trich';
   if v is not null and jsonb_typeof(v) not in ('null', 'string') then return false; end if;
   return true;

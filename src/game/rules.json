@@ -363,5 +363,203 @@
     "evento_por_semana": 6,
     "evento_resuelto": 4,
     "verificar": "[POR VERIFICAR POR BERTHA]"
+  },
+  "post": {
+    "_nota": "Fase 2: después de cosechar. Una sola decisión por etapa (no por semanas). Cada ideal sale de un texto de la plataforma (fuente); null = la plataforma no da ese dato y no puntúa. El rosin es SOLO cualitativo: niveles, sin temperaturas, tiempos, presiones ni cantidades (decisión de la dueña, 14-10-2026).",
+    "resta_un_nivel": 4,
+    "resta_dos_niveles": 8,
+    "resta_nota": "VALOR DE JUEGO: lo que resta de la nota de la cosecha cada decisión fuera de lo ideal (igual que en el cultivo).",
+    "verificar": "[POR VERIFICAR POR BERTHA]",
+    "orden": [
+      "secado",
+      "curado",
+      "rosin"
+    ],
+    "secado": {
+      "leccion": [
+        "elaboracion",
+        "procesos"
+      ],
+      "decisiones": {
+        "temperatura": {
+          "opciones": [
+            "fresca",
+            "templada",
+            "calida"
+          ],
+          "ideal": {
+            "valor": "fresca",
+            "fuente": "Elaboración → Procesos & SOP (SOP-01 Secado: sala 15–18 °C)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "humedad": {
+          "opciones": [
+            "baja",
+            "media",
+            "alta"
+          ],
+          "ideal": {
+            "valor": "media",
+            "fuente": "Elaboración → Procesos & SOP (SOP-01 Secado: HR 55–60 %)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "aire": {
+          "opciones": [
+            "pared",
+            "directo",
+            "sin_aire"
+          ],
+          "ideal": {
+            "valor": "pared",
+            "fuente": "Equipamiento → 5. Secado (ventilador apuntado a la pared, nunca directo a las flores)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "luz": {
+          "opciones": [
+            "oscuro",
+            "con_luz"
+          ],
+          "ideal": {
+            "valor": "oscuro",
+            "fuente": "Equipamiento → 5. Secado (espacio 100 % oscuro)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "duracion": {
+          "opciones": [
+            "pocos_dias",
+            "chasquido",
+            "muchas_semanas"
+          ],
+          "ideal": {
+            "valor": "chasquido",
+            "fuente": "Elaboración → Procesos & SOP (7–14 días) y Herramientas → Temporizador de secado (prueba del chasquido)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        }
+      }
+    },
+    "curado": {
+      "leccion": [
+        "elaboracion",
+        "procesos"
+      ],
+      "decisiones": {
+        "envase": {
+          "opciones": [
+            "vidrio",
+            "abierto"
+          ],
+          "ideal": {
+            "valor": "vidrio",
+            "fuente": "Equipamiento → 6. Curado (frascos de vidrio herméticos)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "humedad": {
+          "opciones": [
+            "baja",
+            "media",
+            "alta"
+          ],
+          "ideal": {
+            "valor": "media",
+            "fuente": "Elaboración → Procesos & SOP (SOP-02 Curado: HR en frasco 58–62 %)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "abrir": {
+          "opciones": [
+            "diario",
+            "nunca"
+          ],
+          "ideal": {
+            "valor": "diario",
+            "fuente": "Herramientas → Temporizador de secado (burping diario durante la primera semana)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "tiempo": {
+          "opciones": [
+            "pocos_dias",
+            "semanas"
+          ],
+          "ideal": {
+            "valor": "semanas",
+            "fuente": "Elaboración → Procesos & SOP (SOP-02 Curado: mínimo 2–4 semanas)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        }
+      }
+    },
+    "rosin": {
+      "opcional": true,
+      "leccion": [
+        "elaboracion",
+        "concentrados"
+      ],
+      "decisiones": {
+        "material": {
+          "opciones": [
+            "curado",
+            "fresco"
+          ],
+          "ideal": {
+            "valor": "curado",
+            "fuente": "Elaboración → Concentrados (Rosin: sobre flor, hash o kief ya curado)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "calor": {
+          "opciones": [
+            "bajo",
+            "medio",
+            "alto"
+          ],
+          "ideal": {
+            "valor": "medio",
+            "fuente": "Elaboración → Concentrados / Técnicas caseras (a temperatura media). En el juego solo el nivel, sin cifras.",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "presion": {
+          "opciones": [
+            "baja",
+            "media",
+            "alta"
+          ],
+          "ideal": {
+            "valor": null,
+            "fuente": "La plataforma no da un nivel de presión: no puntúa.",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "papel": {
+          "opciones": [
+            "pergamino",
+            "sin_papel"
+          ],
+          "ideal": {
+            "valor": "pergamino",
+            "fuente": "Elaboración → Concentrados (Rosin: sobre papel pergamino, sin solventes)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "proteccion": {
+          "opciones": [
+            "guantes",
+            "sin_proteccion"
+          ],
+          "ideal": {
+            "valor": "guantes",
+            "fuente": "Diseño aprobado de la fase 2: avisos de seguridad (superficies calientes, quemaduras)",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        }
+      }
+    }
   }
 }

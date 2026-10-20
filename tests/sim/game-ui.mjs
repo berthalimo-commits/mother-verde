@@ -1,6 +1,7 @@
 // Browser test — Zona del juego (fakeserver.mjs, all migrations incl. 20261015100000).
 // Access (trial / expired / contribution / gift), lazy loading, progress
 // (save, reload, another device, offline, lock + unlock), 4 languages live,
+// phase 2 (drying, curing, qualitative rosin: choose, save, reload, no figures),
 // mobile + desktop, light + dark (the platform is dark-only: same colours),
 // 44 px targets, contrast, dev preview.
 import { check, sleep, sql, browser, summary, ADMIN, PAYER } from './browser.mjs';
@@ -101,6 +102,60 @@ b = await browser(PAYER, 'aal1', 390);
 await open(b);
 await goGame(b);
 check('acceso por código de regalo (días vigentes) -> entra al juego', await screen(b) === 'juego');
+await b.close();
+
+// ------------------------------------------------------------ phase 2: drying, curing, rosin
+b = await browser(PAYER, 'aal1', 390);
+await open(b);
+await goGame(b);
+await click(b, 'jgStart'); await sleep(700);
+for (let i = 0; i < 14 && (await gs(b)).stage !== 'floracion'; i++) { await click(b, 'jgNext'); await sleep(700); }
+await click(b, 'jgHarvest'); await sleep(1200);
+st = await gs(b);
+check('cosechar -> pasa al secado (no al resultado) y el guía da la nota de la cosecha', st.stage === 'secado' && !!(await b.ev(`document.getElementById('jgPostForm')`))
+  && /Nota de la cosecha/.test(await b.ev(`document.getElementById('jgBubble').innerText`)), st.stage);
+check('en el secado no hay nada elegido de antemano', await b.ev(`document.querySelectorAll('#jgPostForm input:checked').length`) === 0);
+await click(b, 'jgPostNext'); await sleep(400);
+check('seguir sin elegir -> aviso «Elige una opción en cada grupo» y no avanza', /Elige una opción/.test(await b.ev(`document.getElementById('jgMissing').innerText`)) && (await gs(b)).stage === 'secado');
+const pick = (st2, ch) => b.ev(`(() => { for (const [d, o] of Object.entries(${JSON.stringify(ch)})) document.querySelector('label[for="jgp-${st2}-' + d + '-' + o + '"]').click(); return 1; })()`);
+const a11y = () => b.ev(`(() => {
+  const small = [...document.querySelectorAll('#juego button, #juego .jg-opts label')].filter((e) => e.offsetParent && e.getBoundingClientRect().height < 44).length;
+  const unlabelled = [...document.querySelectorAll('#juego input')].filter((i) => !document.querySelector('label[for="' + i.id + '"]')).length;
+  return small === 0 && unlabelled === 0 && [...document.querySelectorAll('#juego fieldset')].every((f) => f.querySelector('legend')?.textContent.trim()) && document.documentElement.scrollWidth <= innerWidth;
+})()`);
+check('secado en el móvil: opciones ≥ 44 px, etiquetadas, grupos con nombre, sin desborde', await a11y());
+await pick('secado', { temperatura: 'calida', humedad: 'media', aire: 'pared', luz: 'oscuro', duracion: 'chasquido' });
+await click(b, 'jgPostNext'); await sleep(1200);
+st = await gs(b);
+check('secado con calor -> pasa al curado, el guía dice qué restó y se preocupa', st.stage === 'curado' && /temperatura del secado/.test(await b.ev(`document.getElementById('jgBubble').innerText`))
+  && await b.ev(`document.querySelector('#juego .jg-sci svg').dataset.pose`) === 'preocupado');
+check('el curado queda guardado en la cuenta', (await serverRow(PAYER))?.stage === 'curado');
+await b.send('Page.reload'); await sleep(5500);
+await b.ev(`document.getElementById('ageGateModal').style.display='none'; 1`);
+await goGame(b);
+check('recargar -> sigue en el curado', (await gs(b)).stage === 'curado' && !!(await b.ev(`document.getElementById('jgPostForm')`)));
+await pick('curado', { envase: 'vidrio', humedad: 'media', abrir: 'diario', tiempo: 'semanas' });
+await click(b, 'jgPostNext'); await sleep(1200);
+const rosinTxt = await b.ev(`document.getElementById('jgPostForm').innerText`);
+check('prensa de rosin: aviso de seguridad visible, guía con casco y gafas, botón para no hacerla', (await gs(b)).stage === 'rosin' && /quemaduras/.test(rosinTxt)
+  && await b.ev(`document.querySelector('#juego .jg-sci svg').dataset.pose`) === 'casco' && !!(await b.ev(`document.getElementById('jgSkipRosin')`)));
+check('rosin sin ninguna cifra en pantalla (ni temperaturas, ni tiempos, ni presiones)', !/\d/.test(rosinTxt + await b.ev(`document.getElementById('jgBubble').innerText`)), rosinTxt);
+const rosinTitles = {};
+for (const L of ['en', 'de', 'fr', 'es']) {
+  await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(500);
+  rosinTitles[L] = await b.ev(`document.querySelector('#jgPostForm h3').textContent + ' | ' + (document.getElementById('juego').innerText.match(/\\bjg[A-Z][A-Za-z_]+/g) || []).join(',')`);
+}
+check('rosin en 4 idiomas, sin claves a la vista', /simulated\) \| $/.test(rosinTitles.en) && /simuliert\) \| $/.test(rosinTitles.de) && /simulé\) \| $/.test(rosinTitles.fr) && /simulado\) \| $/.test(rosinTitles.es), JSON.stringify(rosinTitles));
+await pick('rosin', { material: 'curado', calor: 'medio', presion: 'media', papel: 'pergamino', proteccion: 'sin_proteccion' });
+await click(b, 'jgPostNext'); await sleep(1200);
+const fin = await b.ev(`document.getElementById('juegoRoot').innerText`);
+st = await gs(b);
+check('resultado final: nota al cosechar y después del secado y el curado, qué restó y veredicto del rosin', st.stage === 'fin' && st.result.final === st.result.score - 8
+  && /después del secado y el curado/.test(fin) && /temperatura del secado/.test(fin) && /Rosin \(simulado\): para mejorar: la protección/.test(fin), JSON.stringify(st.result));
+check('sin protección -> el guía avisa de las quemaduras', /guantes resistentes al calor/.test(await b.ev(`document.getElementById('jgBubble').innerText`)));
+check('«Repasar» lleva a Elaboración → Procesos & SOP', await b.ev(`(() => { const x = [...document.querySelectorAll('#juego .jg-lesson')].find((e) => e.dataset.lesson === 'procesos'); if (!x) return false; x.click(); return true; })()`)
+  && (await sleep(600), await screen(b)) === 'elaboracion' && await b.ev(`document.getElementById('elaboracion-procesos').classList.contains('active')`));
+check('el final queda guardado en la cuenta', (await serverRow(PAYER))?.stage === 'fin');
 await b.close();
 b = await browser(ADMIN, 'aal1', 390);
 await open(b);
