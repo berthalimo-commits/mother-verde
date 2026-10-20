@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- Mother Verde — page not found. Vercel serves this file (dist/404.html) with
+     status 404 for any address that doesn't exist. Self-contained on purpose
+     (no main.js, no fonts from outside): it must work even when nothing else
+     loads. Dark only, like the platform. Language: the one chosen in the app
+     (localStorage 'mv-lang'), else the browser's, else Spanish. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#07100D">
+<title>Página no encontrada · Mother Verde</title>
+<link rel="icon" href="/icons/icon-192.png">
+<style>
+  :root{--ink:#F0F7F3;--ink-soft:#9FB8AE;--paper:#07100D;--paper-raised:#101F1A;--moss:#2AEBA0;--moss-deep:#16B884;--teal:#5FD4E0;--line:rgba(240,247,243,0.10);--line-strong:rgba(240,247,243,0.22)}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+  .card{max-width:480px;width:100%;background:var(--paper-raised);border:1px solid var(--line-strong);border-radius:16px;padding:28px 24px;text-align:center}
+  .code{font:700 13px/1 ui-monospace,monospace;letter-spacing:.2em;color:var(--moss);margin:0 0 10px}
+  h1{font-size:24px;line-height:1.25;margin:0 0 10px}
+  p{margin:0 0 18px;color:var(--ink-soft)}
+  a.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--moss);color:#04140D;font-weight:700;text-decoration:none}
+  a.btn:focus-visible,.langs button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+  .help{font-size:14px;margin:18px 0 0}
+  .help a{color:var(--teal)}
+  .langs{display:flex;gap:6px;justify-content:center;margin-top:22px}
+  .langs button{min-width:44px;min-height:44px;border-radius:8px;border:1px solid var(--line-strong);background:transparent;color:var(--ink-soft);font:600 13px/1 inherit;cursor:pointer}
+  .langs button[aria-pressed="true"]{border-color:var(--moss);color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <p class="code">404</p>
+    <h1 id="t">Esta página no existe</h1>
+    <p id="p">Puede que el enlace esté mal escrito o que la página se haya movido.</p>
+    <a class="btn" id="home" href="/">Ir a Inicio</a>
+    <p class="help" id="h">Si llegaste desde un correo nuestro, vuelve a abrir el enlace o escríbenos a <a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>.</p>
+    <div class="langs" role="group" aria-label="Idioma / Language">
+      <button type="button" data-l="es">ES</button><button type="button" data-l="en">EN</button><button type="button" data-l="de">DE</button><button type="button" data-l="fr">FR</button>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  var T = {
+    es: { title: 'Página no encontrada · Mother Verde', t: 'Esta página no existe', p: 'Puede que el enlace esté mal escrito o que la página se haya movido.', home: 'Ir a Inicio',
+      h: 'Si llegaste desde un correo nuestro, vuelve a abrir el enlace o escríbenos a {mail}.' },
+    en: { title: 'Page not found · Mother Verde', t: 'This page doesn’t exist', p: 'The link may be mistyped or the page may have moved.', home: 'Go to Home',
+      h: 'If you came from one of our e-mails, open the link again or write to us at {mail}.' },
+    de: { title: 'Seite nicht gefunden · Mother Verde', t: 'Diese Seite gibt es nicht', p: 'Vielleicht ist der Link falsch geschrieben oder die Seite wurde verschoben.', home: 'Zur Startseite',
+      h: 'Wenn du über eine unserer E-Mails gekommen bist, öffne den Link noch einmal oder schreib uns an {mail}.' },
+    fr: { title: 'Page introuvable · Mother Verde', t: 'Cette page n’existe pas', p: 'Le lien est peut-être mal écrit ou la page a été déplacée.', home: 'Aller à l’accueil',
+      h: 'Si tu viens d’un de nos e-mails, ouvre à nouveau le lien ou écris-nous à {mail}.' }
+  };
+  var MAIL = '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>';
+  function pick() {
+    try { var s = localStorage.getItem('mv-lang'); if (T[s]) return s; } catch (e) {}
+    var n = (navigator.language || 'es').slice(0, 2).toLowerCase();
+    return T[n] ? n : 'es';
+  }
+  function show(l) {
+    var x = T[l];
+    document.documentElement.lang = l;
+    document.title = x.title;
+    document.getElementById('t').textContent = x.t;
+    document.getElementById('p').textContent = x.p;
+    document.getElementById('home').textContent = x.home;
+    document.getElementById('h').innerHTML = x.h.replace('{mail}', MAIL);
+    var b = document.querySelectorAll('.langs button');
+    for (var i = 0; i < b.length; i++) b[i].setAttribute('aria-pressed', b[i].getAttribute('data-l') === l ? 'true' : 'false');
+  }
+  var bs = document.querySelectorAll('.langs button');
+  for (var i = 0; i < bs.length; i++) bs[i].addEventListener('click', function () {
+    var l = this.getAttribute('data-l');
+    try { localStorage.setItem('mv-lang', l); } catch (e) {}
+    show(l);
+  });
+  show(pick());
+})();
+</script>
+</body>
+</html>
