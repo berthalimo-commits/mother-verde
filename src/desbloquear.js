@@ -71,6 +71,12 @@ const amountText = (units) => window.mvUsdcText(units, true);  // shown: languag
 const amountCopy = (units) => window.mvUsdcText(units, false); // copied: always a dot
 const fmtWhen = (iso) => (window.mvFmtDateTime ? window.mvFmtDateTime(iso) : new Date(iso).toLocaleString());
 function awaiting(c) { return c && c.status === 'awaiting_payment' && new Date(c.expires_at).getTime() > Date.now(); }
+// The reservation whose payment instructions are shown: only while the picker
+// matches its flowers. Another count -> "Ver mi monto" again; the old one stays
+// open until a new amount is asked for (create_support_claim cancels it then),
+// so a person who already sent it can go back and register the code.
+function shownClaim() { const c = claimNow(); return awaiting(c) && c.flowers === flowers ? c : null; }
+const flowersText = (n) => fmt(t(n === 1 ? 'dsFlorN1' : 'dsFlorN'), { n });
 
 const RPC_ERR = {
   email_not_confirmed: 'dsErrConfirm', no_free_amount: 'dsErrBusy', expired: 'dsErrExpired',
@@ -186,11 +192,13 @@ function claimHtml() {
   }
   const notes = (c && c.status === 'rejected' ? `<p class="ds-claim-rejected">${t('dsRejectedP')}</p>` : '')
     + (c && (c.status === 'expired' || (c.status === 'awaiting_payment' && !awaiting(c))) ? `<p class="ds-claim-rejected">${t('dsVencidoP')}</p>` : '');
-  if (!awaiting(c)) {
+  if (!shownClaim()) {
+    const changed = awaiting(c)
+      ? `<div class="note-box ds-change-note" id="dsCambioNota">${fmt(t('dsCambioNota'), { a: amountText(c.amount_units), f: flowersText(c.flowers) })}</div>` : '';
     return `
       <div class="ds-claim">
         <h3>${t('dsReservarH')}</h3>
-        ${notes}
+        ${notes}${changed}
         <p>${fmt(t('dsReservarP'), { usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
         <button type="button" class="btn btn-primary" id="dsReservarBtn">${t('dsReservarBtn')}</button>
         <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
@@ -207,7 +215,6 @@ function claimHtml() {
       <span class="ds-copied" id="dsAmountCopied" aria-live="polite"></span>
       <p class="ds-amount-note">${t('dsDecimalesP')}</p>
       <p class="ds-amount-note">${fmt(t('dsValidoHasta'), { d: fmtWhen(c.expires_at) })}</p>
-      ${c.flowers !== flowers ? `<button type="button" class="btn btn-ghost" id="dsReservarBtn">${fmt(t('dsReservarOtro'), { n: flowers })}</button>` : ''}
     </div>
     <form class="ds-claim" id="dsClaimForm" novalidate>
       <h3>${t('dsFormH3')}</h3>
@@ -227,7 +234,7 @@ function claimHtml() {
 
 function paymentHtml() {
   const addr = SUPPORT.ADDRESS;
-  if (!awaiting(claimNow())) {
+  if (!shownClaim()) {
     return `<div class="card-block ds-pay"><h3>${t('dsComoH3')}</h3>${claimHtml()}${helpHtml()}</div>`;
   }
   return `
@@ -343,7 +350,7 @@ export function renderDesbloquear() {
     try { await navigator.clipboard.writeText(document.getElementById('dsCopyAmount').dataset.amount); m.textContent = t('dsMontoCopiado'); }
     catch (e) { m.textContent = ''; }
   });
-  if (!awaiting(claimNow())) return;
+  if (!shownClaim()) return;
 
   root.querySelector('#dsCopyBtn').onclick = async () => {
     const msg = document.getElementById('dsCopied');
