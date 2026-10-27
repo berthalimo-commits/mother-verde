@@ -9,6 +9,7 @@ import RULES from './rules.json';
 import TEXTS from './i18n.js';
 import * as E from './engine.js';
 import { poseFor, poseSvg } from './poses.js';
+import { tentHtml, CSS as TENT_CSS } from './tent.js';
 
 window.mvAddTexts?.(TEXTS);
 const t = (k) => (window.t ? window.t(k) : k);
@@ -262,6 +263,13 @@ function ensureLab() {
 }
 const LAB_CTX = { t, fmt, esc, lessonBtn: (l) => lessonBtn(l), act: (n, save) => act(n, save) };
 
+// v2 phase 2: the tent. While the person picks this week's options it is
+// redrawn with what is selected on screen (nothing is saved until the week passes).
+const TENT_CTX = { t, esc, RULES };
+function tent(choices) {
+  return tentHtml(state, choices || E.defaultChoices(state, RULES), TENT_CTX);
+}
+
 function syncText() {
   return { ok: 'jgSync_ok', local: 'jgSync_local', stale: 'jgSync_stale', preview: 'jgSync_preview', lento: 'jgSync_lento', err: 'jgErrGuardar' }[sync];
 }
@@ -295,6 +303,7 @@ function paint(root) {
       <div class="jg-sci">${poseSvg(poseFor(state, feedback))}</div>
       <p class="jg-bubble" id="jgBubble" tabindex="-1" role="status">${esc(bubble)}</p>
     </div>
+    ${inLab ? '' : tent()}
     ${main}
     <p class="jg-sync" id="jgSync" role="status"></p>
   </div>`;
@@ -308,6 +317,11 @@ function paint(root) {
     act(LAB.open(state));
   });
   root.querySelector('#jgStart')?.addEventListener('click', () => act(E.start(state)));
+  root.querySelector('#jgForm')?.addEventListener('change', (ev) => {
+    const fd = new FormData(ev.currentTarget);
+    const choices = Object.fromEntries(E.DECISIONS.map((d) => [d, fd.get('jg-' + d)]));
+    root.querySelector('#jgTent').outerHTML = tent(choices);
+  });
   root.querySelector('#jgForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();
     const fd = new FormData(ev.target);
@@ -382,7 +396,7 @@ const CSS = `
 
 export async function render(root) {
   if (!document.getElementById('jgStyle')) {
-    const st = document.createElement('style'); st.id = 'jgStyle'; st.textContent = CSS; document.head.appendChild(st);
+    const st = document.createElement('style'); st.id = 'jgStyle'; st.textContent = CSS + TENT_CSS; document.head.appendChild(st);
   }
   const w = who();
   const owner = w.uid || (w.preview ? 'preview' : null);
