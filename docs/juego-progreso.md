@@ -104,6 +104,21 @@ La carpa suma +19,4 KB (+6,0 comprimido), por debajo de lo estimado (+20 a 30 KB
 **Capturas:** `tests/sim/out/jgt-*.png` (intro, germ, choices, veg, flor en ES/EN/DE/FR, secado, curado,
 veg en computadora).
 
+---
+
+## Fuera del juego: arreglo de Desbloquear traído de `dev` (2026-10-27)
+
+- Arreglo aprobado por Bertha («APRUEBO»), hecho en `dev` (commit `40afc41`, vista previa de staging lista) y
+  traído a `juego` con un merge (`086a8c1`). Al cambiar el número de flores después de «Ver mi monto» vuelve el
+  botón y se esconden las indicaciones viejas; la reserva vieja se anula solo al pedir el monto nuevo.
+  Prueba `tests/sim/flowers-change-ui.mjs` (16 ok).
+- En el merge solo chocó la lista de `tests/sim/run-all.mjs`: quedan las pruebas del juego y la nueva.
+- `tests/sim/fn-e2e.mjs` fallaba a veces (dos veces seguidas aquí): forzaba un monto fijo sin mirar si otra reserva
+  abierta ya lo tenía por azar. Ahora la aparta 1 unidad antes. Solo cambia la prueba, no la app. **Este arreglo
+  de la prueba está solo en `juego`;** `dev` tiene todavía la versión que falla a veces.
+- Batería completa en `juego`, en 7 grupos pequeños (para gastar menos memoria; servidor y navegador cerrados al
+  terminar cada grupo): **38 pruebas, 0 fallas**.
+
 **Lo siguiente:** Fase 3 — dar órdenes tocando la carpa. Primer paso: leer «Fase 3» en `docs/juego-diseno-v2.md`;
 las piezas tocables serán la lámpara, la maceta (riego), el medidor (nutrientes), el ventilador/termómetro y la
 humedad, que hoy se dibujan en `src/game/tent.js`.
@@ -113,7 +128,10 @@ humedad, que hoy se dibujan en `src/game/tent.js`.
 - Terminal 1: `node tests/sim/fakeserver.mjs` · Terminal 2:
   `VITE_SUPABASE_URL=http://localhost:54321 VITE_SUPABASE_ANON_KEY=anon npx vite --port 5174`
 - Solo esta fase: `cd tests/sim && node game-play-ui.mjs` (fakeserver recién arrancado). Todo: `node run-all.mjs`
-  (arranca su propio fakeserver: apaga antes el tuyo).
+  (arranca su propio fakeserver: apaga antes el tuyo; necesita Vite ya encendido en 5174).
+- Si la computadora anda corta de memoria, correr la batería en grupos de 5 o 6 archivos, cerrando Vite, el
+  fakeserver y el Chrome de pruebas después de cada grupo (`panel-ui.mjs` va en el mismo grupo que `app-ui.mjs`,
+  justo después, porque usa su base).
 - Aviso: si Windows reserva los puertos 54321/54322 (`netsh interface ipv4 show excludedportrange protocol=tcp`),
   mover los puertos de las pruebas solo mientras se prueban y luego `git checkout` de esos archivos.
 - Aviso: `vite build --outDir <otra carpeta>` con el juego encendido termina con
