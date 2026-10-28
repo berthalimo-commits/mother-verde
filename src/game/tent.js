@@ -39,11 +39,14 @@ function leaf(x, y, a, s, n = 5) {
 }
 
 // A bud with its trichomes (white dots that go milky, then amber).
-function bud(x, y, r, trich, dots) {
+// rot = botrytis: the bud turns grey-brown (F4: bud rot; platform: «cogollos
+// que se oscurecen y desmoronan desde adentro»).
+function bud(x, y, r, trich, dots, rot = false) {
   const [c1, o, c2] = TRICH[trich] || TRICH.transparentes;
-  let out = `<ellipse cx="${f1(x)}" cy="${f1(y)}" rx="${f1(r * 0.75)}" ry="${f1(r)}" fill="#8FCF7E"/>`
-    + `<ellipse cx="${f1(x - r * 0.45)}" cy="${f1(y + r * 0.35)}" rx="${f1(r * 0.5)}" ry="${f1(r * 0.7)}" fill="#7DBE6C"/>`
-    + `<ellipse cx="${f1(x + r * 0.45)}" cy="${f1(y + r * 0.35)}" rx="${f1(r * 0.5)}" ry="${f1(r * 0.7)}" fill="#7DBE6C"/>`;
+  const [a, b] = rot ? ['#8A7F72', '#6E6358'] : ['#8FCF7E', '#7DBE6C'];
+  let out = `<ellipse cx="${f1(x)}" cy="${f1(y)}" rx="${f1(r * 0.75)}" ry="${f1(r)}" fill="${a}"${rot ? ' class="jgt-rot"' : ''}/>`
+    + `<ellipse cx="${f1(x - r * 0.45)}" cy="${f1(y + r * 0.35)}" rx="${f1(r * 0.5)}" ry="${f1(r * 0.7)}" fill="${b}"/>`
+    + `<ellipse cx="${f1(x + r * 0.45)}" cy="${f1(y + r * 0.35)}" rx="${f1(r * 0.5)}" ry="${f1(r * 0.7)}" fill="${b}"/>`;
   for (let j = 0; j < dots; j++) {
     const ang = j * 2.39996, rad = r * 0.7 * Math.sqrt((j + 0.5) / dots);
     out += `<circle cx="${f1(x + Math.cos(ang) * rad * 0.8)}" cy="${f1(y + Math.sin(ang) * rad)}" r="0.7" fill="${c2 && j % 3 === 2 ? c2 : c1}" opacity="${o}"/>`;
@@ -53,43 +56,94 @@ function bud(x, y, r, trich, dots) {
 
 const vegHeight = (w) => 26 + Math.min(w, 6) * 13;
 
+// Phase 4: the problem the plant shows. An open event shows it fully; the
+// week after it was solved it shows faded (the plant recovers little by
+// little). Returns { id, faded } or null.
+export function problemOf(state) {
+  if (!PLAYABLE.includes(state.stage)) return null;
+  if (state.event?.id) return { id: state.event.id, faded: false };
+  const ok = (state.notes || []).find((n) => n.startsWith('eventoBien:'));
+  return ok ? { id: ok.split(':')[1], faded: true } : null;
+}
+
+// Where the tip of a leaf ends (leaf() points up, then turns by a).
+const tipOf = (x, y, a, s, k = 0.7) => [x + Math.sin(a * Math.PI / 180) * s * k, y - Math.cos(a * Math.PI / 180) * s * k];
+
+// Symptoms on top of the leaves, from their sources (docs/juego-fuentes.md):
+// oídio = white powdery spots (F5, F7); ácaros = pale stippling and fine
+// webbing (F6).
+function symptoms(prob, tips) {
+  if (!prob) return '';
+  const op = prob.faded ? 0.35 : 1;
+  if (prob.id === 'oidio') {
+    return `<g class="jgt-sym" data-sym="oidio" opacity="${op}">${tips.map(([x, y], i) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="${i % 2 ? 1.6 : 2.2}" fill="#F4F6F2" opacity="0.85"/><circle cx="${f1(x + 2.5)}" cy="${f1(y + 1.5)}" r="1.1" fill="#F4F6F2" opacity="0.7"/>`).join('')}</g>`;
+  }
+  if (prob.id === 'acaros') {
+    const top = tips.slice(-4);
+    const web = top.length > 1 ? `<path d="M${top.map(([x, y]) => `${f1(x)} ${f1(y)}`).join('L')}" fill="none" stroke="#E8EEF0" stroke-width="0.4" opacity="0.8"/>` : '';
+    return `<g class="jgt-sym" data-sym="acaros" opacity="${op}">${tips.map(([x, y]) => `<circle cx="${f1(x)}" cy="${f1(y)}" r="0.6" fill="#F3F0C8"/><circle cx="${f1(x - 2)}" cy="${f1(y + 1)}" r="0.5" fill="#F3F0C8"/><circle cx="${f1(x + 1.5)}" cy="${f1(y - 1.5)}" r="0.5" fill="#F3F0C8"/>`).join('')}${web}</g>`;
+  }
+  return '';
+}
+
 // The living plant (seedling, vegetative or flowering).
 function plant(state, sc, rules) {
   const color = LEAF[healthBand(state.health)];
+  const prob = problemOf(state);
+  const wrap = (inner, tips) => `<g class="jgt-plant"${prob ? ` data-problem="${prob.id}"${prob.faded ? ' data-recover="1"' : ''}` : ''}>${inner}${symptoms(prob, tips)}</g>`;
+  const small = prob && ['carencia_n', 'exceso_riego'].includes(prob.id) && !prob.faded ? (prob.id === 'carencia_n' ? '#D9C64A' : color) : color;
+  const sag = prob?.id === 'exceso_riego' && !prob.faded ? 25 : 0;
   if (sc === 'germ') {
-    return `<g fill="${color}"><path d="M${CX} ${BASE}V${BASE - 10}" stroke="${color}" stroke-width="1.6"/>`
-      + `<ellipse cx="${CX - 5}" cy="${BASE - 11}" rx="4.5" ry="2.2" transform="rotate(-20 ${CX - 5} ${BASE - 11})"/>`
-      + `<ellipse cx="${CX + 5}" cy="${BASE - 11}" rx="4.5" ry="2.2" transform="rotate(20 ${CX + 5} ${BASE - 11})"/></g>`;
+    return wrap(`<g fill="${small}"><path d="M${CX} ${BASE}V${BASE - 10}" stroke="${small}" stroke-width="1.6"/>`
+      + `<ellipse cx="${CX - 5}" cy="${BASE - 11}" rx="4.5" ry="2.2" transform="rotate(${-20 + sag} ${CX - 5} ${BASE - 11})"/>`
+      + `<ellipse cx="${CX + 5}" cy="${BASE - 11}" rx="4.5" ry="2.2" transform="rotate(${20 - sag} ${CX + 5} ${BASE - 11})"/></g>`,
+    [[CX - 6, BASE - 12], [CX + 6, BASE - 12]]);
   }
   if (sc === 'plantula') {
-    return `<g fill="${color}"><path d="M${CX} ${BASE}V${BASE - 20}" stroke="${color}" stroke-width="1.8"/>`
-      + `<ellipse cx="${CX - 5}" cy="${BASE - 9}" rx="4.5" ry="2.2" transform="rotate(-20 ${CX - 5} ${BASE - 9})"/>`
-      + `<ellipse cx="${CX + 5}" cy="${BASE - 9}" rx="4.5" ry="2.2" transform="rotate(20 ${CX + 5} ${BASE - 9})"/>`
-      + leaf(CX, BASE - 19, -55, 11, 3) + leaf(CX, BASE - 19, 55, 11, 3) + '</g>';
+    return wrap(`<g fill="${small}"><path d="M${CX} ${BASE}V${BASE - 20}" stroke="${color}" stroke-width="1.8"/>`
+      + `<ellipse cx="${CX - 5}" cy="${BASE - 9}" rx="4.5" ry="2.2" transform="rotate(${-20 + sag} ${CX - 5} ${BASE - 9})"/>`
+      + `<ellipse cx="${CX + 5}" cy="${BASE - 9}" rx="4.5" ry="2.2" transform="rotate(${20 - sag} ${CX + 5} ${BASE - 9})"/></g>`
+      + `<g fill="${color}">${leaf(CX, BASE - 19, -55 - sag, 11, 3) + leaf(CX, BASE - 19, 55 + sag, 11, 3)}</g>`,
+    [[CX - 6, BASE - 10], [CX + 6, BASE - 10], tipOf(CX, BASE - 19, -55, 11), tipOf(CX, BASE - 19, 55, 11)]);
   }
   const vegWeeks = sc === 'vegetativo' ? state.stageWeek : Math.max(1, state.log.filter((l) => l.s === 'vegetativo').length);
   const stretch = sc === 'floracion' ? Math.min(state.stageWeek, 3) * 10 : 0;
   const H = Math.min(vegHeight(vegWeeks) + stretch, 136);
   const top = BASE - H;
   const nodes = Math.max(2, Math.min(7, Math.round(H / 17)));
-  let leaves = '', buds = '';
+  let leaves = '', yellow = '', buds = '';
+  const tips = [];
   const w = state.stageWeek;
   const trich = sc === 'floracion' ? E.trichomes(w, rules) : null;
   const budR = Math.min(4 + w * 0.9, 11);
   const dots = 4 + Math.min(w, 8);
+  // exceso de riego: leaves hang down (F3: the plant wilts; platform: «hojas
+  // caídas»); faded = half way back up.
+  const droop = prob?.id === 'exceso_riego' ? (prob.faded ? 18 : 38) : 0;
+  // carencia de N: the older (lower) leaves turn yellow (F2).
+  const lowN = prob?.id === 'carencia_n' ? Math.max(1, Math.ceil(nodes / 2)) : 0;
   for (let i = 0; i < nodes; i++) {
     const y = BASE - 8 - (H - 14) * (i / nodes);
     const k = 1 - i / (nodes + 1);
     const s = 12 + 18 * k;
     const tilt = i % 2 ? 6 : -6;
-    leaves += leaf(CX - 1, y, -72 + tilt, s) + leaf(CX + 1, y - 4, 72 + tilt, s);
+    const aL = -72 + tilt - droop, aR = 72 + tilt + droop;
+    const pair = leaf(CX - 1, y, aL, s) + leaf(CX + 1, y - 4, aR, s);
+    if (i < lowN) yellow += pair; else leaves += pair;
+    tips.push(tipOf(CX - 1, y, aL, s), tipOf(CX + 1, y - 4, aR, s));
     if (sc === 'floracion' && i >= Math.floor(nodes / 2)) {
-      buds += bud(CX - 9 - s * 0.15, y - 6, budR * 0.55, trich, Math.ceil(dots / 2)) + bud(CX + 9 + s * 0.15, y - 10, budR * 0.55, trich, Math.ceil(dots / 2));
+      const rot = prob?.id === 'botrytis' && !prob.faded && i >= nodes - 2;
+      buds += bud(CX - 9 - s * 0.15, y - 6, budR * 0.55, trich, Math.ceil(dots / 2), rot) + bud(CX + 9 + s * 0.15, y - 10, budR * 0.55, trich, Math.ceil(dots / 2));
     }
   }
-  const crown = sc === 'floracion' ? bud(CX, top + budR * 0.4, budR, trich, dots) : leaf(CX, top + 4, 0, 10, 3);
-  return `<path class="jgt-stem" d="M${CX} ${BASE}Q${CX + 3} ${f1(BASE - H / 2)} ${CX} ${f1(top + 4)}" fill="none" stroke="${color}" stroke-width="${sc === 'floracion' ? 3 : 2.4}" stroke-linecap="round"/>`
-    + `<g fill="${color}">${leaves}${sc === 'floracion' ? '' : crown}</g>${buds}${sc === 'floracion' ? crown : ''}`;
+  const rotTop = prob?.id === 'botrytis';
+  const crown = sc === 'floracion' ? `<g opacity="${rotTop && prob.faded ? 0.85 : 1}">${bud(CX, top + budR * 0.4, budR, trich, dots, rotTop)}</g>` : leaf(CX, top + 4, 0, 10, 3);
+  const yellowCol = prob?.faded ? '#C4C35A' : '#D9C64A';
+  return `<g class="jgt-plant"${prob ? ` data-problem="${prob.id}"${prob.faded ? ' data-recover="1"' : ''}` : ''}>`
+    + `<path class="jgt-stem" d="M${CX} ${BASE}Q${CX + 3} ${f1(BASE - H / 2)} ${CX} ${f1(top + 4)}" fill="none" stroke="${color}" stroke-width="${sc === 'floracion' ? 3 : 2.4}" stroke-linecap="round"/>`
+    + `<g fill="${color}">${leaves}${sc === 'floracion' ? '' : crown}</g>`
+    + (yellow ? `<g fill="${yellowCol}" class="jgt-sym" data-sym="carencia_n">${yellow}</g>` : '')
+    + `${buds}${sc === 'floracion' ? crown : ''}${symptoms(prob, tips)}</g>`;
 }
 
 function wilted() {
@@ -123,7 +177,8 @@ function pot(riego) {
   return (wet ? `<ellipse cx="${CX}" cy="205" rx="44" ry="3.5" fill="#5FD4E0" opacity="0.45"/>` : '')
     + `<path d="M95 ${BASE}H145L140 205H100Z" fill="#7A4E34" stroke="#5A3826" stroke-width="1"/>`
     + `<ellipse cx="${CX}" cy="${BASE}" rx="25" ry="4" fill="${SOIL[riego] || SOIL.moderado}"/>`
-    + (riego === 'poco' ? `<path d="M108 ${BASE}l4 -1.5M126 ${BASE + 1}l5 -1" stroke="#6B4E2E" stroke-width="0.8"/>` : '');
+    + (riego === 'poco' ? `<path d="M108 ${BASE}l4 -1.5M126 ${BASE + 1}l5 -1" stroke="#6B4E2E" stroke-width="0.8"/>` : '')
+    + (wet ? `<ellipse cx="${CX - 8}" cy="${BASE - 1}" rx="7" ry="1.2" fill="#F0F7F3" opacity="0.3"/>` : '');
 }
 
 function fan() {
@@ -194,7 +249,8 @@ function tentSvg(state, sc, choices, light, ctx) {
   const living = ['germ', 'plantula', 'vegetativo', 'floracion'].includes(sc);
   let inside = '';
   if (sc === 'intro') inside = pot('moderado') + `<ellipse cx="${CX + 3}" cy="${BASE - 2}" rx="2.6" ry="1.8" fill="#6B4E2E" stroke="#C9A77C" stroke-width="0.5"/>`;
-  else if (living) inside = pot(riego) + plant(state, sc, ctx.RULES);
+  // an open «exceso de riego» keeps the medium soaked whatever is picked now
+  else if (living) inside = pot(problemOf(state)?.id === 'exceso_riego' && !problemOf(state).faded ? 'mucho' : riego) + plant(state, sc, ctx.RULES);
   else if (sc === 'muerta') inside = pot('poco') + wilted();
   else if (sc === 'secado') inside = pot('poco') + hanging();
   else inside = jars();
@@ -263,6 +319,8 @@ function caption(state, sc, choices, light, t) {
   if (light || sc === 'muerta') out.push(t(light ? 'jgTentLuz_' + light : 'jgTentLuz_off'));
   if (['germ', 'plantula', 'vegetativo', 'floracion'].includes(sc)) {
     out.push(t('jgTentRiego_' + choices.riego), t('jgTentHoja_' + healthBand(state.health)));
+    const prob = problemOf(state);
+    if (prob) out.push(t(prob.faded ? 'jgTentRec' : 'jgTentP_' + prob.id));
   }
   return out.join(' ');
 }
@@ -276,7 +334,7 @@ export function tentHtml(state, choices, ctx, ui = {}) {
   const ch = play ? choices : null;
   const light = play ? (ch.intensidad || 'media') : sc === 'fin' ? 'baja' : null;
   const open = play && OBJECTS[ui.open] ? ui.open : null;
-  return `<figure class="jg-tent" id="jgTent">
+  return `<figure class="jg-tent${play && ui.anim ? ' jgt-anim' : ''}" id="jgTent">
     <div class="jgt-scene">
       <div class="jgt-stage">${tentSvg(state, sc, ch, light, ctx)}${play ? objButtons(open, ctx) : ''}</div>
       ${play ? `<p class="jgt-hint">${ctx.esc(ctx.t('jgTentHint'))}</p>` : ''}
