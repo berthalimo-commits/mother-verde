@@ -272,9 +272,12 @@ const LAB_CTX = { t, fmt, esc, lessonBtn: (l) => lessonBtn(l), act: (n, save) =>
 // list below are the same choices (picking in one ticks the other).
 const TENT_CTX = { t, esc, RULES };
 let tentOpen = null;
+// Phase 4: the first drawing after a week passes plays the week once (grow,
+// drops, night); redraws while choosing don't.
+let animNext = false;
 function tent(choices) {
   return tentHtml(state, choices || E.defaultChoices(state, RULES), TENT_CTX,
-    { open: tentOpen, blocked: !!(state.event && !state.event.answered) });
+    { open: tentOpen, blocked: !!(state.event && !state.event.answered), anim: animNext });
 }
 function formChoices(root) {
   const form = root.querySelector('#jgForm');
@@ -367,6 +370,7 @@ function paint(root) {
     ${main}
     <p class="jg-sync" id="jgSync" role="status"></p>
   </div>`;
+  animNext = false;
   paintSync();
   root.querySelector('#jgBack').addEventListener('click', () => window.showScreen?.('home'));
   if (inLab) LAB.bind(root, state, LAB_CTX);
@@ -382,6 +386,7 @@ function paint(root) {
   root.querySelector('#jgForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();
     tentOpen = null;
+    animNext = true;
     act(E.applyWeek(state, formChoices(root), RULES));
   });
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));

@@ -274,6 +274,8 @@ function tentSvg(state, sc, choices, light, ctx) {
   ${living ? tools() : ''}
   ${inside}
   ${light ? '' : '<rect x="20" y="12" width="200" height="196" fill="#000" opacity="0.45"/>'}
+  ${living && ctx.anim ? `<g class="jgt-drops" fill="#5FD4E0">${[108, 120, 132].map((x, i) => `<ellipse class="jgt-drop d${i}" cx="${x}" cy="${BASE - 6}" rx="1.4" ry="2.2"/>`).join('')}</g>
+  <rect class="jgt-night" x="20" y="12" width="200" height="196" fill="#000" opacity="0"/>` : ''}
 </svg>`;
 }
 
@@ -336,7 +338,7 @@ export function tentHtml(state, choices, ctx, ui = {}) {
   const open = play && OBJECTS[ui.open] ? ui.open : null;
   return `<figure class="jg-tent${play && ui.anim ? ' jgt-anim' : ''}" id="jgTent">
     <div class="jgt-scene">
-      <div class="jgt-stage">${tentSvg(state, sc, ch, light, ctx)}${play ? objButtons(open, ctx) : ''}</div>
+      <div class="jgt-stage">${tentSvg(state, sc, ch, light, { ...ctx, anim: play && ui.anim })}${play ? objButtons(open, ctx) : ''}</div>
       ${play ? `<p class="jgt-hint">${ctx.esc(ctx.t('jgTentHint'))}</p>` : ''}
       ${open ? panelHtml(open, ch, !!ui.blocked, ctx) : ''}
     </div>
@@ -367,6 +369,19 @@ ${Object.entries(OBJECTS).map(([k, o]) => `#juego .jgt-obj[data-obj="${k}"]{left
 #juego .jg-g .lv0{fill:var(--teal)}#juego .jg-g .lv1{fill:var(--moss)}#juego .jg-g .lv2{fill:var(--resin)}
 #juego .jg-g .lv0s{stroke:var(--teal)}#juego .jg-g .lv1s{stroke:var(--moss)}#juego .jg-g .lv2s{stroke:var(--resin)}
 #juego .jgt-desc{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
+/* phase 4: the week that just passed, played once (under 2.5 s, nothing loops) */
+#juego .jgt-anim .jgt-plant{transform-box:fill-box;transform-origin:50% 100%;animation:jgtGrow 1.2s ease-out 1}
+#juego .jgt-drop{opacity:0;animation:jgtDrop 1.2s ease-in 1 forwards}
+#juego .jgt-drop.d1{animation-delay:.25s}
+#juego .jgt-drop.d2{animation-delay:.5s}
+#juego .jgt-night{animation:jgtNight 2.2s ease-in-out 1 forwards}
+@keyframes jgtGrow{from{transform:scaleY(.93)}to{transform:scaleY(1)}}
+@keyframes jgtDrop{0%{opacity:0;transform:translateY(-34px)}25%{opacity:1}100%{opacity:0;transform:translateY(0)}}
+@keyframes jgtNight{0%{opacity:0}40%{opacity:.6}60%{opacity:.6}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  #juego .jgt-anim .jgt-plant,#juego .jgt-drop,#juego .jgt-night{animation:none}
+  #juego .jgt-drops,#juego .jgt-night{display:none}
+}
 @media (min-width:700px){
   #juego .jg-tent{grid-template-columns:minmax(0,3fr) minmax(0,2fr);align-items:start}
   #juego .jg-gauges{grid-template-columns:1fr}
