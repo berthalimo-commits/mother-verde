@@ -48,7 +48,9 @@ check('"Activar acceso completo" -> approved + supporter + correo de activación
 await b.ev(`document.querySelector('.tabs button[data-t=gifts]').click(); 1`);
 await b.waitFor(/Enviar un código/);
 await b.ev(`document.getElementById('ge').value='amiga@example.org'; document.getElementById('gs').click(); 1`);
-s = await b.waitFor(/Enviado a amiga/, 20000);
+// The message comes first and the list is reloaded right after (a few ms
+// later): wait for both, or a poll between the two sees the old list.
+s = await b.waitFor(/^(?=[\s\S]*Enviado a amiga@example\.org)(?=[\s\S]*\benviado\b)/, 20000);
 check('enviar código -> "Enviado a amiga@example.org" y aparece en la lista como enviado', /Enviado a amiga@example\.org/.test(s) && /enviado/.test(s), s.slice(s.indexOf('Enviar un código'), s.indexOf('Enviar un código') + 700));
 const gm = (await mail()).find((m) => m.to === 'amiga@example.org');
 check('…un correo con el código y «Tengo un código de regalo»', !!gm && /Tengo un código de regalo/.test(gm.text) && /[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}/.test(gm.text));

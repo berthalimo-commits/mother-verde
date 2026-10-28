@@ -155,9 +155,19 @@ Nuevas decisiones **propuestas** (❓ ¿las quieres?):
 
 ## 8. Rosin (fase 8 — espera aprobación)
 
-### 8.0 Pregunta antes de todo ❓
-Hasta hoy está decidido: **rosin solo cualitativo, sin cifras** (docs/juego-diseno-v2.md, punto 1). Ahora pides
-**malla con su tamaño en micras, calor, presión y tiempo**. Necesito que elijas una de estas dos:
+### 8.0 Decisión de Bertha (2026-10-28) ✅
+**El rosin puede llevar cifras**, con estas condiciones:
+- solo el rosin (prensado mecánico, sin solventes);
+- cada cifra con una **fuente comprobable**;
+- cada cifra marcada en el juego como **«orientativo»**.
+
+**El laboratorio de solventes y CO₂ sigue sin ninguna cifra.** La fase 8 **no se construye** hasta que Bertha revise
+este catálogo. Antes de esa revisión, busco y compruebo fuentes para cada cifra (micras de la malla, calor, presión,
+tiempo, almacenamiento) y las pongo aquí y en `docs/juego-fuentes.md`. Lo que no tenga fuente comprobable queda
+**[CIFRA: BERTHA]**.
+
+Texto anterior de la pregunta (para el historial): hasta el 2026-10-27 estaba decidido **rosin solo cualitativo,
+sin cifras** (docs/juego-diseno-v2.md, punto 1), y se pedía elegir una de estas dos:
 - **(a)** Mantener «sin cifras»: las opciones son niveles (malla fina / media / gruesa; calor bajo / medio / alto;
   presión baja / media / alta; tiempo corto / medio / largo).
 - **(b)** Permitir cifras **solo para el rosin**. Entonces tú me das cada cifra con su fuente: **la plataforma no
