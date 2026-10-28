@@ -251,6 +251,9 @@ let kk = 70;
 for (const [label, units] of [['10.0420', 10042000], ['10.0042', 10004200], ['20.0420', 20042000], ['200.0099', 200009900], ['10.0010', 10001000], ['20.0001', 20000100], ['110.0400', 110040000]]) {
   const flowers = Math.floor(units / 10000000);
   const p = await payer(kk++, flowers);
+  // An earlier open claim may hold this amount by chance (random codes; amounts
+  // are unique while open): move it 1 unit aside so this one can take it.
+  await db.exec(`update support_claims set amount_units = amount_units + 1 where amount_units = ${units} and id <> ${p.c.id} and status in ('awaiting_payment', 'submitted', 'manual_review')`);
   await db.exec(`update support_claims set amount_units = ${units} where id = ${p.c.id}`);
   putTx(p.tx, { amount: units });
   r = await call('claims', A2, { action: 'admin_check', claim_id: p.c.id });
