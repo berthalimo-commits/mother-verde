@@ -178,9 +178,53 @@ veg en computadora).
 **Peso:** juego 105,9 → 132,0 KB (33,7 → 41,5 comprimido). El diseño estimaba +2 a 3 KB comprimido para los
 objetos; el resto (≈ +5 KB comprimido) son los textos de «¿Por qué?» en 4 idiomas, que no estaban en el diseño.
 
-**Lo siguiente:** Fase 4 — los problemas se ven en la planta y la semana se anima (con «reducir movimiento»: sin
-animaciones). Cada problema dibujado según su fuente: oídio (F5, F7), botrytis (F4), ácaros (F6), carencia de N
-(F2), exceso de riego (F3).
+## Fase 4 — Los problemas se ven y la semana se anima · HECHA (2026-10-27)
+
+**Qué se ve**
+- **Cada problema se dibuja en la planta como lo describe su fuente** (`docs/juego-fuentes.md`):
+
+  | Problema | Cómo se ve | Fuente |
+  |---|---|---|
+  | Oídio | manchas blancas como polvo sobre las hojas | F5, F7 |
+  | Botrytis | los cogollos de arriba se ponen grises y marrones | F4 y la plataforma |
+  | Ácaros | puntitos claros y una telaraña fina | F6 |
+  | Carencia de nitrógeno | se ponen amarillas las hojas de **abajo** (las más viejas) | F2 |
+  | Exceso de riego | hojas caídas y sustrato oscuro, empapado y brillante, aunque ya se elija otro riego | F3 y la plataforma |
+
+- **Recuperación:** la semana después de resolver bien el problema, sus señales se ven más débiles (la planta se
+  recupera poco a poco). Una semana más tarde, desaparecen.
+- **La descripción en texto** nombra el problema o la recuperación (ES/EN/DE/FR).
+- **La semana se anima una sola vez** al pasar: la planta crece un poco, caen tres gotas sobre la maceta y la luz se
+  apaga y vuelve. Dura menos de 2,5 s y nada se repite. Elegir opciones no anima nada.
+- **Con «reducir movimiento»** activado en el sistema no se mueve nada: el cambio se ve de golpe.
+
+**Archivos**
+- `src/game/tent.js`: `problemOf()`, los síntomas, las hojas caídas o amarillas, los cogollos podridos, el sustrato
+  empapado y el CSS de las animaciones.
+- `src/game/game.js`: `animNext` (solo el primer dibujo después de pasar la semana se anima).
+- `src/game/i18n.js`: `jgTentP_*` y `jgTentRec` en 4 idiomas.
+
+**Pruebas**
+- `tests/sim/game-problems-ui.mjs` (nueva): **25 ok**.
+  - Dibujos: cada problema y su fuente; hojas amarillas solo abajo; sin problema no se dibuja nada; la
+    recuperación; las descripciones en 4 idiomas.
+  - Animaciones: ninguna repetida ni de más de 5 s; en la app se anima una vez, no queda nada en marcha y no se
+    anima al elegir.
+  - En la app: exceso de riego visible tras 2 semanas, la recuperación al responder bien y que desaparece después.
+  - «Reducir movimiento»: cero animaciones.
+- Relacionadas: `game-tent-ui` 36, `game-touch-ui` 37, `game-play-ui` 35, `game-engine` 44 y `game-ui` 54. En
+  el primer intento, `game-ui` no pudo arrancar el Chrome de pruebas; repetida sola, pasó.
+
+**Peso:** juego 132,0 → 137,8 KB (41,5 → 43,3 comprimido). El diseño estimaba +3 a 4 KB comprimido; quedó en +1,8.
+
+**Guardado por partes** (la conexión se cortó una vez): A `a1ac216`, B `6638801`, C `bac27bf`, nota + subida en
+el commit siguiente.
+
+**Lo siguiente:**
+- **Fase 8** (secado, curado y rosin que se ven): **espera la aprobación de `docs/juego-decisiones.md`**. Hay
+  preguntas abiertas; la principal: si el rosin puede llevar cifras (8.0).
+- Fases 5, 6 y 7: necesitan las decisiones del catálogo (sistemas, germinación, equipo).
+- Pendiente fuera del juego: el resultado de la prueba de Bertha en incógnito sobre el fallo de las flores.
 
 **Cómo retomar**
 - `git checkout juego`
