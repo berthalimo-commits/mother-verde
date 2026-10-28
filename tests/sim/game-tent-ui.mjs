@@ -100,9 +100,9 @@ await sleep(200);
 
 for (let i = 0; i < 6 && (await gs(b)).stage !== 'vegetativo'; i++) await nextWeek(b);
 check('plántula -> vegetativo: la planta tiene hojas y no cogollos', (await svg(b))?.scene === 'vegetativo');
-const h1 = await b.ev(`document.querySelector('#jgTent svg path[stroke-linecap="round"]').getAttribute('d')`);
+const h1 = await b.ev(`document.querySelector('#jgTent svg .jgt-stem').getAttribute('d')`);
 await nextWeek(b); await nextWeek(b);
-const h2 = await b.ev(`document.querySelector('#jgTent svg path[stroke-linecap="round"]').getAttribute('d')`);
+const h2 = await b.ev(`document.querySelector('#jgTent svg .jgt-stem').getAttribute('d')`);
 check('la planta crece de una semana a otra', h1 !== h2, h1 + ' / ' + h2);
 await b.shot('jgt-veg-es-mobile');
 await pickWeek(b, 'fotoperiodo', '12/12'); await sleep(200);

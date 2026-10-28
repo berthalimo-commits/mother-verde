@@ -10,6 +10,7 @@ import TEXTS from './i18n.js';
 import * as E from './engine.js';
 import { poseFor, poseSvg } from './poses.js';
 import { tentHtml, CSS as TENT_CSS } from './tent.js';
+import { whyGroupHtml, whyKeysFromNotes, whyKeysFromResult, bindWhy, CSS as WHY_CSS } from './why.js';
 
 window.mvAddTexts?.(TEXTS);
 const t = (k) => (window.t ? window.t(k) : k);
@@ -168,6 +169,7 @@ function eventHtml() {
     <p><b>${t('jgEvPregunta')}</b></p>
     <div class="jg-answers">${shown.map((a) => `<button type="button" class="btn btn-ghost jg-answer" data-answer="${a}">${t('jgR_' + a)}</button>`).join('')}</div>
     ${lessonBtn('diagnostico')}
+    ${whyGroupHtml([ev.id], WHY_CTX, 'evento')}
   </div>`;
 }
 
@@ -242,6 +244,7 @@ function resultHtml() {
     ${hasFinal ? `<p><b>${t('jgFinPostCausas')}</b> ${post.length ? post.map(postCause).join(', ') : t('jgFinNada')}</p>
       <p>${esc(rosinLine)}</p>` : ''}
     ${lessons.length ? `<p><b>${t('jgFinRepasar')}</b></p><div class="jg-actions">${lessons.map(lessonBtn).join('')}</div>` : ''}
+    ${whyGroupHtml(whyKeysFromResult(r), WHY_CTX, 'fin')}
     <div class="jg-actions"><button type="button" class="btn btn-primary" id="jgAgain">${t('jgPlantarOtra')}</button>${r.dead ? '' : lessonBtn('cosecha')}</div>
     ${hasFinal ? `<div class="jg-actions"><button type="button" class="btn btn-ghost" id="jgLab">${t('jgLabBtn')}</button></div>` : ''}
   </div>`;
@@ -265,10 +268,66 @@ const LAB_CTX = { t, fmt, esc, lessonBtn: (l) => lessonBtn(l), act: (n, save) =>
 
 // v2 phase 2: the tent. While the person picks this week's options it is
 // redrawn with what is selected on screen (nothing is saved until the week passes).
+// Phase 3: touching an object opens its panel (tentOpen); the panel and the
+// list below are the same choices (picking in one ticks the other).
 const TENT_CTX = { t, esc, RULES };
+let tentOpen = null;
 function tent(choices) {
-  return tentHtml(state, choices || E.defaultChoices(state, RULES), TENT_CTX);
+  return tentHtml(state, choices || E.defaultChoices(state, RULES), TENT_CTX,
+    { open: tentOpen, blocked: !!(state.event && !state.event.answered) });
 }
+function formChoices(root) {
+  const form = root.querySelector('#jgForm');
+  if (!form) return null;
+  const fd = new FormData(form);
+  return Object.fromEntries(E.DECISIONS.map((d) => [d, fd.get('jg-' + d)]));
+}
+// Redraw the tent and put the focus back where it was (or on focusId).
+function redrawTent(root, focusId) {
+  const el = root.querySelector('#jgTent');
+  if (!el) return;
+  const keep = focusId || (el.contains(document.activeElement) ? document.activeElement.id : '');
+  el.outerHTML = tent(formChoices(root));
+  if (keep) document.getElementById(keep)?.focus();
+}
+function bindTent(root, box) {
+  box.addEventListener('click', (ev) => {
+    const obj = ev.target.closest('.jgt-obj');
+    if (obj) {
+      tentOpen = tentOpen === obj.dataset.obj ? null : obj.dataset.obj;
+      redrawTent(root, tentOpen ? undefined : obj.id);
+      if (tentOpen) root.querySelector('#jgtPanel input:checked, #jgtPanel input')?.focus();
+      return;
+    }
+    if (ev.target.closest('#jgtClose')) { const was = tentOpen; tentOpen = null; redrawTent(root, 'jgtObj-' + was); return; }
+    if (ev.target.closest('#jgtNext')) root.querySelector('#jgForm')?.requestSubmit();
+  });
+  box.addEventListener('change', (ev) => {
+    const inp = ev.target.closest('#jgtPanel input[type="radio"]');
+    if (!inp) return;
+    const d = inp.name.slice(4);
+    const twin = root.querySelector(`#jg-${d}-${inp.value.replace('/', '-')}`);
+    if (twin) twin.checked = true;
+    redrawTent(root, inp.id);
+  });
+  box.addEventListener('keydown', (ev) => {
+    if (ev.key !== 'Escape' || !tentOpen || !ev.target.closest('#jgtPanel')) return;
+    const was = tentOpen; tentOpen = null; redrawTent(root, 'jgtObj-' + was);
+  });
+}
+
+// «¿Por qué?» under the guide, in each problem and in the result (why.js).
+function openLesson(l) {
+  state = E.markLesson(state, l);
+  writeLocal(who().key, state, pending);
+  const scr = LESSON_SCREEN[l] || 'cultivo';
+  window.showScreen?.(scr);
+  window.showSub?.(scr, l);
+}
+function bindLessons(el) {
+  el.querySelectorAll('.jg-lesson').forEach((b) => b.addEventListener('click', () => openLesson(b.dataset.lesson)));
+}
+const WHY_CTX = { t, esc, lessonBtn: (l) => lessonBtn(l), bindLessons };
 
 function syncText() {
   return { ok: 'jgSync_ok', local: 'jgSync_local', stale: 'jgSync_stale', preview: 'jgSync_preview', lento: 'jgSync_lento', err: 'jgErrGuardar' }[sync];
@@ -303,6 +362,7 @@ function paint(root) {
       <div class="jg-sci">${poseSvg(poseFor(state, feedback))}</div>
       <p class="jg-bubble" id="jgBubble" tabindex="-1" role="status">${esc(bubble)}</p>
     </div>
+    ${inLab ? '' : whyGroupHtml(whyKeysFromNotes(feedback, state), WHY_CTX, 'guia')}
     ${inLab ? '' : tent()}
     ${main}
     <p class="jg-sync" id="jgSync" role="status"></p>
@@ -310,6 +370,7 @@ function paint(root) {
   paintSync();
   root.querySelector('#jgBack').addEventListener('click', () => window.showScreen?.('home'));
   if (inLab) LAB.bind(root, state, LAB_CTX);
+  else { const box = root.querySelector('.jg'); bindTent(root, box); bindWhy(box, WHY_CTX); }
   root.querySelector('#jgLab')?.addEventListener('click', async (ev) => {
     const btn = ev.currentTarget;
     btn.disabled = true;
@@ -317,16 +378,11 @@ function paint(root) {
     act(LAB.open(state));
   });
   root.querySelector('#jgStart')?.addEventListener('click', () => act(E.start(state)));
-  root.querySelector('#jgForm')?.addEventListener('change', (ev) => {
-    const fd = new FormData(ev.currentTarget);
-    const choices = Object.fromEntries(E.DECISIONS.map((d) => [d, fd.get('jg-' + d)]));
-    root.querySelector('#jgTent').outerHTML = tent(choices);
-  });
+  root.querySelector('#jgForm')?.addEventListener('change', () => redrawTent(root));
   root.querySelector('#jgForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();
-    const fd = new FormData(ev.target);
-    const choices = Object.fromEntries(E.DECISIONS.map((d) => [d, fd.get('jg-' + d)]));
-    act(E.applyWeek(state, choices, RULES));
+    tentOpen = null;
+    act(E.applyWeek(state, formChoices(root), RULES));
   });
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));
   root.querySelector('#jgPostForm')?.addEventListener('submit', (ev) => {
@@ -345,14 +401,7 @@ function paint(root) {
   root.querySelector('#jgSkipRosin')?.addEventListener('click', () => act(E.skipRosin(state)));
   root.querySelectorAll('.jg-answer').forEach((b) => b.addEventListener('click', () => act(E.answerEvent(state, b.dataset.answer, RULES))));
   root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.newGame(state)));
-  root.querySelectorAll('.jg-lesson').forEach((b) => b.addEventListener('click', () => {
-    const l = b.dataset.lesson;
-    state = E.markLesson(state, l);
-    writeLocal(who().key, state, pending);
-    const scr = LESSON_SCREEN[l] || 'cultivo';
-    window.showScreen?.(scr);
-    window.showSub?.(scr, l);
-  }));
+  bindLessons(root);
 }
 
 const CSS = `
@@ -396,7 +445,7 @@ const CSS = `
 
 export async function render(root) {
   if (!document.getElementById('jgStyle')) {
-    const st = document.createElement('style'); st.id = 'jgStyle'; st.textContent = CSS + TENT_CSS; document.head.appendChild(st);
+    const st = document.createElement('style'); st.id = 'jgStyle'; st.textContent = CSS + TENT_CSS + WHY_CSS; document.head.appendChild(st);
   }
   const w = who();
   const owner = w.uid || (w.preview ? 'preview' : null);

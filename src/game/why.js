@@ -1,0 +1,125 @@
+// Zona del juego — «¿Por qué?»: the reason behind each consequence, its lesson
+// in the platform and, when there is one, the outside source that was opened
+// and checked (docs/juego-fuentes.md, codes F1–F6). A rule that only exists
+// for the game says so. No source is cited here that is not in that file.
+
+export const SOURCES = {
+  F1: { label: 'Rodriguez-Morrison, Llewellyn & Zheng — Frontiers in Plant Science, 2021', url: 'https://www.frontiersin.org/articles/10.3389/fpls.2021.646020/full' },
+  F2: { label: 'Utah State University Extension — Hemp nutrient deficiencies', url: 'https://extension.usu.edu/planthealth/ipm/notes_ag/hemp-nutrient-deficiencies' },
+  F3: { label: 'UC IPM, University of California — Pythium root rot', url: 'https://ipm.ucanr.edu/agriculture/floriculture-and-ornamental-nurseries/pythium-root-rot/' },
+  F4: { label: 'Utah State University Extension — Hemp bud rot', url: 'https://extension.usu.edu/planthealth/ipm/notes_ag/hemp-bud-rot' },
+  F5: { label: 'Utah State University Extension — Hemp powdery mildew', url: 'https://extension.usu.edu/planthealth/ipm/notes_ag/hemp-powdery-mildew' },
+  F6: { label: 'NC State Extension — Twospotted spider mite in industrial hemp', url: 'https://content.ces.ncsu.edu/twospotted-spider-mite-in-industrial-hemp' },
+};
+
+// key -> lesson of the platform, source code (or null) and backing level.
+// Texts: jgWhy_<key> (reason) and jgWhyN_<key> (short name, when it isn't a
+// decision / event / stage name the game already has).
+export const WHY = {
+  fotoperiodo: { lesson: 'ciclo', src: 'F1', level: 'estudio' },
+  intensidad: { lesson: 'iluminacion', src: 'F1', level: 'estudio' },
+  riego: { lesson: 'diagnostico', src: 'F3', level: 'guia' },
+  nutrientes: { lesson: 'sustrato', src: 'F2', level: 'guia' },
+  temperatura: { lesson: 'sistemas', src: 'F6', level: 'guia' },
+  humedad: { lesson: 'sistemas', src: 'F4', level: 'guia' },
+  flip: { lesson: 'ciclo', src: null, level: 'simple' },
+  evento: { lesson: 'diagnostico', src: null, level: 'simple' },
+  oidio: { lesson: 'diagnostico', src: 'F5', level: 'guia' },
+  botrytis: { lesson: 'diagnostico', src: 'F4', level: 'guia' },
+  acaros: { lesson: 'diagnostico', src: 'F6', level: 'guia' },
+  carencia_n: { lesson: 'diagnostico', src: 'F2', level: 'guia' },
+  exceso_riego: { lesson: 'diagnostico', src: 'F3', level: 'guia' },
+  muerta: { lesson: 'diagnostico', src: 'F3', level: 'simple' },
+  tricomas: { lesson: 'cosecha', src: null, level: 'practica' },
+  secado: { lesson: 'procesos', src: null, level: 'practica' },
+  curado: { lesson: 'procesos', src: null, level: 'practica' },
+  rosin: { lesson: 'concentrados', src: null, level: 'practica' },
+  sinDato: { lesson: null, src: null, level: 'simple' },
+};
+
+// The keys a list of game notes / causes points to (in order, no repeats).
+export function whyKeysFromNotes(notes, state) {
+  const out = [];
+  const add = (k) => { if (WHY[k] && !out.includes(k)) out.push(k); };
+  for (const n of notes || []) {
+    const [kind, arg] = n.split(':');
+    if (kind === 'semanaMal') Object.keys(state.log.at(-1)?.l || {}).forEach(add);
+    else if (kind === 'evento' || kind === 'eventoBien' || kind === 'eventoMal') add(arg);
+    else if (kind === 'flipTemprano') add('flip');
+    else if (kind === 'sinDato' || kind === 'postSinDato') add('sinDato');
+    else if (kind === 'cosechado' || kind === 'cosechaAuto') add('tricomas');
+    else if (kind === 'postMal') add(arg);
+    else if (kind === 'quemadura') add('rosin');
+  }
+  return out;
+}
+
+// Keys of the final result: what cost health, the harvest point, drying /
+// curing / rosin mistakes, and the dead plant.
+export function whyKeysFromResult(r) {
+  const out = [];
+  const add = (k) => { if (WHY[k] && !out.includes(k)) out.push(k); };
+  if (r.dead) add('muerta');
+  (r.causes || []).forEach(add);
+  if (!r.dead) add('tricomas');
+  (r.postCauses || []).forEach((c) => add(c.split('_')[0]));
+  if (r.rosin?.causes?.length) add('rosin');
+  return out;
+}
+
+// A group of «¿Por qué?» buttons + one panel that shows the chosen reason.
+// name(key) gives the short name shown on each button.
+export function whyGroupHtml(keys, ctx, gid) {
+  if (!keys.length) return '';
+  const { t, esc } = ctx;
+  return `<div class="jg-whys" data-gid="${gid}">
+    <div class="jg-why-btns">${keys.map((k) => `<button type="button" class="btn btn-ghost jg-why" data-why="${k}" aria-expanded="false" aria-controls="jgWhyP-${gid}">${esc(t('jgWhyBtn'))} · ${esc(whyName(k, t))}</button>`).join('')}</div>
+    <div class="jg-why-panel" id="jgWhyP-${gid}" role="region" aria-live="polite" hidden></div>
+  </div>`;
+}
+
+export function whyName(k, t) {
+  if (['fotoperiodo', 'intensidad', 'riego', 'nutrientes', 'temperatura', 'humedad'].includes(k)) return t('jgD_' + k);
+  if (['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego'].includes(k)) return t('jgEvN_' + k);
+  if (['secado', 'curado', 'rosin'].includes(k)) return t('jgEtapa_' + k).replace(/\s*\(.*\)$/, '');
+  if (k === 'tricomas') return t('jgTricomas').replace(/\s*\(.*\)$/, '');
+  return t('jgWhyN_' + k);
+}
+
+export function whyPanelHtml(k, ctx) {
+  const { t, esc, lessonBtn } = ctx;
+  const w = WHY[k];
+  const src = w.src ? SOURCES[w.src] : null;
+  return `<p class="jg-why-text">${esc(t('jgWhy_' + k))}</p>
+    <p class="jg-why-level"><b>${esc(t('jgWhyRespaldo'))}</b> ${esc(t('jgWhyNivel_' + w.level))}</p>
+    ${src ? `<p class="jg-why-src"><b>${esc(t('jgWhyFuente'))}</b> <a href="${src.url}" target="_blank" rel="noopener noreferrer">${esc(src.label)}</a></p>` : ''}
+    ${w.lesson ? lessonBtn(w.lesson) : ''}`;
+}
+
+// One listener per game screen: open / close the reason under each group.
+export function bindWhy(box, ctx) {
+  box.addEventListener('click', (ev) => {
+    const b = ev.target.closest('.jg-why');
+    if (!b) return;
+    const group = b.closest('.jg-whys');
+    const panel = group.querySelector('.jg-why-panel');
+    const open = b.getAttribute('aria-expanded') === 'true';
+    group.querySelectorAll('.jg-why').forEach((x) => x.setAttribute('aria-expanded', 'false'));
+    if (open) { panel.hidden = true; panel.innerHTML = ''; return; }
+    b.setAttribute('aria-expanded', 'true');
+    panel.innerHTML = whyPanelHtml(b.dataset.why, ctx);
+    panel.hidden = false;
+    ctx.bindLessons?.(panel);
+  });
+}
+
+export const CSS = `
+#juego .jg-whys{margin:0 0 14px}
+#juego .jg-why-btns{display:flex;flex-wrap:wrap;gap:8px}
+#juego .jg-why{min-height:44px;font-size:13.5px}
+#juego .jg-why[aria-expanded="true"]{border-color:var(--moss);color:var(--moss)}
+#juego .jg-why-panel{margin-top:10px;background:var(--paper-raised);border:1px solid var(--glow-border);border-left:4px solid var(--moss);border-radius:8px;padding:10px 14px}
+#juego .jg-why-panel p{margin:0 0 8px;font-size:13.5px;line-height:1.55;color:var(--ink)}
+#juego .jg-why-panel .jg-why-level,#juego .jg-why-panel .jg-why-src{color:var(--ink-soft)}
+#juego .jg-why-panel a{color:var(--teal);overflow-wrap:anywhere}
+`;

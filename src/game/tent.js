@@ -88,7 +88,7 @@ function plant(state, sc, rules) {
     }
   }
   const crown = sc === 'floracion' ? bud(CX, top + budR * 0.4, budR, trich, dots) : leaf(CX, top + 4, 0, 10, 3);
-  return `<path d="M${CX} ${BASE}Q${CX + 3} ${f1(BASE - H / 2)} ${CX} ${f1(top + 4)}" fill="none" stroke="${color}" stroke-width="${sc === 'floracion' ? 3 : 2.4}" stroke-linecap="round"/>`
+  return `<path class="jgt-stem" d="M${CX} ${BASE}Q${CX + 3} ${f1(BASE - H / 2)} ${CX} ${f1(top + 4)}" fill="none" stroke="${color}" stroke-width="${sc === 'floracion' ? 3 : 2.4}" stroke-linecap="round"/>`
     + `<g fill="${color}">${leaves}${sc === 'floracion' ? '' : crown}</g>${buds}${sc === 'floracion' ? crown : ''}`;
 }
 
@@ -132,6 +132,62 @@ function fan() {
     + `<g fill="#9FB8AE" opacity="0.8">${blades}</g><circle r="2" fill="#E3A75F"/></g>`;
 }
 
+// ---------------------------------------------------------------- phase 3: what can be touched
+// Each object opens the decisions it controls. x / y = its centre in the
+// drawing (viewBox 240 × 216); the buttons over the picture use them.
+export const OBJECTS = {
+  lampara: { d: ['fotoperiodo', 'intensidad'], x: 120, y: 30 },
+  termometro: { d: ['temperatura'], x: 34, y: 92 },
+  humidificador: { d: ['humedad'], x: 200, y: 186 },
+  regadera: { d: ['riego'], x: 50, y: 190 },
+  nutrientes: { d: ['nutrientes'], x: 150, y: 190 },
+};
+
+// Watering can, nutrient bottle, thermometer with heater and humidifier.
+function tools() {
+  return '<g class="jgt-tools">'
+    // thermometer on the left wall + small heater under it
+    + '<rect x="31" y="74" width="6" height="26" rx="3" fill="#0B1512" stroke="#9FB8AE" stroke-width="0.8"/><rect x="32.8" y="84" width="2.4" height="14" fill="#E2665A"/><circle cx="34" cy="102" r="4" fill="#E2665A" stroke="#9FB8AE" stroke-width="0.8"/>'
+    + '<rect x="26" y="112" width="16" height="10" rx="2" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.6"/><path d="M29 115h10M29 118h10" stroke="#E3A75F" stroke-width="0.8"/>'
+    // watering can
+    + '<path d="M40 183h16l-2 15H42Z" fill="#5FD4E0" fill-opacity="0.5" stroke="#9FB8AE" stroke-width="0.8"/><path d="M56 186l9-7" stroke="#9FB8AE" stroke-width="1.6" stroke-linecap="round"/><path d="M42 183q6 -8 12 0" fill="none" stroke="#9FB8AE" stroke-width="1"/>'
+    // nutrient bottle
+    + '<rect x="144" y="183" width="12" height="18" rx="2" fill="#E3A75F" fill-opacity="0.75" stroke="#9FB8AE" stroke-width="0.8"/><rect x="147" y="178" width="6" height="5" fill="#2B3532"/><rect x="146" y="189" width="8" height="5" rx="1" fill="#F0F7F3" fill-opacity="0.7"/>'
+    // humidifier with a little mist
+    + '<rect x="190" y="182" width="20" height="20" rx="4" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.8"/><circle cx="200" cy="192" r="4" fill="#5FD4E0" fill-opacity="0.6"/><path d="M197 178q3 -5 6 0M200 172q3 -4 5 0" fill="none" stroke="#C7CFD2" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>'
+    + '</g>';
+}
+
+function objButtons(open, ctx) {
+  return Object.entries(OBJECTS).map(([k, o]) => {
+    const name = ctx.t('jgObj_' + k);
+    return `<button type="button" class="jgt-obj" data-obj="${k}" id="jgtObj-${k}"
+      aria-expanded="${open === k}" aria-controls="jgtPanel" aria-label="${ctx.esc(ctx.t('jgObjAbrir').replace('{o}', name))}" title="${ctx.esc(name)}"></button>`;
+  }).join('');
+}
+
+// The panel of the open object: the same options as the list below (same
+// rules); choosing here ticks the list too.
+function panelHtml(open, choices, blocked, ctx) {
+  const { t, esc, RULES } = ctx;
+  const fields = OBJECTS[open].d.map((d) => `<fieldset class="jg-field">
+      <legend>${t('jgD_' + d)}</legend>
+      <div class="jg-opts">${RULES.opciones[d].map((o) => {
+        const id = `jgt-${d}-${o.replace('/', '-')}`;
+        return `<input type="radio" name="jgt-${d}" id="${id}" value="${o}"${choices[d] === o ? ' checked' : ''}${blocked ? ' disabled' : ''}>
+          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span><small>${t(`jgH_${d}_${o}`)}</small></label>`;
+      }).join('')}</div>
+    </fieldset>`).join('');
+  return `<div class="jgt-panel" id="jgtPanel" role="group" aria-labelledby="jgtPanelH" data-obj="${open}">
+    <h4 id="jgtPanelH">${esc(t('jgObj_' + open))}</h4>
+    ${fields}
+    <div class="jg-actions">
+      <button type="button" class="btn btn-primary" id="jgtNext"${blocked ? ' disabled' : ''}>${t('jgPasarSemana')}</button>
+      <button type="button" class="btn btn-ghost" id="jgtClose">${t('jgObjCerrar')}</button>
+    </div>
+  </div>`;
+}
+
 // ---------------------------------------------------------------- the tent
 function tentSvg(state, sc, choices, light, ctx) {
   const riego = PLAYABLE.includes(state.stage) ? choices?.riego : 'moderado';
@@ -159,6 +215,7 @@ function tentSvg(state, sc, choices, light, ctx) {
   <path d="M80 12L84 26M160 12L156 26" stroke="#9FB8AE" stroke-width="1"/>
   <rect x="70" y="26" width="100" height="9" rx="2" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.6"/>
   <rect x="74" y="32" width="92" height="2.4" rx="1" fill="${light ? '#FFE3A3' : '#3A4442'}"/>
+  ${living ? tools() : ''}
   ${inside}
   ${light ? '' : '<rect x="20" y="12" width="200" height="196" fill="#000" opacity="0.45"/>'}
 </svg>`;
@@ -211,13 +268,20 @@ function caption(state, sc, choices, light, t) {
 }
 
 // choices: the week's choices on screen (live while the person picks), or null.
-export function tentHtml(state, choices, ctx) {
+// ui.open: the object whose panel is open; ui.blocked: an event must be
+// answered first (same as the list: options disabled).
+export function tentHtml(state, choices, ctx, ui = {}) {
   const sc = scene(state);
   const play = PLAYABLE.includes(state.stage);
   const ch = play ? choices : null;
   const light = play ? (ch.intensidad || 'media') : sc === 'fin' ? 'baja' : null;
+  const open = play && OBJECTS[ui.open] ? ui.open : null;
   return `<figure class="jg-tent" id="jgTent">
-    <div class="jgt-scene">${tentSvg(state, sc, ch, light, ctx)}</div>
+    <div class="jgt-scene">
+      <div class="jgt-stage">${tentSvg(state, sc, ch, light, ctx)}${play ? objButtons(open, ctx) : ''}</div>
+      ${play ? `<p class="jgt-hint">${ctx.esc(ctx.t('jgTentHint'))}</p>` : ''}
+      ${open ? panelHtml(open, ch, !!ui.blocked, ctx) : ''}
+    </div>
     ${play ? gauges(ch, ctx) : ''}
     <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t))}</figcaption>
   </figure>`;
@@ -226,7 +290,16 @@ export function tentHtml(state, choices, ctx) {
 export const CSS = `
 #juego .jg-tent{margin:0 0 16px;display:grid;gap:10px}
 #juego .jgt-scene{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px}
-#juego .jgt-svg{display:block;width:100%;max-width:440px;height:auto;margin:0 auto}
+#juego .jgt-stage{position:relative;width:100%;max-width:440px;margin:0 auto}
+#juego .jgt-svg{display:block;width:100%;height:auto}
+#juego .jgt-obj{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border-radius:50%;background:transparent;border:2px dashed rgba(42,235,160,0.55);cursor:pointer}
+#juego .jgt-obj:hover{background:rgba(42,235,160,0.12)}
+#juego .jgt-obj:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+#juego .jgt-obj[aria-expanded="true"]{border-style:solid;border-color:var(--moss);background:rgba(42,235,160,0.18)}
+${Object.entries(OBJECTS).map(([k, o]) => `#juego .jgt-obj[data-obj="${k}"]{left:${f1(o.x / 2.4)}%;top:${f1(o.y / 2.16)}%}`).join('\n')}
+#juego .jgt-hint{margin:8px 0 0;font-size:12.5px;color:var(--ink-soft);text-align:center}
+#juego .jgt-panel{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+#juego .jgt-panel h4{margin:0 0 8px;font-family:'Manrope',sans-serif;font-size:15px;color:var(--ink)}
 #juego .jg-gauges{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 #juego .jg-g{display:flex;align-items:center;gap:8px;min-width:0;background:var(--paper-raised);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
 #juego .jg-g svg{flex:0 0 auto;width:30px;height:30px}

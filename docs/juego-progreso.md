@@ -119,9 +119,68 @@ veg en computadora).
 - Batería completa en `juego`, en 7 grupos pequeños (para gastar menos memoria; servidor y navegador cerrados al
   terminar cada grupo): **38 pruebas, 0 fallas**.
 
-**Lo siguiente:** Fase 3 — dar órdenes tocando la carpa. Primer paso: leer «Fase 3» en `docs/juego-diseno-v2.md`;
-las piezas tocables serán la lámpara, la maceta (riego), el medidor (nutrientes), el ventilador/termómetro y la
-humedad, que hoy se dibujan en `src/game/tent.js`.
+---
+
+## Cambio de modo (2026-10-27, pedido de Bertha)
+
+- Las fases 3 y 4 se hacen seguidas, sin esperar «sigue». Se sube a `juego` al terminar cada una. En cada fase se
+  corren solo las pruebas relacionadas; la batería completa, al final.
+- **La fase 8 espera la aprobación de `docs/juego-decisiones.md`.**
+- **Regla de fuentes:** cada regla y cada efecto tienen su fuente o su nivel en `docs/juego-fuentes.md`. Cada
+  consecuencia lleva un botón «¿Por qué?».
+- Documentos nuevos:
+  - `docs/juego-fuentes.md`: 7 fuentes abiertas y citadas, y lo que no tiene fuente comprobada;
+  - `docs/juego-decisiones.md`: borrador del catálogo, con preguntas para Bertha (commit `fbf239f`).
+
+## Fase 3 — Dar órdenes tocando la carpa + «¿Por qué?» · HECHA (2026-10-27)
+
+**Qué se ve**
+- **Cinco objetos en la carpa, cada uno con su botón** (círculo punteado, ≥ 44 px):
+  - lámpara → horas de luz e intensidad;
+  - termómetro y calefactor → temperatura;
+  - humidificador → humedad;
+  - regadera → riego;
+  - botella de nutrientes → nutrientes.
+- **Al tocar un objeto** se abre su panel bajo la carpa, con las mismas opciones que la lista y el botón «Pasar a la
+  semana siguiente». Elegir en el panel marca la lista y al revés. La carpa cambia en el acto y no se guarda nada
+  hasta pasar la semana.
+- **Teclado:** Tab llega a cada objeto, Enter abre su panel (el foco va a la opción marcada) y Escape lo cierra (el
+  foco vuelve al objeto).
+- Con un problema sin responder, el panel no deja elegir, igual que la lista.
+- La lista de siempre se queda debajo, para teclado, lectores de pantalla o quien la prefiera.
+- **«¿Por qué?»:**
+  - Dónde está: bajo el guía (una por cada causa de la semana), dentro de cada problema y en el resultado
+    (tricomas, causas, secado, curado, rosin, planta marchita).
+  - Qué muestra: la razón, el respaldo (estudio / guía técnica / práctica / regla del juego), la fuente comprobada
+    cuando la hay (F1–F6 de `juego-fuentes.md`) y el botón de la lección.
+  - Sin fuente externa, lo dice así («práctica de cultivadores… sin fuente externa comprobada», «regla del juego»).
+
+**Archivos**
+- `src/game/tent.js`: objetos dibujados (`tools()`), botones encima del dibujo (posiciones en el CSS, sin estilos
+  en línea) y el panel.
+- `src/game/why.js` (nuevo): razones, fuentes, niveles y botones.
+- `src/game/game.js`: estado del panel, teclado, sincronía panel ↔ lista y grupos «¿Por qué?».
+- `src/game/i18n.js`: textos de objetos y de «¿Por qué?» en ES/EN/DE/FR.
+
+**Pruebas**
+- `tests/sim/game-touch-ui.mjs` (nueva): **37 ok**.
+  - Fuentes: cada enlace está en `juego-fuentes.md`; «estudio» o «guía» siempre con enlace; rosin sin cifras.
+  - Carpa: 5 objetos ≥ 44 px dentro de la carpa y sin taparse a 360 px; cada objeto abre lo suyo; panel ↔ lista;
+    Tab, Enter y Escape; el panel bloqueado con un problema.
+  - **Pasar la semana desde el panel da exactamente el resultado del motor del juego.**
+  - «¿Por qué?» con su texto, nivel, fuente y lección, en 4 idiomas; resultado en computadora; sin errores.
+- Relacionadas:
+  - `game-tent-ui` 36 ok: la comprobación de «la planta crece» ahora mira el tallo (`.jgt-stem`) y no el
+    primer trazo redondo, que ahora es la regadera.
+  - `game-ui` 54 ok: el Tab de prueba ahora pasa los objetos de la carpa antes de llegar a la lista.
+  - `game-play-ui` 35, `game-engine` 44 (ahora revisa también `why.js`), `game-db` 37.
+
+**Peso:** juego 105,9 → 132,0 KB (33,7 → 41,5 comprimido). El diseño estimaba +2 a 3 KB comprimido para los
+objetos; el resto (≈ +5 KB comprimido) son los textos de «¿Por qué?» en 4 idiomas, que no estaban en el diseño.
+
+**Lo siguiente:** Fase 4 — los problemas se ven en la planta y la semana se anima (con «reducir movimiento»: sin
+animaciones). Cada problema dibujado según su fuente: oídio (F5, F7), botrytis (F4), ácaros (F6), carencia de N
+(F2), exceso de riego (F3).
 
 **Cómo retomar**
 - `git checkout juego`

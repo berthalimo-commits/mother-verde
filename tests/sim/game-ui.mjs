@@ -221,11 +221,14 @@ for (const [w, label] of [[390, 'movil'], [1280, 'escritorio']]) {
     })()`);
     check(`${label} ${scheme === 'dark' ? 'oscuro' : 'claro'}: contraste ≥ 4,5 (${a.minRatio}), botones y opciones ≥ 44 px, etiquetas y grupos con nombre, sin desborde`,
       a.minRatio >= 4.5 && a.small.length === 0 && a.unlabelled === 0 && a.fieldsets && !a.overflow && a.meter, JSON.stringify(a));
-    // real keyboard: from the guide's bubble, Tab goes to the first option
+    // real keyboard: from the guide's bubble, Tab passes the tent's objects
+    // (v2 phase 3) and reaches the first option of the list
     await b.ev(`document.getElementById('jgBubble').focus(); 1`);
-    await b.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
-    await b.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
-    await sleep(200);
+    for (let i = 0; i < 20 && !(await b.ev(`document.activeElement?.type === 'radio'`)); i++) {
+      await b.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+      await b.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+      await sleep(150);
+    }
     const focusOutline = await b.ev(`(() => { const l = document.querySelector('#juego input[type=radio]:focus-visible + label'); return l ? getComputedStyle(l).outlineStyle : 'sin foco: ' + document.activeElement?.id; })()`);
     if (w === 390 && scheme === 'dark') check('el foco del teclado se ve en las opciones', focusOutline === 'solid', focusOutline);
     await b.shot(`juego-${label}-${scheme === 'dark' ? 'oscuro' : 'claro'}`);
