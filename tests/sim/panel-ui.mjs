@@ -49,7 +49,7 @@ await b.ev(`document.querySelector('.tabs button[data-t=gifts]').click(); 1`);
 await b.waitFor(/Enviar un código/);
 await b.ev(`document.getElementById('ge').value='amiga@example.org'; document.getElementById('gs').click(); 1`);
 s = await b.waitFor(/Enviado a amiga/, 20000);
-check('enviar código -> "Enviado a amiga@example.org" y aparece en la lista como enviado', /Enviado a amiga@example\.org/.test(s) && /enviado/.test(s));
+check('enviar código -> "Enviado a amiga@example.org" y aparece en la lista como enviado', /Enviado a amiga@example\.org/.test(s) && /enviado/.test(s), s.slice(s.indexOf('Enviar un código'), s.indexOf('Enviar un código') + 700));
 const gm = (await mail()).find((m) => m.to === 'amiga@example.org');
 check('…un correo con el código y «Tengo un código de regalo»', !!gm && /Tengo un código de regalo/.test(gm.text) && /[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}/.test(gm.text));
 check('…el código NO aparece en el panel', !s.includes(gm.text.match(/[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}/)[0]));

@@ -220,6 +220,13 @@ objetos; el resto (≈ +5 KB comprimido) son los textos de «¿Por qué?» en 4 
 **Guardado por partes** (la conexión se cortó una vez): A `a1ac216`, B `6638801`, C `bac27bf`, nota + subida en
 el commit siguiente.
 
+**Batería completa (2026-10-28), en 8 grupos pequeños:** **40 pruebas, 0 fallas**.
+- Hubo una falla intermitente en `panel-ui.mjs` («enviar código de regalo → Enviado a…»): falló 2 veces seguidas
+  y luego pasó 2 veces sin ningún cambio en el código (ni el panel ni `main.js` cambiaron desde que pasaba). Causa
+  todavía desconocida; no tiene que ver con el juego.
+- La prueba ahora imprime lo que mostraba el panel cuando falla, para poder ver la causa si vuelve a pasar.
+- Vercel publicó las fases 3 (`f6a2e20`) y 4 (`44aae05`) en la vista previa de `juego` (READY).
+
 **Lo siguiente:**
 - **Fase 8** (secado, curado y rosin que se ven): **espera la aprobación de `docs/juego-decisiones.md`**. Hay
   preguntas abiertas; la principal: si el rosin puede llevar cifras (8.0).
