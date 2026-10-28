@@ -1,0 +1,52 @@
+// Browser test of the app (Desbloquear unique amount + gift code) against the fake Supabase.
+import { check, sleep, sql, mail, browser, summary, OUT } from './browser.mjs';
+import fs from 'fs';
+
+const NEWBIE = 'b0000003-0000-4000-8000-000000000000';
+const appText = (b) => b.ev(`document.querySelector('.screen.active').innerText`);
+const waitApp = async (b, re, ms = 10000) => { for (let t = 0; t < ms; t += 250) { const s = await appText(b); if (re.test(s)) return s; await sleep(250); } return appText(b); };
+
+let b = await browser(NEWBIE, 'aal1', 390);
+await b.send('Page.navigate', { url: 'http://localhost:5174/' });
+await sleep(5000);
+await b.ev(`document.getElementById('ageGateModal').style.display='none'; 1`);
+let s = await waitApp(b, /terminó|Desbloquear/);
+check('cuenta con la prueba vencida -> pantalla de acceso con «Tengo un código de regalo»', /Tu prueba gratis terminó/.test(s) && /Tengo un código de regalo/.test(s), s.slice(0, 300));
+await b.ev(`showScreen('desbloquear'); 1`);
+s = await waitApp(b, /Ver mi monto/);
+check('Desbloquear sin monto reservado: botón «Ver mi monto», sin dirección ni QR todavía', /Ver mi monto/.test(s) && !/0x63bb/.test(s));
+await b.ev(`document.getElementById('dsMas').click(); 1`); await sleep(300);
+await b.ev(`document.getElementById('dsReservarBtn').click(); 1`);
+s = await waitApp(b, /Envía exactamente/);
+const db1 = await sql(`select id, flowers, amount_units, status from support_claims where user_id = '${NEWBIE}' and status = 'awaiting_payment'`);
+// shown in Spanish with a decimal comma (20,0042); compared as text with the database
+const shown = ((s.match(/(\d+,\d{4}) USDC/) || [])[1] || '').replace(',', '.');
+check('«Ver mi monto» con 2 flores -> el monto mostrado = el reservado en la base (20,00xx)', db1.length === 1 && db1[0].flowers === 2 && shown === (db1[0].amount_units / 1e6).toFixed(4), JSON.stringify({ shown, db1 }));
+check('…con dirección, QR, «en la red Base», vencimiento y aviso de decimales', /0x63bbacca9add146c93d5e3e4f77eb053809792d0/.test(s) && /en la red Base/.test(s) && /reservado para ti hasta/.test(s) && /decimales/.test(s) && await b.ev(`!!document.querySelector('#dsQr svg')`));
+await b.shot('app-1-monto');
+await b.ev(`document.getElementById('dsClaimTx').value='0x123'; document.getElementById('dsClaimForm').requestSubmit(); 1`); await sleep(300);
+check('código mal formado -> aviso, no se envía', /66 caracteres/.test(await appText(b)));
+const TX = '0x' + 'cd'.repeat(32);
+await b.ev(`document.getElementById('dsClaimTx').value='${TX}'; document.getElementById('dsClaimForm').requestSubmit(); 1`);
+s = await waitApp(b, /verificando/);
+const db2 = await sql(`select status, tx_hash from support_claims where id = ${db1[0].id}`);
+check('código válido -> «lo estamos verificando» y en la base submitted con ese TXID', /verificando/.test(s) && db2[0].status === 'submitted' && db2[0].tx_hash === TX, JSON.stringify(db2));
+await b.shot('app-2-pendiente');
+// gift code
+await fetch('http://localhost:54322/__sql?q=' + encodeURIComponent(`select set_config('request.jwt.claims', '', false)`));
+const code = (await sql(`select code from admin_create_gift_codes(1, 7, 30)`))[0].code;
+await b.ev(`showScreen('cuenta'); mvOpenGiftForm(); 1`); await sleep(500);
+await b.ev(`document.getElementById('giftCode').value='ZZZZ-ZZZZ-ZZZZ'; document.getElementById('giftForm').requestSubmit(); 1`);
+s = await waitApp(b, /no es válido/);
+check('código inventado -> «no es válido» (genérico)', /no es válido o ya no se puede usar/.test(s));
+await b.ev(`document.getElementById('giftCode').value='${code.toLowerCase()}'; document.getElementById('giftForm').requestSubmit(); 1`);
+s = await waitApp(b, /Listo/);
+check('código real (en minúsculas) -> «¡Listo! Tienes acceso completo hasta…»', /¡Listo! Tienes acceso completo hasta/.test(s), s.slice(0, 400));
+await sleep(1500);
+s = await appText(b);
+check('…la cuenta pasa a acceso completo con fecha (estado granted) y se desbloquea', /Acceso completo activo hasta/.test(s) && (await b.ev(`document.documentElement.dataset.access`)) === 'granted' && !(await b.ev(`document.documentElement.classList.contains('mv-locked')`)));
+await b.shot('app-3-regalo');
+check('sin desplazamiento horizontal a 390 px', (await b.ev('document.documentElement.scrollWidth > innerWidth')) === false);
+await b.close();
+summary();
+process.exit(0);

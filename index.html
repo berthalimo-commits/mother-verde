@@ -113,32 +113,26 @@
         <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.">Vista previa:</span>
         <div class="tier-switch" id="tierSwitch">
           <button data-tier="free">Gratis</button>
-          <button data-tier="premium" class="tier-on">Premium</button>
+          <button data-tier="premium" class="tier-on">Acceso completo</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ TRIAL / SUBSCRIPTION BANNERS ============ -->
-  <style>
-    .mv-sub-banner{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:12px 18px; font-size:13px; line-height:1.5; border-bottom:1px solid var(--line-strong);}
-    .mv-sub-banner[hidden]{display:none;}
-    .mv-sub-banner .mv-sub-banner-txt{flex:1; min-width:200px;}
-    .mv-sub-banner b{font-weight:700;}
-    .mv-sub-banner .btn-pill{white-space:nowrap;}
-    #trialReminderBanner{background:#FBF3E2; color:#5a4a1e;}
-    #trialBlockedBanner{background:#F7E4DF; color:#7a2f1c;}
-    #trialReminderBanner .mv-sub-x{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:15px; opacity:.6;}
-  </style>
-  <div class="mv-sub-banner" id="trialReminderBanner" hidden>
-    <span class="mv-sub-banner-txt" id="trialReminderText"></span>
-    <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBannerManageBtn">Ver mi suscripción</button>
-    <span class="mv-sub-x" onclick="dismissTrialReminder()" title="Ocultar">×</span>
+  <!-- Trial countdown strip (support model). Filled by mvApplyAccessState() in main.js. -->
+  <div class="mv-trial-strip" id="trialCountdown" hidden role="status">
+    <span id="trialCountdownText"></span>
+    <button type="button" class="mv-trial-go" onclick="showScreen('desbloquear')" data-i18n="accDesbloquearBtn">Desbloquear</button>
+    <button type="button" class="mv-trial-x" id="trialCountdownClose" aria-label="Cerrar">×</button>
   </div>
-  <div class="mv-sub-banner" id="trialBlockedBanner" hidden>
-    <span class="mv-sub-banner-txt" id="trialBlockedText"></span>
-    <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBlockedBtn">Actualizar tarjeta</button>
-  </div>
+
+  <!-- ============ ACCESO (support model) ============
+       What visitors without an account and accounts without active access see
+       instead of the app: entry, "confirm your e-mail", or the lock screen.
+       Rendered by mvRenderAcceso() in main.js. -->
+  <section class="screen" id="acceso">
+    <div id="accesoContent"></div>
+  </section>
 
   <!-- ============ HOME ============ -->
   <section class="screen active" id="home">
@@ -238,7 +232,7 @@
         <p data-i18n="modNegocioDesc">Licencias, trazabilidad semilla-a-venta, directorio de proveedores y carreras del rubro.</p>
       </div>
       <div class="module-card" onclick="showScreen('comunidad')">
-        <h3><span data-i18n="modComunidadTitle">Comunidad</span> <span style="font-size:11px; font-family:'IBM Plex Mono',monospace; color:var(--resin);" data-i18n="soon">próximamente</span></h3>
+        <h3><span data-i18n="modComunidadTitle">Comunidad</span></h3>
         <p data-i18n="modComunidadDesc">Reportes de campo de usuarios verificados, moderados contra la evidencia oficial.</p>
       </div>
       <div class="module-card" onclick="showScreen('variedades')">
@@ -1436,7 +1430,7 @@
         <div class="specimen"><h4 data-i18n="ttG7h4">Decarboxilación en horno</h4><div class="sci" data-i18n="ttPasos3d">3 pasos</div>
           <p class="method-desc" data-i18n="ttG7desc">1) Desmenuza la flor en trozos parejos sobre una bandeja con papel para hornear. 2) Hornea a ~110–115 °C durante 45–60 min, revisando que no se dore de más. 3) Deja enfriar antes de usarla en cualquier infusión.</p></div>
       </div>
-      <div class="note-box" data-i18n="ttNoteFinal">Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el plan de suscripción.</div>
+      <div class="note-box" data-i18n="ttNoteFinal">Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el tipo de acceso.</div>
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="ttCtaH3">¿Necesitas una fórmula de dosificación real para tu producto?</h3>
         <p data-i18n="ttCtaP">Tinturas, cápsulas o parches con dosis precisa y consistente por lote requieren cálculos específicos. Podemos ayudarte a pensarlo para tu operación.</p>
@@ -2295,6 +2289,40 @@
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
     <div class="eyebrow-row"><svg class="zone-icon" viewBox="0 0 40 40" width="20" height="20"><g stroke="var(--moss)" stroke-width="2.4" stroke-linejoin="round" fill="none"><g transform="translate(20,35) rotate(-18) scale(0.26)"><path d="M0,0 L4,-10 L10,-18 L7,-28 L13,-36 L9,-45 L14,-53 L9,-61 L12,-69 L7,-77 L9,-85 L4,-92 L0,-100 L-4,-92 L-9,-85 L-7,-77 L-12,-69 L-9,-61 L-14,-53 L-9,-45 L-13,-36 L-7,-28 L-10,-18 L-4,-10 Z"/></g><g transform="translate(20,35) rotate(18) scale(0.26)"><path d="M0,0 L4,-10 L10,-18 L7,-28 L13,-36 L9,-45 L14,-53 L9,-61 L12,-69 L7,-77 L9,-85 L4,-92 L0,-100 L-4,-92 L-9,-85 L-7,-77 L-12,-69 L-9,-61 L-14,-53 L-9,-45 L-13,-36 L-7,-28 L-10,-18 L-4,-10 Z"/></g></g></svg><div class="eyebrow" data-i18n="eySeg">Seguridad</div></div>
     <h2 class="title" data-i18n="segTitle">Lo que puede salir mal, y cómo evitarlo</h2>
+    <!-- Emergency box: open to everyone (visitors and blocked accounts too).
+         Spanish approved by the owner 2026-10-11; EN/DE/FR in main.js (em* keys). Sources
+         verified 2026-10-10 (Health Canada x4, CDC). No phone numbers on purpose. -->
+    <div class="card-block mv-emergencia" id="segEmergencia">
+      <h3 data-i18n="emTitle">Emergencia: consumiste demasiado, o un niño o una mascota lo ingirió</h3>
+      <p class="mv-em-call" data-i18n="emCall"><b>Llama a tu número local de emergencias o a tu centro de toxicología.</b></p>
+      <h4 data-i18n="emAdultH">Si tú u otro adulto consumió demasiado</h4>
+      <ul>
+        <li data-i18n="emAdult1">Deja de consumir.</li>
+        <li data-i18n="emAdult2">Los comestibles tardan de 30 minutos a 2 horas en empezar a hacer efecto, y hasta 4 horas en llegar a su efecto completo. No tomes más mientras esperas.</li>
+        <li data-i18n="emAdult3">Puede haber dolor en el pecho, latidos rápidos, náuseas o vómitos, ansiedad intensa o ataque de pánico, un episodio psicótico o respiración lenta.</li>
+        <li data-i18n="emAdult4">Si los efectos son muy desagradables o te preocupan, busca atención médica de inmediato o llama a tu centro de toxicología. Puede ser peligroso y a veces requiere atención de urgencia u hospitalización.</li>
+      </ul>
+      <h4 data-i18n="emChildH">Si un niño o una niña lo ingirió</h4>
+      <ul>
+        <li data-i18n="emChild1">Llama de inmediato a tu centro de toxicología. Si pierde el conocimiento o le cuesta respirar, llama a tu número local de emergencias.</li>
+        <li data-i18n="emChild2">Di que los síntomas son o pueden ser por cannabis: ayuda a que lo atiendan antes.</li>
+        <li data-i18n="emChild3">Señales: vómitos, confusión, que no responda, habla arrastrada, inestabilidad al caminar, somnolencia, respiración lenta y, en casos raros, convulsiones. Los niños pueden enfermar gravemente.</li>
+      </ul>
+      <h4 data-i18n="emPetH">Si fue una mascota</h4>
+      <ul>
+        <li data-i18n="emPet1">Llama de inmediato a tu veterinario o a un centro de toxicología. Más detalles abajo, en <a onclick="showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Mascotas</a>.</li>
+      </ul>
+      <p class="mv-em-note" data-i18n="emNote">Esta información es educativa y no sustituye la atención médica.</p>
+      <p class="mv-em-src"><span data-i18n="emSrc">Fuentes:</span>
+        <a href="https://www.canada.ca/en/services/health/campaigns/cannabis/health-effects.html" target="_blank" rel="noopener noreferrer">Health Canada — Cannabis health effects</a> ·
+        <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/resources/what-you-need-to-know-if-you-choose-to-consume-cannabis.html" target="_blank" rel="noopener noreferrer">Health Canada — What you need to know if you choose to consume cannabis</a> ·
+        <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/health-effects/poisonings-children.html" target="_blank" rel="noopener noreferrer">Health Canada — Cannabis poisonings in children</a> ·
+        <a href="https://www.canada.ca/en/health-canada/services/publications/drugs-health-products/infosheet-store-cannabis-safely.html" target="_blank" rel="noopener noreferrer">Health Canada — Store your cannabis safely</a> ·
+        <a href="https://www.cdc.gov/cannabis/health-effects/poisoning.html" target="_blank" rel="noopener noreferrer">CDC — Cannabis and Poisoning</a>
+      </p>
+    </div>
+    <div class="card-block" id="edibleDoseSafetyCardSeg" data-gate-exempt></div>
+
     <p class="subhead" data-i18n="segSub">La misma evidencia rigurosa del resto de la app, aplicada a los riesgos reales — mascotas, medicamentos, manejo, embarazo y salud mental.</p>
 
     <div class="sub-tabs">
@@ -2800,10 +2828,10 @@
   <!-- ============ COMUNIDAD (spec / plan) ============ -->
   <section class="screen" id="comunidad">
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
-    <div class="eyebrow" data-i18n="cmyEyebrow">Comunidad — próximamente</div>
-    <h2 class="title" data-i18n="cmyTitle">Reportes de campo, verificados</h2>
+    <div class="eyebrow" data-i18n="cmyEyebrow">Comunidad</div>
+    <h2 class="title" data-i18n="cmyTitle">Reportes de campo de la comunidad</h2>
     <svg viewBox="0 0 70 40" width="100%" style="max-width:130px; display:block; margin:6px auto 16px;"><circle cx="20" cy="14" r="7" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><path d="M20,21 Q9,21 8,34" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><circle cx="50" cy="14" r="7" fill="none" stroke="var(--teal)" stroke-width="1.5"/><path d="M50,21 Q61,21 62,34" fill="none" stroke="var(--teal)" stroke-width="1.5"/><circle cx="35" cy="8" r="6" fill="none" stroke="var(--resin)" stroke-width="1.5"/><path d="M35,14 Q24,15 23,28 M35,14 Q46,15 47,28" fill="none" stroke="var(--resin)" stroke-width="1.5"/></svg>
-    <p class="subhead" data-i18n="cmySub">Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.</p>
+    <p class="subhead" data-i18n="cmySub">Comparte reportes de cultivo, diagnósticos y preguntas, comenta y sigue a otras personas. La Comunidad y su directorio solo los ven las personas con acceso completo. Cada publicación se traduce automáticamente a los 4 idiomas.</p>
 
     <div class="section-title" data-i18n="cmySecDescubrir">Descubrir</div>
     <p class="subhead" data-i18n="cmyDescubrirIntro">Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.</p>
@@ -2837,6 +2865,7 @@
         <option>Oídio (mildiu polvoso)</option><option>Botrytis (bud rot)</option><option>Ácaros / araña roja</option><option>Deficiencia de nitrógeno</option><option>Exceso de riego</option><option>Deficiencia de magnesio</option><option>Viroide latente del lúpulo (HLVd)</option><option>Pulgones (áfidos)</option><option>Trips</option><option>Mosca blanca</option><option>Pythium (pudrición de raíz)</option>
       </select>
       <textarea id="cmyPostInput" data-i18n-ph="cmyPostPh" placeholder="¿Qué quieres compartir con la comunidad?" maxlength="2000" rows="3" oninput="updatePostCount()" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical; background:var(--paper);"></textarea>
+      <p class="cmy-privacy-note" data-i18n="cmyAvisoTraduccion">Tu texto se envía a un servicio de traducción. No incluyas datos personales ni de salud, tuyos o de otras personas.</p>
       <div id="cmyPostFotoPreview" style="margin-top:10px;"></div>
       <div class="cmy-post-tools">
         <label class="btn-pill ghost sm" style="cursor:pointer;">📷 <span data-i18n="cmyPostFoto">Foto</span><input type="file" id="cmyPostFotoInput" accept="image/*" onchange="handlePostFoto(this)" style="display:none;"></label>
@@ -2882,7 +2911,7 @@
 
     <div id="perfilEditCard" class="card-block" style="display:none; margin-top:18px;">
       <div class="section-title" style="margin-top:0;" data-i18n="perfilEditar">Tu perfil</div>
-      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
+      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía los ven las personas con acceso completo a la plataforma. Las fotos se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla. Nunca compartas apellido completo, teléfono ni ubicación exacta de tu cultivo aquí.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
         <div style="display:flex; align-items:center; gap:14px;">
           <div id="cmyAvatarPreview"></div>
@@ -2908,7 +2937,7 @@
         <div id="cmyJoinMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyJoinExito">¡Listo! Ya apareces en el directorio de abajo.</div>
       </div>
       <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
-        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)</button>
+        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, acceso, cerrar sesión)</button>
       </div>
     </div>
 
@@ -3209,7 +3238,7 @@
     </div>
 
     <div id="bitLoggedInOnly">
-    <div class="card-block">
+    <div class="card-block" id="bitNewEntryCard">
       <h3 data-i18n="bitNewEntry">Nueva entrada</h3>
       <div style="display:flex; gap:14px; flex-wrap:wrap; margin:14px 0;">
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="bitFechaLabel">Fecha</label><input type="date" id="bitFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
@@ -3247,7 +3276,7 @@
     <div class="section-title" data-i18n="bitHistorial">Historial</div>
     <div style="margin-bottom:14px;">
       <button class="btn btn-primary" id="bitPdfBtn" onclick="exportBitacoraPDF()" style="display:none;" data-i18n="bitPdfBtn">Descargar PDF</button>
-      <span id="bitPdfLocked" style="display:none; font-size:12px; color:var(--ink-soft); cursor:pointer; align-items:center;" onclick="openPremium()"><svg class="lock-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="bitPdfLockedMsg" style="text-decoration:underline; margin-left:6px;">Descargar en PDF es una función Premium — desbloquéala</span></span>
+      <span id="bitPdfLocked" style="display:none; font-size:12px; color:var(--ink-soft); cursor:pointer; align-items:center;" onclick="openPremium()"><svg class="lock-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="bitPdfLockedMsg" style="text-decoration:underline; margin-left:6px;">Descargar en PDF es parte del acceso completo — desbloquéalo</span></span>
     </div>
     <div id="bitList"></div>
     </div>
@@ -3428,6 +3457,24 @@
     <div class="eyebrow" data-i18n="cuentaEyebrow">Ajustes</div>
     <h2 class="title" data-i18n="cuentaTitle">Tu cuenta</h2>
 
+    <!-- Result of opening an e-mail link (expired / already used / e-mail
+         change half done). Filled by src/auth.js. -->
+    <div class="card-block auth-link-card" id="authLinkCard" hidden></div>
+
+    <!-- Opened a "reset password" link: choose the new one. Logic in src/auth.js. -->
+    <div class="card-block" id="authRecoveryCard" hidden>
+      <h3 data-i18n="recH">Elige una contraseña nueva</h3>
+      <p class="acc-text" data-i18n="recP">Abriste el enlace para cambiar tu contraseña. Escríbela dos veces.</p>
+      <form id="authRecoveryForm" class="auth-mini-form">
+        <label for="recPass1" data-i18n="recNueva">Contraseña nueva</label>
+        <input type="password" id="recPass1" required minlength="8" autocomplete="new-password" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres">
+        <label for="recPass2" data-i18n="recRepite">Repítela</label>
+        <input type="password" id="recPass2" required minlength="8" autocomplete="new-password">
+        <button type="submit" class="btn btn-primary" id="recSaveBtn" data-i18n="recGuardar">Guardar contraseña</button>
+        <div id="recMsg" class="acc-note" role="status"></div>
+      </form>
+    </div>
+
     <div class="card-block" id="cuentaAuthCard">
       <div id="authTabs" style="display:flex; gap:8px; margin-bottom:18px;">
         <button type="button" class="sub-pill on" data-auth-tab="login" data-i18n="authTabLogin">Iniciar sesión</button>
@@ -3436,54 +3483,50 @@
       <form id="authForm" style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authPasswordLabel">Contraseña</label><input type="password" id="authPasswordInput" required minlength="8" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div id="authCaptcha"></div>
         <button type="submit" class="btn btn-primary" id="authSubmitBtn" data-i18n="authLoginBtn">Entrar</button>
         <div id="authMsg" style="font-size:12.5px; min-height:16px;"></div>
         <span id="authSwitchLink" style="cursor:pointer; font-size:12.5px; color:var(--moss-deep); text-decoration:underline;" data-i18n="authSwitchToSignup">¿No tienes cuenta? Crear una</span>
+        <button type="button" id="authForgotLink" class="auth-link-btn" data-i18n="authOlvido">¿Olvidaste tu contraseña?</button>
       </form>
     </div>
 
     <div id="cuentaLoggedInOnly">
-      <div class="card-block" id="cuentaEstadoCard">
-        <h3 data-i18n="cuentaEstadoTitle">Suscripción</h3>
-        <p id="cuentaEstadoTexto" style="margin-bottom:6px;"></p>
-        <p id="cuentaSubDetalle" style="margin:0 0 14px; font-size:12.5px; color:var(--ink-soft); line-height:1.55;"></p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" id="cuentaBtnAccion" style="display:none;"></button>
-          <button class="btn btn-ghost" id="cuentaBtnSecundaria" style="display:none;"></button>
-        </div>
-        <!-- Inline cancel confirmation (no browser confirm() dialog). -->
-        <div id="cuentaCancelConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF;">
-          <p id="cuentaCancelConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn btn-primary" id="cuentaCancelConfirmYes" data-i18n="subCancelConfirmYes">Sí, cancelar</button>
-            <button class="btn btn-ghost" onclick="hideCancelConfirm()" data-i18n="subCancelConfirmNo">Volver</button>
-          </div>
-        </div>
-        <div id="cuentaSubMsg" style="font-size:12.5px; min-height:16px; margin-top:10px; color:var(--moss-deep);"></div>
-        <div style="display:flex; align-items:flex-start; gap:6px; margin-top:12px; font-size:11px; color:var(--ink-soft); line-height:1.5;">
-          <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/></svg>
-          <span data-i18n="cuentaPagoSeguroNote">Tus pagos se procesan de forma segura por un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
-        </div>
-        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
-          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
-        </div>
+      <div class="card-block" id="cuentaAccesoCard" hidden>
+        <h3 data-i18n="accCuentaTitle">Tu acceso</h3>
+        <p id="cuentaAccesoTexto" style="margin-bottom:12px;"></p>
+        <button type="button" class="btn btn-primary" id="cuentaAccesoBtn" onclick="showScreen('desbloquear')" data-i18n="accDesbloquearBtn" hidden>Desbloquear</button>
+        <div id="cuentaRegaloBox" class="gift-box" hidden></div>
       </div>
-
       <div class="card-block">
         <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
           <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
         </div>
+        <!-- Sign-in e-mail (auth), not the contact e-mail above. Logic in src/auth.js. -->
+        <div class="auth-email-box">
+          <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ceH">Correo para iniciar sesión</label>
+          <div><b id="ceActual"></b> <button type="button" class="auth-link-btn" id="ceOpenBtn" data-i18n="ceBtn">Cambiar</button></div>
+          <form id="ceForm" class="auth-mini-form" hidden>
+            <input type="email" id="ceInput" required autocomplete="email" placeholder="nuevo@correo.com" aria-labelledby="ceOpenBtn">
+            <button type="submit" class="btn btn-ghost" id="ceSendBtn" data-i18n="ceEnviar">Enviar enlace de confirmación</button>
+          </form>
+          <div id="ceMsg" class="acc-note" role="status"></div>
+        </div>
         <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
           <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>
+        </div>
+        <!-- Sign out lives here so it is always reachable. -->
+        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
+          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
         </div>
       </div>
 
       <!-- Delete account: password + typed word, inline confirm (no browser confirm()). Logic in src/auth.js. -->
       <div class="card-block" id="cuentaBorrarCard">
         <h3 data-i18n="delAccTitle">Eliminar mi cuenta</h3>
-        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.</p>
+        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. También pierdes el acceso completo, aunque lo hayas obtenido con un aporte. No se puede deshacer.</p>
         <button type="button" class="btn btn-ghost" id="delAccOpenBtn" data-i18n="delAccOpenBtn">Eliminar mi cuenta…</button>
         <div id="delAccConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF; max-width:420px;">
           <p id="delAccConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
@@ -3511,7 +3554,35 @@
       <div class="spec-row" style="cursor:pointer;" onclick="showScreen('privacidad')"><span data-i18n="cuentaPrivacidadLabel">Política de Privacidad</span><span>→</span></div>
     </div>
 
-    <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.</div>
+    <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.</div>
+  </section>
+
+  <!-- ============ DESBLOQUEAR (aporte único de apoyo) ============ -->
+  <!-- Rendered by src/desbloquear.js. Payment data lives only in
+       src/supportConfig.js; while the address is empty or invalid this page
+       says "Próximamente" and shows no QR and no form. -->
+  <section class="screen" id="desbloquear">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <!-- Generated by design/icons/build-icons.mjs — Desbloquear flower (outline v2) -->
+      <symbol id="mvBud" viewBox="0 0 84 96" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(12 0)">
+      <path d="M30 95 C30 88 30.6 82 30 76" stroke="currentColor" fill="none" stroke-linecap="round" style="stroke-width:calc(2.2px * var(--mvk, 1))"/>
+      <g transform="translate(20 66) rotate(-118)"><path d="M0.00 0.00 L1.46 -2.62 L1.11 -5.22 L2.50 -7.98 L1.12 -10.51 L2.35 -13.39 L0.38 -15.78 L1.18 -18.70 L-1.02 -20.96 L-0.88 -23.82 L-3.03 -26.03 L-3.71 -28.69 L-5.65 -30.92 L-6.83 -33.43 L-7.92 -36.00 L-6.83 -33.43 L-6.12 -30.74 L-5.54 -28.06 L-5.88 -25.14 L-4.59 -22.77 L-5.43 -19.86 L-3.72 -17.62 L-4.80 -14.80 L-2.86 -12.57 L-3.86 -9.88 L-1.94 -7.57 L-2.47 -5.00 L-0.86 -2.55 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g><g transform="translate(40 64) rotate(116)"><path d="M0.00 0.00 L1.54 -2.52 L1.43 -5.06 L3.23 -7.44 L2.41 -10.06 L4.37 -12.33 L3.29 -15.08 L5.14 -17.30 L4.15 -20.18 L5.67 -22.47 L5.05 -25.40 L6.06 -27.88 L5.98 -30.80 L6.83 -33.43 L7.92 -36.00 L6.83 -33.43 L5.52 -30.97 L4.24 -28.51 L2.20 -26.29 L1.96 -23.52 L-0.25 -21.29 L0.24 -18.38 L-1.89 -16.06 L-0.84 -13.15 L-2.56 -10.69 L-1.21 -7.86 L-2.15 -5.29 L-0.78 -2.60 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g><g transform="translate(17.5 47) rotate(-97)"><path d="M0.00 0.00 L1.46 -2.20 L1.11 -4.38 L2.50 -6.75 L1.12 -8.83 L2.35 -11.34 L0.39 -13.26 L1.18 -15.81 L-1.00 -17.60 L-0.86 -20.07 L-2.99 -21.80 L-3.66 -24.04 L-5.57 -25.79 L-6.73 -27.86 L-7.80 -30.00 L-6.73 -27.86 L-6.02 -25.58 L-5.45 -23.31 L-5.79 -20.76 L-4.52 -18.85 L-5.35 -16.31 L-3.67 -14.55 L-4.75 -12.12 L-2.84 -10.37 L-3.84 -8.10 L-1.93 -6.25 L-2.47 -4.11 L-0.86 -2.11 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g><g transform="translate(42.5 45) rotate(99)"><path d="M0.00 0.00 L1.54 -1.94 L1.42 -3.91 L3.20 -5.68 L2.35 -7.74 L4.28 -9.38 L3.16 -11.59 L4.95 -13.19 L3.92 -15.54 L5.37 -17.21 L4.71 -19.63 L5.65 -21.53 L5.51 -23.93 L6.28 -26.00 L7.28 -28.00 L6.28 -26.00 L5.06 -24.13 L3.86 -22.26 L1.91 -20.67 L1.71 -18.43 L-0.43 -16.83 L0.10 -14.45 L-1.98 -12.74 L-0.91 -10.34 L-2.61 -8.48 L-1.24 -6.18 L-2.16 -4.17 L-0.79 -2.03 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g>
+      <path d="M24.5 79 Q30 82 35.5 79 A3.2 3.2 0 0 0 36.5 75 A3.2 3.2 0 0 0 40.0 69 A3.2 3.2 0 0 0 42.4 63 A3.2 3.2 0 0 0 43.6 57 A3.2 3.2 0 0 0 44.0 51 A3.2 3.2 0 0 0 43.6 45 A3.2 3.2 0 0 0 42.6 39 A3.2 3.2 0 0 0 41.0 33 A3.2 3.2 0 0 0 39.0 27 A3.2 3.2 0 0 0 36.8 21 A3.2 3.2 0 0 0 34.6 15.5 A3.2 3.2 0 0 0 32.8 11 Q32.2 8 30 4 Q27.8 8 27.2 11 A3.2 3.2 0 0 0 25.4 15.5 A3.2 3.2 0 0 0 23.2 21 A3.2 3.2 0 0 0 21.0 27 A3.2 3.2 0 0 0 19.0 33 A3.2 3.2 0 0 0 17.4 39 A3.2 3.2 0 0 0 16.4 45 A3.2 3.2 0 0 0 16.0 51 A3.2 3.2 0 0 0 16.4 57 A3.2 3.2 0 0 0 17.6 63 A3.2 3.2 0 0 0 20.0 69 A3.2 3.2 0 0 0 23.5 75 Z" style="stroke-width:calc(2px * var(--mvk, 1))"/>
+      <g opacity="0.75" style="stroke-width:calc(1.3px * var(--mvk, 1))"><path d="M22 66 q3 3 6 0"/><path d="M31 64 q3 3 6 0"/><path d="M18 56 q3 3 6 0"/><path d="M27 57 q3 3 6 0"/><path d="M35 54 q3 3 6 0"/><path d="M21 46 q3 3 6 0"/><path d="M30 45 q3 3 6 0"/><path d="M24 36 q3 3 6 0"/><path d="M31 34 q3 3 6 0"/><path d="M27 26 q3 3 6 0"/><path d="M24 18 q3 3 6 0"/></g>
+      <g style="stroke-width:calc(1.3px * var(--mvk, 1));stroke:var(--mv-pistil, currentColor)"><path d="M24 41 C21.5 38.5 19 37.5 16.5 35"/><path d="M37 48 C39.5 45.5 42 44.5 45.5 43"/><path d="M27.5 28 C25.5 25.5 24 23.5 21.5 21"/><path d="M34.5 61 C37.5 60 40.5 60.5 43.5 59"/></g>
+      </g></symbol>
+      <symbol id="mvBudS" viewBox="0 0 84 96" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(12 0)">
+      <path d="M30 95 C30 88 30.6 82 30 76" stroke="currentColor" fill="none" stroke-linecap="round" style="stroke-width:calc(3.4px * var(--mvk, 1))"/>
+      <g transform="translate(20 66) rotate(-118)"><path d="M0.00 0.00 L1.46 -2.62 L1.11 -5.22 L2.50 -7.98 L1.12 -10.51 L2.35 -13.39 L0.38 -15.78 L1.18 -18.70 L-1.02 -20.96 L-0.88 -23.82 L-3.03 -26.03 L-3.71 -28.69 L-5.65 -30.92 L-6.83 -33.43 L-7.92 -36.00 L-6.83 -33.43 L-6.12 -30.74 L-5.54 -28.06 L-5.88 -25.14 L-4.59 -22.77 L-5.43 -19.86 L-3.72 -17.62 L-4.80 -14.80 L-2.86 -12.57 L-3.86 -9.88 L-1.94 -7.57 L-2.47 -5.00 L-0.86 -2.55 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(2.2px * var(--mvk, 1))"/></g><g transform="translate(40 64) rotate(116)"><path d="M0.00 0.00 L1.54 -2.52 L1.43 -5.06 L3.23 -7.44 L2.41 -10.06 L4.37 -12.33 L3.29 -15.08 L5.14 -17.30 L4.15 -20.18 L5.67 -22.47 L5.05 -25.40 L6.06 -27.88 L5.98 -30.80 L6.83 -33.43 L7.92 -36.00 L6.83 -33.43 L5.52 -30.97 L4.24 -28.51 L2.20 -26.29 L1.96 -23.52 L-0.25 -21.29 L0.24 -18.38 L-1.89 -16.06 L-0.84 -13.15 L-2.56 -10.69 L-1.21 -7.86 L-2.15 -5.29 L-0.78 -2.60 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(2.2px * var(--mvk, 1))"/></g>
+      <path d="M24.5 79 Q30 82 35.5 79 A3.4 3.4 0 0 0 36.5 75 A3.4 3.4 0 0 0 40.0 69 A3.4 3.4 0 0 0 42.4 63 A3.4 3.4 0 0 0 43.6 57 A3.4 3.4 0 0 0 44.0 51 A3.4 3.4 0 0 0 43.6 45 A3.4 3.4 0 0 0 42.6 39 A3.4 3.4 0 0 0 41.0 33 A3.4 3.4 0 0 0 39.0 27 A3.4 3.4 0 0 0 36.8 21 A3.4 3.4 0 0 0 34.6 15.5 A3.4 3.4 0 0 0 32.8 11 Q32.2 8 30 4 Q27.8 8 27.2 11 A3.4 3.4 0 0 0 25.4 15.5 A3.4 3.4 0 0 0 23.2 21 A3.4 3.4 0 0 0 21.0 27 A3.4 3.4 0 0 0 19.0 33 A3.4 3.4 0 0 0 17.4 39 A3.4 3.4 0 0 0 16.4 45 A3.4 3.4 0 0 0 16.0 51 A3.4 3.4 0 0 0 16.4 57 A3.4 3.4 0 0 0 17.6 63 A3.4 3.4 0 0 0 20.0 69 A3.4 3.4 0 0 0 23.5 75 Z" style="stroke-width:calc(3.2px * var(--mvk, 1))"/>
+      <g opacity="0.75" style="stroke-width:calc(2.2px * var(--mvk, 1))"><path d="M21.5 66 q3.5 3.5 7 0"/><path d="M17.5 56 q3.5 3.5 7 0"/><path d="M34.5 54 q3.5 3.5 7 0"/><path d="M29.5 45 q3.5 3.5 7 0"/><path d="M30.5 34 q3.5 3.5 7 0"/><path d="M23.5 18 q3.5 3.5 7 0"/></g>
+      <g style="stroke-width:calc(2.6px * var(--mvk, 1));stroke:var(--mv-pistil, currentColor)"><path d="M23 42 C20.5 39.5 18 38.5 15 36"/><path d="M37 50 C40 47.5 42.5 46.5 46 45"/><path d="M29 24 C27.5 21 25.5 19 22.5 17"/></g>
+      </g></symbol>
+    </svg>
+    <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
+    <div class="eyebrow" data-i18n="dsEyebrow">Acceso completo</div>
+    <h2 class="title" data-i18n="dsTitle">Desbloquea Mother Verde</h2>
+    <div id="desbloquearContent"></div>
   </section>
 
   <!-- ============ TÉRMINOS Y CONDICIONES ============ -->
@@ -3540,8 +3611,8 @@
       <p data-i18n="tc4P">Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="tc5H3">5. Suscripción Premium</h3>
-      <p data-i18n="tc5P">La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.</p>
+      <h3 data-i18n="tc5H3">5. Acceso completo</h3>
+      <p data-i18n="tc5P">[PENDIENTE: redactar con contador y abogado — prueba gratis de 24 horas al confirmar el correo, aporte único de apoyo en USDC (red Base), códigos de regalo y retirada del acceso en caso de fraude.]</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="tc6H3">6. Propiedad intelectual</h3>
@@ -3570,42 +3641,43 @@
     <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
     <div class="eyebrow" data-i18n="ppEyebrow">Legal</div>
     <h2 class="title" data-i18n="ppTitle">Política de Privacidad</h2>
-    <p class="subhead" style="margin-bottom:24px;" data-i18n="ppUpdated">Última actualización: julio de 2026</p>
-
-    <div class="note-box" data-i18n="ppDraftNote"><b>Nota sobre este documento:</b> esta es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en privacidad de datos (incluidas normativas como GDPR o CCPA según dónde operes) antes de un lanzamiento real.</div>
-
+    <p class="subhead" style="margin-bottom:24px;" data-i18n="pvUpdated">Última actualización: 14 de octubre de 2026 · borrador</p>
+    <div class="note-box" data-i18n="pvIntro">Esta página describe lo que la plataforma hace hoy con tus datos, tal como funciona por dentro. [PENDIENTE: revisión de abogada: responsable del tratamiento, base legal, plazos de conservación, transferencias internacionales y derechos según cada país.]</div>
     <div class="card-block">
-      <h3 data-i18n="ppv1H3">1. Qué información recopilamos</h3>
-      <p data-i18n="ppv1P">La App puede almacenar: tu confirmación de edad, tu idioma preferido, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.</p>
+      <h3 data-i18n="pv1H">1. Quién es responsable</h3>
+      <p data-i18n="pv1P">Mother Verde LLC. Contacto para todo lo relacionado con tus datos: <b>hello@motherverdeny.com</b>. [PENDIENTE: revisión de abogada: datos completos del responsable y, si corresponde, representante en la Unión Europea.]</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv2H3">2. Dónde se almacena tu información</h3>
-      <p data-i18n="ppv2P">La mayoría de los datos mencionados se guardan localmente en tu propio dispositivo, no en nuestros servidores. Esto significa que, en su forma actual, gran parte de tu actividad en la App permanece en tu teléfono o navegador, y no la recopilamos de forma centralizada.</p>
-      <p data-i18n="ppv2AdminP">Dentro del directorio de comunidad, tu nombre, país y tipo de perfil son visibles para otras personas que usen la App. Datos como tu correo electrónico nunca se muestran públicamente — solo el equipo administrador de Mother Verde LLC tiene acceso a esa información, con controles de seguridad específicos para eso (verificación en dos pasos, registro de accesos).</p>
+      <h3 data-i18n="pv2H">2. Lo que se guarda solo en tu navegador</h3>
+      <p data-i18n="pv2P">Tu confirmación de mayoría de edad, el idioma elegido, las casillas marcadas en la lista de cosecha, cuántas veces pediste reenviar un correo (para limitar los reenvíos) y, si tienes cuenta, tu sesión. La web también guarda una copia de sus páginas para cargar más rápido. Puedes borrarlo todo desde los ajustes de tu navegador. <b>La plataforma no usa cookies propias ni herramientas de analítica o de publicidad.</b></p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv3H3">3. Cómo usamos tu información</h3>
-      <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
+      <h3 data-i18n="pv3H">3. Lo que se guarda en tu cuenta</h3>
+      <div data-i18n="pv3P">Si creas una cuenta, estos datos se guardan en los servidores de Supabase en la Unión Europea (región Central EU, Fráncfort, Alemania):<ul><li><b>Cuenta:</b> correo y contraseña (Supabase guarda la contraseña cifrada; nadie de Mother Verde puede verla), idioma, nombre visible, correo de contacto opcional y el estado de tu acceso (prueba de 24 horas, aporte o días de regalo) con sus fechas.</li><li><b>Bitácora:</b> fecha, etapa, notas, pH, EC, temperatura, humedad, porcentajes de tricomas y la foto si la añades. Solo tú puedes verla.</li><li><b>Comunidad</b> (si la usas): perfil (nombre visible, país, tipo de perfil, biografía y foto), publicaciones, comentarios, fotos, a quién sigues y los reportes que envías. Lo ven solo las personas con acceso completo. Las fotos de Comunidad se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla.</li><li><b>Aportes:</b> cantidad de flores, monto, código de la transacción (TXID), fechas, estado y revisión; nombre y teléfono de contacto solo si los escribes (solo los ve la administradora).</li><li><b>Códigos de regalo:</b> el correo al que se envió un código. El código solo se guarda como huella cifrada.</li><li><b>Registros técnicos:</b> envíos de correo (sin direcciones), intentos de corregir el correo de registro (solo una huella, sin la dirección), cuántas publicaciones hiciste en el día (para los límites) y un registro de las acciones de la administradora, que incluye el correo de la cuenta afectada.</li></ul></div>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv4H3">4. Servicios de terceros y pagos</h3>
-      <p data-i18n="ppv4P">Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.</p>
+      <h3 data-i18n="pv4H">4. Aportes en USDC y la cadena de bloques</h3>
+      <p data-i18n="pv4P">Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. [PENDIENTE: revisión de abogada: base legal y plazo de conservación de esa constancia.]</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv5H3">5. Tus derechos</h3>
-      <p data-i18n="ppv5P">Puedes eliminar la información almacenada localmente borrando los datos de la App desde la configuración de tu dispositivo. Si en el futuro almacenamos datos en servidores, tendrás derecho a solicitar acceso, corrección o eliminación de tu información, según lo permita la ley de tu jurisdicción.</p>
+      <h3 data-i18n="pv5H">5. Quién procesa tus datos</h3>
+      <div data-i18n="pv5P"><ul><li><b>Supabase:</b> base de datos, cuentas, archivos y funciones del servidor.</li><li><b>Vercel:</b> aloja la web.</li><li><b>Hostinger:</b> envía los correos desde hello@motherverdeny.com.</li><li><b>Resend:</b> envío de correos de respaldo, solo si está activado.</li><li><b>DeepL:</b> traduce automáticamente el texto de publicaciones y comentarios de Comunidad a los 4 idiomas.</li><li><b>Red Base:</b> se consulta para comprobar las transferencias.</li><li><b>Google Fonts y flagcdn:</b> sirven las tipografías y las banderas, y reciben la dirección IP de cada visita.</li></ul>El formulario «Anunciar en Mother Verde» envía tu nombre, empresa, correo y mensaje por correo a hello@motherverdeny.com; no se guarda en la base de datos. [PENDIENTE: revisión de abogada: contratos con los proveedores y transferencias fuera de la UE.]</div>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv6H3">6. Privacidad de menores</h3>
-      <p data-i18n="ppv6P">La App está restringida a personas mayores de 18 años mediante verificación de edad al ingresar. No recopilamos intencionalmente información de menores de edad.</p>
+      <h3 data-i18n="pv6H">6. Quién ve tus datos</h3>
+      <p data-i18n="pv6P">Tus datos privados (Bitácora, aportes, correo, estado de acceso) solo los ves tú y la administradora, que entra al panel con verificación en dos pasos. Tu correo nunca se muestra a otras personas. Tu perfil y tus publicaciones de Comunidad los ven las personas con acceso completo.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv7H3">7. Cambios a esta política</h3>
-      <p data-i18n="ppv7P">Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos dentro de la App.</p>
+      <h3 data-i18n="pv7H">7. Lo que puedes hacer</h3>
+      <p data-i18n="pv7P">Cambiar tu idioma, tu nombre y tu perfil; descargar tu Bitácora en PDF; borrar tu cuenta desde Cuenta (borra la cuenta, el perfil, la Bitácora, tu actividad y tus fotos de Comunidad, salvo las constancias de pago sin datos personales y el registro de acciones de la administradora); y escribir a hello@motherverdeny.com para cualquier otra solicitud. [PENDIENTE: revisión de abogada: derechos que corresponden según la ley aplicable y plazos de respuesta.]</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv8H3">8. Contacto</h3>
-      <p data-i18n="ppv8P">Para preguntas sobre privacidad, contáctanos en el correo de soporte indicado dentro de la App.</p>
+      <h3 data-i18n="pv8H">8. Menores de edad</h3>
+      <p data-i18n="pv8P">La plataforma es solo para personas mayores de 18 años: lo pregunta al entrar.</p>
+    </div>
+    <div class="card-block">
+      <h3 data-i18n="pv9H">9. Cambios</h3>
+      <p data-i18n="pv9P">Si esta política cambia de forma importante, lo avisaremos dentro de la plataforma.</p>
     </div>
   </section>
 
@@ -3667,93 +3739,12 @@
     </div>
   </div>
 
-  <!-- ============ PREMIUM MODAL ============ -->
-  <div class="premium-modal" id="premiumModal">
-    <div class="premium-sheet">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
-        <div class="eyebrow" style="margin-bottom:6px;">Mother Verde Premium</div>
-        <span onclick="closePremium()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
-      </div>
-      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:26px; margin-bottom:6px;" data-i18n="pmH2">Todo el codex, sin límites.</h2>
-      <p style="font-size:13px; color:var(--ink-soft); margin-bottom:22px;" data-i18n="pmSubhead">Prueba 3 días gratis. Cancela cuando quieras, tú misma, desde Cuenta.</p>
-
-      <div style="display:flex; justify-content:flex-end; gap:18px; padding:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; color:var(--ink-soft);">
-        <span style="width:64px; text-align:center;">Gratis</span>
-        <span style="width:64px; text-align:center; color:var(--moss-deep); font-weight:700;">Premium</span>
-      </div>
-      <div class="pm-row"><span class="feat">Explorador legal (50 países)</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Diagnóstico de plagas</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Cultivo completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Elaboración completa</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Ciencia completa</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Negocio e industria</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Modo viajero completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Descargas ilimitadas de PDFs</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Sin publicidad</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-
-      <!-- TRIAL DISCLOSURE — legally required, shown BEFORE any card field,
-           normal size, no fine print. Price is visible right here. -->
-      <div style="margin-top:24px; border:1.5px solid var(--moss-deep); border-radius:10px; padding:16px 16px 18px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--moss-deep); margin-bottom:8px;" data-i18n="pmTrialTag">Prueba gratis de 3 días</div>
-        <p style="font-size:14px; line-height:1.6; margin:0 0 12px;" data-i18n="pmTrialDisclosure">Después de 3 días, se cobrará automáticamente <b>$7.10/mes</b> a la tarjeta que ingreses, salvo que canceles antes.</p>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmPriceRowLabel">Precio</span><span><b data-i18n="pmPriceRowValue">$7.10 / mes</b></span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmTrialEndsLabel">Fin de la prueba</span><span id="pmTrialEnds">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmFirstChargeLabel">Primer cobro</span><span id="pmFirstCharge">—</span>
-        </div>
-        <p style="font-size:12.5px; color:var(--ink-soft); margin:12px 0 0; line-height:1.55;" data-i18n="pmTrialCancelInfo">Puedes cancelar en cualquier momento desde <b>Cuenta → Suscripción</b>, tú misma, sin escribir a nadie. Si cancelas durante la prueba, no se te cobra nada.</p>
-      </div>
-
-      <!-- Card fields — placeholder until Payment Nerds is connected.
-           TODO(payment-nerds): mount hosted card fields into #pmCardElement. -->
-      <div id="pmCardElement" style="margin-top:16px; border:1px dashed var(--line-strong); border-radius:8px; padding:14px; font-size:12.5px; color:var(--ink-soft); text-align:center; line-height:1.5;" data-i18n="pmCardPending">Los campos de tarjeta se activarán cuando se conecte el procesador de pagos (Payment Nerds). Por ahora, en pruebas, la prueba gratis se activa sin tarjeta.</div>
-
-      <!-- Separate express consent — unchecked by default, required to proceed. -->
-      <label style="display:flex; gap:10px; align-items:flex-start; margin-top:16px; font-size:13px; line-height:1.5; cursor:pointer;">
-        <input type="checkbox" id="pmConsent" style="margin-top:2px; flex-shrink:0; width:16px; height:16px;">
-        <span data-i18n="pmConsentLabel">Entiendo que, si no cancelo antes, al terminar la prueba de 3 días se me cobrará $7.10 cada mes de forma automática hasta que cancele.</span>
-      </label>
-
-      <button class="btn btn-primary" id="pmStartTrialBtn" style="width:100%; margin-top:16px; padding:14px;" onclick="startTrialFlow()" data-i18n="pmStartTrialBtn">Empezar prueba gratis</button>
-      <div id="pmMsg" style="font-size:12.5px; min-height:16px; margin-top:8px; text-align:center;"></div>
-
-      <div style="display:flex; align-items:flex-start; justify-content:center; gap:6px; margin-top:8px; font-size:11px; color:var(--ink-soft); line-height:1.5;">
-        <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--moss-deep)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--moss-deep)" stroke-width="1.3"/></svg>
-        <span data-i18n="pmPagoSeguroNote">El pago lo procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
-      </div>
-      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-top:18px; text-align:center;">© 2026 Mother Verde LLC</div>
-    </div>
-  </div>
-
-  <!-- ============ TRIAL STARTED — CONFIRMATION ============ -->
-  <div class="premium-modal" id="trialStartedModal">
-    <div class="premium-sheet" style="max-width:440px;">
-      <div style="text-align:center; font-size:34px; line-height:1; margin-bottom:12px;">🌱</div>
-      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; text-align:center; margin-bottom:10px;" data-i18n="tsTitle">Tu prueba gratis empezó</h2>
-      <p style="font-size:14px; line-height:1.6; text-align:center; margin-bottom:8px;" id="tsAccessLine" data-i18n="tsAccessLine">Tienes acceso completo a todo Mother Verde.</p>
-      <div style="border:1px solid var(--line-strong); border-radius:10px; padding:14px 16px; margin:16px 0; font-size:13px; line-height:1.6;">
-        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span data-i18n="tsEndsLabel">La prueba termina</span><span id="tsEndsValue">—</span></div>
-        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:1px solid var(--line);"><span data-i18n="tsChargeLabel">Primer cobro ($7.10)</span><span id="tsChargeValue">—</span></div>
-      </div>
-      <p style="font-size:12.5px; color:var(--ink-soft); line-height:1.6; text-align:center; margin-bottom:18px;" data-i18n="tsCancelNote">El día antes te enviaremos un aviso. Puedes cancelar cuando quieras desde Cuenta → Suscripción — sin escribir a nadie. Si cancelas antes del cobro, no pagas nada.</p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-ghost" style="flex:1;" onclick="closeTrialStarted()" data-i18n="tsGotIt">Entendido</button>
-        <button class="btn btn-primary" style="flex:1;" onclick="closeTrialStarted(); showScreen('cuenta');" data-i18n="tsSeeSub">Ver mi suscripción</button>
-      </div>
-    </div>
-  </div>
-
-
 <script src="/main.js"></script>
 <script type="module" src="/src/auth.js"></script>
-<script type="module" src="/src/subscription.js"></script>
 <script type="module" src="/src/mvCommunity.js"></script>
 <script type="module" src="/src/avatarCropper.js"></script>
 <script type="module" src="/src/pdf.js"></script>
+<script type="module" src="/src/desbloquear.js"></script>
 <script>
   if('serviceWorker' in navigator && location.hostname !== 'localhost'){
     // Discreet update notice: when a new deploy's worker is waiting, show a
