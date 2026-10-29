@@ -3,7 +3,8 @@ begin;
 
 -- GAME v2, phase 5: the saved game may carry the run's equipment and method
 -- (key "setup"), the new germination stage ("germinacion") and two new
--- problems of phase 6 ("pudricion_raiz", "quemadura_luz"). Needs
+-- problems of phase 6 ("pudricion_raiz", "quemadura_luz"); the sub-phase 8b
+-- (stage and post key "material", post-harvest up to 1500 bytes). Needs
 -- 20261015100000_game_progress.sql first. Only game_state_valid() changes:
 -- the table, game_save() and every other rule stay the same. Undo:
 -- supabase/admin/rollback-20261029100000.sql (puts back the 20261015100000
@@ -25,7 +26,7 @@ declare
     "maceta": ["plastico", "tela", "aire", "barro"], "maceta_tam": ["pequena", "grande"], "riego_tipo": ["mano", "goteo"],
     "medir": ["si", "no"], "semilla": ["feminizada", "regular", "autofloreciente"],
     "germinacion": ["papel", "taco", "tierra", "coco", "vaso", "lana_roca"], "trasplante": ["no", "si"]}';
-  stages constant text[] := array['intro', 'germinacion', 'plantula', 'vegetativo', 'floracion', 'secado', 'curado', 'rosin', 'fin'];
+  stages constant text[] := array['intro', 'germinacion', 'plantula', 'vegetativo', 'floracion', 'secado', 'curado', 'material', 'rosin', 'fin'];
   -- phase 6: root rot (hydroponics with warm water) and light burn (small tent)
   events constant text[] := array['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego', 'pudricion_raiz', 'quemadura_luz'];
   num_in constant text := 'number';
@@ -71,9 +72,9 @@ begin
   -- after the harvest (phase 2): null or { secado | curado | rosin: {...} }, small
   v := s -> 'post';
   if v is not null and jsonb_typeof(v) <> 'null' then
-    if jsonb_typeof(v) <> 'object' or octet_length(v::text) > 1000 then return false; end if;
+    if jsonb_typeof(v) <> 'object' or octet_length(v::text) > 1500 then return false; end if;
     for k in select jsonb_object_keys(v) loop
-      if not k = any(array['secado', 'curado', 'rosin']) or jsonb_typeof(v -> k) <> 'object' then return false; end if;
+      if not k = any(array['secado', 'curado', 'material', 'rosin']) or jsonb_typeof(v -> k) <> 'object' then return false; end if;
     end loop;
   end if;
   -- the safety lab (phase 3): null or { at: scene | null, f: [...], q: [...], v: visits }, small

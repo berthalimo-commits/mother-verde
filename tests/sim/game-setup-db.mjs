@@ -33,6 +33,9 @@ check('claves inventadas, valores desconocidos o de otro tipo, plantas fuera de 
 check('setup que no es un objeto o demasiado grande -> rechazado', !(await valid({ ...base, setup: 'maceta' })) && !(await valid({ ...base, setup: ['x'] }))
   && !(await valid({ ...base, setup: Object.fromEntries(Array.from({ length: 40 }, (_, i) => ['k' + i, 'x'.repeat(20)])) })));
 check('una etapa inventada sigue rechazada', !(await valid({ ...base, stage: 'clonacion' })));
+check('sub-fase 8b: la etapa «material» y su bloque en el post-cosecha -> aceptados (hasta 1500 bytes)', await valid({ ...base, stage: 'material', post: { secado: {}, curado: {}, material: { c: { separacion: 'agua_hielo' }, l: {} } } })
+  && await valid({ ...base, post: { material: { c: { x: 'y'.repeat(1300) } } } }) && !(await valid({ ...base, post: { material: { c: { x: 'y'.repeat(1600) } } } }))
+  && !(await valid({ ...base, post: { solventes: {} } })));
 check('los problemas nuevos de la fase 6 (pudrición de raíz, quemadura de luz) -> aceptados, como evento y como riesgo', await valid({ ...base, event: { id: 'pudricion_raiz', since: 3 }, risks: { quemadura_luz: 1 } })
   && await valid({ ...base, event: { id: 'quemadura_luz', since: 3 } }) && !(await valid({ ...base, event: { id: 'plaga_inventada', since: 3 } })));
 check('las demás reglas no cambiaron (clave desconocida, salud fuera de rango)', !(await valid({ ...base, hack: 1 })) && !(await valid({ ...base, health: 120 })));
