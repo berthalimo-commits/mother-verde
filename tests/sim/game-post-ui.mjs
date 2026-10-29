@@ -90,7 +90,11 @@ check('curado con errores: «¿Por qué?» por cada decisión que restó (congel
 await b.ev(`[...document.querySelectorAll('.jg-whys[data-gid="guia"] .jg-why')].find((x) => /Cómo se guarda/.test(x.textContent)).click(); 1`); await sleep(300);
 const wp = await b.ev(`(() => { const p = document.querySelector('.jg-whys[data-gid="guia"] .jg-why-panel'); return { text: p.innerText, hrefs: [...p.querySelectorAll('a')].map((a) => a.href) }; })()`);
 check('…y explica con el estudio comprobado (F8, «estudio publicado»)', /molido/.test(wp.text) && /estudio publicado/.test(wp.text) && wp.hrefs.length === 1 && wp.hrefs[0] === W.SOURCES.F8.url, JSON.stringify(wp));
-check('rosin: 11 decisiones; malla y calor con su cifra «orientativo»; presión y tiempo sin cifras', await b.ev(`document.querySelectorAll('#jgPostForm fieldset').length`) === 11
+// sub-phase 8b: prepare the material (no separation: the flower goes to the press)
+check('después del curado: preparar el material (8b), con «Terminar sin hacer rosin»', (await gs()).stage === 'material' && await b.ev(`!!document.getElementById('jgSkipRosin')`));
+await pick('material', 'partida', 'flor_curada'); await pick('material', 'separacion', 'ninguna');
+await b.ev(`document.getElementById('jgPostNext').click(); 1`); await sleep(1000);
+check('rosin: 10 decisiones (el material ya lo decidió la preparación); malla y calor con su cifra «orientativo»; presión y tiempo sin cifras', await b.ev(`document.querySelectorAll('#jgPostForm fieldset').length`) === 10
   && /5–25 µm \(orientativo\)/.test(await b.ev(`document.querySelector('label[for="jgp-rosin-malla-fina"]').innerText`))
   && /orientativo: 49–116 °C/.test(await b.ev(`[...document.querySelectorAll('#jgPostForm legend')].map((l) => l.textContent).join('|')`))
   && !/\d/.test(await b.ev(`[...document.querySelectorAll('#jgPostForm fieldset')].filter((f) => /jgp-(presion|tiempo)/.test(f.querySelector('input').name)).map((f) => f.innerText).join(' ')`)));
@@ -100,7 +104,7 @@ for (const [L, w] of [['en', '5–25 µm (orientative)'], ['de', '5–25 µm (Ri
   if (L === 'de') await b.shot('jg8-rosin-de-mobile');
 }
 await b.ev(`document.querySelector('#langSwitch button[data-lang=es]').click(); 1`); await sleep(500);
-for (const [d, o] of [['material', 'flor'], ['malla', 'sin_bolsa'], ['calor', 'alto'], ['presion', 'media'], ['tiempo', 'medio'], ['prensa', 'hidraulica'], ['papel', 'pergamino'], ['enfriado', 'enfriar'], ['guardar', 'frio'], ['prioridad', 'sabor'], ['proteccion', 'guantes']]) await pick('rosin', d, o);
+for (const [d, o] of [['malla', 'sin_bolsa'], ['calor', 'alto'], ['presion', 'media'], ['tiempo', 'medio'], ['prensa', 'hidraulica'], ['papel', 'pergamino'], ['enfriado', 'enfriar'], ['guardar', 'frio'], ['prioridad', 'sabor'], ['proteccion', 'guantes']]) await pick('rosin', d, o);
 p = await post();
 check('rosin sin bolsa y con calor alto: restos de planta y rosin oscuro a la vista', p.restos === '1' && p.oscuro === '1' && p.desc.includes(TEXTS.es.jgTentX_restos) && p.desc.includes(TEXTS.es.jgTentX_oscuro));
 await b.shot('jg8-rosin-es-mobile');

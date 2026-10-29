@@ -433,6 +433,12 @@ function bindPost(root, box) {
     }
     redrawTent(root);
   });
+  // «Terminar sin hacer rosin» lives inside the form, which 8b redraws
+  box.addEventListener('click', (ev) => {
+    if (!ev.target.closest('#jgSkipRosin')) return;
+    postLive = {};
+    act(E.skipRosin(state));
+  });
   box.addEventListener('submit', (ev) => {
     if (ev.target.id !== 'jgPostForm') return;
     ev.preventDefault();
@@ -527,7 +533,6 @@ function paint(root) {
   });
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));
   if (!inLab) bindPost(root, root.querySelector('.jg'));
-  root.querySelector('#jgSkipRosin')?.addEventListener('click', () => { postLive = {}; act(E.skipRosin(state)); });
   root.querySelectorAll('.jg-answer').forEach((b) => b.addEventListener('click', () => act(E.answerEvent(state, b.dataset.answer, RULES))));
   root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.newGame(state)));
   bindLessons(root);

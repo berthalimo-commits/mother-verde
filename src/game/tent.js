@@ -457,7 +457,7 @@ function tentSvg(state, sc, choices, light, ctx) {
   else if (sc === 'muerta') inside = pot('poco') + wilted();
   else if (sc === 'secado') inside = (ctx.post?.metodo === 'rejilla' ? '' : pot('poco')) + dryScene(ctx.post || {});
   // the press gets the material and purity that 8b produced, when it was done
-  else if (sc === 'rosin') inside = rosinScene(state.post?.material ? { ...ctx.post, material: E.materialFrom(state.post.material.c, ctx.RULES), pureza: E.purity(state) } : ctx.post || {});
+  else if (sc === 'rosin') inside = rosinScene(ctx.post || {});
   else if (sc === 'material') inside = materialScene(ctx.post || {});
   else if (sc === 'fin') inside = cureScene(state.post?.curado?.c || {}) + (state.post?.rosin ? '<rect class="jgt-rosin-jar" x="184" y="186" width="14" height="18" rx="3" fill="#E3A75F" fill-opacity="0.8" stroke="#9FB8AE" stroke-width="0.6"/>' : '');
   else inside = cureScene(ctx.post || {});
@@ -551,7 +551,9 @@ export function tentHtml(state, choices, ctx, ui = {}) {
   const play = PLAYABLE.includes(state.stage);
   const ch = play ? choices : null;
   // phase 8: the post-harvest screens are drawn with what is picked (ui.post)
-  const post = ['secado', 'curado', 'material', 'rosin'].includes(sc) ? (ui.post || {}) : null;
+  let post = ['secado', 'curado', 'material', 'rosin'].includes(sc) ? (ui.post || {}) : null;
+  // the press gets the material and purity that 8b produced (drawing and caption alike)
+  if (sc === 'rosin' && state.post?.material) post = { ...post, material: E.materialFrom(state.post.material.c, ctx.RULES), pureza: E.purity(state) };
   const light = play ? (ch.intensidad || 'media')
     : sc === 'fin' || sc === 'rosin' || sc === 'material' || sc === 'germinar' ? 'baja' : sc === 'secado' && post.luz === 'con_luz' ? 'media' : null;
   const open = play && OBJECTS[ui.open] ? ui.open : null;
