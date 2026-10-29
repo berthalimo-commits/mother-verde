@@ -2,7 +2,8 @@
 begin;
 
 -- GAME v2, phase 5: the saved game may carry the run's equipment and method
--- (key "setup") and the new germination stage ("germinacion"). Needs
+-- (key "setup"), the new germination stage ("germinacion") and two new
+-- problems of phase 6 ("pudricion_raiz", "quemadura_luz"). Needs
 -- 20261015100000_game_progress.sql first. Only game_state_valid() changes:
 -- the table, game_save() and every other rule stay the same. Undo:
 -- supabase/admin/rollback-20261029100000.sql (puts back the 20261015100000
@@ -25,7 +26,8 @@ declare
     "medir": ["si", "no"], "semilla": ["feminizada", "regular", "autofloreciente"],
     "germinacion": ["papel", "taco", "tierra", "coco", "vaso", "lana_roca"], "trasplante": ["no", "si"]}';
   stages constant text[] := array['intro', 'germinacion', 'plantula', 'vegetativo', 'floracion', 'secado', 'curado', 'rosin', 'fin'];
-  events constant text[] := array['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego'];
+  -- phase 6: root rot (hydroponics with warm water) and light burn (small tent)
+  events constant text[] := array['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego', 'pudricion_raiz', 'quemadura_luz'];
   num_in constant text := 'number';
 begin
   if s is null or jsonb_typeof(s) <> 'object' then return false; end if;
