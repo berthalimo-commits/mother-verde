@@ -13,6 +13,9 @@ export const SOURCES = {
   F8: { label: 'Milay et al. — Frontiers in Plant Science, 2020 (storage)', url: 'https://www.frontiersin.org/articles/10.3389/fpls.2020.583605/full' },
   P1: { label: 'US 11001025 B2 (patent, 2021)', url: 'https://patents.google.com/patent/US11001025B2/en' },
   P2: { label: 'US 11511465 B2 (patent, 2022)', url: 'https://patents.google.com/patent/US11511465B2/en' },
+  F9: { label: 'Alhussaen — PhD thesis, University of Technology Sydney, 2006 (hydroponic lettuce)', url: 'https://opus.lib.uts.edu.au/handle/10453/36864' },
+  F10: { label: 'Simshaw et al. — Acta Horticulturae 1140, 2016 (nursery containers)', url: 'https://www.ishs.org/ishs-article/1140_41' },
+  F11: { label: 'Geneve et al. — Crops, 2022 (hemp germination temperature)', url: 'https://scholars.uky.edu/en/publications/temperature-limits-for-seed-germination-in-industrial-hemp-cannab/' },
 };
 
 // key -> lesson of the platform, source code (or null) and backing level.
@@ -62,6 +65,15 @@ export const WHY = {
   rosin_enfriado: { lesson: 'concentrados', src: null, level: 'autora' },
   rosin_guardar: { lesson: 'concentrados', src: 'F8', level: 'estudio' },
   rosin_proteccion: { lesson: 'concentrados', src: null, level: 'simple' },
+  // Phases 6-7: equipment, germination and the two new problems
+  pudricion_raiz: { lesson: 'diagnostico', src: ['F9', 'F3'], level: 'estudio' },
+  quemadura_luz: { lesson: 'iluminacion', src: null, level: 'autora' },
+  maceta: { lesson: 'sustrato', src: null, level: 'autora' },
+  hps: { lesson: 'iluminacion', src: null, level: 'practica' },
+  maceta_porosa: { lesson: 'sustrato', src: 'F10', level: 'estudio' },
+  germ_temperatura: { lesson: 'propagacion', src: 'F11', level: 'estudio' },
+  germ_humedad: { lesson: 'propagacion', src: null, level: 'autora' },
+  germ_tiempo: { lesson: 'propagacion', src: null, level: 'autora' },
 };
 const srcList = (w) => [].concat(w.src ?? []);
 
@@ -78,6 +90,10 @@ export function whyKeysFromNotes(notes, state) {
     else if (kind === 'cosechado' || kind === 'cosechaAuto') add('tricomas');
     else if (kind === 'postMal') { Object.keys(state.post?.[arg]?.l || {}).forEach((d) => add(arg + '_' + d)); add(arg); }
     else if (kind === 'quemadura') add('rosin');
+    else if (kind === 'germMal') Object.keys(state.log.at(-1)?.l || {}).forEach((d) => add('germ_' + d));
+    else if (kind === 'sinTrasplante') add('maceta');
+    else if (n === 'efecto:hps') add('hps');
+    else if (n === 'efecto:poco_doble') add('maceta_porosa');
   }
   return out;
 }
@@ -108,7 +124,8 @@ export function whyGroupHtml(keys, ctx, gid) {
 
 export function whyName(k, t) {
   if (['fotoperiodo', 'intensidad', 'riego', 'nutrientes', 'temperatura', 'humedad'].includes(k)) return t('jgD_' + k);
-  if (['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego'].includes(k)) return t('jgEvN_' + k);
+  if (['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego', 'pudricion_raiz', 'quemadura_luz'].includes(k)) return t('jgEvN_' + k);
+  if (k.startsWith('germ_')) return t('jgGermD_' + k.slice(5));
   if (['secado', 'curado', 'rosin'].includes(k)) return t('jgEtapa_' + k).replace(/\s*\(.*\)$/, '');
   if (k === 'tricomas') return t('jgTricomas').replace(/\s*\(.*\)$/, '');
   if (/^(secado|curado|rosin)_/.test(k)) return t('jgPD_' + k).replace(/\s*\(.*\)$/, '');

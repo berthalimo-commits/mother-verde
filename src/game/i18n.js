@@ -3,6 +3,7 @@
 // and the live language switch work exactly as everywhere else. Lesson names
 // (subSistemas…) and trichome states (trClearLabel…) reuse the platform's keys.
 import POST from './i18n-post.js';
+import SETUP from './i18n-setup.js';
 
 const TEXTS = {
   es: {
@@ -547,5 +548,6 @@ const TEXTS = {
   },
 };
 // Phase 8: drying, curing + storage and rosin texts live in i18n-post.js.
-for (const L of Object.keys(TEXTS)) Object.assign(TEXTS[L], POST[L]);
+// Phases 6-7: equipment, germination and the two new problems: i18n-setup.js.
+for (const L of Object.keys(TEXTS)) Object.assign(TEXTS[L], POST[L], SETUP[L]);
 export default TEXTS;
