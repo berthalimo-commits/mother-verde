@@ -132,7 +132,7 @@ function guideText() {
     else out.push(t('jgFb_' + n));
   }
   if (state.stage === 'intro') return t('jgIntro');
-  if (['plantula', 'vegetativo', 'floracion', ...E.POST].includes(state.stage)) out.push(t('jgGuia_' + state.stage));
+  if (['germinacion', 'plantula', 'vegetativo', 'floracion', ...E.POST].includes(state.stage)) out.push(t('jgGuia_' + state.stage));
   return out.filter(Boolean).join(' ');
 }
 
@@ -151,6 +151,7 @@ function statusHtml() {
       <div><dt>${t('jgEtapa_' + state.stage)}</dt><dd>${esc(fmt(t('jgSemana'), { n: state.week }))} · ${esc(fmt(t('jgSemanaEtapa'), { n: state.stageWeek }))}</dd></div>
       <div><dt id="jgSaludLbl">${t('jgSalud')}</dt><dd><meter id="jgSalud" min="0" max="100" low="40" high="70" optimum="100" value="${h}" aria-labelledby="jgSaludLbl">${h}</meter> <b>${h}/100</b></dd></div>
       ${state.stage === 'floracion' ? `<div><dt>${t('jgTricomas')}</dt><dd id="jgTrich">${t(TRICH_KEY[E.trichomes(state.stageWeek, RULES)])}</dd></div>` : ''}
+      ${setupSummary()}
     </dl>
   </div>`;
 }
@@ -178,23 +179,70 @@ function decisionsHtml() {
   if (!playable) return '';
   const blocked = state.event && !state.event.answered;
   const ch = E.defaultChoices(state, RULES);
-  const fields = E.DECISIONS.map((d) => `<fieldset class="jg-field">
+  // Phase 6: what the system fixes is not shown; without a meter the
+  // nutrient options don't show their EC figures (playing blind).
+  const fixed = E.fixedDecisions(state, RULES);
+  const blind = state.setup?.medir === 'no';
+  const fields = E.DECISIONS.filter((d) => !(d in fixed)).map((d) => `<fieldset class="jg-field">
       <legend>${t('jgD_' + d)}</legend>
       <div class="jg-opts">${RULES.opciones[d].map((o) => {
         const id = `jg-${d}-${o.replace('/', '-')}`;
         return `<input type="radio" name="jg-${d}" id="${id}" value="${o}"${ch[d] === o ? ' checked' : ''}${blocked ? ' disabled' : ''}>
-          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span><small>${t(`jgH_${d}_${o}`)}</small></label>`;
+          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span>${blind && d === 'nutrientes' ? '' : `<small>${t(`jgH_${d}_${o}`)}</small>`}</label>`;
       }).join('')}</div>
     </fieldset>`).join('');
+  const fixedNote = 'nutrientes' in fixed ? t('jgFijoAcua') + ' ' + t('jgFijoHidro') : 'riego' in fixed ? t('jgFijoHidro') : '';
+  const canMove = state.setup?.maceta_tam === 'pequena' && state.setup.trasplante !== 'si';
   return `<form class="jg-form" id="jgForm" novalidate>
     <h3>${t('jgDecide')}</h3>
+    ${fixedNote ? `<p class="jg-fixed" id="jgFixed">${esc(fixedNote)}</p>` : ''}
     ${fields}
     <div class="jg-actions">
       <button type="submit" class="btn btn-primary" id="jgNext"${blocked ? ' disabled' : ''}>${t('jgPasarSemana')}</button>
+      ${canMove ? `<button type="button" class="btn btn-ghost" id="jgTrasplante"${blocked ? ' disabled' : ''}>${t('jgTrasplantar')}</button>` : ''}
       ${state.stage === 'floracion' ? `<button type="button" class="btn btn-ghost" id="jgHarvest">${t('jgCosechar')}</button>` : ''}
       ${lessonBtn(E.LESSON[state.stage])}
     </div>
   </form>`;
+}
+
+// Phases 6-7: one screen of options (preparing the tent, germination). Only
+// the decisions that apply to what is picked are shown (e.g. the substrate
+// only with a pot); the form is redrawn when a choice changes that.
+let setupLive = {};
+let germLive = {};
+function optionsForm({ id, title, intro, ds, defs, pre, picked, btnId, btn, note }) {
+  const fields = ds.map((d) => `<fieldset class="jg-field">
+      <legend>${t(`${pre}D_${d}`)}</legend>
+      <div class="jg-opts">${defs[d].opciones.map((o) => {
+        const oid = `${id}-${d}-${o}`;
+        return `<input type="radio" name="${id}-${d}" id="${oid}" value="${o}"${picked[d] === o ? ' checked' : ''}>
+          <label for="${oid}"><span>${t(`${pre}O_${d}_${o}`)}</span><small>${t(`${pre}H_${d}_${o}`)}</small></label>`;
+      }).join('')}</div>
+    </fieldset>`).join('');
+  return `<form class="jg-form" id="${id}" novalidate>
+    <h3>${t(title)}</h3>
+    ${intro ? `<p>${t(intro)}</p>` : ''}
+    ${fields}
+    <p class="jg-missing" id="${id}Missing" role="alert"></p>
+    <div class="jg-actions"><button type="submit" class="btn btn-primary" id="${btnId}">${t(btn)}</button>${note || ''}</div>
+  </form>`;
+}
+function setupHtml() {
+  if (state.stage !== 'intro' || state.setup) return '';
+  return optionsForm({ id: 'jgSetupForm', title: 'jgSetupH', intro: 'jgSetupP', ds: E.setupDecisions(RULES, setupLive), defs: RULES.setup.decisiones,
+    pre: 'jgSetup', picked: setupLive, btnId: 'jgSetupGo', btn: 'jgSetupBtn' });
+}
+function germHtml() {
+  if (state.stage !== 'germinacion') return '';
+  return optionsForm({ id: 'jgGermForm', title: 'jgGermH', ds: E.germDecisions(RULES, germLive), defs: RULES.germinacion.decisiones,
+    pre: 'jgGerm', picked: germLive, btnId: 'jgGermGo', btn: 'jgGermBtn', note: lessonBtn('propagacion') });
+}
+function setupSummary() {
+  const s = state.setup;
+  if (!s) return '';
+  const parts = E.setupDecisions(RULES, s).map((d) => t(`jgSetupO_${d}_${s[d]}`));
+  return `<div><dt>${t('jgSetupResumen')}</dt><dd id="jgEquipo">${esc(parts.join(' · '))}</dd></div>`;
 }
 
 // Phase 2: one screen of decisions after the harvest. Nothing is pre-selected
@@ -280,8 +328,11 @@ let animNext = false;
 // Phase 8: what is picked so far on the drying / curing / rosin screen.
 let postLive = {};
 function tent(choices) {
-  return tentHtml(state, choices || E.defaultChoices(state, RULES), TENT_CTX,
-    { open: tentOpen, blocked: !!(state.event && !state.event.answered), anim: animNext, post: postLive });
+  // phase 6: the system's fixed decisions are part of what the tent shows
+  const ch = { ...(choices || E.defaultChoices(state, RULES)), ...E.fixedDecisions(state, RULES) };
+  return tentHtml(state, ch, TENT_CTX,
+    { open: tentOpen, blocked: !!(state.event && !state.event.answered), anim: animNext, post: postLive,
+      setup: state.setup || (state.stage === 'intro' ? setupLive : null), germ: germLive });
 }
 function formChoices(root) {
   const form = root.querySelector('#jgForm');
@@ -323,6 +374,45 @@ function bindTent(root, box) {
   });
 }
 
+// Phases 6-7: preparing the tent and germinating. The form is redrawn on each
+// change (the decisions that apply depend on what is picked) and the focus
+// goes back to the option that was touched.
+function bindOptionForms(root, box) {
+  const forms = {
+    jgSetupForm: { live: () => setupLive, set: (v) => { setupLive = v; }, html: setupHtml, ds: () => E.setupDecisions(RULES, setupLive),
+      go: (vals) => act(E.start(E.setSetup(state, vals, RULES))) },
+    jgGermForm: { live: () => germLive, set: (v) => { germLive = v; }, html: germHtml, ds: () => E.germDecisions(RULES, germLive),
+      go: (vals) => act(E.applyGerm(state, vals, RULES)) },
+  };
+  box.addEventListener('change', (ev) => {
+    const form = ev.target.closest('form'); const F = form && forms[form.id];
+    if (!F || ev.target.type !== 'radio') return;
+    const d = ev.target.name.slice(form.id.length + 1);
+    F.set({ ...F.live(), [d]: ev.target.value });
+    // keep only what still applies (e.g. the substrate after switching to hydroponics)
+    const keep = F.ds();
+    F.set(Object.fromEntries(Object.entries(F.live()).filter(([k]) => keep.includes(k))));
+    const focusId = ev.target.id;
+    form.outerHTML = F.html();
+    document.getElementById(focusId)?.focus();
+    redrawTent(root);
+  });
+  box.addEventListener('submit', (ev) => {
+    const F = forms[ev.target.id];
+    if (!F) return;
+    ev.preventDefault();
+    const missing = F.ds().filter((d) => !F.live()[d]);
+    if (missing.length) {
+      document.getElementById(ev.target.id + 'Missing').textContent = t(ev.target.id === 'jgSetupForm' ? 'jgSetupFalta' : 'jgFaltaElegir');
+      document.querySelector(`input[name="${ev.target.id}-${missing[0]}"]`)?.focus();
+      return;
+    }
+    const vals = F.live();
+    F.set({});
+    F.go(vals);
+  });
+}
+
 // «¿Por qué?» under the guide, in each problem and in the result (why.js).
 function openLesson(l) {
   state = E.markLesson(state, l);
@@ -352,7 +442,11 @@ function paint(root) {
     return;
   }
   const bubble = inLab ? LAB.guide(state, LAB_CTX) : guideText();
-  const main = inLab ? LAB.html(state, LAB_CTX) : `${state.stage === 'intro' ? `<div class="jg-actions"><button type="button" class="btn btn-primary" id="jgStart">${t('jgEmpezar')}</button></div>` : ''}
+  // intro: without equipment, «Prepara tu carpa» (phase 6); a game saved
+  // with equipment but not started yet only needs the start button.
+  const main = inLab ? LAB.html(state, LAB_CTX) : `${state.stage === 'intro' && state.setup ? `<div class="jg-actions"><button type="button" class="btn btn-primary" id="jgStart">${t('jgEmpezar')}</button></div>` : ''}
+    ${setupHtml()}
+    ${germHtml()}
     ${statusHtml()}
     ${eventHtml()}
     ${decisionsHtml()}
@@ -386,6 +480,8 @@ function paint(root) {
     act(LAB.open(state));
   });
   root.querySelector('#jgStart')?.addEventListener('click', () => act(E.start(state)));
+  if (!inLab) bindOptionForms(root, root.querySelector('.jg'));
+  root.querySelector('#jgTrasplante')?.addEventListener('click', () => act(E.transplant(state)));
   root.querySelector('#jgForm')?.addEventListener('change', () => redrawTent(root));
   root.querySelector('#jgForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();
@@ -455,6 +551,7 @@ const CSS = `
 #juego .jg-big{font-size:22px;font-weight:700;color:var(--ink)}
 #juego .jg-sync{font-size:12.5px;color:var(--ink-soft);min-height:1.5em}
 #juego .jg-warn{font-size:13.5px;line-height:1.55;color:var(--ink);background:var(--paper-raised);border:1px solid var(--resin);border-left:4px solid var(--resin);border-radius:8px;padding:10px 12px;margin:0 0 12px}
+#juego .jg-fixed{font-size:13.5px;line-height:1.55;color:var(--ink);background:var(--paper-raised);border:1px solid var(--glow-border);border-left:4px solid var(--teal);border-radius:8px;padding:10px 12px;margin:0 0 12px}
 #juego .jg-pgroup{font-family:'Manrope',sans-serif;font-size:15px;margin:18px 0 10px;color:var(--ink)}
 #juego .jg-missing{color:var(--resin);font-weight:600;font-size:13.5px;min-height:1.2em;margin:0}
 `;
