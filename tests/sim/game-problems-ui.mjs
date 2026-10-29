@@ -1,7 +1,7 @@
 // Test — Juego v2, phase 4: problems you can see on the plant (as their
 // sources describe them, docs/juego-fuentes.md), recovery, and the week's
 // animation (once, under 5 s, nothing with «reduce motion»).
-import { check, sleep, sql, browser, summary } from './browser.mjs';
+import { check, sleep, sql, browser, summary, startGame } from './browser.mjs';
 import fs from 'fs';
 
 const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
@@ -64,7 +64,7 @@ let b = await browser(NEWBIE, 'aal1', 390);
 const open = async () => { await b.send('Page.navigate', { url: 'http://localhost:5174/' }); await sleep(5500); await b.ev(`document.getElementById('ageGateModal').style.display='none'; document.getElementById('mvDevPreview')?.remove(); goMore('juego'); 1`); for (let i = 0; i < 30; i++) { if (await b.ev(`!!document.getElementById('jgBubble')`)) break; await sleep(200); } await sleep(300); };
 const svg = () => b.ev(`(() => { const p = document.querySelector('#jgTent .jgt-plant'); return { problem: p?.dataset.problem || null, recover: p?.dataset.recover || null, anim: document.getElementById('jgTent').classList.contains('jgt-anim'), drops: document.querySelectorAll('#jgTent .jgt-drop').length, desc: document.getElementById('jgTentDesc').textContent }; })()`);
 await open();
-await b.ev(`document.getElementById('jgStart').click(); 1`); await sleep(800);
+await startGame(b);
 check('primera semana (sin haber pasado ninguna): sin animación', !(await svg()).anim);
 await b.ev(`document.querySelector('label[for="jg-riego-mucho"]').click(); 1`); await sleep(200);
 check('elegir una opción no anima nada', !(await svg()).anim);

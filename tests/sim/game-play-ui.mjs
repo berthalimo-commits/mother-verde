@@ -29,8 +29,8 @@ check('contraste del texto del botón (oscuro sobre ámbar)', await b.ev(`getCom
 await b.shot('jg-play-es-desktop');
 await b.ev(`document.getElementById('jgPlayTop').click(); 1`);
 await waitScreen(b, 'juego');
-for (let i = 0; i < 30 && !(await b.ev(`!!document.getElementById('jgStart') || !!document.getElementById('jgNext')`)); i++) await sleep(200);
-check('con acceso: «¡Juega ya!» de arriba abre el juego', await screen(b) === 'juego' && await gameLoaded(b) === true && await b.ev(`!!document.getElementById('jgStart') || !!document.getElementById('jgNext')`));
+for (let i = 0; i < 30 && !(await b.ev(`!!document.getElementById('jgStart') || !!document.getElementById('jgSetupForm') || !!document.getElementById('jgNext')`)); i++) await sleep(200);
+check('con acceso: «¡Juega ya!» de arriba abre el juego', await screen(b) === 'juego' && await gameLoaded(b) === true && await b.ev(`!!document.getElementById('jgStart') || !!document.getElementById('jgSetupForm') || !!document.getElementById('jgNext')`));
 check('…y no queda ningún aviso de bloqueo', await b.ev(`document.getElementById('jgLockNote').hidden`) === true);
 await b.ev(`showScreen('home'); 1`); await sleep(300);
 await b.ev(`document.getElementById('jgPlayHero').click(); 1`);

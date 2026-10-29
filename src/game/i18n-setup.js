@@ -5,6 +5,8 @@
 // jgGermD_…, jgGermO_…, jgGermH_… the same for germination.
 export default {
   es: {
+    jgTentD_intro_hidro: 'La carpa está a oscuras. El sistema de agua está listo y la semilla espera para germinar.',
+    jgTentD_germinar: 'La semilla está germinando.',
     jgSetupH: 'Prepara tu carpa', jgSetupP: 'Elige el equipo antes de plantar. No hay una opción correcta: cada una cambia lo que pasa después.',
     jgSetupBtn: 'Listo: a germinar', jgSetupFalta: 'Elige una opción en cada grupo para seguir.',
     jgSetupD_carpa: 'Tamaño de la carpa', jgSetupO_carpa_pequena: 'Pequeña', jgSetupH_carpa_pequena: 'poca altura para la planta',
@@ -63,6 +65,8 @@ export default {
     jgWhy_germ_tiempo: 'Varios días sumergida, la semilla se queda sin aire y puede ahogarse (criterio de la autora; el estudio clásico no se pudo comprobar).',
   },
   en: {
+    jgTentD_intro_hidro: 'The tent is dark. The water system is ready and the seed is waiting to germinate.',
+    jgTentD_germinar: 'The seed is germinating.',
     jgSetupH: 'Set up your tent', jgSetupP: 'Choose the equipment before planting. There is no right option: each one changes what happens later.',
     jgSetupBtn: 'Ready: time to germinate', jgSetupFalta: 'Pick an option in every group to go on.',
     jgSetupD_carpa: 'Tent size', jgSetupO_carpa_pequena: 'Small', jgSetupH_carpa_pequena: 'little height for the plant',
@@ -118,6 +122,8 @@ export default {
     jgWhy_germ_tiempo: 'After several days under water the seed runs out of air and can drown (author’s criteria; the classic study could not be checked).',
   },
   de: {
+    jgTentD_intro_hidro: 'Das Zelt ist dunkel. Das Wassersystem ist bereit und der Samen wartet aufs Keimen.',
+    jgTentD_germinar: 'Der Samen keimt.',
     jgSetupH: 'Richte dein Zelt ein', jgSetupP: 'Wähle die Ausrüstung vor dem Pflanzen. Es gibt keine richtige Option: Jede verändert, was danach passiert.',
     jgSetupBtn: 'Fertig: jetzt keimen', jgSetupFalta: 'Wähle in jeder Gruppe eine Option, um weiterzumachen.',
     jgSetupD_carpa: 'Zeltgröße', jgSetupO_carpa_pequena: 'Klein', jgSetupH_carpa_pequena: 'wenig Höhe für die Pflanze',
@@ -173,6 +179,8 @@ export default {
     jgWhy_germ_tiempo: 'Nach mehreren Tagen unter Wasser fehlt dem Samen die Luft und er kann ertrinken (Kriterium der Autorin; die klassische Studie konnte nicht geprüft werden).',
   },
   fr: {
+    jgTentD_intro_hidro: 'La tente est dans le noir. Le système d’eau est prêt et la graine attend de germer.',
+    jgTentD_germinar: 'La graine est en train de germer.',
     jgSetupH: 'Prépare ta tente', jgSetupP: 'Choisis l’équipement avant de planter. Il n’y a pas de bonne option : chacune change ce qui se passe ensuite.',
     jgSetupBtn: 'Prêt : à la germination', jgSetupFalta: 'Choisis une option dans chaque groupe pour continuer.',
     jgSetupD_carpa: 'Taille de la tente', jgSetupO_carpa_pequena: 'Petite', jgSetupH_carpa_pequena: 'peu de hauteur pour la plante',

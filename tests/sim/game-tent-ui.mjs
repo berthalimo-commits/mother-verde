@@ -4,7 +4,7 @@
 // light clock 18/6 and 12/12, gauges = the level picked (live, nothing saved
 // until the week passes), the text description in 4 languages, contrast,
 // 360 px phone without overflow, computer layout, no JavaScript errors.
-import { check, sleep, sql, browser, summary } from './browser.mjs';
+import { check, sleep, sql, browser, summary, startGame } from './browser.mjs';
 
 const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const NEWBIE = 'b0000003-0000-4000-8000-000000000000';
@@ -75,7 +75,7 @@ await goGame(b);
 let s = await svg(b);
 check('portada: carpa a oscuras con la semilla, sin indicadores', s?.scene === 'intro' && s.light === 'off' && !(await gauge(b, 'temperatura')));
 await b.shot('jgt-intro-es-mobile');
-await click(b, 'jgStart'); await sleep(800);
+await startGame(b);
 s = await svg(b);
 check('semana 1: semilla germinada y lámpara encendida con la intensidad preseleccionada', s?.scene === 'germ' && s.light === 'on'
   && s.int === await b.ev(`document.querySelector('input[name="jg-intensidad"]:checked').value`), JSON.stringify(s));
@@ -152,7 +152,7 @@ b = await browser(NEWBIE, 'aal1', 1280);
 await open(b);
 await goGame(b);
 await click(b, 'jgAgain'); await sleep(800);
-await click(b, 'jgStart'); await sleep(800);
+await startGame(b);
 for (let i = 0; i < 4; i++) await nextWeek(b);
 const lay = await b.ev(`(() => { const s = document.querySelector('#jgTent .jgt-scene').getBoundingClientRect(), g = document.querySelector('#jgTent .jg-gauges').getBoundingClientRect(); return { side: g.left >= s.right - 1 && g.top < s.bottom, over: document.documentElement.scrollWidth > innerWidth }; })()`);
 check('computadora: los indicadores van al lado de la carpa, sin desborde', lay.side && !lay.over, JSON.stringify(lay));

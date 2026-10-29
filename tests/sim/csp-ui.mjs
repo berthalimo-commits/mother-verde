@@ -4,7 +4,7 @@
 // the panel with all its tabs, installing as an app (manifest + service
 // worker) and the 404: no CSP violation, no JavaScript error, nothing broken.
 import { spawn, spawnSync } from 'child_process';
-import { check, sleep, browser, summary, ADMIN } from './browser.mjs';
+import { check, sleep, browser, summary, ADMIN, startGame } from './browser.mjs';
 
 // Build the app against the fake Supabase first (dist/ is not in git).
 const ROOT = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
@@ -47,7 +47,7 @@ for (const L of ['es', 'en', 'de', 'fr']) {
 // Branch juego: the game (lazy file) and the safety lab (another lazy file) under the CSP.
 if (await b.ev(`!!document.getElementById('tabsMoreJuego')`)) {
   await b.ev(`goMore('juego'); 1`); await sleep(2500);
-  await b.ev(`document.getElementById('jgStart')?.click(); 1`); await sleep(800);
+  await startGame(b);
   await b.ev(`document.getElementById('jgNext')?.click(); 1`); await sleep(800);
   const lab = (await import('fs')).readdirSync(new URL('../../dist/assets', import.meta.url)).find((f) => /^lab-.*\.js$/.test(f));
   const labOk = await b.ev(`import('/assets/${lab}').then((m) => typeof m.html === 'function', () => false)`);

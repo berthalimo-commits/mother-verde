@@ -5,7 +5,7 @@
 // panel gives exactly the engine's result; 44 px; 360 px; 4 languages.
 // «¿Por qué?»: under the guide after a bad week, in a problem, in the result;
 // reason + backing level + checked source link + lesson; nothing invented.
-import { check, sleep, sql, browser, summary } from './browser.mjs';
+import { check, sleep, sql, browser, summary, startGame } from './browser.mjs';
 import fs from 'fs';
 
 const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
@@ -42,7 +42,7 @@ let b = await browser(NEWBIE, 'aal1', 360);
 await open(b);
 await goGame(b);
 check('portada: sin objetos que tocar (todavía no hay planta)', await b.ev(`document.querySelectorAll('.jgt-obj').length`) === 0);
-await click(b, '#jgStart'); await sleep(800);
+await startGame(b);
 const objs = await b.ev(`[...document.querySelectorAll('.jgt-obj')].map((o) => { const r = o.getBoundingClientRect(), s = document.querySelector('.jgt-stage').getBoundingClientRect(); return { k: o.dataset.obj, w: r.width, h: r.height, inside: r.left >= s.left - 1 && r.right <= s.right + 1 && r.top >= s.top - 1 && r.bottom <= s.bottom + 1, label: o.getAttribute('aria-label') }; })`);
 check('5 objetos: lámpara, termómetro, humidificador, regadera y nutrientes', objs.map((o) => o.k).sort().join() === 'humidificador,lampara,nutrientes,regadera,termometro', JSON.stringify(objs.map((o) => o.k)));
 check('cada objeto mide ≥ 44 px, está dentro de la carpa y tiene nombre («Lámpara: cambiar»…)', objs.every((o) => o.w >= 44 && o.h >= 44 && o.inside && /: cambiar$/.test(o.label)), JSON.stringify(objs));

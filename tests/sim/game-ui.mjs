@@ -4,7 +4,7 @@
 // phase 2 (drying, curing, qualitative rosin: choose, save, reload, no figures),
 // mobile + desktop, light + dark (the platform is dark-only: same colours),
 // 44 px targets, contrast, dev preview.
-import { check, sleep, sql, browser, summary, ADMIN, PAYER } from './browser.mjs';
+import { check, sleep, sql, browser, summary, ADMIN, PAYER, startGame } from './browser.mjs';
 
 const NEWBIE = 'b0000003-0000-4000-8000-000000000000';
 const open = async (b) => { await b.send('Page.navigate', { url: 'http://localhost:5174/' }); await sleep(5500); await b.ev(`document.getElementById('ageGateModal').style.display='none'; document.getElementById('mvDevPreview')?.remove(); 1`); };
@@ -37,7 +37,7 @@ check('el científico de la plataforma es el guía (mismo dibujo)', await b.ev(`
 check('portada: el científico explica (pose «explicando»)', await b.ev(`document.querySelector('#juego .jg-sci svg')?.dataset.pose`) === 'explicando');
 
 // ------------------------------------------------------------ playing + saving
-await click(b, 'jgStart'); await sleep(800);
+await startGame(b);
 for (let i = 0; i < 3; i++) { await click(b, 'jgNext'); await sleep(900); }
 check('tras jugar semanas la pose cambia según lo que pasa', ['contento', 'pensando', 'preocupado', 'lupa'].includes(await b.ev(`document.querySelector('#juego .jg-sci svg')?.dataset.pose`)));
 let st = await gs(b);
@@ -108,7 +108,7 @@ await b.close();
 b = await browser(PAYER, 'aal1', 390);
 await open(b);
 await goGame(b);
-await click(b, 'jgStart'); await sleep(700);
+await startGame(b);
 for (let i = 0; i < 14 && (await gs(b)).stage !== 'floracion'; i++) { await click(b, 'jgNext'); await sleep(700); }
 await click(b, 'jgHarvest'); await sleep(1200);
 st = await gs(b);
@@ -209,7 +209,7 @@ for (const [w, label] of [[390, 'movil'], [1280, 'escritorio']]) {
     await b.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: scheme }] });
     await open(b);
     await goGame(b);
-    if (await b.ev(`!!document.getElementById('jgStart')`)) { await click(b, 'jgStart'); await sleep(700); }
+    if (!(await b.ev(`!!document.getElementById('jgNext')`))) await startGame(b);
     const a = await b.ev(`(() => {
       const lum = (c) => { const m = c.match(/\\d+(\\.\\d+)?/g).map(Number); const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(m[0]) + 0.7152 * f(m[1]) + 0.0722 * f(m[2]); };
       const bg = (el) => { while (el) { const c = getComputedStyle(el).backgroundColor; if (c && !/rgba\\(\\d+, \\d+, \\d+, 0\\)|transparent/.test(c)) return c; el = el.parentElement; } return getComputedStyle(document.body).backgroundColor; };

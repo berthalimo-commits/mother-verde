@@ -20,6 +20,7 @@ const healthBand = (h) => (h >= 70 ? 'ok' : h >= 40 ? 'mid' : 'low');
 export function scene(state) {
   const st = state.stage;
   if (st === 'intro') return 'intro';
+  if (st === 'germinacion') return 'germinar';
   if (st === 'plantula') return state.stageWeek <= 1 ? 'germ' : 'plantula';
   if (st === 'vegetativo' || st === 'floracion' || st === 'secado') return st;
   if (st === 'curado' || st === 'rosin') return st;
@@ -111,7 +112,7 @@ function plant(state, sc, rules) {
   const H = Math.min(vegHeight(vegWeeks) + stretch, 136);
   const top = BASE - H;
   const nodes = Math.max(2, Math.min(7, Math.round(H / 17)));
-  let leaves = '', yellow = '', buds = '';
+  let leaves = '', yellow = '', bleached = '', buds = '';
   const tips = [];
   const w = state.stageWeek;
   const trich = sc === 'floracion' ? E.trichomes(w, rules) : null;
@@ -119,7 +120,9 @@ function plant(state, sc, rules) {
   const dots = 4 + Math.min(w, 8);
   // exceso de riego: leaves hang down (F3: the plant wilts; platform: «hojas
   // caídas»); faded = half way back up.
-  const droop = prob?.id === 'exceso_riego' ? (prob.faded ? 18 : 38) : 0;
+  const droop = ['exceso_riego', 'pudricion_raiz'].includes(prob?.id) ? (prob.faded ? 18 : 38) : 0;
+  // quemadura de luz: the top leaves, closest to the lamp, bleach (author's criteria)
+  const burnt = prob?.id === 'quemadura_luz' ? 2 : 0;
   // carencia de N: the older (lower) leaves turn yellow (F2).
   const lowN = prob?.id === 'carencia_n' ? Math.max(1, Math.ceil(nodes / 2)) : 0;
   for (let i = 0; i < nodes; i++) {
@@ -129,7 +132,7 @@ function plant(state, sc, rules) {
     const tilt = i % 2 ? 6 : -6;
     const aL = -72 + tilt - droop, aR = 72 + tilt + droop;
     const pair = leaf(CX - 1, y, aL, s) + leaf(CX + 1, y - 4, aR, s);
-    if (i < lowN) yellow += pair; else leaves += pair;
+    if (i < lowN) yellow += pair; else if (i >= nodes - burnt) bleached += pair; else leaves += pair;
     tips.push(tipOf(CX - 1, y, aL, s), tipOf(CX + 1, y - 4, aR, s));
     if (sc === 'floracion' && i >= Math.floor(nodes / 2)) {
       const rot = prob?.id === 'botrytis' && !prob.faded && i >= nodes - 2;
@@ -143,6 +146,7 @@ function plant(state, sc, rules) {
     + `<path class="jgt-stem" d="M${CX} ${BASE}Q${CX + 3} ${f1(BASE - H / 2)} ${CX} ${f1(top + 4)}" fill="none" stroke="${color}" stroke-width="${sc === 'floracion' ? 3 : 2.4}" stroke-linecap="round"/>`
     + `<g fill="${color}">${leaves}${sc === 'floracion' ? '' : crown}</g>`
     + (yellow ? `<g fill="${yellowCol}" class="jgt-sym" data-sym="carencia_n">${yellow}</g>` : '')
+    + (bleached ? `<g fill="${prob.faded ? '#C9D39A' : '#E8E2C0'}" class="jgt-sym" data-sym="quemadura_luz">${bleached}</g>` : '')
     + `${buds}${sc === 'floracion' ? crown : ''}${symptoms(prob, tips)}</g>`;
 }
 
@@ -260,14 +264,77 @@ function rosinScene(c) {
     + paper + bag + puddle + gloves + '</g>';
 }
 
-function pot(riego) {
+// Phase 6: the pot (material, size, substrate) or the hydroponic system.
+const POT = { plastico: ['#7A4E34', '#5A3826'], tela: ['#3A3F3C', '#262A28'], aire: ['#2B3532', '#1E2523'], barro: ['#B5643C', '#8A4A2C'] };
+const SUBSTRATE = { coco: '#8A5A3C', lana_roca: '#9FAE9A', tierra_viva: '#4A3524' };
+const HYDRO = ['dwc', 'nft', 'aeroponia', 'acuaponia'];
+function pot(riego, setup = {}, rot = false) {
+  if (HYDRO.includes(setup.sistema)) return hydro(setup.sistema, rot);
   const wet = riego === 'mucho';
-  return (wet ? `<ellipse cx="${CX}" cy="205" rx="44" ry="3.5" fill="#5FD4E0" opacity="0.45"/>` : '')
-    + `<path d="M95 ${BASE}H145L140 205H100Z" fill="#7A4E34" stroke="#5A3826" stroke-width="1"/>`
-    + `<ellipse cx="${CX}" cy="${BASE}" rx="25" ry="4" fill="${SOIL[riego] || SOIL.moderado}"/>`
-    + (riego === 'poco' ? `<path d="M108 ${BASE}l4 -1.5M126 ${BASE + 1}l5 -1" stroke="#6B4E2E" stroke-width="0.8"/>` : '')
-    + (wet ? `<ellipse cx="${CX - 8}" cy="${BASE - 1}" rx="7" ry="1.2" fill="#F0F7F3" opacity="0.3"/>` : '');
+  const [fill, edge] = POT[setup.maceta] || POT.plastico;
+  // a small pot that hasn't been moved yet is drawn smaller
+  const small = setup.maceta_tam === 'pequena' && setup.trasplante !== 'si';
+  const w = small ? 15 : 25;
+  const soil = SUBSTRATE[setup.sustrato] && riego !== 'mucho' ? SUBSTRATE[setup.sustrato] : SOIL[riego] || SOIL.moderado;
+  const deco = setup.maceta === 'tela' ? `<path d="M${CX - w + 3} ${BASE + 4}H${CX + w - 3}" stroke="#5A605C" stroke-dasharray="2 1.5" stroke-width="0.8"/>`
+    : setup.maceta === 'aire' ? [0, 1, 2, 3, 4].map((i) => `<circle cx="${CX - w + 7 + i * (2 * w - 14) / 4}" cy="${BASE + 9}" r="1.3" fill="#0B1512"/>`).join('') : '';
+  return `<g class="jgt-pot" data-maceta="${setup.maceta || 'plastico'}" data-tam="${small ? 'pequena' : 'grande'}" data-sustrato="${setup.sustrato || ''}">`
+    + (wet ? `<ellipse cx="${CX}" cy="205" rx="${w + 19}" ry="3.5" fill="#5FD4E0" opacity="0.45"/>` : '')
+    + `<path d="M${CX - w} ${BASE}H${CX + w}L${CX + w - 5} 205H${CX - w + 5}Z" fill="${fill}" stroke="${edge}" stroke-width="1"/>` + deco
+    + `<ellipse cx="${CX}" cy="${BASE}" rx="${w}" ry="4" fill="${soil}"/>`
+    + (setup.sustrato === 'tierra_viva' ? [-14, -6, 4, 12].map((dx) => `<path d="M${CX + dx} ${BASE - 1}l3 -1" stroke="#8A6A3A" stroke-width="1"/>`).join('') : '')
+    + (setup.sustrato === 'lana_roca' ? `<rect x="${CX - 6}" y="${BASE - 4}" width="12" height="6" fill="#B8C4B4" stroke="#8A9886" stroke-width="0.5"/>` : '')
+    + (riego === 'poco' ? `<path d="M${CX - 12} ${BASE}l4 -1.5M${CX + 6} ${BASE + 1}l5 -1" stroke="#6B4E2E" stroke-width="0.8"/>` : '')
+    + (wet ? `<ellipse cx="${CX - 8}" cy="${BASE - 1}" rx="7" ry="1.2" fill="#F0F7F3" opacity="0.3"/>` : '') + '</g>';
 }
+
+// Hydroponic systems: the roots show (brown when they rot, F9).
+function hydro(sistema, rot) {
+  const root = rot ? '#8A6A3A' : '#E8E2C8';
+  const roots = (x, y, len) => `<path class="jgt-roots" d="M${x} ${y}q-6 ${len / 2} -2 ${len}M${x} ${y}q4 ${len / 2} 1 ${len}M${x} ${y}q10 ${len / 3} 8 ${len - 4}" fill="none" stroke="${root}" stroke-width="1.1"/>`;
+  let out = '';
+  if (sistema === 'dwc') {
+    out = `<rect x="94" y="${BASE - 2}" width="52" height="22" rx="3" fill="#2B3532" stroke="#9FB8AE"/><rect x="96" y="${BASE + 4}" width="48" height="14" fill="#5FD4E0" fill-opacity="0.35"/>`
+      + roots(CX, BASE, 16) + [104, 112, 128, 136].map((x, i) => `<circle cx="${x}" cy="${BASE + 15 - (i % 2) * 4}" r="1.3" fill="#E8EEF0" opacity="0.8"/>`).join('');
+  } else if (sistema === 'nft') {
+    out = `<rect x="44" y="${BASE - 2}" width="152" height="10" rx="3" fill="#E8EEF0" fill-opacity="0.25" stroke="#9FB8AE"/><path d="M48 ${BASE + 5}H192" stroke="#5FD4E0" stroke-width="2" opacity="0.7"/>`
+      + roots(CX, BASE, 8) + '<path d="M192 196v8" stroke="#9FB8AE" stroke-width="1.4"/>';
+  } else if (sistema === 'aeroponia') {
+    out = `<rect x="88" y="${BASE - 2}" width="64" height="22" rx="4" fill="#2B3532" stroke="#9FB8AE"/>`
+      + roots(CX, BASE, 16) + [100, 110, 132, 142].map((x, i) => `<circle cx="${x}" cy="${BASE + 8 + (i % 2) * 5}" r="1.6" fill="#C7CFD2" opacity="0.6"/>`).join('');
+  } else {
+    out = `<rect x="70" y="${BASE - 2}" width="100" height="8" fill="#5B3A24"/><rect x="66" y="${BASE + 6}" width="108" height="14" rx="2" fill="#5FD4E0" fill-opacity="0.3" stroke="#9FB8AE"/>`
+      + roots(CX, BASE + 4, 8) + [[90, BASE + 13], [140, BASE + 12]].map(([x, y]) => `<path class="jgt-fish" d="M${x} ${y}q5 -3 10 0q-5 3 -10 0Zm10 0l3 -2v4Z" fill="#E3A75F"/>`).join('');
+  }
+  return `<g class="jgt-hydro" data-sistema="${sistema}"${rot ? ' data-rot="1"' : ''}>${out}</g>`;
+}
+
+// The lamp: an LED panel, or a hood with an HPS (orange) or CMH (white) bulb.
+function lamp(luz, on, y = 26) {
+  if (luz === 'hps' || luz === 'cmh') {
+    const bulb = on ? (luz === 'hps' ? '#FFB060' : '#F4F6FF') : '#3A4442';
+    return `<g class="jgt-lamp" data-luz="${luz}"><path d="M80 12L84 ${y}M160 12L156 ${y}" stroke="#9FB8AE" stroke-width="1"/><path d="M76 ${y + 10}L92 ${y}H148L164 ${y + 10}Z" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.6"/><ellipse cx="120" cy="${y + 8}" rx="18" ry="3" fill="${bulb}"/></g>`;
+  }
+  return `<g class="jgt-lamp" data-luz="${luz || 'led'}"><path d="M80 12L84 ${y}M160 12L156 ${y}" stroke="#9FB8AE" stroke-width="1"/>`
+    + `<rect x="70" y="${y}" width="100" height="9" rx="2" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.6"/><rect x="74" y="${y + 6}" width="92" height="2.4" rx="1" fill="${on ? '#FFE3A3' : '#3A4442'}"/></g>`;
+}
+
+// The germination scene (phase 7): what each method looks like.
+function germScene(metodo) {
+  const seed = (x, y, r = 0) => `<g transform="rotate(${r} ${x} ${y})"><ellipse cx="${x}" cy="${y}" rx="3" ry="2.1" fill="#6B4E2E" stroke="#C9A77C" stroke-width="0.5"/><path d="M${x + 2.5} ${y + 1}q4 3 3 8" fill="none" stroke="#F0F7F3" stroke-width="0.9"/></g>`;
+  let out;
+  if (metodo === 'papel') out = `<ellipse cx="120" cy="190" rx="40" ry="8" fill="#E8EEF0" fill-opacity="0.35" stroke="#9FB8AE"/><rect x="92" y="182" width="56" height="10" rx="2" fill="#F0F7F3" opacity="0.85"/>${seed(108, 184)}${seed(124, 185, 20)}`;
+  else if (metodo === 'taco') out = `<rect x="108" y="176" width="24" height="26" rx="6" fill="#6B4E2E" stroke="#4A3524"/><path d="M110 184h20M110 192h20" stroke="#4A3524" stroke-width="0.6"/>${seed(120, 176)}`;
+  else if (metodo === 'vaso') out = `<path d="M104 160h32l-3 44h-26Z" fill="#E8EEF0" fill-opacity="0.15" stroke="#C7CFD2"/><rect x="106" y="172" width="28" height="31" fill="#5FD4E0" fill-opacity="0.3"/>${seed(120, 186)}`;
+  else if (metodo === 'lana_roca') out = `<rect x="106" y="178" width="28" height="24" fill="#B8C4B4" stroke="#8A9886"/><path d="M106 186h28M106 194h28" stroke="#8A9886" stroke-width="0.5"/>${seed(120, 178)}`;
+  else {
+    const soil = metodo === 'coco' ? '#8A5A3C' : '#5B3A24';
+    out = `<path d="M100 ${BASE}H140L136 205H104Z" fill="#7A4E34" stroke="#5A3826"/><ellipse cx="120" cy="${BASE}" rx="20" ry="3.5" fill="${soil}"/>${seed(120, BASE - 1)}`;
+  }
+  return `<g class="jgt-germ" data-metodo="${metodo || ''}">${out}</g>`;
+}
+
+const meter = '<g class="jgt-meter"><rect x="164" y="160" width="10" height="20" rx="2" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.7"/><rect x="166" y="163" width="6" height="5" fill="#2AEBA0" opacity="0.8"/><path d="M169 180v8" stroke="#9FB8AE" stroke-width="1.2"/></g>';
 
 function fan() {
   const blades = [0, 120, 240].map((a) => `<ellipse cx="0" cy="-6" rx="3" ry="6" transform="rotate(${a})"/>`).join('');
@@ -286,23 +353,36 @@ export const OBJECTS = {
   nutrientes: { d: ['nutrientes'], x: 150, y: 190 },
 };
 
+// Phase 6: which objects the system has (no watering can in hydroponics, no
+// nutrient bottle in aquaponics: the fish feed the plant).
+export function hiddenObjects(setup = {}) {
+  const out = [];
+  if (HYDRO.includes(setup.sistema)) out.push('regadera');
+  if (setup.sistema === 'acuaponia') out.push('nutrientes');
+  return out;
+}
+
 // Watering can, nutrient bottle, thermometer with heater and humidifier.
-function tools() {
-  return '<g class="jgt-tools">'
+function tools(setup = {}) {
+  const hide = hiddenObjects(setup);
+  const drip = setup.riego_tipo === 'goteo' ? `<path class="jgt-drip" d="M200 12V60Q200 70 190 70H${CX + 6}V${BASE - 6}" fill="none" stroke="#2B3532" stroke-width="1.6"/><circle cx="${CX + 6}" cy="${BASE - 4}" r="1.4" fill="#5FD4E0"/>` : '';
+  const tool = (k, svg) => (hide.includes(k) ? '' : svg);
+  return '<g class="jgt-tools">' + drip + (setup.medir === 'si' ? meter : '')
     // thermometer on the left wall + small heater under it
     + '<rect x="31" y="74" width="6" height="26" rx="3" fill="#0B1512" stroke="#9FB8AE" stroke-width="0.8"/><rect x="32.8" y="84" width="2.4" height="14" fill="#E2665A"/><circle cx="34" cy="102" r="4" fill="#E2665A" stroke="#9FB8AE" stroke-width="0.8"/>'
     + '<rect x="26" y="112" width="16" height="10" rx="2" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.6"/><path d="M29 115h10M29 118h10" stroke="#E3A75F" stroke-width="0.8"/>'
     // watering can
-    + '<path d="M40 183h16l-2 15H42Z" fill="#5FD4E0" fill-opacity="0.5" stroke="#9FB8AE" stroke-width="0.8"/><path d="M56 186l9-7" stroke="#9FB8AE" stroke-width="1.6" stroke-linecap="round"/><path d="M42 183q6 -8 12 0" fill="none" stroke="#9FB8AE" stroke-width="1"/>'
+    + tool('regadera', '<path d="M40 183h16l-2 15H42Z" fill="#5FD4E0" fill-opacity="0.5" stroke="#9FB8AE" stroke-width="0.8"/><path d="M56 186l9-7" stroke="#9FB8AE" stroke-width="1.6" stroke-linecap="round"/><path d="M42 183q6 -8 12 0" fill="none" stroke="#9FB8AE" stroke-width="1"/>')
     // nutrient bottle
-    + '<rect x="144" y="183" width="12" height="18" rx="2" fill="#E3A75F" fill-opacity="0.75" stroke="#9FB8AE" stroke-width="0.8"/><rect x="147" y="178" width="6" height="5" fill="#2B3532"/><rect x="146" y="189" width="8" height="5" rx="1" fill="#F0F7F3" fill-opacity="0.7"/>'
+    + tool('nutrientes', '<rect x="144" y="183" width="12" height="18" rx="2" fill="#E3A75F" fill-opacity="0.75" stroke="#9FB8AE" stroke-width="0.8"/><rect x="147" y="178" width="6" height="5" fill="#2B3532"/><rect x="146" y="189" width="8" height="5" rx="1" fill="#F0F7F3" fill-opacity="0.7"/>')
     // humidifier with a little mist
     + '<rect x="190" y="182" width="20" height="20" rx="4" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.8"/><circle cx="200" cy="192" r="4" fill="#5FD4E0" fill-opacity="0.6"/><path d="M197 178q3 -5 6 0M200 172q3 -4 5 0" fill="none" stroke="#C7CFD2" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>'
     + '</g>';
 }
 
-function objButtons(open, ctx) {
-  return Object.entries(OBJECTS).map(([k, o]) => {
+function objButtons(open, ctx, setup) {
+  const hide = hiddenObjects(setup);
+  return Object.entries(OBJECTS).filter(([k]) => !hide.includes(k)).map(([k, o]) => {
     const name = ctx.t('jgObj_' + k);
     return `<button type="button" class="jgt-obj" data-obj="${k}" id="jgtObj-${k}"
       aria-expanded="${open === k}" aria-controls="jgtPanel" aria-label="${ctx.esc(ctx.t('jgObjAbrir').replace('{o}', name))}" title="${ctx.esc(name)}"></button>`;
@@ -335,18 +415,23 @@ function panelHtml(open, choices, blocked, ctx) {
 function tentSvg(state, sc, choices, light, ctx) {
   const riego = PLAYABLE.includes(state.stage) ? choices?.riego : 'moderado';
   const living = ['germ', 'plantula', 'vegetativo', 'floracion'].includes(sc);
+  const setup = ctx.setup || state.setup || {};
+  const prob = problemOf(state);
   let inside = '';
-  if (sc === 'intro') inside = pot('moderado') + `<ellipse cx="${CX + 3}" cy="${BASE - 2}" rx="2.6" ry="1.8" fill="#6B4E2E" stroke="#C9A77C" stroke-width="0.5"/>`;
+  if (sc === 'intro') inside = pot('moderado', setup) + `<ellipse cx="${CX + 3}" cy="${BASE - 2}" rx="2.6" ry="1.8" fill="#6B4E2E" stroke="#C9A77C" stroke-width="0.5"/>`;
   // an open «exceso de riego» keeps the medium soaked whatever is picked now
-  else if (living) inside = pot(problemOf(state)?.id === 'exceso_riego' && !problemOf(state).faded ? 'mucho' : riego) + plant(state, sc, ctx.RULES);
+  else if (living) inside = pot(prob?.id === 'exceso_riego' && !prob.faded ? 'mucho' : riego, setup, prob?.id === 'pudricion_raiz' && !prob.faded) + plant(state, sc, ctx.RULES);
+  else if (sc === 'germinar') inside = germScene(ctx.germ?.metodo);
   else if (sc === 'muerta') inside = pot('poco') + wilted();
   else if (sc === 'secado') inside = (ctx.post?.metodo === 'rejilla' ? '' : pot('poco')) + dryScene(ctx.post || {});
   else if (sc === 'rosin') inside = rosinScene(ctx.post || {});
   else if (sc === 'fin') inside = cureScene(state.post?.curado?.c || {}) + (state.post?.rosin ? '<rect class="jgt-rosin-jar" x="184" y="186" width="14" height="18" rx="3" fill="#E3A75F" fill-opacity="0.8" stroke="#9FB8AE" stroke-width="0.6"/>' : '');
   else inside = cureScene(ctx.post || {});
-  const cone = light ? `<polygon points="74,35 166,35 214,204 26,204" fill="url(#jgtCone)" opacity="${CONE[light]}"/>` : '';
+  // a small tent has a lower ceiling: the lamp hangs closer (phase 6)
+  const ly = setup.carpa === 'pequena' ? 40 : 26;
+  const cone = light ? `<polygon points="74,${ly + 9} 166,${ly + 9} 214,204 26,204" fill="url(#jgtCone)" opacity="${CONE[light]}"${setup.luz === 'hps' ? ' class="jgt-hps"' : ''}/>` : '';
   return `<svg class="jgt-svg" viewBox="0 0 240 216" role="img" aria-label="${ctx.esc(ctx.t('jgTentAlt'))}" aria-describedby="jgTentDesc" focusable="false"
-    data-scene="${sc}" data-light="${light ? 'on' : 'off'}" data-int="${light || ''}" data-riego="${living ? riego : ''}" data-leaf="${living ? healthBand(state.health) : ''}">
+    data-scene="${sc}" data-light="${light ? 'on' : 'off'}" data-int="${light || ''}" data-riego="${living ? riego : ''}" data-leaf="${living ? healthBand(state.health) : ''}" data-carpa="${setup.carpa || ''}">
   <defs>
     <linearGradient id="jgtWall" x1="0" x2="1"><stop offset="0" stop-color="#7F8B8E"/><stop offset="0.5" stop-color="#C7CFD2"/><stop offset="1" stop-color="#7F8B8E"/></linearGradient>
     <linearGradient id="jgtCone" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFD58A"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></linearGradient>
@@ -358,10 +443,9 @@ function tentSvg(state, sc, choices, light, ctx) {
   <rect x="20" y="204" width="200" height="4" fill="#2A2F2D"/>
   ${cone}
   ${fan()}
-  <path d="M80 12L84 26M160 12L156 26" stroke="#9FB8AE" stroke-width="1"/>
-  <rect x="70" y="26" width="100" height="9" rx="2" fill="#2B3532" stroke="#9FB8AE" stroke-width="0.6"/>
-  <rect x="74" y="32" width="92" height="2.4" rx="1" fill="${light ? '#FFE3A3' : '#3A4442'}"/>
-  ${living ? tools() : ''}
+  ${setup.carpa === 'pequena' ? '<rect class="jgt-ceiling" x="20" y="12" width="200" height="16" fill="#151E1B"/>' : ''}
+  ${lamp(setup.luz, !!light, ly)}
+  ${living ? tools(setup) : ''}
   ${inside}
   ${light ? '' : '<rect x="20" y="12" width="200" height="196" fill="#000" opacity="0.45"/>'}
   ${living && ctx.anim ? `<g class="jgt-drops" fill="#5FD4E0">${[108, 120, 132].map((x, i) => `<ellipse class="jgt-drop d${i}" cx="${x}" cy="${BASE - 6}" rx="1.4" ry="2.2"/>`).join('')}</g>
@@ -393,25 +477,28 @@ function dial(l) {
     + `<path d="M16 20L${f1(16 + 11 * Math.sin(a))} ${f1(20 - 11 * Math.cos(a))}" class="${LV[l]}s" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="20" r="2" fill="#F0F7F3"/></svg>`;
 }
 
-function gauges(choices, ctx) {
+function gauges(choices, ctx, setup = {}) {
   const lvl = (d) => Math.max(0, ctx.RULES.opciones[d].indexOf(choices[d]));
   const item = (d, svg, level) => `<li class="jg-g" data-g="${d}"${level === null ? '' : ` data-level="${level}"`}>${svg}<span><small>${ctx.t('jgD_' + d)}</small><b>${ctx.t(`jgO_${d}_${choices[d]}`)}</b></span></li>`;
   return `<ul class="jg-gauges" aria-label="${ctx.esc(ctx.t('jgTentGauges'))}">
     ${item('fotoperiodo', clock(choices.fotoperiodo), null)}
     ${item('temperatura', thermo(lvl('temperatura')), lvl('temperatura'))}
     ${item('humedad', drops(lvl('humedad')), lvl('humedad'))}
-    ${item('nutrientes', dial(lvl('nutrientes')), lvl('nutrientes'))}
+    ${setup?.medir === 'no' ? `<li class="jg-g" data-g="nutrientes" data-sin-medir="1">${dial(1)}<span><small>${ctx.t('jgD_nutrientes')}</small><b>${ctx.t('jgSinMedir')}</b></span></li>` : item('nutrientes', dial(lvl('nutrientes')), lvl('nutrientes'))}
   </ul>`;
 }
 
 // ---------------------------------------------------------------- caption
-function caption(state, sc, choices, light, t, post) {
-  const out = [t('jgTentD_' + sc)];
+function caption(state, sc, choices, light, t, post, germ, setup = {}) {
+  const out = [t('jgTentD_' + (sc === 'intro' && HYDRO.includes(setup?.sistema) ? 'intro_hidro' : sc))];
   if (sc === 'secado') out.push(t('jgTentM_' + (post?.metodo || 'ramas')));
+  if (sc === 'germinar' && germ?.metodo) out.push(t('jgGermO_metodo_' + germ.metodo) + '.');
   // intro and curing already say it is dark; drying can be dark or lit
   if (light || sc === 'muerta' || sc === 'secado') out.push(t(light ? 'jgTentLuz_' + light : 'jgTentLuz_off'));
   if (['germ', 'plantula', 'vegetativo', 'floracion'].includes(sc)) {
-    out.push(t('jgTentRiego_' + choices.riego), t('jgTentHoja_' + healthBand(state.health)));
+    // hydroponics: there is no growing medium to describe
+    if (!HYDRO.includes(setup?.sistema)) out.push(t('jgTentRiego_' + choices.riego));
+    out.push(t('jgTentHoja_' + healthBand(state.health)));
     const prob = problemOf(state);
     if (prob) out.push(t(prob.faded ? 'jgTentRec' : 'jgTentP_' + prob.id));
   }
@@ -431,16 +518,16 @@ export function tentHtml(state, choices, ctx, ui = {}) {
   // phase 8: the post-harvest screens are drawn with what is picked (ui.post)
   const post = ['secado', 'curado', 'rosin'].includes(sc) ? (ui.post || {}) : null;
   const light = play ? (ch.intensidad || 'media')
-    : sc === 'fin' || sc === 'rosin' ? 'baja' : sc === 'secado' && post.luz === 'con_luz' ? 'media' : null;
+    : sc === 'fin' || sc === 'rosin' || sc === 'germinar' ? 'baja' : sc === 'secado' && post.luz === 'con_luz' ? 'media' : null;
   const open = play && OBJECTS[ui.open] ? ui.open : null;
   return `<figure class="jg-tent${play && ui.anim ? ' jgt-anim' : ''}" id="jgTent">
     <div class="jgt-scene">
-      <div class="jgt-stage">${tentSvg(state, sc, ch, light, { ...ctx, anim: play && ui.anim, post })}${play ? objButtons(open, ctx) : ''}</div>
+      <div class="jgt-stage">${tentSvg(state, sc, ch, light, { ...ctx, anim: play && ui.anim, post, setup: ui.setup || state.setup, germ: ui.germ })}${play ? objButtons(open, ctx, ui.setup || state.setup) : ''}</div>
       ${play ? `<p class="jgt-hint">${ctx.esc(ctx.t('jgTentHint'))}</p>` : ''}
       ${open ? panelHtml(open, ch, !!ui.blocked, ctx) : ''}
     </div>
-    ${play ? gauges(ch, ctx) : ''}
-    <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t, post))}</figcaption>
+    ${play ? gauges(ch, ctx, ui.setup || state.setup) : ''}
+    <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t, post, ui.germ, ui.setup || state.setup))}</figcaption>
   </figure>`;
 }
 

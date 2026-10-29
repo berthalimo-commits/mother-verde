@@ -4,7 +4,7 @@
 // rosin) show and are told in words; «¿Por qué?» with its checked source
 // (F8 storage study, P1/P2 rosin patents); rosin figures only «orientativo»;
 // the server keeps the whole post-harvest; 4 languages; 360 px.
-import { check, sleep, sql, browser, summary } from './browser.mjs';
+import { check, sleep, sql, browser, summary, startGame } from './browser.mjs';
 import fs from 'fs';
 
 const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
@@ -61,7 +61,7 @@ for (let i = 0; i < 30; i++) { if (await b.ev(`!!document.getElementById('jgBubb
 const gs = () => b.ev(`JSON.parse(JSON.stringify(window.mvGameDebug.state))`);
 const pick = (st, d, o) => b.ev(`document.querySelector('label[for="jgp-${st}-${d}-${o}"]').click(); 1`).then(() => sleep(150));
 const post = () => b.ev(`(() => { const g = document.querySelector('#jgTent .jgt-post'); return g ? { ...g.dataset, desc: document.getElementById('jgTentDesc').textContent } : null; })()`);
-await b.ev(`document.getElementById('jgStart').click(); 1`); await sleep(800);
+await startGame(b);
 for (let i = 0; i < 16 && (await gs()).stage !== 'floracion'; i++) {
   if (await b.ev(`!!document.querySelector('.jg-answer')`)) { await b.ev(`document.querySelector('.jg-answer').click(); 1`); await sleep(500); }
   await b.ev(`document.getElementById('jgNext').click(); 1`); await sleep(700);
