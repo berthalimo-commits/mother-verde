@@ -43,8 +43,8 @@ check('aplicar la migración otra vez -> setup aceptado de nuevo', await valid({
 
 console.log('3. Copias para pegar en staging');
 const same = (a, b) => fs.readFileSync(REPO + a) .equals(fs.readFileSync(REPO + b));
-check('supabase/staging/paso4c-juego-setup.sql = la migración, byte a byte', same('/staging/paso5-juego-setup.sql', '/migrations/20261029100000_game_setup.sql'));
-check('supabase/staging/paso4c-rollback.sql = el rollback, byte a byte', same('/staging/paso5-rollback.sql', '/admin/rollback-20261029100000.sql'));
+check('supabase/staging/paso4c-juego-setup.sql = la migración, byte a byte', same('/staging/paso4c-juego-setup.sql', '/migrations/20261029100000_game_setup.sql'));
+check('supabase/staging/paso4c-rollback.sql = el rollback, byte a byte', same('/staging/paso4c-rollback.sql', '/admin/rollback-20261029100000.sql'));
 
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 process.exit(0);
