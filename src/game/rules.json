@@ -343,6 +343,46 @@
         "respuesta_correcta": "dejar_secar",
         "fuente": "Cultivo → Diagnóstico (Exceso de riego: dejar secar entre riegos)",
         "verificar": "[POR VERIFICAR POR BERTHA]"
+      },
+      "pudricion_raiz": {
+        "si": {
+          "temperatura": "calida"
+        },
+        "etapas": [
+          "plantula",
+          "vegetativo",
+          "floracion"
+        ],
+        "solo": {
+          "sistema": [
+            "dwc",
+            "nft",
+            "aeroponia",
+            "acuaponia"
+          ]
+        },
+        "respuesta_correcta": "enfriar_agua",
+        "fuente": "F9 (raíz podrida con la solución a 24–27 °C y no a 16–17 °C; en lechuga) + F3 (Pythium)",
+        "respaldo": "estudio",
+        "verificar": "[POR VERIFICAR POR BERTHA]"
+      },
+      "quemadura_luz": {
+        "si": {
+          "intensidad": "alta"
+        },
+        "etapas": [
+          "floracion"
+        ],
+        "solo": {
+          "carpa": [
+            "pequena"
+          ]
+        },
+        "semanas_vegetativo_min": 5,
+        "respuesta_correcta": "alejar_luz",
+        "fuente": "Criterio de la autora: en una carpa pequeña, una planta alta queda muy cerca de una lámpara fuerte",
+        "respaldo": "autora",
+        "verificar": "[POR VERIFICAR POR BERTHA]"
       }
     },
     "respuestas": [
@@ -351,7 +391,9 @@
       "depredadores",
       "ajustar_nutricion",
       "dejar_secar",
-      "esperar"
+      "esperar",
+      "enfriar_agua",
+      "alejar_luz"
     ]
   },
   "puntuacion": {
@@ -781,6 +823,283 @@
             "respaldo": "simple",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
+        }
+      }
+    }
+  },
+  "setup": {
+    "_nota": "Fase 6: se elige una vez, antes de plantar. No hay opción «correcta»: cada equipo cambia las reglas de las semanas (efectos). respaldo = nivel de docs/juego-fuentes.md.",
+    "verificar": "[POR VERIFICAR POR BERTHA]",
+    "decisiones": {
+      "carpa": {
+        "opciones": [
+          "pequena",
+          "mediana",
+          "grande"
+        ],
+        "fuente": "Criterio de la autora",
+        "respaldo": "autora"
+      },
+      "luz": {
+        "opciones": [
+          "led",
+          "hps",
+          "cmh"
+        ],
+        "fuente": "Glosario (HPS: «genera más calor»)",
+        "respaldo": "practica"
+      },
+      "sistema": {
+        "opciones": [
+          "maceta",
+          "dwc",
+          "nft",
+          "aeroponia",
+          "acuaponia"
+        ],
+        "fuente": "Cultivo → Sistemas (hidroponía, NFT, acuaponía) · F9",
+        "respaldo": "estudio"
+      },
+      "sustrato": {
+        "opciones": [
+          "tierra",
+          "coco",
+          "lana_roca",
+          "tierra_viva"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "Glosario (Fibra de coco) · criterio de la autora",
+        "respaldo": "practica"
+      },
+      "maceta": {
+        "opciones": [
+          "plastico",
+          "tela",
+          "aire",
+          "barro"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "F10 · criterio de la autora (barro)",
+        "respaldo": "estudio"
+      },
+      "maceta_tam": {
+        "opciones": [
+          "pequena",
+          "grande"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "Criterio de la autora (Glosario: trasplante)",
+        "respaldo": "autora"
+      },
+      "riego_tipo": {
+        "opciones": [
+          "mano",
+          "goteo"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "F5 (el goteo baja la humedad)",
+        "respaldo": "guia"
+      },
+      "medir": {
+        "opciones": [
+          "si",
+          "no"
+        ],
+        "fuente": "Simplificación del juego",
+        "respaldo": "simple"
+      }
+    },
+    "efectos": {
+      "fijos": {
+        "dwc": {
+          "riego": "moderado"
+        },
+        "nft": {
+          "riego": "moderado"
+        },
+        "aeroponia": {
+          "riego": "moderado"
+        },
+        "acuaponia": {
+          "riego": "moderado",
+          "nutrientes": "medio"
+        },
+        "_fuente": "Hidroponía: la raíz está en el agua (Cultivo → Sistemas). Acuaponía: los nutrientes vienen de los peces (criterio de la autora)."
+      },
+      "sube": {
+        "luz": {
+          "hps": {
+            "temperatura": 1
+          }
+        },
+        "_fuente": "Glosario (HPS: «genera más calor») · simplificación",
+        "respaldo": "practica"
+      },
+      "semanas_extra": {
+        "maceta": {
+          "tela": {
+            "exceso_riego": 1
+          },
+          "aire": {
+            "exceso_riego": 1
+          },
+          "barro": {
+            "exceso_riego": 1
+          }
+        },
+        "sustrato": {
+          "tierra": {
+            "carencia_n": 1
+          },
+          "tierra_viva": {
+            "carencia_n": 1
+          }
+        },
+        "riego_tipo": {
+          "goteo": {
+            "oidio": 1
+          }
+        },
+        "_fuente": "F10 + F3 (macetas porosas secan antes) · F5 (goteo) · criterio de la autora (tierra)"
+      },
+      "poco_doble": {
+        "maceta": [
+          "tela",
+          "aire",
+          "barro"
+        ],
+        "_fuente": "F10 («greater water requirements… in porous containers»)",
+        "respaldo": "estudio"
+      },
+      "ideal_extra": {
+        "coco": {
+          "plantula": {
+            "nutrientes": "medio"
+          }
+        },
+        "lana_roca": {
+          "plantula": {
+            "nutrientes": "medio"
+          }
+        },
+        "tierra_viva": {
+          "vegetativo": {
+            "nutrientes": [
+              "bajo",
+              "medio"
+            ]
+          },
+          "floracion": {
+            "nutrientes": [
+              "bajo",
+              "medio"
+            ]
+          }
+        },
+        "_fuente": "Glosario (coco: «requiere fertirriego») · criterio de la autora (lana de roca, tierra viva)"
+      },
+      "carpa_grande": {
+        "resta_extra": {
+          "temperatura": 1,
+          "humedad": 1
+        },
+        "bonus_cosecha": 5,
+        "_fuente": "Criterio de la autora",
+        "respaldo": "autora"
+      },
+      "trasplante": {
+        "maceta_tam": "pequena",
+        "desde_semana_vegetativo": 3,
+        "resta": 4,
+        "_fuente": "Criterio de la autora (Glosario: trasplante)",
+        "respaldo": "autora"
+      }
+    }
+  },
+  "germinacion": {
+    "_nota": "Fase 7: una pantalla antes de la plántula. Los errores restan salud al empezar.",
+    "leccion": [
+      "cultivo",
+      "propagacion"
+    ],
+    "resta_un_nivel": 4,
+    "resta_dos_niveles": 8,
+    "decisiones": {
+      "metodo": {
+        "opciones": [
+          "papel",
+          "taco",
+          "tierra",
+          "coco",
+          "vaso",
+          "lana_roca"
+        ],
+        "escala": false,
+        "ideal": {
+          "valor": null,
+          "fuente": "Criterio de la autora: cada método tiene su riesgo, ninguno puntúa por sí solo",
+          "respaldo": "autora",
+          "verificar": "[POR VERIFICAR POR BERTHA]"
+        }
+      },
+      "temperatura": {
+        "opciones": [
+          "fria",
+          "templada",
+          "calurosa"
+        ],
+        "ideal": {
+          "valor": "templada",
+          "fuente": "F11 (óptimo entre 19 y 30 °C)",
+          "respaldo": "estudio",
+          "verificar": "[POR VERIFICAR POR BERTHA]"
+        }
+      },
+      "humedad": {
+        "opciones": [
+          "seco",
+          "humedo",
+          "empapado"
+        ],
+        "ideal": {
+          "valor": "humedo",
+          "fuente": "Criterio de la autora",
+          "respaldo": "autora",
+          "verificar": "[POR VERIFICAR POR BERTHA]"
+        }
+      },
+      "tiempo": {
+        "opciones": [
+          "menos_dia",
+          "varios_dias"
+        ],
+        "cuando": {
+          "metodo": [
+            "vaso"
+          ]
+        },
+        "escala": false,
+        "ideal": {
+          "valor": "menos_dia",
+          "fuente": "Criterio de la autora (la semilla se ahoga)",
+          "respaldo": "autora",
+          "verificar": "[POR VERIFICAR POR BERTHA]"
         }
       }
     }

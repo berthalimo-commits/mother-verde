@@ -5,9 +5,14 @@
 
 export const DECISIONS = ['fotoperiodo', 'intensidad', 'riego', 'nutrientes', 'temperatura', 'humedad'];
 // Events are checked in this order (the more specific one first).
-const EVENT_ORDER = ['botrytis', 'acaros', 'carencia_n', 'exceso_riego', 'oidio'];
+const EVENT_ORDER = ['pudricion_raiz', 'quemadura_luz', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego', 'oidio'];
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
-const ideal = (rules, stage, d) => rules.etapas[stage]?.ideal?.[d]?.valor ?? null;
+// Phase 6: the substrate can change the ideal (coco needs feeding from the
+// seedling on; living soil feeds itself). A list = any of them is ideal.
+const ideal = (rules, stage, d, setup) => {
+  const extra = rules.setup?.efectos.ideal_extra[setup?.sustrato]?.[stage]?.[d];
+  return extra !== undefined ? extra : rules.etapas[stage]?.ideal?.[d]?.valor ?? null;
+};
 
 export function newGame(prev = null) {
   return { v: 1, seq: (prev?.seq ?? 0) + 1, run: (prev?.run ?? 0) + 1, stage: 'intro', week: 0, stageWeek: 0,
@@ -15,8 +20,59 @@ export function newGame(prev = null) {
     lab: prev?.lab ? { at: null, f: [], q: [], v: prev.lab.v || 0 } : null, notes: [] };
 }
 
+// ---------------------------------------------------------------- phase 6: the equipment
+// Chosen once, before planting. No option is «right»: each one changes the
+// rules of the weeks (rules.json → setup.efectos).
+const applies = (cuando, vals) => !cuando || Object.entries(cuando).every(([k, list]) => list.includes(vals?.[k]));
+export const setupDecisions = (rules, picked = {}) => Object.entries(rules.setup.decisiones).filter(([, def]) => applies(def.cuando, picked)).map(([d]) => d);
+
+export function setSetup(s, choices, rules) {
+  if (s.stage !== 'intro') throw new Error('not_intro');
+  const ds = setupDecisions(rules, choices);
+  if (!ds.every((d) => rules.setup.decisiones[d].opciones.includes(choices?.[d]))) throw new Error('bad_setup');
+  const setup = Object.fromEntries(ds.map((d) => [d, choices[d]]));
+  if (setup.maceta_tam === 'pequena') setup.trasplante = 'no';
+  return { ...s, seq: s.seq + 1, setup, notes: ['setupOk'] };
+}
+
+// The decisions the player doesn't take in this system (hydroponics: no
+// watering; aquaponics: no nutrients either).
+export const fixedDecisions = (s, rules) => { const f = rules.setup?.efectos.fijos[s.setup?.sistema] || {}; return Object.fromEntries(Object.entries(f).filter(([k]) => DECISIONS.includes(k))); };
+
+// With an equipment chosen the run starts with germination (phase 7);
+// a game saved before phase 6 (no setup) goes straight to the seedling.
 export function start(s) {
+  if (s.setup) return { ...s, seq: s.seq + 1, stage: 'germinacion', week: 0, stageWeek: 0, notes: ['guia'] };
   return { ...s, seq: s.seq + 1, stage: 'plantula', week: 1, stageWeek: 1, notes: ['guia'] };
+}
+
+// ---------------------------------------------------------------- phase 7: germination
+export const germDecisions = (rules, picked = {}) => Object.entries(rules.germinacion.decisiones).filter(([, def]) => applies(def.cuando, picked)).map(([d]) => d);
+
+export function applyGerm(s, choices, rules) {
+  if (s.stage !== 'germinacion') throw new Error('not_germ');
+  const G = rules.germinacion;
+  const ds = germDecisions(rules, choices);
+  if (!ds.every((d) => G.decisiones[d].opciones.includes(choices?.[d]))) throw new Error('bad_choices');
+  const lost = {};
+  for (const d of ds) {
+    const def = G.decisiones[d];
+    const wants = [].concat(def.ideal.valor ?? []);
+    if (!wants.length || wants.includes(choices[d])) continue;
+    const dist = def.escala === false ? 1 : Math.min(...wants.map((w) => Math.abs(def.opciones.indexOf(choices[d]) - def.opciones.indexOf(w))));
+    lost[d] = dist >= 2 ? G.resta_dos_niveles : G.resta_un_nivel;
+  }
+  const total = Object.values(lost).reduce((a, b) => a + b, 0);
+  const health = clamp(s.health - total, 0, 100);
+  const c = Object.fromEntries(ds.map((d) => [d, choices[d]]));
+  return { ...s, seq: s.seq + 1, stage: 'plantula', week: 1, stageWeek: 1, health, setup: { ...s.setup, germinacion: choices.metodo },
+    log: [...s.log, { w: 0, s: 'germinacion', h: health, l: lost, c }].slice(-60), notes: [total ? 'germMal' : 'germBien', 'guia'] };
+}
+
+// A small pot has to be moved to a big one during the vegetative stage.
+export function transplant(s) {
+  if (!['plantula', 'vegetativo'].includes(s.stage) || s.setup?.maceta_tam !== 'pequena' || s.setup.trasplante === 'si') throw new Error('no_transplant');
+  return { ...s, seq: s.seq + 1, setup: { ...s.setup, trasplante: 'si' }, notes: ['trasplanteOk'] };
 }
 
 // Choices the person sees pre-selected: last week's, or the middle option.
@@ -37,15 +93,30 @@ export function trichomes(stageWeek, rules) {
 }
 
 // Penalty of one decision against the ideal of the stage. null ideal = not scored.
-function penalty(rules, stage, d, value) {
-  const want = ideal(rules, stage, d);
+function penalty(rules, stage, d, value, setup) {
+  const want = ideal(rules, stage, d, setup);
   if (want === null) return { pts: 0, unscored: true };
-  if (value === want) return { pts: 0 };
+  const wants = [].concat(want);
+  if (wants.includes(value)) return { pts: 0 };
   if (d === 'fotoperiodo') return { pts: rules.puntuacion.resta_fotoperiodo };
   const opts = rules.opciones[d];
-  const dist = Math.abs(opts.indexOf(value) - opts.indexOf(want));
+  const dist = Math.min(...wants.map((w) => Math.abs(opts.indexOf(value) - opts.indexOf(w))));
   return { pts: dist >= 2 ? rules.puntuacion.resta_dos_niveles : rules.puntuacion.resta_un_nivel };
 }
+
+// What the tent really gets this week: the fixed decisions of the system and
+// the HPS warming the air one level.
+function effective(s, choices, rules) {
+  const eff = { ...choices, ...fixedDecisions(s, rules) };
+  const up = rules.setup?.efectos.sube.luz[s.setup?.luz] || {};
+  for (const [d, n] of Object.entries(up)) {
+    const o = rules.opciones[d];
+    eff[d] = o[Math.min(o.length - 1, o.indexOf(eff[d]) + n)];
+  }
+  return eff;
+}
+const extraWeeks = (s, id, rules) => Object.entries(rules.setup?.efectos.semanas_extra || {})
+  .reduce((n, [k, map]) => n + (map?.[s.setup?.[k]]?.[id] || 0), 0);
 
 function valid(choices, rules) {
   return DECISIONS.every((d) => rules.opciones[d].includes(choices[d]));
@@ -54,20 +125,38 @@ function valid(choices, rules) {
 // One week with the person's choices.
 export function applyWeek(s, choices, rules) {
   if (!['plantula', 'vegetativo', 'floracion'].includes(s.stage) || s.event && !s.event.answered) throw new Error('not_playable');
+  // Phase 6: what the system fixes is not the player's choice.
+  const fixed = fixedDecisions(s, rules);
+  choices = { ...choices, ...fixed };
   if (!valid(choices, rules)) throw new Error('bad_choices');
   const P = rules.puntuacion;
+  const FX = rules.setup?.efectos;
+  const setup = s.setup || {};
+  const eff = effective(s, choices, rules);
   const notes = [];
   const lost = {};
   let health = s.health;
   let stage = s.stage, stageWeek = s.stageWeek;
   const veg = rules.etapas.vegetativo.semanas;
+  if (eff.temperatura !== choices.temperatura) notes.push('efecto:hps');
 
   for (const d of DECISIONS) {
+    if (d in fixed) continue;
     // In vegetativo, choosing 12/12 is the switch to flowering, not a mistake.
     if (stage === 'vegetativo' && d === 'fotoperiodo' && choices[d] === '12/12') continue;
-    const p = penalty(rules, stage, d, choices[d]);
+    const p = penalty(rules, stage, d, eff[d], setup);
     if (p.unscored) notes.push('sinDato:' + d);
-    if (p.pts) { health -= p.pts; lost[d] = p.pts; }
+    let pts = p.pts;
+    // porous pots dry faster: too little water costs double (F10)
+    if (pts && d === 'riego' && eff.riego === 'poco' && FX?.poco_doble.maceta.includes(setup.maceta)) { pts *= 2; notes.push('efecto:poco_doble'); }
+    // a big tent is harder to keep even (author's criteria)
+    if (pts && setup.carpa === 'grande') pts += FX?.carpa_grande.resta_extra[d] || 0;
+    if (pts) { health -= pts; lost[d] = pts; }
+  }
+  // a small pot not moved to a big one keeps the roots tight (author's criteria)
+  const T = FX?.trasplante;
+  if (T && setup.maceta_tam === T.maceta_tam && setup.trasplante !== 'si' && stage === 'vegetativo' && stageWeek >= T.desde_semana_vegetativo) {
+    health -= T.resta; lost.maceta = T.resta; notes.push('sinTrasplante');
   }
 
   // An event nobody solved keeps costing health.
@@ -78,13 +167,18 @@ export function applyWeek(s, choices, rules) {
   // Risks: a bad condition repeated N weeks in a row brings its event.
   const risks = { ...s.risks };
   const need = rules.eventos.semanas_para_aparecer.valor;
+  const vegWeeks = s.log.filter((l) => l.s === 'vegetativo').length;
   for (const id of EVENT_ORDER) {
     const ev = rules.eventos.lista[id];
-    const hit = ev.etapas.includes(stage) && Object.entries(ev.si).every(([k, v]) => choices[k] === v);
+    // phase 6: some problems only happen with some equipment (ev.solo)
+    const hit = ev.etapas.includes(stage) && Object.entries(ev.si).every(([k, v]) => eff[k] === v)
+      && (!ev.solo || Object.entries(ev.solo).every(([k, list]) => list.includes(setup[k])))
+      && (!ev.semanas_vegetativo_min || vegWeeks >= ev.semanas_vegetativo_min);
     risks[id] = hit ? Math.min((risks[id] || 0) + 1, 20) : 0;
   }
   if (!event) {
-    const id = EVENT_ORDER.find((x) => risks[x] >= need);
+    // drip irrigation, porous pots and plain soil delay some problems a week
+    const id = EVENT_ORDER.find((x) => risks[x] >= need + extraWeeks(s, x, rules));
     if (id) { event = { id, since: s.week }; notes.push('evento:' + id); }
   }
   for (const k of Object.keys(risks)) if (!risks[k]) delete risks[k];
@@ -134,7 +228,9 @@ export function harvest(s, rules, auto = false) {
   if (s.stage !== 'floracion') throw new Error('not_flowering');
   const trich = trichomes(s.stageWeek, rules);
   const pts = rules.tricomas.estados.find((e) => e.id === trich).puntos;
-  const score = clamp(s.health + pts, 0, 100);
+  // phase 6: a big tent gives more harvest (author's criteria)
+  const bonus = s.setup?.carpa === 'grande' ? rules.setup.efectos.carpa_grande.bonus_cosecha : 0;
+  const score = clamp(s.health + pts + bonus, 0, 100);
   const done = finish({ ...s, seq: s.seq + (auto ? 0 : 1), trich, notes: auto ? ['cosechaAuto'] : [] }, rules, false, { score, trich, pts });
   // Phase 2: a harvested plant goes on to drying, curing and (optional) rosin.
   return { ...done, stage: 'secado', post: {}, notes: [...done.notes, 'cosechado'] };
@@ -206,4 +302,5 @@ function addLesson(list, l) { return list.includes(l) ? list : [...list, l].slic
 export const LESSON = { plantula: 'propagacion', vegetativo: 'sistemas', floracion: 'iluminacion', fin: 'cosecha',
   secado: 'procesos', curado: 'procesos', rosin: 'concentrados',
   fotoperiodo: 'ciclo', intensidad: 'iluminacion', riego: 'diagnostico', nutrientes: 'sustrato', temperatura: 'sistemas',
-  humedad: 'sistemas', evento: 'diagnostico', flip: 'ciclo' };
+  humedad: 'sistemas', evento: 'diagnostico', flip: 'ciclo',
+  germinacion: 'propagacion', maceta: 'sustrato', pudricion_raiz: 'diagnostico', quemadura_luz: 'iluminacion' };
