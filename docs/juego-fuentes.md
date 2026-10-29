@@ -77,12 +77,9 @@ referentes del mundo sin solventes. No son estudios.
 | **C3** | Pollinator Company (Mila Jansen), manual del *Ice-O-Lator* (inglés y español). https://pollinator.nl/wp-content/uploads/2016/05/man_Ice_eng.pdf2_.pdf | El agua tiene que estar apenas sobre 0 °C (lo ideal, 3–5 °C); material congelado al menos una hora; no llenar demasiado la bolsa; 15 min de remojo; batir a velocidad baja en tandas de 15 min con 5 de pausa (alrededor de una hora); se puede reutilizar el agua fría en varias cargas; el hachís hay que secarlo **enseguida**, desmenuzado, o se enmohece. No da tamaños de malla. |
 | **C4** | Pollinator Company (Mila Jansen), manual del *Pollinator* (tamizado en seco). https://pollinator.nl/wp-content/uploads/2016/08/pollinator-manual-eng.pdf | Meter el material en una bolsa cerrada al congelador unas dos horas para que el tamizado rinda más; sin tallos duros; una primera vuelta de 2 a 5 minutos da la resina más pura. No da tamaños de malla. |
 
-**Pendiente de verificar por Bertha** (no pude leerlo; no afirmo nada):
-- **Frenchy Cannoli:** su web (frenchycannoli.com) solo muestra un aviso de edad. Lo que se cita de él son entrevistas
-  de terceros que no abrí.
-- **«Hash Makers»:** no encontré una marca o guía con ese nombre.
-- **«Smash Nugs»:** supuse que es **NugSmasher** (C2). Si es otra marca, hay que revisarlo.
-- **Lo que ya no se puede leer:**
+«Smash Nugs» es **NugSmasher** (C2), confirmado por Bertha el 2026-10-29.
+
+**No usado** (no pude leerlo; no afirmo nada):
   - el PDF «Temps and Times» de una tienda Shopify (sin marca legible; texto en códigos de glifo);
   - las redes sociales y los vídeos de todas estas marcas.
 

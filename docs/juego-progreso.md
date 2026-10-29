@@ -383,8 +383,8 @@ y explicadas con palabras propias:
 - **C3** manual del Ice-O-Lator (Pollinator Company, de Mila Jansen);
 - **C4** manual del Pollinator.
 
-Pendiente de verificar por Bertha: Frenchy Cannoli, «Hash Makers», vídeos y redes. Comparación con los rangos de
-Bertha:
+«Smash Nugs» = NugSmasher (confirmado por Bertha). No se usan vídeos ni redes sociales. Comparación con los rangos
+de Bertha:
 - coinciden la malla de flor seca (90 µm), el hachís fresco en 25 µm, los tres tramos de calor y el tiempo de
   C2 (90–120 s);
 - **sin fuente:** el hachís seco (45–90 µm);

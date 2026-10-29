@@ -81,7 +81,7 @@ export default {
     jgPC_material_partida: 'the starting material', jgPC_material_separacion: 'how it was separated', jgPC_material_tamiz_frio: 'sifting without chilling', jgPC_material_tamiz_malla: 'the screen mesh',
     jgPC_material_tamiz_frotar: 'rubbing hard', jgPC_material_tamiz_tiempo: 'sifting too long', jgPC_material_agua_temp: 'water not cold enough', jgPC_material_agua_agitar: 'stirring hard',
     jgPC_material_agua_lavados: 'the washes', jgPC_material_agua_bolsa: 'the mesh bag', jgPC_material_agua_secado: 'damp hash (mould)',
-    jgWhyNivel_comunidad: 'community practice (what manufacturers and hash makers publish; not a study and not an endorsement of Mother Verde).',
+    jgWhyNivel_comunidad: 'community practice (what manufacturers and people who make hashish publish; not a study and not an endorsement of Mother Verde).',
     jgWhy_material_tamiz_frio: 'A dry-sifting manual advises freezing the material first: the resin turns brittle and falls more easily.',
     jgWhy_material_tamiz_malla: 'A coarse screen lets more bits of plant through with the resin (author’s criteria). The microns of each mesh are pending validation.',
     jgWhy_material_tamiz_frotar: 'Rubbing hard tears off bits of plant that fall with the resin and dirty it (author’s criteria).',
