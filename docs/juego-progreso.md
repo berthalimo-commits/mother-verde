@@ -292,8 +292,92 @@ explicaciones y «¿Por qué?» en 4 idiomas. Se descarga solo al entrar al jueg
 
 **Para validar por Bertha:** la lista de `docs/juego-decisiones.md` («Para validar por Bertha»).
 
+## Fases 5, 6 y 7 — Migración, equipo y sistemas, germinación · HECHAS (2026-10-29)
+
+**Fase 5 — migración nueva (solo staging, hay que pegarla)**
+- `supabase/migrations/20261029100000_game_setup.sql`: solo cambia `game_state_valid()`.
+  - La partida puede llevar la clave `setup` (equipo y método), cada opción solo con sus valores conocidos y
+    `plantas` de 1 a 6.
+  - Se suman la etapa `germinacion` y los problemas `pudricion_raiz` y `quemadura_luz`.
+  - Todo lo demás queda igual.
+- Vuelta atrás: `supabase/admin/rollback-20261029100000.sql`.
+- **Para pegar en staging:** `supabase/staging/paso4c-juego-setup.sql`, copia exacta comprobada byte a byte
+  (`docs/staging.md`, paso 4). Sin ella, la web de pruebas rechaza guardar una partida con equipo.
+- En `tests/sim/test.mjs` la migración y su vuelta atrás entran en la comprobación de «esquema después de las
+  reversas = esquema de antes».
+
+**Fase 6 — «Prepara tu carpa» (una vez por partida, antes de plantar)**
+- Decisiones:
+  - carpa (pequeña, mediana, grande);
+  - luz (LED, HPS, CMH);
+  - sistema (maceta, DWC, NFT, aeroponía, acuaponía);
+  - solo con maceta: sustrato (tierra, coco, lana de roca, tierra viva), maceta (plástico, tela, de aire, barro),
+    tamaño y riego (a mano o goteo);
+  - medir pH y EC.
+- No hay opción «correcta»: cada pieza cambia las reglas. Fuentes en `docs/juego-decisiones.md`:
+  - **hidroponía:** sin decisión de riego; con calor 2 semanas, **pudrición de raíz** (F9 + F3);
+  - **acuaponía:** sin decisión de nutrientes, porque los dan los peces;
+  - **HPS:** la temperatura cuenta un nivel más alta (glosario, simplificación);
+  - **tela, de aire y barro:** el exceso de riego tarda una semana más y «poco» riego resta el doble (F10);
+  - **goteo:** el oídio tarda una semana más (F5);
+  - **sustratos:** coco y lana de roca piden nutrientes desde la plántula; la tierra viva no; en tierra, la
+    carencia de N tarda una semana más;
+  - **carpa pequeña:** **quemadura de luz** con planta alta y luz fuerte;
+  - **carpa grande:** +1 por cada error de clima y +5 en la cosecha;
+  - **maceta pequeña sin trasplantar:** resta desde la 3.ª semana de vegetativo. Hay un botón «Trasplantar».
+  - **sin medidor:** «sin medir» y sin cifras de EC.
+- **El dibujo cambia con el equipo:** maceta y sustrato, los sistemas (raíces, burbujas, canal, niebla, peces),
+  lámpara LED, HPS o CMH, techo más bajo en la carpa pequeña, línea de goteo, medidor. Sin regadera en hidroponía y
+  sin botella de nutrientes en acuaponía.
+- Las partidas guardadas antes de la fase 6 siguen funcionando: sin equipo, empiezan directo en la plántula.
+
+**Fase 7 — Germinación (etapa nueva, una pantalla antes de la plántula)**
+- Decisiones:
+  - método: papel húmedo, taco de turba, directo en tierra, directo en coco, vaso de agua o cubo de lana de roca;
+  - temperatura: fría, templada (19–30 °C, **F11**) o calurosa;
+  - humedad;
+  - tiempo en el vaso (solo con el vaso).
+- Los errores restan salud al empezar la plántula y tienen su «¿Por qué?».
+- Se dibuja cada método.
+
+**«¿Por qué?» nuevos:** pudrición de raíz (F9 + F3), quemadura de luz, maceta pequeña, lámpara HPS, maceta porosa
+(F10) y la germinación (temperatura F11; humedad y tiempo, criterio de la autora).
+
+**Archivos**
+- `src/game/rules.json`: bloques `setup` (decisiones y efectos) y `germinacion`, y los eventos nuevos.
+- `src/game/engine.js`: `setSetup`, `setupDecisions`, `fixedDecisions`, `start` con germinación, `applyGerm`,
+  `transplant` y los efectos en `applyWeek` y `harvest`.
+- `src/game/i18n-setup.js` (nuevo): todos los textos en 4 idiomas.
+- `src/game/game.js`: las dos pantallas nuevas (las decisiones aparecen según lo elegido), el resumen del equipo,
+  el aviso de hidroponía y el botón de trasplante.
+- `src/game/tent.js`: maceta, `hydro()`, `lamp()`, `germScene()`, medidor, goteo, los dos problemas nuevos y
+  objetos ocultos.
+- `src/game/why.js`: 8 razones nuevas, fuentes F9, F10 y F11.
+- `docs/juego-fuentes.md`: F9, F10 y F11 comprobadas, y lo que no se pudo comprobar.
+
+**Pruebas**
+- Nuevas:
+  - `game-setup-db.mjs` **13 ok**: la migración, la vuelta atrás y las copias para staging;
+  - `game-setup-engine.mjs` **31 ok**: cada efecto del equipo uno por uno, y el servidor acepta todos los
+    estados;
+  - `game-setup-ui.mjs` **27 ok**: las pantallas, lo que aparece y desaparece, hidroponía, trasplante, sin
+    medidor, HPS, servidor, 4 idiomas, 360 px.
+- Las pruebas que empezaban con «Plantar la semilla» usan ahora `startGame()` (en `browser.mjs`): equipo neutro y
+  germinación ideal, así siguen en la semana 1 de la plántula con salud 100.
+- **Batería completa (2026-10-29), en grupos de 4 a 6: 44 pruebas, 0 fallas.**
+
+**Peso:** juego 189,1 → 237,9 KB (58,9 → 73,4 comprimido). Lo que más pesa son los textos de 4 idiomas. Se
+descarga solo al entrar al juego.
+
+**Para Bertha:**
+1. **Pegar en staging** `supabase/staging/paso4c-juego-setup.sql`. Sin esto, guardar una partida con equipo
+   falla en la web de pruebas.
+2. Validar los «criterio de la autora» de las fases 6 y 7 (lista en `docs/juego-decisiones.md`).
+
 **Lo siguiente:**
-- **Fase 5** (migración nueva) y después **fases 6 y 7** (sistemas de cultivo y germinación).
+- **Varias plantas y autofloreciente** (semilla regular con macho posible, autofloreciente con calendario propio,
+  número de plantas que agranda la carpa).
+- Después, la **fase 9** (pulido final).
 - Más tarde: varias plantas y autofloreciente; después, la fase 9.
 - Fuera del juego, cerrado: Bertha comprobó que el arreglo de las flores funciona en la página publicada de `dev`.
 
