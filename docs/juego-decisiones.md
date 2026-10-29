@@ -1,6 +1,100 @@
 # Juego — catálogo de decisiones (para revisar ANTES de programar)
 
-Rama: **`juego`**. Estado: **borrador para Bertha** (2026-10-27). Nada de este catálogo está programado todavía.
+Rama: **`juego`**.
+
+## Estado: APROBADO por Bertha (2026-10-28)
+
+- **Se aprueban todas las propuestas:** tamaño de carpa, macetas, tipos de semilla, germinación, trasplante y poda,
+  medir pH y EC, almacenamiento.
+- **Nivel nuevo:** «criterio de la autora (Bertha Limo)», para lo que no tenga estudio a mano. El juego lo muestra
+  así, nunca como estudio. Todo lo que este catálogo marcaba «SIN FUENTE» y Bertha aprobó pasa a ese nivel.
+- **El jugador elige TODO, con todas las opciones posibles:**
+  - **Varias plantas:** cuántas, y la carpa crece según la cantidad y el tamaño.
+  - **Macetas:** plástico, tela (lona) y las demás.
+  - **Semillas:** regular, feminizada y autofloreciente. La autofloreciente tiene su calendario más corto y se
+    construye después del núcleo.
+  - **Germinación:** todos los métodos (papel toalla, taco tipo jiffy, directo en tierra, directo en coco, vaso de
+    agua, cubo de lana de roca…), con riesgos y tiempos propios.
+  - **Sustratos y sistemas:** todos.
+  - **Trasplante y poda o entrenamiento:** sí.
+  - **Almacenamiento:** luz, calor, humedad, oxígeno, envase, tiempo, frío y congelador.
+  - **Rosin:** todas las decisiones, con cifras (ver 8.0).
+- **Orden de construcción:**
+  1. fase 8 (secado, curado, almacenamiento y rosin);
+  2. fases 6 y 7 (sistemas y germinación; antes, la fase 5: migración nueva);
+  3. varias plantas y autofloreciente;
+  4. fase 9.
+- **Reglas:**
+  - Sin citas ni cifras inventadas. Primero, fuentes reales comprobadas.
+  - Lo que no tenga fuente: «criterio de la autora» o **[CIFRA: BERTHA]**, en la lista de abajo.
+  - El laboratorio de solventes y CO₂ sigue sin números, pasos ni marcas.
+
+### Fase 8 — lo que se construye (especificación)
+
+Códigos de fuente: los de `docs/juego-fuentes.md` (F8 = Milay et al. 2020; P1 y P2 = patentes del rosin).
+«Ideal» = la opción que no resta. Varias opciones ideales = cualquiera de ellas vale. Sin ideal = no puntúa (solo
+enseña).
+
+**Secado**
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Método | planta entera colgada · ramas colgadas · rejilla (cogollos sueltos) | entera o ramas | criterio de la autora |
+| Temperatura | fresca · templada · cálida | fresca | práctica (plataforma, SOP-01) |
+| Humedad | baja · media · alta | media | práctica (SOP-01) |
+| Aire | contra la pared · directo a las flores · sin aire | contra la pared | práctica (Equipamiento 5) |
+| Luz | oscuro · con luz | oscuro | **estudio F8** (la luz degrada los cannabinoides) |
+| Cuándo terminar | a los pocos días · prueba del chasquido · muchas semanas | chasquido | práctica (SOP-01) |
+
+**Curado**
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Envase | frasco de vidrio · bolsa de plástico · lata · bolsa de curado con control de humedad | vidrio o bolsa de curado | práctica (vidrio: Equipamiento 6) · criterio de la autora (las demás) |
+| Control de humedad | sin control · higrómetro en el frasco · sobre de humedad de dos vías | higrómetro o sobre | criterio de la autora (la plataforma pide 58–62 %, SOP-02) |
+| Abrir el frasco | nunca · a diario la primera semana · siempre abierto | a diario | práctica (Temporizador de secado) |
+| Tiempo | días · semanas · meses | semanas o meses | práctica (SOP-02) · criterio de la autora (meses) |
+
+**Almacenamiento** (en la misma pantalla del curado; una pantalla aparte necesitaría la migración de la fase 5)
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Luz | oscuro · luz indirecta · al sol | oscuro | **estudio F8** |
+| Temperatura | lugar fresco · ambiente cálido · nevera · congelador | fresco o nevera | **estudio F8** (25 °C, el peor para los cannabinoides; 4 °C a oscuras, mejor; bajo −20 °C, el peor para los terpenos) |
+| Aire en el envase | envase lleno · medio vacío · abierto | lleno | **estudio F8** (más superficie al aire = más oxidación) · criterio (medio vacío) |
+| Forma | cogollos enteros · molido | enteros | **estudio F8** |
+| Tiempo guardado | semanas · meses · años | semanas o meses | **estudio F8** (los terpenos bajan rápido en cualquier condición) · criterio de la autora (el corte entre meses y años) |
+
+**Rosin** (opcional; cifras solo aquí, siempre «orientativo»)
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Material de partida | flor curada · hachís · kief · material fresco congelado · flor fresca sin congelar | todas menos fresca sin congelar | práctica (Glosario: Hash rosin «mayor pureza», Live rosin «material fresco congelado») · criterio (sin congelar) |
+| Malla | sin bolsa · fina (5–25 µm, orientativo) · estándar (25–220 µm, orientativo) | fina o estándar | **patentes P1 y P2** (rangos) · criterio de la autora (sin bolsa = restos de planta) |
+| Calor | bajo · medio · alto (las patentes usan placas de 49 a 116 °C, orientativo) | medio | práctica (Concentrados: «temperatura media») · rango: **P2** |
+| Presión | baja · media · alta | — (no puntúa) | **[CIFRA: BERTHA]**: unidad y valores. **Hoy la prueba de seguridad del juego prohíbe escribir la unidad de presión** |
+| Tiempo de prensado | corto · medio · largo | — (no puntúa) | **[CIFRA: BERTHA]**: ninguna fuente da tiempos |
+| Tipo de prensa | manual · hidráulica · neumática · eléctrica | — (no puntúa) | criterio de la autora (cambia el control, no la nota) |
+| Papel | pergamino · papel común · sin papel | pergamino | práctica (Concentrados) |
+| Enfriado | enfriar antes de recoger · dejar al aire · manipular en caliente | enfriar o al aire | criterio de la autora |
+| Guardar el rosin | frío y oscuro · temperatura ambiente · a la luz | frío y oscuro | **estudio F8** |
+| Prioridad | sabor · rendimiento | — (no puntúa) | criterio de la autora (más calor = más rendimiento y menos terpenos; sin estudio) |
+| Protección | guantes · sin protección | guantes | simplificación (seguridad) |
+
+### Para validar por Bertha (lista aparte)
+1. **[CIFRA: BERTHA]:**
+   - presión del rosin: unidad y rangos por nivel; además, si se permite escribir esa unidad solo en el rosin;
+   - tiempo de prensado por nivel;
+   - qué malla va con cada material (flor, hachís, kief, fresco congelado);
+   - los cortes de calor bajo, medio y alto dentro del rango orientativo de 49 a 116 °C.
+2. **Criterio de la autora (confirma o corrige):**
+   - secado: método;
+   - curado: envases distintos del vidrio, control de humedad y meses de curado;
+   - almacenamiento: «medio vacío» y el corte meses / años;
+   - rosin: «flor fresca sin congelar» como error, «sin bolsa» = restos de planta, enfriado, prioridad, tipo de
+     prensa.
+3. **Sin cambios:** secado y curado siguen con las cifras de la plataforma (15–18 °C, 55–60 %, 58–62 %), que no
+   tienen fuente externa comprobada.
+
+---
+
+*Lo que sigue es el borrador revisado (2026-10-27), tal como lo vio Bertha.*
 - Las etapas de cultivo (secciones 1 a 5) se programan en las fases 6 y 7, después de la revisión de Bertha.
 - Secado, curado y rosin (secciones 6 a 8) son la **fase 8**: **esperan la aprobación de este catálogo**.
 

@@ -13,6 +13,10 @@ Fecha de la revisión: 2026-10-27.
   pude abrir) una fuente universitaria o un estudio que lo diga.
 - **Simplificación del juego** — una regla que existe para que el juego funcione (puntos, semanas, dibujos).
   No pretende ser un dato real.
+- **Criterio de la autora (Bertha Limo)** — nivel nuevo aprobado el 2026-10-28 para lo que no tiene un estudio a
+  mano. El juego lo muestra tal cual («criterio de la autora»), **nunca** como estudio publicado.
+- **Documento técnico (patente)** — patente publicada que **abrí y leí**. Describe un invento y sus rangos de uso;
+  **no** es un estudio que pruebe resultados. Solo da cifras **orientativas**.
 - **Sin fuente** — no encontré respaldo comprobable. Hay que decidir si se queda, se cambia o se quita.
 
 **Columna «Comprobado»**
@@ -35,6 +39,18 @@ digo. Las cifras que el juego muestra hoy salen de la plataforma; aquí digo si 
 | **F5** | Utah State University Extension — *Hemp powdery mildew.* https://extension.usu.edu/planthealth/ipm/notes_ag/hemp-powdery-mildew | Guía técnica | «White, powdery spots that may expand to cover leaves, stems, or flower buds»; «Space out field or greenhouse plantings to allow for air circulation»; «Drip irrigation will lessen the chance of higher humidity, and reduce infection potential». |
 | **F6** | NC State Extension — *Twospotted spider mite in industrial hemp.* https://content.ces.ncsu.edu/twospotted-spider-mite-in-industrial-hemp | Guía técnica | «They thrive in high temperatures and low humidity»; «Mites prefer water stressed plants»; daño: «a speckled or wilted appearance to the tops of the leaves»; «TSSM also produces webbing». |
 | **F7** | Cornell Chronicle (2023) — *Gene discovery takes aim at hemp nemesis powdery mildew.* https://news.cornell.edu/stories/2023/09/gene-discovery-takes-aim-hemp-nemesis-powdery-mildew (la cita la plataforma en Diagnóstico → Oídio) | Noticia universitaria | «Its spores look like white powdery patches on leaves». **No** habla de humedad ni de ventilación. |
+
+Añadidas el 2026-10-29 (abiertas y leídas):
+
+| Código | Fuente | Tipo | Qué dice (texto literal) |
+|---|---|---|---|
+| **F8** | Milay, Berman, Shapira, Guberman & Meiri (2020). *Metabolic Profiling of Cannabis Secondary Metabolites for Evaluation of Optimal Postharvest Storage Conditions.* Frontiers in Plant Science 11. https://www.frontiersin.org/articles/10.3389/fpls.2020.583605/full | Estudio publicado | «a storage temperature of 25°C led to the largest changes in the concentrations of the natural phytocannabinoids»; degradación «higher in samples exposed to light at 22°C» que a oscuras a 4 °C; cita a Lindholst (2010): «at −20°C, the level of acidic and neutral phytocannabinoids remained constant throughout the 4-year study period»; «Terpenoid concentrations were found to decrease rapidly under all storage conditions»; «temperatures lower than −20°C and grinding of the inflorescences were the least favorable conditions»; molida = «a larger surface area exposure to air». |
+| **P1** | Patente US 11001025 B2 (2021), *System and method for high-yield rosin extraction*, K. P. Kralis y L. Nist. https://patents.google.com/patent/US11001025B2/en | Documento técnico (patente) | Bolsa con «pore openings that are between 25 micron and 250 micron»; «Temperatures typically range between 100 Degrees and 300 Degrees Fahrenheit» y «up to 235 degrees Fahrenheit in most applications». |
+| **P2** | Patente US 11511465 B2 (2022), *Rosin press system*, S. Sitnik. https://patents.google.com/patent/US11511465B2/en | Documento técnico (patente) | «micron holes between 25 microns to 220 microns»; opcional «a finer mesh filter bag such as 5 um-25 um»; placas «between 120 degrees and 240 degrees Fahrenheit». |
+
+**Rosin:** no encontré **ningún estudio revisado por pares** sobre malla, calor, presión o tiempo de prensado.
+Solo hay patentes (P1, P2) y guías de fabricantes, que no cito. Las cifras del rosin en el juego son, como mucho,
+rangos **orientativos** de P1/P2; lo que no está ahí es **[CIFRA: BERTHA]**.
 
 Enlaces que cita la plataforma y **no** pude leer: hemp.ucdavis.edu (Producing hemp; IPM) y extension.oregonstate.edu
 (EM 9622) responden 403 a los programas (no están rotos); la guía GPP de Health Canada (canada.ca) no respondió a
