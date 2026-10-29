@@ -295,11 +295,7 @@ explicaciones y «¿Por qué?» en 4 idiomas. Se descarga solo al entrar al jueg
 **Lo siguiente:**
 - **Fase 5** (migración nueva) y después **fases 6 y 7** (sistemas de cultivo y germinación).
 - Más tarde: varias plantas y autofloreciente; después, la fase 9.
-- Ya hecho, el resto de este punto quedó así:
-- **Fase 8** (secado, curado y rosin que se ven): **espera la aprobación de `docs/juego-decisiones.md`**. Hay
-  preguntas abiertas; la principal: si el rosin puede llevar cifras (8.0).
-- Fases 5, 6 y 7: necesitan las decisiones del catálogo (sistemas, germinación, equipo).
-- Pendiente fuera del juego: el resultado de la prueba de Bertha en incógnito sobre el fallo de las flores.
+- Fuera del juego, cerrado: Bertha comprobó que el arreglo de las flores funciona en la página publicada de `dev`.
 
 **Cómo retomar**
 - `git checkout juego`
