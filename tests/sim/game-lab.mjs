@@ -24,7 +24,7 @@ const finished = () => {
   for (let i = 0; i < 2; i++) s = E.applyWeek(s, { fotoperiodo: '18/6', intensidad: 'baja', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'media_alta' }, RULES);
   s = E.applyWeek(s, { fotoperiodo: '12/12', intensidad: 'media', riego: 'moderado', nutrientes: 'medio', temperatura: 'templada', humedad: 'media_alta' }, RULES);
   s = E.harvest(s, RULES);
-  const pick = (st) => Object.fromEntries(Object.entries(RULES.post[st].decisiones).map(([d, v]) => [d, v.ideal.valor ?? v.opciones[1]]));
+  const pick = (st) => Object.fromEntries(Object.entries(RULES.post[st].decisiones).map(([d, v]) => [d, [].concat(v.ideal.valor ?? v.opciones[1])[0]]));
   s = E.applyPost(s, pick('secado'), RULES); s = E.applyPost(s, pick('curado'), RULES);
   return E.skipRosin(s);
 };

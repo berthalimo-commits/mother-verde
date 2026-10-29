@@ -203,7 +203,9 @@ function postHtml() {
   const st = state.stage;
   if (!E.POST.includes(st)) return '';
   const defs = RULES.post[st].decisiones;
-  const fields = E.postDecisions(RULES, st).map((d) => `<fieldset class="jg-field">
+  // Phase 8: storage decisions share the curing screen under their own heading.
+  let group = null;
+  const fields = E.postDecisions(RULES, st).map((d) => `${defs[d].grupo && defs[d].grupo !== group ? `<h4 class="jg-pgroup">${t(`jgPG_${st}_${(group = defs[d].grupo)}`)}</h4>` : ''}<fieldset class="jg-field">
       <legend>${t(`jgPD_${st}_${d}`)}</legend>
       <div class="jg-opts">${defs[d].opciones.map((o) => {
         const id = `jgp-${st}-${d}-${o}`;
@@ -445,6 +447,7 @@ const CSS = `
 #juego .jg-big{font-size:22px;font-weight:700;color:var(--ink)}
 #juego .jg-sync{font-size:12.5px;color:var(--ink-soft);min-height:1.5em}
 #juego .jg-warn{font-size:13.5px;line-height:1.55;color:var(--ink);background:var(--paper-raised);border:1px solid var(--resin);border-left:4px solid var(--resin);border-radius:8px;padding:10px 12px;margin:0 0 12px}
+#juego .jg-pgroup{font-family:'Manrope',sans-serif;font-size:15px;margin:18px 0 10px;color:var(--ink)}
 #juego .jg-missing{color:var(--resin);font-weight:600;font-size:13.5px;min-height:1.2em;margin:0}
 `;
 
