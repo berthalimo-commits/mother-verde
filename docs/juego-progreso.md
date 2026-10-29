@@ -227,7 +227,75 @@ el commit siguiente.
 - La prueba ahora imprime lo que mostraba el panel cuando falla, para poder ver la causa si vuelve a pasar.
 - Vercel publicó las fases 3 (`f6a2e20`) y 4 (`44aae05`) en la vista previa de `juego` (READY).
 
+## Fase 8 — Secado, curado + almacenamiento y rosin que se ven · HECHA (2026-10-29)
+
+Hecha con el catálogo que Bertha aprobó el 2026-10-28 (`docs/juego-decisiones.md`, especificación de la fase 8).
+
+**Qué se ve y qué se decide**
+- **Secado** (6 decisiones): método (planta entera / ramas / rejilla), temperatura, humedad, aire, luz y cuándo
+  terminar.
+- **Curado** (4) + **almacenamiento** (5, en la misma pantalla bajo «Cómo lo vas a guardar después»):
+  - curado: envase (vidrio, plástico, lata, bolsa de curado), control de humedad (sin control, higrómetro, sobre de
+    dos vías), abrir y tiempo;
+  - almacenamiento: luz, temperatura (fresco, cálido, nevera, congelador), aire en el envase, entero o molido, y
+    tiempo.
+- **Rosin** (11 decisiones): material de partida (flor curada, hachís, kief, fresco congelado, flor fresca sin
+  congelar), malla, calor, presión, tiempo, tipo de prensa, papel, enfriado, guardar, prioridad y protección.
+- **Cifras solo en el rosin y solo con fuente**, marcadas «orientativo» en su idioma:
+  - malla fina 5–25 µm y estándar 25–220 µm (patentes P1 y P2);
+  - calor de las placas 49–116 °C (P2).
+  - **Presión y tiempo, en niveles:** no hay fuente con cifras, y la prueba de seguridad prohíbe unidades de
+    presión.
+- **El dibujo cambia en el acto según lo elegido:**
+  - secado: planta colgada o rejilla, flechas del aire, luz;
+  - curado y almacenamiento: frasco, bolsa o lata, tapa, higrómetro o sobre, armario, estante, ventana al sol,
+    nevera o congelador con escarcha, entero o molido;
+  - rosin: prensa según su tipo, placas que brillan según el calor, papel, bolsa, material.
+- **Las consecuencias se ven en el dibujo y se cuentan en la descripción:** moho, cogollos resecos, restos de
+  planta, rosin oscuro por calor alto, rosin aguado con flor fresca.
+- **«¿Por qué?» en cada decisión que restó** (23), con su nivel y su fuente:
+  - almacenamiento: estudio F8;
+  - malla: patentes P1 y P2;
+  - el resto: práctica de la plataforma o «criterio de la autora».
+- Las decisiones que solo enseñan (tipo de prensa, prioridad) no restan. Presión y tiempo dicen «sin dato» hasta
+  que Bertha dé una cifra.
+- La cosecha final muestra dónde se guardó y el frasco de rosin si se hizo.
+- **Sin migración nueva:** el almacenamiento va dentro de la pantalla del curado, y el servidor ya aceptaba
+  «secado», «curado» y «rosin». El post-cosecha completo cabe en el límite de 1.000 bytes.
+
+**Archivos**
+- `src/game/rules.json` (bloque `post`): ideal = una opción, varias o ninguna; `escala:false`; `respaldo`; `grupo`.
+- `src/game/engine.js`: varios ideales, decisiones que no son escala y las que no puntúan.
+- `src/game/i18n-post.js` (nuevo): todos los textos del post-cosecha en 4 idiomas. Los viejos se quitaron de
+  `i18n.js`.
+- `src/game/tent.js`: escenas `dryScene`, `cureScene` y `rosinScene`, y `postLooks()` para las consecuencias.
+- `src/game/why.js`: 23 razones nuevas, fuentes F8, P1 y P2, niveles «autora» y «patente».
+- `src/game/game.js`: redibujo en vivo (`postLive`) y subtítulo del almacenamiento.
+- `docs/juego-fuentes.md`: F8, P1, P2 y los niveles nuevos.
+
+**Pruebas**
+- `tests/sim/game-post-ui.mjs` (nueva): **33 ok**.
+  - Dibujos: cada decisión cambia el dibujo; las consecuencias se ven y se cuentan en 4 idiomas.
+  - En la app: elegir no guarda; «¿Por qué?» con F8 y con las dos patentes; cifras del rosin «orientativo» en 4
+    idiomas; el servidor guarda todo; 360 px sin desborde.
+- Pruebas adaptadas a la fase 8:
+  - `game-engine` 49: la regla de cifras nueva y que el post-cosecha cabe en el límite;
+  - `game-ui` 54: las decisiones nuevas y la regla de cifras;
+  - `game-tent-ui` 36: el rosin tiene escena propia;
+  - `game-lab` 35: el ideal ahora puede ser una lista.
+- **Batería completa (2026-10-29), en grupos de 2 a 5 archivos: 41 pruebas, 0 fallas.**
+  - `game-ui` falló una vez en «escritorio oscuro»: el juego no cargó y se veía «Reintentar», con la máquina sin
+    memoria. Repetida, pasó, y también pasó dentro de la batería.
+
+**Peso:** juego 137,8 → 189,1 KB (43,3 → 58,9 comprimido). Casi todo son textos: 26 decisiones con sus opciones,
+explicaciones y «¿Por qué?» en 4 idiomas. Se descarga solo al entrar al juego.
+
+**Para validar por Bertha:** la lista de `docs/juego-decisiones.md` («Para validar por Bertha»).
+
 **Lo siguiente:**
+- **Fase 5** (migración nueva) y después **fases 6 y 7** (sistemas de cultivo y germinación).
+- Más tarde: varias plantas y autofloreciente; después, la fase 9.
+- Ya hecho, el resto de este punto quedó así:
 - **Fase 8** (secado, curado y rosin que se ven): **espera la aprobación de `docs/juego-decisiones.md`**. Hay
   preguntas abiertas; la principal: si el rosin puede llevar cifras (8.0).
 - Fases 5, 6 y 7: necesitan las decisiones del catálogo (sistemas, germinación, equipo).
