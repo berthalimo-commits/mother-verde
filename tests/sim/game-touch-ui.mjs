@@ -28,8 +28,10 @@ const doc = fs.readFileSync(APP + '/docs/juego-fuentes.md', 'utf8');
 check('cada fuente enlazada está en docs/juego-fuentes.md (mismo enlace)', Object.values(W.SOURCES).every((s) => doc.includes(s.url)));
 check('cada razón tiene su texto en los 4 idiomas', Object.keys(W.WHY).every((k) => ['es', 'en', 'de', 'fr'].every((L) => (TEXTS[L]['jgWhy_' + k] || '').length > 20)));
 check('cada nivel de respaldo existe en los 4 idiomas', [...new Set(Object.values(W.WHY).map((w) => w.level))].every((l) => ['es', 'en', 'de', 'fr'].every((L) => TEXTS[L]['jgWhyNivel_' + l])));
-check('«estudio» o «guía» siempre con fuente enlazada; sin fuente, solo «regla del juego» o «práctica»', Object.values(W.WHY).every((w) =>
-  (['estudio', 'guia'].includes(w.level) ? !!W.SOURCES[w.src] : true) && (w.src === null ? ['simple', 'practica'].includes(w.level) : !!W.SOURCES[w.src])));
+const srcs = (w) => [].concat(w.src ?? []);
+check('«estudio», «guía» o «patente» siempre con fuente enlazada; sin fuente, solo «regla del juego», «práctica» o «criterio de la autora»', Object.values(W.WHY).every((w) =>
+  (['estudio', 'guia', 'patente'].includes(w.level) ? srcs(w).length > 0 : true) && srcs(w).every((c) => !!W.SOURCES[c])
+  && (srcs(w).length ? true : ['simple', 'practica', 'autora'].includes(w.level))));
 check('los textos del rosin no llevan cifras', ['es', 'en', 'de', 'fr'].every((L) => !/\d/.test(TEXTS[L].jgWhy_rosin)));
 
 // ------------------------------------------------------------ phone, touching the tent

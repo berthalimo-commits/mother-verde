@@ -10,6 +10,9 @@ export const SOURCES = {
   F4: { label: 'Utah State University Extension — Hemp bud rot', url: 'https://extension.usu.edu/planthealth/ipm/notes_ag/hemp-bud-rot' },
   F5: { label: 'Utah State University Extension — Hemp powdery mildew', url: 'https://extension.usu.edu/planthealth/ipm/notes_ag/hemp-powdery-mildew' },
   F6: { label: 'NC State Extension — Twospotted spider mite in industrial hemp', url: 'https://content.ces.ncsu.edu/twospotted-spider-mite-in-industrial-hemp' },
+  F8: { label: 'Milay et al. — Frontiers in Plant Science, 2020 (storage)', url: 'https://www.frontiersin.org/articles/10.3389/fpls.2020.583605/full' },
+  P1: { label: 'US 11001025 B2 (patent, 2021)', url: 'https://patents.google.com/patent/US11001025B2/en' },
+  P2: { label: 'US 11511465 B2 (patent, 2022)', url: 'https://patents.google.com/patent/US11511465B2/en' },
 };
 
 // key -> lesson of the platform, source code (or null) and backing level.
@@ -35,7 +38,32 @@ export const WHY = {
   curado: { lesson: 'procesos', src: null, level: 'practica' },
   rosin: { lesson: 'concentrados', src: null, level: 'practica' },
   sinDato: { lesson: null, src: null, level: 'simple' },
+  // Phase 8: one reason per post-harvest decision that can cost points
+  // (rules.json → post; levels as in docs/juego-decisiones.md).
+  secado_metodo: { lesson: 'procesos', src: null, level: 'autora' },
+  secado_temperatura: { lesson: 'procesos', src: null, level: 'practica' },
+  secado_humedad: { lesson: 'procesos', src: null, level: 'practica' },
+  secado_aire: { lesson: 'procesos', src: null, level: 'practica' },
+  secado_luz: { lesson: 'procesos', src: 'F8', level: 'estudio' },
+  secado_duracion: { lesson: 'procesos', src: null, level: 'practica' },
+  curado_envase: { lesson: 'procesos', src: null, level: 'practica' },
+  curado_control: { lesson: 'procesos', src: null, level: 'autora' },
+  curado_abrir: { lesson: 'procesos', src: null, level: 'practica' },
+  curado_tiempo: { lesson: 'procesos', src: null, level: 'practica' },
+  curado_g_luz: { lesson: 'procesos', src: 'F8', level: 'estudio' },
+  curado_g_temp: { lesson: 'procesos', src: 'F8', level: 'estudio' },
+  curado_g_aire: { lesson: 'procesos', src: 'F8', level: 'estudio' },
+  curado_g_forma: { lesson: 'procesos', src: 'F8', level: 'estudio' },
+  curado_g_tiempo: { lesson: 'procesos', src: 'F8', level: 'estudio' },
+  rosin_material: { lesson: 'concentrados', src: null, level: 'practica' },
+  rosin_malla: { lesson: 'concentrados', src: ['P1', 'P2'], level: 'patente' },
+  rosin_calor: { lesson: 'concentrados', src: 'P2', level: 'practica' },
+  rosin_papel: { lesson: 'concentrados', src: null, level: 'practica' },
+  rosin_enfriado: { lesson: 'concentrados', src: null, level: 'autora' },
+  rosin_guardar: { lesson: 'concentrados', src: 'F8', level: 'estudio' },
+  rosin_proteccion: { lesson: 'concentrados', src: null, level: 'simple' },
 };
+const srcList = (w) => [].concat(w.src ?? []);
 
 // The keys a list of game notes / causes points to (in order, no repeats).
 export function whyKeysFromNotes(notes, state) {
@@ -48,7 +76,7 @@ export function whyKeysFromNotes(notes, state) {
     else if (kind === 'flipTemprano') add('flip');
     else if (kind === 'sinDato' || kind === 'postSinDato') add('sinDato');
     else if (kind === 'cosechado' || kind === 'cosechaAuto') add('tricomas');
-    else if (kind === 'postMal') add(arg);
+    else if (kind === 'postMal') { Object.keys(state.post?.[arg]?.l || {}).forEach((d) => add(arg + '_' + d)); add(arg); }
     else if (kind === 'quemadura') add('rosin');
   }
   return out;
@@ -62,8 +90,8 @@ export function whyKeysFromResult(r) {
   if (r.dead) add('muerta');
   (r.causes || []).forEach(add);
   if (!r.dead) add('tricomas');
-  (r.postCauses || []).forEach((c) => add(c.split('_')[0]));
-  if (r.rosin?.causes?.length) add('rosin');
+  (r.postCauses || []).forEach((c) => add(WHY[c] ? c : c.split('_')[0]));
+  (r.rosin?.causes || []).forEach((c) => add(WHY[c] ? c : 'rosin'));
   return out;
 }
 
@@ -83,16 +111,17 @@ export function whyName(k, t) {
   if (['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego'].includes(k)) return t('jgEvN_' + k);
   if (['secado', 'curado', 'rosin'].includes(k)) return t('jgEtapa_' + k).replace(/\s*\(.*\)$/, '');
   if (k === 'tricomas') return t('jgTricomas').replace(/\s*\(.*\)$/, '');
+  if (/^(secado|curado|rosin)_/.test(k)) return t('jgPD_' + k).replace(/\s*\(.*\)$/, '');
   return t('jgWhyN_' + k);
 }
 
 export function whyPanelHtml(k, ctx) {
   const { t, esc, lessonBtn } = ctx;
   const w = WHY[k];
-  const src = w.src ? SOURCES[w.src] : null;
+  const srcs = srcList(w).map((c) => SOURCES[c]);
   return `<p class="jg-why-text">${esc(t('jgWhy_' + k))}</p>
     <p class="jg-why-level"><b>${esc(t('jgWhyRespaldo'))}</b> ${esc(t('jgWhyNivel_' + w.level))}</p>
-    ${src ? `<p class="jg-why-src"><b>${esc(t('jgWhyFuente'))}</b> <a href="${src.url}" target="_blank" rel="noopener noreferrer">${esc(src.label)}</a></p>` : ''}
+    ${srcs.length ? `<p class="jg-why-src"><b>${esc(t('jgWhyFuente'))}</b> ${srcs.map((s) => `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a>`).join(' · ')}</p>` : ''}
     ${w.lesson ? lessonBtn(w.lesson) : ''}`;
 }
 
