@@ -277,9 +277,11 @@ let tentOpen = null;
 // Phase 4: the first drawing after a week passes plays the week once (grow,
 // drops, night); redraws while choosing don't.
 let animNext = false;
+// Phase 8: what is picked so far on the drying / curing / rosin screen.
+let postLive = {};
 function tent(choices) {
   return tentHtml(state, choices || E.defaultChoices(state, RULES), TENT_CTX,
-    { open: tentOpen, blocked: !!(state.event && !state.event.answered), anim: animNext });
+    { open: tentOpen, blocked: !!(state.event && !state.event.answered), anim: animNext, post: postLive });
 }
 function formChoices(root) {
   const form = root.querySelector('#jgForm');
@@ -392,6 +394,11 @@ function paint(root) {
     act(E.applyWeek(state, formChoices(root), RULES));
   });
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));
+  root.querySelector('#jgPostForm')?.addEventListener('change', (ev) => {
+    const fd = new FormData(ev.currentTarget);
+    postLive = Object.fromEntries(E.postDecisions(RULES, state.stage).filter((d) => fd.get('jgp-' + d)).map((d) => [d, fd.get('jgp-' + d)]));
+    redrawTent(root);
+  });
   root.querySelector('#jgPostForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();
     const fd = new FormData(ev.target);
@@ -403,9 +410,10 @@ function paint(root) {
       root.querySelector(`input[name="jgp-${missing[0]}"]`)?.focus();
       return;
     }
+    postLive = {};
     act(E.applyPost(state, choices, RULES));
   });
-  root.querySelector('#jgSkipRosin')?.addEventListener('click', () => act(E.skipRosin(state)));
+  root.querySelector('#jgSkipRosin')?.addEventListener('click', () => { postLive = {}; act(E.skipRosin(state)); });
   root.querySelectorAll('.jg-answer').forEach((b) => b.addEventListener('click', () => act(E.answerEvent(state, b.dataset.answer, RULES))));
   root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.newGame(state)));
   bindLessons(root);

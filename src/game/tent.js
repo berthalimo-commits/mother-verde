@@ -22,7 +22,7 @@ export function scene(state) {
   if (st === 'intro') return 'intro';
   if (st === 'plantula') return state.stageWeek <= 1 ? 'germ' : 'plantula';
   if (st === 'vegetativo' || st === 'floracion' || st === 'secado') return st;
-  if (st === 'curado' || st === 'rosin') return 'curado';
+  if (st === 'curado' || st === 'rosin') return st;
   if (st === 'fin') return state.result?.dead ? 'muerta' : 'fin';
   return 'intro';
 }
@@ -152,24 +152,112 @@ function wilted() {
     + `<g fill="${c}">${leaf(CX + 2, 168, 150, 18)}${leaf(CX - 1, 160, -150, 16)}${leaf(CX - 4, 146, 165, 14)}${leaf(CX - 22, 134, 175, 10, 3)}</g>`;
 }
 
-function hanging() {
-  let out = '<path d="M38 58H202" stroke="#9FB8AE" stroke-width="1"/>';
-  for (const x of [78, 120, 162]) {
-    out += `<path d="M${x} 56v6M${x} 62V108" stroke="#7D8F4A" stroke-width="1.6" fill="none"/>`
-      + `<g fill="#7D8F4A">${leaf(x, 78, -150, 11, 3)}${leaf(x, 90, 150, 11, 3)}</g>`
-      + bud(x, 104, 6, 'mezcla', 8).replace(/#8FCF7E/g, '#A3AE6E').replace(/#7DBE6C/g, '#929D60');
-  }
-  return out + `<rect x="${CX - 1.5}" y="${BASE - 7}" width="3" height="7" fill="#6B4E2E"/>`;
+// ---------------------------------------------------------------- phase 8: drying, curing + storage, rosin
+// c = what is picked on the screen so far (may be partial). Each scene marks
+// what it shows (data-*) and returns the visible consequences (moho, reseco,
+// restos, oscuro, agua) for the caption.
+const DRY_BUD = ['#A3AE6E', '#929D60'], BURNT_BUD = ['#A08350', '#8A6E3F'];
+const budsAt = (pts, r, cols, extra = '') => pts.map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="${f1(r * 0.8)}" ry="${r}" fill="${cols[0]}"${extra}/><ellipse cx="${x - 2}" cy="${y + 2}" rx="${f1(r * 0.5)}" ry="${f1(r * 0.6)}" fill="${cols[1]}"/>`).join('');
+const mould = (pts) => `<g class="jgt-mould">${pts.map(([x, y]) => `<circle cx="${x - 2}" cy="${y - 2}" r="2.2" fill="#D9DCD4" opacity="0.85"/><circle cx="${x + 2}" cy="${y + 1}" r="1.6" fill="#C9CCC4" opacity="0.8"/>`).join('')}</g>`;
+
+export function postLooks(stage, c = {}) {
+  if (stage === 'secado') return { moho: c.humedad === 'alta' || c.aire === 'sin_aire', reseco: c.temperatura === 'calida' || c.humedad === 'baja' || c.duracion === 'muchas_semanas' };
+  if (stage === 'curado') return { moho: c.abrir === 'nunca' || c.envase === 'plastico', reseco: c.abrir === 'siempre' || c.g_aire === 'abierto' || c.g_luz === 'sol' || c.g_temp === 'calido' };
+  if (stage === 'rosin') return { restos: c.malla === 'sin_bolsa', oscuro: c.calor === 'alto', agua: c.material === 'fresco' };
+  return {};
 }
 
-function jars() {
-  let out = '';
-  for (const x of [84, 120, 156]) {
-    out += `<rect x="${x - 14}" y="166" width="28" height="38" rx="5" fill="#5FD4E0" fill-opacity="0.12" stroke="#9FB8AE" stroke-width="1"/>`
-      + `<rect x="${x - 12}" y="160" width="24" height="7" rx="1.5" fill="#E3A75F"/>`
-      + `<ellipse cx="${x - 5}" cy="196" rx="6" ry="5" fill="#8FAE6A"/><ellipse cx="${x + 5}" cy="197" rx="5.5" ry="4.5" fill="#7F9E5C"/><ellipse cx="${x}" cy="189" rx="5" ry="4.5" fill="#9DBA76"/>`;
+function dryScene(c) {
+  const look = postLooks('secado', c);
+  const cols = look.reseco ? BURNT_BUD : DRY_BUD;
+  let body = '', pts = [];
+  if (c.metodo === 'entera') {
+    pts = [[120, 110], [108, 128], [132, 128], [114, 146], [126, 146]];
+    body = '<path d="M38 58H202" stroke="#9FB8AE" stroke-width="1"/><path d="M120 56v8M120 64V150" stroke="#7D8F4A" stroke-width="2.2" fill="none"/>'
+      + `<g fill="#7D8F4A">${[80, 96, 112, 128].map((y, i) => leaf(120, y, i % 2 ? 150 : -150, 14, 3)).join('')}</g>`;
+  } else if (c.metodo === 'rejilla') {
+    pts = [[70, 146], [92, 147], [114, 146], [136, 147], [158, 146], [176, 147]];
+    body = '<rect x="52" y="150" width="136" height="3" fill="#2B3532"/><path d="M56 153v20M184 153v20" stroke="#9FB8AE"/>'
+      + `<path d="${[60, 72, 84, 96, 108, 120, 132, 144, 156, 168, 180].map((x) => `M${x} 150v3`).join('')}" stroke="#9FB8AE" stroke-width="0.6"/>`;
+  } else {
+    pts = [[78, 104], [120, 104], [162, 104]];
+    body = '<path d="M38 58H202" stroke="#9FB8AE" stroke-width="1"/>'
+      + [78, 120, 162].map((x) => `<path d="M${x} 56v6M${x} 62V100" stroke="#7D8F4A" stroke-width="1.6" fill="none"/><g fill="#7D8F4A">${leaf(x, 78, -150, 11, 3)}${leaf(x, 90, 150, 11, 3)}</g>`).join('');
   }
-  return out;
+  // the fan's air: to the wall, straight at the flowers, or none (off)
+  const air = c.aire === 'pared' ? '<path d="M182 50q14 -6 30 -2M184 60q14 -2 28 4" class="jgt-air" fill="none" stroke="#5FD4E0" stroke-width="1.2" stroke-dasharray="3 2"/>'
+    : c.aire === 'directo' ? '<path d="M182 60q-30 10 -52 34M184 68q-24 14 -40 36" class="jgt-air" fill="none" stroke="#5FD4E0" stroke-width="1.2" stroke-dasharray="3 2"/>' : '';
+  return `<g class="jgt-post" data-metodo="${c.metodo || ''}" data-aire="${c.aire || ''}" data-moho="${look.moho ? 1 : 0}" data-reseco="${look.reseco ? 1 : 0}">`
+    + `${air}${body}${budsAt(pts, 6, cols)}${look.moho ? mould(pts) : ''}`
+    + (c.metodo === 'rejilla' ? '' : `<rect x="${CX - 1.5}" y="${BASE - 7}" width="3" height="7" fill="#6B4E2E"/>`) + '</g>';
+}
+
+function container(x, c, look) {
+  const cols = look.reseco ? BURNT_BUD : ['#8FAE6A', '#7F9E5C'];
+  const fill = c.g_aire === 'medio' ? 0.5 : 1;
+  const top = 200 - 30 * fill;
+  const content = c.g_forma === 'molida'
+    ? `<path d="M${x - 11} 200Q${x} ${top - 4} ${x + 11} 200Z" fill="${cols[0]}"/>` + [0, 1, 2, 3, 4].map((i) => `<circle cx="${x - 7 + i * 3.5}" cy="${f1(198 - (i % 2) * 4 * fill)}" r="1" fill="${cols[1]}"/>`).join('')
+    : budsAt(fill === 1 ? [[x - 5, 195], [x + 5, 195], [x, 186], [x - 4, 177], [x + 4, 177]] : [[x - 5, 195], [x + 5, 195], [x, 187]], 5, cols);
+  const open = c.abrir === 'siempre' || c.g_aire === 'abierto';
+  const kind = c.envase || 'vidrio';
+  let shell;
+  if (kind === 'plastico') shell = `<path d="M${x - 13} 168Q${x - 16} 186 ${x - 12} 204H${x + 12}Q${x + 16} 186 ${x + 13} 168Z" fill="#E8EEF0" fill-opacity="0.18" stroke="#C7CFD2" stroke-width="0.8"/>`;
+  else if (kind === 'lata') shell = `<rect x="${x - 14}" y="166" width="28" height="38" rx="3" fill="#7F8B8E" stroke="#C7CFD2" stroke-width="0.8"/>`;
+  else if (kind === 'bolsa_curado') shell = `<path d="M${x - 13} 166H${x + 13}V204H${x - 13}Z" fill="#3A4442" fill-opacity="0.55" stroke="#9FB8AE" stroke-width="0.8"/><rect x="${x - 6}" y="170" width="12" height="5" rx="1" fill="#2AEBA0" opacity="0.7"/>`;
+  else shell = `<rect x="${x - 14}" y="166" width="28" height="38" rx="5" fill="#5FD4E0" fill-opacity="0.12" stroke="#9FB8AE" stroke-width="1"/>`;
+  const lid = kind === 'vidrio' || kind === 'lata' ? (open ? `<rect x="${x + 10}" y="198" width="14" height="6" rx="1.5" fill="#E3A75F" transform="rotate(20 ${x + 17} 201)"/>` : `<rect x="${x - 12}" y="160" width="24" height="7" rx="1.5" fill="#E3A75F"/>`) : '';
+  const tool = c.control === 'higrometro' ? `<circle cx="${x + 7}" cy="174" r="3.4" fill="#F0F7F3" stroke="#2B3532" stroke-width="0.6"/><path d="M${x + 7} 174l1.8 -1.6" stroke="#E2665A" stroke-width="0.7"/>`
+    : c.control === 'sobre' ? `<rect x="${x + 2}" y="171" width="9" height="6" rx="1" fill="#C7CFD2" stroke="#2B3532" stroke-width="0.5"/>` : '';
+  // lata: you can't see inside (only the outside is drawn)
+  return (kind === 'lata' ? '' : content) + shell + (kind === 'lata' ? '' : tool) + lid + (look.moho && kind !== 'lata' ? mould([[x - 3, 192], [x + 4, 182]]) : '');
+}
+
+function cureScene(c) {
+  const look = postLooks('curado', c);
+  let place = '';
+  if (c.g_temp === 'nevera' || c.g_temp === 'congelador') {
+    place = `<rect x="56" y="70" width="128" height="138" rx="6" fill="#E8EEF0" fill-opacity="${c.g_temp === 'congelador' ? 0.32 : 0.2}" stroke="#C7CFD2"/><path d="M60 160H180" stroke="#C7CFD2"/>`
+      + (c.g_temp === 'congelador' ? '<path class="jgt-frost" d="M74 86l8 8M82 86l-8 8M78 84v12M160 90l6 6M166 90l-6 6M163 88v10" stroke="#BFE9F0" stroke-width="1"/>' : '');
+  } else if (c.g_luz === 'sol') {
+    place = '<rect x="26" y="40" width="54" height="60" fill="#5FD4E0" fill-opacity="0.18" stroke="#C7CFD2"/><path d="M53 40v60M26 70h54" stroke="#C7CFD2"/><circle cx="40" cy="54" r="8" fill="#FFD58A"/><polygon points="80,50 200,150 200,206 80,206" fill="#FFD58A" opacity="0.25"/>';
+  } else if (c.g_luz === 'indirecta') {
+    place = '<path d="M50 160H190" stroke="#9FB8AE" stroke-width="2"/>';
+  } else if (c.g_luz === 'oscuro' || c.g_temp === 'fresco') {
+    place = '<rect x="52" y="140" width="136" height="68" rx="3" fill="#3A2A1E" fill-opacity="0.7" stroke="#6B4E2E"/>';
+  }
+  const heat = c.g_temp === 'calido' ? '<path class="jgt-heat" d="M64 150q4 -6 0 -12q-4 -6 0 -12M176 150q4 -6 0 -12q-4 -6 0 -12" fill="none" stroke="#E2665A" stroke-width="1.4"/>' : '';
+  const where = c.g_temp === 'nevera' || c.g_temp === 'congelador' ? c.g_temp : c.g_luz || '';
+  return `<g class="jgt-post" data-envase="${c.envase || ''}" data-lugar="${where}" data-forma="${c.g_forma || ''}" data-tapa="${c.abrir === 'siempre' || c.g_aire === 'abierto' ? 'no' : 'si'}" data-control="${c.control || ''}" data-moho="${look.moho ? 1 : 0}" data-reseco="${look.reseco ? 1 : 0}">`
+    + place + heat + [84, 120, 156].map((x) => container(x, c, look)).join('') + '</g>';
+}
+
+const MATERIAL = { flor: '#7FA65A', hachis: '#7A5A3A', kief: '#C9B98A', congelado: '#A9CFA0', fresco: '#5FBF4A' };
+function rosinScene(c) {
+  const look = postLooks('rosin', c);
+  const glow = { bajo: '#E3A75F', medio: '#F08A3C', alto: '#E2665A' }[c.calor] || '#3A4442';
+  const frame = {
+    manual: '<path d="M120 60v34M120 60h40" stroke="#9FB8AE" stroke-width="3" stroke-linecap="round"/>',
+    hidraulica: '<rect x="108" y="60" width="24" height="34" rx="3" fill="#2B3532" stroke="#9FB8AE"/><rect x="116" y="52" width="8" height="10" fill="#9FB8AE"/>',
+    neumatica: '<rect x="108" y="60" width="24" height="34" rx="12" fill="#2B3532" stroke="#9FB8AE"/><path d="M132 74q20 0 26 20" fill="none" stroke="#5FD4E0" stroke-width="1.6"/>',
+    electrica: '<rect x="104" y="60" width="32" height="34" rx="3" fill="#2B3532" stroke="#9FB8AE"/><path d="M136 80h18v10" fill="none" stroke="#E3A75F" stroke-width="1.4"/>',
+  }[c.prensa] || '<rect x="114" y="62" width="12" height="32" fill="#2B3532" stroke="#9FB8AE"/>';
+  const paper = c.papel === 'sin_papel' ? '' : `<rect x="72" y="125" width="96" height="3" fill="${c.papel === 'comun' ? '#C7CFD2' : '#F0F7F3'}" opacity="0.9"/><rect x="72" y="142" width="96" height="3" fill="${c.papel === 'comun' ? '#C7CFD2' : '#F0F7F3'}" opacity="0.9"/>`;
+  const mat = MATERIAL[c.material] || '#7FA65A';
+  const bag = c.malla === 'sin_bolsa' ? `<ellipse cx="120" cy="135" rx="18" ry="5" fill="${mat}"/>`
+    : `<rect x="100" y="129" width="40" height="12" rx="2" fill="${mat}" stroke="#E8EEF0" stroke-width="0.6" stroke-dasharray="${c.malla === 'fina' ? '0.6 0.6' : '1.6 1'}"/>`;
+  const puddleCol = look.oscuro ? '#8B5A2B' : look.agua ? '#D9C88F' : '#E3A75F';
+  // the rosin oozes out on both sides of the plates
+  const puddle = c.material ? `<g class="jgt-rosin" fill="${puddleCol}" opacity="0.95"><ellipse cx="58" cy="136" rx="10" ry="4.5"/><ellipse cx="182" cy="136" rx="10" ry="4.5"/><rect x="66" y="133" width="108" height="5" rx="2"/></g>`
+    + (look.restos ? '<g class="jgt-debris">' + [52, 58, 64, 176, 183, 188].map((x, i) => `<circle cx="${x}" cy="${135 + (i % 2) * 2}" r="1.1" fill="#4F7A3A"/>`).join('') + '</g>' : '')
+    + (look.agua ? '<g fill="#5FD4E0">' + [54, 62, 180, 187].map((x) => `<ellipse cx="${x}" cy="143" rx="1.3" ry="2.2"/>`).join('') + '</g>' : '') : '';
+  const gloves = c.proteccion === 'guantes' ? '<path class="jgt-gloves" d="M182 170q-4 -14 4 -18q4 6 6 0q4 2 4 8v10z" fill="#E3A75F" stroke="#9A6A35" stroke-width="0.6"/>' : '';
+  return `<g class="jgt-post" data-material="${c.material || ''}" data-malla="${c.malla || ''}" data-calor="${c.calor || ''}" data-papel="${c.papel || ''}" data-prensa="${c.prensa || ''}" data-restos="${look.restos ? 1 : 0}" data-oscuro="${look.oscuro ? 1 : 0}">`
+    + `<rect x="92" y="94" width="56" height="8" fill="#2B3532" stroke="#9FB8AE"/>${frame}`
+    + `<rect x="66" y="112" width="108" height="12" rx="2" fill="#7F8B8E" stroke="${glow}" stroke-width="2"/>`
+    + `<rect x="66" y="146" width="108" height="12" rx="2" fill="#7F8B8E" stroke="${glow}" stroke-width="2"/>`
+    + `<path d="M74 158v40M166 158v40M60 198H180" stroke="#9FB8AE" stroke-width="2"/>`
+    + paper + bag + puddle + gloves + '</g>';
 }
 
 function pot(riego) {
@@ -252,8 +340,10 @@ function tentSvg(state, sc, choices, light, ctx) {
   // an open «exceso de riego» keeps the medium soaked whatever is picked now
   else if (living) inside = pot(problemOf(state)?.id === 'exceso_riego' && !problemOf(state).faded ? 'mucho' : riego) + plant(state, sc, ctx.RULES);
   else if (sc === 'muerta') inside = pot('poco') + wilted();
-  else if (sc === 'secado') inside = pot('poco') + hanging();
-  else inside = jars();
+  else if (sc === 'secado') inside = (ctx.post?.metodo === 'rejilla' ? '' : pot('poco')) + dryScene(ctx.post || {});
+  else if (sc === 'rosin') inside = rosinScene(ctx.post || {});
+  else if (sc === 'fin') inside = cureScene(state.post?.curado?.c || {}) + (state.post?.rosin ? '<rect class="jgt-rosin-jar" x="184" y="186" width="14" height="18" rx="3" fill="#E3A75F" fill-opacity="0.8" stroke="#9FB8AE" stroke-width="0.6"/>' : '');
+  else inside = cureScene(ctx.post || {});
   const cone = light ? `<polygon points="74,35 166,35 214,204 26,204" fill="url(#jgtCone)" opacity="${CONE[light]}"/>` : '';
   return `<svg class="jgt-svg" viewBox="0 0 240 216" role="img" aria-label="${ctx.esc(ctx.t('jgTentAlt'))}" aria-describedby="jgTentDesc" focusable="false"
     data-scene="${sc}" data-light="${light ? 'on' : 'off'}" data-int="${light || ''}" data-riego="${living ? riego : ''}" data-leaf="${living ? healthBand(state.health) : ''}">
@@ -315,15 +405,19 @@ function gauges(choices, ctx) {
 }
 
 // ---------------------------------------------------------------- caption
-function caption(state, sc, choices, light, t) {
+function caption(state, sc, choices, light, t, post) {
   const out = [t('jgTentD_' + sc)];
-  // intro, drying and curing already say the tent is dark
-  if (light || sc === 'muerta') out.push(t(light ? 'jgTentLuz_' + light : 'jgTentLuz_off'));
+  if (sc === 'secado') out.push(t('jgTentM_' + (post?.metodo || 'ramas')));
+  // intro and curing already say it is dark; drying can be dark or lit
+  if (light || sc === 'muerta' || sc === 'secado') out.push(t(light ? 'jgTentLuz_' + light : 'jgTentLuz_off'));
   if (['germ', 'plantula', 'vegetativo', 'floracion'].includes(sc)) {
     out.push(t('jgTentRiego_' + choices.riego), t('jgTentHoja_' + healthBand(state.health)));
     const prob = problemOf(state);
     if (prob) out.push(t(prob.faded ? 'jgTentRec' : 'jgTentP_' + prob.id));
   }
+  // phase 8: what the choices on the screen do (mould, over-dried, debris…)
+  const look = post ? postLooks(sc, post) : {};
+  for (const k of ['moho', 'reseco', 'restos', 'oscuro', 'agua']) if (look[k]) out.push(t('jgTentX_' + k));
   return out.join(' ');
 }
 
@@ -334,16 +428,19 @@ export function tentHtml(state, choices, ctx, ui = {}) {
   const sc = scene(state);
   const play = PLAYABLE.includes(state.stage);
   const ch = play ? choices : null;
-  const light = play ? (ch.intensidad || 'media') : sc === 'fin' ? 'baja' : null;
+  // phase 8: the post-harvest screens are drawn with what is picked (ui.post)
+  const post = ['secado', 'curado', 'rosin'].includes(sc) ? (ui.post || {}) : null;
+  const light = play ? (ch.intensidad || 'media')
+    : sc === 'fin' || sc === 'rosin' ? 'baja' : sc === 'secado' && post.luz === 'con_luz' ? 'media' : null;
   const open = play && OBJECTS[ui.open] ? ui.open : null;
   return `<figure class="jg-tent${play && ui.anim ? ' jgt-anim' : ''}" id="jgTent">
     <div class="jgt-scene">
-      <div class="jgt-stage">${tentSvg(state, sc, ch, light, { ...ctx, anim: play && ui.anim })}${play ? objButtons(open, ctx) : ''}</div>
+      <div class="jgt-stage">${tentSvg(state, sc, ch, light, { ...ctx, anim: play && ui.anim, post })}${play ? objButtons(open, ctx) : ''}</div>
       ${play ? `<p class="jgt-hint">${ctx.esc(ctx.t('jgTentHint'))}</p>` : ''}
       ${open ? panelHtml(open, ch, !!ui.blocked, ctx) : ''}
     </div>
     ${play ? gauges(ch, ctx) : ''}
-    <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t))}</figcaption>
+    <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t, post))}</figcaption>
   </figure>`;
 }
 
