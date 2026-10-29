@@ -73,6 +73,10 @@ dominios de correo desechables) → `20261010130000` → `20261011100000` → `2
 Paso 4. **Solo para probar el juego** (rama `juego`): en GitHub, rama `juego`, abre y pega primero
 `supabase/admin/precheck-game.sql` (todas las filas `ok`) y luego `supabase/migrations/20261015100000_game_progress.sql`.
 Es independiente: va en cualquier momento después del paso 3. En producción **no** se pega hasta que el juego se fusione.
+Después, para el juego v2 (fase 5: equipo, sistema de cultivo y germinación), pega
+`supabase/staging/paso4c-juego-setup.sql`, que es una copia exacta de `20261029100000_game_setup.sql` y solo cambia
+la regla que valida la partida guardada. Para deshacerlo: `supabase/staging/paso4c-rollback.sql`. Sin este paso, la
+web de pruebas rechaza guardar una partida que ya eligió equipo o germinación.
 
 Paso 5. **Tope de DeepL bajo** (en staging se traduce poco): pega
 `update public.app_config set value = 2000 where key = 'deepl_daily_char_cap';`

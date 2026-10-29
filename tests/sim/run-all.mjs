@@ -4,7 +4,7 @@
 // 5174 (see README). Usage: node tests/sim/run-all.mjs [name-filter]
 import { spawn } from 'child_process';
 const DIR = new URL('.', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
-const plain = ['test.mjs', 'bitacora-db.mjs', 'deepl-endpoint.mjs', 'mail-db.mjs', 'signup-fix-attacks.mjs', 'a1-money.mjs', 'owner-account.mjs', 'fn-e2e.mjs', 'mail-content.mjs', 'texts-truth.mjs', 'access-rule.mjs', 'game-db.mjs', 'game-engine.mjs', 'game-lab.mjs'];
+const plain = ['test.mjs', 'bitacora-db.mjs', 'deepl-endpoint.mjs', 'mail-db.mjs', 'signup-fix-attacks.mjs', 'a1-money.mjs', 'owner-account.mjs', 'fn-e2e.mjs', 'mail-content.mjs', 'texts-truth.mjs', 'access-rule.mjs', 'game-db.mjs', 'game-engine.mjs', 'game-lab.mjs', 'game-setup-db.mjs'];
 const browserTests = ['lang-live.mjs', 'app-ui.mjs', 'panel-ui.mjs', 'panel-users-ui.mjs', 'screens-scan.mjs', 'amount-ui.mjs', 'preview-ui.mjs', 'flowers20-ui.mjs', 'flowers-change-ui.mjs', 'flower-shots.mjs', 'mail-links-ui.mjs', 'mail-signup-ui.mjs', 'mail-flow-ui.mjs', 'mail-panel-ui.mjs', 'owner-ui.mjs', 'panel-conflicts-ui.mjs', 'access-live-ui.mjs', 'deadline-ui.mjs', 'stuck-ui.mjs', 'csp-ui.mjs', 'stage-ui.mjs', 'game-ui.mjs', 'game-play-ui.mjs', 'game-tent-ui.mjs', 'game-touch-ui.mjs', 'game-problems-ui.mjs', 'game-post-ui.mjs'];
 const filter = process.argv[2] || '';
 // screens-scan prints its own summary instead of "RESULTADO: …".
