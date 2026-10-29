@@ -240,17 +240,38 @@ export function harvest(s, rules, auto = false) {
 // One screen of decisions per stage (not weeks). Each wrong decision takes
 // points off the harvest's score (drying, curing). Rosin is optional and only
 // qualitative (levels, no figures); it gets its own verdict, not a number.
-export const POST = ['secado', 'curado', 'rosin'];
-export const postDecisions = (rules, stage) => Object.keys(rules.post[stage].decisiones);
+// Sub-phase 8b («material»): preparing the starting material, optional,
+// between curing and the press. A game saved before 8b goes curing → rosin.
+export const POST = ['secado', 'curado', 'material', 'rosin'];
+// The decisions shown for this stage: only those that apply to what is
+// picked (8b: the sieve's options only with dry sifting…); in the press, the
+// material is not asked again when 8b decided it.
+export const postDecisions = (rules, stage, picked = {}, s = null) => Object.entries(rules.post[stage].decisiones)
+  .filter(([d, def]) => applies(def.cuando, picked) && !(stage === 'rosin' && d === 'material' && s?.post?.material))
+  .map(([d]) => d);
+
+// What 8b sends to the press: flower, kief (dry sift) or hash (ice water).
+export function materialFrom(c, rules) {
+  const M = rules.post.material.da_material;
+  if (c.separacion === 'ninguna' && c.partida === 'flor_congelada') return M._congelada_sin_separar;
+  return M[c.separacion];
+}
+// Purity of the separated material: no mistake = high, one = medium, more = low.
+export function purity(s) {
+  const n = Object.keys(s.post?.material?.l || {}).length;
+  return !s.post?.material ? null : n === 0 ? 'alta' : n === 1 ? 'media' : 'baja';
+}
 
 export function applyPost(s, choices, rules) {
   if (!POST.includes(s.stage)) throw new Error('not_post');
   const R = rules.post;
   const defs = R[s.stage].decisiones;
-  if (!Object.entries(defs).every(([d, def]) => def.opciones.includes(choices?.[d]))) throw new Error('bad_choices');
+  const ds = postDecisions(rules, s.stage, choices, s);
+  if (!ds.every((d) => defs[d].opciones.includes(choices?.[d]))) throw new Error('bad_choices');
   const lost = {};
   const notes = [];
-  for (const [d, def] of Object.entries(defs)) {
+  for (const d of ds) {
+    const def = defs[d];
     // Phase 8: the ideal may be one option, several (any of them) or null.
     // null + no source = no approved figure yet (the guide says so); null on
     // purpose (author's criteria: it only teaches) = no note.
@@ -266,15 +287,19 @@ export function applyPost(s, choices, rules) {
   notes.unshift((Object.keys(lost).length ? 'postMal:' : 'postBien:') + s.stage);
   if (s.stage === 'rosin' && lost.proteccion) notes.push('quemadura');
   const c = {};
-  for (const d of Object.keys(defs)) c[d] = choices[d];
+  for (const d of ds) c[d] = choices[d];
+  // the press gets the material 8b produced
+  if (s.stage === 'rosin' && s.post?.material) c.material = materialFrom(s.post.material.c, rules);
+  if (s.stage === 'material') notes.push('pureza:' + (Object.keys(lost).length === 0 ? 'alta' : Object.keys(lost).length === 1 ? 'media' : 'baja'));
   const post = { ...(s.post || {}), [s.stage]: { c, l: lost } };
   const next = POST[POST.indexOf(s.stage) + 1] || 'fin';
   const out = { ...s, seq: s.seq + 1, stage: next, post, notes };
   return next === 'fin' ? closePost(out) : out;
 }
 
+// «Terminar sin hacer rosin»: from the preparation (8b) or from the press.
 export function skipRosin(s) {
-  if (s.stage !== 'rosin') throw new Error('not_rosin');
+  if (s.stage !== 'rosin' && s.stage !== 'material') throw new Error('not_rosin');
   return closePost({ ...s, seq: s.seq + 1, notes: ['rosinNo'] });
 }
 
@@ -283,7 +308,8 @@ function closePost(s) {
   const flower = [...lostOf('secado'), ...lostOf('curado')];
   const total = flower.reduce((a, [, v]) => a + v, 0);
   const postCauses = flower.sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => k);
-  const rosin = s.post?.rosin ? { causes: lostOf('rosin').sort((a, b) => b[1] - a[1]).map(([k]) => k) } : null;
+  // the preparation's mistakes count in the rosin's verdict, not in the bud's score
+  const rosin = s.post?.rosin ? { causes: [...lostOf('material'), ...lostOf('rosin')].sort((a, b) => b[1] - a[1]).map(([k]) => k) } : null;
   return { ...s, stage: 'fin', result: { ...s.result, final: clamp(s.result.score - total, 0, 100), postCauses, rosin } };
 }
 

@@ -44,12 +44,15 @@ const harvested = s;
 let p = E.applyPost(s, PI('secado'), RULES); states.push(p);
 check('secado ideal (planta entera, sala fresca, HR media, aire a la pared, a oscuras, hasta el chasquido) -> curado sin restar', p.stage === 'curado' && p.notes[0] === 'postBien:secado' && !Object.keys(p.post.secado.l).length);
 p = E.applyPost(p, PI('curado'), RULES); states.push(p);
-check('curado + almacenamiento ideales (9 decisiones) -> prensa de rosin', p.stage === 'rosin' && p.notes[0] === 'postBien:curado' && Object.keys(p.post.curado.c).length === 9);
+check('curado + almacenamiento ideales (9 decisiones) -> preparar el material (8b)', p.stage === 'material' && p.notes[0] === 'postBien:curado' && Object.keys(p.post.curado.c).length === 9);
+const atMaterial = p;
+p = E.applyPost(p, { partida: 'flor_curada', separacion: 'ninguna' }, RULES); states.push(p);
+check('8b sin separar -> la prensa, con la flor como material (no se vuelve a preguntar)', p.stage === 'rosin' && !E.postDecisions(RULES, 'rosin', {}, p).includes('material'));
 const pr = E.applyPost(p, PI('rosin'), RULES); states.push(pr);
 check('rosin ideal -> final 100/100 y rosin «bien hecho»; presión y tiempo sin cifra aprobada avisan «sin dato»; prensa y prioridad solo enseñan (sin aviso)',
   pr.stage === 'fin' && pr.result.final === 100 && pr.result.rosin.causes.length === 0 && pr.notes.includes('postSinDato:rosin_presion')
   && pr.notes.includes('postSinDato:rosin_tiempo') && !pr.notes.some((n) => /rosin_(prensa|prioridad)/.test(n)), JSON.stringify(pr.notes));
-const skip = E.skipRosin(p); states.push(skip);
+const skip = E.skipRosin(atMaterial); states.push(skip);
 check('el rosin es opcional: terminar sin prensar -> final igual, sin veredicto de rosin', skip.stage === 'fin' && skip.result.final === 100 && skip.result.rosin === null && skip.notes[0] === 'rosinNo');
 const alt = E.applyPost(E.applyPost(harvested, { ...PI('secado'), metodo: 'ramas' }, RULES), { ...PI('curado'), envase: 'bolsa_curado', control: 'sobre', tiempo: 'meses', g_temp: 'nevera', g_tiempo: 'meses' }, RULES);
 check('varias opciones ideales valen igual (ramas, bolsa de curado, sobre de humedad, meses, nevera)', !Object.keys(alt.post.secado.l).length && !Object.keys(alt.post.curado.l).length, JSON.stringify(alt.post));
@@ -58,7 +61,10 @@ check('secado con rejilla, calor, humedad alta y aire directo -> resta 4 + 8 + 4
   && q.post.secado.l.metodo === 4 && q.post.secado.l.temperatura === 8 && q.post.secado.l.humedad === 4 && q.post.secado.l.aire === 4, JSON.stringify(q.post));
 q = E.applyPost(q, { ...PI('curado'), envase: 'plastico', g_temp: 'calido', g_forma: 'molida', g_tiempo: 'anos' }, RULES); states.push(q);
 check('almacenamiento cálido, molido y por años (F8) y envase de plástico -> resta 4 cada uno', q.post.curado.l.envase === 4 && q.post.curado.l.g_temp === 4 && q.post.curado.l.g_forma === 4 && q.post.curado.l.g_tiempo === 4, JSON.stringify(q.post.curado));
-const qr = E.applyPost(q, { ...PI('rosin'), material: 'fresco', malla: 'sin_bolsa', proteccion: 'sin_proteccion' }, RULES); states.push(qr);
+// a game saved before 8b went curing -> press: the press still asks for the material
+const qOld = { ...q, stage: 'rosin' };
+check('partida guardada antes de 8b (en la prensa, sin preparación) -> la prensa pregunta el material', q.stage === 'material' && E.postDecisions(RULES, 'rosin', {}, qOld).includes('material'));
+const qr = E.applyPost(qOld, { ...PI('rosin'), material: 'fresco', malla: 'sin_bolsa', proteccion: 'sin_proteccion' }, RULES); states.push(qr);
 check('los errores de secado y curado bajan la nota final (100 - 36 = 64); lo que más restó va primero', qr.result.final === 64 && qr.result.score === 100
   && qr.result.postCauses[0] === 'secado_temperatura' && qr.result.postCauses.length === 3, JSON.stringify(qr.result));
 check('rosin con flor fresca sin congelar, sin bolsa y sin protección -> «para mejorar» y aviso de quemadura (no cambia la nota del cogollo)',
@@ -69,9 +75,30 @@ for (const f of [() => E.applyPost(harvested, { ...PI('secado'), luz: 'neon' }, 
 check('opciones inventadas, decisiones vacías, secado sin cosechar o saltar el rosin antes de tiempo -> rechazado', threw === 4);
 check('cada decisión tiene fuente, nivel de respaldo conocido y la marca [POR VERIFICAR POR BERTHA]',
   E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA/.test(v.ideal.verificar) && v.ideal.fuente.length > 10
-    && ['estudio', 'guia', 'patente', 'practica', 'autora', 'simple', 'sin'].includes(v.ideal.respaldo))));
+    && ['estudio', 'guia', 'patente', 'comunidad', 'practica', 'autora', 'simple', 'sin'].includes(v.ideal.respaldo))));
 check('cada ideal es una opción que existe', E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => [].concat(v.ideal.valor ?? []).every((x) => v.opciones.includes(x)))));
-check('el estado guardado con todo el post-cosecha cabe en el límite del servidor (post ≤ 1000 bytes)', JSON.stringify(qr.post).length <= 1000, String(JSON.stringify(qr.post).length));
+console.log('1c. Sub-fase 8b: preparar el material sin solventes');
+const M = (c) => E.applyPost(atMaterial, c, RULES);
+check('cada método muestra solo sus decisiones (sin separar 2, tamizado 6, agua y hielo 7)', E.postDecisions(RULES, 'material', { separacion: 'ninguna' }).length === 2
+  && E.postDecisions(RULES, 'material', { separacion: 'tamiz_seco' }).length === 6 && E.postDecisions(RULES, 'material', { separacion: 'agua_hielo' }).length === 7);
+const TZ = { partida: 'flor_curada', separacion: 'tamiz_seco', tamiz_frio: 'congelado', tamiz_malla: 'fina', tamiz_frotar: 'suave', tamiz_tiempo: 'corto' };
+let k = M(TZ); states.push(k);
+check('tamizado en seco bien hecho (congelado, malla fina, suave, corto: C4) -> pureza alta y la prensa recibe kief', k.stage === 'rosin' && k.notes.includes('pureza:alta') && E.purity(k) === 'alta'
+  && E.materialFrom(k.post.material.c, RULES) === 'kief');
+k = E.applyPost(k, PI('rosin'), RULES); states.push(k);
+check('…el rosin guarda «kief» como material y sale bien', k.post.rosin.c.material === 'kief' && k.result.rosin.causes.length === 0);
+const AG = { partida: 'flor_congelada', separacion: 'agua_hielo', agua_temp: 'helada', agua_agitar: 'suave', agua_lavados: 'varios', agua_bolsa: 'fina', agua_secado: 'aire' };
+check('agua y hielo bien hecho (agua helada y agitación suave: C3) -> hachís, pureza alta', E.materialFrom(M(AG).post.material.c, RULES) === 'hachis' && E.purity(M(AG)) === 'alta');
+const wet = M({ ...AG, agua_secado: 'bola_humeda', agua_bolsa: 'gruesa' }); states.push(wet);
+check('hachís en bola húmeda (moho, C3) y bolsa gruesa -> 2 errores, pureza baja', wet.post.material.l.agua_secado === 4 && wet.post.material.l.agua_bolsa === 4 && E.purity(wet) === 'baja');
+const wr = E.applyPost(wet, PI('rosin'), RULES); states.push(wr);
+check('…los errores de la preparación cuentan en el veredicto del rosin, no en la nota del cogollo', wr.result.rosin.causes.includes('material_agua_secado') && wr.result.final === 100);
+check('tamizar a temperatura ambiente, frotar fuerte y mucho rato -> restan (C4 + criterio)', Object.keys(M({ ...TZ, tamiz_frio: 'ambiente', tamiz_frotar: 'fuerte', tamiz_tiempo: 'largo' }).post.material.l).length === 3);
+check('flor fresca congelada sin separar -> la prensa recibe material fresco congelado', E.materialFrom({ partida: 'flor_congelada', separacion: 'ninguna' }, RULES) === 'congelado');
+check('se puede terminar sin rosin desde la preparación', E.skipRosin(atMaterial).stage === 'fin');
+threw = 0; for (const f of [() => M({ partida: 'flor_curada', separacion: 'solvente' }), () => M({ partida: 'flor_curada', separacion: 'agua_hielo' }), () => M({ ...TZ, tamiz_malla: '25' })]) { try { f(); } catch { threw++; } }
+check('métodos inventados (ningún solvente), agua y hielo sin sus decisiones o mallas inventadas -> rechazado', threw === 3);
+check('el estado guardado con todo el post-cosecha cabe en el límite del servidor (post ≤ 1500 bytes)', [qr, wr, k].every((x) => JSON.stringify(x.post).length <= 1500), String(JSON.stringify(wr.post).length));
 
 console.log('2. Errores, eventos y respuestas');
 let b = E.start(E.newGame());

@@ -415,6 +415,7 @@
     "orden": [
       "secado",
       "curado",
+      "material",
       "rosin"
     ],
     "secado": {
@@ -821,6 +822,222 @@
             "valor": "guantes",
             "fuente": "Diseño aprobado de la fase 2: seguridad (superficies calientes, quemaduras)",
             "respaldo": "simple",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        }
+      }
+    },
+    "material": {
+      "opcional": true,
+      "leccion": [
+        "elaboracion",
+        "concentrados"
+      ],
+      "_nota": "Sub-fase 8b: preparar el material de partida, solo métodos sin solventes. Lo que sale de aquí decide el material del rosin (da_material). Los errores cuentan en el veredicto del rosin. C1–C4 = práctica de la comunidad (docs/juego-fuentes.md).",
+      "da_material": {
+        "ninguna": "flor",
+        "tamiz_seco": "kief",
+        "agua_hielo": "hachis",
+        "_congelada_sin_separar": "congelado"
+      },
+      "decisiones": {
+        "partida": {
+          "opciones": [
+            "flor_curada",
+            "flor_congelada",
+            "flor_liofilizada",
+            "recortes"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: cada material da su resultado; C3 recomienda congelado para agua y hielo",
+            "respaldo": "autora",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "separacion": {
+          "opciones": [
+            "ninguna",
+            "tamiz_seco",
+            "agua_hielo"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: cambia lo que llega a la prensa",
+            "respaldo": "autora",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "tamiz_frio": {
+          "opciones": [
+            "congelado",
+            "ambiente"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": "congelado",
+            "fuente": "C4 (congelar unas dos horas antes de tamizar)",
+            "respaldo": "comunidad",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "tamiz_malla": {
+          "opciones": [
+            "fina",
+            "media",
+            "gruesa"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": [
+              "fina",
+              "media"
+            ],
+            "fuente": "[CIFRA: BERTHA] micras · criterio de la autora (la gruesa deja pasar restos)",
+            "respaldo": "autora",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "tamiz_frotar": {
+          "opciones": [
+            "suave",
+            "fuerte"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": "suave",
+            "fuente": "Criterio de la autora (frotar fuerte arranca restos de planta)",
+            "respaldo": "autora",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "tamiz_tiempo": {
+          "opciones": [
+            "corto",
+            "largo"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": "corto",
+            "fuente": "C4 (la primera vuelta corta da la resina más pura)",
+            "respaldo": "comunidad",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "agua_temp": {
+          "opciones": [
+            "helada",
+            "fria",
+            "templada"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "ideal": {
+            "valor": "helada",
+            "fuente": "C3 (agua apenas sobre 0 °C; ideal 3–5 °C)",
+            "respaldo": "comunidad",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "agua_agitar": {
+          "opciones": [
+            "suave",
+            "fuerte"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "escala": false,
+          "ideal": {
+            "valor": "suave",
+            "fuente": "C3 (velocidad baja, por tandas con pausas)",
+            "respaldo": "comunidad",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "agua_lavados": {
+          "opciones": [
+            "uno",
+            "varios"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "C3 (el agua fría se reutiliza) · criterio de la autora: no puntúa",
+            "respaldo": "comunidad",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "agua_bolsa": {
+          "opciones": [
+            "fina",
+            "media",
+            "gruesa"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "ideal": {
+            "valor": [
+              "fina",
+              "media"
+            ],
+            "fuente": "C1 (25 µm, lo habitual para prensar hachís de agua) · [CIFRA: BERTHA] micras",
+            "respaldo": "comunidad",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "agua_secado": {
+          "opciones": [
+            "aire",
+            "liofilizado",
+            "deshumidificador",
+            "bola_humeda"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "aire",
+              "liofilizado",
+              "deshumidificador"
+            ],
+            "fuente": "C3 (secar enseguida o se enmohece) · criterio de la autora (liofilizado, deshumidificador)",
+            "respaldo": "comunidad",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         }
