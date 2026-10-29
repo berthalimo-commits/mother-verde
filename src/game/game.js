@@ -168,6 +168,7 @@ function eventHtml() {
     <h3 id="jgEvH">${t('jgEvTitulo')}: ${t('jgEvN_' + ev.id)}</h3>
     <p>${t('jgEvS_' + ev.id)}</p>
     <p><b>${t('jgEvPregunta')}</b></p>
+    <p class="jg-ev-elige">${t('jgEvElige')}</p>
     <div class="jg-answers">${shown.map((a) => `<button type="button" class="btn btn-ghost jg-answer" data-answer="${a}">${t('jgR_' + a)}</button>`).join('')}</div>
     ${lessonBtn('diagnostico')}
     ${whyGroupHtml([ev.id], WHY_CTX, 'evento')}
@@ -193,9 +194,12 @@ function decisionsHtml() {
     </fieldset>`).join('');
   const fixedNote = 'nutrientes' in fixed ? t('jgFijoAcua') + ' ' + t('jgFijoHidro') : 'riego' in fixed ? t('jgFijoHidro') : '';
   const canMove = state.setup?.maceta_tam === 'pequena' && state.setup.trasplante !== 'si';
+  // an unanswered problem locks the week: say why and where to answer
+  const lockNote = blocked ? `<div class="jg-bloqueo" id="jgBloqueo" role="status"><p>${esc(t('jgBloqueo'))}</p><button type="button" class="btn btn-primary" id="jgIrPregunta">${t('jgIrPregunta')}</button></div>` : '';
   return `<form class="jg-form" id="jgForm" novalidate>
     <h3>${t('jgDecide')}</h3>
-    ${fixedNote ? `<p class="jg-fixed" id="jgFixed">${esc(fixedNote)}</p>` : ''}
+    ${lockNote}
+    ${fixedNote ?`<p class="jg-fixed" id="jgFixed">${esc(fixedNote)}</p>` : ''}
     ${fields}
     <div class="jg-actions">
       <button type="submit" class="btn btn-primary" id="jgNext"${blocked ? ' disabled' : ''}>${t('jgPasarSemana')}</button>
@@ -524,6 +528,11 @@ function paint(root) {
   root.querySelector('#jgStart')?.addEventListener('click', () => act(E.start(state)));
   if (!inLab) bindOptionForms(root, root.querySelector('.jg'));
   root.querySelector('#jgTrasplante')?.addEventListener('click', () => act(E.transplant(state)));
+  root.querySelector('#jgIrPregunta')?.addEventListener('click', () => {
+    const card = root.querySelector('.jg-event');
+    card?.scrollIntoView({ block: 'center' });
+    card?.querySelector('.jg-answer')?.focus();
+  });
   root.querySelector('#jgForm')?.addEventListener('change', () => redrawTent(root));
   root.querySelector('#jgForm')?.addEventListener('submit', (ev) => {
     ev.preventDefault();
@@ -574,6 +583,9 @@ const CSS = `
 #juego .jg-big{font-size:22px;font-weight:700;color:var(--ink)}
 #juego .jg-sync{font-size:12.5px;color:var(--ink-soft);min-height:1.5em}
 #juego .jg-warn{font-size:13.5px;line-height:1.55;color:var(--ink);background:var(--paper-raised);border:1px solid var(--resin);border-left:4px solid var(--resin);border-radius:8px;padding:10px 12px;margin:0 0 12px}
+#juego .jg-bloqueo{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--paper-raised);border:1px solid var(--resin);border-left:4px solid var(--resin);border-radius:8px;padding:10px 12px;margin:0 0 12px}
+#juego .jg-bloqueo p{flex:1 1 220px;margin:0;font-size:14px;line-height:1.55;color:var(--ink)}
+#juego .jg-ev-elige{font-size:13.5px;color:var(--ink);margin:0 0 8px}
 #juego .jg-fixed{font-size:13.5px;line-height:1.55;color:var(--ink);background:var(--paper-raised);border:1px solid var(--glow-border);border-left:4px solid var(--teal);border-radius:8px;padding:10px 12px;margin:0 0 12px}
 #juego .jg-pgroup{font-family:'Manrope',sans-serif;font-size:15px;margin:18px 0 10px;color:var(--ink)}
 #juego .jg-missing{color:var(--resin);font-weight:600;font-size:13.5px;min-height:1.2em;margin:0}

@@ -435,6 +435,7 @@ function panelHtml(open, choices, blocked, ctx) {
     </fieldset>`).join('');
   return `<div class="jgt-panel" id="jgtPanel" role="group" aria-labelledby="jgtPanelH" data-obj="${open}">
     <h4 id="jgtPanelH">${esc(t('jgObj_' + open))}</h4>
+    ${blocked ? `<p class="jgt-bloqueo">${esc(t('jgBloqueo'))}</p>` : ''}
     ${fields}
     <div class="jg-actions">
       <button type="button" class="btn btn-primary" id="jgtNext"${blocked ? ' disabled' : ''}>${t('jgPasarSemana')}</button>

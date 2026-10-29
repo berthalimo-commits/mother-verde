@@ -420,6 +420,32 @@ Las cifras del juego **no se cambiaron todavía**: esperan que Bertha valide sus
 
 **Peso:** juego 237,9 → 271 KB (73,4 → 81,7 comprimido).
 
+## Arreglo: «no puedo cambiar nada» con un problema abierto (2026-10-29)
+
+**Lo que vio Bertha** en `juego` (staging, cuenta hello@), justo después de pegar `paso4c-juego-setup.sql`: todas
+las decisiones y «Pasar la semana» con el cursor de «no permitido», y una carencia de nitrógeno en la planta.
+
+**Causa:** no es un fallo del guardado ni de la migración. Es la regla del juego: con un problema abierto hay que
+responder primero «¿Qué haces?» en la tarjeta del problema; hasta entonces la semana queda bloqueada. Abrir la
+lección no cuenta como respuesta. El juego **no lo explicaba**.
+- Reproducido en local con una partida guardada antes de las fases 6, 7 y 8b: carga sin errores de consola, la
+  tarjeta muestra las 4 respuestas y, al tocar una, todo se desbloquea y el servidor guarda la partida.
+
+**Arreglo:**
+- **Aviso encima de las decisiones bloqueadas:** «Tu planta tiene un problema: primero responde «¿Qué haces?»…»,
+  con el botón **«Ir a la pregunta»**, que lleva el foco a la primera respuesta.
+- **En la tarjeta:** «Elige una respuesta para seguir jugando. Leer la lección ayuda, pero no cuenta como
+  respuesta.»
+- **En el panel de la carpa:** el mismo aviso.
+- Todo en ES/EN/DE/FR.
+
+**Prueba nueva:** `game-oldsave-ui.mjs` **17 ok**.
+- El caso de Bertha: partida antigua con el problema abierto, aviso, «Ir a la pregunta», leer la lección y
+  volver sigue bloqueado, responder desbloquea, guarda.
+- Una partida guardada en la prensa antes de la 8b (pregunta el material, termina y guarda).
+- Una guardada en el curado (al terminar pasa a preparar el material).
+- Las demás pruebas del juego pasan.
+
 **Lo siguiente:**
 - **Varias plantas y autofloreciente** (semilla regular con macho posible, autofloreciente con calendario propio,
   número de plantas que agranda la carpa).
