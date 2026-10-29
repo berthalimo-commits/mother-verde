@@ -124,7 +124,7 @@ const a11y = () => b.ev(`(() => {
   return small === 0 && unlabelled === 0 && [...document.querySelectorAll('#juego fieldset')].every((f) => f.querySelector('legend')?.textContent.trim()) && document.documentElement.scrollWidth <= innerWidth;
 })()`);
 check('secado en el móvil: opciones ≥ 44 px, etiquetadas, grupos con nombre, sin desborde', await a11y());
-await pick('secado', { temperatura: 'calida', humedad: 'media', aire: 'pared', luz: 'oscuro', duracion: 'chasquido' });
+await pick('secado', { metodo: 'ramas', temperatura: 'calida', humedad: 'media', aire: 'pared', luz: 'oscuro', duracion: 'chasquido' });
 await click(b, 'jgPostNext'); await sleep(1200);
 st = await gs(b);
 check('secado con calor -> pasa al curado, el guía dice qué restó y se preocupa', st.stage === 'curado' && /temperatura del secado/.test(await b.ev(`document.getElementById('jgBubble').innerText`))
@@ -134,19 +134,22 @@ await b.send('Page.reload'); await sleep(5500);
 await b.ev(`document.getElementById('ageGateModal').style.display='none'; 1`);
 await goGame(b);
 check('recargar -> sigue en el curado', (await gs(b)).stage === 'curado' && !!(await b.ev(`document.getElementById('jgPostForm')`)));
-await pick('curado', { envase: 'vidrio', humedad: 'media', abrir: 'diario', tiempo: 'semanas' });
+await pick('curado', { envase: 'vidrio', control: 'higrometro', abrir: 'diario', tiempo: 'semanas', g_luz: 'oscuro', g_temp: 'fresco', g_aire: 'lleno', g_forma: 'entera', g_tiempo: 'meses' });
 await click(b, 'jgPostNext'); await sleep(1200);
 const rosinTxt = await b.ev(`document.getElementById('jgPostForm').innerText`);
 check('prensa de rosin: aviso de seguridad visible, guía con casco y gafas, botón para no hacerla', (await gs(b)).stage === 'rosin' && /quemaduras/.test(rosinTxt)
   && await b.ev(`document.querySelector('#juego .jg-sci svg').dataset.pose`) === 'casco' && !!(await b.ev(`document.getElementById('jgSkipRosin')`)));
-check('rosin sin ninguna cifra en pantalla (ni temperaturas, ni tiempos, ni presiones)', !/\d/.test(rosinTxt + await b.ev(`document.getElementById('jgBubble').innerText`)), rosinTxt);
+// Bertha, 2026-10-28: figures only for the mesh and the plate heat, marked «orientativo»
+const rosinFigs = await b.ev(`[...document.querySelectorAll('#jgPostForm fieldset')].filter((f) => /\\d/.test(f.innerText)).map((f) => [f.querySelector('input').name, f.innerText.includes('orientativo')])`);
+check('rosin: cifras solo en la malla y el calor, marcadas «orientativo»; ninguna en el guía', rosinFigs.length === 2 && rosinFigs.every(([n, o]) => /jgp-(malla|calor)/.test(n) && o)
+  && !/\d/.test(await b.ev(`document.getElementById('jgBubble').innerText`)), JSON.stringify(rosinFigs));
 const rosinTitles = {};
 for (const L of ['en', 'de', 'fr', 'es']) {
   await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(500);
   rosinTitles[L] = await b.ev(`document.querySelector('#jgPostForm h3').textContent + ' | ' + (document.getElementById('juego').innerText.match(/\\bjg[A-Z][A-Za-z_]+/g) || []).join(',')`);
 }
 check('rosin en 4 idiomas, sin claves a la vista', /simulated\) \| $/.test(rosinTitles.en) && /simuliert\) \| $/.test(rosinTitles.de) && /simulé\) \| $/.test(rosinTitles.fr) && /simulado\) \| $/.test(rosinTitles.es), JSON.stringify(rosinTitles));
-await pick('rosin', { material: 'curado', calor: 'medio', presion: 'media', papel: 'pergamino', proteccion: 'sin_proteccion' });
+await pick('rosin', { material: 'flor', malla: 'fina', calor: 'medio', presion: 'media', tiempo: 'medio', prensa: 'manual', papel: 'pergamino', enfriado: 'enfriar', guardar: 'frio', prioridad: 'sabor', proteccion: 'sin_proteccion' });
 await click(b, 'jgPostNext'); await sleep(1200);
 const fin = await b.ev(`document.getElementById('juegoRoot').innerText`);
 st = await gs(b);
