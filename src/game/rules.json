@@ -365,7 +365,7 @@
     "verificar": "[POR VERIFICAR POR BERTHA]"
   },
   "post": {
-    "_nota": "Fase 2: después de cosechar. Una sola decisión por etapa (no por semanas). Cada ideal sale de un texto de la plataforma (fuente); null = la plataforma no da ese dato y no puntúa. El rosin es SOLO cualitativo: niveles, sin temperaturas, tiempos, presiones ni cantidades (decisión de la dueña, 14-10-2026).",
+    "_nota": "Fase 8 (catálogo aprobado por Bertha el 2026-10-28, docs/juego-decisiones.md). Una pantalla por etapa. ideal = una opción, varias (cualquiera vale) o null (no puntúa, solo enseña). respaldo = nivel de docs/juego-fuentes.md. Cifras SOLO en el rosin, siempre «orientativo» (fuentes P1/P2); el laboratorio de solventes y CO₂ no lleva ninguna.",
     "resta_un_nivel": 4,
     "resta_dos_niveles": 8,
     "resta_nota": "VALOR DE JUEGO: lo que resta de la nota de la cosecha cada decisión fuera de lo ideal (igual que en el cultivo).",
@@ -381,6 +381,23 @@
         "procesos"
       ],
       "decisiones": {
+        "metodo": {
+          "opciones": [
+            "entera",
+            "ramas",
+            "rejilla"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "entera",
+              "ramas"
+            ],
+            "fuente": "Criterio de la autora (catálogo aprobado 2026-10-28)",
+            "respaldo": "autora",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
         "temperatura": {
           "opciones": [
             "fresca",
@@ -390,6 +407,7 @@
           "ideal": {
             "valor": "fresca",
             "fuente": "Elaboración → Procesos & SOP (SOP-01 Secado: sala 15–18 °C)",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -402,6 +420,7 @@
           "ideal": {
             "valor": "media",
             "fuente": "Elaboración → Procesos & SOP (SOP-01 Secado: HR 55–60 %)",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -411,9 +430,11 @@
             "directo",
             "sin_aire"
           ],
+          "escala": false,
           "ideal": {
             "valor": "pared",
-            "fuente": "Equipamiento → 5. Secado (ventilador apuntado a la pared, nunca directo a las flores)",
+            "fuente": "Equipamiento → 5. Secado (ventilador a la pared, nunca directo a las flores)",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -424,7 +445,8 @@
           ],
           "ideal": {
             "valor": "oscuro",
-            "fuente": "Equipamiento → 5. Secado (espacio 100 % oscuro)",
+            "fuente": "F8 (la luz degrada los cannabinoides) y Equipamiento → 5. Secado",
+            "respaldo": "estudio",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -436,7 +458,8 @@
           ],
           "ideal": {
             "valor": "chasquido",
-            "fuente": "Elaboración → Procesos & SOP (7–14 días) y Herramientas → Temporizador de secado (prueba del chasquido)",
+            "fuente": "SOP-01 (7–14 días) y Temporizador de secado (prueba del chasquido)",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         }
@@ -451,45 +474,142 @@
         "envase": {
           "opciones": [
             "vidrio",
-            "abierto"
+            "plastico",
+            "lata",
+            "bolsa_curado"
           ],
+          "escala": false,
           "ideal": {
-            "valor": "vidrio",
-            "fuente": "Equipamiento → 6. Curado (frascos de vidrio herméticos)",
+            "valor": [
+              "vidrio",
+              "bolsa_curado"
+            ],
+            "fuente": "Equipamiento → 6. Curado (vidrio) · criterio de la autora (los demás)",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
-        "humedad": {
+        "control": {
           "opciones": [
-            "baja",
-            "media",
-            "alta"
+            "sin_control",
+            "higrometro",
+            "sobre"
           ],
+          "escala": false,
           "ideal": {
-            "valor": "media",
-            "fuente": "Elaboración → Procesos & SOP (SOP-02 Curado: HR en frasco 58–62 %)",
+            "valor": [
+              "higrometro",
+              "sobre"
+            ],
+            "fuente": "Criterio de la autora; la plataforma pide 58–62 % en el frasco (SOP-02)",
+            "respaldo": "autora",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
         "abrir": {
           "opciones": [
+            "nunca",
             "diario",
-            "nunca"
+            "siempre"
           ],
+          "escala": false,
           "ideal": {
             "valor": "diario",
-            "fuente": "Herramientas → Temporizador de secado (burping diario durante la primera semana)",
+            "fuente": "Herramientas → Temporizador de secado (burping diario la primera semana)",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
         "tiempo": {
           "opciones": [
-            "pocos_dias",
-            "semanas"
+            "dias",
+            "semanas",
+            "meses"
           ],
           "ideal": {
-            "valor": "semanas",
-            "fuente": "Elaboración → Procesos & SOP (SOP-02 Curado: mínimo 2–4 semanas)",
+            "valor": [
+              "semanas",
+              "meses"
+            ],
+            "fuente": "SOP-02 (mínimo 2–4 semanas) · criterio de la autora (meses)",
+            "respaldo": "practica",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "g_luz": {
+          "opciones": [
+            "oscuro",
+            "indirecta",
+            "sol"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": "oscuro",
+            "fuente": "F8 (degradación mayor con luz)",
+            "respaldo": "estudio",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "g_temp": {
+          "opciones": [
+            "fresco",
+            "calido",
+            "nevera",
+            "congelador"
+          ],
+          "grupo": "guardar",
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "fresco",
+              "nevera"
+            ],
+            "fuente": "F8 (25 °C, los mayores cambios; 4 °C a oscuras, menos; bajo −20 °C, lo peor para los terpenos)",
+            "respaldo": "estudio",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "g_aire": {
+          "opciones": [
+            "lleno",
+            "medio",
+            "abierto"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": "lleno",
+            "fuente": "F8 (más superficie al aire = más oxidación) · criterio de la autora (medio vacío)",
+            "respaldo": "estudio",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "g_forma": {
+          "opciones": [
+            "entera",
+            "molida"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": "entera",
+            "fuente": "F8 (molida: lo menos favorable)",
+            "respaldo": "estudio",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "g_tiempo": {
+          "opciones": [
+            "semanas",
+            "meses",
+            "anos"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": [
+              "semanas",
+              "meses"
+            ],
+            "fuente": "F8 (los terpenos bajan rápido en cualquier condición) · criterio de la autora (el corte meses / años)",
+            "respaldo": "estudio",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         }
@@ -504,12 +624,39 @@
       "decisiones": {
         "material": {
           "opciones": [
-            "curado",
+            "flor",
+            "hachis",
+            "kief",
+            "congelado",
             "fresco"
           ],
+          "escala": false,
           "ideal": {
-            "valor": "curado",
-            "fuente": "Elaboración → Concentrados (Rosin: sobre flor, hash o kief ya curado)",
+            "valor": [
+              "flor",
+              "hachis",
+              "kief",
+              "congelado"
+            ],
+            "fuente": "Glosario (Hash rosin, Live rosin) · criterio de la autora (flor fresca sin congelar)",
+            "respaldo": "practica",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "malla": {
+          "opciones": [
+            "sin_bolsa",
+            "fina",
+            "estandar"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "fina",
+              "estandar"
+            ],
+            "fuente": "P1 y P2 (rangos de malla, orientativo) · criterio de la autora (sin bolsa)",
+            "respaldo": "patente",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -521,7 +668,8 @@
           ],
           "ideal": {
             "valor": "medio",
-            "fuente": "Elaboración → Concentrados / Técnicas caseras (a temperatura media). En el juego solo el nivel, sin cifras.",
+            "fuente": "Elaboración → Concentrados («a temperatura media») · rango orientativo P2",
+            "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -533,18 +681,92 @@
           ],
           "ideal": {
             "valor": null,
-            "fuente": "La plataforma no da un nivel de presión: no puntúa.",
+            "fuente": "[CIFRA: BERTHA] — no hay fuente con valores: no puntúa",
+            "respaldo": "sin",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "tiempo": {
+          "opciones": [
+            "corto",
+            "medio",
+            "largo"
+          ],
+          "ideal": {
+            "valor": null,
+            "fuente": "[CIFRA: BERTHA] — ninguna fuente da tiempos: no puntúa",
+            "respaldo": "sin",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "prensa": {
+          "opciones": [
+            "manual",
+            "hidraulica",
+            "neumatica",
+            "electrica"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: cambia el control, no la nota",
+            "respaldo": "autora",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
         "papel": {
           "opciones": [
             "pergamino",
+            "comun",
             "sin_papel"
           ],
+          "escala": false,
           "ideal": {
             "valor": "pergamino",
-            "fuente": "Elaboración → Concentrados (Rosin: sobre papel pergamino, sin solventes)",
+            "fuente": "Elaboración → Concentrados (papel pergamino)",
+            "respaldo": "practica",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "enfriado": {
+          "opciones": [
+            "enfriar",
+            "aire",
+            "caliente"
+          ],
+          "ideal": {
+            "valor": [
+              "enfriar",
+              "aire"
+            ],
+            "fuente": "Criterio de la autora",
+            "respaldo": "autora",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "guardar": {
+          "opciones": [
+            "frio",
+            "ambiente",
+            "luz"
+          ],
+          "ideal": {
+            "valor": "frio",
+            "fuente": "F8 (frío y oscuridad conservan; 25 °C y luz degradan)",
+            "respaldo": "estudio",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "prioridad": {
+          "opciones": [
+            "sabor",
+            "rendimiento"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: más calor = más rendimiento y menos terpenos (sin estudio)",
+            "respaldo": "autora",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },
@@ -555,7 +777,8 @@
           ],
           "ideal": {
             "valor": "guantes",
-            "fuente": "Diseño aprobado de la fase 2: avisos de seguridad (superficies calientes, quemaduras)",
+            "fuente": "Diseño aprobado de la fase 2: seguridad (superficies calientes, quemaduras)",
+            "respaldo": "simple",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         }

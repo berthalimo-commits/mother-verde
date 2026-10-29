@@ -37,33 +37,41 @@ check('a la semana 9 de floración los tricomas están en «mezcla»', E.trichom
 s = E.harvest(s, RULES); states.push(s);
 check('cosecha en su punto -> 100/100 (salud 100 + 20, con tope) y pasa al secado', s.stage === 'secado' && s.notes.includes('cosechado') && s.result.score === 100 && s.result.trich === 'mezcla' && s.result.causes.length === 0, JSON.stringify(s.result));
 
-console.log('1b. Fase 2: secado, curado y rosin (cualitativo)');
-const PI = (st) => Object.fromEntries(Object.entries(RULES.post[st].decisiones).map(([d, v]) => [d, v.ideal.valor ?? v.opciones[1]]));
+console.log('1b. Fase 8: secado, curado + almacenamiento y rosin (catálogo aprobado 2026-10-28)');
+// first ideal of each decision (or the first option when it doesn't score)
+const PI = (st) => Object.fromEntries(Object.entries(RULES.post[st].decisiones).map(([d, v]) => [d, [].concat(v.ideal.valor ?? v.opciones[0])[0]]));
 const harvested = s;
 let p = E.applyPost(s, PI('secado'), RULES); states.push(p);
-check('secado ideal (sala fresca, HR media, ventilador a la pared, a oscuras, hasta el chasquido) -> curado sin restar', p.stage === 'curado' && p.notes[0] === 'postBien:secado' && !Object.keys(p.post.secado.l).length);
+check('secado ideal (planta entera, sala fresca, HR media, aire a la pared, a oscuras, hasta el chasquido) -> curado sin restar', p.stage === 'curado' && p.notes[0] === 'postBien:secado' && !Object.keys(p.post.secado.l).length);
 p = E.applyPost(p, PI('curado'), RULES); states.push(p);
-check('curado ideal (vidrio, HR media, abrir cada día, semanas) -> prensa de rosin', p.stage === 'rosin' && p.notes[0] === 'postBien:curado');
+check('curado + almacenamiento ideales (9 decisiones) -> prensa de rosin', p.stage === 'rosin' && p.notes[0] === 'postBien:curado' && Object.keys(p.post.curado.c).length === 9);
 const pr = E.applyPost(p, PI('rosin'), RULES); states.push(pr);
-check('rosin ideal -> final 100/100, rosin «bien hecho»; la presión no puntúa (la plataforma no da el dato)', pr.stage === 'fin' && pr.result.final === 100 && pr.result.rosin.causes.length === 0
-  && pr.notes.includes('postSinDato:rosin_presion'), JSON.stringify(pr.result));
+check('rosin ideal -> final 100/100 y rosin «bien hecho»; presión y tiempo sin cifra aprobada avisan «sin dato»; prensa y prioridad solo enseñan (sin aviso)',
+  pr.stage === 'fin' && pr.result.final === 100 && pr.result.rosin.causes.length === 0 && pr.notes.includes('postSinDato:rosin_presion')
+  && pr.notes.includes('postSinDato:rosin_tiempo') && !pr.notes.some((n) => /rosin_(prensa|prioridad)/.test(n)), JSON.stringify(pr.notes));
 const skip = E.skipRosin(p); states.push(skip);
 check('el rosin es opcional: terminar sin prensar -> final igual, sin veredicto de rosin', skip.stage === 'fin' && skip.result.final === 100 && skip.result.rosin === null && skip.notes[0] === 'rosinNo');
-let q = E.applyPost(harvested, { ...PI('secado'), temperatura: 'calida', humedad: 'alta', aire: 'directo' }, RULES); states.push(q);
-check('secado con calor, humedad alta y ventilador directo -> resta (8 + 4 + 4) y se dice por qué', q.stage === 'curado' && q.notes[0] === 'postMal:secado'
-  && q.post.secado.l.temperatura === 8 && q.post.secado.l.humedad === 4 && q.post.secado.l.aire === 4, JSON.stringify(q.post));
-q = E.applyPost(q, { ...PI('curado'), envase: 'abierto', tiempo: 'pocos_dias' }, RULES); states.push(q);
-const qr = E.applyPost(q, { ...PI('rosin'), material: 'fresco', proteccion: 'sin_proteccion' }, RULES); states.push(qr);
-check('los errores de secado y curado bajan la nota final (100 - 24 = 76); lo que más restó va primero', qr.result.final === 76 && qr.result.score === 100
+const alt = E.applyPost(E.applyPost(harvested, { ...PI('secado'), metodo: 'ramas' }, RULES), { ...PI('curado'), envase: 'bolsa_curado', control: 'sobre', tiempo: 'meses', g_temp: 'nevera', g_tiempo: 'meses' }, RULES);
+check('varias opciones ideales valen igual (ramas, bolsa de curado, sobre de humedad, meses, nevera)', !Object.keys(alt.post.secado.l).length && !Object.keys(alt.post.curado.l).length, JSON.stringify(alt.post));
+let q = E.applyPost(harvested, { ...PI('secado'), metodo: 'rejilla', temperatura: 'calida', humedad: 'alta', aire: 'directo' }, RULES); states.push(q);
+check('secado con rejilla, calor, humedad alta y aire directo -> resta 4 + 8 + 4 + 4 (opciones que no son escala: un nivel)', q.stage === 'curado' && q.notes[0] === 'postMal:secado'
+  && q.post.secado.l.metodo === 4 && q.post.secado.l.temperatura === 8 && q.post.secado.l.humedad === 4 && q.post.secado.l.aire === 4, JSON.stringify(q.post));
+q = E.applyPost(q, { ...PI('curado'), envase: 'plastico', g_temp: 'calido', g_forma: 'molida', g_tiempo: 'anos' }, RULES); states.push(q);
+check('almacenamiento cálido, molido y por años (F8) y envase de plástico -> resta 4 cada uno', q.post.curado.l.envase === 4 && q.post.curado.l.g_temp === 4 && q.post.curado.l.g_forma === 4 && q.post.curado.l.g_tiempo === 4, JSON.stringify(q.post.curado));
+const qr = E.applyPost(q, { ...PI('rosin'), material: 'fresco', malla: 'sin_bolsa', proteccion: 'sin_proteccion' }, RULES); states.push(qr);
+check('los errores de secado y curado bajan la nota final (100 - 36 = 64); lo que más restó va primero', qr.result.final === 64 && qr.result.score === 100
   && qr.result.postCauses[0] === 'secado_temperatura' && qr.result.postCauses.length === 3, JSON.stringify(qr.result));
-check('rosin con material fresco y sin protección -> veredicto «para mejorar» y aviso de quemadura (no cambia la nota del cogollo)',
-  qr.result.rosin.causes.includes('rosin_material') && qr.result.rosin.causes.includes('rosin_proteccion') && qr.notes.includes('quemadura'));
+check('rosin con flor fresca sin congelar, sin bolsa y sin protección -> «para mejorar» y aviso de quemadura (no cambia la nota del cogollo)',
+  ['rosin_material', 'rosin_malla', 'rosin_proteccion'].every((c) => qr.result.rosin.causes.includes(c)) && qr.notes.includes('quemadura'));
 let threw = 0;
 for (const f of [() => E.applyPost(harvested, { ...PI('secado'), luz: 'neon' }, RULES), () => E.applyPost(harvested, {}, RULES),
   () => E.applyPost(E.start(E.newGame()), PI('secado'), RULES), () => E.skipRosin(harvested)]) { try { f(); } catch { threw++; } }
-check('opciones inventadas, decisiones vacías, fase 2 sin cosechar o saltar el rosin antes de tiempo -> rechazado', threw === 4);
-check('cada ideal de la fase 2 viene de un texto de la plataforma y está marcado [POR VERIFICAR POR BERTHA]',
-  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA/.test(v.ideal.verificar) && v.ideal.fuente.length > 10)));
+check('opciones inventadas, decisiones vacías, secado sin cosechar o saltar el rosin antes de tiempo -> rechazado', threw === 4);
+check('cada decisión tiene fuente, nivel de respaldo conocido y la marca [POR VERIFICAR POR BERTHA]',
+  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA/.test(v.ideal.verificar) && v.ideal.fuente.length > 10
+    && ['estudio', 'guia', 'patente', 'practica', 'autora', 'simple', 'sin'].includes(v.ideal.respaldo))));
+check('cada ideal es una opción que existe', E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => [].concat(v.ideal.valor ?? []).every((x) => v.opciones.includes(x)))));
+check('el estado guardado con todo el post-cosecha cabe en el límite del servidor (post ≤ 1000 bytes)', JSON.stringify(qr.post).length <= 1000, String(JSON.stringify(qr.post).length));
 
 console.log('2. Errores, eventos y respuestas');
 let b = E.start(E.newGame());

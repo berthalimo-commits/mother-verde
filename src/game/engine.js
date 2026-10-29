@@ -155,10 +155,16 @@ export function applyPost(s, choices, rules) {
   const lost = {};
   const notes = [];
   for (const [d, def] of Object.entries(defs)) {
+    // Phase 8: the ideal may be one option, several (any of them) or null.
+    // null + no source = no approved figure yet (the guide says so); null on
+    // purpose (author's criteria: it only teaches) = no note.
     const want = def.ideal.valor;
-    if (want === null) { notes.push('postSinDato:' + s.stage + '_' + d); continue; }
-    if (choices[d] === want) continue;
-    const dist = Math.abs(def.opciones.indexOf(choices[d]) - def.opciones.indexOf(want));
+    if (want === null) { if (def.ideal.respaldo === 'sin' || !def.ideal.respaldo) notes.push('postSinDato:' + s.stage + '_' + d); continue; }
+    const wants = Array.isArray(want) ? want : [want];
+    if (wants.includes(choices[d])) continue;
+    // escala:false = the options are not a scale: any wrong one is one level.
+    const dist = def.escala === false ? 1
+      : Math.min(...wants.map((w) => Math.abs(def.opciones.indexOf(choices[d]) - def.opciones.indexOf(w))));
     lost[d] = dist >= 2 ? R.resta_dos_niveles : R.resta_un_nivel;
   }
   notes.unshift((Object.keys(lost).length ? 'postMal:' : 'postBien:') + s.stage);
