@@ -5,6 +5,9 @@
 // Figures only in the rosin, always «orientativo» (patents P1/P2).
 export default {
   es: {
+    // the rosin guide and its general reason (figures: only mesh and heat, orientative)
+    jgGuia_rosin: 'Rosin (opcional): se aplica calor y presión sobre material ya curado, entre papel pergamino y sin solventes. La malla y el calor muestran un rango orientativo que sale de patentes; la presión y el tiempo van en niveles porque no hay una fuente con cifras.',
+    jgWhy_rosin: 'Para el rosin la plataforma enseña material ya curado, calor medio, papel pergamino y protección contra quemaduras. Las únicas cifras del juego (malla y calor) son orientativas.',
     // captions of the drawings
     jgTentD_secado: 'La planta ya está cosechada y se está secando.',
     jgTentD_curado: 'Los cogollos secos se curan en sus envases.',
@@ -164,6 +167,9 @@ export default {
     jgWhy_rosin_proteccion: 'Las placas están muy calientes: sin guantes ni una superficie estable hay riesgo de quemaduras.',
   },
   en: {
+    // the rosin guide and its general reason (figures: only mesh and heat, orientative)
+    jgGuia_rosin: 'Rosin (optional): heat and pressure are applied to already-cured material, between parchment paper and with no solvents. The mesh and the heat show an orientative range taken from patents; pressure and time are levels because no source gives figures.',
+    jgWhy_rosin: 'For rosin the platform teaches already-cured material, medium heat, parchment paper and protection against burns. The game’s only figures (mesh and heat) are orientative.',
     // captions of the drawings
     jgTentD_secado: 'The plant has been harvested and is drying.',
     jgTentD_curado: 'The dry buds are curing in their containers.',
@@ -317,6 +323,9 @@ export default {
     jgWhy_rosin_proteccion: 'The plates are very hot: without gloves or a stable surface there is a risk of burns.',
   },
   de: {
+    // the rosin guide and its general reason (figures: only mesh and heat, orientative)
+    jgGuia_rosin: 'Rosin (optional): Wärme und Druck werden auf bereits fermentiertes Material gegeben, zwischen Backpapier und ohne Lösungsmittel. Netz und Wärme zeigen einen Richtwert-Bereich aus Patenten; Druck und Zeit sind Stufen, weil keine Quelle Zahlen nennt.',
+    jgWhy_rosin: 'Für Rosin lehrt die Plattform bereits fermentiertes Material, mittlere Wärme, Backpapier und Schutz vor Verbrennungen. Die einzigen Zahlen im Spiel (Netz und Wärme) sind Richtwerte.',
     // captions of the drawings
     jgTentD_secado: 'Die Pflanze ist geerntet und trocknet.',
     jgTentD_curado: 'Die getrockneten Blüten fermentieren in ihren Behältern.',
@@ -470,6 +479,9 @@ export default {
     jgWhy_rosin_proteccion: 'Die Platten sind sehr heiß: Ohne Handschuhe und stabile Unterlage droht eine Verbrennung.',
   },
   fr: {
+    // the rosin guide and its general reason (figures: only mesh and heat, orientative)
+    jgGuia_rosin: 'Rosin (facultatif) : on applique chaleur et pression sur une matière déjà affinée, entre du papier sulfurisé et sans solvant. La maille et la chaleur affichent une plage indicative tirée de brevets ; la pression et la durée sont des niveaux, car aucune source ne donne de chiffres.',
+    jgWhy_rosin: 'Pour le rosin, la plateforme enseigne une matière déjà affinée, une chaleur moyenne, du papier sulfurisé et une protection contre les brûlures. Les seuls chiffres du jeu (maille et chaleur) sont indicatifs.',
     // captions of the drawings
     jgTentD_secado: 'La plante est récoltée et sèche.',
     jgTentD_curado: 'Les têtes sèches s’affinent dans leurs récipients.',

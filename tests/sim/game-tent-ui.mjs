@@ -42,8 +42,8 @@ for (const L of ['es', 'en', 'de', 'fr']) {
   for (const [n, s] of Object.entries(cases)) html[L + n] = T.tentHtml(s, C, { t, esc, RULES });
 }
 const sceneOf = (h) => h.match(/data-scene="(\w+)"/)?.[1];
-check('10 estados -> 9 escenas distintas (semilla, germinación, plántula, vegetativo, floración, secado, curado, cosecha, marchita)',
-  Object.entries(cases).every(([n]) => sceneOf(html['es' + n]) === (n === 'rosin' ? 'curado' : n)) && new Set(Object.keys(cases).map((n) => sceneOf(html['es' + n]))).size === 9);
+check('10 estados -> 10 escenas distintas (semilla, germinación, plántula, vegetativo, floración, secado, curado, prensa de rosin, cosecha, marchita)',
+  Object.entries(cases).every(([n]) => sceneOf(html['es' + n]) === n) && new Set(Object.keys(cases).map((n) => sceneOf(html['es' + n]))).size === 10);
 check('ningún texto falta en ningún idioma (sin «??clave»)', Object.values(html).every((h) => !h.includes('??')));
 check('las 4 descripciones son distintas entre idiomas', ['intro', 'floracion', 'muerta'].every((n) => new Set(['es', 'en', 'de', 'fr'].map((L) => html[L + n].match(/id="jgTentDesc">([^<]*)/)[1])).size === 4));
 check('floración: cogollos con tricomas; vegetativo: sin cogollos', /#8FCF7E/.test(html.esfloracion) && !/#8FCF7E/.test(html.esvegetativo));
