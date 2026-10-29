@@ -62,6 +62,43 @@ No pude comprobar (no cito):
 
 Los métodos de germinación quedan, salvo la temperatura (F11), como **criterio de la autora**.
 
+### Práctica de la comunidad del rosin y del hachís (2026-10-29)
+
+Nivel nuevo: **«práctica de la comunidad»**. Es lo que publican en sus propias páginas o manuales fabricantes y
+referentes del mundo sin solventes. No son estudios.
+- El juego lo dice así («práctica de la comunidad», «orientativo»).
+- **Nunca** sugiere que esas personas o marcas respaldan Mother Verde.
+- Lo de abajo está explicado con palabras propias, sin copiar sus textos.
+
+| Código | Fuente (abierta y leída) | Qué dice, con mis palabras |
+|---|---|---|
+| **C1** | Lowtemp Industries (Low Temp Plates), blog: *5 micron vs 25 micron rosin press bags*, de Kenzie Jackson. https://www.lowtemp-plates.com/blogs/knowledge/5micron-vs-25micron-rosin-press-bags | Prensaron el mismo hachís de agua y hielo en bolsas de 5 y de 25 µm, a 173 °F (≈ 78 °C), con 30 s de precalentado y 3 minutos de prensado. La de 5 µm dio un poco más de cannabinoides y terpenos pero bastante menos rendimiento. Llaman a la de 25 µm la medida habitual para hachís de agua. Avisan que la muestra fue pequeña. |
+| **C2** | NugSmasher, manual de la prensa *NugSmasher Mini* (© 2019), PDF en su tienda. https://cdn.shopify.com/s/files/1/0856/1428/files/NS-Mini-Owners-Manual-Safe-PID24.pdf | Con una flor nueva, empezar en unos 220 °F (≈ 104 °C) y bajar 5–10 °F por prensada hasta que el rendimiento cae; viene ajustada a 200 °F (≈ 93 °C). Prensar de 90 a 120 segundos. Malla de 160 µm para flor fresca y de 90 µm para flor seca. |
+| **C3** | Pollinator Company (Mila Jansen), manual del *Ice-O-Lator* (inglés y español). https://pollinator.nl/wp-content/uploads/2016/05/man_Ice_eng.pdf2_.pdf | El agua tiene que estar apenas sobre 0 °C (lo ideal, 3–5 °C); material congelado al menos una hora; no llenar demasiado la bolsa; 15 min de remojo; batir a velocidad baja en tandas de 15 min con 5 de pausa (alrededor de una hora); se puede reutilizar el agua fría en varias cargas; el hachís hay que secarlo **enseguida**, desmenuzado, o se enmohece. No da tamaños de malla. |
+| **C4** | Pollinator Company (Mila Jansen), manual del *Pollinator* (tamizado en seco). https://pollinator.nl/wp-content/uploads/2016/08/pollinator-manual-eng.pdf | Meter el material en una bolsa cerrada al congelador unas dos horas para que el tamizado rinda más; sin tallos duros; una primera vuelta de 2 a 5 minutos da la resina más pura. No da tamaños de malla. |
+
+**Pendiente de verificar por Bertha** (no pude leerlo; no afirmo nada):
+- **Frenchy Cannoli:** su web (frenchycannoli.com) solo muestra un aviso de edad. Lo que se cita de él son entrevistas
+  de terceros que no abrí.
+- **«Hash Makers»:** no encontré una marca o guía con ese nombre.
+- **«Smash Nugs»:** supuse que es **NugSmasher** (C2). Si es otra marca, hay que revisarlo.
+- **Lo que ya no se puede leer:**
+  - el PDF «Temps and Times» de una tienda Shopify (sin marca legible; texto en códigos de glifo);
+  - las redes sociales y los vídeos de todas estas marcas.
+
+**Comparación con los rangos que propone Bertha (para validar):**
+
+| Rango de Bertha | Lo que dicen C1–C4 | ¿Coincide? |
+|---|---|---|
+| Malla para flor 90–120 µm | C2: 90 µm para flor seca; 160 µm para flor fresca | Sí para flor seca. La flor fresca de C2 queda por encima |
+| Malla para hachís seco 45–90 µm | Nadie lo da (C3 y C4 no dan mallas) | **Sin fuente** |
+| Malla para hachís fresco 25–73 µm | C1: 25 µm es lo habitual para hachís de agua | Sí (el extremo bajo) |
+| Calor bajo 60–80 °C | C1: hachís a ≈ 78 °C | Sí |
+| Calor medio 80–95 °C | C2: viene ajustada a ≈ 93 °C | Sí |
+| Calor alto 95–120 °C | C2: empezar la flor a ≈ 104 °C y bajar | Sí |
+| Tiempo 30–120 s | C2: 90–120 s; C1: 3 min (180 s) más 30 s de precalentado | C2 sí. **C1 queda fuera** (más largo, con hachís a baja temperatura) |
+| Presión | — | Sigue en niveles |
+
 **Rosin:** no encontré **ningún estudio revisado por pares** sobre malla, calor, presión o tiempo de prensado.
 Solo hay patentes (P1, P2) y guías de fabricantes, que no cito. Las cifras del rosin en el juego son, como mucho,
 rangos **orientativos** de P1/P2; lo que no está ahí es **[CIFRA: BERTHA]**.
