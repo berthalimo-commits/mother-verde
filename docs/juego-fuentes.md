@@ -48,6 +48,20 @@ Añadidas el 2026-10-29 (abiertas y leídas):
 | **P1** | Patente US 11001025 B2 (2021), *System and method for high-yield rosin extraction*, K. P. Kralis y L. Nist. https://patents.google.com/patent/US11001025B2/en | Documento técnico (patente) | Bolsa con «pore openings that are between 25 micron and 250 micron»; «Temperatures typically range between 100 Degrees and 300 Degrees Fahrenheit» y «up to 235 degrees Fahrenheit in most applications». |
 | **P2** | Patente US 11511465 B2 (2022), *Rosin press system*, S. Sitnik. https://patents.google.com/patent/US11511465B2/en | Documento técnico (patente) | «micron holes between 25 microns to 220 microns»; opcional «a finer mesh filter bag such as 5 um-25 um»; placas «between 120 degrees and 240 degrees Fahrenheit». |
 
+Añadidas el 2026-10-29 para las fases 6 y 7 (abiertas y leídas):
+
+| Código | Fuente | Tipo | Qué dice (texto literal) |
+|---|---|---|---|
+| **F9** | Alhussaen, K. (2006). *Pythium and phytophthora associated with root disease of hydroponic lettuce.* Tesis doctoral, University of Technology Sydney. https://opus.lib.uts.edu.au/handle/10453/36864 | Estudio (tesis) — **en lechuga, no en cannabis** | La pudrición de raíz ocurrió con Pythium «under a temperature regime of 24-27°C but not at 16-17°C»; sugiere «reducing the temperature of the nutrient solution in summer to 20°C or less». |
+| **F10** | Simshaw, Woodward, Saulsbury & Hoch (2016). *Effect of four root-pruning nursery containers on biomass, root architecture and media temperature.* Acta Horticulturae 1140. https://www.ishs.org/ishs-article/1140_41 | Estudio publicado — **en vivero, no en cannabis** | Las macetas que podan la raíz «produced more fine roots than the standard plastic containers»; las de tela, temperatura del sustrato mucho más baja al sol; «greater water loss through the highly-permeable Smart Pot containers»; «greater water requirements for plants grown in porous containers». |
+| **F11** | Geneve, Janes, Kester, Hildebrand & Davis (2022). *Temperature Limits for Seed Germination in Industrial Hemp (Cannabis sativa L.).* Crops 2(4). University of Kentucky. https://scholars.uky.edu/en/publications/temperature-limits-for-seed-germination-in-industrial-hemp-cannab/ | Estudio publicado | «The optimal germination temperature indicated by a high mean germination percentage and rate was between 19 and 30 °C»; base 3,4 °C y techo 42,6 °C. |
+
+No pude comprobar (no cito):
+- la ficha de UC Davis sobre la prueba del papel húmedo (el PDF no se puede leer);
+- el estudio de 1968 sobre el daño por remojo largo en semillas de judía (solo lo vi citado).
+
+Los métodos de germinación quedan, salvo la temperatura (F11), como **criterio de la autora**.
+
 **Rosin:** no encontré **ningún estudio revisado por pares** sobre malla, calor, presión o tiempo de prensado.
 Solo hay patentes (P1, P2) y guías de fabricantes, que no cito. Las cifras del rosin en el juego son, como mucho,
 rangos **orientativos** de P1/P2; lo que no está ahí es **[CIFRA: BERTHA]**.

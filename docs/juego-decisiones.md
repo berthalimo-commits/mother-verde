@@ -77,6 +77,33 @@ enseña).
 | Prioridad | sabor · rendimiento | — (no puntúa) | criterio de la autora (más calor = más rendimiento y menos terpenos; sin estudio) |
 | Protección | guantes · sin protección | guantes | simplificación (seguridad) |
 
+### Fases 6 y 7 — lo que se construye (especificación, 2026-10-29)
+
+**Antes de plantar (pantalla «Prepara tu carpa», una vez por partida).** La semilla (regular / autofloreciente) y
+el número de plantas llegan en la etapa siguiente («varias plantas y autofloreciente»). Hasta entonces, la partida
+es una planta feminizada.
+
+| Decisión | Opciones | Consecuencia en el juego | Respaldo |
+|---|---|---|---|
+| Carpa | pequeña · mediana · grande | pequeña: con la lámpara fuerte en floración y una planta alta, **quemadura de luz**; grande: cuesta más mantener el clima (cada error de temperatura o humedad resta un punto más) y la cosecha suma +5 | criterio de la autora |
+| Luz | LED · HPS · CMH | HPS: la temperatura sube un nivel (templada cuenta como cálida) | práctica (Glosario: HPS «genera más calor») · simplificación |
+| Sistema | maceta con sustrato · DWC · NFT · aeroponía · acuaponía | hidroponía (DWC, NFT, aeroponía): no hay decisión de riego; con temperatura cálida 2 semanas, **pudrición de raíz** · acuaponía: los nutrientes los dan los peces (no hay decisión de nutrientes), pero el agua también puede calentarse | **estudio F9** (en lechuga) + F3 · criterio de la autora (acuaponía) |
+| Sustrato (solo maceta) | tierra · fibra de coco · lana de roca · tierra viva | coco y lana de roca: hay que nutrir desde la plántula (si no, carencia) · tierra: la carencia tarda una semana más · tierra viva: no hace falta nutrir (bajos = bien) | práctica (Glosario: coco «requiere fertirriego») · criterio de la autora |
+| Maceta (solo maceta) | plástico · tela · maceta de aire · barro | tela, aire y barro: el sustrato seca antes (el exceso de riego tarda una semana más; «poco» riego resta el doble) | **estudio F10** (en vivero) + F3 · criterio (barro) |
+| Tamaño de maceta | pequeña · grande | pequeña: hay que **trasplantar** en vegetativo; si no, desde la 3.ª semana de vegetativo resta cada semana | criterio de la autora (Glosario: trasplante) |
+| Riego (solo maceta) | a mano · goteo | goteo: el oídio tarda una semana más en aparecer | **guía F5** |
+| Medir pH y EC | sí · no | no: el medidor de nutrientes muestra «sin medir» y las opciones no muestran cifras de EC (se juega a ciegas) | simplificación |
+
+**Germinación (etapa nueva, antes de la plántula; una pantalla).**
+| Decisión | Opciones | Consecuencia | Respaldo |
+|---|---|---|---|
+| Método | papel húmedo · taco (tipo jiffy) · directo en tierra · directo en coco · vaso de agua · cubo de lana de roca | papel y vaso: hay que pasar la semilla con la raíz al aire (riesgo de dañarla); taco, tierra, coco y lana de roca: sin tocar la raíz | criterio de la autora |
+| Temperatura | fría (menos de 19 °C) · templada (19–30 °C) · calurosa (más de 30 °C) | templada = ideal; fría = germina más lento | **estudio F11** |
+| Humedad | seco · húmedo · empapado | húmedo = ideal; seco = no germina; empapado = la semilla se ahoga | criterio de la autora |
+| Cuánto tiempo (solo vaso de agua) | menos de un día · varios días | varios días en el agua = la semilla se ahoga | criterio de la autora (el estudio de 1968 no se pudo comprobar) |
+
+Los errores de germinación restan salud al empezar la plántula y se explican con «¿Por qué?».
+
 ### Para validar por Bertha (lista aparte)
 1. **[CIFRA: BERTHA]:**
    - presión del rosin: unidad y rangos por nivel; además, si se permite escribir esa unidad solo en el rosin;
