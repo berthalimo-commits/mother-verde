@@ -374,6 +374,52 @@ descarga solo al entrar al juego.
    falla en la web de pruebas.
 2. Validar los «criterio de la autora» de las fases 6 y 7 (lista en `docs/juego-decisiones.md`).
 
+## Fuentes del rosin según la comunidad + sub-fase 8b · HECHAS (2026-10-29)
+
+**Fuentes de la comunidad** (`docs/juego-fuentes.md`, nivel nuevo «práctica de la comunidad»). Abiertas, leídas
+y explicadas con palabras propias:
+- **C1** blog de Lowtemp Industries;
+- **C2** manual de la NugSmasher Mini;
+- **C3** manual del Ice-O-Lator (Pollinator Company, de Mila Jansen);
+- **C4** manual del Pollinator.
+
+Pendiente de verificar por Bertha: Frenchy Cannoli, «Hash Makers», vídeos y redes. Comparación con los rangos de
+Bertha:
+- coinciden la malla de flor seca (90 µm), el hachís fresco en 25 µm, los tres tramos de calor y el tiempo de
+  C2 (90–120 s);
+- **sin fuente:** el hachís seco (45–90 µm);
+- **fuera del rango:** el tiempo de C1 (3 min con hachís a baja temperatura).
+
+Las cifras del juego **no se cambiaron todavía**: esperan que Bertha valide sus rangos.
+
+**Sub-fase 8b — preparar el material de partida (sin solventes)**, etapa opcional entre el curado y la prensa
+(catálogo 8.2):
+- **Material:** flor curada, flor fresca congelada, flor liofilizada o recortes.
+- **Separación:** sin separar, tamizado en seco o agua y hielo, cada una con sus decisiones:
+  - tamizado: frío (C4), malla, cómo frotar y tiempo (C4);
+  - agua y hielo: temperatura (C3), agitación (C3), lavados, bolsa (C1) y secado del hachís (C3: húmedo = moho).
+- La pantalla muestra solo las decisiones del método elegido y se redibuja al cambiarlo.
+- **Pureza:** alta, media o baja según los errores. La prensa recibe el material (flor, kief, hachís o fresco
+  congelado) y su pureza; ya no pregunta el material. Los errores de la preparación cuentan en el veredicto del
+  rosin, no en la nota del cogollo.
+- **Dibujo en vivo:** bandeja, tamiz con kief cayendo o cubo con hielo y bolsas, y el hachís secándose. El color
+  muestra la pureza; aparecen los restos y el moho.
+- **«¿Por qué?»:** en las 8 decisiones que restan, citando C1/C3/C4 como «práctica de la comunidad… no es un
+  estudio ni un respaldo a Mother Verde».
+- «Terminar sin hacer rosin» funciona también desde aquí.
+- **Migración:** la de la fase 5 (aún sin pegar) ahora también acepta la etapa y el bloque `material`, y hasta
+  1.500 bytes de post-cosecha. La copia de staging está actualizada.
+
+**Pruebas:**
+- `game-material-ui.mjs` (nueva) **20 ok**;
+- `game-engine` 61 (sección 1c de la 8b);
+- `game-setup-db` 14;
+- `game-post-ui` y `game-ui` pasan por la preparación.
+- Arreglado durante la 8b: el botón «Terminar sin hacer rosin» dejaba de responder al redibujar el formulario.
+- **Batería completa (2026-10-29), en grupos de 2 a 6: 45 pruebas, 0 fallas.**
+
+**Peso:** juego 237,9 → 271 KB (73,4 → 81,7 comprimido).
+
 **Lo siguiente:**
 - **Varias plantas y autofloreciente** (semilla regular con macho posible, autofloreciente con calendario propio,
   número de plantas que agranda la carpa).
