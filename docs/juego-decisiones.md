@@ -104,6 +104,39 @@ es una planta feminizada.
 
 Los errores de germinación restan salud al empezar la plántula y se explican con «¿Por qué?».
 
+### 8.2 Sub-fase 8b — Preparar el material de partida (sin solventes) · especificación 2026-10-29
+
+Etapa nueva y opcional entre el curado y la prensa. El material que sale de aquí decide el material del rosin:
+- sin separar → flor;
+- tamizado en seco → kief;
+- agua y hielo → hachís.
+
+Sigue el botón «Terminar sin hacer rosin». Fuentes C1–C4 en `docs/juego-fuentes.md` («práctica de la comunidad»,
+nunca respaldo de esas marcas). **Ningún solvente**: el laboratorio de solventes y CO₂ no cambia.
+
+| Decisión | Opciones | Ideal / consecuencia | Respaldo |
+|---|---|---|---|
+| Material de partida | flor curada · flor fresca congelada · flor liofilizada · recortes y hojas de azúcar | no puntúa por sí solo; con agua y hielo, la flor congelada es la que el manual recomienda | **práctica de la comunidad C3** · criterio de la autora (liofilizada, recortes) |
+| Cómo separar | sin separar (prensar la flor) · tamizado en seco · agua y hielo | no puntúa: cambia lo que llega a la prensa | criterio de la autora |
+| *Tamizado:* frío | material congelado · a temperatura ambiente | congelado; a temperatura ambiente, más restos de planta | **C4** (congelar unas dos horas antes) |
+| *Tamizado:* malla del tamiz | fina · media · gruesa **[CIFRA: BERTHA]** | fina o media; gruesa deja pasar restos de planta | criterio de la autora (C4 no da mallas) |
+| *Tamizado:* cómo frotar | suave · fuerte | suave; fuerte arranca restos de planta | criterio de la autora |
+| *Tamizado:* cuánto tiempo | corto · largo | corto (la primera tanda es la más pura) | **C4** (primera vuelta de 2 a 5 minutos) |
+| *Agua y hielo:* temperatura del agua | helada (3–5 °C) · fría sin hielo · templada | helada | **C3** |
+| *Agua y hielo:* agitación | suave, por tandas con pausas · fuerte y seguida | suave por tandas; fuerte arranca restos | **C3** (velocidad baja, tandas de 15 min con pausas) |
+| *Agua y hielo:* lavados | uno · varios | no puntúa: varios dan más cantidad | **C3** (el agua fría se reutiliza en varias cargas) · criterio de la autora |
+| *Agua y hielo:* bolsa de malla | fina · media · gruesa **[CIFRA: BERTHA]** | fina o media; gruesa deja pasar restos | **C1** (25 µm, lo habitual para prensar hachís de agua) · criterio de la autora |
+| *Agua y hielo:* secado del hachís | desmenuzado al aire · liofilizado · con deshumidificador · en bola húmeda | cualquiera menos la bola húmeda; **húmedo = moho** | **C3** (secar enseguida o se enmohece) · criterio de la autora (liofilizado, deshumidificador) |
+
+**Grado de pureza.** Sale de los errores de esta etapa: sin errores, alto; uno, medio; dos o más, bajo. Se ve en
+el dibujo (más o menos restos verdes en la resina). Con pureza baja, el rosin sale con restos. Los errores
+cuentan en el veredicto del rosin, no en la nota del cogollo.
+
+**[CIFRA: BERTHA] de esta etapa:**
+- micras de cada malla del tamiz (fina, media, gruesa);
+- micras de cada bolsa de agua y hielo. C1 solo respalda los 25 µm, y los rangos que propone Bertha (hachís seco
+  45–90 µm, hachís fresco 25–73 µm) no tienen otra fuente leída.
+
 ### Para validar por Bertha (lista aparte)
 1. **[CIFRA: BERTHA]:**
    - presión del rosin: unidad y rangos por nivel; además, si se permite escribir esa unidad solo en el rosin;
