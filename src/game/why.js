@@ -16,6 +16,10 @@ export const SOURCES = {
   F9: { label: 'Alhussaen — PhD thesis, University of Technology Sydney, 2006 (hydroponic lettuce)', url: 'https://opus.lib.uts.edu.au/handle/10453/36864' },
   F10: { label: 'Simshaw et al. — Acta Horticulturae 1140, 2016 (nursery containers)', url: 'https://www.ishs.org/ishs-article/1140_41' },
   F11: { label: 'Geneve et al. — Crops, 2022 (hemp germination temperature)', url: 'https://scholars.uky.edu/en/publications/temperature-limits-for-seed-germination-in-industrial-hemp-cannab/' },
+  // community practice (docs/juego-fuentes.md C1–C4): manufacturers' own pages, not studies, not endorsements
+  C1: { label: 'Lowtemp Industries blog — 5 µm vs 25 µm bags (community practice)', url: 'https://www.lowtemp-plates.com/blogs/knowledge/5micron-vs-25micron-rosin-press-bags' },
+  C3: { label: 'Pollinator Company — Ice-O-Lator manual (community practice)', url: 'https://pollinator.nl/wp-content/uploads/2016/05/man_Ice_eng.pdf2_.pdf' },
+  C4: { label: 'Pollinator Company — Pollinator manual (community practice)', url: 'https://pollinator.nl/wp-content/uploads/2016/08/pollinator-manual-eng.pdf' },
 };
 
 // key -> lesson of the platform, source code (or null) and backing level.
@@ -74,6 +78,15 @@ export const WHY = {
   germ_temperatura: { lesson: 'propagacion', src: 'F11', level: 'estudio' },
   germ_humedad: { lesson: 'propagacion', src: null, level: 'autora' },
   germ_tiempo: { lesson: 'propagacion', src: null, level: 'autora' },
+  // Sub-phase 8b: preparing the starting material (solventless)
+  material_tamiz_frio: { lesson: 'concentrados', src: 'C4', level: 'comunidad' },
+  material_tamiz_malla: { lesson: 'concentrados', src: null, level: 'autora' },
+  material_tamiz_frotar: { lesson: 'concentrados', src: null, level: 'autora' },
+  material_tamiz_tiempo: { lesson: 'concentrados', src: 'C4', level: 'comunidad' },
+  material_agua_temp: { lesson: 'concentrados', src: 'C3', level: 'comunidad' },
+  material_agua_agitar: { lesson: 'concentrados', src: 'C3', level: 'comunidad' },
+  material_agua_bolsa: { lesson: 'concentrados', src: 'C1', level: 'comunidad' },
+  material_agua_secado: { lesson: 'concentrados', src: 'C3', level: 'comunidad' },
 };
 const srcList = (w) => [].concat(w.src ?? []);
 
@@ -128,7 +141,7 @@ export function whyName(k, t) {
   if (k.startsWith('germ_')) return t('jgGermD_' + k.slice(5));
   if (['secado', 'curado', 'rosin'].includes(k)) return t('jgEtapa_' + k).replace(/\s*\(.*\)$/, '');
   if (k === 'tricomas') return t('jgTricomas').replace(/\s*\(.*\)$/, '');
-  if (/^(secado|curado|rosin)_/.test(k)) return t('jgPD_' + k).replace(/\s*\(.*\)$/, '');
+  if (/^(secado|curado|material|rosin)_/.test(k)) return t('jgPD_' + k).replace(/\s*\(.*\)$/, '');
   return t('jgWhyN_' + k);
 }
 

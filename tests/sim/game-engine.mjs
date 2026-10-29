@@ -161,7 +161,7 @@ for (const x of [E.newGame(), ...states]) if (!(await serverOk(x))) { allOk = fa
 check(`${states.length + 1} estados del juego pasan game_state_valid y miden menos de 16 KB`, allOk && states.every((x) => JSON.stringify(x).length < 16384), JSON.stringify(bad));
 
 console.log('5. Seguridad del contenido y textos');
-const files = ['src/game/rules.json', 'src/game/i18n.js', 'src/game/i18n-post.js', 'src/game/i18n-setup.js', 'src/game/game.js', 'src/game/engine.js', 'src/game/entry.js', 'src/game/tent.js', 'src/game/why.js'].map((f) => fs.readFileSync(APP + '/' + f, 'utf8')).join('\n');
+const files = ['src/game/rules.json', 'src/game/i18n.js', 'src/game/i18n-post.js', 'src/game/i18n-setup.js', 'src/game/i18n-material.js', 'src/game/game.js', 'src/game/engine.js', 'src/game/entry.js', 'src/game/tent.js', 'src/game/why.js'].map((f) => fs.readFileSync(APP + '/' + f, 'utf8')).join('\n');
 check('el juego no menciona butano, BHO, CO2, solventes de extracción ni unidades de presión', !/butan|\bBHO\b|\bCO2\b|\bpsi\b|\bbar\b|extracci/i.test(files.replace(/no de extracción/g, '')));
 // Bertha, 2026-10-28: figures allowed ONLY in the rosin, only where a checked
 // source gives them (mesh and plate heat, patents P1/P2), always marked

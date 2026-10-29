@@ -23,7 +23,7 @@ export function scene(state) {
   if (st === 'germinacion') return 'germinar';
   if (st === 'plantula') return state.stageWeek <= 1 ? 'germ' : 'plantula';
   if (st === 'vegetativo' || st === 'floracion' || st === 'secado') return st;
-  if (st === 'curado' || st === 'rosin') return st;
+  if (st === 'curado' || st === 'rosin' || st === 'material') return st;
   if (st === 'fin') return state.result?.dead ? 'muerta' : 'fin';
   return 'intro';
 }
@@ -167,8 +167,40 @@ const mould = (pts) => `<g class="jgt-mould">${pts.map(([x, y]) => `<circle cx="
 export function postLooks(stage, c = {}) {
   if (stage === 'secado') return { moho: c.humedad === 'alta' || c.aire === 'sin_aire', reseco: c.temperatura === 'calida' || c.humedad === 'baja' || c.duracion === 'muchas_semanas' };
   if (stage === 'curado') return { moho: c.abrir === 'nunca' || c.envase === 'plastico', reseco: c.abrir === 'siempre' || c.g_aire === 'abierto' || c.g_luz === 'sol' || c.g_temp === 'calido' };
-  if (stage === 'rosin') return { restos: c.malla === 'sin_bolsa', oscuro: c.calor === 'alto', agua: c.material === 'fresco' };
+  if (stage === 'rosin') return { restos: c.malla === 'sin_bolsa' || c.pureza === 'baja', oscuro: c.calor === 'alto', agua: c.material === 'fresco' };
+  // 8b: rough sieving or shaking drags plant debris in (C4, criterio); a
+  // damp ball of hash goes mouldy (C3)
+  if (stage === 'material') return {
+    restos: c.tamiz_malla === 'gruesa' || c.tamiz_frotar === 'fuerte' || c.tamiz_frio === 'ambiente' || c.tamiz_tiempo === 'largo'
+      || c.agua_bolsa === 'gruesa' || c.agua_agitar === 'fuerte' || c.agua_temp === 'templada',
+    moho: c.agua_secado === 'bola_humeda',
+  };
   return {};
+}
+
+// Sub-phase 8b: preparing the starting material (no solvents).
+function materialScene(c) {
+  const look = postLooks('material', c);
+  const resin = look.restos ? '#A7A65A' : '#D9B25F';
+  let out;
+  if (c.separacion === 'tamiz_seco') {
+    out = `<rect x="70" y="120" width="100" height="10" rx="2" fill="#2B3532" stroke="#9FB8AE"/><path d="M74 125H166" stroke="#C7CFD2" stroke-dasharray="1 1.5" stroke-width="2"/>`
+      + budsAt([[96, 114], [120, 112], [144, 114]], 6, ['#8FAE6A', '#7F9E5C'])
+      + `<g class="jgt-kief" fill="${resin}">${[88, 100, 112, 124, 136, 148].map((x, i) => `<circle cx="${x}" cy="${140 + (i % 3) * 8}" r="1.2"/>`).join('')}</g>`
+      + `<ellipse cx="120" cy="196" rx="34" ry="6" fill="${resin}" opacity="0.9"/>` + (c.tamiz_frio === 'congelado' ? '<path class="jgt-frost" d="M72 112l6 6M78 112l-6 6M162 112l6 6M168 112l-6 6" stroke="#BFE9F0"/>' : '');
+  } else if (c.separacion === 'agua_hielo') {
+    const water = c.agua_temp === 'templada' ? '#7FB8C0' : '#5FD4E0';
+    out = `<path d="M84 128h72l-6 70h-60Z" fill="${water}" fill-opacity="0.3" stroke="#C7CFD2"/>`
+      + (c.agua_temp === 'helada' ? '<g fill="#E8F6F8" opacity="0.9"><rect x="96" y="136" width="9" height="8" rx="1.5"/><rect x="118" y="140" width="9" height="8" rx="1.5"/><rect x="134" y="134" width="9" height="8" rx="1.5"/></g>' : '')
+      + `<path d="M88 130v62M152 130v62" stroke="#E8EEF0" stroke-dasharray="${c.agua_bolsa === 'gruesa' ? '3 2' : '1 1'}" opacity="0.7"/>`
+      + `<path d="M120 112v40" stroke="#9FB8AE" stroke-width="2"/><path d="M112 152h16" stroke="#9FB8AE" stroke-width="2"/>`
+      + (c.agua_secado ? `<rect x="168" y="186" width="34" height="18" rx="2" fill="#F0F7F3" opacity="0.85"/><g class="jgt-hash" fill="${resin}">${c.agua_secado === 'bola_humeda' ? '<circle cx="185" cy="193" r="6"/>' : [174, 182, 190, 198].map((x) => `<circle cx="${x}" cy="195" r="2"/>`).join('')}</g>` : '')
+      + (look.moho ? mould([[185, 192]]) : '');
+  } else {
+    out = `<rect x="80" y="180" width="80" height="8" rx="2" fill="#2B3532" stroke="#9FB8AE"/>` + budsAt([[100, 174], [120, 172], [140, 174]], 7, c.partida === 'flor_congelada' ? ['#A9CFA0', '#98BE90'] : ['#8FAE6A', '#7F9E5C'])
+      + (c.partida === 'flor_congelada' ? '<path class="jgt-frost" d="M94 166l6 6M100 166l-6 6M134 166l6 6M140 166l-6 6" stroke="#BFE9F0"/>' : '');
+  }
+  return `<g class="jgt-post" data-separacion="${c.separacion || ''}" data-partida="${c.partida || ''}" data-restos="${look.restos ? 1 : 0}" data-moho="${look.moho ? 1 : 0}">${out}</g>`;
 }
 
 function dryScene(c) {
@@ -424,7 +456,9 @@ function tentSvg(state, sc, choices, light, ctx) {
   else if (sc === 'germinar') inside = germScene(ctx.germ?.metodo);
   else if (sc === 'muerta') inside = pot('poco') + wilted();
   else if (sc === 'secado') inside = (ctx.post?.metodo === 'rejilla' ? '' : pot('poco')) + dryScene(ctx.post || {});
-  else if (sc === 'rosin') inside = rosinScene(ctx.post || {});
+  // the press gets the material and purity that 8b produced, when it was done
+  else if (sc === 'rosin') inside = rosinScene(state.post?.material ? { ...ctx.post, material: E.materialFrom(state.post.material.c, ctx.RULES), pureza: E.purity(state) } : ctx.post || {});
+  else if (sc === 'material') inside = materialScene(ctx.post || {});
   else if (sc === 'fin') inside = cureScene(state.post?.curado?.c || {}) + (state.post?.rosin ? '<rect class="jgt-rosin-jar" x="184" y="186" width="14" height="18" rx="3" fill="#E3A75F" fill-opacity="0.8" stroke="#9FB8AE" stroke-width="0.6"/>' : '');
   else inside = cureScene(ctx.post || {});
   // a small tent has a lower ceiling: the lamp hangs closer (phase 6)
@@ -504,7 +538,8 @@ function caption(state, sc, choices, light, t, post, germ, setup = {}) {
   }
   // phase 8: what the choices on the screen do (mould, over-dried, debris…)
   const look = post ? postLooks(sc, post) : {};
-  for (const k of ['moho', 'reseco', 'restos', 'oscuro', 'agua']) if (look[k]) out.push(t('jgTentX_' + k));
+  if (sc === 'material' && post?.separacion) out.push(t('jgPO_material_separacion_' + post.separacion) + '.');
+  for (const k of ['moho', 'reseco', 'restos', 'oscuro', 'agua']) if (look[k]) out.push(t('jgTentX_' + k + (sc === 'material' ? '_material' : '')));
   return out.join(' ');
 }
 
@@ -516,9 +551,9 @@ export function tentHtml(state, choices, ctx, ui = {}) {
   const play = PLAYABLE.includes(state.stage);
   const ch = play ? choices : null;
   // phase 8: the post-harvest screens are drawn with what is picked (ui.post)
-  const post = ['secado', 'curado', 'rosin'].includes(sc) ? (ui.post || {}) : null;
+  const post = ['secado', 'curado', 'material', 'rosin'].includes(sc) ? (ui.post || {}) : null;
   const light = play ? (ch.intensidad || 'media')
-    : sc === 'fin' || sc === 'rosin' || sc === 'germinar' ? 'baja' : sc === 'secado' && post.luz === 'con_luz' ? 'media' : null;
+    : sc === 'fin' || sc === 'rosin' || sc === 'material' || sc === 'germinar' ? 'baja' : sc === 'secado' && post.luz === 'con_luz' ? 'media' : null;
   const open = play && OBJECTS[ui.open] ? ui.open : null;
   return `<figure class="jg-tent${play && ui.anim ? ' jgt-anim' : ''}" id="jgTent">
     <div class="jgt-scene">

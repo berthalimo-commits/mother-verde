@@ -253,11 +253,12 @@ function postHtml() {
   const defs = RULES.post[st].decisiones;
   // Phase 8: storage decisions share the curing screen under their own heading.
   let group = null;
-  const fields = E.postDecisions(RULES, st).map((d) => `${defs[d].grupo && defs[d].grupo !== group ? `<h4 class="jg-pgroup">${t(`jgPG_${st}_${(group = defs[d].grupo)}`)}</h4>` : ''}<fieldset class="jg-field">
+  // 8b: only the decisions that apply to what is picked (redrawn on change)
+  const fields = E.postDecisions(RULES, st, postLive, state).map((d) => `${defs[d].grupo && defs[d].grupo !== group ? `<h4 class="jg-pgroup">${t(`jgPG_${st}_${(group = defs[d].grupo)}`)}</h4>` : ''}<fieldset class="jg-field">
       <legend>${t(`jgPD_${st}_${d}`)}</legend>
       <div class="jg-opts">${defs[d].opciones.map((o) => {
         const id = `jgp-${st}-${d}-${o}`;
-        return `<input type="radio" name="jgp-${d}" id="${id}" value="${o}">
+        return `<input type="radio" name="jgp-${d}" id="${id}" value="${o}"${postLive[d] === o ? ' checked' : ''}>
           <label for="${id}"><span>${t(`jgPO_${st}_${d}_${o}`)}</span><small>${t(`jgPH_${st}_${d}_${o}`)}</small></label>`;
       }).join('')}</div>
     </fieldset>`).join('');
@@ -268,7 +269,7 @@ function postHtml() {
     <p class="jg-missing" id="jgMissing" role="alert"></p>
     <div class="jg-actions">
       <button type="submit" class="btn btn-primary" id="jgPostNext">${t('jgPost_btn_' + st)}</button>
-      ${st === 'rosin' ? `<button type="button" class="btn btn-ghost" id="jgSkipRosin">${t('jgRosinNo')}</button>` : ''}
+      ${st === 'rosin' || st === 'material' ? `<button type="button" class="btn btn-ghost" id="jgSkipRosin">${t('jgRosinNo')}</button>` : ''}
       ${lessonBtn(E.LESSON[st])}
     </div>
   </form>`;
@@ -413,6 +414,41 @@ function bindOptionForms(root, box) {
   });
 }
 
+// The post-harvest form (drying, curing, 8b, press): delegated on the game's
+// box so it keeps working after the form is redrawn (8b shows the sieve's or
+// the water's decisions only after choosing how to separate).
+function bindPost(root, box) {
+  box.addEventListener('change', (ev) => {
+    const form = ev.target.closest('#jgPostForm');
+    if (!form || ev.target.type !== 'radio') return;
+    const d = ev.target.name.slice(4);
+    const before = E.postDecisions(RULES, state.stage, postLive, state).join();
+    postLive = { ...postLive, [d]: ev.target.value };
+    const ds = E.postDecisions(RULES, state.stage, postLive, state);
+    postLive = Object.fromEntries(Object.entries(postLive).filter(([k]) => ds.includes(k)));
+    if (ds.join() !== before) {
+      const focusId = ev.target.id;
+      form.outerHTML = postHtml();
+      document.getElementById(focusId)?.focus();
+    }
+    redrawTent(root);
+  });
+  box.addEventListener('submit', (ev) => {
+    if (ev.target.id !== 'jgPostForm') return;
+    ev.preventDefault();
+    const ds = E.postDecisions(RULES, state.stage, postLive, state);
+    const missing = ds.filter((d) => !postLive[d]);
+    if (missing.length) {
+      document.getElementById('jgMissing').textContent = t('jgFaltaElegir');
+      document.querySelector(`input[name="jgp-${missing[0]}"]`)?.focus();
+      return;
+    }
+    const choices = postLive;
+    postLive = {};
+    act(E.applyPost(state, choices, RULES));
+  });
+}
+
 // «¿Por qué?» under the guide, in each problem and in the result (why.js).
 function openLesson(l) {
   state = E.markLesson(state, l);
@@ -490,25 +526,7 @@ function paint(root) {
     act(E.applyWeek(state, formChoices(root), RULES));
   });
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));
-  root.querySelector('#jgPostForm')?.addEventListener('change', (ev) => {
-    const fd = new FormData(ev.currentTarget);
-    postLive = Object.fromEntries(E.postDecisions(RULES, state.stage).filter((d) => fd.get('jgp-' + d)).map((d) => [d, fd.get('jgp-' + d)]));
-    redrawTent(root);
-  });
-  root.querySelector('#jgPostForm')?.addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    const fd = new FormData(ev.target);
-    const ds = E.postDecisions(RULES, state.stage);
-    const choices = Object.fromEntries(ds.map((d) => [d, fd.get('jgp-' + d)]));
-    const missing = ds.filter((d) => !choices[d]);
-    if (missing.length) {
-      root.querySelector('#jgMissing').textContent = t('jgFaltaElegir');
-      root.querySelector(`input[name="jgp-${missing[0]}"]`)?.focus();
-      return;
-    }
-    postLive = {};
-    act(E.applyPost(state, choices, RULES));
-  });
+  if (!inLab) bindPost(root, root.querySelector('.jg'));
   root.querySelector('#jgSkipRosin')?.addEventListener('click', () => { postLive = {}; act(E.skipRosin(state)); });
   root.querySelectorAll('.jg-answer').forEach((b) => b.addEventListener('click', () => act(E.answerEvent(state, b.dataset.answer, RULES))));
   root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.newGame(state)));
