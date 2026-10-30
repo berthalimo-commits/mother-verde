@@ -64,6 +64,8 @@ for (const sep of SEPARATIONS) {
 const missing = [];
 for (const st of ['secado', 'curado', 'material', 'rosin']) for (const [d, v] of Object.entries(RULES.post[st].decisiones)) {
   if (st === 'rosin' && d === 'material') continue;
+  // the moisture of frozen fresh flower only appears with that material: game-full-3 plays its three options
+  if (st === 'rosin' && d === 'humedad_fresca') continue;
   for (const o of v.opciones) if (!used[st + '_' + d]?.has(o)) missing.push(`${st}.${d}=${o}`);
 }
 check(`todas las opciones del secado, curado, preparación y prensa se eligieron al menos una vez`, missing.length === 0, missing.join(', '));

@@ -47,8 +47,8 @@ for (const L of ['es', 'en', 'de', 'fr']) {
   check(`${L.toUpperCase()}: la descripción cuenta el método y cada consecuencia, sin «??clave»`, ok && cap(draw('secado', { metodo: 'rejilla' }, L)).includes(TEXTS[L].jgTentM_rejilla)
     && ['secado', 'curado', 'rosin'].every((st) => !draw(st, {}, L).includes('??')));
 }
-check('«¿Por qué?» de almacenamiento cita el estudio F8; la malla, las dos patentes', W.WHY.curado_g_temp.src === 'F8' && W.WHY.curado_g_forma.src === 'F8'
-  && JSON.stringify(W.WHY.rosin_malla.src) === '["P1","P2"]' && W.WHY.rosin_malla.level === 'patente');
+check('«¿Por qué?» de almacenamiento cita el estudio F8; la malla, las dos patentes y C2', W.WHY.curado_g_temp.src === 'F8' && W.WHY.curado_g_forma.src === 'F8'
+  && JSON.stringify(W.WHY.rosin_malla.src) === '["P1","P2","C2"]' && W.WHY.rosin_malla.level === 'patente');
 
 // ------------------------------------------------------------ in the app
 console.log('2. En la app: una partida con secado, curado + guardado y rosin');
@@ -113,7 +113,7 @@ const fin = await gs();
 check('resultado: el rosin «para mejorar» por la malla y el calor', fin.stage === 'fin' && fin.result.rosin.causes.includes('rosin_malla') && fin.result.rosin.causes.includes('rosin_calor'), JSON.stringify(fin.result));
 await b.ev(`[...document.querySelectorAll('.jg-review .jg-why')].find((x) => /Bolsa de malla/.test(x.textContent)).click(); 1`); await sleep(300);
 const mp = await b.ev(`(() => { const p = [...document.querySelectorAll('.jg-review .jg-why-panel')].find((x) => !x.hidden); return { text: p.innerText, hrefs: [...p.querySelectorAll('a')].map((a) => a.href) }; })()`);
-check('«¿Por qué? · Bolsa de malla» enlaza las dos patentes y dice que es un documento técnico, no un estudio', mp.hrefs.join() === [W.SOURCES.P1.url, W.SOURCES.P2.url].join() && /patente/.test(mp.text) && /no es un estudio/.test(mp.text), JSON.stringify(mp));
+check('«¿Por qué? · Bolsa de malla» enlaza las dos patentes y el manual de NugSmasher (C2, flor fresca) y dice que es un documento técnico, no un estudio', mp.hrefs.join() === [W.SOURCES.P1.url, W.SOURCES.P2.url, W.SOURCES.C2.url].join() && /patente/.test(mp.text) && /no es un estudio/.test(mp.text), JSON.stringify(mp));
 await sleep(1500);
 const row = (await sql(`select seq, state->'post' as post from game_progress where user_id = '${NEWBIE}'`))[0];
 check('el servidor guardó el post-cosecha completo (secado, curado con guardado, rosin)', row && row.seq === fin.seq && Object.keys(row.post.curado.c).length === 9 && Object.keys(row.post.rosin.c).length === 11, JSON.stringify(row).slice(0, 200));

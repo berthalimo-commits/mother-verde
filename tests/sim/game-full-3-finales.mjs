@@ -111,10 +111,34 @@ check('aguado: la carpa muestra el agua', (await caption(b)).includes(tes.jgTent
 await post(b, 'rosin', { ...POST_IDEAL('rosin'), material: 'fresco' });
 await endChecks(b, 'rosin-aguado', { expect: [tes.jgTentX_agua] });
 await b.close();
-// in a new game the press gets its material from 8b (flower, frozen, kief,
-// hash): fresh flower is never an option, so «aguado» cannot happen there
-check('en una partida nueva ninguna preparación da «flor fresca» a la prensa (dato para el informe)',
-  Object.values(RULES.post.material.da_material).every((m) => m !== 'fresco'));
+console.log('9. Flor fresca congelada directo a la prensa (live rosin de flor): bien, con escarcha, descongelada al aire');
+// Bertha 2026-10-30: in a new game the press can get frozen fresh flower
+// straight from 8b, with its 160 µm mesh (C2) and the real risk of a damp or
+// watery rosin when the moisture is handled badly
+for (const [hum, name] of [['bolsa_cerrada', 'live-rosin-bien'], ['escarcha', 'live-rosin-aguado'], ['descongelada', 'live-rosin-descongelada']]) {
+  b = await session(name === 'live-rosin-aguado' ? 1280 : 390, harvestedGame());
+  for (const st of ['secado', 'curado']) await post(b, st, POST_IDEAL(st));
+  await post(b, 'material', { partida: 'flor_congelada', separacion: 'ninguna' });
+  check(`${name}: la prensa recibe la flor fresca congelada y pregunta su humedad`, (await gs(b)).stage === 'rosin' && await b.ev(`!!document.querySelector('input[name="jgp-humedad_fresca"]') && !document.querySelector('input[name="jgp-material"]')`));
+  check(`${name}: la malla para flor fresca muestra 160 µm, orientativo, práctica de la comunidad`, (await b.ev(`document.querySelector('label[for="jgp-rosin-malla-flor_fresca"]')?.innerText || ''`)).includes(tes.jgPH_rosin_malla_flor_fresca));
+  const vals = { ...POST_IDEAL('rosin'), malla: 'flor_fresca', humedad_fresca: hum }; delete vals.material;
+  for (const [d, o] of Object.entries({ malla: 'flor_fresca', humedad_fresca: hum })) await b.ev(`document.querySelector('label[for="jgp-rosin-${d}-${o}"]').click(); 1`);
+  const draw = await b.ev(`(() => { const g = document.querySelector('#jgTent .jgt-post'); return { mat: g?.dataset.material, hum: g?.dataset.humedad, agua: g?.dataset.agua, frost: !!document.querySelector('#jgTent .jgt-frost'), drops: !!document.querySelector('#jgTent .jgt-condensa') }; })()`);
+  const cap = await caption(b);
+  if (hum === 'bolsa_cerrada') check(`${name}: el dibujo muestra la flor congelada, sin agua`, draw.mat === 'congelado' && draw.agua === '0' && !cap.includes(tes.jgTentX_agua), JSON.stringify(draw));
+  else check(`${name}: el dibujo muestra ${hum === 'escarcha' ? 'la escarcha' : 'las gotas de condensación'} y el rosin aguado`, draw.agua === '1' && (hum === 'escarcha' ? draw.frost : draw.drops) && cap.includes(tes.jgTentX_agua), JSON.stringify(draw) + ' ' + cap);
+  await audit(b, `${name}: prensa`);
+  await post(b, 'rosin', vals);
+  s = await gs(b);
+  if (hum === 'bolsa_cerrada') {
+    check(`${name}: rosin «bien hecho»`, s.result.rosin.causes.length === 0, JSON.stringify(s.result.rosin));
+    await endChecks(b, name);
+  } else {
+    await endChecks(b, name, { expect: [tes.jgTentX_agua, 'Suele ir mejor «Atemperar en bolsa cerrada»'], langs: hum === 'escarcha' });
+    check(`${name}: el «¿Por qué?» de la humedad está en el repaso`, await b.ev(`!!document.querySelector('.jg-review .jg-why[data-why="rosin_humedad_fresca"]')`));
+  }
+  await b.close();
+}
 
 report('game-full-3-finales');
 summary();

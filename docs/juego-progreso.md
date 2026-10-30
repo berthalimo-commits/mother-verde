@@ -485,3 +485,20 @@ Ahora (`src/game/review.js`, textos `src/game/i18n-review.js`, ES/EN/DE/FR):
   respuestas equivocadas (`a`). Sin migración nueva: el servidor no mira dentro de `log`. Partidas viejas:
   repaso más corto, sin semanas inventadas.
 - Tests: `game-review.mjs` 30 ok, `game-review-ui.mjs` 19 ok; juego completo en verde.
+
+## Revisión completa con recorridos automáticos (2026-10-30)
+
+Pruebas `tests/sim/game-full-1..5.mjs` (ayudante `game-full-lib.mjs`): juegan tocando la pantalla contra la copia
+local de staging (fakeserver: PGlite con las mismas migraciones) y revisan cada pantalla (nada bloqueado sin
+explicación, siempre un botón para seguir, consola sin errores, cada «¿Por qué?» con razón y respaldo, sin textos
+sin traducir, sin desborde en celular y escritorio). Capturas de cada final: `tests/sim/out/jgfull-final-*.png`.
+Resultados: 1 sistemas 90 ok · 2 problemas 120 ok · 3 finales 94 ok · 4 post-cosecha 67 ok · 5 guardar 58 ok.
+
+**Flor fresca congelada directo a la prensa (decisión de Bertha):** 8b «Flor fresca congelada» + «Sin separar»
+→ la prensa recibe `congelado` (live rosin de flor). Malla «para flor fresca» 160 µm (C2, orientativo, práctica
+de la comunidad); nueva decisión «Humedad de la flor congelada» (escarcha o descongelada al aire → rosin aguado;
+atemperar en bolsa cerrada = recomendado, criterio de la autora). Dibujo: escarcha o gotas de condensación en la
+bolsa. Sin migración (el servidor no mira las decisiones dentro de `post`).
+
+Pendiente al cerrar: volver a correr `game-post-ui` (expectativa de fuentes de la malla actualizada con C2),
+`game-full-1` y `game-full-2` con el código final; se cortaron por falta de memoria del equipo.

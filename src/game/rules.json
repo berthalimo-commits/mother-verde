@@ -690,7 +690,8 @@
           "opciones": [
             "sin_bolsa",
             "fina",
-            "estandar"
+            "estandar",
+            "flor_fresca"
           ],
           "escala": false,
           "ideal": {
@@ -698,8 +699,35 @@
               "fina",
               "estandar"
             ],
-            "fuente": "P1 y P2 (rangos de malla, orientativo) · criterio de la autora (sin bolsa)",
+            "fuente": "P1 y P2 (rangos de malla, orientativo) · criterio de la autora (sin bolsa) · C2 (malla para flor fresca, práctica de la comunidad, orientativo)",
             "respaldo": "patente",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          },
+          "ideal_por_material": {
+            "congelado": [
+              "flor_fresca",
+              "estandar"
+            ],
+            "_fuente": "C2 (manual de NugSmasher, práctica de la comunidad, orientativo): 160 µm para flor fresca, 90 µm para flor seca · decisión de Bertha 2026-10-30",
+            "verificar": "[POR VERIFICAR POR BERTHA]"
+          }
+        },
+        "humedad_fresca": {
+          "cuando": {
+            "material": [
+              "congelado"
+            ]
+          },
+          "opciones": [
+            "escarcha",
+            "bolsa_cerrada",
+            "descongelada"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": "bolsa_cerrada",
+            "fuente": "Criterio de la autora (decisión de Bertha 2026-10-30): la flor fresca congelada trae mucha agua; si la escarcha o la condensación llegan a la bolsa, el rosin sale húmedo o aguado",
+            "respaldo": "autora",
             "verificar": "[POR VERIFICAR POR BERTHA]"
           }
         },

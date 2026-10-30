@@ -252,9 +252,16 @@ export const POST = ['secado', 'curado', 'material', 'rosin'];
 // The decisions shown for this stage: only those that apply to what is
 // picked (8b: the sieve's options only with dry sifting…); in the press, the
 // material is not asked again when 8b decided it.
-export const postDecisions = (rules, stage, picked = {}, s = null) => Object.entries(rules.post[stage].decisiones)
-  .filter(([d, def]) => applies(def.cuando, picked) && !(stage === 'rosin' && d === 'material' && s?.post?.material))
-  .map(([d]) => d);
+// In the press, «cuando» also sees the material 8b sent (frozen fresh flower
+// asks how its moisture is handled).
+export const postDecisions = (rules, stage, picked = {}, s = null) => {
+  const seen = stage === 'rosin' ? { ...picked, material: pressMaterial(rules, picked, s) } : picked;
+  return Object.entries(rules.post[stage].decisiones)
+    .filter(([d, def]) => applies(def.cuando, seen) && !(stage === 'rosin' && d === 'material' && s?.post?.material))
+    .map(([d]) => d);
+};
+// What goes into the press: what 8b produced, or (games saved before 8b) the choice.
+export const pressMaterial = (rules, picked, s) => (s?.post?.material ? materialFrom(s.post.material.c, rules) : picked.material);
 
 // What 8b sends to the press: flower, kief (dry sift) or hash (ice water).
 export function materialFrom(c, rules) {
@@ -273,6 +280,7 @@ export function applyPost(s, choices, rules) {
   const R = rules.post;
   const defs = R[s.stage].decisiones;
   const ds = postDecisions(rules, s.stage, choices, s);
+  const mat = s.stage === 'rosin' ? pressMaterial(rules, choices, s) : null;
   if (!ds.every((d) => defs[d].opciones.includes(choices?.[d]))) throw new Error('bad_choices');
   const lost = {};
   const notes = [];
@@ -281,7 +289,8 @@ export function applyPost(s, choices, rules) {
     // Phase 8: the ideal may be one option, several (any of them) or null.
     // null + no source = no approved figure yet (the guide says so); null on
     // purpose (author's criteria: it only teaches) = no note.
-    const want = def.ideal.valor;
+    // the right mesh depends on the material (C2: an open mesh for fresh frozen flower)
+    const want = def.ideal_por_material?.[mat] ?? def.ideal.valor;
     if (want === null) { if (def.ideal.respaldo === 'sin' || !def.ideal.respaldo) notes.push('postSinDato:' + s.stage + '_' + d); continue; }
     const wants = Array.isArray(want) ? want : [want];
     if (wants.includes(choices[d])) continue;

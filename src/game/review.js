@@ -75,7 +75,8 @@ export function review(state, rules) {
     const p = state.post?.[st];
     for (const [d, n] of Object.entries(p?.l || {})) {
       const value = p.c?.[d];
-      const look = Object.entries(postLooks(st, { [d]: value })).find(([, on]) => on)?.[0] || null;
+      // what this one decision shows (in the press, with the material it got)
+      const look = Object.entries(postLooks(st, { material: p.c?.material, [d]: value })).find(([, on]) => on)?.[0] || null;
       items.push({ type: 'post', key: WHY[st + '_' + d] ? st + '_' + d : st, stage: st, d, lost: n, scored: st === 'secado' || st === 'curado',
         value, look, better: [].concat(rules.post[st].decisiones[d]?.ideal.valor ?? []) });
     }

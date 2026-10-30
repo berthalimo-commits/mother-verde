@@ -5,16 +5,14 @@
 // 6 (no equipment), 7 (no germination) and 8b (curing -> press) are loaded
 // and played to the end. First, a control: the audit must catch planted faults.
 import { summary, check, sleep, browser } from './browser.mjs';
-import { RULES, E, IDEAL, POST_IDEAL, NEUTRAL, GERM_OK, USER, session, enter, reload, synced, audit, setup, germ, week, answer, click, gs, post, growToHarvest, harvestedGame, report, issues } from './game-full-lib.mjs';
+import { RULES, E, IDEAL, POST_IDEAL, NEUTRAL, GERM_OK, USER, session, enter, reload, synced, audit, setup, germ, week, answer, click, gs, post, growToHarvest, harvestedGame, report } from './game-full-lib.mjs';
 
 console.log('0. Control: la revisión detecta fallos sembrados a propósito');
 {
   const b = await session(390, E.applyGerm(E.start(E.setSetup(E.newGame(), NEUTRAL, RULES)), GERM_OK, RULES));
   await b.ev(`(() => { const r = document.querySelector('#juego .jg'); r.insertAdjacentHTML('beforeend', '<p>jgTextoFalso</p>'); document.getElementById('jgNext').disabled = true; console.error('fallo sembrado'); return 1; })()`);
-  const n = issues.length;
-  const probs = await audit(b, 'control (debe fallar)');
+  const probs = await audit(b, 'control', { quiet: true });
   const caught = ['sin traducir', 'bloqueados sin explicación', 'consola'].every((k) => probs.some((p) => p.includes(k)));
-  issues.splice(n); // planted on purpose: not part of the report
   check('control: la revisión detecta texto sin traducir, botón bloqueado sin explicación y error de consola', caught, probs.join(' · '));
   await b.close();
 }
@@ -44,7 +42,8 @@ await germ(b, GERM_OK);
 await again('plántula');
 for (let i = 0; i < 2; i++) await week(b, IDEAL('plantula'));
 await again('vegetativo');
-for (let i = 0; i < 2 && !(await gs(b)).event; i++) await week(b, { ...IDEAL('vegetativo'), nutrientes: 'bajo' });
+// with soil the deficiency shows a week later (rules.json → setup.efectos.semanas_extra)
+for (let i = 0; i < 4 && !(await gs(b)).event; i++) await week(b, { ...IDEAL('vegetativo'), nutrientes: 'bajo' });
 check('se abrió un problema (carencia de nitrógeno)', (await gs(b)).event?.id === 'carencia_n');
 await again('problema abierto, sin responder', { otherDevice: true });
 check('problema abierto: al volver sigue bloqueado CON la explicación', await b.ev(`document.getElementById('jgNext').disabled && !!document.getElementById('jgBloqueo')`));

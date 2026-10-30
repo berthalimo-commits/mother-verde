@@ -108,7 +108,8 @@ export const postShown = (b) => b.ev(`[...document.querySelectorAll('#jgPostForm
 export const options = (b, d) => b.ev(`[...document.querySelectorAll('input[name="jgp-${d}"]')].map((i) => i.value)`);
 
 // ---------------------------------------------------------------- the audit
-export async function audit(b, label, { langs = false, why = true } = {}) {
+// quiet = only return the problems (for the control that plants faults on purpose)
+export async function audit(b, label, { langs = false, why = true, quiet = false } = {}) {
   const probs = [];
   const look = await b.ev(`(() => {
     const root = document.getElementById('juego');
@@ -161,6 +162,7 @@ export async function audit(b, label, { langs = false, why = true } = {}) {
     const evs2 = b.events.slice(b.seen); b.seen = b.events.length;
     if (evs2.some((e) => e.method === 'Runtime.exceptionThrown')) probs.push('error de JavaScript al cambiar de idioma');
   }
+  if (quiet) return probs;
   for (const p of probs) issues.push(`${label}: ${p}`);
   check(`${label}${look.whys ? ` (${look.whys} «¿Por qué?»)` : ''}`, probs.length === 0, probs.join(' · '));
   return probs;

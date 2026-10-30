@@ -98,6 +98,27 @@ rr = review(r, RULES); t = text(html(r));
 check('flor fresca sin congelar en la prensa -> rosin aguado, con la opción mejor', rr.post.find((x) => x.d === 'material')?.look === 'agua' && t.includes(TEXTS.es.jgTentX_agua) && t.includes('Suele ir mejor'), t);
 check('cada error del post-cosecha tiene su «¿Por qué?»', [...review(q, RULES).post, ...rr.post].every((x) => W.WHY[x.key]));
 
+console.log('4b. Flor fresca congelada directo a la prensa (live rosin de flor, decisión de Bertha 2026-10-30)');
+const atLive = E.applyPost(E.applyPost(E.applyPost(harvested, PI('secado'), RULES), PI('curado'), RULES), { partida: 'flor_congelada', separacion: 'ninguna' }, RULES);
+const LIVE = { ...PI('rosin'), malla: 'flor_fresca', humedad_fresca: 'bolsa_cerrada' }; delete LIVE.material;
+check('8b: flor fresca congelada sin separar -> la prensa recibe «congelado» y pregunta la humedad de la flor', E.pressMaterial(RULES, {}, atLive) === 'congelado'
+  && E.postDecisions(RULES, 'rosin', {}, atLive).includes('humedad_fresca'));
+check('…con otro material (hachís) la humedad de la flor no se pregunta', !E.postDecisions(RULES, 'rosin', {}, atRosin).includes('humedad_fresca'));
+r = E.applyPost(atLive, LIVE, RULES); states.push(r);
+check('malla para flor fresca (160 µm, C2) + atemperar en bolsa cerrada -> rosin bien hecho', r.result.rosin.causes.length === 0, JSON.stringify(r.result.rosin));
+check('…la malla estándar también vale para la flor fresca (su rango incluye 160 µm); la fina no', E.applyPost(atLive, { ...LIVE, malla: 'estandar' }, RULES).result.rosin.causes.length === 0
+  && E.applyPost(atLive, { ...LIVE, malla: 'fina' }, RULES).result.rosin.causes.includes('rosin_malla'));
+check('…y la malla para flor fresca no es la buena para kief o hachís (flor seca: malla más cerrada)', E.applyPost(atRosin, { ...PI('rosin'), malla: 'flor_fresca' }, RULES).result.rosin.causes.includes('rosin_malla'));
+for (const bad of ['escarcha', 'descongelada']) {
+  r = E.applyPost(atLive, { ...LIVE, humedad_fresca: bad }, RULES); states.push(r);
+  rr = review(r, RULES); t = text(html(r));
+  check(`humedad «${bad}» -> rosin aguado: cuenta en el veredicto y el repaso lo explica con su «¿Por qué?»`, r.result.rosin.causes.includes('rosin_humedad_fresca')
+    && rr.post.find((x) => x.d === 'humedad_fresca')?.look === 'agua' && t.includes(TEXTS.es.jgTentX_agua) && t.includes('Suele ir mejor «Atemperar en bolsa cerrada»') && html(r).includes('data-why="rosin_humedad_fresca"'), t);
+}
+check('«¿Por qué? · Bolsa de malla» cita el manual de NugSmasher (C2, práctica de la comunidad)', W.WHY.rosin_malla.src.includes('C2') && /community practice/.test(W.SOURCES.C2.label));
+check('la cifra 160 µm solo está en la pista de la malla, marcada «orientativo» y «práctica de la comunidad»',
+  ['es', 'en', 'de', 'fr'].every((L) => Object.entries(TEXTS[L]).filter(([, v]) => v.includes('160')).every(([k]) => k === 'jgPH_rosin_malla_flor_fresca')) && TEXTS.es.jgPH_rosin_malla_flor_fresca.includes('orientativo') && TEXTS.es.jgPH_rosin_malla_flor_fresca.includes('comunidad'));
+
 console.log('5. Germinación, maceta sin trasplantar, floración temprana');
 let g = E.setSetup(E.newGame(), { carpa: 'mediana', luz: 'led', sistema: 'maceta', sustrato: 'tierra', maceta: 'plastico', maceta_tam: 'pequena', riego_tipo: 'mano', medir: 'si' }, RULES);
 let gOk = true;

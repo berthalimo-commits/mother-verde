@@ -79,6 +79,15 @@ referentes del mundo sin solventes. No son estudios.
 
 «Smash Nugs» es **NugSmasher** (C2), confirmado por Bertha el 2026-10-29.
 
+**Uso de C2 en el juego (decisión de Bertha, 2026-10-30):** la prensa puede recibir **flor fresca congelada**
+directo desde la preparación (8b: «Flor fresca congelada» + «Sin separar» = live rosin de flor). Opción de malla
+«Malla para flor fresca» con **160 µm** (C2), marcada «orientativo · práctica de la comunidad» y citada en el
+«¿Por qué? · Bolsa de malla». Con flor fresca congelada valen esa malla o la estándar (su rango incluye 160 µm);
+con flor seca, kief o hachís la de flor fresca cuenta como un nivel de error (C2 usa 90 µm para flor seca).
+Nueva decisión «Humedad de la flor congelada» (solo con ese material): directo del congelador con escarcha o
+descongelada al aire → rosin húmedo o aguado; atemperar en bolsa cerrada = lo recomendado. **Criterio de la
+autora**, sin fuente externa (C2 no habla de la humedad).
+
 **No usado** (no pude leerlo; no afirmo nada):
   - el PDF «Temps and Times» de una tienda Shopify (sin marca legible; texto en códigos de glifo);
   - las redes sociales y los vídeos de todas estas marcas.

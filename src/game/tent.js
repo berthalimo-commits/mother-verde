@@ -167,7 +167,9 @@ const mould = (pts) => `<g class="jgt-mould">${pts.map(([x, y]) => `<circle cx="
 export function postLooks(stage, c = {}) {
   if (stage === 'secado') return { moho: c.humedad === 'alta' || c.aire === 'sin_aire', reseco: c.temperatura === 'calida' || c.humedad === 'baja' || c.duracion === 'muchas_semanas' };
   if (stage === 'curado') return { moho: c.abrir === 'nunca' || c.envase === 'plastico', reseco: c.abrir === 'siempre' || c.g_aire === 'abierto' || c.g_luz === 'sol' || c.g_temp === 'calido' };
-  if (stage === 'rosin') return { restos: c.malla === 'sin_bolsa' || c.pureza === 'baja', oscuro: c.calor === 'alto', agua: c.material === 'fresco' };
+  // fresh flower brings water: unfrozen, or frozen with frost / condensation reaching the bag
+  if (stage === 'rosin') return { restos: c.malla === 'sin_bolsa' || c.pureza === 'baja', oscuro: c.calor === 'alto',
+    agua: c.material === 'fresco' || (c.material === 'congelado' && ['escarcha', 'descongelada'].includes(c.humedad_fresca)) };
   // 8b: rough sieving or shaking drags plant debris in (C4, criterio); a
   // damp ball of hash goes mouldy (C3)
   if (stage === 'material') return {
@@ -283,17 +285,21 @@ function rosinScene(c) {
   const bag = c.malla === 'sin_bolsa' ? `<ellipse cx="120" cy="135" rx="18" ry="5" fill="${mat}"/>`
     : `<rect x="100" y="129" width="40" height="12" rx="2" fill="${mat}" stroke="#E8EEF0" stroke-width="0.6" stroke-dasharray="${c.malla === 'fina' ? '0.6 0.6' : '1.6 1'}"/>`;
   const puddleCol = look.oscuro ? '#8B5A2B' : look.agua ? '#D9C88F' : '#E3A75F';
+  // frozen fresh flower: frost on the bag, or condensation drops when it thawed in the open
+  const wet = c.material !== 'congelado' ? '' : c.humedad_fresca === 'escarcha'
+    ? '<g class="jgt-frost" stroke="#E8F6FF" stroke-width="0.8" stroke-linecap="round">' + [104, 112, 120, 128, 136].map((x, i) => `<path d="M${x} ${130 + (i % 2) * 5}l3 3m0 -3l-3 3"/>`).join('') + '</g>'
+    : c.humedad_fresca === 'descongelada' ? '<g class="jgt-condensa" fill="#5FD4E0">' + [106, 118, 130].map((x) => `<ellipse cx="${x}" cy="128" rx="1.2" ry="2"/>`).join('') + '</g>' : '';
   // the rosin oozes out on both sides of the plates
   const puddle = c.material ? `<g class="jgt-rosin" fill="${puddleCol}" opacity="0.95"><ellipse cx="58" cy="136" rx="10" ry="4.5"/><ellipse cx="182" cy="136" rx="10" ry="4.5"/><rect x="66" y="133" width="108" height="5" rx="2"/></g>`
     + (look.restos ? '<g class="jgt-debris">' + [52, 58, 64, 176, 183, 188].map((x, i) => `<circle cx="${x}" cy="${135 + (i % 2) * 2}" r="1.1" fill="#4F7A3A"/>`).join('') + '</g>' : '')
     + (look.agua ? '<g fill="#5FD4E0">' + [54, 62, 180, 187].map((x) => `<ellipse cx="${x}" cy="143" rx="1.3" ry="2.2"/>`).join('') + '</g>' : '') : '';
   const gloves = c.proteccion === 'guantes' ? '<path class="jgt-gloves" d="M182 170q-4 -14 4 -18q4 6 6 0q4 2 4 8v10z" fill="#E3A75F" stroke="#9A6A35" stroke-width="0.6"/>' : '';
-  return `<g class="jgt-post" data-material="${c.material || ''}" data-malla="${c.malla || ''}" data-calor="${c.calor || ''}" data-papel="${c.papel || ''}" data-prensa="${c.prensa || ''}" data-restos="${look.restos ? 1 : 0}" data-oscuro="${look.oscuro ? 1 : 0}">`
+  return `<g class="jgt-post" data-material="${c.material || ''}" data-malla="${c.malla || ''}" data-calor="${c.calor || ''}" data-papel="${c.papel || ''}" data-prensa="${c.prensa || ''}" data-restos="${look.restos ? 1 : 0}" data-oscuro="${look.oscuro ? 1 : 0}" data-humedad="${c.humedad_fresca || ''}" data-agua="${look.agua ? 1 : 0}">`
     + `<rect x="92" y="94" width="56" height="8" fill="#2B3532" stroke="#9FB8AE"/>${frame}`
     + `<rect x="66" y="112" width="108" height="12" rx="2" fill="#7F8B8E" stroke="${glow}" stroke-width="2"/>`
     + `<rect x="66" y="146" width="108" height="12" rx="2" fill="#7F8B8E" stroke="${glow}" stroke-width="2"/>`
     + `<path d="M74 158v40M166 158v40M60 198H180" stroke="#9FB8AE" stroke-width="2"/>`
-    + paper + bag + puddle + gloves + '</g>';
+    + paper + bag + wet + puddle + gloves + '</g>';
 }
 
 // Phase 6: the pot (material, size, substrate) or the hydroponic system.

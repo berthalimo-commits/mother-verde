@@ -18,6 +18,7 @@ export const SOURCES = {
   F11: { label: 'Geneve et al. — Crops, 2022 (hemp germination temperature)', url: 'https://scholars.uky.edu/en/publications/temperature-limits-for-seed-germination-in-industrial-hemp-cannab/' },
   // community practice (docs/juego-fuentes.md C1–C4): manufacturers' own pages, not studies, not endorsements
   C1: { label: 'Lowtemp Industries blog — 5 µm vs 25 µm bags (community practice)', url: 'https://www.lowtemp-plates.com/blogs/knowledge/5micron-vs-25micron-rosin-press-bags' },
+  C2: { label: 'NugSmasher — NugSmasher Mini owner’s manual (community practice)', url: 'https://cdn.shopify.com/s/files/1/0856/1428/files/NS-Mini-Owners-Manual-Safe-PID24.pdf' },
   C3: { label: 'Pollinator Company — Ice-O-Lator manual (community practice)', url: 'https://pollinator.nl/wp-content/uploads/2016/05/man_Ice_eng.pdf2_.pdf' },
   C4: { label: 'Pollinator Company — Pollinator manual (community practice)', url: 'https://pollinator.nl/wp-content/uploads/2016/08/pollinator-manual-eng.pdf' },
 };
@@ -63,7 +64,8 @@ export const WHY = {
   curado_g_forma: { lesson: 'procesos', src: 'F8', level: 'estudio' },
   curado_g_tiempo: { lesson: 'procesos', src: 'F8', level: 'estudio' },
   rosin_material: { lesson: 'concentrados', src: null, level: 'practica' },
-  rosin_malla: { lesson: 'concentrados', src: ['P1', 'P2'], level: 'patente' },
+  rosin_malla: { lesson: 'concentrados', src: ['P1', 'P2', 'C2'], level: 'patente' },
+  rosin_humedad_fresca: { lesson: 'concentrados', src: null, level: 'autora' },
   rosin_calor: { lesson: 'concentrados', src: 'P2', level: 'practica' },
   rosin_papel: { lesson: 'concentrados', src: null, level: 'practica' },
   rosin_enfriado: { lesson: 'concentrados', src: null, level: 'autora' },
