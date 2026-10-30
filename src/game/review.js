@@ -129,6 +129,8 @@ function chain(it, ctx) {
   } else if (it.type === 'post') {
     if (it.value) steps.push(`${t('jgPD_' + it.stage + '_' + it.d).replace(/\s*\(.*\)$/, '')} ${q(optName(t, it, it.value, it.stage))}`);
     if (it.look) steps.push(t('jgTentX_' + it.look + (it.stage === 'material' ? '_material' : '')));
+    // no gloves at the press: the risk is a burn to the person, not the rosin
+    if (it.key === 'rosin_proteccion') steps.push(t('jgFb_quemadura'));
     steps.push(it.scored ? fmt(t('jgRv_menosNota'), { n: it.lost }) : t('jgRv_veredicto'));
   }
   return `<ol class="jg-rv-chain">${steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>`;
