@@ -5,6 +5,7 @@
 import POST from './i18n-post.js';
 import SETUP from './i18n-setup.js';
 import MATERIAL from './i18n-material.js';
+import REVIEW from './i18n-review.js';
 
 const TEXTS = {
   es: {
@@ -558,5 +559,5 @@ const TEXTS = {
 };
 // Phase 8: drying, curing + storage and rosin texts live in i18n-post.js.
 // Phases 6-7: equipment, germination and the two new problems: i18n-setup.js.
-for (const L of Object.keys(TEXTS)) Object.assign(TEXTS[L], POST[L], SETUP[L], MATERIAL[L]);
+for (const L of Object.keys(TEXTS)) Object.assign(TEXTS[L], POST[L], SETUP[L], MATERIAL[L], REVIEW[L]);
 export default TEXTS;

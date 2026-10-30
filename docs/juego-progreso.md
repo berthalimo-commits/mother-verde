@@ -467,3 +467,21 @@ lección no cuenta como respuesta. El juego **no lo explicaba**.
 - Aviso: `vite build --outDir <otra carpeta>` con el juego encendido termina con
   «mv-dev-preview: preview code still present in dist/main.js» porque ese control mira siempre `dist/`.
   Pasa igual sin los cambios del juego; no es un fallo de esta fase.
+
+## Repaso final: por qué murió la planta / qué bajó la nota (2026-10-30)
+
+Pedido tras la prueba de Bertha (planta muerta a propósito). Antes, la pantalla final decía «no sobrevivió»,
+una lista corta de causas («el riego, un problema sin resolver»), botones de lección y «¿Por qué?» sueltos.
+Ahora (`src/game/review.js`, textos `src/game/i18n-review.js`, ES/EN/DE/FR):
+- **Causa principal** (lo que más salud quitó) y la semana en que la salud llegó a 0.
+- **Cadena** de cada causa con las semanas: «Semanas 1–2: Riego «Mucho» → Semana 2: apareció «Exceso de riego»
+  → Respondiste «Esperar» → siguió sin resolver N semanas: −X de salud». Decisiones por etapa, plagas (lo que
+  las trajo aunque no restara, la respuesta equivocada y la buena), floración temprana, maceta sin trasplantar,
+  germinación, secado/curado (moho, resecos), preparación y prensa (hachís húmedo, rosin oscuro, aguado).
+- **Qué habría funcionado mejor**, siempre con «no es la única respuesta».
+- **«¿Por qué?»** de cada causa con su fuente (why.js) y **lecciones relacionadas**.
+- Botones **«Empezar de nuevo»** (mismo equipo, directo a germinar) y **«Probar otro sistema de cultivo»**.
+- El motor guarda ahora en cada semana lo que recibió la carpa (`log[].c`), el problema que restó (`e`) y las
+  respuestas equivocadas (`a`). Sin migración nueva: el servidor no mira dentro de `log`. Partidas viejas:
+  repaso más corto, sin semanas inventadas.
+- Tests: `game-review.mjs` 30 ok, `game-review-ui.mjs` 19 ok; juego completo en verde.

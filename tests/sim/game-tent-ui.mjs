@@ -151,7 +151,7 @@ console.log('3. Computadora');
 b = await browser(NEWBIE, 'aal1', 1280);
 await open(b);
 await goGame(b);
-await click(b, 'jgAgain'); await sleep(800);
+await click(b, 'jgOtroSistema'); await sleep(800);
 await startGame(b);
 for (let i = 0; i < 4; i++) await nextWeek(b);
 const lay = await b.ev(`(() => { const s = document.querySelector('#jgTent .jgt-scene').getBoundingClientRect(), g = document.querySelector('#jgTent .jg-gauges').getBoundingClientRect(); return { side: g.left >= s.right - 1 && g.top < s.bottom, over: document.documentElement.scrollWidth > innerWidth }; })()`);

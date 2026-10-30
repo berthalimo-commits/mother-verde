@@ -9,7 +9,7 @@ const EVENT_ORDER = ['pudricion_raiz', 'quemadura_luz', 'botrytis', 'acaros', 'c
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
 // Phase 6: the substrate can change the ideal (coco needs feeding from the
 // seedling on; living soil feeds itself). A list = any of them is ideal.
-const ideal = (rules, stage, d, setup) => {
+export const ideal = (rules, stage, d, setup) => {
   const extra = rules.setup?.efectos.ideal_extra[setup?.sustrato]?.[stage]?.[d];
   return extra !== undefined ? extra : rules.etapas[stage]?.ideal?.[d]?.valor ?? null;
 };
@@ -199,7 +199,12 @@ export function applyWeek(s, choices, rules) {
   health = clamp(Math.round(health), 0, 100);
   if (!Object.keys(lost).length && !notes.some((n) => n.startsWith('evento'))) notes.unshift('semanaBien');
   else if (Object.keys(lost).length) notes.unshift('semanaMal');
-  const log = [...s.log, { w: s.week, s: stage, h: health, l: lost }].slice(-60);
+  // c = what the tent really got (for the final review: «semana 3, riego
+  // «Mucho»»); e / a = the problem that cost health this week and the wrong
+  // answers given to it. Saves from before the review have none of them.
+  const entry = { w: s.week, s: stage, h: health, l: lost, c: eff };
+  if (s.event) { entry.e = s.event.id; if (s.event.a) entry.a = s.event.a; }
+  const log = [...s.log, entry].slice(-60);
   let next = { ...s, seq: s.seq + 1, week: s.week + 1, stage: nextStage, stageWeek: nextStageWeek, health, risks,
     event, log, last: { ...choices }, notes };
   if (nextStage === 'floracion') next.trich = trichomes(nextStageWeek, rules);
@@ -220,7 +225,8 @@ export function answerEvent(s, answer, rules) {
       notes: ['eventoBien:' + s.event.id], lessons: addLesson(s.lessons, 'diagnostico') };
   }
   // Wrong answer: the event stays (and keeps costing health); the week can go on.
-  return { ...s, seq: s.seq + 1, event: { ...s.event, answered: true }, notes: ['eventoMal:' + s.event.id] };
+  const a = [...new Set([...(s.event.a || []), answer])];
+  return { ...s, seq: s.seq + 1, event: { ...s.event, answered: true, a }, notes: ['eventoMal:' + s.event.id] };
 }
 
 // Harvest now (only while flowering). auto = the game harvested at the last week.
@@ -330,3 +336,13 @@ export const LESSON = { plantula: 'propagacion', vegetativo: 'sistemas', floraci
   fotoperiodo: 'ciclo', intensidad: 'iluminacion', riego: 'diagnostico', nutrientes: 'sustrato', temperatura: 'sistemas',
   humedad: 'sistemas', evento: 'diagnostico', flip: 'ciclo',
   germinacion: 'propagacion', maceta: 'sustrato', pudricion_raiz: 'diagnostico', quemadura_luz: 'iluminacion' };
+
+// «Empezar de nuevo» on the final screen: a new plant with the same equipment,
+// straight to germination. Without equipment (a save from before phase 6) it
+// is a plain new game, which asks for the equipment first.
+export function restart(s, rules) {
+  const g = newGame(s);
+  if (!s.setup) return g;
+  const { germinacion, trasplante, ...choices } = s.setup;
+  try { return start(setSetup(g, choices, rules)); } catch { return g; }
+}

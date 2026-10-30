@@ -136,8 +136,8 @@ const pickAll = () => b.ev(`(() => { document.querySelectorAll('#jgPostForm fiel
 await pickAll(); await click(b, '#jgPostNext'); await sleep(1000);
 await pickAll(); await click(b, '#jgPostNext'); await sleep(1000);
 await click(b, '#jgSkipRosin'); await sleep(1000);
-const fin = await b.ev(`[...document.querySelectorAll('.jg-whys[data-gid="fin"] .jg-why')].map((x) => x.textContent)`);
-check('resultado: «¿Por qué?» de los tricomas y de cada causa que restó', fin.includes('¿Por qué? · Tricomas') && fin.length >= 2, JSON.stringify(fin));
+const fin = await b.ev(`[...document.querySelectorAll('.jg-whys[data-gid="fin"] .jg-why, .jg-review .jg-why')].map((x) => x.textContent)`);
+check('resultado: «¿Por qué?» de los tricomas y de cada causa que restó (en el repaso)', fin.includes('¿Por qué? · Tricomas') && fin.length >= 2, JSON.stringify(fin));
 await b.ev(`[...document.querySelectorAll('.jg-whys[data-gid="fin"] .jg-why')].find((x) => /Tricomas/.test(x.textContent)).click(); 1`); await sleep(300);
 const tri = await b.ev(`document.querySelector('.jg-whys[data-gid="fin"] .jg-why-panel').innerText`);
 check('…los tricomas dicen la verdad: práctica de cultivadores, sin estudio que lo confirme, sin enlace inventado', /no encontramos un estudio/.test(tri) && /práctica de cultivadores/.test(tri)

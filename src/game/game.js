@@ -10,7 +10,8 @@ import TEXTS from './i18n.js';
 import * as E from './engine.js';
 import { poseFor, poseSvg } from './poses.js';
 import { tentHtml, CSS as TENT_CSS } from './tent.js';
-import { whyGroupHtml, whyKeysFromNotes, whyKeysFromResult, bindWhy, CSS as WHY_CSS } from './why.js';
+import { whyGroupHtml, whyKeysFromNotes, bindWhy, CSS as WHY_CSS } from './why.js';
+import { review, reviewHtml, CSS as RV_CSS } from './review.js';
 
 window.mvAddTexts?.(TEXTS);
 const t = (k) => (window.t ? window.t(k) : k);
@@ -287,8 +288,6 @@ function resultHtml() {
   const hasFinal = !r.dead && typeof r.final === 'number';
   const rosinLine = !hasFinal ? '' : !r.rosin ? t('jgFinRosinNo')
     : r.rosin.causes.length ? fmt(t('jgFinRosinMal'), { lista: r.rosin.causes.map(postCause).join(', ') }) : t('jgFinRosinBien');
-  const lessons = [...new Set([...causes.map((c) => E.LESSON[c]), ...post.map((c) => E.LESSON[c.split('_')[0]]),
-    ...(r.rosin?.causes.length ? ['concentrados'] : [])])];
   return `<div class="card-block jg-result">
     <h3>${t('jgFinTitulo')}</h3>
     ${r.dead ? `<p class="jg-big">${t('jgFinMuerta')}</p>` : `<p class="jg-big">${esc(fmt(t('jgFinPuntos'), { n: hasFinal ? r.final : r.score }))}</p>
@@ -298,9 +297,10 @@ function resultHtml() {
     <p><b>${t('jgFinCausas')}</b> ${causes.length ? causes.map((c) => t('jgCausa_' + c)).join(', ') : t('jgFinNada')}</p>
     ${hasFinal ? `<p><b>${t('jgFinPostCausas')}</b> ${post.length ? post.map(postCause).join(', ') : t('jgFinNada')}</p>
       <p>${esc(rosinLine)}</p>` : ''}
-    ${lessons.length ? `<p><b>${t('jgFinRepasar')}</b></p><div class="jg-actions">${lessons.map(lessonBtn).join('')}</div>` : ''}
-    ${whyGroupHtml(whyKeysFromResult(r), WHY_CTX, 'fin')}
-    <div class="jg-actions"><button type="button" class="btn btn-primary" id="jgAgain">${t('jgPlantarOtra')}</button>${r.dead ? '' : lessonBtn('cosecha')}</div>
+    ${reviewHtml(review(state, RULES), RV_CTX)}
+    ${r.dead ? '' : whyGroupHtml(['tricomas'], WHY_CTX, 'fin')}
+    <div class="jg-actions"><button type="button" class="btn btn-primary" id="jgAgain">${t('jgRv_deNuevo')}</button>
+      <button type="button" class="btn btn-ghost" id="jgOtroSistema">${t('jgRv_otroSistema')}</button>${r.dead ? '' : lessonBtn('cosecha')}</div>
     ${hasFinal ? `<div class="jg-actions"><button type="button" class="btn btn-ghost" id="jgLab">${t('jgLabBtn')}</button></div>` : ''}
   </div>`;
 }
@@ -471,6 +471,7 @@ function bindLessons(el) {
   el.querySelectorAll('.jg-lesson').forEach((b) => b.addEventListener('click', () => openLesson(b.dataset.lesson)));
 }
 const WHY_CTX = { t, esc, lessonBtn: (l) => lessonBtn(l), bindLessons };
+const RV_CTX = { ...WHY_CTX, fmt };
 
 function syncText() {
   return { ok: 'jgSync_ok', local: 'jgSync_local', stale: 'jgSync_stale', preview: 'jgSync_preview', lento: 'jgSync_lento', err: 'jgErrGuardar' }[sync];
@@ -543,7 +544,8 @@ function paint(root) {
   root.querySelector('#jgHarvest')?.addEventListener('click', () => act(E.harvest(state, RULES)));
   if (!inLab) bindPost(root, root.querySelector('.jg'));
   root.querySelectorAll('.jg-answer').forEach((b) => b.addEventListener('click', () => act(E.answerEvent(state, b.dataset.answer, RULES))));
-  root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.newGame(state)));
+  root.querySelector('#jgAgain')?.addEventListener('click', () => act(E.restart(state, RULES)));
+  root.querySelector('#jgOtroSistema')?.addEventListener('click', () => act(E.newGame(state)));
   bindLessons(root);
 }
 
@@ -593,7 +595,7 @@ const CSS = `
 
 export async function render(root) {
   if (!document.getElementById('jgStyle')) {
-    const st = document.createElement('style'); st.id = 'jgStyle'; st.textContent = CSS + TENT_CSS + WHY_CSS; document.head.appendChild(st);
+    const st = document.createElement('style'); st.id = 'jgStyle'; st.textContent = CSS + TENT_CSS + WHY_CSS + RV_CSS; document.head.appendChild(st);
   }
   const w = who();
   const owner = w.uid || (w.preview ? 'preview' : null);
