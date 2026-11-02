@@ -74,6 +74,9 @@ export const WHY = {
   // Phases 6-7: equipment, germination and the two new problems
   pudricion_raiz: { lesson: 'diagnostico', src: ['F9', 'F3'], level: 'estudio' },
   quemadura_luz: { lesson: 'iluminacion', src: null, level: 'autora' },
+  // several plants: regular seeds (males) and autoflowers (platform: Glosario, Cultivo → Genética)
+  polen: { lesson: 'genetica', src: null, level: 'practica' },
+  auto: { lesson: 'genetica', src: null, level: 'practica' },
   maceta: { lesson: 'sustrato', src: null, level: 'autora' },
   hps: { lesson: 'iluminacion', src: null, level: 'practica' },
   maceta_porosa: { lesson: 'sustrato', src: 'F10', level: 'estudio' },
@@ -109,7 +112,11 @@ export function whyKeysFromNotes(notes, state) {
     else if (kind === 'sinTrasplante') add('maceta');
     else if (n === 'efecto:hps') add('hps');
     else if (n === 'efecto:poco_doble') add('maceta_porosa');
+    else if (n === 'polinizado' || n === 'machosRetirados') add('polen');
+    else if (n === 'autoNo1212' || n === 'flipEdad') add('auto');
   }
+  // regular seeds: males in the tent while flowering (until they are removed)
+  if (state?.stage === 'floracion' && state.setup?.semilla === 'regular' && !state.setup.machos && Number(state.setup.plantas) > 1) add('polen');
   return out;
 }
 
@@ -120,6 +127,7 @@ export function whyKeysFromResult(r) {
   const add = (k) => { if (WHY[k] && !out.includes(k)) out.push(k); };
   if (r.dead) add('muerta');
   (r.causes || []).forEach(add);
+  if (r.polen) add('polen');
   if (!r.dead) add('tricomas');
   (r.postCauses || []).forEach((c) => add(WHY[c] ? c : c.split('_')[0]));
   (r.rosin?.causes || []).forEach((c) => add(WHY[c] ? c : 'rosin'));

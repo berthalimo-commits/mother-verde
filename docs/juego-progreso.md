@@ -450,7 +450,6 @@ lección no cuenta como respuesta. El juego **no lo explicaba**.
 - **Varias plantas y autofloreciente** (semilla regular con macho posible, autofloreciente con calendario propio,
   número de plantas que agranda la carpa).
 - Después, la **fase 9** (pulido final).
-- Más tarde: varias plantas y autofloreciente; después, la fase 9.
 - Fuera del juego, cerrado: Bertha comprobó que el arreglo de las flores funciona en la página publicada de `dev`.
 
 **Cómo retomar**
@@ -504,3 +503,30 @@ Pendientes al cerrar (se cortaron por falta de memoria): `game-post-ui` (expecta
 actualizada con C2) **34 ok**; con el código final `game-full-1` **90 ok** y `game-full-2` **120 ok**
 (2026-10-31, una a la vez, cerrando Vite y el navegador de pruebas entre cada una). No queda nada pendiente.
 Staging: `paso4c-juego-setup.sql` ya está pegado (Bertha, 2026-10-29); no hay nada que pegar por estos cambios.
+
+## Varias plantas y autofloreciente · HECHA (2026-11-02)
+
+Especificación y lista para validar: `docs/juego-decisiones.md` → «Varias plantas y autofloreciente».
+- **«Prepara tu carpa»** pregunta ahora el **tipo de semilla** (feminizada · regular · autofloreciente) y el
+  **número de plantas** (1–6: caben 2 en la carpa pequeña, 4 en la mediana, 6 en la grande; si achicas la carpa
+  se queda en las que caben). Vienen marcadas «feminizada» y «1 planta».
+- **La carpa** dibuja todas las plantas en fila, al fondo (los objetos quedan delante y se pueden tocar).
+- **Regular:** la mitad salen macho. En la 1.ª semana de floración se ven con **sacos de polen** (sin cogollos),
+  el guía lo avisa y aparece **«Retirar los machos (N)»**. Si siguen al pasar la 2.ª semana sueltan el polen:
+  los cogollos se dibujan con semillas y la cosecha pierde 15 puntos (se quitan después del tope de 100, para que
+  siempre se vean). El repaso final lo explica con su semana, qué funciona mejor y su «¿Por qué?» (Genética).
+- **Autofloreciente:** florece sola tras 2 semanas de vegetativo (el 12/12 no la adelanta: el guía lo explica);
+  en floración da igual 18/6 o 12/12; punto de cosecha a las 9 semanas desde la semilla; guía propio.
+- Partidas de antes: cargan como 1 planta feminizada; «Empezar de nuevo» funciona.
+- Textos ES/EN/DE/FR en `src/game/i18n-plants.js`.
+- Tests: `game-plants-engine.mjs` **31 ok**, `game-plants-ui.mjs` **40 ok** (celular y computadora, 4 idiomas, capturas
+  `tests/sim/out/jgplantas-*.png`); el resto del juego en verde.
+
+**Para Bertha:**
+1. **Pegar en staging** `supabase/staging/paso4d-juego-plantas.sql` (solo añade la clave «machos»). Sin esto, en
+   la web de pruebas una partida con semillas regulares no se guarda después de retirar los machos o de que
+   suelten el polen. Deshacer: `supabase/admin/rollback-20261031100000.sql`.
+2. Validar los valores marcados «criterio de la autora / valor de juego» de esta etapa (lista en
+   `docs/juego-decisiones.md`).
+
+**Lo siguiente:** la **fase 9** (pulido final).

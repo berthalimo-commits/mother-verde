@@ -62,6 +62,8 @@ export function review(state, rules) {
   if (flip) items.push({ type: 'flip', key: 'flip', lost: flip.l.flip, week: flip.w, min: rules.etapas.vegetativo.semanas.min });
   const pot = weeks.filter((x) => x.l?.maceta);
   if (pot.length) items.push({ type: 'maceta', key: 'maceta', lost: pot.reduce((a, x) => a + x.l.maceta, 0), week: pot[0].w });
+  // regular seeds: males left in the tent pollinated the females (costs harvest points, not health)
+  if (r.polen) items.push({ type: 'polen', key: 'polen', lost: r.polen, week: weeks.find((x) => x.m === 'polen')?.w ?? null });
 
   // germination
   const germ = log.find((x) => x.s === 'germinacion');
@@ -124,6 +126,9 @@ function chain(it, ctx) {
     steps.push(fmt(t('jgRv_flip'), { w: it.week, min: it.min, n: it.lost }));
   } else if (it.type === 'maceta') {
     steps.push(fmt(t('jgRv_maceta'), { w: it.week, n: it.lost }));
+  } else if (it.type === 'polen') {
+    if (it.week !== null) steps.push(fmt(t('jgRv_polen'), { w: it.week }));
+    steps.push(fmt(t('jgRv_polenNota'), { n: it.lost }));
   } else if (it.type === 'germ') {
     steps.push(`${t('jgEtapa_germinacion')}: ${t('jgGermD_' + it.d)} ${q(optName(t, it, it.value))}`);
     steps.push(fmt(t('jgRv_menosSalud'), { n: it.lost }));
@@ -150,6 +155,7 @@ function betterText(it, ctx) {
   }
   if (it.type === 'flip') return `${fmt(t('jgRv_mejorFlip'), { min: it.min })} ${t('jgRv_noUnica')}`;
   if (it.type === 'maceta') return `${t('jgRv_mejorMaceta')} ${t('jgRv_noUnica')}`;
+  if (it.type === 'polen') return `${t('jgRv_mejorPolen')} ${t('jgRv_noUnica')}`;
   if (!it.better.length) return '';
   const opts = orList(t, it.better.map((v) => optName(t, it, v, it.stage)));
   return `${fmt(t('jgRv_mejorOpcion'), { o: opts })} ${t(it.type === 'post' ? 'jgRv_noUnicaPost' : 'jgRv_noUnica')}`;

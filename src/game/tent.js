@@ -87,8 +87,17 @@ function symptoms(prob, tips) {
   return '';
 }
 
+// Regular seeds: a male shows small round pollen sacs hanging in clusters
+// where a female has buds (Glosario: planta macho, «produce polen»).
+function sacs(x, y, r) {
+  return [[0, 0], [-0.7, 0.8], [0.7, 0.8], [0, 1.5], [-1.2, 1.9], [1.2, 1.9]].map(([dx, dy]) => `<circle cx="${f1(x + dx * r)}" cy="${f1(y + dy * r)}" r="${f1(r * 0.55)}" fill="#C7D88A" stroke="#8FA05A" stroke-width="0.4"/>`).join('');
+}
+// Pollinated buds fill with seeds (drawn as small brown seeds on the buds).
+const seeds = (x, y, r) => `<g class="jgt-seeds"><ellipse cx="${f1(x - r * 0.3)}" cy="${f1(y)}" rx="${f1(r * 0.22)}" ry="${f1(r * 0.3)}" fill="#7A5A32"/><ellipse cx="${f1(x + r * 0.35)}" cy="${f1(y + r * 0.4)}" rx="${f1(r * 0.22)}" ry="${f1(r * 0.3)}" fill="#7A5A32"/></g>`;
+
 // The living plant (seedling, vegetative or flowering).
-function plant(state, sc, rules) {
+// look.male = a male in flowering (pollen sacs); look.seeded = pollinated buds.
+function plant(state, sc, rules, look = {}) {
   const color = LEAF[healthBand(state.health)];
   const prob = problemOf(state);
   const wrap = (inner, tips) => `<g class="jgt-plant"${prob ? ` data-problem="${prob.id}"${prob.faded ? ' data-recover="1"' : ''}` : ''}>${inner}${symptoms(prob, tips)}</g>`;
@@ -115,7 +124,7 @@ function plant(state, sc, rules) {
   let leaves = '', yellow = '', bleached = '', buds = '';
   const tips = [];
   const w = state.stageWeek;
-  const trich = sc === 'floracion' ? E.trichomes(w, rules) : null;
+  const trich = sc === 'floracion' ? E.trichomes(w, rules, state.setup) : null;
   const budR = Math.min(4 + w * 0.9, 11);
   const dots = 4 + Math.min(w, 8);
   // exceso de riego: leaves hang down (F3: the plant wilts; platform: «hojas
@@ -134,20 +143,23 @@ function plant(state, sc, rules) {
     const pair = leaf(CX - 1, y, aL, s) + leaf(CX + 1, y - 4, aR, s);
     if (i < lowN) yellow += pair; else if (i >= nodes - burnt) bleached += pair; else leaves += pair;
     tips.push(tipOf(CX - 1, y, aL, s), tipOf(CX + 1, y - 4, aR, s));
-    if (sc === 'floracion' && i >= Math.floor(nodes / 2)) {
+    if (sc === 'floracion' && i >= Math.floor(nodes / 2) && look.male) {
+      buds += sacs(CX - 8 - s * 0.15, y - 6, 2.4) + sacs(CX + 8 + s * 0.15, y - 10, 2.4);
+    } else if (sc === 'floracion' && i >= Math.floor(nodes / 2)) {
+      if (look.seeded) buds += seeds(CX - 9 - s * 0.15, y - 6, budR * 0.55);
       const rot = prob?.id === 'botrytis' && !prob.faded && i >= nodes - 2;
       buds += bud(CX - 9 - s * 0.15, y - 6, budR * 0.55, trich, Math.ceil(dots / 2), rot) + bud(CX + 9 + s * 0.15, y - 10, budR * 0.55, trich, Math.ceil(dots / 2));
     }
   }
   const rotTop = prob?.id === 'botrytis';
-  const crown = sc === 'floracion' ? `<g opacity="${rotTop && prob.faded ? 0.85 : 1}">${bud(CX, top + budR * 0.4, budR, trich, dots, rotTop)}</g>` : leaf(CX, top + 4, 0, 10, 3);
+  const crown = sc === 'floracion' && look.male ? `<g class="jgt-sacs">${sacs(CX, top + 2, 3)}</g>` : sc === 'floracion' ? `<g opacity="${rotTop && prob.faded ? 0.85 : 1}">${bud(CX, top + budR * 0.4, budR, trich, dots, rotTop)}</g>` : leaf(CX, top + 4, 0, 10, 3);
   const yellowCol = prob?.faded ? '#C4C35A' : '#D9C64A';
-  return `<g class="jgt-plant"${prob ? ` data-problem="${prob.id}"${prob.faded ? ' data-recover="1"' : ''}` : ''}>`
+  return `<g class="jgt-plant"${look.male ? ' data-sexo="macho"' : ''}${prob ? ` data-problem="${prob.id}"${prob.faded ? ' data-recover="1"' : ''}` : ''}>`
     + `<path class="jgt-stem" d="M${CX} ${BASE}Q${CX + 3} ${f1(BASE - H / 2)} ${CX} ${f1(top + 4)}" fill="none" stroke="${color}" stroke-width="${sc === 'floracion' ? 3 : 2.4}" stroke-linecap="round"/>`
     + `<g fill="${color}">${leaves}${sc === 'floracion' ? '' : crown}</g>`
     + (yellow ? `<g fill="${yellowCol}" class="jgt-sym" data-sym="carencia_n">${yellow}</g>` : '')
     + (bleached ? `<g fill="${prob.faded ? '#C9D39A' : '#E8E2C0'}" class="jgt-sym" data-sym="quemadura_luz">${bleached}</g>` : '')
-    + `${buds}${sc === 'floracion' ? crown : ''}${symptoms(prob, tips)}</g>`;
+    + `${buds}${sc === 'floracion' ? crown : ''}${look.seeded ? seeds(CX, top + budR * 0.6, budR) : ''}${symptoms(prob, tips)}</g>`;
 }
 
 function wilted() {
@@ -450,6 +462,26 @@ function panelHtml(open, choices, blocked, ctx) {
   </div>`;
 }
 
+// ---------------------------------------------------------------- several plants
+// Each pot + plant is drawn at the centre and then moved and shrunk into a
+// row at the back of the tent (the tools on the floor stand in front of the
+// pots). [scale, offsets from the centre]
+const BACK = 176;
+const ROW = { 2: [0.78, [-42, 42]], 3: [0.66, [-58, 0, 58]], 4: [0.56, [-69, -23, 23, 69]], 5: [0.48, [-76, -38, 0, 38, 76]], 6: [0.42, [-80, -48, -16, 16, 48, 80]] };
+function row(n, draw) {
+  if (!ROW[n]) return draw(0);
+  const [k, xs] = ROW[n];
+  return xs.map((dx, i) => {
+    const one = draw(i);
+    return one ? `<g class="jgt-one" data-i="${i}" transform="translate(${f1(CX + dx - CX * k)} ${f1(BACK - 205 * k)}) scale(${k})">${one}</g>` : '';
+  }).join('');
+}
+// Which plants of the row are males: every other one, from the second.
+export function maleSlots(n, m) {
+  const order = [...Array(n).keys()].filter((i) => i % 2 === 1).concat([...Array(n).keys()].filter((i) => i % 2 === 0));
+  return order.slice(0, m);
+}
+
 // ---------------------------------------------------------------- the tent
 function tentSvg(state, sc, choices, light, ctx) {
   const riego = PLAYABLE.includes(state.stage) ? choices?.riego : 'moderado';
@@ -457,11 +489,18 @@ function tentSvg(state, sc, choices, light, ctx) {
   const setup = ctx.setup || state.setup || {};
   const prob = problemOf(state);
   let inside = '';
-  if (sc === 'intro') inside = pot('moderado', setup) + `<ellipse cx="${CX + 3}" cy="${BASE - 2}" rx="2.6" ry="1.8" fill="#6B4E2E" stroke="#C9A77C" stroke-width="0.5"/>`;
+  // several plants: males show in flowering until removed (then their place is empty)
+  const n = E.plantCount(setup);
+  const males = living ? maleSlots(n, E.maleCount({ run: state.run, setup })) : [];
+  const gone = (i) => males.includes(i) && !!setup.machos;
+  if (sc === 'intro') inside = row(n, () => pot('moderado', setup) + `<ellipse cx="${CX + 3}" cy="${BASE - 2}" rx="2.6" ry="1.8" fill="#6B4E2E" stroke="#C9A77C" stroke-width="0.5"/>`);
   // an open «exceso de riego» keeps the medium soaked whatever is picked now
-  else if (living) inside = pot(prob?.id === 'exceso_riego' && !prob.faded ? 'mucho' : riego, setup, prob?.id === 'pudricion_raiz' && !prob.faded) + plant(state, sc, ctx.RULES);
+  else if (living) {
+    inside = row(n, (i) => (gone(i) ? '' : pot(prob?.id === 'exceso_riego' && !prob.faded ? 'mucho' : riego, setup, prob?.id === 'pudricion_raiz' && !prob.faded)
+      + plant(state, sc, ctx.RULES, { male: sc === 'floracion' && males.includes(i), seeded: setup.machos === 'tarde' && !males.includes(i) })));
+  }
   else if (sc === 'germinar') inside = germScene(ctx.germ?.metodo);
-  else if (sc === 'muerta') inside = pot('poco') + wilted();
+  else if (sc === 'muerta') inside = row(n, () => pot('poco') + wilted());
   else if (sc === 'secado') inside = (ctx.post?.metodo === 'rejilla' ? '' : pot('poco')) + dryScene(ctx.post || {});
   // the press gets the material and purity that 8b produced, when it was done
   else if (sc === 'rosin') inside = rosinScene(ctx.post || {});
@@ -472,7 +511,7 @@ function tentSvg(state, sc, choices, light, ctx) {
   const ly = setup.carpa === 'pequena' ? 40 : 26;
   const cone = light ? `<polygon points="74,${ly + 9} 166,${ly + 9} 214,204 26,204" fill="url(#jgtCone)" opacity="${CONE[light]}"${setup.luz === 'hps' ? ' class="jgt-hps"' : ''}/>` : '';
   return `<svg class="jgt-svg" viewBox="0 0 240 216" role="img" aria-label="${ctx.esc(ctx.t('jgTentAlt'))}" aria-describedby="jgTentDesc" focusable="false"
-    data-scene="${sc}" data-light="${light ? 'on' : 'off'}" data-int="${light || ''}" data-riego="${living ? riego : ''}" data-leaf="${living ? healthBand(state.health) : ''}" data-carpa="${setup.carpa || ''}">
+    data-scene="${sc}" data-plantas="${n}" data-machos="${living && sc === 'floracion' ? males.filter((i) => !gone(i)).length : 0}" data-light="${light ? 'on' : 'off'}" data-int="${light || ''}" data-riego="${living ? riego : ''}" data-leaf="${living ? healthBand(state.health) : ''}" data-carpa="${setup.carpa || ''}">
   <defs>
     <linearGradient id="jgtWall" x1="0" x2="1"><stop offset="0" stop-color="#7F8B8E"/><stop offset="0.5" stop-color="#C7CFD2"/><stop offset="1" stop-color="#7F8B8E"/></linearGradient>
     <linearGradient id="jgtCone" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFD58A"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></linearGradient>
@@ -486,8 +525,9 @@ function tentSvg(state, sc, choices, light, ctx) {
   ${fan()}
   ${setup.carpa === 'pequena' ? '<rect class="jgt-ceiling" x="20" y="12" width="200" height="16" fill="#151E1B"/>' : ''}
   ${lamp(setup.luz, !!light, ly)}
-  ${living ? tools(setup) : ''}
+  ${living && n === 1 ? tools(setup) : ''}
   ${inside}
+  ${living && n > 1 ? tools(setup) : ''}
   ${light ? '' : '<rect x="20" y="12" width="200" height="196" fill="#000" opacity="0.45"/>'}
   ${living && ctx.anim ? `<g class="jgt-drops" fill="#5FD4E0">${[108, 120, 132].map((x, i) => `<ellipse class="jgt-drop d${i}" cx="${x}" cy="${BASE - 6}" rx="1.4" ry="2.2"/>`).join('')}</g>
   <rect class="jgt-night" x="20" y="12" width="200" height="196" fill="#000" opacity="0"/>` : ''}
@@ -534,12 +574,19 @@ function caption(state, sc, choices, light, t, post, germ, setup = {}) {
   const out = [t('jgTentD_' + (sc === 'intro' && HYDRO.includes(setup?.sistema) ? 'intro_hidro' : sc))];
   if (sc === 'secado') out.push(t('jgTentM_' + (post?.metodo || 'ramas')));
   if (sc === 'germinar' && germ?.metodo) out.push(t('jgGermO_metodo_' + germ.metodo) + '.');
+  if (sc === 'intro' && E.plantCount(setup) > 1) out.push(t('jgTentMacetas').replace('{n}', E.plantCount(setup)));
   // intro and curing already say it is dark; drying can be dark or lit
   if (light || sc === 'muerta' || sc === 'secado') out.push(t(light ? 'jgTentLuz_' + light : 'jgTentLuz_off'));
   if (['germ', 'plantula', 'vegetativo', 'floracion'].includes(sc)) {
     // hydroponics: there is no growing medium to describe
     if (!HYDRO.includes(setup?.sistema)) out.push(t('jgTentRiego_' + choices.riego));
     out.push(t('jgTentHoja_' + healthBand(state.health)));
+    const n = E.plantCount(setup);
+    const m = E.maleCount({ run: state.run, setup });
+    if (n > 1) out.push(t('jgTentPlantas').replace('{n}', n - (setup?.machos ? m : 0)));
+    if (sc === 'floracion' && m && !setup?.machos) out.push(t('jgTentMachos').replace('{n}', m));
+    if (setup?.machos === 'retirados' && ['floracion'].includes(sc)) out.push(t('jgTentMachosFuera'));
+    if (setup?.machos === 'tarde' && sc === 'floracion') out.push(t('jgTentPolen'));
     const prob = problemOf(state);
     if (prob) out.push(t(prob.faded ? 'jgTentRec' : 'jgTentP_' + prob.id));
   }

@@ -29,12 +29,12 @@ let b = await browser(NEWBIE, 'aal1', 360);
 await open(b);
 check('una partida nueva empieza con «Prepara tu carpa» (no con «Plantar la semilla»)', await b.ev(`!!document.getElementById('jgSetupForm') && !document.getElementById('jgStart')`)
   && (await b.ev(`document.querySelector('#jgSetupForm h3').textContent`)) === TEXTS.es.jgSetupH);
-check('al principio, 4 decisiones (carpa, luz, sistema, medir)', (await legends(b, 'jgSetupForm')).length === 4);
+check('al principio, 6 decisiones (carpa, luz, sistema, medir, semilla, plantas)', (await legends(b, 'jgSetupForm')).length === 6);
 await pick(b, 'jgSetupForm', 'sistema', 'maceta');
-check('con maceta aparecen sustrato, maceta, tamaño y riego (8 decisiones)', (await legends(b, 'jgSetupForm')).length === 8);
+check('con maceta aparecen sustrato, maceta, tamaño y riego (10 decisiones)', (await legends(b, 'jgSetupForm')).length === 10);
 await pick(b, 'jgSetupForm', 'sustrato', 'coco');
 await pick(b, 'jgSetupForm', 'sistema', 'dwc');
-check('al cambiar a hidroponía desaparecen otra vez (y el sustrato elegido no se guarda)', (await legends(b, 'jgSetupForm')).length === 4);
+check('al cambiar a hidroponía desaparecen otra vez (y el sustrato elegido no se guarda)', (await legends(b, 'jgSetupForm')).length === 6);
 check('el foco vuelve a la opción tocada', await b.ev(`document.activeElement?.id`) === 'jgSetupForm-sistema-dwc');
 check('la carpa ya se ve con el sistema elegido (cubo con raíces y burbujas)', await b.ev(`document.querySelector('#jgTent .jgt-hydro')?.dataset.sistema`) === 'dwc');
 await b.ev(`document.getElementById('jgSetupGo').click(); 1`); await sleep(300);
@@ -44,7 +44,7 @@ check('360 px: sin desborde en «Prepara tu carpa»', await b.ev(`document.docum
 await b.shot('jg67-setup-es-mobile');
 await b.ev(`document.getElementById('jgSetupGo').click(); 1`); await sleep(1200);
 let st = await gs(b);
-check('listo -> germinación, con el equipo guardado (sin sustrato en hidroponía)', st.stage === 'germinacion' && JSON.stringify(st.setup) === JSON.stringify({ carpa: 'mediana', luz: 'led', sistema: 'dwc', medir: 'si' }), JSON.stringify(st.setup));
+check('listo -> germinación, con el equipo guardado (sin sustrato en hidroponía)', st.stage === 'germinacion' && JSON.stringify(st.setup) === JSON.stringify({ carpa: 'mediana', luz: 'led', sistema: 'dwc', medir: 'si', semilla: 'feminizada', plantas: 1 }), JSON.stringify(st.setup));
 check('germinación: 3 decisiones', (await legends(b, 'jgGermForm')).length === 3);
 await pick(b, 'jgGermForm', 'metodo', 'vaso');
 check('con el vaso de agua aparece «Tiempo en el vaso» y la carpa muestra el vaso', (await legends(b, 'jgGermForm')).includes(TEXTS.es.jgGermD_tiempo)

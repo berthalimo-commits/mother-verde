@@ -103,7 +103,8 @@ function act(next, save = true) {
 // ---------------------------------------------------------------- view
 const TRICH_KEY = { transparentes: 'trClearLabel', lechosas: 'trMilkyLabel', mezcla: 'trMixLabel', ambar: 'trAmberLabel' };
 const LESSON_KEY = { propagacion: 'subPropagacion', sistemas: 'subSistemas', iluminacion: 'subIluminacion', cosecha: 'subCosecha',
-  diagnostico: 'subDiagnostico', sustrato: 'subSustrato', ciclo: 'subCiclo', procesos: 'subProcesos', concentrados: 'subConcentrados' };
+  diagnostico: 'subDiagnostico', sustrato: 'subSustrato', ciclo: 'subCiclo', procesos: 'subProcesos', concentrados: 'subConcentrados',
+  genetica: 'subGenetica' };
 // Lessons outside Cultivo (phase 2: Elaboración → Procesos & SOP / Concentrados).
 const LESSON_SCREEN = { procesos: 'elaboracion', concentrados: 'elaboracion' };
 const unent = (x) => String(x).replace(/&amp;/g, '&');
@@ -133,7 +134,12 @@ function guideText() {
     else out.push(t('jgFb_' + n));
   }
   if (state.stage === 'intro') return t('jgIntro');
-  if (['germinacion', 'plantula', 'vegetativo', 'floracion', ...E.POST].includes(state.stage)) out.push(t('jgGuia_' + state.stage));
+  if (['germinacion', 'plantula', 'vegetativo', 'floracion', ...E.POST].includes(state.stage)) {
+    // an autoflower flowers by age: its own guide in vegetative and flowering
+    const auto = state.setup?.semilla === 'autofloreciente' && ['vegetativo', 'floracion'].includes(state.stage);
+    out.push(t('jgGuia_' + state.stage + (auto ? '_auto' : '')));
+  }
+  if (E.malesVisible(state, RULES)) out.push(fmt(t('jgGuia_machos'), { n: E.maleCount(state) }));
   return out.filter(Boolean).join(' ');
 }
 
@@ -151,7 +157,7 @@ function statusHtml() {
     <dl>
       <div><dt>${t('jgEtapa_' + state.stage)}</dt><dd>${esc(fmt(t('jgSemana'), { n: state.week }))} · ${esc(fmt(t('jgSemanaEtapa'), { n: state.stageWeek }))}</dd></div>
       <div><dt id="jgSaludLbl">${t('jgSalud')}</dt><dd><meter id="jgSalud" min="0" max="100" low="40" high="70" optimum="100" value="${h}" aria-labelledby="jgSaludLbl">${h}</meter> <b>${h}/100</b></dd></div>
-      ${state.stage === 'floracion' ? `<div><dt>${t('jgTricomas')}</dt><dd id="jgTrich">${t(TRICH_KEY[E.trichomes(state.stageWeek, RULES)])}</dd></div>` : ''}
+      ${state.stage === 'floracion' ? `<div><dt>${t('jgTricomas')}</dt><dd id="jgTrich">${t(TRICH_KEY[E.trichomes(state.stageWeek, RULES, state.setup)])}</dd></div>` : ''}
       ${setupSummary()}
     </dl>
   </div>`;
@@ -205,6 +211,7 @@ function decisionsHtml() {
     <div class="jg-actions">
       <button type="submit" class="btn btn-primary" id="jgNext"${blocked ? ' disabled' : ''}>${t('jgPasarSemana')}</button>
       ${canMove ? `<button type="button" class="btn btn-ghost" id="jgTrasplante"${blocked ? ' disabled' : ''}>${t('jgTrasplantar')}</button>` : ''}
+      ${E.malesVisible(state, RULES) ? `<button type="button" class="btn btn-primary" id="jgMachos"${blocked ? ' disabled' : ''}>${esc(fmt(t('jgRetirarMachos'), { n: E.maleCount(state) }))}</button>` : ''}
       ${state.stage === 'floracion' ? `<button type="button" class="btn btn-ghost" id="jgHarvest">${t('jgCosechar')}</button>` : ''}
       ${lessonBtn(E.LESSON[state.stage])}
     </div>
@@ -214,12 +221,19 @@ function decisionsHtml() {
 // Phases 6-7: one screen of options (preparing the tent, germination). Only
 // the decisions that apply to what is picked are shown (e.g. the substrate
 // only with a pot); the form is redrawn when a choice changes that.
-let setupLive = {};
+// seed and plants come pre-filled with what the game had before (feminized, one)
+const SETUP_START = { semilla: 'feminizada', plantas: '1' };
+let setupLive = { ...SETUP_START };
+// a smaller tent fits fewer plants: keep the most that fit
+function fitPlants(v) {
+  const ok = E.setupOptions(RULES, 'plantas', v);
+  return v.plantas && !ok.includes(String(v.plantas)) ? { ...v, plantas: ok.at(-1) } : v;
+}
 let germLive = {};
-function optionsForm({ id, title, intro, ds, defs, pre, picked, btnId, btn, note }) {
+function optionsForm({ id, title, intro, ds, defs, pre, picked, btnId, btn, note, opts = (d) => defs[d].opciones }) {
   const fields = ds.map((d) => `<fieldset class="jg-field">
       <legend>${t(`${pre}D_${d}`)}</legend>
-      <div class="jg-opts">${defs[d].opciones.map((o) => {
+      <div class="jg-opts">${opts(d).map((o) => {
         const oid = `${id}-${d}-${o}`;
         return `<input type="radio" name="${id}-${d}" id="${oid}" value="${o}"${picked[d] === o ? ' checked' : ''}>
           <label for="${oid}"><span>${t(`${pre}O_${d}_${o}`)}</span><small>${t(`${pre}H_${d}_${o}`)}</small></label>`;
@@ -236,7 +250,7 @@ function optionsForm({ id, title, intro, ds, defs, pre, picked, btnId, btn, note
 function setupHtml() {
   if (state.stage !== 'intro' || state.setup) return '';
   return optionsForm({ id: 'jgSetupForm', title: 'jgSetupH', intro: 'jgSetupP', ds: E.setupDecisions(RULES, setupLive), defs: RULES.setup.decisiones,
-    pre: 'jgSetup', picked: setupLive, btnId: 'jgSetupGo', btn: 'jgSetupBtn' });
+    pre: 'jgSetup', picked: setupLive, btnId: 'jgSetupGo', btn: 'jgSetupBtn', opts: (d) => E.setupOptions(RULES, d, setupLive) });
 }
 function germHtml() {
   if (state.stage !== 'germinacion') return '';
@@ -246,7 +260,7 @@ function germHtml() {
 function setupSummary() {
   const s = state.setup;
   if (!s) return '';
-  const parts = E.setupDecisions(RULES, s).map((d) => t(`jgSetupO_${d}_${s[d]}`));
+  const parts = E.setupDecisions(RULES, s).filter((d) => s[d] !== undefined).map((d) => t(`jgSetupO_${d}_${s[d]}`));
   return `<div><dt>${t('jgSetupResumen')}</dt><dd id="jgEquipo">${esc(parts.join(' · '))}</dd></div>`;
 }
 
@@ -293,6 +307,8 @@ function resultHtml() {
     ${r.dead ? `<p class="jg-big">${t('jgFinMuerta')}</p>` : `<p class="jg-big">${esc(fmt(t('jgFinPuntos'), { n: hasFinal ? r.final : r.score }))}</p>
       ${hasFinal ? `<p>${esc(fmt(t('jgFinCosecha'), { n: r.score, f: r.final }))}</p>` : ''}
       <p>${esc(fmt(t('jgFinSalud'), { h: r.health }))}</p>
+      ${r.hembras > 1 || state.setup?.semilla === 'regular' ? `<p id="jgFinPlantas">${esc(fmt(t('jgFinPlantas'), { n: r.hembras }))}</p>` : ''}
+      ${r.polen ? `<p id="jgFinPolen">${esc(fmt(t('jgFinPolen'), { n: r.polen }))}</p>` : ''}
       <p>${esc(fmt(t('jgFinTricomas'), { t: t(TRICH_KEY[r.trich]) }))}</p>`}
     <p><b>${t('jgFinCausas')}</b> ${causes.length ? causes.map((c) => t('jgCausa_' + c)).join(', ') : t('jgFinNada')}</p>
     ${hasFinal ? `<p><b>${t('jgFinPostCausas')}</b> ${post.length ? post.map(postCause).join(', ') : t('jgFinNada')}</p>
@@ -384,7 +400,7 @@ function bindTent(root, box) {
 // goes back to the option that was touched.
 function bindOptionForms(root, box) {
   const forms = {
-    jgSetupForm: { live: () => setupLive, set: (v) => { setupLive = v; }, html: setupHtml, ds: () => E.setupDecisions(RULES, setupLive),
+    jgSetupForm: { live: () => setupLive, set: (v) => { setupLive = fitPlants(v); }, reset: () => ({ ...SETUP_START }), html: setupHtml, ds: () => E.setupDecisions(RULES, setupLive),
       go: (vals) => act(E.start(E.setSetup(state, vals, RULES))) },
     jgGermForm: { live: () => germLive, set: (v) => { germLive = v; }, html: germHtml, ds: () => E.germDecisions(RULES, germLive),
       go: (vals) => act(E.applyGerm(state, vals, RULES)) },
@@ -413,7 +429,7 @@ function bindOptionForms(root, box) {
       return;
     }
     const vals = F.live();
-    F.set({});
+    F.set(F.reset ? F.reset() : {});
     F.go(vals);
   });
 }
@@ -529,6 +545,7 @@ function paint(root) {
   root.querySelector('#jgStart')?.addEventListener('click', () => act(E.start(state)));
   if (!inLab) bindOptionForms(root, root.querySelector('.jg'));
   root.querySelector('#jgTrasplante')?.addEventListener('click', () => act(E.transplant(state)));
+  root.querySelector('#jgMachos')?.addEventListener('click', () => act(E.removeMales(state, RULES)));
   root.querySelector('#jgIrPregunta')?.addEventListener('click', () => {
     const card = root.querySelector('.jg-event');
     card?.scrollIntoView({ block: 'center' });

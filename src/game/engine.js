@@ -292,7 +292,8 @@ export function harvest(s, rules, auto = false) {
   const bonus = s.setup?.carpa === 'grande' ? rules.setup.efectos.carpa_grande.bonus_cosecha : 0;
   // regular seeds: pollinated buds are full of seeds (author's criteria)
   const polen = s.setup?.machos === 'tarde' ? rules.semillas.regular.resta_polinizacion : 0;
-  const score = clamp(s.health + pts + bonus - polen, 0, 100);
+  // taken off after the 100 cap, so seeded buds always show in the score
+  const score = clamp(clamp(s.health + pts + bonus, 0, 100) - polen, 0, 100);
   const extra = { score, trich, pts };
   if (polen) extra.polen = polen;
   if (s.setup?.plantas) extra.hembras = plantCount(s.setup) - maleCount(s);
