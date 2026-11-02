@@ -370,8 +370,8 @@ explicaciones y «¿Por qué?» en 4 idiomas. Se descarga solo al entrar al jueg
 descarga solo al entrar al juego.
 
 **Para Bertha:**
-1. **Pegar en staging** `supabase/staging/paso4c-juego-setup.sql`. Sin esto, guardar una partida con equipo
-   falla en la web de pruebas.
+1. ~~Pegar en staging `supabase/staging/paso4c-juego-setup.sql`~~ **HECHO** por Bertha el 2026-10-29 en el
+   staging real («Success. No rows returned»); su partida se guardó y siguió bien después.
 2. Validar los «criterio de la autora» de las fases 6 y 7 (lista en `docs/juego-decisiones.md`).
 
 ## Fuentes del rosin según la comunidad + sub-fase 8b · HECHAS (2026-10-29)
@@ -500,5 +500,7 @@ de la comunidad); nueva decisión «Humedad de la flor congelada» (escarcha o d
 atemperar en bolsa cerrada = recomendado, criterio de la autora). Dibujo: escarcha o gotas de condensación en la
 bolsa. Sin migración (el servidor no mira las decisiones dentro de `post`).
 
-Pendiente al cerrar: volver a correr `game-post-ui` (expectativa de fuentes de la malla actualizada con C2),
-`game-full-1` y `game-full-2` con el código final; se cortaron por falta de memoria del equipo.
+Pendientes al cerrar (se cortaron por falta de memoria): `game-post-ui` (expectativa de fuentes de la malla
+actualizada con C2) **34 ok**; con el código final `game-full-1` **90 ok** y `game-full-2` **120 ok**
+(2026-10-31, una a la vez, cerrando Vite y el navegador de pruebas entre cada una). No queda nada pendiente.
+Staging: `paso4c-juego-setup.sql` ya está pegado (Bertha, 2026-10-29); no hay nada que pegar por estos cambios.
