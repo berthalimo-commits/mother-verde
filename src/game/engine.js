@@ -10,6 +10,9 @@ const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
 // Phase 6: the substrate can change the ideal (coco needs feeding from the
 // seedling on; living soil feeds itself). A list = any of them is ideal.
 export const ideal = (rules, stage, d, setup) => {
+  // an autoflower doesn't need 12/12 to flower (Cultivo → Genética)
+  const auto = setup?.semilla === 'autofloreciente' ? rules.semillas?.autofloreciente.ideal[stage]?.[d] : undefined;
+  if (auto !== undefined) return auto;
   const extra = rules.setup?.efectos.ideal_extra[setup?.sustrato]?.[stage]?.[d];
   return extra !== undefined ? extra : rules.etapas[stage]?.ideal?.[d]?.valor ?? null;
 };
@@ -26,11 +29,22 @@ export function newGame(prev = null) {
 const applies = (cuando, vals) => !cuando || Object.entries(cuando).every(([k, list]) => list.includes(vals?.[k]));
 export const setupDecisions = (rules, picked = {}) => Object.entries(rules.setup.decisiones).filter(([, def]) => applies(def.cuando, picked)).map(([d]) => d);
 
+// The options of one equipment decision that fit what is picked (how many
+// plants fit depends on the tent).
+export function setupOptions(rules, d, picked = {}) {
+  const def = rules.setup.decisiones[d];
+  const max = def.max_por_carpa?.[picked.carpa];
+  return max ? def.opciones.filter((o) => Number(o) <= max) : def.opciones;
+}
+
 export function setSetup(s, choices, rules) {
   if (s.stage !== 'intro') throw new Error('not_intro');
+  // seed and plants not given (games and screens from before): feminized, one plant
+  choices = { semilla: 'feminizada', plantas: '1', ...choices };
   const ds = setupDecisions(rules, choices);
-  if (!ds.every((d) => rules.setup.decisiones[d].opciones.includes(choices?.[d]))) throw new Error('bad_setup');
-  const setup = Object.fromEntries(ds.map((d) => [d, choices[d]]));
+  if (!ds.every((d) => setupOptions(rules, d, choices).includes(String(choices?.[d])))) throw new Error('bad_setup');
+  // the number of plants is saved as a number (the server checks 1..6)
+  const setup = Object.fromEntries(ds.map((d) => [d, d === 'plantas' ? Number(choices[d]) : choices[d]]));
   if (setup.maceta_tam === 'pequena') setup.trasplante = 'no';
   return { ...s, seq: s.seq + 1, setup, notes: ['setupOk'] };
 }
@@ -86,10 +100,34 @@ export function defaultChoices(s, rules) {
   return out;
 }
 
-export function trichomes(stageWeek, rules) {
+// An autoflower ripens faster: its own weeks for each trichome state.
+export function trichomes(stageWeek, rules, setup = null) {
+  const own = setup?.semilla === 'autofloreciente' ? rules.semillas?.autofloreciente.tricomas_desde_semana : null;
   let cur = rules.tricomas.estados[0].id;
-  for (const e of rules.tricomas.estados) if (stageWeek >= e.desde_semana) cur = e.id;
+  for (const e of rules.tricomas.estados) if (stageWeek >= (own?.[e.id] ?? e.desde_semana)) cur = e.id;
   return cur;
+}
+export const maxFlowerWeeks = (rules, setup) => (setup?.semilla === 'autofloreciente'
+  ? rules.semillas.autofloreciente.max_semanas_floracion : rules.tricomas.max_semanas_floracion.valor);
+
+// ---------------------------------------------------------------- several plants, regular seeds
+// How many plants (games saved before: one) and how many came out male.
+// Regular seeds: half, rounded up or down by the run, always at least one
+// female (simplification); deterministic, so a reload never re-rolls.
+export const plantCount = (setup) => Number(setup?.plantas) || 1;
+export function maleCount(s) {
+  if (s.setup?.semilla !== 'regular') return 0;
+  const n = plantCount(s.setup);
+  const half = n % 2 === 0 ? n / 2 : (s.run % 2 ? (n - 1) / 2 : (n + 1) / 2);
+  return Math.min(half, n - 1);
+}
+// Males show their pollen sacs from the first week of flowering until they
+// are removed (or the game removes them after they pollinated).
+export const malesVisible = (s, rules) => s.stage === 'floracion' && maleCount(s) > 0 && !s.setup.machos
+  && s.stageWeek >= rules.semillas.regular.visibles_desde_semana_floracion;
+export function removeMales(s, rules) {
+  if (!malesVisible(s, rules) || s.event && !s.event.answered) throw new Error('no_males');
+  return { ...s, seq: s.seq + 1, setup: { ...s.setup, machos: 'retirados' }, notes: ['machosRetirados'] };
 }
 
 // Penalty of one decision against the ideal of the stage. null ideal = not scored.
@@ -142,8 +180,9 @@ export function applyWeek(s, choices, rules) {
 
   for (const d of DECISIONS) {
     if (d in fixed) continue;
-    // In vegetativo, choosing 12/12 is the switch to flowering, not a mistake.
-    if (stage === 'vegetativo' && d === 'fotoperiodo' && choices[d] === '12/12') continue;
+    // In vegetativo, choosing 12/12 is the switch to flowering, not a mistake
+    // (an autoflower doesn't switch: for it, it's just less light).
+    if (stage === 'vegetativo' && d === 'fotoperiodo' && choices[d] === '12/12' && setup.semilla !== 'autofloreciente') continue;
     const p = penalty(rules, stage, d, eff[d], setup);
     if (p.unscored) notes.push('sinDato:' + d);
     let pts = p.pts;
@@ -186,7 +225,12 @@ export function applyWeek(s, choices, rules) {
   // Stage changes.
   let nextStage = stage, nextStageWeek = stageWeek + 1;
   if (stage === 'plantula' && stageWeek >= rules.etapas.plantula.semanas.valor) { nextStage = 'vegetativo'; nextStageWeek = 1; notes.push('etapa:vegetativo'); }
-  if (stage === 'vegetativo') {
+  const auto = setup.semilla === 'autofloreciente' ? rules.semillas.autofloreciente : null;
+  if (stage === 'vegetativo' && auto) {
+    // it flowers by age: 12/12 doesn't make it flower sooner
+    if (choices.fotoperiodo === '12/12') notes.push('autoNo1212');
+    if (stageWeek >= auto.vegetativo_semanas) { nextStage = 'floracion'; nextStageWeek = 1; notes.push('flipEdad', 'etapa:floracion'); }
+  } else if (stage === 'vegetativo') {
     if (choices.fotoperiodo === '12/12') {
       if (stageWeek < veg.min) { health -= P.resta_fotoperiodo; lost.flip = P.resta_fotoperiodo; notes.push('flipTemprano'); }
       else notes.push('flipOk');
@@ -196,6 +240,13 @@ export function applyWeek(s, choices, rules) {
     }
   }
 
+  // Regular seeds: males still in the tent when this flowering week ends
+  // release their pollen (the game removes them then, too late).
+  let nextSetup = s.setup;
+  const R = rules.semillas?.regular;
+  if (stage === 'floracion' && maleCount(s) > 0 && !setup.machos && stageWeek >= R.polinizan_al_pasar_semana_floracion) {
+    nextSetup = { ...s.setup, machos: 'tarde' }; notes.push('polinizado');
+  }
   health = clamp(Math.round(health), 0, 100);
   if (!Object.keys(lost).length && !notes.some((n) => n.startsWith('evento'))) notes.unshift('semanaBien');
   else if (Object.keys(lost).length) notes.unshift('semanaMal');
@@ -204,13 +255,16 @@ export function applyWeek(s, choices, rules) {
   // answers given to it. Saves from before the review have none of them.
   const entry = { w: s.week, s: stage, h: health, l: lost, c: eff };
   if (s.event) { entry.e = s.event.id; if (s.event.a) entry.a = s.event.a; }
+  if (nextSetup !== s.setup) entry.m = 'polen';
   const log = [...s.log, entry].slice(-60);
   let next = { ...s, seq: s.seq + 1, week: s.week + 1, stage: nextStage, stageWeek: nextStageWeek, health, risks,
     event, log, last: { ...choices }, notes };
-  if (nextStage === 'floracion') next.trich = trichomes(nextStageWeek, rules);
+  if (nextSetup !== s.setup) next.setup = nextSetup;
+  if (nextStage === 'floracion') next.trich = trichomes(nextStageWeek, rules, setup);
+  const maxFl = maxFlowerWeeks(rules, setup);
   if (health === 0) next = finish(next, rules, true);
-  else if (nextStage === 'floracion' && nextStageWeek > rules.tricomas.max_semanas_floracion.valor) {
-    next = harvest({ ...next, stageWeek: rules.tricomas.max_semanas_floracion.valor }, rules, true);
+  else if (nextStage === 'floracion' && nextStageWeek > maxFl) {
+    next = harvest({ ...next, stageWeek: maxFl }, rules, true);
   }
   return next;
 }
@@ -232,12 +286,17 @@ export function answerEvent(s, answer, rules) {
 // Harvest now (only while flowering). auto = the game harvested at the last week.
 export function harvest(s, rules, auto = false) {
   if (s.stage !== 'floracion') throw new Error('not_flowering');
-  const trich = trichomes(s.stageWeek, rules);
+  const trich = trichomes(s.stageWeek, rules, s.setup);
   const pts = rules.tricomas.estados.find((e) => e.id === trich).puntos;
   // phase 6: a big tent gives more harvest (author's criteria)
   const bonus = s.setup?.carpa === 'grande' ? rules.setup.efectos.carpa_grande.bonus_cosecha : 0;
-  const score = clamp(s.health + pts + bonus, 0, 100);
-  const done = finish({ ...s, seq: s.seq + (auto ? 0 : 1), trich, notes: auto ? ['cosechaAuto'] : [] }, rules, false, { score, trich, pts });
+  // regular seeds: pollinated buds are full of seeds (author's criteria)
+  const polen = s.setup?.machos === 'tarde' ? rules.semillas.regular.resta_polinizacion : 0;
+  const score = clamp(s.health + pts + bonus - polen, 0, 100);
+  const extra = { score, trich, pts };
+  if (polen) extra.polen = polen;
+  if (s.setup?.plantas) extra.hembras = plantCount(s.setup) - maleCount(s);
+  const done = finish({ ...s, seq: s.seq + (auto ? 0 : 1), trich, notes: auto ? ['cosechaAuto'] : [] }, rules, false, extra);
   // Phase 2: a harvested plant goes on to drying, curing and (optional) rosin.
   return { ...done, stage: 'secado', post: {}, notes: [...done.notes, 'cosechado'] };
 }
@@ -343,7 +402,7 @@ function addLesson(list, l) { return list.includes(l) ? list : [...list, l].slic
 export const LESSON = { plantula: 'propagacion', vegetativo: 'sistemas', floracion: 'iluminacion', fin: 'cosecha',
   secado: 'procesos', curado: 'procesos', rosin: 'concentrados',
   fotoperiodo: 'ciclo', intensidad: 'iluminacion', riego: 'diagnostico', nutrientes: 'sustrato', temperatura: 'sistemas',
-  humedad: 'sistemas', evento: 'diagnostico', flip: 'ciclo',
+  humedad: 'sistemas', evento: 'diagnostico', flip: 'ciclo', polen: 'genetica', semilla: 'genetica',
   germinacion: 'propagacion', maceta: 'sustrato', pudricion_raiz: 'diagnostico', quemadura_luz: 'iluminacion' };
 
 // «Empezar de nuevo» on the final screen: a new plant with the same equipment,
@@ -352,6 +411,8 @@ export const LESSON = { plantula: 'propagacion', vegetativo: 'sistemas', floraci
 export function restart(s, rules) {
   const g = newGame(s);
   if (!s.setup) return g;
-  const { germinacion, trasplante, ...choices } = s.setup;
-  try { return start(setSetup(g, choices, rules)); } catch { return g; }
+  const { germinacion, trasplante, machos, ...choices } = s.setup;
+  // equipment saved before seeds and plants existed: feminized, one plant
+  const full = { semilla: 'feminizada', ...choices, plantas: String(choices.plantas ?? 1) };
+  try { return start(setSetup(g, full, rules)); } catch { return g; }
 }

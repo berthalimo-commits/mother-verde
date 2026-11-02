@@ -353,3 +353,35 @@ El laboratorio de solventes y CO₂ no cambia en ningún caso.
   - trasplante, almacenamiento;
   - malla y micras, presión y tiempo del rosin;
   - si el rosin puede llevar cifras (8.0).
+
+### Varias plantas y autofloreciente — lo que se construye (especificación, 2026-11-02)
+
+Dos decisiones nuevas en «Prepara tu carpa», para todos los sistemas. Vienen marcadas «feminizada» y «1 planta»
+(lo que había antes); las partidas guardadas sin ellas siguen igual.
+
+| Decisión | Opciones | Consecuencia en el juego | Respaldo |
+|---|---|---|---|
+| Semilla | feminizada · regular · autofloreciente | ver abajo | **práctica** (Cultivo → Genética «Autofloración vs. fotoperiodo»; Propagación «Semillas feminizadas»; Glosario «planta macho») |
+| Plantas | 1 a 6; caben 2 en la carpa pequeña, 4 en la mediana, 6 en la grande | la carpa se dibuja con todas; la cosecha dice cuántas hembras se cosecharon | criterio de la autora |
+
+**Regular.** La mitad de las plantas salen macho (con número impar, hacia arriba o hacia abajo según la partida;
+siempre queda al menos una hembra: simplificación). Se ven en la 1.ª semana de floración (sacos de polen) y hay
+un botón «Retirar los machos» (bloqueado, como el trasplante, mientras haya un problema sin responder). Si siguen
+en la carpa al pasar la 2.ª semana de floración sueltan polen: los cogollos se llenan de semillas y la cosecha
+pierde **15 puntos** (valor de juego, criterio de la autora). Respaldo: Glosario «planta macho» («se elimina para
+evitar polinización no deseada»).
+
+**Autofloreciente.** Florece por edad (Genética): tras 2 semanas de vegetativo pasa sola a floración; elegir 12/12
+en vegetativo no la adelanta y cuenta como menos luz (−8, como cualquier fotoperiodo equivocado en vegetativo).
+En floración da igual 18/6 o 12/12. Tricomas: lechosos en la 3.ª semana de floración, punto (mezcla) en la 5.ª,
+ámbar en la 7.ª; se cosecha sola al pasar la 8.ª. Así el punto llega a las **9 semanas desde la semilla**, dentro
+de las 8–10 que da Genética. Al ser una planta pequeña, no llega a la quemadura de luz de la carpa pequeña.
+
+**Para que Bertha valide (criterio de la autora / valor de juego):** cuántas plantas caben en cada carpa; «la mitad
+macho y siempre una hembra»; ver machos en la 1.ª semana y polen al pasar la 2.ª; −15 por polinización; 2 semanas
+de vegetativo y las semanas de tricomas de la autofloreciente; ¿tener más plantas debería cambiar algo más (por
+ejemplo, más humedad en la carpa llena)? Por ahora no cambia nada más.
+
+**Servidor.** Migración nueva `20261031100000_game_plants.sql` (solo añade la clave `machos`: «retirados» o
+«tarde»); la semilla y las plantas ya las aceptaba la de la fase 5. Copia para pegar en staging:
+`supabase/staging/paso4d-juego-plantas.sql`; deshacer: `supabase/admin/rollback-20261031100000.sql`.

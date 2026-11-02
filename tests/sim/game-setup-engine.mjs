@@ -21,9 +21,9 @@ const weeks = (s, n, ch) => { for (let i = 0; i < n; i++) s = keep(E.applyWeek(s
 const toVeg = (s) => weeks(s, 2, {});
 
 console.log('1. Preparar la carpa');
-check('maceta: 8 decisiones; hidroponía (DWC): 4 (sin sustrato, maceta, tamaño ni riego)', E.setupDecisions(RULES, { sistema: 'maceta' }).length === 8 && E.setupDecisions(RULES, { sistema: 'dwc' }).join() === 'carpa,luz,sistema,medir');
+check('maceta: 10 decisiones; hidroponía (DWC): 6 (sin sustrato, maceta, tamaño ni riego)', E.setupDecisions(RULES, { sistema: 'maceta' }).length === 10 && E.setupDecisions(RULES, { sistema: 'dwc' }).join() === 'carpa,luz,sistema,medir,semilla,plantas');
 let s = E.setSetup(E.newGame(), { ...SOIL, maceta_tam: 'pequena' }, RULES);
-check('se guarda solo lo que aplica; maceta pequeña -> trasplante pendiente', s.setup.trasplante === 'no' && Object.keys(E.setSetup(E.newGame(), { carpa: 'grande', luz: 'led', sistema: 'nft', medir: 'no', sustrato: 'coco' }, RULES).setup).join() === 'carpa,luz,sistema,medir');
+check('se guarda solo lo que aplica; maceta pequeña -> trasplante pendiente', s.setup.trasplante === 'no' && Object.keys(E.setSetup(E.newGame(), { carpa: 'grande', luz: 'led', sistema: 'nft', medir: 'no', sustrato: 'coco' }, RULES).setup).join() === 'carpa,luz,sistema,medir,semilla,plantas');
 let threw = 0;
 for (const f of [() => E.setSetup(E.newGame(), { ...SOIL, luz: 'laser' }, RULES), () => E.setSetup(E.newGame(), { carpa: 'mediana' }, RULES), () => E.setSetup(E.start(E.newGame()), SOIL, RULES)]) { try { f(); } catch { threw++; } }
 check('opciones inventadas, preparación incompleta o fuera de la portada -> rechazado', threw === 3);

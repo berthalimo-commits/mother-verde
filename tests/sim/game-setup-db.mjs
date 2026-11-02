@@ -24,7 +24,7 @@ check('cada opción de cada clave se acepta (sistemas, sustratos, macetas, semil
   const fn = (await db.query(`select prosrc from pg_proc where proname = 'game_state_valid'`)).rows[0].prosrc;
   const map = JSON.parse(fn.match(/setup_ok constant jsonb := '([\s\S]*?)';/)[1]);
   for (const [k, vals] of Object.entries(map)) for (const v of vals) if (!(await valid({ ...base, setup: { [k]: v } }))) return false;
-  return Object.keys(map).length === 11;
+  return Object.keys(map).length === 12; // 20261031100000 adds «machos»
 })());
 let bad = 0;
 for (const s of [{ color: 'rojo' }, { sistema: 'tierra_marte' }, { luz: 'LED' }, { carpa: 1 }, { medir: true }, { plantas: 0 }, { plantas: 7 },

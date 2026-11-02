@@ -1168,6 +1168,32 @@
         ],
         "fuente": "Simplificación del juego",
         "respaldo": "simple"
+      },
+      "semilla": {
+        "opciones": [
+          "feminizada",
+          "regular",
+          "autofloreciente"
+        ],
+        "fuente": "Cultivo → Genética (autofloración: florece por edad, sin 12/12) · Propagación (feminizadas) · Glosario (planta macho)",
+        "respaldo": "practica"
+      },
+      "plantas": {
+        "opciones": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "max_por_carpa": {
+          "pequena": 2,
+          "mediana": 4,
+          "grande": 6
+        },
+        "fuente": "Criterio de la autora (cuántas caben en cada carpa)",
+        "respaldo": "autora"
       }
     },
     "efectos": {
@@ -1347,6 +1373,40 @@
           "verificar": "[POR VERIFICAR POR BERTHA]"
         }
       }
+    }
+  },
+  "semillas": {
+    "_nota": "Fase «varias plantas y autofloreciente». Todo [POR VERIFICAR POR BERTHA]. Sin semilla elegida (partidas de antes) = feminizada y 1 planta.",
+    "regular": {
+      "_nota": "Con semillas regulares parte de las plantas sale macho: el juego saca la mitad (redondeada hacia arriba o abajo según la partida) y deja siempre al menos una hembra (simplificación). Los machos se ven desde la 1.ª semana de floración (sacos de polen) y, si siguen en la carpa al pasar la 2.ª semana, sueltan polen: los cogollos se llenan de semillas y la cosecha pierde puntos.",
+      "visibles_desde_semana_floracion": 1,
+      "polinizan_al_pasar_semana_floracion": 2,
+      "resta_polinizacion": 15,
+      "fuente": "Glosario (planta macho: «produce polen… se elimina para evitar polinización no deseada») · criterio de la autora (la mitad, las semanas y la resta)",
+      "respaldo": "practica",
+      "verificar": "[POR VERIFICAR POR BERTHA]"
+    },
+    "autofloreciente": {
+      "_nota": "Florece por edad: tras 2 semanas de vegetativo pasa sola a floración (el 12/12 no la hace florecer antes). En floración da igual 18/6 o 12/12. Tricomas más rápidos: el punto (mezcla) llega a las 9 semanas desde la semilla, dentro de las 8–10 de la plataforma.",
+      "vegetativo_semanas": 2,
+      "ideal": {
+        "floracion": {
+          "fotoperiodo": [
+            "18/6",
+            "12/12"
+          ]
+        }
+      },
+      "tricomas_desde_semana": {
+        "transparentes": 1,
+        "lechosas": 3,
+        "mezcla": 5,
+        "ambar": 7
+      },
+      "max_semanas_floracion": 8,
+      "fuente": "Cultivo → Genética («florecen automáticamente según su edad, sin importar las horas de luz… 8–10 semanas desde la semilla») · VALOR DE JUEGO (semanas exactas)",
+      "respaldo": "practica",
+      "verificar": "[POR VERIFICAR POR BERTHA]"
     }
   }
 }
