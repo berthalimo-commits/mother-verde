@@ -570,7 +570,7 @@ function gauges(choices, ctx, setup = {}) {
 }
 
 // ---------------------------------------------------------------- caption
-function caption(state, sc, choices, light, t, post, germ, setup = {}) {
+function caption(state, sc, choices, light, t, post, germ, setup = {}, rules = null) {
   const out = [t('jgTentD_' + (sc === 'intro' && HYDRO.includes(setup?.sistema) ? 'intro_hidro' : sc))];
   if (sc === 'secado') out.push(t('jgTentM_' + (post?.metodo || 'ramas')));
   if (sc === 'germinar' && germ?.metodo) out.push(t('jgGermO_metodo_' + germ.metodo) + '.');
@@ -584,6 +584,7 @@ function caption(state, sc, choices, light, t, post, germ, setup = {}) {
     const n = E.plantCount(setup);
     const m = E.maleCount({ run: state.run, setup });
     if (n > 1) out.push(t('jgTentPlantas').replace('{n}', n - (setup?.machos ? m : 0)));
+    if (rules && E.tentFull({ ...state, setup }, rules)) out.push(t('jgTentLlena'));
     if (sc === 'floracion' && m && !setup?.machos) out.push(t('jgTentMachos').replace('{n}', m));
     if (setup?.machos === 'retirados' && ['floracion'].includes(sc)) out.push(t('jgTentMachosFuera'));
     if (setup?.machos === 'tarde' && sc === 'floracion') out.push(t('jgTentPolen'));
@@ -618,7 +619,7 @@ export function tentHtml(state, choices, ctx, ui = {}) {
       ${open ? panelHtml(open, ch, !!ui.blocked, ctx) : ''}
     </div>
     ${play ? gauges(ch, ctx, ui.setup || state.setup) : ''}
-    <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t, post, ui.germ, ui.setup || state.setup))}</figcaption>
+    <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t, post, ui.germ, ui.setup || state.setup, ctx.RULES))}</figcaption>
   </figure>`;
 }
 

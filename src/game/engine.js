@@ -151,7 +151,24 @@ function effective(s, choices, rules) {
     const o = rules.opciones[d];
     eff[d] = o[Math.min(o.length - 1, o.indexOf(eff[d]) + n)];
   }
+  const L = rules.setup?.efectos.carpa_llena;
+  if (L && tentFull(s, rules)) {
+    for (const [d, n] of Object.entries(L.sube)) {
+      if ((L.salvo[s.stage] || []).includes(eff[d])) continue;
+      const o = rules.opciones[d];
+      eff[d] = o[Math.min(o.length - 1, o.indexOf(eff[d]) + n)];
+    }
+  }
   return eff;
+}
+// A full tent (every plant that fits, still in it) keeps the air more humid:
+// humidity counts one level higher, except «baja» while flowering (the
+// dehumidifier keeps up), so there is always a choice with no loss
+// (author's criteria, validated by Bertha).
+export function tentFull(s, rules) {
+  const max = rules.setup?.decisiones.plantas?.max_por_carpa?.[s.setup?.carpa];
+  const inTent = plantCount(s.setup) - (s.setup?.machos ? maleCount(s) : 0);
+  return !!max && s.setup?.plantas !== undefined && inTent >= max;
 }
 const extraWeeks = (s, id, rules) => Object.entries(rules.setup?.efectos.semanas_extra || {})
   .reduce((n, [k, map]) => n + (map?.[s.setup?.[k]]?.[id] || 0), 0);
@@ -177,6 +194,7 @@ export function applyWeek(s, choices, rules) {
   let stage = s.stage, stageWeek = s.stageWeek;
   const veg = rules.etapas.vegetativo.semanas;
   if (eff.temperatura !== choices.temperatura) notes.push('efecto:hps');
+  if (eff.humedad !== choices.humedad) notes.push('efecto:llena');
 
   for (const d of DECISIONS) {
     if (d in fixed) continue;

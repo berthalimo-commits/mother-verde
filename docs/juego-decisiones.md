@@ -395,7 +395,7 @@ ejemplo, más humedad en la carpa llena)? Por ahora no cambia nada más.
 | 3 | Machos visibles en la 1.ª semana de floración; polen al pasar la 2.ª | se queda | criterio de la autora, validado por Bertha |
 | 4 | Resta por polinización | **−25** (antes −15) | criterio de la autora, validado por Bertha |
 | 5 | Autofloreciente: florece tras 2 semanas de vegetativo; punto a las 9 desde la semilla | se queda | Cultivo → Genética (8–10 semanas) · semanas exactas: criterio de la autora, validado por Bertha |
-| 6 | Efecto de la carpa llena | opción 2 (humedad un nivel más alta y moho antes) | **pendiente de aplicar**: ver la pregunta en `docs/juego-progreso.md` |
+| 6 | Carpa llena (todas las plantas que caben, sin contar machos retirados) | la humedad cuenta un nivel más alta, como el HPS con la temperatura; en floración «Baja» se queda en «Baja» (el deshumidificador alcanza). Siempre hay una opción sin pérdida: «Baja» en vegetativo cuenta como «Media-alta» (lo ideal). Más humedad trae antes oídio y botrytis por las reglas de siempre. Con su «¿Por qué? · Carpa llena» | criterio de la autora, validado por Bertha (regla final elegida por el dueño el 2026-11-02, tras ver que la opción 1 dejaba una pérdida inevitable en vegetativo) |
 | 7 | Calor: bajo 49–80 · medio 80–95 · alto 95–116 °C | **orientativo**, en las pistas y en su «¿Por qué?» | rango: **P2** · cortes: criterio de la autora, validado por Bertha |
 | 8 | Presión | se queda en niveles, sin cifras | — |
 | 9 | Tiempo «medio»: 90–120 s | **orientativo**, en la pista | **C2** (práctica de la comunidad) · validado por Bertha |

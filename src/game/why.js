@@ -76,6 +76,7 @@ export const WHY = {
   quemadura_luz: { lesson: 'iluminacion', src: null, level: 'autora' },
   // several plants: regular seeds (males) and autoflowers (platform: Glosario, Cultivo → Genética)
   polen: { lesson: 'genetica', src: null, level: 'practica' },
+  carpa_llena: { lesson: 'sistemas', src: null, level: 'autora' },
   auto: { lesson: 'genetica', src: null, level: 'practica' },
   maceta: { lesson: 'sustrato', src: null, level: 'autora' },
   hps: { lesson: 'iluminacion', src: null, level: 'practica' },
@@ -113,6 +114,7 @@ export function whyKeysFromNotes(notes, state) {
     else if (n === 'efecto:hps') add('hps');
     else if (n === 'efecto:poco_doble') add('maceta_porosa');
     else if (n === 'polinizado' || n === 'machosRetirados') add('polen');
+    else if (n === 'efecto:llena') add('carpa_llena');
     else if (n === 'autoNo1212' || n === 'flipEdad') add('auto');
   }
   // regular seeds: males in the tent while flowering (until they are removed)

@@ -539,6 +539,7 @@ Respuestas 1–5 y 7–11 aplicadas (detalle en `docs/juego-decisiones.md`): −
 machos explica que en la vida real cada semilla es azar; calor 49–80 / 80–95 / 95–116 °C, tiempo medio 90–120 s,
 malla 90 µm flor seca y 25 µm hachís de agua, bolsa fina de agua 25 µm: todo «orientativo», con su fuente.
 
-**Pendiente (pregunta al dueño), respuesta 6 «carpa llena: humedad un nivel más alta y moho antes»:** en floración
-la humedad ideal es «baja», la más baja que hay; si la carpa llena la sube un nivel, ninguna opción la evita y la
-planta pierde salud cada semana de floración (unos −35 en total). No se aplicó hasta aclarar cómo debe ser.
+**Respuesta 6 (carpa llena), APLICADA:** la humedad cuenta un nivel más alta (como el HPS); en floración «Baja» se
+queda en «Baja». Siempre hay una opción sin pérdida («Baja» en plántula y vegetativo cuenta como «Media-alta»; en
+floración, «Baja»). Al retirar los machos la carpa deja de estar llena. Con su «¿Por qué? · Carpa llena» y el aviso
+del guía. Test `game-plants-engine` 37 ok.

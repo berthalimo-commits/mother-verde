@@ -233,4 +233,6 @@ siguen siendo **orientativas** y conservan su fuente:
 - Varias plantas y semillas: plantas por carpa (2 / 4 / 6), la mitad de las regulares macho, semanas de los machos,
   −25 por polinización y el calendario de la autofloreciente: criterio de la autora, validado por Bertha. Respaldo
   de la plataforma: Glosario (planta macho) y Cultivo → Genética (autofloración, 8–10 semanas).
+- Carpa llena: la humedad cuenta un nivel más alta (en floración «Baja» no sube). Criterio de la autora, validado
+  por Bertha; sin fuente externa.
 - Presión: sigue sin cifras (ninguna fuente).

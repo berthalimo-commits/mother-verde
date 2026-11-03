@@ -1305,6 +1305,20 @@
         "resta": 4,
         "_fuente": "Criterio de la autora (Glosario: trasplante)",
         "respaldo": "autora"
+      },
+      "carpa_llena": {
+        "_nota": "Carpa llena (todas las plantas que caben, contando solo las que siguen en la carpa): la humedad cuenta un nivel más alta, como el HPS con la temperatura; en floración, «baja» se queda en «baja» (el deshumidificador alcanza). Así siempre hay una opción sin pérdida: en vegetativo, «baja» cuenta como «media-alta» (lo ideal); en floración, «baja». Más humedad trae antes el oídio y la botrytis por las reglas de siempre.",
+        "sube": {
+          "humedad": 1
+        },
+        "salvo": {
+          "floracion": [
+            "baja"
+          ]
+        },
+        "fuente": "Criterio de la autora (docs/juego-validacion.md, respuesta 6; regla final elegida por el dueño el 2026-11-02)",
+        "respaldo": "autora",
+        "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
       }
     }
   },

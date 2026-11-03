@@ -4,6 +4,8 @@
 // equipment decisions; jgFb_ for the notes; jgTent… for the tent's caption.
 export default {
   es: {
+    'jgFb_efecto:llena': 'La carpa está llena: el aire está más húmedo y tu humedad cuenta un nivel más alta (en floración, con «Baja», el deshumidificador alcanza).', jgTentLlena: 'La carpa está llena: el aire está más húmedo.',
+    jgWhyN_carpa_llena: 'Carpa llena', jgWhy_carpa_llena: 'Muchas plantas juntas sueltan más agua al aire. En el juego, con la carpa llena, tu humedad cuenta un nivel más alta: en vegetativo, elegir «Baja» la deja en «Media-alta»; en floración, «Baja» se queda en «Baja» porque el deshumidificador alcanza (criterio de la autora). Más humedad trae antes el oídio y la botrytis.',
     jgRv_polen: 'Semana {w}: los machos seguían en la carpa al pasar la 2.ª semana de floración y soltaron su polen', jgRv_polenNota: 'cogollos con semillas: −{n} en la nota de la cosecha',
     jgRv_mejorPolen: 'Retirar los machos en cuanto se ven los sacos de polen (1.ª semana de floración), o usar semillas feminizadas.',
     jgTentMacetas: 'Hay {n} macetas, una semilla en cada una.',
@@ -30,6 +32,8 @@ export default {
     jgWhyN_auto: 'Autofloreciente', jgWhy_auto: 'Las autoflorecientes florecen según su edad, sin importar las horas de luz, y suelen completar su ciclo en 8–10 semanas desde la semilla (Cultivo → Genética). Las semanas exactas del juego son una regla del juego.',
   },
   en: {
+    'jgFb_efecto:llena': 'The tent is full: the air is more humid and your humidity counts one level higher (while flowering, with «Low», the dehumidifier keeps up).', jgTentLlena: 'The tent is full: the air is more humid.',
+    jgWhyN_carpa_llena: 'Full tent', jgWhy_carpa_llena: 'Many plants together release more water into the air. In the game, with a full tent, your humidity counts one level higher: in the vegetative stage, choosing «Low» leaves it at «Medium-high»; while flowering, «Low» stays «Low» because the dehumidifier keeps up (author’s criteria). More humidity brings powdery mildew and botrytis sooner.',
     jgRv_polen: 'Week {w}: the males were still in the tent when flowering week 2 ended and released their pollen', jgRv_polenNota: 'seeded buds: −{n} on the harvest score',
     jgRv_mejorPolen: 'Removing the males as soon as the pollen sacs show (flowering week 1), or using feminized seeds.',
     jgTentMacetas: 'There are {n} pots, one seed in each.',
@@ -56,6 +60,8 @@ export default {
     jgWhyN_auto: 'Autoflower', jgWhy_auto: 'Autoflowers flower according to their age, whatever the hours of light, and usually finish their cycle in 8–10 weeks from seed (Cultivation → Genetics). The game’s exact weeks are a game rule.',
   },
   de: {
+    'jgFb_efecto:llena': 'Das Zelt ist voll: Die Luft ist feuchter und deine Luftfeuchtigkeit zählt eine Stufe höher (in der Blüte schafft es der Entfeuchter bei «Niedrig»).', jgTentLlena: 'Das Zelt ist voll: Die Luft ist feuchter.',
+    jgWhyN_carpa_llena: 'Volles Zelt', jgWhy_carpa_llena: 'Viele Pflanzen zusammen geben mehr Wasser an die Luft ab. Im Spiel zählt bei vollem Zelt deine Luftfeuchtigkeit eine Stufe höher: In der Wachstumsphase wird «Niedrig» zu «Mittelhoch»; in der Blüte bleibt «Niedrig» bei «Niedrig», weil der Entfeuchter es schafft (Kriterium der Autorin). Mehr Feuchtigkeit bringt Mehltau und Botrytis früher.',
     jgRv_polen: 'Woche {w}: Die Männchen standen am Ende der 2. Blütewoche noch im Zelt und setzten ihren Pollen frei', jgRv_polenNota: 'Blüten mit Samen: −{n} bei der Erntenote',
     jgRv_mejorPolen: 'Die Männchen entfernen, sobald die Pollensäcke zu sehen sind (1. Blütewoche), oder feminisierte Samen verwenden.',
     jgTentMacetas: 'Es gibt {n} Töpfe, in jedem ein Samen.',
@@ -82,6 +88,8 @@ export default {
     jgWhyN_auto: 'Autoflowering', jgWhy_auto: 'Autoflowering-Pflanzen blühen nach ihrem Alter, unabhängig von den Lichtstunden, und schließen ihren Zyklus meist in 8–10 Wochen ab Samen ab (Anbau → Genetik). Die genauen Wochen im Spiel sind eine Spielregel.',
   },
   fr: {
+    'jgFb_efecto:llena': 'La tente est pleine : l’air est plus humide et ton humidité compte un niveau plus haut (en floraison, avec « Faible », le déshumidificateur suffit).', jgTentLlena: 'La tente est pleine : l’air est plus humide.',
+    jgWhyN_carpa_llena: 'Tente pleine', jgWhy_carpa_llena: 'Beaucoup de plantes ensemble rejettent plus d’eau dans l’air. Dans le jeu, avec une tente pleine, ton humidité compte un niveau plus haut : en croissance, choisir « Faible » la laisse à « Moyenne à élevée » ; en floraison, « Faible » reste « Faible » car le déshumidificateur suffit (critère de l’autrice). Plus d’humidité amène plus tôt l’oïdium et le botrytis.',
     jgRv_polen: 'Semaine {w} : les mâles étaient encore dans la tente à la fin de la 2e semaine de floraison et ont libéré leur pollen', jgRv_polenNota: 'têtes avec graines : −{n} sur la note de la récolte',
     jgRv_mejorPolen: 'Retirer les mâles dès que les sacs de pollen se voient (1re semaine de floraison), ou utiliser des graines féminisées.',
     jgTentMacetas: 'Il y a {n} pots, une graine dans chacun.',
