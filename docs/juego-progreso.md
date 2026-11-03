@@ -629,3 +629,19 @@ traducción; los campos donde el usuario escribe una temperatura (calculadora, b
 contar rangos, cifras con °C que no son del cultivo y cómo se prueba; esperar «APRUEBO» antes de subir a `dev`.
 
 Juego: **no** añadir puntos por la temperatura de floración por ahora (decisión del dueño, 2026-11-03).
+
+### Pruebas finales de staging (2026-11-03) — todas pasaron
+Hechas en el staging publicado de `dev` y la base `ciqdnrdtaxbmcjvxljvq` (nada en `main` ni producción).
+| # | Prueba | Quién | Resultado |
+|---|---|---|---|
+| 1 | Borrar `berthalimo+staging1@gmail.com` | Bertha (Claude no borra datos); Claude comprobó | hecho |
+| 2 | Registro con correo «equivocado» → «Reenviar correo» → «Corrígelo» → confirmar | Bertha + Claude (base) | pasó: 2 correos en la principal; enlace viejo ya no sirve; confirmada y 24 h de prueba |
+| 3 | Correo repetido en variantes de Gmail | Claude (regla de registro en la base; hook activado) | pasó: 6 variantes rechazadas, otro Gmail permitido (sin probar el formulario: pide contraseña) |
+| 4 | Cambio de correo en Cuenta | Bertha + Claude (base) | pasó: 2 correos, cambio hecho, 1 sola cuenta |
+| 5 | Escribir en la Bitácora | Claude (hello@) | pasó |
+| 6 | Bloqueo al terminar la prueba + Bitácora de solo lectura | Claude (hello@ vencida un rato y devuelta a supporter) | pasó (el servidor rechaza guardar; PDF visible, no descargado) |
+| 7 | Código de regalo | Claude (panel) + Bertha (canje) | pasó: «enviado» al momento, canje hasta el 11/11, panel «usado» |
+| 8 | Límite de intentos | Claude (hello@) | pasó: al 6.º intento «Demasiados intentos» |
+| 9 | Pantalla que se queda cargando | Claude (simulado: el perfil no responde) | pasó: salida a los 12 s y «Reintentar» funciona |
+| — | Cambio de idioma; consola | Claude | pasó: 4 idiomas; sin errores ni bloqueos CSP |
+| — | Fallo intermitente «enviar código de regalo» | Claude | causa: la lista vieja pintaba encima de la nueva; arreglado (`0e81804`) |
