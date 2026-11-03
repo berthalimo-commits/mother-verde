@@ -382,7 +382,10 @@ export function applyPost(s, choices, rules) {
     // escala:false = the options are not a scale: any wrong one is one level.
     const dist = def.escala === false ? 1
       : Math.min(...wants.map((w) => Math.abs(def.opciones.indexOf(choices[d]) - def.opciones.indexOf(w))));
-    lost[d] = dist >= 2 ? R.resta_dos_niveles : R.resta_un_nivel;
+    // an option can carry its own cost (Bertha 2026-11-03: in the curing,
+    // mould and moisture cost most; a short cure or the freezer, little)
+    const own = def.ideal.resta_por_opcion?.[choices[d]];
+    lost[d] = own !== undefined ? own : dist >= 2 ? R.resta_dos_niveles : R.resta_un_nivel;
   }
   notes.unshift((Object.keys(lost).length ? 'postMal:' : 'postBien:') + s.stage);
   if (s.stage === 'rosin' && lost.proteccion) notes.push('quemadura');

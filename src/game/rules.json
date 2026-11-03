@@ -452,9 +452,9 @@
           ],
           "ideal": {
             "valor": "fresca",
-            "fuente": "Elaboración → Procesos & SOP (SOP-01 Secado: sala 15–18 °C)",
+            "fuente": "F22 (15–20 °C), F32 (18–21 °C), F31 (15 °C) · decisión de Bertha 2026-11-03: ideal 15–21 °C",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · estudio y revisión (F22 Cornell 2025: 15–20 °C; F32: 18–21 °C; F31 secó a 15 °C; F34 Dalhousie 2021: por encima de 40 °C se pierden terpenos). AVISO al dueño: lo habitual llega a 21 °C; el juego dice 15–18 °C. No cambiado."
+            "verificar": "REVISADO 2026-11 · estudio y revisión (F22, F31, F32; F34: por encima de 40 °C se pierden terpenos). Ideal ampliado a 15–21 °C (decisión de Bertha 2026-11-03)."
           }
         },
         "humedad": {
@@ -504,9 +504,9 @@
           ],
           "ideal": {
             "valor": "chasquido",
-            "fuente": "SOP-01 (7–14 días) y Temporizador de secado (prueba del chasquido)",
+            "fuente": "F22 (1–2 semanas), F32 y F33 (5–6 días) · decisión de Bertha 2026-11-03: 5–14 días; la prueba del chasquido es práctica",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · revisión (F22: 1–2 semanas). Matiz: F32 y F33 dan 5–6 días; la prueba del chasquido es práctica (F32: no hay un estándar para decir cuándo termina el secado)."
+            "verificar": "REVISADO 2026-11 · revisión y estudio (F22, F32, F33): de 5 a 14 días (decisión de Bertha 2026-11-03). La prueba del chasquido es práctica de cultivadores (F32: no hay un estándar para el final del secado)."
           }
         }
       }
@@ -532,7 +532,10 @@
             ],
             "fuente": "Equipamiento → 6. Curado (vidrio) · criterio de la autora (los demás)",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · estudio (F22, Cornell 2025: vidrio y bolsa dieron resultados parecidos). Que el plástico y la lata sean peores es práctica de cultivadores (no se estudiaron)."
+            "verificar": "REVISADO 2026-11 · estudio (F22: vidrio y bolsa dieron resultados parecidos). El plástico (guarda la humedad y trae moho en el juego) resta fuerte (8): decisión de Bertha 2026-11-03; que sea peor es práctica de cultivadores.",
+            "resta_por_opcion": {
+              "plastico": 8
+            }
           }
         },
         "control": {
@@ -563,7 +566,10 @@
             "valor": "diario",
             "fuente": "Herramientas → Temporizador de secado (burping diario la primera semana)",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · práctica de cultivadores: abrir a diario no tiene estudio comprobado."
+            "verificar": "REVISADO 2026-11 · práctica de cultivadores: abrir a diario no tiene estudio. Nunca abrir (la humedad se queda dentro y llega el moho) resta fuerte (8): decisión de Bertha 2026-11-03.",
+            "resta_por_opcion": {
+              "nunca": 8
+            }
           }
         },
         "tiempo": {
@@ -579,7 +585,10 @@
             ],
             "fuente": "SOP-02 (mínimo 2–4 semanas) · criterio de la autora (meses)",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · práctica de cultivadores. AVISO al dueño: F22 (Cornell 2025) curó 3 semanas y no encontró cambio en los cannabinoides ni más moho; no hay estudio que pruebe que curar más mejora la flor. No cambiado."
+            "verificar": "REVISADO 2026-11 · práctica de cultivadores. F22 (Cornell 2025) curó 3 semanas sin cambio en los cannabinoides ni más moho: por eso curar pocos días resta poco (2). Decisión de Bertha 2026-11-03.",
+            "resta_por_opcion": {
+              "dias": 2
+            }
           }
         },
         "g_luz": {
@@ -612,7 +621,10 @@
             ],
             "fuente": "F8 (25 °C, los mayores cambios; 4 °C a oscuras, menos; bajo −20 °C, lo peor para los terpenos)",
             "respaldo": "estudio",
-            "verificar": "REVISADO 2026-11 · estudio (F8, F24). Matiz: en F24 el congelador conservó los cannabinoides; el juego lo castiga por los terpenos (F8)."
+            "verificar": "REVISADO 2026-11 · estudio (F8, F24). Congelador = dos caras (decisión de Bertha 2026-11-03): conserva los cannabinoides (F24), pierde terpenos (F8) y puede condensar agua al descongelar (práctica de cultivadores). Resta poco (2).",
+            "resta_por_opcion": {
+              "congelador": 2
+            }
           }
         },
         "g_aire": {

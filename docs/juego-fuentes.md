@@ -355,3 +355,6 @@ GPP de Health Canada; la norma ASTM de actividad de agua; Lindholst 2010 y Trofi
 | 2. Luz en vegetativo | No cambiar hasta poder abrir la fuente | Nada. Moher et al. 2022 sigue pendiente de verificar. |
 | 3. 12/12 | Regla del juego; el «¿Por qué?» aclara 13–14 h | `rules.json` lo marca «REGLA DEL JUEGO»; el «¿Por qué?» dice que muchas variedades florecen con 13 o 14 horas. |
 | 4. Nutrientes altos | Suavizar solo en floración | «Alto» en floración resta 2 en vez de 4 (`resta_por_opcion` en `rules.json`); en vegetativo sigue en 4 (F15). |
+| 5. Secado | Ampliar a 15–21 °C y 5–14 días | «Fresca» = 15–21 °C; «Hasta el chasquido» ≈ 5–14 días; «Unos pocos días» = menos de 5. El «¿Por qué?» dice que la prueba del chasquido es práctica (no hay estándar científico). |
+| 6. Curado | El castigo fuerte es por moho y humedad, no por pocas semanas; Cornell con honestidad | Nunca abrir y envase de plástico (moho) restan 8; curar pocos días resta 2. El «¿Por qué?» cuenta que F22 no encontró mejora tras 3 semanas. |
+| 7. Congelador | Explicar sus dos caras sin castigarlo de golpe | Resta 2 (antes 4). Pista y «¿Por qué?»: conserva los cannabinoides (F24), pierde terpenos (F8) y puede condensar agua al sacarlo (práctica de cultivadores). |
