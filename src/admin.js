@@ -588,6 +588,10 @@ async function panel(email) {
   show();
 }
 function show() {
+  // A fresh #view for every tab change: a tab that answers late (e.g. the
+  // Summary that was loading when another tab was clicked) paints into its
+  // own, detached space instead of over the tab now on screen.
+  const old = view(); if (old) { const fresh = old.cloneNode(false); old.replaceWith(fresh); }
   app.querySelectorAll('#ptabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
   mailAlert();
   pendingAlert();
@@ -621,16 +625,17 @@ let showAwaiting = false;
 let autoMax = 201; // claim_auto_max_usdc, read from the server
 
 async function claimsView() {
+  const V = view(); // this tab's own space: a late answer never paints over another tab
   pendingAlert();
-  view().innerHTML = `${loadingP()}`;
+  V.innerHTML = `${loadingP()}`;
   const [cfg, list, conf] = await Promise.all([
     fn('support-claims', { action: 'config' }),
     sb.rpc('admin_list_claims', { p_statuses: showAwaiting ? ['awaiting_payment'] : ['submitted', 'manual_review'] }),
     sb.rpc('admin_list_claim_conflicts', { p_include_resolved: false }),
   ]);
-  if (list.error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(list.error)))}</div>`; return; }
+  if (list.error) { V.innerHTML = `<div class="card bad">${esc(errText(rpcErr(list.error)))}</div>`; return; }
   if (typeof cfg.auto_max_usdc === 'number') autoMax = cfg.auto_max_usdc;
-  view().innerHTML = `
+  V.innerHTML = `
     <div class="card"><p>${cfg.auto_enabled ? tr('autoOn', { max: autoMax }) : tr('autoOff')}</p>${cfg.support_address_set === false ? `<p class="bad">${tr('noAddr')}</p>` : ''}
       <div class="row"><button class="ghost" id="tg">${showAwaiting ? tr('showOpen') : tr('showAwaiting')}</button>
       <button class="ghost" id="rl">${tr('refresh')}</button>
@@ -640,8 +645,8 @@ async function claimsView() {
     ${list.data.length ? list.data.map(claimCard).join('') : `<p class="muted">${tr('empty')}</p>`}`;
   document.getElementById('tg').onclick = () => { showAwaiting = !showAwaiting; claimsView(); };
   document.getElementById('rl').onclick = claimsView;
-  view().querySelectorAll('[data-act]').forEach((b) => { b.onclick = () => claimAction(b.dataset.act, Number(b.dataset.id)); });
-  view().querySelectorAll('[data-resolve]').forEach((b) => { b.onclick = () => resolveConflict(Number(b.dataset.resolve), b.dataset.winner ? Number(b.dataset.winner) : null); });
+  V.querySelectorAll('[data-act]').forEach((b) => { b.onclick = () => claimAction(b.dataset.act, Number(b.dataset.id)); });
+  V.querySelectorAll('[data-resolve]').forEach((b) => { b.onclick = () => resolveConflict(Number(b.dataset.resolve), b.dataset.winner ? Number(b.dataset.winner) : null); });
   wireExports();
 }
 
@@ -747,7 +752,8 @@ async function claimAction(act, id) {
 
 // ------------------------------------------------------------ gift codes
 async function giftsView() {
-  view().innerHTML = `
+  const V = view(); // this tab's own space: a late answer never paints over another tab
+  V.innerHTML = `
     <div class="card"><h2>${tr('giftH')}</h2>
       <div class="row"><input id="ge" type="email" placeholder="correo@example.com" maxlength="254" style="max-width:340px">
       <button id="gs">${tr('send')}</button></div>
@@ -817,8 +823,9 @@ async function loadGifts() {
 // ------------------------------------------------------------ manual contributions
 const METHODS = ['paypal', 'cashapp', 'transferencia', 'efectivo', 'otro'];
 function manualView() {
+  const V = view(); // this tab's own space: a late answer never paints over another tab
   const today = new Date().toISOString().slice(0, 10);
-  view().innerHTML = `
+  V.innerHTML = `
     <div class="card"><h2>${tr('manH')}</h2>
       <button id="manOpen">${tr('manNew')}</button>
       <form id="manForm" hidden style="margin-top:12px">
@@ -907,11 +914,12 @@ async function loadManual() {
 
 // ------------------------------------------------------------ audit log
 async function auditView() {
-  view().innerHTML = `<div class="card scroll">${loadingP()}</div>`;
+  const V = view(); // this tab's own space: a late answer never paints over another tab
+  V.innerHTML = `<div class="card scroll">${loadingP()}</div>`;
   const [{ data, error }, mails] = await Promise.all([sb.rpc('admin_list_audit', { p_limit: 300 }), sb.rpc('admin_list_mail_events', { p_limit: 100 })]);
-  if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
+  if (error) { V.innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const me = mails.data || [];
-  view().innerHTML = `<div class="card scroll" id="mailList"><h2>${tr('mailListH')}</h2><p class="muted">${tr('mailListP')}</p>
+  V.innerHTML = `<div class="card scroll" id="mailList"><h2>${tr('mailListH')}</h2><p class="muted">${tr('mailListP')}</p>
     ${me.length ? `<table><tr><th>${tr('thWhen')}</th><th>${tr('thKind')}</th><th>${tr('thResult')}</th><th>${tr('thProvider')}</th><th>${tr('thAttempts')}</th><th>${tr('thAccount')}</th><th>${tr('thError')}</th></tr>
     ${me.map((e) => `<tr><td>${when(e.at)}</td><td>${esc(tr('mk_' + e.kind))}</td><td class="${e.ok ? 'ok' : 'bad'}">${tr(e.ok ? 'resOk' : 'resFail')}</td><td>${esc(e.provider || '')}</td><td>${esc(e.attempts)}</td><td>${esc(e.account_email || e.ref || '')}</td><td class="muted">${esc(e.error || '')}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('empty')}</p>`}</div>
     <div class="card scroll"><div class="row" style="justify-content:space-between"><p class="muted">${tr('auditP')}</p><button class="ghost" data-export="audit">${tr('exportCsv')}</button></div><p class="msg" id="xm-audit"></p>
@@ -966,13 +974,14 @@ async function doExport(tabName, filters) {
 
 // ------------------------------------------------------------ summary
 async function summaryView() {
-  view().innerHTML = `${loadingP()}`;
+  const V = view(); // this tab's own space: a late answer never paints over another tab
+  V.innerHTML = `${loadingP()}`;
   const { data: s, error } = await sb.rpc('admin_summary');
-  if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
+  if (error) { V.innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const st = s.states || {}, cl = s.claims || {};
   const box = (label, n) => `<div class="card stat"><div class="muted">${label}</div><div class="big">${esc(n ?? 0)}</div></div>`;
   const mf = Number(s.mail_failed_24h || 0);
-  view().innerHTML = `<div class="stats">
+  V.innerHTML = `<div class="stats">
       <div class="card stat" id="sumMailFailed"><div class="muted">${tr('mailFailH')}</div><div class="big ${mf ? 'bad' : 'ok'}">${esc(mf)}</div></div>${box(tr('mailSentH'), s.mail_sent_24h)}
       ${box(tr('sumAccounts'), s.accounts)}${box(tr('sumNew7'), s.new_7d)}${box(tr('sumTrialActive'), st.prueba_activa)}
       ${box(tr('sumTrialExpired'), st.prueba_vencida)}${box(tr('sumFull'), st.acceso_completo)}${box(tr('sumGift'), st.regalo)}${box(tr('sumBlocked'), st.bloqueado)}
@@ -988,7 +997,8 @@ const US = { search: '', state: '', offset: 0 };
 const USER_STATES = ['prueba_activa', 'prueba_vencida', 'acceso_completo', 'regalo', 'bloqueado', 'sin_prueba'];
 const usersFilters = () => ({ search: US.search, state: US.state });
 async function usersView() {
-  view().innerHTML = `<div class="card">
+  const V = view(); // this tab's own space: a late answer never paints over another tab
+  V.innerHTML = `<div class="card">
       <div class="row"><input id="usQ" placeholder="${esc(tr('usSearchPh'))}" value="${esc(US.search)}" style="max-width:280px">
         <select id="usS">${['', ...USER_STATES].map((v) => `<option value="${v}"${v === US.state ? ' selected' : ''}>${v ? tr('us_' + v) : tr('usAllStates')}</option>`).join('')}</select>
         <button id="usGo">${tr('usSearch')}</button>
@@ -1023,12 +1033,13 @@ async function loadUsers() {
 }
 // One account's file — opening it is logged by the server (user_viewed).
 async function userFile(id) {
+  const V = view(); // this tab's own space: a late answer never paints over another tab
   redraw = () => userFile(id);
-  view().innerHTML = `${loadingP()}`;
+  V.innerHTML = `${loadingP()}`;
   const { data: u, error } = await sb.rpc('admin_get_user', { p_user_id: id });
-  if (error) { view().innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
+  if (error) { V.innerHTML = `<div class="card bad">${esc(errText(rpcErr(error)))}</div>`; return; }
   const d = (x) => (x ? when(x) : '—');
-  view().innerHTML = `<button class="ghost" id="usBack">${tr('back')}</button>
+  V.innerHTML = `<button class="ghost" id="usBack">${tr('back')}</button>
     <div class="card" style="margin-top:10px"><h2>${tr('fileH')}</h2><p class="muted">${tr('fileNote')}</p>
       <table>
         <tr><th>${tr('thEmail')}</th><td>${emailCell(u.email, true)}</td></tr>
