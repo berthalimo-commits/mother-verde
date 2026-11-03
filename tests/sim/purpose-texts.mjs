@@ -41,6 +41,8 @@ const indep = { es: /no (está )?afiliad/i, en: /not affiliated/i, de: /nicht mi
 check('«no afiliado a SUNY Morrisville» en la historia, el aviso corto y la pantalla de aporte, en los 4 idiomas', L.every((l) => indep[l].test(T.storyIndependent[l]) && indep[l].test(T.dsAvisoCorto[l]) && indep[l].test(T.dsProp5[l])));
 check('«aporte único de apoyo» con el término de cada idioma', /aporte único de apoyo/.test(T.dsProp1.es) && /one-time support contribution/.test(T.dsProp1.en) && /einmaliger Unterstützungsbeitrag/.test(T.dsProp1.de) && /contribution unique de soutien/.test(T.dsProp1.fr));
 check('fotos de campo sin la palabra «cannabis» en su texto alternativo', ['storyAlt3', 'storyAlt4', 'storyAlt5'].every((k) => L.every((l) => !/cannabis/i.test(T[k][l]))));
+const HEMP = { es: /cáñamo/, en: /hemp plant/, de: /Hanfpflanze/, fr: /plants? de chanvre/ };
+check('fotos de campo 02, 03 y 08: «cáñamo» / «hemp» / «Hanf» / «chanvre» en los 4 idiomas; las de carpa (01, 05, 07) no cambian', ['storyAlt3', 'storyAlt4', 'storyAlt5'].every((k) => L.every((l) => HEMP[l].test(T[k][l]))) && ['storyAlt1', 'storyAlt2a', 'storyAlt2b'].every((k) => L.every((l) => !/cáñamo|hemp|Hanf|chanvre/i.test(T[k][l]))));
 check('la lista de calculadoras dice «17»', L.every((l) => /17/.test(T.story5Calc[l])));
 
 // Terms keep the lawyer/accountant marker; Privacy has the acceptance sentence
