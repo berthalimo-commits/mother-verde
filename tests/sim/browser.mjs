@@ -12,10 +12,24 @@ export const mail = async () => (await fetch('http://localhost:54322/__mail')).j
 export const summary = () => console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 export async function browser(uid, aal, w = 420) {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mv-panel-'));
-  const port = 9600 + Math.floor(Math.random() * 150);
-  const chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, '--no-first-run', '--hide-scrollbars', 'about:blank'], { stdio: 'ignore' });
-  let target; for (let i = 0; i < 50 && !target; i++) { await sleep(200); try { target = (await (await fetch(`http://127.0.0.1:${port}/json`)).json()).find((t) => t.type === 'page'); } catch {} }
-  const ws = new WebSocket(target.webSocketDebuggerUrl); await new Promise((r) => (ws.onopen = r));
+  // Launch with a time limit and retries: two long runs hung forever when a
+  // second browser never answered (busy random port or a slow start). Now a
+  // launch that doesn't connect in 10 s is killed and retried on another port.
+  let chrome, ws;
+  for (let attempt = 1; attempt <= 4 && !ws; attempt++) {
+    const port = 9600 + Math.floor(Math.random() * 150);
+    chrome = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, '--no-first-run', '--hide-scrollbars', 'about:blank'], { stdio: 'ignore' });
+    let target; for (let i = 0; i < 50 && !target; i++) { await sleep(200); try { target = (await (await fetch(`http://127.0.0.1:${port}/json`, { signal: AbortSignal.timeout(2000) })).json()).find((t) => t.type === 'page'); } catch {} }
+    if (target) {
+      const w = new WebSocket(target.webSocketDebuggerUrl);
+      const opened = await Promise.race([new Promise((r) => { w.onopen = () => r(true); w.onerror = () => r(false); }), sleep(10000).then(() => false)]);
+      if (opened) { ws = w; break; }
+      try { w.close(); } catch {}
+    }
+    chrome.kill(); await sleep(500);
+    console.log(`  (aviso: el navegador de prueba no arrancó en el intento ${attempt}; se reintenta en otro puerto)`);
+  }
+  if (!ws) throw new Error('el navegador de prueba no arrancó tras 4 intentos');
   let id = 0; const pend = {}; const events = []; ws.onmessage = (m) => { const d = JSON.parse(m.data); if (d.id && pend[d.id]) { pend[d.id](d); delete pend[d.id]; } else if (d.method) { events.push(d); if (events.length > 5000) events.shift(); } };
   const send = (method, params = {}) => new Promise((r) => { const i = ++id; pend[i] = r; ws.send(JSON.stringify({ id: i, method, params })); });
   const ev = async (e) => (await send('Runtime.evaluate', { expression: e, awaitPromise: true, returnByValue: true })).result?.result?.value;
