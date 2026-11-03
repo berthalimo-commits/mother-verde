@@ -587,3 +587,9 @@ repaso final, varias plantas). Cerca del 60 % son los **textos en 4 idiomas**, q
 pulido 25 · plantas UI 40 · juego 54 · jugar 35 · carpa 36 · tocar 37 · problemas 25 · preparar 27 · prensa 34 ·
 preparación 20 · partidas viejas 17 · repaso UI 19 · corridas completas 90 / 120 / 94 / 67 / 58 · motor 61 ·
 plantas motor 37 · repaso 39 · laboratorio 35 · base de datos 37 y 14. **Todo en verde.**
+
+## Juego fusionado en `dev` (2026-11-03)
+`juego` → `dev` (491a2f6), a pedido del dueño. Comprobado: compilado de `dev` **sin** juego (ningún archivo del
+juego ni texto suyo); con `MV_GAME=1`, el juego y el laboratorio salen en archivos aparte que solo se descargan al
+entrar. Motor 61 · plantas motor 37 · repaso 39 · preparar motor 31: verde. `juego` quedó igual que `dev`.
+Para producción: pasos del juego añadidos en `docs/lanzamiento-produccion.md` (paso 6: 3 migraciones + `MV_GAME=1`).

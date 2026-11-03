@@ -159,8 +159,11 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` →
    `20261020100000` (Bitácora de solo lectura sin acceso, también en el servidor) →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
-   (La del juego, `20261015100000_game_progress.sql`, **no** va en producción hasta que el juego se fusione: vive
-   en la rama `juego` y se prueba en staging.)
+   **Juego** (fusionado en `dev` el 2026-11-03; solo si el juego sale en el lanzamiento): `supabase/admin/precheck-game.sql`
+   (todo `ok`) → `20261015100000_game_progress` → `20261029100000_game_setup` → `20261031100000_game_plants`.
+   En staging ya están aplicadas (pasos 4b, 4c y 4d de `supabase/staging/`).
+   Y en **Vercel → Settings → Environment Variables → Production**: `MV_GAME` = `1`, luego volver a publicar. Sin esa
+   variable el juego **no aparece** en producción (en `dev` tampoco: se ve en Preview de la rama `juego`).
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
    y `RESEND_API_KEY` si toca.
