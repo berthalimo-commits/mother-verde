@@ -131,11 +131,18 @@ export function removeMales(s, rules) {
 }
 
 // Penalty of one decision against the ideal of the stage. null ideal = not scored.
+// The hint under an option can depend on the stage: in flowering the
+// temperature ranges are cooler (Bertha's decision 2026-11-03).
+export const hintKey = (d, o, stage) => (stage === 'floracion' && d === 'temperatura' && o !== 'fresca' ? `jgH_${d}_${o}_fl` : `jgH_${d}_${o}`);
+
 function penalty(rules, stage, d, value, setup) {
   const want = ideal(rules, stage, d, setup);
   if (want === null) return { pts: 0, unscored: true };
   const wants = [].concat(want);
   if (wants.includes(value)) return { pts: 0 };
+  // a softer cost for one option in one stage (rules.json → resta_por_opcion)
+  const own = rules.etapas[stage]?.ideal?.[d]?.resta_por_opcion?.[value];
+  if (own !== undefined) return { pts: own };
   if (d === 'fotoperiodo') return { pts: rules.puntuacion.resta_fotoperiodo };
   const opts = rules.opciones[d];
   const dist = Math.min(...wants.map((w) => Math.abs(opts.indexOf(value) - opts.indexOf(w))));
@@ -375,7 +382,10 @@ export function applyPost(s, choices, rules) {
     // escala:false = the options are not a scale: any wrong one is one level.
     const dist = def.escala === false ? 1
       : Math.min(...wants.map((w) => Math.abs(def.opciones.indexOf(choices[d]) - def.opciones.indexOf(w))));
-    lost[d] = dist >= 2 ? R.resta_dos_niveles : R.resta_un_nivel;
+    // an option can carry its own cost (Bertha 2026-11-03: in the curing,
+    // mould and moisture cost most; a short cure or the freezer, little)
+    const own = def.ideal.resta_por_opcion?.[choices[d]];
+    lost[d] = own !== undefined ? own : dist >= 2 ? R.resta_dos_niveles : R.resta_un_nivel;
   }
   notes.unshift((Object.keys(lost).length ? 'postMal:' : 'postBien:') + s.stage);
   if (s.stage === 'rosin' && lost.proteccion) notes.push('quemadura');

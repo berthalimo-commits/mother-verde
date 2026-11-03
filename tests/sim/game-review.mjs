@@ -54,7 +54,7 @@ check('el riego también sale como decisión, semana a semana por etapa, con lo 
   /\(Semilla y plántula\): Riego «Mucho»/.test(t) && /en Vegetativo, «Moderado»/.test(t), t);
 const h = html(s);
 check('cada causa tiene su «¿Por qué?» (con la fuente F3 del exceso de riego en why.js) y las lecciones de la plataforma',
-  h.includes('data-why="exceso_riego"') && h.includes('data-why="riego"') && W.WHY.exceso_riego.src === 'F3' && /data-lesson="diagnostico"/.test(h));
+  h.includes('data-why="exceso_riego"') && h.includes('data-why="riego"') && [].concat(W.WHY.exceso_riego.src)[0] === 'F3' && /data-lesson="diagnostico"/.test(h));
 
 console.log('2. Error de plagas: ácaros respondidos mal (la planta sobrevive)');
 s = E.start(E.newGame());

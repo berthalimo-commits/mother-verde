@@ -196,7 +196,7 @@ function decisionsHtml() {
       <div class="jg-opts">${RULES.opciones[d].map((o) => {
         const id = `jg-${d}-${o.replace('/', '-')}`;
         return `<input type="radio" name="jg-${d}" id="${id}" value="${o}"${ch[d] === o ? ' checked' : ''}${blocked ? ' disabled' : ''}>
-          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span>${blind && d === 'nutrientes' ? '' : `<small>${t(`jgH_${d}_${o}`)}</small>`}</label>`;
+          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span>${blind && d === 'nutrientes' ? '' : `<small>${t(E.hintKey(d, o, state.stage))}</small>`}</label>`;
       }).join('')}</div>
     </fieldset>`).join('');
   const fixedNote = 'nutrientes' in fixed ? t('jgFijoAcua') + ' ' + t('jgFijoHidro') : 'riego' in fixed ? t('jgFijoHidro') : '';

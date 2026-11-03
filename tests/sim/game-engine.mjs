@@ -60,12 +60,12 @@ let q = E.applyPost(harvested, { ...PI('secado'), metodo: 'rejilla', temperatura
 check('secado con rejilla, calor, humedad alta y aire directo -> resta 4 + 8 + 4 + 4 (opciones que no son escala: un nivel)', q.stage === 'curado' && q.notes[0] === 'postMal:secado'
   && q.post.secado.l.metodo === 4 && q.post.secado.l.temperatura === 8 && q.post.secado.l.humedad === 4 && q.post.secado.l.aire === 4, JSON.stringify(q.post));
 q = E.applyPost(q, { ...PI('curado'), envase: 'plastico', g_temp: 'calido', g_forma: 'molida', g_tiempo: 'anos' }, RULES); states.push(q);
-check('almacenamiento cálido, molido y por años (F8) y envase de plástico -> resta 4 cada uno', q.post.curado.l.envase === 4 && q.post.curado.l.g_temp === 4 && q.post.curado.l.g_forma === 4 && q.post.curado.l.g_tiempo === 4, JSON.stringify(q.post.curado));
+check('almacenamiento cálido, molido y por años (F8) y envase de plástico -> resta 4 cada uno y el plástico 8 (moho: decisión de Bertha)', q.post.curado.l.envase === 8 && q.post.curado.l.g_temp === 4 && q.post.curado.l.g_forma === 4 && q.post.curado.l.g_tiempo === 4, JSON.stringify(q.post.curado));
 // a game saved before 8b went curing -> press: the press still asks for the material
 const qOld = { ...q, stage: 'rosin' };
 check('partida guardada antes de 8b (en la prensa, sin preparación) -> la prensa pregunta el material', q.stage === 'material' && E.postDecisions(RULES, 'rosin', {}, qOld).includes('material'));
 const qr = E.applyPost(qOld, { ...PI('rosin'), material: 'fresco', malla: 'sin_bolsa', proteccion: 'sin_proteccion' }, RULES); states.push(qr);
-check('los errores de secado y curado bajan la nota final (100 - 36 = 64); lo que más restó va primero', qr.result.final === 64 && qr.result.score === 100
+check('los errores de secado y curado bajan la nota final (100 - 40 = 60); lo que más restó va primero', qr.result.final === 60 && qr.result.score === 100
   && qr.result.postCauses[0] === 'secado_temperatura' && qr.result.postCauses.length === 3, JSON.stringify(qr.result));
 check('rosin con flor fresca sin congelar, sin bolsa y sin protección -> «para mejorar» y aviso de quemadura (no cambia la nota del cogollo)',
   ['rosin_material', 'rosin_malla', 'rosin_proteccion'].every((c) => qr.result.rosin.causes.includes(c)) && qr.notes.includes('quemadura'));
@@ -74,7 +74,7 @@ for (const f of [() => E.applyPost(harvested, { ...PI('secado'), luz: 'neon' }, 
   () => E.applyPost(E.start(E.newGame()), PI('secado'), RULES), () => E.skipRosin(harvested)]) { try { f(); } catch { threw++; } }
 check('opciones inventadas, decisiones vacías, secado sin cosechar o saltar el rosin antes de tiempo -> rechazado', threw === 4);
 check('cada decisión tiene fuente, nivel de respaldo conocido y la marca [POR VERIFICAR POR BERTHA]',
-  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA/.test(v.ideal.verificar) && v.ideal.fuente.length > 10
+  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA|REVISADO 2026-11/.test(v.ideal.verificar) && v.ideal.fuente.length > 10
     && ['estudio', 'guia', 'patente', 'comunidad', 'practica', 'autora', 'simple', 'sin'].includes(v.ideal.respaldo))));
 check('cada ideal es una opción que existe', E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => [].concat(v.ideal.valor ?? []).every((x) => v.opciones.includes(x)))));
 console.log('1c. Sub-fase 8b: preparar el material sin solventes');
@@ -193,7 +193,7 @@ const dyn = [...E.DECISIONS.flatMap((dd) => RULES.opciones[dd].flatMap((o) => [`
     ...v.opciones.flatMap((o) => [`jgPO_${st}_${d}_${o}`, `jgPH_${st}_${d}_${o}`])]))];
 check('cada texto que se arma con variables (opciones, eventos, causas) existe', dyn.every((k) => keys.includes(k)), dyn.filter((k) => !keys.includes(k)).join(','));
 check('cada valor de cultivo de rules.json está marcado [POR VERIFICAR POR BERTHA]', (() => {
-  const walk = (o) => o && typeof o === 'object' ? (('valor' in o || 'min' in o) ? /POR VERIFICAR POR BERTHA/.test(o.verificar || '') || /VALOR DE JUEGO/.test(o.fuente || '') : true) && Object.values(o).every(walk) : true;
+  const walk = (o) => o && typeof o === 'object' ? (('valor' in o || 'min' in o) ? /POR VERIFICAR POR BERTHA|REVISADO 2026-11/.test(o.verificar || '') || /VALOR DE JUEGO/.test(o.fuente || '') : true) && Object.values(o).every(walk) : true;
   return walk(RULES.etapas) && walk(RULES.equivalencias);
 })());
 
@@ -214,5 +214,35 @@ check('poses: todas reutilizan el mismo cuerpo, cabeza y gafas del científico, 
   Object.keys(P.POSES).every((id) => { const v = P.poseSvg(id); return v.includes('M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z') && v.includes('r="9"') && /aria-hidden="true"/.test(v) && !/#[0-9a-f]{3,6}/i.test(v); })
   && P.poseSvg('nada').includes('data-pose="original"'));
 
+console.log('6. Decisiones de Bertha sobre las fuentes (2026-11-03)');
+{
+  const R = RULES;
+  const wk = (stage, nutri) => {
+    const s = { ...E.newGame(), stage, week: 5, stageWeek: 2, health: 100 };
+    const ch = { ...E.defaultChoices(s, R) };
+    for (const d of E.DECISIONS) { const w = E.ideal(R, stage, d, undefined); if (w !== null) ch[d] = [].concat(w)[0]; }
+    ch.nutrientes = nutri;
+    return 100 - E.applyWeek(s, ch, R).health;
+  };
+  check('nutrientes «Alto» en floración resta 2; en vegetativo sigue restando 4', wk('floracion', 'alto') === 2 && wk('vegetativo', 'alto') === 4, `${wk('floracion', 'alto')} / ${wk('vegetativo', 'alto')}`);
+  check('nutrientes «Bajo» en floración sigue con la resta normal (4)', wk('floracion', 'bajo') === 4);
+  check('la pista de temperatura cambia en floración (24–28 °C) y no en vegetativo (24–30 °C), en los 4 idiomas',
+    E.hintKey('temperatura', 'templada', 'floracion') === 'jgH_temperatura_templada_fl' && E.hintKey('temperatura', 'templada', 'vegetativo') === 'jgH_temperatura_templada'
+    && E.hintKey('temperatura', 'fresca', 'floracion') === 'jgH_temperatura_fresca'
+    && ['es', 'en', 'de', 'fr'].every((L) => /24–30/.test(TEXTS[L].jgH_temperatura_templada) && /24–28/.test(TEXTS[L].jgH_temperatura_templada_fl) && /30/.test(TEXTS[L].jgH_temperatura_calida) && /28/.test(TEXTS[L].jgH_temperatura_calida_fl)));
+  check('el «¿Por qué?» del fotoperiodo dice que muchas variedades florecen con 13–14 horas, en los 4 idiomas',
+    ['es', 'en', 'de', 'fr'].every((L) => /13/.test(TEXTS[L].jgWhy_fotoperiodo) && /14/.test(TEXTS[L].jgWhy_fotoperiodo)) && /REGLA DEL JUEGO/.test(R.etapas.floracion.ideal.fotoperiodo.verificar));
+}
+{
+  const PI2 = (st) => Object.fromEntries(Object.entries(RULES.post[st].decisiones).map(([d, v]) => [d, [].concat(v.ideal.valor ?? v.opciones[0])[0]]));
+  const cur = (ch) => E.applyPost({ ...E.newGame(), stage: 'curado', post: { secado: { c: PI2('secado'), l: {} } } }, { ...PI2('curado'), ...ch }, RULES).post.curado.l;
+  check('curado: pocos días resta 2; nunca abrir (moho) resta 8; congelador resta 2 (dos caras, sin castigo de golpe)',
+    cur({ tiempo: 'dias' }).tiempo === 2 && cur({ abrir: 'nunca' }).abrir === 8 && cur({ g_temp: 'congelador' }).g_temp === 2 && cur({ g_temp: 'calido' }).g_temp === 4,
+    JSON.stringify([cur({ tiempo: 'dias' }), cur({ abrir: 'nunca' }), cur({ g_temp: 'congelador' })]));
+  check('secado: la sala fresca es 15–21 °C y el chasquido 5–14 días, en los 4 idiomas',
+    ['es', 'en', 'de', 'fr'].every((L) => /15–21/.test(TEXTS[L].jgPH_secado_temperatura_fresca) && /5–14/.test(TEXTS[L].jgPH_secado_duracion_chasquido)));
+  check('el «¿Por qué?» del curado cuenta el hallazgo de Cornell y el del congelador sus dos caras (cannabinoides, terpenos, agua al descongelar), en los 4 idiomas',
+    ['es', 'en', 'de', 'fr'].every((L) => /Cornell/.test(TEXTS[L].jgWhy_curado_tiempo) && /Graz/.test(TEXTS[L].jgWhy_curado_g_temp) && /−20/.test(TEXTS[L].jgWhy_curado_g_temp)));
+}
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 process.exit(0);

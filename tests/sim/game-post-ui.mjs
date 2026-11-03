@@ -47,7 +47,7 @@ for (const L of ['es', 'en', 'de', 'fr']) {
   check(`${L.toUpperCase()}: la descripción cuenta el método y cada consecuencia, sin «??clave»`, ok && cap(draw('secado', { metodo: 'rejilla' }, L)).includes(TEXTS[L].jgTentM_rejilla)
     && ['secado', 'curado', 'rosin'].every((st) => !draw(st, {}, L).includes('??')));
 }
-check('«¿Por qué?» de almacenamiento cita el estudio F8; la malla, las dos patentes y C2', W.WHY.curado_g_temp.src === 'F8' && W.WHY.curado_g_forma.src === 'F8'
+check('«¿Por qué?» de almacenamiento cita el estudio F8; la malla, las dos patentes y C2', [].concat(W.WHY.curado_g_temp.src)[0] === 'F8' && W.WHY.curado_g_forma.src === 'F8'
   && JSON.stringify(W.WHY.rosin_malla.src) === '["P1","P2","C2"]' && W.WHY.rosin_malla.level === 'patente');
 
 // ------------------------------------------------------------ in the app

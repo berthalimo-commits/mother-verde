@@ -89,6 +89,15 @@ async function tabRound(b, label, max = 80) {
   return { stops, hidden: [...new Set(hidden)], invisible: [...new Set(invisible)] };
 }
 
+const TEMP = await import('file:///' + new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1').replace(/\/$/, '') + '/src/game/temp.js');
+const SPOKEN = `(() => {
+  const root = document.getElementById('juego'); if (!root) return [];
+  const out = [root.innerText];
+  for (const e of root.querySelectorAll('[aria-label], [title], [alt]')) out.push(e.getAttribute('aria-label') || '', e.getAttribute('title') || '', e.getAttribute('alt') || '');
+  for (const e of root.querySelectorAll('svg title, svg desc, svg text')) out.push(e.textContent);
+  return out.filter(Boolean);
+})()`;
+
 async function auditScreen(b, label, { keyboard = true } = {}) {
   for (const w of [320, 1920]) {
     await width(b, w);
@@ -101,6 +110,9 @@ async function auditScreen(b, label, { keyboard = true } = {}) {
     if (nm.bad.length) probs.push(`sin nombre para lector de pantalla: ${nm.bad.slice(0, 5).join(', ')}`);
     if (over) probs.push('desborde lateral');
     if (cut.length) probs.push(`texto cortado: ${cut.join(', ')}`);
+    // Bertha 2026-11-03: every temperature in °C and °F, on screen and for the screen reader
+    const oneScale = (await b.ev(SPOKEN)).flatMap((x) => TEMP.singleScale(x));
+    if (oneScale.length) probs.push(`temperatura con una sola escala: ${oneScale.slice(0, 3).join(' · ')}`);
     if (keyboard && w === 1920) {
       const k = await tabRound(b, label);
       if (k.stops.length < 2) probs.push('el teclado no entra en el juego');
@@ -109,7 +121,7 @@ async function auditScreen(b, label, { keyboard = true } = {}) {
     }
     await b.shot(`jgpulido-${label.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^\w]+/g, '-').replace(/-+$/, '').toLowerCase()}-${w}`);
     for (const p of probs) issues.push(`${label} @${w}px: ${p}`);
-    check(`${label} @${w}px: contraste (${c.n} textos), nombres, sin desborde${keyboard && w === 1920 ? ', teclado' : ''}`, probs.length === 0, probs.join(' | '));
+    check(`${label} @${w}px: contraste (${c.n} textos), nombres, °C y °F, sin desborde${keyboard && w === 1920 ? ', teclado' : ''}`, probs.length === 0, probs.join(' | '));
   }
   await width(b, 390);
 }
@@ -151,6 +163,11 @@ const cc = await b.ev(CONTRAST);
 const kk = await tabRound(b, 'control');
 check('control: el audit detecta un texto de bajo contraste y un foco invisible puestos a propósito', cc.bad.some((x) => x.includes('texto de prueba')) && kk.hidden.includes('jgFakeBtn'), JSON.stringify({ c: cc.bad.slice(0, 3), k: kk.hidden }));
 check(`control: el teclado recorre el juego (${kk.stops.length} paradas)`, kk.stops.length >= 10);
+const before = (await b.ev(SPOKEN)).flatMap((x) => TEMP.singleScale(x));
+await b.ev(`(() => { const p = document.createElement('p'); p.textContent = 'sala a 28 °C'; document.getElementById('jgBubble').after(p);
+  const i = document.createElement('span'); i.setAttribute('aria-label', 'calor de 90 °F'); p.after(i); return 1; })()`);
+const planted = (await b.ev(SPOKEN)).flatMap((x) => TEMP.singleScale(x));
+check('control: el audit detecta una temperatura con una sola escala en pantalla y en una descripción para lector de pantalla', before.length === 0 && planted.length === 2, JSON.stringify({ before, planted }));
 await b.close();
 
 console.log('2. Después de la cosecha');

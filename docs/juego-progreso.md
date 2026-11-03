@@ -645,3 +645,11 @@ Hechas en el staging publicado de `dev` y la base `ciqdnrdtaxbmcjvxljvq` (nada e
 | 9 | Pantalla que se queda cargando | Claude (simulado: el perfil no responde) | pasó: salida a los 12 s y «Reintentar» funciona |
 | — | Cambio de idioma; consola | Claude | pasó: 4 idiomas; sin errores ni bloqueos CSP |
 | — | Fallo intermitente «enviar código de regalo» | Claude | causa: la lista vieja pintaba encima de la nueva; arreglado (`0e81804`) |
+
+## Revisión de fuentes de los 90 valores (2026-11-03)
+Pedido del dueño: respaldar con estudios y guías universitarias, no con el criterio de Bertha (Bertha no valida nada
+hasta que juegue). Ya no queda ningún «[POR VERIFICAR POR BERTHA]» en `rules.json`: cada valor dice su nivel y sus
+códigos. Detalle, fuentes F12–F34 y 7 avisos al dueño en `docs/juego-fuentes.md` → «Revisión 2026-11».
+Recuento: estudio 40 · guía universitaria 2 · práctica de cultivadores 12 · práctica de la comunidad del rosin
+(orientativo) 24 · regla del juego 8 · sin fuente (criterio de la autora) 2 · etiquetas del archivo 2.
+Commits 7ef3336, 856d430 + fcf4c86, 6e41023.
