@@ -596,7 +596,7 @@ Para producción: pasos del juego añadidos en `docs/lanzamiento-produccion.md` 
 
 ## Pendientes de la plataforma
 
-### Aportes manuales (pedido del dueño, 2026-11-03) — HECHO en dev y aplicado en staging; faltan las pruebas en vivo
+### Aportes manuales (pedido del dueño, 2026-11-03) — HECHO en dev y staging, probado en vivo
 Decisión de Bertha: el admin puede registrar aportes hechos por PayPal, CashApp, transferencia, efectivo u otro medio
 acordado por correo o celular. Se hace en `dev` y staging (nada en `main` ni producción):
 - botón «Registrar aporte manual» en `/panel-mv.html`, solo admin con segundo paso de seguridad (AAL2);
@@ -616,6 +616,11 @@ falso y un aporte manual.
 «Success») y `paso5-comprobacion.sql` (9 de 9 filas «ok») en el proyecto `ciqdnrdtaxbmcjvxljvq`. La reversión NO se ejecutó.
 El staging publicado de `dev` (527c503) ya muestra la pestaña y la frase de Desbloquear. Pendiente: pruebas en vivo junto con
 Bertha (aporte manual, anulación, USDC con código falso) con la cuenta de pruebas.
+**Pruebas en vivo (2026-11-03, con Bertha, cuenta blimoc16):** (1) aporte manual PayPal 10 USD, comisión 0,59, 1 flor ->
+`trialing` pasa a `supporter` con acceso; (2) anulado con motivo -> vuelve a `trialing` sin acceso, el aporte sigue (anulado), 2
+entradas en el Registro; (3) reserva USDC + código falso -> aviso en el panel, «Comprobar en Base» = revisión manual
+(tx_no_encontrada), activación manual con motivo -> `supporter` con acceso, `claim_approved` + correo de activación en el
+Registro. Las 3 pasaron.
 
 ### Temperaturas de las lecciones en °C y °F — DESPUÉS de los aportes manuales
 Las 64 temperaturas de las lecciones (`public/main.js`) a «N °C (N °F)» con la función del juego (`src/game/temp.js`),
