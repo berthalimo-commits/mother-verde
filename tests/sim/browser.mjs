@@ -29,3 +29,18 @@ export async function browser(uid, aal, w = 420) {
   const close = async () => { ws.close(); chrome.kill(); await sleep(300); try { fs.rmSync(profile, { recursive: true, force: true }); } catch {} };
   return { send, ev, shot, text, waitFor, close, events };
 }
+
+// Game v2 (phases 6-7): a new run starts by preparing the tent and germinating.
+// startGame() does it like a person would, with a neutral equipment (the
+// effects of each piece are tested on their own) and an ideal germination, so
+// a test lands on week 1 of the seedling with health 100, as before phase 6.
+export const NEUTRAL_SETUP = [['sistema', 'maceta'], ['carpa', 'mediana'], ['luz', 'led'], ['sustrato', 'tierra'], ['maceta', 'plastico'],
+  ['maceta_tam', 'grande'], ['riego_tipo', 'mano'], ['medir', 'si']];
+export async function startGame(b, setup = NEUTRAL_SETUP, germ = [['metodo', 'taco'], ['temperatura', 'templada'], ['humedad', 'humedo']]) {
+  const fill = (form, pairs, go) => b.ev(`(() => { for (const [d, o] of ${JSON.stringify(pairs)}) document.querySelector('label[for="${form}-' + d + '-' + o + '"]')?.click(); document.getElementById('${go}')?.click(); return 1; })()`);
+  if (await b.ev(`!!document.getElementById('jgStart')`)) await b.ev(`document.getElementById('jgStart').click(); 1`);
+  else if (await b.ev(`!!document.getElementById('jgSetupForm')`)) await fill('jgSetupForm', setup, 'jgSetupGo');
+  for (let i = 0; i < 40 && !(await b.ev(`!!document.getElementById('jgGermForm') || !!document.getElementById('jgNext')`)); i++) await sleep(150);
+  if (await b.ev(`!!document.getElementById('jgGermForm')`)) await fill('jgGermForm', germ, 'jgGermGo');
+  for (let i = 0; i < 40 && !(await b.ev(`!!document.getElementById('jgNext')`)); i++) await sleep(150);
+}

@@ -1,0 +1,403 @@
+# Juego — catálogo de decisiones (para revisar ANTES de programar)
+
+Rama: **`juego`**.
+
+## Estado: APROBADO por Bertha (2026-10-28)
+
+- **Se aprueban todas las propuestas:** tamaño de carpa, macetas, tipos de semilla, germinación, trasplante y poda,
+  medir pH y EC, almacenamiento.
+- **Nivel nuevo:** «criterio de la autora (Bertha Limo)», para lo que no tenga estudio a mano. El juego lo muestra
+  así, nunca como estudio. Todo lo que este catálogo marcaba «SIN FUENTE» y Bertha aprobó pasa a ese nivel.
+- **El jugador elige TODO, con todas las opciones posibles:**
+  - **Varias plantas:** cuántas, y la carpa crece según la cantidad y el tamaño.
+  - **Macetas:** plástico, tela (lona) y las demás.
+  - **Semillas:** regular, feminizada y autofloreciente. La autofloreciente tiene su calendario más corto y se
+    construye después del núcleo.
+  - **Germinación:** todos los métodos (papel toalla, taco tipo jiffy, directo en tierra, directo en coco, vaso de
+    agua, cubo de lana de roca…), con riesgos y tiempos propios.
+  - **Sustratos y sistemas:** todos.
+  - **Trasplante y poda o entrenamiento:** sí.
+  - **Almacenamiento:** luz, calor, humedad, oxígeno, envase, tiempo, frío y congelador.
+  - **Rosin:** todas las decisiones, con cifras (ver 8.0).
+- **Orden de construcción:**
+  1. fase 8 (secado, curado, almacenamiento y rosin);
+  2. fases 6 y 7 (sistemas y germinación; antes, la fase 5: migración nueva);
+  3. varias plantas y autofloreciente;
+  4. fase 9.
+- **Reglas:**
+  - Sin citas ni cifras inventadas. Primero, fuentes reales comprobadas.
+  - Lo que no tenga fuente: «criterio de la autora» o **[CIFRA: BERTHA]**, en la lista de abajo.
+  - El laboratorio de solventes y CO₂ sigue sin números, pasos ni marcas.
+
+### Fase 8 — lo que se construye (especificación)
+
+Códigos de fuente: los de `docs/juego-fuentes.md` (F8 = Milay et al. 2020; P1 y P2 = patentes del rosin).
+«Ideal» = la opción que no resta. Varias opciones ideales = cualquiera de ellas vale. Sin ideal = no puntúa (solo
+enseña).
+
+**Secado**
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Método | planta entera colgada · ramas colgadas · rejilla (cogollos sueltos) | entera o ramas | criterio de la autora |
+| Temperatura | fresca · templada · cálida | fresca | práctica (plataforma, SOP-01) |
+| Humedad | baja · media · alta | media | práctica (SOP-01) |
+| Aire | contra la pared · directo a las flores · sin aire | contra la pared | práctica (Equipamiento 5) |
+| Luz | oscuro · con luz | oscuro | **estudio F8** (la luz degrada los cannabinoides) |
+| Cuándo terminar | a los pocos días · prueba del chasquido · muchas semanas | chasquido | práctica (SOP-01) |
+
+**Curado**
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Envase | frasco de vidrio · bolsa de plástico · lata · bolsa de curado con control de humedad | vidrio o bolsa de curado | práctica (vidrio: Equipamiento 6) · criterio de la autora (las demás) |
+| Control de humedad | sin control · higrómetro en el frasco · sobre de humedad de dos vías | higrómetro o sobre | criterio de la autora (la plataforma pide 58–62 %, SOP-02) |
+| Abrir el frasco | nunca · a diario la primera semana · siempre abierto | a diario | práctica (Temporizador de secado) |
+| Tiempo | días · semanas · meses | semanas o meses | práctica (SOP-02) · criterio de la autora (meses) |
+
+**Almacenamiento** (en la misma pantalla del curado; una pantalla aparte necesitaría la migración de la fase 5)
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Luz | oscuro · luz indirecta · al sol | oscuro | **estudio F8** |
+| Temperatura | lugar fresco · ambiente cálido · nevera · congelador | fresco o nevera | **estudio F8** (25 °C, el peor para los cannabinoides; 4 °C a oscuras, mejor; bajo −20 °C, el peor para los terpenos) |
+| Aire en el envase | envase lleno · medio vacío · abierto | lleno | **estudio F8** (más superficie al aire = más oxidación) · criterio (medio vacío) |
+| Forma | cogollos enteros · molido | enteros | **estudio F8** |
+| Tiempo guardado | semanas · meses · años | semanas o meses | **estudio F8** (los terpenos bajan rápido en cualquier condición) · criterio de la autora (el corte entre meses y años) |
+
+**Rosin** (opcional; cifras solo aquí, siempre «orientativo»)
+| Decisión | Opciones | Ideal | Respaldo |
+|---|---|---|---|
+| Material de partida | flor curada · hachís · kief · material fresco congelado · flor fresca sin congelar | todas menos fresca sin congelar | práctica (Glosario: Hash rosin «mayor pureza», Live rosin «material fresco congelado») · criterio (sin congelar) |
+| Malla | sin bolsa · fina (5–25 µm, orientativo) · estándar (25–220 µm, orientativo) | fina o estándar | **patentes P1 y P2** (rangos) · criterio de la autora (sin bolsa = restos de planta) |
+| Calor | bajo · medio · alto (las patentes usan placas de 49 a 116 °C, orientativo) | medio | práctica (Concentrados: «temperatura media») · rango: **P2** |
+| Presión | baja · media · alta | — (no puntúa) | **[CIFRA: BERTHA]**: unidad y valores. **Hoy la prueba de seguridad del juego prohíbe escribir la unidad de presión** |
+| Tiempo de prensado | corto · medio · largo | — (no puntúa) | **[CIFRA: BERTHA]**: ninguna fuente da tiempos |
+| Tipo de prensa | manual · hidráulica · neumática · eléctrica | — (no puntúa) | criterio de la autora (cambia el control, no la nota) |
+| Papel | pergamino · papel común · sin papel | pergamino | práctica (Concentrados) |
+| Enfriado | enfriar antes de recoger · dejar al aire · manipular en caliente | enfriar o al aire | criterio de la autora |
+| Guardar el rosin | frío y oscuro · temperatura ambiente · a la luz | frío y oscuro | **estudio F8** |
+| Prioridad | sabor · rendimiento | — (no puntúa) | criterio de la autora (más calor = más rendimiento y menos terpenos; sin estudio) |
+| Protección | guantes · sin protección | guantes | simplificación (seguridad) |
+
+### Fases 6 y 7 — lo que se construye (especificación, 2026-10-29)
+
+**Antes de plantar (pantalla «Prepara tu carpa», una vez por partida).** La semilla (regular / autofloreciente) y
+el número de plantas llegan en la etapa siguiente («varias plantas y autofloreciente»). Hasta entonces, la partida
+es una planta feminizada.
+
+| Decisión | Opciones | Consecuencia en el juego | Respaldo |
+|---|---|---|---|
+| Carpa | pequeña · mediana · grande | pequeña: con la lámpara fuerte en floración y una planta alta, **quemadura de luz**; grande: cuesta más mantener el clima (cada error de temperatura o humedad resta un punto más) y la cosecha suma +5 | criterio de la autora |
+| Luz | LED · HPS · CMH | HPS: la temperatura sube un nivel (templada cuenta como cálida) | práctica (Glosario: HPS «genera más calor») · simplificación |
+| Sistema | maceta con sustrato · DWC · NFT · aeroponía · acuaponía | hidroponía (DWC, NFT, aeroponía): no hay decisión de riego; con temperatura cálida 2 semanas, **pudrición de raíz** · acuaponía: los nutrientes los dan los peces (no hay decisión de nutrientes), pero el agua también puede calentarse | **estudio F9** (en lechuga) + F3 · criterio de la autora (acuaponía) |
+| Sustrato (solo maceta) | tierra · fibra de coco · lana de roca · tierra viva | coco y lana de roca: hay que nutrir desde la plántula (si no, carencia) · tierra: la carencia tarda una semana más · tierra viva: no hace falta nutrir (bajos = bien) | práctica (Glosario: coco «requiere fertirriego») · criterio de la autora |
+| Maceta (solo maceta) | plástico · tela · maceta de aire · barro | tela, aire y barro: el sustrato seca antes (el exceso de riego tarda una semana más; «poco» riego resta el doble) | **estudio F10** (en vivero) + F3 · criterio (barro) |
+| Tamaño de maceta | pequeña · grande | pequeña: hay que **trasplantar** en vegetativo; si no, desde la 3.ª semana de vegetativo resta cada semana | criterio de la autora (Glosario: trasplante) |
+| Riego (solo maceta) | a mano · goteo | goteo: el oídio tarda una semana más en aparecer | **guía F5** |
+| Medir pH y EC | sí · no | no: el medidor de nutrientes muestra «sin medir» y las opciones no muestran cifras de EC (se juega a ciegas) | simplificación |
+
+**Germinación (etapa nueva, antes de la plántula; una pantalla).**
+| Decisión | Opciones | Consecuencia | Respaldo |
+|---|---|---|---|
+| Método | papel húmedo · taco (tipo jiffy) · directo en tierra · directo en coco · vaso de agua · cubo de lana de roca | papel y vaso: hay que pasar la semilla con la raíz al aire (riesgo de dañarla); taco, tierra, coco y lana de roca: sin tocar la raíz | criterio de la autora |
+| Temperatura | fría (menos de 19 °C) · templada (19–30 °C) · calurosa (más de 30 °C) | templada = ideal; fría = germina más lento | **estudio F11** |
+| Humedad | seco · húmedo · empapado | húmedo = ideal; seco = no germina; empapado = la semilla se ahoga | criterio de la autora |
+| Cuánto tiempo (solo vaso de agua) | menos de un día · varios días | varios días en el agua = la semilla se ahoga | criterio de la autora (el estudio de 1968 no se pudo comprobar) |
+
+Los errores de germinación restan salud al empezar la plántula y se explican con «¿Por qué?».
+
+### 8.2 Sub-fase 8b — Preparar el material de partida (sin solventes) · especificación 2026-10-29
+
+Etapa nueva y opcional entre el curado y la prensa. El material que sale de aquí decide el material del rosin:
+- sin separar → flor;
+- tamizado en seco → kief;
+- agua y hielo → hachís.
+
+Sigue el botón «Terminar sin hacer rosin». Fuentes C1–C4 en `docs/juego-fuentes.md` («práctica de la comunidad»,
+nunca respaldo de esas marcas). **Ningún solvente**: el laboratorio de solventes y CO₂ no cambia.
+
+| Decisión | Opciones | Ideal / consecuencia | Respaldo |
+|---|---|---|---|
+| Material de partida | flor curada · flor fresca congelada · flor liofilizada · recortes y hojas de azúcar | no puntúa por sí solo; con agua y hielo, la flor congelada es la que el manual recomienda | **práctica de la comunidad C3** · criterio de la autora (liofilizada, recortes) |
+| Cómo separar | sin separar (prensar la flor) · tamizado en seco · agua y hielo | no puntúa: cambia lo que llega a la prensa | criterio de la autora |
+| *Tamizado:* frío | material congelado · a temperatura ambiente | congelado; a temperatura ambiente, más restos de planta | **C4** (congelar unas dos horas antes) |
+| *Tamizado:* malla del tamiz | fina · media · gruesa **[CIFRA: BERTHA]** | fina o media; gruesa deja pasar restos de planta | criterio de la autora (C4 no da mallas) |
+| *Tamizado:* cómo frotar | suave · fuerte | suave; fuerte arranca restos de planta | criterio de la autora |
+| *Tamizado:* cuánto tiempo | corto · largo | corto (la primera tanda es la más pura) | **C4** (primera vuelta de 2 a 5 minutos) |
+| *Agua y hielo:* temperatura del agua | helada (3–5 °C) · fría sin hielo · templada | helada | **C3** |
+| *Agua y hielo:* agitación | suave, por tandas con pausas · fuerte y seguida | suave por tandas; fuerte arranca restos | **C3** (velocidad baja, tandas de 15 min con pausas) |
+| *Agua y hielo:* lavados | uno · varios | no puntúa: varios dan más cantidad | **C3** (el agua fría se reutiliza en varias cargas) · criterio de la autora |
+| *Agua y hielo:* bolsa de malla | fina · media · gruesa **[CIFRA: BERTHA]** | fina o media; gruesa deja pasar restos | **C1** (25 µm, lo habitual para prensar hachís de agua) · criterio de la autora |
+| *Agua y hielo:* secado del hachís | desmenuzado al aire · liofilizado · con deshumidificador · en bola húmeda | cualquiera menos la bola húmeda; **húmedo = moho** | **C3** (secar enseguida o se enmohece) · criterio de la autora (liofilizado, deshumidificador) |
+
+**Grado de pureza.** Sale de los errores de esta etapa: sin errores, alto; uno, medio; dos o más, bajo. Se ve en
+el dibujo (más o menos restos verdes en la resina). Con pureza baja, el rosin sale con restos. Los errores
+cuentan en el veredicto del rosin, no en la nota del cogollo.
+
+**[CIFRA: BERTHA] de esta etapa:**
+- micras de cada malla del tamiz (fina, media, gruesa);
+- micras de cada bolsa de agua y hielo. C1 solo respalda los 25 µm, y los rangos que propone Bertha (hachís seco
+  45–90 µm, hachís fresco 25–73 µm) no tienen otra fuente leída.
+
+### Para validar por Bertha (lista aparte)
+1. **[CIFRA: BERTHA]:**
+   - presión del rosin: unidad y rangos por nivel; además, si se permite escribir esa unidad solo en el rosin;
+   - tiempo de prensado por nivel;
+   - qué malla va con cada material (flor, hachís, kief, fresco congelado);
+   - los cortes de calor bajo, medio y alto dentro del rango orientativo de 49 a 116 °C.
+2. **Criterio de la autora (confirma o corrige):**
+   - secado: método;
+   - curado: envases distintos del vidrio, control de humedad y meses de curado;
+   - almacenamiento: «medio vacío» y el corte meses / años;
+   - rosin: «flor fresca sin congelar» como error, «sin bolsa» = restos de planta, enfriado, prioridad, tipo de
+     prensa.
+3. **Sin cambios:** secado y curado siguen con las cifras de la plataforma (15–18 °C, 55–60 %, 58–62 %), que no
+   tienen fuente externa comprobada.
+
+---
+
+*Lo que sigue es el borrador revisado (2026-10-27), tal como lo vio Bertha.*
+- Las etapas de cultivo (secciones 1 a 5) se programan en las fases 6 y 7, después de la revisión de Bertha.
+- Secado, curado y rosin (secciones 6 a 8) son la **fase 8**: **esperan la aprobación de este catálogo**.
+
+**Cómo leerlo.** Cada decisión tiene sus opciones; cada opción dice qué mejora (＋) y qué empeora (－) en el juego,
+y de dónde sale. Los niveles y los códigos F1–F7 son los de `docs/juego-fuentes.md`:
+- **estudio** (estudio publicado leído);
+- **guía** (guía técnica universitaria leída);
+- **práctica** (lo dice la plataforma o los cultivadores, sin fuente externa comprobada);
+- **simplificación** (regla de juego);
+- **SIN FUENTE** (propuesta mía sin respaldo: Bertha decide si se queda).
+
+**Reglas que sigo.**
+- No escribo cifras nuevas ni citas inventadas: si una opción necesita una cifra y no hay fuente, queda «nivel» o
+  **[CIFRA: BERTHA]**.
+- Cada consecuencia llevará un botón «¿Por qué?» con su razón y su fuente.
+- El laboratorio de solventes y CO₂ sigue conceptual (sin números, pasos ni marcas). El **rosin no es ese
+  laboratorio** (no usa solventes), pero hasta hoy está decidido que el rosin del juego va **sin cifras**. Ver la
+  pregunta 8.0.
+
+**Marcas para Bertha:** ✏️ = corrige o confirma con tu experiencia; ❓ = necesito tu decisión.
+
+---
+
+## 1. Antes de plantar: el equipo
+
+### 1.1 Tamaño de la carpa
+| Opción | ＋ | － | Respaldo |
+|---|---|---|---|
+| Pequeña | se controla fácil el clima | poca altura: la planta choca con la lámpara si no se controla el estirón | SIN FUENTE (propuesta) ✏️ |
+| Mediana | equilibrio | — | SIN FUENTE ✏️ |
+| Grande | más planta y más cosecha | cuesta más mantener humedad y temperatura parejas | SIN FUENTE ✏️ |
+
+❓ La plataforma no habla de tamaños de carpa. ¿Se queda la decisión? Si se queda, ¿qué consecuencias reales
+quieres que tenga (altura máxima, cuántas plantas, cuánto cuesta controlar el clima)?
+
+### 1.2 Tipo de luz
+| Opción | ＋ | － | Respaldo |
+|---|---|---|---|
+| LED | más eficiente, menos calor | — | práctica (Glosario de la plataforma: HPS es «menos eficiente que LED, genera más calor») |
+| HPS (sodio de alta presión) | espectro cálido, usado en floración | más calor → sube la temperatura de la carpa | práctica (Glosario: HPS) |
+| CMH (halogenuro metálico cerámico) | — | — | práctica (Glosario: CMH) ✏️ ¿qué consecuencia le damos? |
+
+**Efecto en el juego (propuesta).** La luz no cambia el punto ideal de intensidad (eso lo marca F1: en floración,
+más luz = más cosecha). HPS sube un nivel la temperatura si no se ventila. Esto último es una **simplificación**
+basada en el glosario ✏️.
+
+### 1.3 Maceta o contenedor
+| Opción | ＋ | － | Respaldo |
+|---|---|---|---|
+| Maceta de plástico | barata | el sustrato tarda más en secar → más riesgo de exceso de riego (F3) | SIN FUENTE para la diferencia entre macetas ✏️ |
+| Maceta de tela | el sustrato respira y seca antes | hay que regar más a menudo | SIN FUENTE ✏️ |
+| Maceta grande / pequeña | — | maceta pequeña: hay que trasplantar (Glosario: «trasplante») | práctica ✏️ |
+
+❓ ¿Quieres esta decisión? Las consecuencias que propongo no tienen fuente comprobada.
+
+### 1.4 Sustrato
+| Opción | ＋ | － | Respaldo |
+|---|---|---|---|
+| Tierra (con nutrientes) | perdona errores de nutrición | — | SIN FUENTE para «perdona» ✏️ |
+| Fibra de coco | «retiene humedad de forma eficiente, tiene buena aireación» | «bajo contenido nutricional propio (requiere fertirriego)» → si no se nutre, carencia (F2) | práctica (Glosario: Fibra de coco) |
+| Lana de roca | — | — | práctica (Glosario) ✏️ |
+| Tierra viva (living soil) | — | — | práctica (Sistemas → Living soil, cita rodaleinstitute.org) ✏️ |
+
+### 1.5 Genética / tipo de semilla
+| Opción | ＋ | － | Respaldo |
+|---|---|---|---|
+| Fotoperiódica feminizada | se controla cuándo florece (12/12, F1) | — | estudio (F1, el 12/12) + SIN FUENTE para «feminizada» ✏️ |
+| Autofloreciente | florece sola, sin cambiar a 12/12 | — | **SIN FUENTE** (la plataforma no la explica) ❓ |
+| Regular | — | puede salir macho → hay que reconocerlo y retirarlo | **SIN FUENTE** ❓ |
+
+❓ La plataforma no explica tipos de semilla. Para meter esta decisión necesito que me digas qué fuente usar o que
+lo marquemos como «práctica de cultivadores». Además, «autofloreciente» cambia todo el calendario del juego.
+
+### 1.6 Sistema de cultivo
+Ya está en la lista del diseño (fase 6, punto 4.1 de `docs/juego-diseno-v2.md`). Opciones con respaldo en la
+plataforma (Sistemas): **indoor, invernadero, hidroponía (DWC, NFT), acuaponía, living soil**. Cada una cita su
+fuente en la plataforma: Cornell, UC Davis, Oregon State (EM 9457 NFT), Oklahoma State (acuaponía), Rodale.
+**No las abrí todavía:** las abro y las pongo en `juego-fuentes.md` antes de programar la fase 6.
+
+---
+
+## 2. Germinación
+
+Ya está en la lista del diseño (fase 7, punto 4.2). Métodos propuestos: papel húmedo, directo en sustrato, vaso de
+agua, taco de propagación.
+**La plataforma no compara métodos de germinación** (solo define «germinación», «raíz pivotante» y «sala de
+propagación»). Todos quedan **SIN FUENTE** hasta que Bertha diga qué fuente usar o los marque como práctica. ❓
+
+---
+
+## 3. Plántula y vegetativo (ya en el juego)
+
+| Decisión | Opciones | Consecuencia (hoy) | Respaldo |
+|---|---|---|---|
+| Fotoperiodo | 18/6 · 12/12 | 12/12 en vegetativo = empieza a florecer (antes de la semana 3: −8) | estudio F1 |
+| Intensidad | baja · media · alta | fuera del ideal resta salud | estudio F1 (floración) · práctica (rangos) |
+| Riego | poco · moderado · mucho | «mucho» 2 semanas → exceso de riego | guía F3 |
+| Nutrientes | bajos · medios · altos | «bajos» en vegetativo → carencia de N | guía F2 |
+| Temperatura | fresca · templada · cálida | cálida + humedad baja → ácaros | guía F6 |
+| Humedad | baja · media-alta · alta | alta → oídio | guía F5 |
+
+Nuevas decisiones **propuestas** (❓ ¿las quieres?):
+- **Trasplante** (sí / no): con maceta pequeña sin trasplante, la planta crece menos. SIN FUENTE.
+- **Poda / entrenamiento** (ninguno / doblar / podar la punta): la plataforma tiene técnicas de entrenamiento en
+  Cultivo, pero no las revisé. Las reviso si dices que sí.
+
+---
+
+## 4. Floración y momento de cosecha (ya en el juego)
+
+| Decisión | Opciones | Consecuencia | Respaldo |
+|---|---|---|---|
+| Humedad | baja · media-alta · alta | alta → botrytis (pudrición del cogollo) | guía F4 |
+| Intensidad | — | más luz → más cosecha | estudio F1 |
+| Momento de cosecha | por color de tricomas | transparentes −15; lechosos +15; mezcla con ámbar +20; ámbar +5 | práctica (color) · simplificación (puntos) ✏️ |
+
+---
+
+## 5. Riego y nutrientes como equipo (propuesta)
+
+| Decisión | Opciones | Consecuencia | Respaldo |
+|---|---|---|---|
+| Medir pH/EC | sí / no | si no se mide, el jugador no ve el nivel real de nutrientes (se juega «a ciegas») | simplificación ✏️ |
+| Tipo de riego | a mano / goteo | goteo: menos humedad en las hojas → menos oídio | guía F5 («Drip irrigation will lessen the chance of higher humidity») |
+
+---
+
+## 6. Secado (fase 8 — espera aprobación)
+
+| Decisión | Opciones | ＋ / － | Respaldo |
+|---|---|---|---|
+| Método | planta entera colgada · ramas colgadas · rejilla (cogollos sueltos) | colgar entero = más lento y parejo; rejilla = más rápido, más riesgo de secar de más | SIN FUENTE ✏️ |
+| Temperatura | fresca · templada · cálida | fresca = ideal hoy | práctica (SOP-01, cifras sin fuente comprobada) |
+| Humedad | baja · media · alta | baja = seca demasiado rápido; alta = moho | práctica (SOP-01) · moho con humedad alta: guía F4 (botrytis) |
+| Aire | directo a las flores · contra la pared · sin aire | sin aire = moho; directo = seca de más por fuera | práctica (Equipamiento 5) |
+| Luz | oscuro · con luz | oscuro = ideal | práctica (Equipamiento 5) |
+| Cuándo terminar | por días · prueba del chasquido | chasquido = ideal | práctica (SOP-01 y Temporizador) |
+
+---
+
+## 7. Curado y envase (fase 8 — espera aprobación)
+
+| Decisión | Opciones | ＋ / － | Respaldo |
+|---|---|---|---|
+| Envase | frasco de vidrio · bolsa de plástico · lata / caja | vidrio = ideal; plástico = SIN FUENTE para la consecuencia ✏️ | práctica (Equipamiento 6) |
+| Control de humedad en el frasco | sin control · higrómetro · sobre de humedad de 2 vías | — | práctica (SOP-02: 58–62 %, sin fuente comprobada) ✏️ |
+| Abrir el frasco | nunca · a diario la 1.ª semana · siempre abierto | nunca = riesgo de moho; diario = ideal | práctica (Temporizador de secado) |
+| Tiempo | días · semanas · meses | semanas = ideal hoy | práctica (SOP-02) ✏️ |
+| Almacenamiento final | oscuro y fresco · a la luz · en el congelador | luz y calor degradan | SIN FUENTE comprobada ❓ |
+
+---
+
+## 8. Rosin (fase 8 — espera aprobación)
+
+### 8.0 Decisión de Bertha (2026-10-28) ✅
+**El rosin puede llevar cifras**, con estas condiciones:
+- solo el rosin (prensado mecánico, sin solventes);
+- cada cifra con una **fuente comprobable**;
+- cada cifra marcada en el juego como **«orientativo»**.
+
+**El laboratorio de solventes y CO₂ sigue sin ninguna cifra.** La fase 8 **no se construye** hasta que Bertha revise
+este catálogo. Antes de esa revisión, busco y compruebo fuentes para cada cifra (micras de la malla, calor, presión,
+tiempo, almacenamiento) y las pongo aquí y en `docs/juego-fuentes.md`. Lo que no tenga fuente comprobable queda
+**[CIFRA: BERTHA]**.
+
+Texto anterior de la pregunta (para el historial): hasta el 2026-10-27 estaba decidido **rosin solo cualitativo,
+sin cifras** (docs/juego-diseno-v2.md, punto 1), y se pedía elegir una de estas dos:
+- **(a)** Mantener «sin cifras»: las opciones son niveles (malla fina / media / gruesa; calor bajo / medio / alto;
+  presión baja / media / alta; tiempo corto / medio / largo).
+- **(b)** Permitir cifras **solo para el rosin**. Entonces tú me das cada cifra con su fuente: **la plataforma no
+  tiene ninguna** (no menciona micras, temperaturas, presiones ni tiempos de prensado). Yo no las invento.
+
+El laboratorio de solventes y CO₂ no cambia en ningún caso.
+
+### 8.1 Decisiones (en niveles mientras no decidas)
+| Decisión | Opciones | ＋ / － | Respaldo |
+|---|---|---|---|
+| Material de partida | flor curada · hachís tamizado · material fresco congelado | hachís = «generalmente mayor pureza»; fresco congelado (live rosin) = «preserva terpenos más frescos» | práctica (Glosario: Hash rosin, Live rosin) |
+| Tipo de malla | sin bolsa · malla fina · media · gruesa **[MICRAS: BERTHA, con fuente]** | — | **SIN FUENTE** ❓ |
+| Calor | bajo · medio · alto | medio = ideal hoy | práctica (Concentrados, sin cifra) |
+| Presión | baja · media · alta | hoy **no puntúa** | **SIN FUENTE** ❓ |
+| Tiempo de prensado | corto · medio · largo **[CIFRA: BERTHA]** | — | **SIN FUENTE** ❓ |
+| Papel | pergamino · otro | pergamino = ideal | práctica (Concentrados) |
+| Protección | guantes · sin guantes | sin guantes = quemadura | simplificación (seguridad) |
+| Almacenamiento | frío y oscuro · temperatura ambiente · a la luz | — | **SIN FUENTE** ❓ |
+
+---
+
+## Resumen para revisar
+
+- **Con fuente comprobada** (estudio o guía): fotoperiodo, luz en floración, riego (exceso), carencia de N,
+  ácaros, oídio, botrytis, humedad < 50 % en floración, riego por goteo.
+- **Solo práctica de la plataforma:** tipos de luz, sustratos, secado, curado, material del rosin, papel.
+- **Sin fuente, necesitan tu decisión:**
+  - tamaño de carpa, macetas, tipos de semilla y métodos de germinación;
+  - trasplante, almacenamiento;
+  - malla y micras, presión y tiempo del rosin;
+  - si el rosin puede llevar cifras (8.0).
+
+### Varias plantas y autofloreciente — lo que se construye (especificación, 2026-11-02)
+
+Dos decisiones nuevas en «Prepara tu carpa», para todos los sistemas. Vienen marcadas «feminizada» y «1 planta»
+(lo que había antes); las partidas guardadas sin ellas siguen igual.
+
+| Decisión | Opciones | Consecuencia en el juego | Respaldo |
+|---|---|---|---|
+| Semilla | feminizada · regular · autofloreciente | ver abajo | **práctica** (Cultivo → Genética «Autofloración vs. fotoperiodo»; Propagación «Semillas feminizadas»; Glosario «planta macho») |
+| Plantas | 1 a 6; caben 2 en la carpa pequeña, 4 en la mediana, 6 en la grande | la carpa se dibuja con todas; la cosecha dice cuántas hembras se cosecharon | criterio de la autora |
+
+**Regular.** La mitad de las plantas salen macho (con número impar, hacia arriba o hacia abajo según la partida;
+siempre queda al menos una hembra: simplificación). Se ven en la 1.ª semana de floración (sacos de polen) y hay
+un botón «Retirar los machos» (bloqueado, como el trasplante, mientras haya un problema sin responder). Si siguen
+en la carpa al pasar la 2.ª semana de floración sueltan polen: los cogollos se llenan de semillas y la cosecha
+pierde **25 puntos** (valor de juego; criterio de la autora, validado por Bertha el 2026-11-02). Respaldo: Glosario «planta macho» («se elimina para
+evitar polinización no deseada»).
+
+**Autofloreciente.** Florece por edad (Genética): tras 2 semanas de vegetativo pasa sola a floración; elegir 12/12
+en vegetativo no la adelanta y cuenta como menos luz (−8, como cualquier fotoperiodo equivocado en vegetativo).
+En floración da igual 18/6 o 12/12. Tricomas: lechosos en la 3.ª semana de floración, punto (mezcla) en la 5.ª,
+ámbar en la 7.ª; se cosecha sola al pasar la 8.ª. Así el punto llega a las **9 semanas desde la semilla**, dentro
+de las 8–10 que da Genética. Al ser una planta pequeña, no llega a la quemadura de luz de la carpa pequeña.
+
+**Para que Bertha valide (criterio de la autora / valor de juego):** cuántas plantas caben en cada carpa; «la mitad
+macho y siempre una hembra»; ver machos en la 1.ª semana y polen al pasar la 2.ª; −15 por polinización; 2 semanas
+de vegetativo y las semanas de tricomas de la autofloreciente; ¿tener más plantas debería cambiar algo más (por
+ejemplo, más humedad en la carpa llena)? Por ahora no cambia nada más.
+
+**Servidor.** Migración nueva `20261031100000_game_plants.sql` (solo añade la clave `machos`: «retirados» o
+«tarde»); la semilla y las plantas ya las aceptaba la de la fase 5. Copia para pegar en staging:
+`supabase/staging/paso4d-juego-plantas.sql`; deshacer: `supabase/admin/rollback-20261031100000.sql`.
+
+### Validación de Bertha (2026-11-02, respuestas a `docs/juego-validacion.md`)
+
+| # | Valor | Decisión de Bertha | Respaldo |
+|---|---|---|---|
+| 1 | Plantas por carpa: 2 / 4 / 6 | se queda | criterio de la autora, validado por Bertha |
+| 2 | Regulares: la mitad macho, siempre una hembra | se queda; el «¿Por qué?» explica que en la vida real cada semilla es azar | Glosario (planta macho) · criterio de la autora, validado por Bertha |
+| 3 | Machos visibles en la 1.ª semana de floración; polen al pasar la 2.ª | se queda | criterio de la autora, validado por Bertha |
+| 4 | Resta por polinización | **−25** (antes −15) | criterio de la autora, validado por Bertha |
+| 5 | Autofloreciente: florece tras 2 semanas de vegetativo; punto a las 9 desde la semilla | se queda | Cultivo → Genética (8–10 semanas) · semanas exactas: criterio de la autora, validado por Bertha |
+| 6 | Carpa llena (todas las plantas que caben, sin contar machos retirados) | la humedad cuenta un nivel más alta, como el HPS con la temperatura; en floración «Baja» se queda en «Baja» (el deshumidificador alcanza). Siempre hay una opción sin pérdida: «Baja» en vegetativo cuenta como «Media-alta» (lo ideal). Más humedad trae antes oídio y botrytis por las reglas de siempre. Con su «¿Por qué? · Carpa llena» | criterio de la autora, validado por Bertha (regla final elegida por el dueño el 2026-11-02, tras ver que la opción 1 dejaba una pérdida inevitable en vegetativo) |
+| 7 | Calor: bajo 49–80 · medio 80–95 · alto 95–116 °C | **orientativo**, en las pistas y en su «¿Por qué?» | rango: **P2** · cortes: criterio de la autora, validado por Bertha |
+| 8 | Presión | se queda en niveles, sin cifras | — |
+| 9 | Tiempo «medio»: 90–120 s | **orientativo**, en la pista | **C2** (práctica de la comunidad) · validado por Bertha |
+| 10 | Malla por material: flor seca 90 µm · hachís de agua 25 µm | **orientativo**, en las pistas y en su «¿Por qué?» (la nota no cambia: fina y estándar siguen valiendo) | **C2** (90 µm) · **C1** (25 µm) · rangos fina/estándar: **P1/P2** · validado por Bertha |
+| 11 | Bolsa fina de agua y hielo: 25 µm | **orientativo**, en la pista y en su «¿Por qué?» | **C1** · validado por Bertha |

@@ -65,7 +65,8 @@ with expected(kind, name) as (values
   ('column',   'public.support_claims.review_history'),
   ('function', 'public.admin_pending_claims()'),
   ('function', 'public.access_info(uid uuid)'),
-  ('function', 'public.my_access()')
+  ('function', 'public.my_access()'),
+  ('table',    'public.game_progress')
 ), present as (
   select 'policy' kind, schemaname || '.' || tablename || '.' || policyname name from pg_policies
   union all
