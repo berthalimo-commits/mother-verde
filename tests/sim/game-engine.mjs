@@ -214,5 +214,24 @@ check('poses: todas reutilizan el mismo cuerpo, cabeza y gafas del científico, 
   Object.keys(P.POSES).every((id) => { const v = P.poseSvg(id); return v.includes('M26 24 Q34 20 40 30 Q42 40 34 48 Q26 52 20 46 Q16 36 26 24 Z') && v.includes('r="9"') && /aria-hidden="true"/.test(v) && !/#[0-9a-f]{3,6}/i.test(v); })
   && P.poseSvg('nada').includes('data-pose="original"'));
 
+console.log('6. Decisiones de Bertha sobre las fuentes (2026-11-03)');
+{
+  const R = RULES;
+  const wk = (stage, nutri) => {
+    const s = { ...E.newGame(), stage, week: 5, stageWeek: 2, health: 100 };
+    const ch = { ...E.defaultChoices(s, R) };
+    for (const d of E.DECISIONS) { const w = E.ideal(R, stage, d, undefined); if (w !== null) ch[d] = [].concat(w)[0]; }
+    ch.nutrientes = nutri;
+    return 100 - E.applyWeek(s, ch, R).health;
+  };
+  check('nutrientes «Alto» en floración resta 2; en vegetativo sigue restando 4', wk('floracion', 'alto') === 2 && wk('vegetativo', 'alto') === 4, `${wk('floracion', 'alto')} / ${wk('vegetativo', 'alto')}`);
+  check('nutrientes «Bajo» en floración sigue con la resta normal (4)', wk('floracion', 'bajo') === 4);
+  check('la pista de temperatura cambia en floración (24–28 °C) y no en vegetativo (24–30 °C), en los 4 idiomas',
+    E.hintKey('temperatura', 'templada', 'floracion') === 'jgH_temperatura_templada_fl' && E.hintKey('temperatura', 'templada', 'vegetativo') === 'jgH_temperatura_templada'
+    && E.hintKey('temperatura', 'fresca', 'floracion') === 'jgH_temperatura_fresca'
+    && ['es', 'en', 'de', 'fr'].every((L) => /24–30/.test(TEXTS[L].jgH_temperatura_templada) && /24–28/.test(TEXTS[L].jgH_temperatura_templada_fl) && /30/.test(TEXTS[L].jgH_temperatura_calida) && /28/.test(TEXTS[L].jgH_temperatura_calida_fl)));
+  check('el «¿Por qué?» del fotoperiodo dice que muchas variedades florecen con 13–14 horas, en los 4 idiomas',
+    ['es', 'en', 'de', 'fr'].every((L) => /13/.test(TEXTS[L].jgWhy_fotoperiodo) && /14/.test(TEXTS[L].jgWhy_fotoperiodo)) && /REGLA DEL JUEGO/.test(R.etapas.floracion.ideal.fotoperiodo.verificar));
+}
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
 process.exit(0);

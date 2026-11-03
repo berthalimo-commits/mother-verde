@@ -441,14 +441,14 @@ function objButtons(open, ctx, setup) {
 
 // The panel of the open object: the same options as the list below (same
 // rules); choosing here ticks the list too.
-function panelHtml(open, choices, blocked, ctx) {
+function panelHtml(open, choices, blocked, ctx, stage) {
   const { t, esc, RULES } = ctx;
   const fields = OBJECTS[open].d.map((d) => `<fieldset class="jg-field">
       <legend>${t('jgD_' + d)}</legend>
       <div class="jg-opts">${RULES.opciones[d].map((o) => {
         const id = `jgt-${d}-${o.replace('/', '-')}`;
         return `<input type="radio" name="jgt-${d}" id="${id}" value="${o}"${choices[d] === o ? ' checked' : ''}${blocked ? ' disabled' : ''}>
-          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span><small>${t(`jgH_${d}_${o}`)}</small></label>`;
+          <label for="${id}"><span>${t(`jgO_${d}_${o}`)}</span><small>${t(E.hintKey(d, o, stage))}</small></label>`;
       }).join('')}</div>
     </fieldset>`).join('');
   return `<div class="jgt-panel" id="jgtPanel" role="group" aria-labelledby="jgtPanelH" data-obj="${open}">
@@ -616,7 +616,7 @@ export function tentHtml(state, choices, ctx, ui = {}) {
     <div class="jgt-scene">
       <div class="jgt-stage">${tentSvg(state, sc, ch, light, { ...ctx, anim: play && ui.anim, post, setup: ui.setup || state.setup, germ: ui.germ })}${play ? objButtons(open, ctx, ui.setup || state.setup) : ''}</div>
       ${play ? `<p class="jgt-hint">${ctx.esc(ctx.t('jgTentHint'))}</p>` : ''}
-      ${open ? panelHtml(open, ch, !!ui.blocked, ctx) : ''}
+      ${open ? panelHtml(open, ch, !!ui.blocked, ctx, state.stage) : ''}
     </div>
     ${play ? gauges(ch, ctx, ui.setup || state.setup) : ''}
     <figcaption class="jgt-desc" id="jgTentDesc">${ctx.esc(caption(state, sc, ch, light, ctx.t, post, ui.germ, ui.setup || state.setup, ctx.RULES))}</figcaption>

@@ -131,11 +131,18 @@ export function removeMales(s, rules) {
 }
 
 // Penalty of one decision against the ideal of the stage. null ideal = not scored.
+// The hint under an option can depend on the stage: in flowering the
+// temperature ranges are cooler (Bertha's decision 2026-11-03).
+export const hintKey = (d, o, stage) => (stage === 'floracion' && d === 'temperatura' && o !== 'fresca' ? `jgH_${d}_${o}_fl` : `jgH_${d}_${o}`);
+
 function penalty(rules, stage, d, value, setup) {
   const want = ideal(rules, stage, d, setup);
   if (want === null) return { pts: 0, unscored: true };
   const wants = [].concat(want);
   if (wants.includes(value)) return { pts: 0 };
+  // a softer cost for one option in one stage (rules.json → resta_por_opcion)
+  const own = rules.etapas[stage]?.ideal?.[d]?.resta_por_opcion?.[value];
+  if (own !== undefined) return { pts: own };
   if (d === 'fotoperiodo') return { pts: rules.puntuacion.resta_fotoperiodo };
   const opts = rules.opciones[d];
   const dist = Math.min(...wants.map((w) => Math.abs(opts.indexOf(value) - opts.indexOf(w))));

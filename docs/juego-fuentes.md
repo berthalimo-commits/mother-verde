@@ -346,3 +346,12 @@ GPP de Health Canada; la norma ASTM de actividad de agua; Lindholst 2010 y Trofi
    «hasta el chasquido».
 6. Curado: F22 no encontró mejora química ni menos moho tras 3 semanas; «curar semanas o meses» es práctica.
 7. Congelador: F24 vio los cannabinoides estables en el congelador; el juego lo castiga por los terpenos (F8).
+
+### Decisiones de Bertha sobre los 7 avisos (2026-11-03)
+
+| Aviso | Decisión | Qué cambió en el juego |
+|---|---|---|
+| 1. Temperatura | Hasta 30 °C en vegetativo; en floración, lo más fresco por calidad (práctica) | «Templada» = 24–30 °C en vegetativo y 24–28 °C en floración (pista distinta según la etapa); «Cálida» = más de 30 °C / más de 28 °C. La puntuación no cambia: en floración la temperatura sigue sin puntuar (solo cuenta para los ácaros). |
+| 2. Luz en vegetativo | No cambiar hasta poder abrir la fuente | Nada. Moher et al. 2022 sigue pendiente de verificar. |
+| 3. 12/12 | Regla del juego; el «¿Por qué?» aclara 13–14 h | `rules.json` lo marca «REGLA DEL JUEGO»; el «¿Por qué?» dice que muchas variedades florecen con 13 o 14 horas. |
+| 4. Nutrientes altos | Suavizar solo en floración | «Alto» en floración resta 2 en vez de 4 (`resta_por_opcion` en `rules.json`); en vegetativo sigue en 4 (F15). |

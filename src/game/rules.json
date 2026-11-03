@@ -70,7 +70,7 @@
       "alto": {
         "texto": "EC por encima de 2,2 mS/cm",
         "fuente": "Cultivo → Sistemas (Sustrato y riego)",
-        "verificar": "REVISADO 2026-11 · estudio (F15: el exceso de N, con EC 2,5–2,8, frenó el desarrollo en vegetativo). AVISO al dueño: en F14 doblar la nutrición (EC 4) en floración no dio más cosecha, pero tampoco la bajó de forma significativa. No cambiado."
+        "verificar": "REVISADO 2026-11 · estudio (F15: el exceso de N, con EC 2,5–2,8, frenó el desarrollo en vegetativo; F14: en floración EC 4 no dio más cosecha ni la bajó). Por eso en floración «Alto» resta menos (2) que en vegetativo (4)."
       }
     },
     "temperatura": {
@@ -80,14 +80,14 @@
         "verificar": "REVISADO 2026-11 · estudio (F12): la fotosíntesis del cannabis rinde más entre 25 y 30 °C; por debajo, menos."
       },
       "templada": {
-        "texto": "24–28 °C de día",
-        "fuente": "Cultivo → Sistemas (Vegetativo)",
-        "verificar": "REVISADO 2026-11 · estudio (F12: óptimo 25–30 °C). AVISO al dueño: el juego usa 24–28 °C; F12 llega hasta 30 °C. No cambiado."
+        "texto": "24–30 °C de día en vegetativo; 24–28 °C en floración",
+        "fuente": "F12 (óptimo de fotosíntesis 25–30 °C) · decisión de Bertha 2026-11-03: en floración, lo más fresco por calidad",
+        "verificar": "REVISADO 2026-11 · estudio (F12) en vegetativo; en floración 24–28 °C = práctica de cultivadores (más fresco por calidad), decisión de Bertha 2026-11-03."
       },
       "calida": {
-        "texto": "por encima de 28 °C",
+        "texto": "por encima de 30 °C en vegetativo; por encima de 28 °C en floración",
         "fuente": "Cultivo → Sistemas (Vegetativo)",
-        "verificar": "REVISADO 2026-11 · estudio (F12: por encima de 30 °C empeora; con mucha luz y calor bajan la fotosíntesis y el uso del agua). AVISO: el juego empieza a restar en 28 °C. No cambiado."
+        "verificar": "REVISADO 2026-11 · estudio (F12: por encima de 30 °C empeora) en vegetativo; en floración el corte de 28 °C es práctica de cultivadores (decisión de Bertha 2026-11-03)."
       }
     },
     "humedad": {
@@ -211,7 +211,7 @@
         "fotoperiodo": {
           "valor": "12/12",
           "fuente": "Cultivo → Sistemas y Ciclo (12/12 induce la floración)",
-          "verificar": "REVISADO 2026-11 · estudio (F1; F26 Australia 2023, F27 Guelph 2024, F28 Florida 2021). Matiz: muchas variedades ya florecen con 13–14 h de luz; 12/12 es el estándar seguro."
+          "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO (decisión de Bertha 2026-11-03): 12/12 es el estándar seguro para florecer; los estudios F26–F28 muestran que muchas variedades ya florecen con 13–14 h de luz, y el «¿Por qué?» lo dice."
         },
         "intensidad": {
           "valor": "alta",
@@ -226,7 +226,10 @@
         "nutrientes": {
           "valor": "medio",
           "fuente": "Cultivo → Sistemas (EC 1,2–2,2)",
-          "verificar": "REVISADO 2026-11 · estudio (F14, F17)."
+          "verificar": "REVISADO 2026-11 · estudio (F14, F17). «Alto» en floración resta solo 2 (decisión de Bertha 2026-11-03): en F14 doblar la nutrición en floración no dio más cosecha, pero tampoco la bajó. En vegetativo se mantiene la resta normal (F15: el exceso de N frenó el desarrollo).",
+          "resta_por_opcion": {
+            "alto": 2
+          }
         },
         "temperatura": null,
         "humedad": {
