@@ -593,3 +593,25 @@ plantas motor 37 · repaso 39 · laboratorio 35 · base de datos 37 y 14. **Todo
 juego ni texto suyo); con `MV_GAME=1`, el juego y el laboratorio salen en archivos aparte que solo se descargan al
 entrar. Motor 61 · plantas motor 37 · repaso 39 · preparar motor 31: verde. `juego` quedó igual que `dev`.
 Para producción: pasos del juego añadidos en `docs/lanzamiento-produccion.md` (paso 6: 3 migraciones + `MV_GAME=1`).
+
+## Pendientes de la plataforma
+
+### Aportes manuales (pedido del dueño, 2026-11-03) — EN CURSO
+Decisión de Bertha: el admin puede registrar aportes hechos por PayPal, CashApp, transferencia, efectivo u otro medio
+acordado por correo o celular. Se hace en `dev` y staging (nada en `main` ni producción):
+- botón «Registrar aporte manual» en `/panel-mv.html`, solo admin con segundo paso de seguridad (AAL2);
+- campos: correo, medio, monto y moneda, referencia o nota, fecha, número de flores (10 USDC por flor);
+- al guardar, acceso completo por el mismo camino que un aporte aprobado (una sola regla de acceso);
+- todo al Registro (quién, cuándo, por qué); se anula con otra entrada, sin borrar;
+- aviso si el usuario ya tiene un aporte registrado;
+- Desbloquear, en los 4 idiomas: «¿No usas USDC? Escríbenos a hello@motherverdeny.com».
+Reglas: migración nueva en `supabase/staging` con su reversión; plan en lenguaje simple y esperar «APRUEBO»;
+pruebas automáticas.
+
+### Temperaturas de las lecciones en °C y °F — DESPUÉS de los aportes manuales
+Las 64 temperaturas de las lecciones (`public/main.js`) a «N °C (N °F)» con la función del juego (`src/game/temp.js`),
+en una rama aparte de `dev`, sin mezclar con el juego. Solo añadir el °F; no tocar otra palabra, cifra ni
+traducción; los campos donde el usuario escribe una temperatura (calculadora, bitácora) quedan igual. Antes:
+contar rangos, cifras con °C que no son del cultivo y cómo se prueba; esperar «APRUEBO» antes de subir a `dev`.
+
+Juego: **no** añadir puntos por la temperatura de floración por ahora (decisión del dueño, 2026-11-03).
