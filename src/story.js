@@ -14,7 +14,7 @@ const GAME_ON = import.meta.env.VITE_MV_GAME === '1';
 const reduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const PHOTOS = {
-  1: [['/historia/01-carpa.jpg', 'storyAlt1']],
+  1: [['/historia/01-carpa.jpg', 'storyAlt1', '12% 45%']],
   2: [['/historia/07-flores.jpg', 'storyAlt2a'], ['/historia/05-planta.jpg', 'storyAlt2b']],
   3: [['/historia/02-campo.jpg', 'storyAlt3']],
   4: [['/historia/03-abrazo.jpg', 'storyAlt4']],
@@ -26,9 +26,9 @@ const TOTAL = 6;
 function photosHtml(n) {
   const list = PHOTOS[n];
   if (!list.length) return '';
-  return `<div class="story-photos story-photos-${list.length}">${list.map(([src, alt], i) => `
+  return `<div class="story-photos story-photos-${list.length}">${list.map(([src, alt, pos], i) => `
     <figure class="story-photo">
-      <img src="${src}" alt="${t(alt)}" ${n === 1 && i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"
+      <img src="${src}" alt="${t(alt)}"${pos ? ` style="object-position:${pos}"` : ''} ${n === 1 && i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"
         onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
       <div class="story-photo-soon" hidden><span>${t('storyPhotoSoon')}</span><small>${t(alt)}</small></div>
     </figure>`).join('')}</div>`;
