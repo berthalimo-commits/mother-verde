@@ -277,3 +277,16 @@ University Extension sobre el VPD (la página bloquea a los programas).
 hasta 30 °C. Coincide en la dirección, no en el corte.
 
 «¿Por qué?» actualizados en los 4 idiomas: temperatura (F12) y humedad (F13).
+
+### Tanda 2 — rosin (B), plagas, germinación y duración de las etapas (2026-11-03)
+
+- **B (24 valores):** se quedan con su nivel de antes («práctica de la comunidad / orientativo», patente o criterio
+  de la autora validado por Bertha) y sus fuentes C1–C4, P1–P2. No hay estudios revisados por pares sobre estos
+  pasos; no se investigan más.
+- **Plagas:** oídio = guía (F5); botrytis = guía (F4) + estudio (F13); ácaros = guía (F6), con la respuesta
+  «depredadores» como práctica de cultivadores.
+- **Germinación:** temperatura = estudio (F11); humedad y tiempo de remojo = criterio de la autora, sin fuente
+  comprobada.
+- **Duración:** plántula 2 semanas y vegetativo 3–6 = **regla del juego** (con su porqué en `rules.json`);
+  floración por tricomas = práctica de cultivadores; semanas del color de los tricomas = regla del juego.
+- **Semillas regulares y autoflorecientes:** regla del juego (criterio de la autora validado por Bertha).
