@@ -16,6 +16,9 @@ export const SOURCES = {
   F9: { label: 'Alhussaen — PhD thesis, University of Technology Sydney, 2006 (hydroponic lettuce)', url: 'https://opus.lib.uts.edu.au/handle/10453/36864' },
   F10: { label: 'Simshaw et al. — Acta Horticulturae 1140, 2016 (nursery containers)', url: 'https://www.ishs.org/ishs-article/1140_41' },
   F11: { label: 'Geneve et al. — Crops, 2022 (hemp germination temperature)', url: 'https://scholars.uky.edu/en/publications/temperature-limits-for-seed-germination-in-industrial-hemp-cannab/' },
+  // 2026-11 review of the 90 values (docs/juego-fuentes.md, «Revisión 2026-11»)
+  F12: { label: 'Chandra, Lata, Khan & ElSohly — Physiology and Molecular Biology of Plants, 2008 (University of Mississippi)', url: 'https://doi.org/10.1007/s12298-008-0027-x' },
+  F13: { label: 'Corredor-Perilla, Kwon & Park — Frontiers in Plant Science, 2025 (Colorado State University-Pueblo)', url: 'https://doi.org/10.3389/fpls.2025.1678142' },
   // community practice (docs/juego-fuentes.md C1–C4): manufacturers' own pages, not studies, not endorsements
   C1: { label: 'Lowtemp Industries blog — 5 µm vs 25 µm bags (community practice)', url: 'https://www.lowtemp-plates.com/blogs/knowledge/5micron-vs-25micron-rosin-press-bags' },
   C2: { label: 'NugSmasher — NugSmasher Mini owner’s manual (community practice)', url: 'https://cdn.shopify.com/s/files/1/0856/1428/files/NS-Mini-Owners-Manual-Safe-PID24.pdf' },
@@ -31,8 +34,8 @@ export const WHY = {
   intensidad: { lesson: 'iluminacion', src: 'F1', level: 'estudio' },
   riego: { lesson: 'diagnostico', src: 'F3', level: 'guia' },
   nutrientes: { lesson: 'sustrato', src: 'F2', level: 'guia' },
-  temperatura: { lesson: 'sistemas', src: 'F6', level: 'guia' },
-  humedad: { lesson: 'sistemas', src: 'F4', level: 'guia' },
+  temperatura: { lesson: 'sistemas', src: 'F12', level: 'estudio' },
+  humedad: { lesson: 'sistemas', src: 'F13', level: 'estudio' },
   flip: { lesson: 'ciclo', src: null, level: 'simple' },
   evento: { lesson: 'diagnostico', src: null, level: 'simple' },
   oidio: { lesson: 'diagnostico', src: 'F5', level: 'guia' },

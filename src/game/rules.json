@@ -4,7 +4,7 @@
   "turno": {
     "dura": "1 semana",
     "fuente": "VALOR DE JUEGO",
-    "verificar": "[POR VERIFICAR POR BERTHA]"
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: un turno = una semana, porque en una semana real ya se ven los cambios de la planta y la partida entera cabe en unos minutos."
   },
   "opciones": {
     "fotoperiodo": [
@@ -77,34 +77,34 @@
       "fresca": {
         "texto": "por debajo de 24 °C",
         "fuente": "Cultivo → Sistemas (Vegetativo: 24–28 °C diurna)",
-        "verificar": "[POR VERIFICAR POR BERTHA]"
+        "verificar": "REVISADO 2026-11 · estudio (F12): la fotosíntesis del cannabis rinde más entre 25 y 30 °C; por debajo, menos."
       },
       "templada": {
         "texto": "24–28 °C de día",
         "fuente": "Cultivo → Sistemas (Vegetativo)",
-        "verificar": "[POR VERIFICAR POR BERTHA]"
+        "verificar": "REVISADO 2026-11 · estudio (F12: óptimo 25–30 °C). AVISO al dueño: el juego usa 24–28 °C; F12 llega hasta 30 °C. No cambiado."
       },
       "calida": {
         "texto": "por encima de 28 °C",
         "fuente": "Cultivo → Sistemas (Vegetativo)",
-        "verificar": "[POR VERIFICAR POR BERTHA]"
+        "verificar": "REVISADO 2026-11 · estudio (F12: por encima de 30 °C empeora; con mucha luz y calor bajan la fotosíntesis y el uso del agua). AVISO: el juego empieza a restar en 28 °C. No cambiado."
       }
     },
     "humedad": {
       "baja": {
         "texto": "HR 40–50 %",
         "fuente": "Cultivo → Sistemas (Floración: HR 40–50 %)",
-        "verificar": "[POR VERIFICAR POR BERTHA]"
+        "verificar": "REVISADO 2026-11 · guía (F4: por debajo de 50 % en floración) + estudio (F13: 37–58 % de HR dio flor y cannabinoides normales)."
       },
       "media_alta": {
         "texto": "HR ≈ 65–75 % (equivale a VPD 0,8–1,0 kPa a 24–25 °C)",
         "fuente": "Indicación de la dueña (14-10-2026) a partir de Cultivo → Sistemas (Vegetativo: VPD 0,8–1,0 kPa)",
-        "verificar": "[POR VERIFICAR POR BERTHA]"
+        "verificar": "REVISADO 2026-11 · práctica de cultivadores. Guía universitaria pendiente de verificar (Michigan State University Extension sobre el VPD: la página bloquea a los programas)."
       },
       "alta": {
         "texto": "por encima de ≈ 75 % (la plataforma asocia la humedad alta a oídio y botrytis)",
         "fuente": "Cultivo → Diagnóstico",
-        "verificar": "[POR VERIFICAR POR BERTHA]"
+        "verificar": "REVISADO 2026-11 · estudio (F13, 2025: HR 78–98 % retrasó la floración 3 semanas, −71 % de flor y muchos menos cannabinoides) + guía (F4, F5)."
       }
     },
     "riego": {
@@ -188,12 +188,12 @@
         "temperatura": {
           "valor": "templada",
           "fuente": "Cultivo → Sistemas (Temp. diurna 24–28 °C)",
-          "verificar": "[POR VERIFICAR POR BERTHA]"
+          "verificar": "REVISADO 2026-11 · estudio (F12, óptimo de fotosíntesis 25–30 °C)."
         },
         "humedad": {
           "valor": "media_alta",
           "fuente": "Indicación de la dueña (14-10-2026): «media-alta», ≈ 65–75 % HR (VPD 0,8–1,0 kPa a 24–25 °C)",
-          "verificar": "[POR VERIFICAR POR BERTHA]"
+          "verificar": "REVISADO 2026-11 · práctica de cultivadores (F13 solo prueba que 78–98 % es dañino; 65–75 % sin estudio). Guía MSU pendiente de verificar."
         }
       },
       "leccion": [
@@ -232,7 +232,7 @@
         "humedad": {
           "valor": "baja",
           "fuente": "Cultivo → Sistemas (Floración: HR 40–50 %) y Diagnóstico (Botrytis)",
-          "verificar": "[POR VERIFICAR POR BERTHA]"
+          "verificar": "REVISADO 2026-11 · guía (F4) + estudio (F13)."
         }
       },
       "leccion": [
@@ -404,14 +404,14 @@
     "resta_fotoperiodo": 8,
     "evento_por_semana": 6,
     "evento_resuelto": 4,
-    "verificar": "[POR VERIFICAR POR BERTHA]"
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: −4 / −8 por distancia, −6 por semana con un problema y +4 al resolverlo, para que un error suelto no arruine la partida y dejar un problema sin atender cueste más que equivocarse una vez."
   },
   "post": {
     "_nota": "Fase 8 (catálogo aprobado por Bertha el 2026-10-28, docs/juego-decisiones.md). Una pantalla por etapa. ideal = una opción, varias (cualquiera vale) o null (no puntúa, solo enseña). respaldo = nivel de docs/juego-fuentes.md. Cifras SOLO en el rosin, siempre «orientativo» (fuentes P1/P2); el laboratorio de solventes y CO₂ no lleva ninguna.",
     "resta_un_nivel": 4,
     "resta_dos_niveles": 8,
     "resta_nota": "VALOR DE JUEGO: lo que resta de la nota de la cosecha cada decisión fuera de lo ideal (igual que en el cultivo).",
-    "verificar": "[POR VERIFICAR POR BERTHA]",
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: la poscosecha resta con la misma escala que el cultivo (−4 / −8), para que la nota se lea igual en todo el juego.",
     "orden": [
       "secado",
       "curado",
@@ -1078,7 +1078,7 @@
   },
   "setup": {
     "_nota": "Fase 6: se elige una vez, antes de plantar. No hay opción «correcta»: cada equipo cambia las reglas de las semanas (efectos). respaldo = nivel de docs/juego-fuentes.md.",
-    "verificar": "[POR VERIFICAR POR BERTHA]",
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: el equipo no puntúa por sí solo; cambia las reglas de las semanas porque en la vida real no hay un equipo correcto, solo consecuencias distintas (cada efecto lleva su propia fuente).",
     "decisiones": {
       "carpa": {
         "opciones": [
@@ -1345,7 +1345,7 @@
           "valor": null,
           "fuente": "Criterio de la autora: cada método tiene su riesgo, ninguno puntúa por sí solo",
           "respaldo": "autora",
-          "verificar": "[POR VERIFICAR POR BERTHA]"
+          "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: no puntúa; cada método tiene su riesgo y el juego enseña el riesgo en vez de premiar uno."
         }
       },
       "temperatura": {

@@ -236,3 +236,44 @@ siguen siendo **orientativas** y conservan su fuente:
 - Carpa llena: la humedad cuenta un nivel más alta (en floración «Baja» no sube). Criterio de la autora, validado
   por Bertha; sin fuente externa.
 - Presión: sigue sin cifras (ninguna fuente).
+
+## Revisión 2026-11 — los 90 valores «[POR VERIFICAR POR BERTHA]»
+
+Pedido del dueño (2026-11-03): respaldar los valores con estudios y guías universitarias recientes, no con el
+criterio de Bertha. Bertha no tiene que validar nada hasta que juegue. En `src/game/rules.json` cada valor revisado
+lleva `verificar: "REVISADO 2026-11 · <nivel> …"`. Regla de siempre: **solo cito lo que abrí**; lo que no pude
+abrir queda «pendiente de verificar».
+
+**Clasificación** (90 marcas):
+- **A — hecho de cultivo o ciencia: 58.** Equivalencias de luz, nutrientes, temperatura, humedad y riego (15);
+  ideales y duración de cada etapa (17); tricomas (1); los 7 problemas; secado (6); curado y almacenamiento (9);
+  germinación: temperatura, humedad y tiempo (3).
+- **B — rosin y extracción mecánica: 24.** Preparación del material (11) y prensa (13). Se quedan como
+  «práctica de la comunidad / orientativo» con C1–C4, P1–P2 y las cifras validadas (sección anterior).
+- **C — regla del juego: 6.** Turno de una semana, puntuación, escala de la poscosecha, efectos del equipo, método
+  de germinación (no puntúa) y el reparto de semillas regulares y autoflorecientes. Cada uno lleva en `rules.json`
+  una frase que dice por qué.
+- **2 marcas no son valores** (la nota `_leeme` y `estado_revision`).
+
+### Tanda 1 — temperatura y humedad (2026-11-03)
+
+| Código | Fuente (abierta y leída) | Qué dice, con mis palabras |
+|---|---|---|
+| **F12** | Chandra, Lata, Khan & ElSohly (2008, publicado en línea 2009). *Photosynthetic response of Cannabis sativa L. to variations in photosynthetic photon flux densities, temperature and CO₂ conditions.* Physiology and Molecular Biology of Plants 14(4): 299–306. University of Mississippi. https://doi.org/10.1007/s12298-008-0027-x (PMC3550641) | El óptimo de temperatura para la fotosíntesis está entre 25 y 30 °C. Por encima de 30 °C los estomas se cierran más; calor y luz muy fuerte juntos bajan la fotosíntesis y el uso del agua. **No es reciente**: no encontré nada más nuevo que pudiera abrir. |
+| **F13** | Corredor-Perilla, Kwon & Park (2025). *Elevated relative humidity significantly decreases cannabinoid concentrations while delaying flowering development in Cannabis sativa L.* Frontiers in Plant Science 16. Institute of Cannabis Research, Colorado State University-Pueblo. https://doi.org/10.3389/fpls.2025.1678142 | Comparó HR baja (≈ 37–58 %) con HR alta (78–98 %) a la altura de las plantas. Con la alta, la floración llegó unas 3 semanas tarde, la flor seca bajó ≈ 71 % y el CBD-A ≈ 5 veces. Una sola variedad (tipo CBD). |
+
+**Pendiente de verificar** (no cito): Holweg et al. (2025), Wageningen, sobre calor en floración (31/27 °C frente a
+25/21 °C: menos cannabinoides; lo cuenta la introducción de F13, no lo pude abrir); la guía de Michigan State
+University Extension sobre el VPD (la página bloquea a los programas).
+
+| Valor | Antes | Ahora |
+|---|---|---|
+| Temperatura fresca / templada / cálida; templada en vegetativo | Práctica | **Estudio (F12)** |
+| Humedad alta (> 75 %) dañina | Práctica | **Estudio (F13)** + guía (F4, F5) |
+| Humedad baja (40–50 %) en floración | Guía (F4) | **Guía (F4) + estudio (F13)** |
+| Humedad media-alta (65–75 %) en vegetativo | Práctica | Práctica (F13 solo prueba que 78–98 % daña) |
+
+**Aviso al dueño (no cambiado):** el juego resta desde 28 °C («cálida»); F12 sitúa el óptimo de la fotosíntesis
+hasta 30 °C. Coincide en la dirección, no en el corte.
+
+«¿Por qué?» actualizados en los 4 idiomas: temperatura (F12) y humedad (F13).

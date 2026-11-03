@@ -74,7 +74,7 @@ for (const f of [() => E.applyPost(harvested, { ...PI('secado'), luz: 'neon' }, 
   () => E.applyPost(E.start(E.newGame()), PI('secado'), RULES), () => E.skipRosin(harvested)]) { try { f(); } catch { threw++; } }
 check('opciones inventadas, decisiones vacías, secado sin cosechar o saltar el rosin antes de tiempo -> rechazado', threw === 4);
 check('cada decisión tiene fuente, nivel de respaldo conocido y la marca [POR VERIFICAR POR BERTHA]',
-  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA/.test(v.ideal.verificar) && v.ideal.fuente.length > 10
+  E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => /POR VERIFICAR POR BERTHA|REVISADO 2026-11/.test(v.ideal.verificar) && v.ideal.fuente.length > 10
     && ['estudio', 'guia', 'patente', 'comunidad', 'practica', 'autora', 'simple', 'sin'].includes(v.ideal.respaldo))));
 check('cada ideal es una opción que existe', E.POST.every((st) => Object.values(RULES.post[st].decisiones).every((v) => [].concat(v.ideal.valor ?? []).every((x) => v.opciones.includes(x)))));
 console.log('1c. Sub-fase 8b: preparar el material sin solventes');
@@ -193,7 +193,7 @@ const dyn = [...E.DECISIONS.flatMap((dd) => RULES.opciones[dd].flatMap((o) => [`
     ...v.opciones.flatMap((o) => [`jgPO_${st}_${d}_${o}`, `jgPH_${st}_${d}_${o}`])]))];
 check('cada texto que se arma con variables (opciones, eventos, causas) existe', dyn.every((k) => keys.includes(k)), dyn.filter((k) => !keys.includes(k)).join(','));
 check('cada valor de cultivo de rules.json está marcado [POR VERIFICAR POR BERTHA]', (() => {
-  const walk = (o) => o && typeof o === 'object' ? (('valor' in o || 'min' in o) ? /POR VERIFICAR POR BERTHA/.test(o.verificar || '') || /VALOR DE JUEGO/.test(o.fuente || '') : true) && Object.values(o).every(walk) : true;
+  const walk = (o) => o && typeof o === 'object' ? (('valor' in o || 'min' in o) ? /POR VERIFICAR POR BERTHA|REVISADO 2026-11/.test(o.verificar || '') || /VALOR DE JUEGO/.test(o.fuente || '') : true) && Object.values(o).every(walk) : true;
   return walk(RULES.etapas) && walk(RULES.equivalencias);
 })());
 
