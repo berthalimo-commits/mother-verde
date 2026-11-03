@@ -93,7 +93,7 @@ Paso 6. Supabase → **Edge Functions → Secrets** (en staging), uno por uno:
 | `APP_URL` | la dirección de la web de pruebas: Vercel → *Deployments* → rama `dev` → «Domains» (algo como `https://mother-verde-git-dev-….vercel.app`) |
 | `SUPPORT_ADDRESS` | **una billetera de PRUEBA tuya** (en minúsculas). **Nunca** la de producción |
 | `NOTIFY_TO` | un **buzón de prueba** (recibe el aviso de cada TXID) |
-| `BASE_RPC_URL` | el mismo que en producción (la red Base es la misma) |
+| `BASE_RPC_URL` | **opcional**: si no existe, la función usa la red pública de Base (`https://mainnet.base.org`, gratis, sin clave). Solo hace falta si un día se usa un proveedor con más capacidad (por ejemplo Alchemy); entonces, el mismo valor que en producción |
 | `DEEPL_API_KEY` | una clave **gratuita** de DeepL (termina en `:fx`); mejor una cuenta distinta de la de producción |
 | `RETRANSLATE_SECRET` | un valor nuevo largo (el mismo que pondrás en Vercel → Preview) |
 | `RESEND_API_KEY` | solo si usas `smtp,resend` |
