@@ -26,7 +26,7 @@ export default {
     jgTentMachosFuera: 'Los machos ya no están: solo quedan hembras.', jgTentPolen: 'Los cogollos de las hembras tienen semillas: les llegó el polen de los machos.',
     jgFinPlantas: 'Plantas hembra cosechadas: {n}.', jgFinPolen: 'Cogollos con semillas (los machos soltaron su polen): −{n}.',
     jgCausa_polen: 'el polen de los machos',
-    jgWhyN_polen: 'Machos en la carpa', jgWhy_polen: 'Una planta macho produce polen; en un cultivo de flor se retira para que no polinice a las hembras (Glosario de la plataforma). Una hembra polinizada pone su energía en hacer semillas. Cuándo se ven, cuándo sueltan el polen y los puntos que resta son reglas del juego (criterio de la autora).',
+    jgWhyN_polen: 'Machos en la carpa', jgWhy_polen: 'Una planta macho produce polen; en un cultivo de flor se retira para que no polinice a las hembras (Glosario de la plataforma). Una hembra polinizada pone su energía en hacer semillas. Cuándo se ven, cuándo sueltan el polen y los puntos que resta son reglas del juego (criterio de la autora). En la vida real cada semilla regular es azar: puede salir macho o hembra, y cuántos machos salen cambia de una tanda a otra; el juego usa siempre la mitad para que se pueda aprender y repetir.',
     jgWhyN_auto: 'Autofloreciente', jgWhy_auto: 'Las autoflorecientes florecen según su edad, sin importar las horas de luz, y suelen completar su ciclo en 8–10 semanas desde la semilla (Cultivo → Genética). Las semanas exactas del juego son una regla del juego.',
   },
   en: {
@@ -52,7 +52,7 @@ export default {
     jgTentMachosFuera: 'The males are gone: only females are left.', jgTentPolen: 'The females’ buds have seeds: the males’ pollen reached them.',
     jgFinPlantas: 'Female plants harvested: {n}.', jgFinPolen: 'Seeded buds (the males released their pollen): −{n}.',
     jgCausa_polen: 'the males’ pollen',
-    jgWhyN_polen: 'Males in the tent', jgWhy_polen: 'A male plant produces pollen; in a flower crop it is removed so it doesn’t pollinate the females (the platform’s Glossary). A pollinated female puts its energy into making seeds. When they show, when they release pollen and the points it costs are game rules (author’s criteria).',
+    jgWhyN_polen: 'Males in the tent', jgWhy_polen: 'A male plant produces pollen; in a flower crop it is removed so it doesn’t pollinate the females (the platform’s Glossary). A pollinated female puts its energy into making seeds. When they show, when they release pollen and the points it costs are game rules (author’s criteria). In real life each regular seed is chance: it can be male or female, and how many males come out changes from one batch to the next; the game always uses half so it can be learned and repeated.',
     jgWhyN_auto: 'Autoflower', jgWhy_auto: 'Autoflowers flower according to their age, whatever the hours of light, and usually finish their cycle in 8–10 weeks from seed (Cultivation → Genetics). The game’s exact weeks are a game rule.',
   },
   de: {
@@ -78,7 +78,7 @@ export default {
     jgTentMachosFuera: 'Die Männchen sind weg: Es bleiben nur Weibchen.', jgTentPolen: 'Die Blüten der Weibchen haben Samen: Der Pollen der Männchen hat sie erreicht.',
     jgFinPlantas: 'Geerntete weibliche Pflanzen: {n}.', jgFinPolen: 'Blüten mit Samen (die Männchen haben ihren Pollen freigesetzt): −{n}.',
     jgCausa_polen: 'der Pollen der Männchen',
-    jgWhyN_polen: 'Männchen im Zelt', jgWhy_polen: 'Eine männliche Pflanze produziert Pollen; in einem Blütenanbau wird sie entfernt, damit sie die Weibchen nicht bestäubt (Glossar der Plattform). Ein bestäubtes Weibchen steckt seine Energie in Samen. Wann sie sichtbar werden, wann sie Pollen freisetzen und wie viele Punkte das kostet, sind Spielregeln (Kriterium der Autorin).',
+    jgWhyN_polen: 'Männchen im Zelt', jgWhy_polen: 'Eine männliche Pflanze produziert Pollen; in einem Blütenanbau wird sie entfernt, damit sie die Weibchen nicht bestäubt (Glossar der Plattform). Ein bestäubtes Weibchen steckt seine Energie in Samen. Wann sie sichtbar werden, wann sie Pollen freisetzen und wie viele Punkte das kostet, sind Spielregeln (Kriterium der Autorin). Im echten Leben ist jeder reguläre Samen Zufall: Er kann männlich oder weiblich werden, und wie viele Männchen es gibt, ändert sich von Charge zu Charge; das Spiel nimmt immer die Hälfte, damit man es lernen und wiederholen kann.',
     jgWhyN_auto: 'Autoflowering', jgWhy_auto: 'Autoflowering-Pflanzen blühen nach ihrem Alter, unabhängig von den Lichtstunden, und schließen ihren Zyklus meist in 8–10 Wochen ab Samen ab (Anbau → Genetik). Die genauen Wochen im Spiel sind eine Spielregel.',
   },
   fr: {
@@ -104,7 +104,7 @@ export default {
     jgTentMachosFuera: 'Les mâles ne sont plus là : il ne reste que des femelles.', jgTentPolen: 'Les têtes des femelles ont des graines : le pollen des mâles les a atteintes.',
     jgFinPlantas: 'Plantes femelles récoltées : {n}.', jgFinPolen: 'Têtes avec graines (les mâles ont libéré leur pollen) : −{n}.',
     jgCausa_polen: 'le pollen des mâles',
-    jgWhyN_polen: 'Des mâles dans la tente', jgWhy_polen: 'Une plante mâle produit du pollen ; dans une culture de fleurs, on la retire pour qu’elle ne pollinise pas les femelles (Glossaire de la plateforme). Une femelle pollinisée met son énergie à faire des graines. Quand ils se voient, quand ils libèrent le pollen et les points que cela coûte sont des règles du jeu (critère de l’autrice).',
+    jgWhyN_polen: 'Des mâles dans la tente', jgWhy_polen: 'Une plante mâle produit du pollen ; dans une culture de fleurs, on la retire pour qu’elle ne pollinise pas les femelles (Glossaire de la plateforme). Une femelle pollinisée met son énergie à faire des graines. Quand ils se voient, quand ils libèrent le pollen et les points que cela coûte sont des règles du jeu (critère de l’autrice). Dans la vraie vie, chaque graine régulière est un hasard : elle peut être mâle ou femelle, et le nombre de mâles change d’un lot à l’autre ; le jeu prend toujours la moitié pour qu’on puisse apprendre et recommencer.',
     jgWhyN_auto: 'Autofloraison', jgWhy_auto: 'Les autofloraisons fleurissent selon leur âge, quelles que soient les heures de lumière, et terminent en général leur cycle en 8 à 10 semaines depuis la graine (Culture → Génétique). Les semaines exactes du jeu sont une règle du jeu.',
   },
 };

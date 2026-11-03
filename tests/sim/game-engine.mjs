@@ -166,13 +166,17 @@ check('el juego no menciona butano, BHO, CO2, solventes de extracción ni unidad
 // Bertha, 2026-10-28: figures allowed ONLY in the rosin, only where a checked
 // source gives them (mesh and plate heat, patents P1/P2), always marked
 // «orientativo»; never pressure or time; the solvent / CO₂ lab has none (game-lab).
+// Bertha, 2026-11-02 (docs/juego-validacion.md 7, 9, 10): heat cuts, the medium
+// pressing time (C2) and the mesh per material (C1/C2), also «orientativo»,
+// in the hints and in the mesh / heat «¿Por qué?». Pressure: still no figure.
+const FIG_OK = /^(jgP[DH]_rosin_(malla|calor)|jgPH_rosin_tiempo_medio$|jgWhy_rosin_(malla|calor)$)/;
 const ORIENT = { es: 'orientativo', en: 'orientative', de: 'Richtwert', fr: 'indicatif' };
 const rosinTexts = ['es', 'en', 'de', 'fr'].flatMap((l) => Object.entries(TEXTS[l]).filter(([k]) => /rosin|Rosin/.test(k)).map(([k, v]) => [l, k, v]));
 const withFigures = rosinTexts.filter(([, , v]) => /\d/.test(v));
-check(`rosin: cifras solo en la malla y el calor, marcadas «orientativo» en su idioma (${withFigures.length} de ${rosinTexts.length} textos)`,
-  rosinTexts.length > 100 && withFigures.length > 0 && withFigures.every(([l, k, v]) => /^jgP[DH]_rosin_(malla|calor)/.test(k) && v.includes(ORIENT[l])),
-  JSON.stringify(withFigures.filter(([l, k, v]) => !/^jgP[DH]_rosin_(malla|calor)/.test(k) || !v.includes(ORIENT[l]))));
-check('rosin: presión y tiempo sin ninguna cifra; ninguna opción del rosin es un número', rosinTexts.filter(([, k]) => /rosin_(presion|tiempo)/.test(k)).every(([, , v]) => !/\d/.test(v))
+check(`rosin: cifras solo en la malla, el calor y el tiempo medio, marcadas «orientativo» en su idioma (${withFigures.length} de ${rosinTexts.length} textos)`,
+  rosinTexts.length > 100 && withFigures.length > 0 && withFigures.every(([l, k, v]) => FIG_OK.test(k) && v.includes(ORIENT[l])),
+  JSON.stringify(withFigures.filter(([l, k, v]) => !FIG_OK.test(k) || !v.includes(ORIENT[l]))));
+check('rosin: presión sin ninguna cifra; tiempo solo en «medio» (90–120 s, C2); ninguna opción del rosin es un número', rosinTexts.filter(([, k]) => /rosin_presion|rosin_tiempo_(corto|largo)/.test(k)).every(([, , v]) => !/\d/.test(v))
   && Object.values(RULES.post.rosin.decisiones).every((v) => v.opciones.concat(v.ideal.valor ?? []).every((o) => !/\d/.test(o))));
 check('sin dinero, apuestas, cajas sorpresa ni rankings en el código del juego', !/leaderboard|ranking\b|apuesta|loot|gacha|compra|purchase/i.test(files.replace(/sin apuestas|sin rankings|no rankings|keine Ranglisten|pas de classements/g, '')));
 const keys = Object.keys(TEXTS.es);

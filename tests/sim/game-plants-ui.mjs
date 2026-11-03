@@ -8,6 +8,7 @@ import { summary, check } from './browser.mjs';
 import { RULES, E, TEXTS, IDEAL, NEUTRAL, session, audit, setup, germ, week, click, gs, gameAt, growToHarvest, shots, reload, report, GERM_OK } from './game-full-lib.mjs';
 
 const tes = TEXTS.es;
+const POL = RULES.semillas.regular.resta_polinizacion;
 const caption = (b) => b.ev(`document.getElementById('jgTentDesc')?.textContent || ''`);
 const bubble = (b) => b.ev(`document.getElementById('jgBubble')?.innerText || ''`);
 const tentAttr = (b, a) => b.ev(`document.querySelector('#jgTent svg.jgt-svg')?.getAttribute('data-${a}')`);
@@ -76,10 +77,10 @@ await click(b, '#jgSkipRosin');
 const fin = async () => { for (const st of ['secado', 'curado']) { const g = await gs(b); if (g.stage !== st) continue; await b.ev(`(() => { for (const f of document.querySelectorAll('#jgPostForm fieldset')) f.querySelector('input').click(); })(); 1`); await click(b, '#jgPostNext'); } await click(b, '#jgSkipRosin'); };
 await fin();
 s = await gs(b);
-check('final: «Cogollos con semillas: −15» y 2 hembras cosechadas', s.stage === 'fin' && s.result.polen === 15 && await b.ev(`document.getElementById('jgFinPolen')?.textContent`) === tes.jgFinPolen.replace('{n}', 15)
+check(`final: «Cogollos con semillas: −${POL}» y 2 hembras cosechadas`, s.stage === 'fin' && s.result.polen === POL && await b.ev(`document.getElementById('jgFinPolen')?.textContent`) === tes.jgFinPolen.replace('{n}', POL)
   && await b.ev(`document.getElementById('jgFinPlantas')?.textContent`) === tes.jgFinPlantas.replace('{n}', 2), JSON.stringify(s.result));
 const rvTxt = await b.ev(`document.querySelector('#juego .jg-rv-item[data-rv="polen"]')?.innerText || ''`);
-check('el repaso explica la polinización: semana, −15, qué funciona mejor (no única) y su «¿Por qué?»', rvTxt.includes(tes.jgRv_polenNota.replace('{n}', 15)) && rvTxt.includes(tes.jgRv_mejorPolen)
+check(`el repaso explica la polinización: semana, −${POL}, qué funciona mejor (no única) y su «¿Por qué?»`, rvTxt.includes(tes.jgRv_polenNota.replace('{n}', POL)) && rvTxt.includes(tes.jgRv_mejorPolen)
   && rvTxt.includes(tes.jgRv_noUnica) && await b.ev(`!!document.querySelector('#juego .jg-rv-item[data-rv="polen"] .jg-why[data-why="polen"]')`), rvTxt.slice(0, 300));
 await shots(b, 'jgplantas-final-polen');
 await audit(b, 'final con polinización');

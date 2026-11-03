@@ -8,6 +8,7 @@ import * as E from '../../src/game/engine.js';
 import { review } from '../../src/game/review.js';
 
 const RULES = JSON.parse(fs.readFileSync(new URL('../../src/game/rules.json', import.meta.url), 'utf8'));
+const POL = RULES.semillas.regular.resta_polinizacion; // validated by Bertha: 25
 let pass = 0, fail = 0; const failures = [];
 const check = (n, c, d = '') => { if (c) { pass++; console.log('  ok   ', n); } else { fail++; failures.push(n); console.log('  FALLA', n, d); } };
 const db = await makeDb();
@@ -54,14 +55,14 @@ check('pasar la 2.ª semana con machos en la carpa: sueltan polen (se apunta la 
 const hv = (x) => keep(E.harvest({ ...weeks(x, 8 - x.stageWeek, {}), health: 60 }, RULES));
 const good = hv(keep(E.removeMales(f, RULES)));
 const bad = hv(late);
-check('cosecha polinizada: −15 frente a la misma sin polen; se guarda la resta y las hembras', good.result.score - bad.result.score === RULES.semillas.regular.resta_polinizacion
-  && bad.result.polen === 15 && !good.result.polen && bad.result.hembras === 2 && good.result.hembras === 2, `${good.result.score} ${bad.result.score}`);
+check(`cosecha polinizada: −${POL} frente a la misma sin polen; se guarda la resta y las hembras`, good.result.score - bad.result.score === RULES.semillas.regular.resta_polinizacion
+  && bad.result.polen === POL && POL === 25 && !good.result.polen && bad.result.hembras === 2 && good.result.hembras === 2, `${good.result.score} ${bad.result.score}`);
 const rvBad = review(bad, RULES), rvGood = review(good, RULES);
 const it = rvBad.grow.find((x) => x.key === 'polen');
-check('repaso final: la polinización es un punto con su semana, −15 y su lección (Genética); sin polen no aparece', it && it.lost === 15 && it.week === late.log.at(-1).w
+check(`repaso final: la polinización es un punto con su semana, −${POL} y su lección (Genética); sin polen no aparece`, it && it.lost === POL && it.week === late.log.at(-1).w
   && rvBad.lessons.includes('genetica') && !rvGood.grow.some((x) => x.key === 'polen'), JSON.stringify(it));
 const capped = (x) => keep(E.harvest(weeks(x, 8 - x.stageWeek, {}), RULES));
-check('con salud 100 la resta también se ve (se quita después del tope de 100)', capped(late).result.score === capped(keep(E.removeMales(f, RULES))).result.score - 15);
+check('con salud 100 la resta también se ve (se quita después del tope de 100)', capped(late).result.score === capped(keep(E.removeMales(f, RULES))).result.score - POL);
 let blocked = { ...f, event: { id: 'oidio', since: 1 } };
 check('con un problema sin responder, no se pueden retirar (como el trasplante)', throws(() => E.removeMales(blocked, RULES)));
 

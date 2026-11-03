@@ -94,10 +94,12 @@ check('…y explica con el estudio comprobado (F8, «estudio publicado»)', /mol
 check('después del curado: preparar el material (8b), con «Terminar sin hacer rosin»', (await gs()).stage === 'material' && await b.ev(`!!document.getElementById('jgSkipRosin')`));
 await pick('material', 'partida', 'flor_curada'); await pick('material', 'separacion', 'ninguna');
 await b.ev(`document.getElementById('jgPostNext').click(); 1`); await sleep(1000);
-check('rosin: 10 decisiones (el material ya lo decidió la preparación); malla y calor con su cifra «orientativo»; presión y tiempo sin cifras', await b.ev(`document.querySelectorAll('#jgPostForm fieldset').length`) === 10
+check('rosin: 10 decisiones (el material ya lo decidió la preparación); malla y calor con su cifra «orientativo»; presión sin cifras; tiempo: solo «medio», 90–120 s (orientativo, C2)', await b.ev(`document.querySelectorAll('#jgPostForm fieldset').length`) === 10
   && /5–25 µm \(orientativo\)/.test(await b.ev(`document.querySelector('label[for="jgp-rosin-malla-fina"]').innerText`))
   && /orientativo: 49–116 °C/.test(await b.ev(`[...document.querySelectorAll('#jgPostForm legend')].map((l) => l.textContent).join('|')`))
-  && !/\d/.test(await b.ev(`[...document.querySelectorAll('#jgPostForm fieldset')].filter((f) => /jgp-(presion|tiempo)/.test(f.querySelector('input').name)).map((f) => f.innerText).join(' ')`)));
+  && !/\d/.test(await b.ev(`[...document.querySelectorAll('#jgPostForm fieldset')].filter((f) => /jgp-presion/.test(f.querySelector('input').name)).map((f) => f.innerText).join(' ')`))
+  && /90–120 s \(orientativo/.test(await b.ev(`document.querySelector('label[for="jgp-rosin-tiempo-medio"]').innerText`))
+  && !/\d/.test(await b.ev(`['corto', 'largo'].map((o) => document.querySelector('label[for="jgp-rosin-tiempo-' + o + '"]').innerText).join(' ')`)));
 for (const [L, w] of [['en', '5–25 µm (orientative)'], ['de', '5–25 µm (Richtwert)'], ['fr', '5–25 µm (indicatif)']]) {
   await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(500);
   check(`${L.toUpperCase()}: la malla fina dice «${w}»`, (await b.ev(`document.querySelector('label[for="jgp-rosin-malla-fina"]').innerText`)).includes(w));

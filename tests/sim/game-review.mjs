@@ -116,8 +116,8 @@ for (const bad of ['escarcha', 'descongelada']) {
     && rr.post.find((x) => x.d === 'humedad_fresca')?.look === 'agua' && t.includes(TEXTS.es.jgTentX_agua) && t.includes('Suele ir mejor «Atemperar en bolsa cerrada»') && html(r).includes('data-why="rosin_humedad_fresca"'), t);
 }
 check('«¿Por qué? · Bolsa de malla» cita el manual de NugSmasher (C2, práctica de la comunidad)', W.WHY.rosin_malla.src.includes('C2') && /community practice/.test(W.SOURCES.C2.label));
-check('la cifra 160 µm solo está en la pista de la malla, marcada «orientativo» y «práctica de la comunidad»',
-  ['es', 'en', 'de', 'fr'].every((L) => Object.entries(TEXTS[L]).filter(([, v]) => v.includes('160')).every(([k]) => k === 'jgPH_rosin_malla_flor_fresca')) && TEXTS.es.jgPH_rosin_malla_flor_fresca.includes('orientativo') && TEXTS.es.jgPH_rosin_malla_flor_fresca.includes('comunidad'));
+check('la cifra 160 µm solo está en la pista de la malla y en su «¿Por qué?», marcada «orientativo» y «práctica de la comunidad»',
+  ['es', 'en', 'de', 'fr'].every((L) => Object.entries(TEXTS[L]).filter(([, v]) => v.includes('160')).every(([k]) => ['jgPH_rosin_malla_flor_fresca', 'jgWhy_rosin_malla'].includes(k))) && TEXTS.es.jgPH_rosin_malla_flor_fresca.includes('orientativo') && TEXTS.es.jgPH_rosin_malla_flor_fresca.includes('comunidad'));
 
 console.log('5. Germinación, maceta sin trasplantar, floración temprana');
 let g = E.setSetup(E.newGame(), { carpa: 'mediana', luz: 'led', sistema: 'maceta', sustrato: 'tierra', maceta: 'plastico', maceta_tam: 'pequena', riego_tipo: 'mano', medir: 'si' }, RULES);

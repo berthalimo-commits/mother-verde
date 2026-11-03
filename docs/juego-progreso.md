@@ -523,10 +523,22 @@ Especificación y lista para validar: `docs/juego-decisiones.md` → «Varias pl
   `tests/sim/out/jgplantas-*.png`); el resto del juego en verde.
 
 **Para Bertha:**
-1. **Pegar en staging** `supabase/staging/paso4d-juego-plantas.sql` (solo añade la clave «machos»). Sin esto, en
-   la web de pruebas una partida con semillas regulares no se guarda después de retirar los machos o de que
-   suelten el polen. Deshacer: `supabase/admin/rollback-20261031100000.sql`.
+1. ~~Pegar en staging `paso4d-juego-plantas.sql`~~ **HECHO** el 2026-11-02 (aprobado por el dueño; aplicado desde el
+   SQL Editor del proyecto `ciqdnrdtaxbmcjvxljvq`, «Success. No rows returned»). Comprobado: la regla conoce
+   «machos», acepta «retirados» y «tarde» y rechaza valores inventados; en la web de pruebas (`juego`) una partida
+   con 4 semillas regulares se guardó tras retirar los machos (seq 39) y otra tras soltar el polen (seq 55).
+   La partida terminada que había en esa cuenta quedó copiada en el navegador (`mvGameBackup-2026-11-02`).
+   Deshacer: `supabase/staging/paso4d-rollback.sql`.
 2. Validar los valores marcados «criterio de la autora / valor de juego» de esta etapa (lista en
    `docs/juego-decisiones.md`).
 
 **Lo siguiente:** la **fase 9** (pulido final).
+
+### Validación de Bertha aplicada (2026-11-02)
+Respuestas 1–5 y 7–11 aplicadas (detalle en `docs/juego-decisiones.md`): −25 por polinización; el «¿Por qué?» de los
+machos explica que en la vida real cada semilla es azar; calor 49–80 / 80–95 / 95–116 °C, tiempo medio 90–120 s,
+malla 90 µm flor seca y 25 µm hachís de agua, bolsa fina de agua 25 µm: todo «orientativo», con su fuente.
+
+**Pendiente (pregunta al dueño), respuesta 6 «carpa llena: humedad un nivel más alta y moho antes»:** en floración
+la humedad ideal es «baja», la más baja que hay; si la carpa llena la sube un nivel, ninguna opción la evita y la
+planta pierde salud cada semana de floración (unos −35 en total). No se aplicó hasta aclarar cómo debe ser.

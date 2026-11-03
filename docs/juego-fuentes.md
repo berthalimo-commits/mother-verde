@@ -219,3 +219,18 @@ cosecha, el secado y el curado) lleva un botón **«¿Por qué?»**. Al tocarlo 
 - si la hay, la fuente comprobada de esta tabla (código F1–F7).
 
 Si la regla es una simplificación del juego, lo dice tal cual. Los textos están en `src/game/why.js`.
+
+## Valores validados por Bertha (2026-11-02)
+
+Criterio de la autora, **validado por Bertha** (respuestas a `docs/juego-validacion.md`). Las cifras del rosin
+siguen siendo **orientativas** y conservan su fuente:
+- Calor del rosin: bajo 49–80, medio 80–95, alto 95–116 °C. Rango: **P2**; cortes: criterio de la autora, validado
+  por Bertha.
+- Tiempo de prensado «medio»: 90–120 s. Fuente: **C2** (práctica de la comunidad); validado por Bertha.
+- Malla: 90 µm para flor seca (**C2**), 25 µm para hachís de agua (**C1**), 160 µm para flor fresca (**C2**); rangos
+  fina y estándar de **P1/P2**. Validado por Bertha.
+- Bolsa fina de agua y hielo: 25 µm (**C1**). Validado por Bertha.
+- Varias plantas y semillas: plantas por carpa (2 / 4 / 6), la mitad de las regulares macho, semanas de los machos,
+  −25 por polinización y el calendario de la autofloreciente: criterio de la autora, validado por Bertha. Respaldo
+  de la plataforma: Glosario (planta macho) y Cultivo → Genética (autofloración, 8–10 semanas).
+- Presión: sigue sin cifras (ninguna fuente).

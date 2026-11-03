@@ -368,7 +368,7 @@ Dos decisiones nuevas en «Prepara tu carpa», para todos los sistemas. Vienen m
 siempre queda al menos una hembra: simplificación). Se ven en la 1.ª semana de floración (sacos de polen) y hay
 un botón «Retirar los machos» (bloqueado, como el trasplante, mientras haya un problema sin responder). Si siguen
 en la carpa al pasar la 2.ª semana de floración sueltan polen: los cogollos se llenan de semillas y la cosecha
-pierde **15 puntos** (valor de juego, criterio de la autora). Respaldo: Glosario «planta macho» («se elimina para
+pierde **25 puntos** (valor de juego; criterio de la autora, validado por Bertha el 2026-11-02). Respaldo: Glosario «planta macho» («se elimina para
 evitar polinización no deseada»).
 
 **Autofloreciente.** Florece por edad (Genética): tras 2 semanas de vegetativo pasa sola a floración; elegir 12/12
@@ -385,3 +385,19 @@ ejemplo, más humedad en la carpa llena)? Por ahora no cambia nada más.
 **Servidor.** Migración nueva `20261031100000_game_plants.sql` (solo añade la clave `machos`: «retirados» o
 «tarde»); la semilla y las plantas ya las aceptaba la de la fase 5. Copia para pegar en staging:
 `supabase/staging/paso4d-juego-plantas.sql`; deshacer: `supabase/admin/rollback-20261031100000.sql`.
+
+### Validación de Bertha (2026-11-02, respuestas a `docs/juego-validacion.md`)
+
+| # | Valor | Decisión de Bertha | Respaldo |
+|---|---|---|---|
+| 1 | Plantas por carpa: 2 / 4 / 6 | se queda | criterio de la autora, validado por Bertha |
+| 2 | Regulares: la mitad macho, siempre una hembra | se queda; el «¿Por qué?» explica que en la vida real cada semilla es azar | Glosario (planta macho) · criterio de la autora, validado por Bertha |
+| 3 | Machos visibles en la 1.ª semana de floración; polen al pasar la 2.ª | se queda | criterio de la autora, validado por Bertha |
+| 4 | Resta por polinización | **−25** (antes −15) | criterio de la autora, validado por Bertha |
+| 5 | Autofloreciente: florece tras 2 semanas de vegetativo; punto a las 9 desde la semilla | se queda | Cultivo → Genética (8–10 semanas) · semanas exactas: criterio de la autora, validado por Bertha |
+| 6 | Efecto de la carpa llena | opción 2 (humedad un nivel más alta y moho antes) | **pendiente de aplicar**: ver la pregunta en `docs/juego-progreso.md` |
+| 7 | Calor: bajo 49–80 · medio 80–95 · alto 95–116 °C | **orientativo**, en las pistas y en su «¿Por qué?» | rango: **P2** · cortes: criterio de la autora, validado por Bertha |
+| 8 | Presión | se queda en niveles, sin cifras | — |
+| 9 | Tiempo «medio»: 90–120 s | **orientativo**, en la pista | **C2** (práctica de la comunidad) · validado por Bertha |
+| 10 | Malla por material: flor seca 90 µm · hachís de agua 25 µm | **orientativo**, en las pistas y en su «¿Por qué?» (la nota no cambia: fina y estándar siguen valiendo) | **C2** (90 µm) · **C1** (25 µm) · rangos fina/estándar: **P1/P2** · validado por Bertha |
+| 11 | Bolsa fina de agua y hielo: 25 µm | **orientativo**, en la pista y en su «¿Por qué?» | **C1** · validado por Bertha |

@@ -1,6 +1,10 @@
 # Hoja de validación para Bertha
 
-**Nada de esta hoja está validado.** Solo Bertha valida. Responde cada línea con un número o con tu propio valor
+**Respuestas de Bertha (2026-11-02):** 1: 1 · 2: 1 (el «¿Por qué?» explica que en la vida real cada semilla es azar) ·
+3: 1 · 4: 3 (−25) · 5: 1 · 6: 2 · 7: 3 (orientativo) · 8: 1 · 9: 2 · 10: 2 · 11: 2. Aplicadas el mismo día, salvo la 6
+(pendiente de una aclaración: ver `docs/juego-progreso.md`). Detalle en `docs/juego-decisiones.md`.
+
+Solo Bertha valida. Responde cada línea con un número o con tu propio valor
 (por ejemplo: «1: 2», «6: 3», «7: 60–80 / 80–95 / 95–120 °C»).
 
 ## Varias plantas y autofloreciente

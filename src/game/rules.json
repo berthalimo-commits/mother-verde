@@ -710,7 +710,8 @@
             ],
             "_fuente": "C2 (manual de NugSmasher, práctica de la comunidad, orientativo): 160 µm para flor fresca, 90 µm para flor seca · decisión de Bertha 2026-10-30",
             "verificar": "[POR VERIFICAR POR BERTHA]"
-          }
+          },
+          "cifras": "fina 5–25 µm (25 µm habitual para hachís de agua, C1); estándar 25–220 µm (90 µm para flor seca, C2); flor fresca 160 µm (C2); todo orientativo · validado por Bertha (2026-11-02)"
         },
         "humedad_fresca": {
           "cuando": {
@@ -742,7 +743,8 @@
             "fuente": "Elaboración → Concentrados («a temperatura media») · rango orientativo P2",
             "respaldo": "practica",
             "verificar": "[POR VERIFICAR POR BERTHA]"
-          }
+          },
+          "cifras": "bajo 49–80 · medio 80–95 · alto 95–116 °C, orientativo (rango de P2; cortes: criterio de la autora) · validado por Bertha (2026-11-02)"
         },
         "presion": {
           "opciones": [
@@ -768,7 +770,8 @@
             "fuente": "[CIFRA: BERTHA] — ninguna fuente da tiempos: no puntúa",
             "respaldo": "sin",
             "verificar": "[POR VERIFICAR POR BERTHA]"
-          }
+          },
+          "cifras": "medio: 90–120 s, orientativo (C2, práctica de la comunidad) · validado por Bertha (2026-11-02)"
         },
         "prensa": {
           "opciones": [
@@ -1043,7 +1046,8 @@
             "fuente": "C1 (25 µm, lo habitual para prensar hachís de agua) · [CIFRA: BERTHA] micras",
             "respaldo": "comunidad",
             "verificar": "[POR VERIFICAR POR BERTHA]"
-          }
+          },
+          "cifras": "fina: 25 µm, orientativo (C1); media y gruesa sin micras (ninguna fuente) · validado por Bertha (2026-11-02)"
         },
         "agua_secado": {
           "opciones": [
@@ -1193,7 +1197,8 @@
           "grande": 6
         },
         "fuente": "Criterio de la autora (cuántas caben en cada carpa)",
-        "respaldo": "autora"
+        "respaldo": "autora",
+        "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
       }
     },
     "efectos": {
@@ -1381,10 +1386,10 @@
       "_nota": "Con semillas regulares parte de las plantas sale macho: el juego saca la mitad (redondeada hacia arriba o abajo según la partida) y deja siempre al menos una hembra (simplificación). Los machos se ven desde la 1.ª semana de floración (sacos de polen) y, si siguen en la carpa al pasar la 2.ª semana, sueltan polen: los cogollos se llenan de semillas y la cosecha pierde puntos.",
       "visibles_desde_semana_floracion": 1,
       "polinizan_al_pasar_semana_floracion": 2,
-      "resta_polinizacion": 15,
+      "resta_polinizacion": 25,
       "fuente": "Glosario (planta macho: «produce polen… se elimina para evitar polinización no deseada») · criterio de la autora (la mitad, las semanas y la resta)",
       "respaldo": "practica",
-      "verificar": "[POR VERIFICAR POR BERTHA]"
+      "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
     },
     "autofloreciente": {
       "_nota": "Florece por edad: tras 2 semanas de vegetativo pasa sola a floración (el 12/12 no la hace florecer antes). En floración da igual 18/6 o 12/12. Tricomas más rápidos: el punto (mezcla) llega a las 9 semanas desde la semilla, dentro de las 8–10 de la plataforma.",
@@ -1406,7 +1411,7 @@
       "max_semanas_floracion": 8,
       "fuente": "Cultivo → Genética («florecen automáticamente según su edad, sin importar las horas de luz… 8–10 semanas desde la semilla») · VALOR DE JUEGO (semanas exactas)",
       "respaldo": "practica",
-      "verificar": "[POR VERIFICAR POR BERTHA]"
+      "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
     }
   }
 }
