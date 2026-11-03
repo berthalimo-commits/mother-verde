@@ -45,13 +45,24 @@ const m1 = (await mail()).find((m) => m.to === 'aportante@example.org');
 check('"Activar acceso completo" -> approved + supporter + correo de activación (simulado)', st[0].status === 'approved' && st[0].subscription_status === 'supporter' && !!m1 && /Tu acceso completo está activo/.test(m1.text), JSON.stringify(st));
 
 // gift codes
+// Force the race behind the old intermittent failure: the list load made when
+// the tab opens answers 2 s late, after the reload that follows «Enviar».
+// Only the newest answer may paint, so the new code must still show «enviado».
+await b.send('Fetch.enable', { patterns: [{ urlPattern: '*admin_list_gift_codes*', requestStage: 'Response' }] });
+const pausedSeen = new Set(); let pausedN = 0;
+const pump = setInterval(() => { for (const e of b.events) if (e.method === 'Fetch.requestPaused' && !pausedSeen.has(e.params.requestId)) {
+  pausedSeen.add(e.params.requestId); const late = e.params.request.method === 'POST' && pausedN++ === 0;
+  setTimeout(() => b.send('Fetch.continueRequest', { requestId: e.params.requestId }), late ? 2000 : 0); } }, 30);
 await b.ev(`document.querySelector('.tabs button[data-t=gifts]').click(); 1`);
 await b.waitFor(/Enviar un código/);
 await b.ev(`document.getElementById('ge').value='amiga@example.org'; document.getElementById('gs').click(); 1`);
 // The message comes first and the list is reloaded right after (a few ms
 // later): wait for both, or a poll between the two sees the old list.
 s = await b.waitFor(/^(?=[\s\S]*Enviado a amiga@example\.org)(?=[\s\S]*\benviado\b)/, 20000);
-check('enviar código -> "Enviado a amiga@example.org" y aparece en la lista como enviado', /Enviado a amiga@example\.org/.test(s) && /enviado/.test(s), s.slice(s.indexOf('Enviar un código'), s.indexOf('Enviar un código') + 700));
+await sleep(2500); s = await b.ev('document.body.innerText');
+check('enviar código -> "Enviado a amiga@example.org" y aparece en la lista como enviado (aunque la carga anterior responda tarde)', /Enviado a amiga@example\.org/.test(s) && await b.ev(`document.querySelectorAll('#gl [data-state=enviado]').length`) >= 1, s.slice(s.indexOf('Enviar un código'), s.indexOf('Enviar un código') + 700));
+clearInterval(pump); await b.send('Fetch.disable');
+check('…la carga de la lista de verdad respondió tarde (la prueba forzó la carrera)', pausedN >= 2, String(pausedN));
 const gm = (await mail()).find((m) => m.to === 'amiga@example.org');
 check('…un correo con el código y «Tengo un código de regalo»', !!gm && /Tengo un código de regalo/.test(gm.text) && /[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}/.test(gm.text));
 check('…el código NO aparece en el panel', !s.includes(gm.text.match(/[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}-[A-HJ-NP-Z2-9]{4}/)[0]));

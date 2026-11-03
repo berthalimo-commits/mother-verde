@@ -779,8 +779,16 @@ async function giftsView() {
   loadGifts();
 }
 const GSTATE = { creado: '', enviado: 'ok', usado: 'muted', vencido: 'muted', anulado: 'bad' };
+// Only the newest request may paint a list: the first load (opening the tab)
+// can answer AFTER the reload that follows «Enviar», and used to paint the old
+// list over the new one (the intermittent «enviar código de regalo» failure).
+const listSeq = {};
+const nextSeq = (k) => (listSeq[k] = (listSeq[k] || 0) + 1);
+const stale = (k, n) => listSeq[k] !== n;
 async function loadGifts() {
+  const n = nextSeq('gifts');
   const { data, error } = await sb.rpc('admin_list_gift_codes', { p_limit: 200 });
+  if (stale('gifts', n)) return;
   const box = document.getElementById('gl');
   if (!box) return;
   if (error) { box.innerHTML = `<p class="bad">${esc(errText(rpcErr(error)))}</p>`; return; }
@@ -887,7 +895,9 @@ function wireManualVoid(box, reload) {
 }
 async function loadManual() {
   const box = document.getElementById('manL');
+  const n = nextSeq('manual');
   const { data, error } = await sb.rpc('admin_list_manual_contributions', { p_user_id: null, p_limit: 200 });
+  if (stale('manual', n)) return;
   if (!box || !document.body.contains(box)) return;
   if (error) { box.innerHTML = `<p class="bad">${esc(errText(rpcErr(error)))}</p>`; return; }
   if (!data.length) { box.innerHTML = `<p class="muted">${tr('manNone')}</p>`; return; }
