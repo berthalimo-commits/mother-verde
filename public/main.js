@@ -6351,6 +6351,11 @@ translations.es.dsCriptoAyuda = "¿Tienes dificultades con el pago en cripto? Es
 translations.en.dsCriptoAyuda = "Having trouble paying with crypto? Write to us at {mail}";
 translations.de.dsCriptoAyuda = "Schwierigkeiten bei der Zahlung mit Krypto? Schreibe uns an {mail}";
 translations.fr.dsCriptoAyuda = "Des difficultés pour payer en crypto ? Écris-nous à {mail}";
+// Manual contributions (2026-11-03): another means agreed by e-mail
+translations.es.dsNoUsdc = "¿No usas USDC? Escríbenos a {mail}";
+translations.en.dsNoUsdc = "Don’t use USDC? Write to us at {mail}";
+translations.de.dsNoUsdc = "Du nutzt kein USDC? Schreib uns an {mail}";
+translations.fr.dsNoUsdc = "Tu n’utilises pas l’USDC ? Écris-nous à {mail}";
 translations.es.dsContactoNombre = "Nombre (opcional)";
 translations.en.dsContactoNombre = "Name (optional)";
 translations.de.dsContactoNombre = "Name (optional)";

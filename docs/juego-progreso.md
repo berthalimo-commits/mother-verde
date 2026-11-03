@@ -596,7 +596,7 @@ Para producción: pasos del juego añadidos en `docs/lanzamiento-produccion.md` 
 
 ## Pendientes de la plataforma
 
-### Aportes manuales (pedido del dueño, 2026-11-03) — EN CURSO
+### Aportes manuales (pedido del dueño, 2026-11-03) — HECHO en dev; staging ESPERA «APRUEBO»
 Decisión de Bertha: el admin puede registrar aportes hechos por PayPal, CashApp, transferencia, efectivo u otro medio
 acordado por correo o celular. Se hace en `dev` y staging (nada en `main` ni producción):
 - botón «Registrar aporte manual» en `/panel-mv.html`, solo admin con segundo paso de seguridad (AAL2);
@@ -607,6 +607,11 @@ acordado por correo o celular. Se hace en `dev` y staging (nada en `main` ni pro
 - Desbloquear, en los 4 idiomas: «¿No usas USDC? Escríbenos a hello@motherverdeny.com».
 Reglas: migración nueva en `supabase/staging` con su reversión; plan en lenguaje simple y esperar «APRUEBO»;
 pruebas automáticas.
+**Estado (2026-11-03):** plan aprobado con 2 ajustes (monto = lo PAGADO, comisión opcional aparte; probar todo el camino
+USDC). Hecho en `dev`: migración 20261103100000 + reversión, panel (pestaña «Aportes manuales», ficha), Desbloquear en
+4 idiomas. Archivos de staging listos y **sin pegar**: `supabase/staging/paso5-aportes-manuales.sql`,
+`paso5-rollback.sql`, `paso5-comprobacion.sql`. Después de pegarlos: probar en staging el camino USDC con un código
+falso y un aporte manual.
 
 ### Temperaturas de las lecciones en °C y °F — DESPUÉS de los aportes manuales
 Las 64 temperaturas de las lecciones (`public/main.js`) a «N °C (N °F)» con la función del juego (`src/game/temp.js`),

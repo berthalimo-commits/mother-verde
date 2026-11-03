@@ -107,11 +107,13 @@ const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/
 // next to a payment word, Revolut only as a whole word.
 const ZELLE_PAY = /zelle.{0,40}(pago|pay|payment|zahl|paiement)|(pago|pay|payment|zahl|paiement).{0,40}zelle/i;
 const APPS = /cash\s?app|paypal|venmo|\bWise\b|\brevolut\b|western union|moneygram|skrill|payoneer|stripe|coinbase|binance|apple pay|google pay|mercado\s?pago|\byape\b|\bplin\b|payment\s?nerds|paymentcloud/i;
-const files = ['index.html', 'panel-mv.html', 'public/main.js', ...fs.readdirSync(APP + 'src').filter((f) => f.endsWith('.js')).map((f) => 'src/' + f),
+// Since 2026-11-03 (Bertha's decision) the admin panel may name PayPal, CashApp… to RECORD a manual
+// contribution (src/admin.js, admin-only). Everything a user sees still never names a payment app.
+const files = ['index.html', 'panel-mv.html', 'public/main.js', ...fs.readdirSync(APP + 'src').filter((f) => f.endsWith('.js') && f !== 'admin.js').map((f) => 'src/' + f),
   ...fs.readdirSync(APP + 'supabase/functions').map((d) => `supabase/functions/${d}/index.ts`).filter((f) => fs.existsSync(APP + f)),
   ...fs.readdirSync(APP + 'supabase/email-templates').filter((f) => f.endsWith('.html') || f.endsWith('.md')).map((f) => 'supabase/email-templates/' + f)];
 const hits = [];
 for (const f of files) fs.readFileSync(APP + f, 'utf8').split('\n').forEach((l, i) => { const m = l.match(APPS) || l.match(ZELLE_PAY); if (m) hits.push(`${f}:${i + 1} «${m[0]}»`); });
-check(`ningún texto de la app, correos ni panel menciona apps de pago (${files.length} archivos)`, hits.length === 0, hits.slice(0, 10).join(' | '));
+check(`ningún texto que ve el usuario (app, correos, funciones) menciona apps de pago (${files.length} archivos; el panel de admin sí, para registrar aportes manuales)`, hits.length === 0, hits.slice(0, 10).join(' | '));
 summary();
 process.exit(0);

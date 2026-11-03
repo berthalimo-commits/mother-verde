@@ -265,10 +265,12 @@ function paymentHtml() {
     </div>`;
 }
 
-// "¿Tienes problemas?" — manual help by e-mail only (no other payment method).
+// "¿Tienes problemas?" — help by e-mail, and another means of payment
+// agreed by e-mail and recorded by an admin (2026-11-03).
+const MAIL_LINK = '<a href="mailto:hello@motherverdeny.com?subject=Mother%20Verde">hello@motherverdeny.com</a>';
 function helpHtml() {
-  const mail = '<a href="mailto:hello@motherverdeny.com?subject=Mother%20Verde">hello@motherverdeny.com</a>';
-  return `<div class="ds-help"><h4>${t('dsProblemasH')}</h4><p>${t('dsCriptoAyuda').replace('{mail}', mail)}</p></div>`;
+  return `<div class="ds-help"><h4>${t('dsProblemasH')}</h4><p>${t('dsCriptoAyuda').replace('{mail}', MAIL_LINK)}</p>
+    <p class="ds-no-usdc" id="dsNoUsdc">${t('dsNoUsdc').replace('{mail}', MAIL_LINK)}</p></div>`;
 }
 
 function visitorHtml() {
@@ -277,6 +279,7 @@ function visitorHtml() {
       <h3>${t('dsComoH3')}</h3>
       <p>${t('dsVisitorNote')}</p>
       <button type="button" class="btn btn-primary" id="dsCrearCuenta">${t('accCrearCuenta')}</button>
+      <p class="ds-no-usdc" id="dsNoUsdc">${t('dsNoUsdc').replace('{mail}', MAIL_LINK)}</p>
     </div>`;
 }
 

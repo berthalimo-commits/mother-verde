@@ -363,9 +363,81 @@ const T4 = {
   fr: { stuckH: 'Impossible de charger cette partie de l’espace', stuckP: 'La connexion prend plus de temps que d’habitude ou quelque chose a échoué.', stuckRetry: 'Réessayer',
     stuckMail: 'Si ça continue, écris à {mail}.', e_network: 'Pas de connexion avec le serveur. Réessaie.' },
 };
-for (const l of LANGS) Object.assign(T[l], T2[l], T3[l], T4[l]);
+// Manual contributions (Bertha's decision 2026-11-03): PayPal, CashApp,
+// transfer, cash or other, recorded by an admin with AAL2.
+const T5 = {
+  es: {
+    tabManual: 'Aportes manuales', manH: 'Aportes manuales (PayPal, CashApp, transferencia, efectivo u otro)',
+    manNew: 'Registrar aporte manual', manP: 'Para un aporte acordado por correo o celular. Al guardar se activa el acceso completo, igual que un aporte en USDC aprobado. Queda en el Registro y se puede anular (nunca se borra).',
+    manEmail: 'Correo de la cuenta', manMethod: 'Medio', manAmount: 'Monto pagado', manCurrency: 'Moneda', manFee: 'Comisión del medio de pago (opcional, solo contabilidad)',
+    manRef: 'Referencia o nota', manRefPh: 'p. ej. ID de PayPal, «efectivo en mano el 3-11», equivalencia si no es USD', manDate: 'Fecha del pago', manFlowers: 'Flores',
+    manRule: 'Regla: 10 por flor sobre lo PAGADO (se comprueba en USD y USDC). En otra moneda, explica la equivalencia en la nota.',
+    manSave: 'Guardar y activar acceso', manSaved: 'Guardado: acceso completo activado para {e}.', manList: 'Aportes manuales registrados',
+    manDupUsdc: 'Esta cuenta ya tiene un aporte en USDC aprobado.', manDupManual: 'Esta cuenta ya tiene un aporte manual activo.', manDupBoth: 'Esta cuenta ya tiene un aporte en USDC aprobado y un aporte manual activo.',
+    manDupAsk: 'Si de verdad es otro aporte, marca «Registrar de todos modos» y escribe el motivo.', manForce: 'Registrar de todos modos', manForceReason: 'Motivo (obligatorio)',
+    manActive: 'activo', manVoided: 'anulado', manVoid: 'Anular', manVoidPh: 'Motivo de la anulación…', manVoidOk: 'Anular con este motivo', manNone: 'Todavía no hay aportes manuales.',
+    thPaid: 'Pagado', thFee: 'Comisión', thMethod: 'Medio', thRef: 'Referencia', thPaidOn: 'Fecha del pago', thFlowers: 'Flores', thBy: 'Registró', fileManual: 'Aportes manuales',
+    m_paypal: 'PayPal', m_cashapp: 'CashApp', m_transferencia: 'Transferencia', m_efectivo: 'Efectivo', m_otro: 'Otro',
+    e_account_not_found: 'No hay ninguna cuenta con ese correo. La persona tiene que registrarse primero.', e_bad_method: 'Elige un medio de pago.', e_bad_amount: 'Escribe el monto pagado (mayor que 0).',
+    e_bad_currency: 'Moneda no válida (3 o 4 letras: USD, EUR, MXN, USDC…).', e_bad_fee: 'La comisión no puede ser negativa ni mayor que lo pagado.', e_reference_required: 'Escribe una referencia o nota.',
+    e_bad_date: 'Fecha no válida (no puede ser futura).', e_bad_flowers: 'Las flores van de 1 a 20.', e_amount_below_flowers: 'Lo pagado no llega a 10 por flor.',
+    e_equivalence_note_required: 'En otra moneda, explica en la nota a cuánto equivale (al menos 10 caracteres).', e_already_voided: 'Ya estaba anulado.',
+  },
+  en: {
+    tabManual: 'Manual contributions', manH: 'Manual contributions (PayPal, CashApp, transfer, cash or other)',
+    manNew: 'Record a manual contribution', manP: 'For a contribution agreed by e-mail or phone. Saving it activates full access, just like an approved USDC contribution. It goes to the Log and can be voided (never deleted).',
+    manEmail: 'Account e-mail', manMethod: 'Method', manAmount: 'Amount paid', manCurrency: 'Currency', manFee: 'Payment-method fee (optional, bookkeeping only)',
+    manRef: 'Reference or note', manRefPh: 'e.g. PayPal ID, «cash in hand on 3 Nov», equivalence if not USD', manDate: 'Payment date', manFlowers: 'Flowers',
+    manRule: 'Rule: 10 per flower on what was PAID (checked in USD and USDC). In another currency, explain the equivalence in the note.',
+    manSave: 'Save and activate access', manSaved: 'Saved: full access activated for {e}.', manList: 'Recorded manual contributions',
+    manDupUsdc: 'This account already has an approved USDC contribution.', manDupManual: 'This account already has an active manual contribution.', manDupBoth: 'This account already has an approved USDC contribution and an active manual contribution.',
+    manDupAsk: 'If it really is another contribution, tick «Record anyway» and write the reason.', manForce: 'Record anyway', manForceReason: 'Reason (required)',
+    manActive: 'active', manVoided: 'voided', manVoid: 'Void', manVoidPh: 'Reason for voiding…', manVoidOk: 'Void with this reason', manNone: 'No manual contributions yet.',
+    thPaid: 'Paid', thFee: 'Fee', thMethod: 'Method', thRef: 'Reference', thPaidOn: 'Payment date', thFlowers: 'Flowers', thBy: 'Recorded by', fileManual: 'Manual contributions',
+    m_paypal: 'PayPal', m_cashapp: 'CashApp', m_transferencia: 'Bank transfer', m_efectivo: 'Cash', m_otro: 'Other',
+    e_account_not_found: 'There is no account with that e-mail. The person has to sign up first.', e_bad_method: 'Choose a payment method.', e_bad_amount: 'Enter the amount paid (more than 0).',
+    e_bad_currency: 'Invalid currency (3 or 4 letters: USD, EUR, MXN, USDC…).', e_bad_fee: 'The fee can’t be negative or more than what was paid.', e_reference_required: 'Write a reference or note.',
+    e_bad_date: 'Invalid date (it can’t be in the future).', e_bad_flowers: 'Flowers go from 1 to 20.', e_amount_below_flowers: 'What was paid doesn’t reach 10 per flower.',
+    e_equivalence_note_required: 'In another currency, explain the equivalence in the note (at least 10 characters).', e_already_voided: 'It was already voided.',
+  },
+  de: {
+    tabManual: 'Manuelle Beiträge', manH: 'Manuelle Beiträge (PayPal, CashApp, Überweisung, bar oder anderes)',
+    manNew: 'Manuellen Beitrag erfassen', manP: 'Für einen Beitrag, der per E-Mail oder Telefon vereinbart wurde. Beim Speichern wird der volle Zugang aktiviert, genau wie bei einem genehmigten USDC-Beitrag. Er steht im Protokoll und kann storniert werden (nie gelöscht).',
+    manEmail: 'E-Mail des Kontos', manMethod: 'Zahlungsweg', manAmount: 'Gezahlter Betrag', manCurrency: 'Währung', manFee: 'Gebühr des Zahlungswegs (optional, nur Buchhaltung)',
+    manRef: 'Referenz oder Notiz', manRefPh: 'z. B. PayPal-ID, «bar übergeben am 3.11.», Umrechnung, wenn nicht USD', manDate: 'Zahlungsdatum', manFlowers: 'Blumen',
+    manRule: 'Regel: 10 pro Blume auf den GEZAHLTEN Betrag (geprüft in USD und USDC). In einer anderen Währung die Umrechnung in der Notiz erklären.',
+    manSave: 'Speichern und Zugang aktivieren', manSaved: 'Gespeichert: voller Zugang für {e} aktiviert.', manList: 'Erfasste manuelle Beiträge',
+    manDupUsdc: 'Dieses Konto hat schon einen genehmigten USDC-Beitrag.', manDupManual: 'Dieses Konto hat schon einen aktiven manuellen Beitrag.', manDupBoth: 'Dieses Konto hat schon einen genehmigten USDC-Beitrag und einen aktiven manuellen Beitrag.',
+    manDupAsk: 'Wenn es wirklich ein weiterer Beitrag ist, «Trotzdem erfassen» ankreuzen und den Grund schreiben.', manForce: 'Trotzdem erfassen', manForceReason: 'Grund (Pflicht)',
+    manActive: 'aktiv', manVoided: 'storniert', manVoid: 'Stornieren', manVoidPh: 'Grund der Stornierung…', manVoidOk: 'Mit diesem Grund stornieren', manNone: 'Noch keine manuellen Beiträge.',
+    thPaid: 'Gezahlt', thFee: 'Gebühr', thMethod: 'Zahlungsweg', thRef: 'Referenz', thPaidOn: 'Zahlungsdatum', thFlowers: 'Blumen', thBy: 'Erfasst von', fileManual: 'Manuelle Beiträge',
+    m_paypal: 'PayPal', m_cashapp: 'CashApp', m_transferencia: 'Überweisung', m_efectivo: 'Bar', m_otro: 'Anderes',
+    e_account_not_found: 'Es gibt kein Konto mit dieser E-Mail. Die Person muss sich zuerst registrieren.', e_bad_method: 'Wähle einen Zahlungsweg.', e_bad_amount: 'Gib den gezahlten Betrag ein (mehr als 0).',
+    e_bad_currency: 'Ungültige Währung (3 oder 4 Buchstaben: USD, EUR, MXN, USDC…).', e_bad_fee: 'Die Gebühr darf nicht negativ und nicht höher als der gezahlte Betrag sein.', e_reference_required: 'Schreib eine Referenz oder Notiz.',
+    e_bad_date: 'Ungültiges Datum (nicht in der Zukunft).', e_bad_flowers: 'Blumen: von 1 bis 20.', e_amount_below_flowers: 'Der gezahlte Betrag erreicht nicht 10 pro Blume.',
+    e_equivalence_note_required: 'In einer anderen Währung die Umrechnung in der Notiz erklären (mindestens 10 Zeichen).', e_already_voided: 'Er war schon storniert.',
+  },
+  fr: {
+    tabManual: 'Contributions manuelles', manH: 'Contributions manuelles (PayPal, CashApp, virement, espèces ou autre)',
+    manNew: 'Enregistrer une contribution manuelle', manP: 'Pour une contribution convenue par e-mail ou par téléphone. L’enregistrer active l’accès complet, comme une contribution USDC approuvée. Elle va dans le Journal et peut être annulée (jamais supprimée).',
+    manEmail: 'E-mail du compte', manMethod: 'Moyen', manAmount: 'Montant payé', manCurrency: 'Devise', manFee: 'Frais du moyen de paiement (facultatif, comptabilité seulement)',
+    manRef: 'Référence ou note', manRefPh: 'p. ex. ID PayPal, « espèces remises le 3/11 », équivalence si ce n’est pas en USD', manDate: 'Date du paiement', manFlowers: 'Fleurs',
+    manRule: 'Règle : 10 par fleur sur ce qui a été PAYÉ (vérifié en USD et USDC). Dans une autre devise, explique l’équivalence dans la note.',
+    manSave: 'Enregistrer et activer l’accès', manSaved: 'Enregistré : accès complet activé pour {e}.', manList: 'Contributions manuelles enregistrées',
+    manDupUsdc: 'Ce compte a déjà une contribution USDC approuvée.', manDupManual: 'Ce compte a déjà une contribution manuelle active.', manDupBoth: 'Ce compte a déjà une contribution USDC approuvée et une contribution manuelle active.',
+    manDupAsk: 'Si c’est vraiment une autre contribution, coche « Enregistrer quand même » et écris le motif.', manForce: 'Enregistrer quand même', manForceReason: 'Motif (obligatoire)',
+    manActive: 'active', manVoided: 'annulée', manVoid: 'Annuler', manVoidPh: 'Motif de l’annulation…', manVoidOk: 'Annuler avec ce motif', manNone: 'Pas encore de contribution manuelle.',
+    thPaid: 'Payé', thFee: 'Frais', thMethod: 'Moyen', thRef: 'Référence', thPaidOn: 'Date du paiement', thFlowers: 'Fleurs', thBy: 'Enregistré par', fileManual: 'Contributions manuelles',
+    m_paypal: 'PayPal', m_cashapp: 'CashApp', m_transferencia: 'Virement', m_efectivo: 'Espèces', m_otro: 'Autre',
+    e_account_not_found: 'Aucun compte avec cet e-mail. La personne doit d’abord s’inscrire.', e_bad_method: 'Choisis un moyen de paiement.', e_bad_amount: 'Écris le montant payé (plus de 0).',
+    e_bad_currency: 'Devise non valable (3 ou 4 lettres : USD, EUR, MXN, USDC…).', e_bad_fee: 'Les frais ne peuvent être ni négatifs ni supérieurs au montant payé.', e_reference_required: 'Écris une référence ou une note.',
+    e_bad_date: 'Date non valable (elle ne peut pas être dans le futur).', e_bad_flowers: 'Les fleurs vont de 1 à 20.', e_amount_below_flowers: 'Le montant payé n’atteint pas 10 par fleur.',
+    e_equivalence_note_required: 'Dans une autre devise, explique l’équivalence dans la note (au moins 10 caractères).', e_already_voided: 'Elle était déjà annulée.',
+  },
+};
+for (const l of LANGS) Object.assign(T[l], T2[l], T3[l], T4[l], T5[l]);
 const tr = (k, vars = {}) => Object.entries(vars).reduce((s, [a, b]) => s.split('{' + a + '}').join(String(b)), T[lang][k] ?? T.es[k] ?? k);
-const ERR_KEYS = Object.keys(T.es).filter((k) => k.startsWith('e_')).map((k) => k.slice(2));
+const ERR_KEYS = Object.keys(T.es).filter((k) => k.startsWith('e_')).map((k) => k.slice(2)).sort((a, b) => b.length - a.length);
 const errText = (e, detail) => (ERR_KEYS.includes(e) ? tr('e_' + e) : e || 'Error') + (detail ? ` (${detail})` : '');
 const rpcErr = (error) => { const m = error?.message || ''; return ERR_KEYS.find((k) => m.includes(k)) || m; };
 
@@ -506,6 +578,7 @@ async function panel(email) {
       <button data-t="users">${tr('tabUsers')}</button>
       <button data-t="claims">${tr('tabClaims')}</button>
       <button data-t="gifts">${tr('tabGifts')}</button>
+      <button data-t="manual">${tr('tabManual')}</button>
       <button data-t="audit">${tr('tabAudit')}</button></div>
     <div id="pendingAlert"></div>
     <div id="mailAlert"></div>
@@ -518,7 +591,7 @@ function show() {
   app.querySelectorAll('#ptabs button').forEach((b) => b.classList.toggle('on', b.dataset.t === tab));
   mailAlert();
   pendingAlert();
-  ({ summary: summaryView, users: usersView, claims: claimsView, gifts: giftsView, audit: auditView })[tab]();
+  ({ summary: summaryView, users: usersView, claims: claimsView, gifts: giftsView, manual: manualView, audit: auditView })[tab]();
 }
 const view = () => document.getElementById('view');
 
@@ -733,6 +806,95 @@ async function loadGifts() {
   });
 }
 
+// ------------------------------------------------------------ manual contributions
+const METHODS = ['paypal', 'cashapp', 'transferencia', 'efectivo', 'otro'];
+function manualView() {
+  const today = new Date().toISOString().slice(0, 10);
+  view().innerHTML = `
+    <div class="card"><h2>${tr('manH')}</h2>
+      <button id="manOpen">${tr('manNew')}</button>
+      <form id="manForm" hidden style="margin-top:12px">
+        <p class="muted">${tr('manP')}</p>
+        <div class="row"><label for="manE">${tr('manEmail')}</label><input id="manE" type="email" maxlength="254" style="max-width:340px" required></div>
+        <div class="row"><label for="manM">${tr('manMethod')}</label><select id="manM">${METHODS.map((m) => `<option value="${m}">${tr('m_' + m)}</option>`).join('')}</select></div>
+        <div class="row"><label for="manA">${tr('manAmount')}</label><input id="manA" type="number" min="0.01" step="0.01" style="max-width:140px" required>
+          <label for="manC">${tr('manCurrency')}</label><input id="manC" value="USD" maxlength="4" style="max-width:80px" required></div>
+        <div class="row"><label for="manFee">${tr('manFee')}</label><input id="manFee" type="number" min="0" step="0.01" style="max-width:140px"></div>
+        <div class="row"><label for="manR">${tr('manRef')}</label><input id="manR" maxlength="500" placeholder="${esc(tr('manRefPh'))}" style="max-width:520px" required></div>
+        <div class="row"><label for="manD">${tr('manDate')}</label><input id="manD" type="date" value="${today}" max="${today}" required>
+          <label for="manFl">${tr('manFlowers')}</label><input id="manFl" type="number" min="1" max="20" value="1" style="max-width:80px" required></div>
+        <p class="muted">${tr('manRule')}</p>
+        <div id="manDup" class="card warn" hidden><p id="manDupT"></p><p>${tr('manDupAsk')}</p>
+          <div class="row"><input type="checkbox" id="manForce"><label for="manForce">${tr('manForce')}</label></div>
+          <div class="row"><label for="manFR">${tr('manForceReason')}</label><input id="manFR" maxlength="500" style="max-width:420px"></div></div>
+        <div class="row"><button type="submit" id="manGo">${tr('manSave')}</button></div>
+        <p class="msg" id="manMsg" role="status"></p>
+      </form></div>
+    <div class="card"><div class="row" style="justify-content:space-between"><h2>${tr('manList')}</h2><button class="ghost" data-export="manual">${tr('exportCsv')}</button></div><p class="msg" id="xm-manual"></p><div id="manL" class="scroll">${loadingP()}</div></div>`;
+  document.getElementById('manOpen').onclick = () => { document.getElementById('manForm').hidden = false; document.getElementById('manE').focus(); };
+  document.getElementById('manForm').onsubmit = async (ev) => {
+    ev.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const m = document.getElementById('manMsg'); const go = document.getElementById('manGo');
+    const force = document.getElementById('manForce').checked;
+    go.disabled = true; m.className = 'msg'; m.textContent = tr('wait');
+    const { data, error } = await sb.rpc('admin_record_manual_contribution', {
+      p_email: v('manE'), p_method: v('manM'), p_amount: Number(v('manA')) || 0, p_currency: v('manC'), p_fee: v('manFee') === '' ? null : Number(v('manFee')),
+      p_reference: v('manR'), p_paid_on: v('manD'), p_flowers: Number(v('manFl')) || 0, p_force: force, p_duplicate_reason: force ? v('manFR') : null });
+    go.disabled = false;
+    if (error) {
+      const dup = /duplicate:(usdc_y_manual|usdc|manual)/.exec(error.message || '');
+      if (dup) {
+        document.getElementById('manDup').hidden = false;
+        document.getElementById('manDupT').textContent = tr({ usdc: 'manDupUsdc', manual: 'manDupManual', usdc_y_manual: 'manDupBoth' }[dup[1]]);
+        m.textContent = ''; return;
+      }
+      m.className = 'msg bad'; m.textContent = errText(rpcErr(error)); return;
+    }
+    m.className = 'msg ok'; m.textContent = tr('manSaved', { e: data.email });
+    for (const id of ['manE', 'manA', 'manFee', 'manR', 'manFR']) document.getElementById(id).value = '';
+    document.getElementById('manForce').checked = false; document.getElementById('manDup').hidden = true;
+    loadManual();
+  };
+  wireExports();
+  loadManual();
+}
+function manualRows(list, withEmail = true) {
+  return `<table><tr><th>${tr('thCreated')}</th>${withEmail ? `<th>${tr('thEmail')}</th>` : ''}<th>${tr('thMethod')}</th><th>${tr('thPaid')}</th><th>${tr('thFee')}</th><th>${tr('thFlowers')}</th><th>${tr('thPaidOn')}</th><th>${tr('thRef')}</th><th>${tr('thState')}</th><th></th></tr>
+    ${list.map((x) => `<tr data-manual="${x.id}" data-voided="${x.voided_at ? 1 : 0}"><td>${when(x.created_at)}<br><span class="muted">${esc(x.created_label)}</span></td>
+      ${withEmail ? `<td>${x.account_deleted ? esc(tr('accountDeletedH')) : emailCell(x.email)}</td>` : ''}<td>${esc(tr('m_' + x.method))}</td>
+      <td class="mono">${esc(String(x.amount))} ${esc(x.currency)}</td><td class="mono">${x.fee === null ? '—' : esc(String(x.fee)) + ' ' + esc(x.currency)}</td>
+      <td>${x.flowers}</td><td>${esc(x.paid_on)}</td><td>${esc(x.reference)}${x.duplicate_reason ? `<br><span class="muted">${esc(x.duplicate_reason)}</span>` : ''}</td>
+      <td class="${x.voided_at ? 'bad' : 'ok'}">${x.voided_at ? `${tr('manVoided')}<br><span class="muted">${when(x.voided_at)} · ${esc(x.voided_label || '')}<br>${esc(x.void_reason || '')}</span>` : tr('manActive')}</td>
+      <td>${x.voided_at ? '' : `<button class="ghost" data-mvoid="${x.id}">${tr('manVoid')}</button>`}</td></tr>
+      <tr id="mvr${x.id}" hidden><td colspan="${withEmail ? 10 : 9}"><div class="row"><input id="mvi${x.id}" placeholder="${esc(tr('manVoidPh'))}" maxlength="500" style="max-width:420px" aria-label="${esc(tr('manVoidPh'))}">
+        <button class="danger" data-mvoidok="${x.id}">${tr('manVoidOk')}</button><span class="msg" id="mvm${x.id}"></span></div></td></tr>`).join('')}</table>`;
+}
+function wireManualVoid(box, reload) {
+  box.querySelectorAll('[data-mvoid]').forEach((b) => { b.onclick = () => { document.getElementById('mvr' + b.dataset.mvoid).hidden = false; }; });
+  box.querySelectorAll('[data-mvoidok]').forEach((b) => {
+    b.onclick = async () => {
+      const id = Number(b.dataset.mvoidok); const reason = document.getElementById('mvi' + id).value.trim();
+      const m = document.getElementById('mvm' + id);
+      if (reason.length < 5) { m.textContent = tr('e_reason_required'); return; }
+      b.disabled = true;
+      const { error: e } = await sb.rpc('admin_void_manual_contribution', { p_id: id, p_reason: reason });
+      b.disabled = false;
+      if (e) { m.textContent = errText(rpcErr(e)); return; }
+      reload();
+    };
+  });
+}
+async function loadManual() {
+  const box = document.getElementById('manL');
+  const { data, error } = await sb.rpc('admin_list_manual_contributions', { p_user_id: null, p_limit: 200 });
+  if (!box || !document.body.contains(box)) return;
+  if (error) { box.innerHTML = `<p class="bad">${esc(errText(rpcErr(error)))}</p>`; return; }
+  if (!data.length) { box.innerHTML = `<p class="muted">${tr('manNone')}</p>`; return; }
+  box.innerHTML = manualRows(data);
+  wireManualVoid(box, loadManual);
+}
+
 // ------------------------------------------------------------ audit log
 async function auditView() {
   view().innerHTML = `<div class="card scroll">${loadingP()}</div>`;
@@ -871,8 +1033,18 @@ async function userFile(id) {
         <tr><th>${tr('contactPhone')}</th><td class="mono">${esc(u.contact_phone || '—')}</td></tr>
       </table></div>
     <div class="card"><h2>${tr('fileClaims')}</h2>${(u.claims || []).length ? `<table>${u.claims.map((c) => `<tr><td>#${c.id}</td><td>${esc(tr('st_' + c.status) || c.status)}</td><td class="mono">${esc(amt(c.amount_usdc))} USDC</td><td>${d(c.created_at)}</td><td class="mono">${esc(c.tx_hash || '')}</td><td>${esc(c.review_reason || '')}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>
+    <div class="card"><h2>${tr('fileManual')}</h2><div id="ufManual">${loadingP()}</div></div>
     <div class="card"><h2>${tr('fileGifts')}</h2>${(u.gift_codes || []).length ? `<table>${u.gift_codes.map((g) => `<tr><td>#${g.id}</td><td>${g.days} d</td><td>${d(g.used_at)}</td></tr>`).join('')}</table>` : `<p class="muted">${tr('none')}</p>`}</div>`;
   document.getElementById('usBack').onclick = () => { redraw = () => panel(currentEmail); usersView(); };
+  const loadUf = async () => {
+    const { data: ml, error: me } = await sb.rpc('admin_list_manual_contributions', { p_user_id: id, p_limit: 200 });
+    const box = document.getElementById('ufManual');
+    if (!box) return;
+    if (me) { box.innerHTML = `<p class="bad">${esc(errText(rpcErr(me)))}</p>`; return; }
+    box.innerHTML = ml.length ? manualRows(ml, false) : `<p class="muted">${tr('none')}</p>`;
+    wireManualVoid(box, loadUf);
+  };
+  loadUf();
 }
 
 start();
