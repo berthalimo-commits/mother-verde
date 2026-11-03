@@ -653,3 +653,12 @@ códigos. Detalle, fuentes F12–F34 y 7 avisos al dueño en `docs/juego-fuentes
 Recuento: estudio 40 · guía universitaria 2 · práctica de cultivadores 12 · práctica de la comunidad del rosin
 (orientativo) 24 · regla del juego 8 · sin fuente (criterio de la autora) 2 · etiquetas del archivo 2.
 Commits 7ef3336, 856d430 + fcf4c86, 6e41023.
+
+### Nuevo motivo de los aportes + historia de bienvenida (2026-11-03) — HECHO en dev y staging
+Con el «APRUEBO» de Bertha (decisiones 1–9): Canna Wasi quitada; los aportes apoyan su Horticulture Business Management
+(B.Tech.) en SUNY Morrisville; casilla de propósito registrada (migración 20261104100000, staging paso 6: 7/7 «ok»);
+«Ya tienes cuenta…»; correos «aviso recibido» y «aporte manual confirmado» (función support-claims desplegada en
+staging); historia «Nuestra historia» (6 pantallas); menú del icono de persona; línea «La fundadora estudia en esta
+institución». Textos para abogado/a y contador: `docs/revision-legal-aportes.md` (Términos sigue con «PENDIENTE»).
+Pendiente: «APRUEBO» de Bertha a los textos alternativos de las fotos → copiar 01, 07, 05, 02, 03 y 08 comprimidas
+a `public/historia/` (la 09 espera al abogado/a; la 04 no se usa; la 06 de reserva).
