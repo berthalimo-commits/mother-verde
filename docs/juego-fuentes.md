@@ -358,3 +358,19 @@ GPP de Health Canada; la norma ASTM de actividad de agua; Lindholst 2010 y Trofi
 | 5. Secado | Ampliar a 15–21 °C y 5–14 días | «Fresca» = 15–21 °C; «Hasta el chasquido» ≈ 5–14 días; «Unos pocos días» = menos de 5. El «¿Por qué?» dice que la prueba del chasquido es práctica (no hay estándar científico). |
 | 6. Curado | El castigo fuerte es por moho y humedad, no por pocas semanas; Cornell con honestidad | Nunca abrir y envase de plástico (moho) restan 8; curar pocos días resta 2. El «¿Por qué?» cuenta que F22 no encontró mejora tras 3 semanas. |
 | 7. Congelador | Explicar sus dos caras sin castigarlo de golpe | Resta 2 (antes 4). Pista y «¿Por qué?»: conserva los cannabinoides (F24), pierde terpenos (F8) y puede condensar agua al sacarlo (práctica de cultivadores). |
+
+### Regla de Bertha: temperaturas en °C y °F (2026-11-03)
+
+Toda temperatura del juego se muestra a la vez en Celsius y Fahrenheit, con un solo formato: «28 °C (82 °F)»,
+«24–30 °C (75–86 °F)», «entre 19 y 30 °C (66 y 86 °F)», «−20 °C (−4 °F)».
+- Los textos se escriben solo en °C; `src/game/temp.js` calcula el °F (`toF`, redondeado a enteros) y lo añade a
+  todos los textos del juego al cargarlos (`packWithFahrenheit` en `src/game/i18n.js`). Nadie escribe los °F a mano.
+- Así lo llevan la carpa y sus indicadores, la germinación, el secado, el agua y hielo, el calor del rosin, el
+  almacenamiento, los «¿Por qué?» y lo que lee un lector de pantalla (aria-label, títulos de los dibujos).
+- Las micras (µm) y las demás unidades no cambian.
+- Textos del rosin reescritos para que ningún rango quede sin unidad y no haya paréntesis dentro de paréntesis.
+- Pruebas: `tests/sim/game-temps.mjs` (conversión, los 3.500 textos en 4 idiomas, cada °F igual al calculado, y un
+  error puesto a propósito que se detecta) y `game-polish` (cada pantalla a 320 y 1920 px, texto visible y
+  descripciones para lector de pantalla, con su control).
+- **Fuera del juego:** las lecciones de la plataforma (`public/main.js`, 64 temperaturas) siguen solo en °C;
+  pendiente de decisión del dueño porque es la web entera, no solo el juego.

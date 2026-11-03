@@ -7,6 +7,7 @@ import SETUP from './i18n-setup.js';
 import MATERIAL from './i18n-material.js';
 import REVIEW from './i18n-review.js';
 import PLANTS from './i18n-plants.js';
+import { packWithFahrenheit } from './temp.js';
 
 const TEXTS = {
   es: {
@@ -565,4 +566,6 @@ const TEXTS = {
 // Phase 8: drying, curing + storage and rosin texts live in i18n-post.js.
 // Phases 6-7: equipment, germination and the two new problems: i18n-setup.js.
 for (const L of Object.keys(TEXTS)) Object.assign(TEXTS[L], POST[L], SETUP[L], MATERIAL[L], REVIEW[L], PLANTS[L]);
+// Every temperature in °C and °F at once (src/game/temp.js, Bertha 2026-11-03).
+packWithFahrenheit(TEXTS);
 export default TEXTS;
