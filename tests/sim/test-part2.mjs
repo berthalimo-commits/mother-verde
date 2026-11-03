@@ -62,7 +62,7 @@ export async function run({ db, as, q, check, cnt, hfa, BETIAN, MV, THIRD }) {
 
   console.log('11. Avisos de aporte con monto único:');
   const U1 = await newUser(1), UNCONF = await newUser(2, false);
-  const create = (u, n) => as('authenticated', u, `select * from create_support_claim(${n})`);
+  const create = (u, n) => as('authenticated', u, `select * from create_support_claim(${n}, true)`);
   check('correo sin confirmar -> no puede pedir monto', err(await create(UNCONF, 1)).includes('email_not_confirmed'));
   check('supporter -> no necesita pedir monto', err(await create(MV, 1)).includes('already_supporter'));
   check('0 flores -> rechazado', err(await create(U1, 0)).includes('bad_flowers'));

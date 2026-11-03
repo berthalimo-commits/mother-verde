@@ -33,7 +33,7 @@ await b.ev(`showScreen('desbloquear'); 1`); await sleep(800);
 const g = await b.ev(`({ slots: document.querySelectorAll('.ds-slot').length, cols: getComputedStyle(document.getElementById('dsGarden')).gridTemplateColumns.split(' ').length })`);
 check('Desbloquear: 20 lugares, 5 columnas en móvil', g.slots === 20 && g.cols === 5, JSON.stringify(g));
 await b.ev(`document.querySelector('.ds-slot[data-n="20"]').click(); 1`); await sleep(300);
-await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(800);
+await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`); await sleep(800);
 const amt = await b.ev(`document.getElementById('dsAmount')?.textContent`);
 const warn = await b.ev(`document.querySelector('.ds-amount-warn')?.innerText`);
 check(`vista previa: monto de ejemplo para 20 flores (${amt}) + aviso de monto exacto`, /^200,00\d\d$/.test(amt || '') && /Envía exactamente este monto/.test(warn || ''));

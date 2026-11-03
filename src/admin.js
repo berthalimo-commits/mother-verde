@@ -372,7 +372,7 @@ const T5 = {
     manEmail: 'Correo de la cuenta', manMethod: 'Medio', manAmount: 'Monto pagado', manCurrency: 'Moneda', manFee: 'Comisión del medio de pago (opcional, solo contabilidad)',
     manRef: 'Referencia o nota', manRefPh: 'p. ej. ID de PayPal, «efectivo en mano el 3-11», equivalencia si no es USD', manDate: 'Fecha del pago', manFlowers: 'Flores',
     manRule: 'Regla: 10 por flor sobre lo PAGADO (se comprueba en USD y USDC). En otra moneda, explica la equivalencia en la nota.',
-    manSave: 'Guardar y activar acceso', manSaved: 'Guardado: acceso completo activado para {e}.', manList: 'Aportes manuales registrados',
+    manSave: 'Guardar y activar acceso', manSaved: 'Guardado: acceso completo activado para {e}.', manMailOk: 'Correo de confirmación enviado.', manMailFail: 'No se pudo enviar el correo de confirmación ({e}).', mk_claim_received: 'Aviso recibido', mk_manual_activation: 'Aporte manual confirmado', manList: 'Aportes manuales registrados',
     manDupUsdc: 'Esta cuenta ya tiene un aporte en USDC aprobado.', manDupManual: 'Esta cuenta ya tiene un aporte manual activo.', manDupBoth: 'Esta cuenta ya tiene un aporte en USDC aprobado y un aporte manual activo.',
     manDupAsk: 'Si de verdad es otro aporte, marca «Registrar de todos modos» y escribe el motivo.', manForce: 'Registrar de todos modos', manForceReason: 'Motivo (obligatorio)',
     manActive: 'activo', manVoided: 'anulado', manVoid: 'Anular', manVoidPh: 'Motivo de la anulación…', manVoidOk: 'Anular con este motivo', manNone: 'Todavía no hay aportes manuales.',
@@ -389,7 +389,7 @@ const T5 = {
     manEmail: 'Account e-mail', manMethod: 'Method', manAmount: 'Amount paid', manCurrency: 'Currency', manFee: 'Payment-method fee (optional, bookkeeping only)',
     manRef: 'Reference or note', manRefPh: 'e.g. PayPal ID, «cash in hand on 3 Nov», equivalence if not USD', manDate: 'Payment date', manFlowers: 'Flowers',
     manRule: 'Rule: 10 per flower on what was PAID (checked in USD and USDC). In another currency, explain the equivalence in the note.',
-    manSave: 'Save and activate access', manSaved: 'Saved: full access activated for {e}.', manList: 'Recorded manual contributions',
+    manSave: 'Save and activate access', manSaved: 'Saved: full access activated for {e}.', manMailOk: 'Confirmation e-mail sent.', manMailFail: 'The confirmation e-mail could not be sent ({e}).', mk_claim_received: 'Notice received', mk_manual_activation: 'Manual contribution confirmed', manList: 'Recorded manual contributions',
     manDupUsdc: 'This account already has an approved USDC contribution.', manDupManual: 'This account already has an active manual contribution.', manDupBoth: 'This account already has an approved USDC contribution and an active manual contribution.',
     manDupAsk: 'If it really is another contribution, tick «Record anyway» and write the reason.', manForce: 'Record anyway', manForceReason: 'Reason (required)',
     manActive: 'active', manVoided: 'voided', manVoid: 'Void', manVoidPh: 'Reason for voiding…', manVoidOk: 'Void with this reason', manNone: 'No manual contributions yet.',
@@ -406,7 +406,7 @@ const T5 = {
     manEmail: 'E-Mail des Kontos', manMethod: 'Zahlungsweg', manAmount: 'Gezahlter Betrag', manCurrency: 'Währung', manFee: 'Gebühr des Zahlungswegs (optional, nur Buchhaltung)',
     manRef: 'Referenz oder Notiz', manRefPh: 'z. B. PayPal-ID, «bar übergeben am 3.11.», Umrechnung, wenn nicht USD', manDate: 'Zahlungsdatum', manFlowers: 'Blumen',
     manRule: 'Regel: 10 pro Blume auf den GEZAHLTEN Betrag (geprüft in USD und USDC). In einer anderen Währung die Umrechnung in der Notiz erklären.',
-    manSave: 'Speichern und Zugang aktivieren', manSaved: 'Gespeichert: voller Zugang für {e} aktiviert.', manList: 'Erfasste manuelle Beiträge',
+    manSave: 'Speichern und Zugang aktivieren', manSaved: 'Gespeichert: voller Zugang für {e} aktiviert.', manMailOk: 'Bestätigungs-E-Mail gesendet.', manMailFail: 'Die Bestätigungs-E-Mail konnte nicht gesendet werden ({e}).', mk_claim_received: 'Hinweis erhalten', mk_manual_activation: 'Manueller Beitrag bestätigt', manList: 'Erfasste manuelle Beiträge',
     manDupUsdc: 'Dieses Konto hat schon einen genehmigten USDC-Beitrag.', manDupManual: 'Dieses Konto hat schon einen aktiven manuellen Beitrag.', manDupBoth: 'Dieses Konto hat schon einen genehmigten USDC-Beitrag und einen aktiven manuellen Beitrag.',
     manDupAsk: 'Wenn es wirklich ein weiterer Beitrag ist, «Trotzdem erfassen» ankreuzen und den Grund schreiben.', manForce: 'Trotzdem erfassen', manForceReason: 'Grund (Pflicht)',
     manActive: 'aktiv', manVoided: 'storniert', manVoid: 'Stornieren', manVoidPh: 'Grund der Stornierung…', manVoidOk: 'Mit diesem Grund stornieren', manNone: 'Noch keine manuellen Beiträge.',
@@ -423,7 +423,7 @@ const T5 = {
     manEmail: 'E-mail du compte', manMethod: 'Moyen', manAmount: 'Montant payé', manCurrency: 'Devise', manFee: 'Frais du moyen de paiement (facultatif, comptabilité seulement)',
     manRef: 'Référence ou note', manRefPh: 'p. ex. ID PayPal, « espèces remises le 3/11 », équivalence si ce n’est pas en USD', manDate: 'Date du paiement', manFlowers: 'Fleurs',
     manRule: 'Règle : 10 par fleur sur ce qui a été PAYÉ (vérifié en USD et USDC). Dans une autre devise, explique l’équivalence dans la note.',
-    manSave: 'Enregistrer et activer l’accès', manSaved: 'Enregistré : accès complet activé pour {e}.', manList: 'Contributions manuelles enregistrées',
+    manSave: 'Enregistrer et activer l’accès', manSaved: 'Enregistré : accès complet activé pour {e}.', manMailOk: 'E-mail de confirmation envoyé.', manMailFail: 'L’e-mail de confirmation n’a pas pu être envoyé ({e}).', mk_claim_received: 'Avis reçu', mk_manual_activation: 'Contribution manuelle confirmée', manList: 'Contributions manuelles enregistrées',
     manDupUsdc: 'Ce compte a déjà une contribution USDC approuvée.', manDupManual: 'Ce compte a déjà une contribution manuelle active.', manDupBoth: 'Ce compte a déjà une contribution USDC approuvée et une contribution manuelle active.',
     manDupAsk: 'Si c’est vraiment une autre contribution, coche « Enregistrer quand même » et écris le motif.', manForce: 'Enregistrer quand même', manForceReason: 'Motif (obligatoire)',
     manActive: 'active', manVoided: 'annulée', manVoid: 'Annuler', manVoidPh: 'Motif de l’annulation…', manVoidOk: 'Annuler avec ce motif', manNone: 'Pas encore de contribution manuelle.',
@@ -867,6 +867,10 @@ function manualView() {
       m.className = 'msg bad'; m.textContent = errText(rpcErr(error)); return;
     }
     m.className = 'msg ok'; m.textContent = tr('manSaved', { e: data.email });
+    // confirmation e-mail to the person (Bertha's decision 6, 2026-11-03)
+    const mail = await fn('support-claims', { action: 'manual_confirm', manual_id: data.id });
+    m.textContent += ' ' + (mail.ok ? tr('manMailOk') : tr('manMailFail', { e: mail.email_error || mail.error || 'error' }));
+    if (!mail.ok) m.className = 'msg warn';
     for (const id of ['manE', 'manA', 'manFee', 'manR', 'manFR']) document.getElementById(id).value = '';
     document.getElementById('manForce').checked = false; document.getElementById('manDup').hidden = true;
     loadManual();

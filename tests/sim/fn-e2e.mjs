@@ -183,7 +183,7 @@ let txN = 0;
 async function payer(n, flowers = 1) {
   const u = await user(n, `pago${n}@example.org`);
   await db.exec(`update profiles set trial_ends_at = now() - interval '1 hour' where id = '${u}'`);
-  const c = await asUser(u, 'create_support_claim', { p_flowers: flowers });
+  const c = await asUser(u, 'create_support_claim', { p_flowers: flowers, p_purpose_ok: true });
   const tx = '0x' + (++txN).toString(16).padStart(64, '0');
   await asUser(u, 'submit_support_claim_tx', { p_claim_id: c.id, p_tx_hash: tx });
   return { u, c, tx };
@@ -281,8 +281,20 @@ await db.exec(`update app_config set value = 1 where key = 'claim_auto_verify_en
 const PA = await payer(50, 3); putTx(PA.tx, { amount: PA.c.amount_units });
 n = globalThis.__mail.length;
 r = await call('claims', tok(PA.u), { action: 'verify', claim_id: PA.c.id });
-check('auto ON + todo correcto -> activada sola + correo (y el aviso a soporte del TXID nuevo)', r.body.status === 'approved' && r.body.email_sent === true && globalThis.__mail.length === n + 2
-  && globalThis.__mail.slice(n).filter((m) => /Nuevo aviso de aporte/.test(m.subject)).length === 1, JSON.stringify(r));
+check('auto ON + todo correcto -> activada sola + correo (y el aviso a soporte del TXID nuevo, y «aviso recibido» a la persona)', r.body.status === 'approved' && r.body.email_sent === true && globalThis.__mail.length === n + 3
+  && globalThis.__mail.slice(n).filter((m) => /Nuevo aviso de aporte/.test(m.subject)).length === 1
+  && globalThis.__mail.slice(n).filter((m) => /Recibimos tu aviso de aporte/.test(m.subject)).length === 1, JSON.stringify(r));
+{
+  const rec = globalThis.__mail.slice(n).find((m) => /Recibimos tu aviso de aporte/.test(m.subject));
+  const act = globalThis.__mail.slice(n).find((m) => /Tu acceso completo está activo/.test(m.subject));
+  const txt = (m) => (m?.text || '') + (m?.html || '');
+  check('«aviso recibido»: el texto de Bertha en 4 idiomas (SUNY Morrisville, hasta 24 horas)', /ayuda a Bertha Limo a terminar su bachillerato en horticultura en SUNY Morrisville/.test(txt(rec))
+    && /finish her bachelor's degree in horticulture at SUNY Morrisville/.test(txt(rec)) && /Bachelor in Gartenbau an der SUNY Morrisville/.test(txt(rec)) && /terminer son bachelor en horticulture à SUNY Morrisville/.test(txt(rec)));
+  check('«acceso aprobado»: el texto de Bertha y ninguna mención de Canna Wasi', /Tu apoyo me ayuda a estudiar/.test(txt(act)) && /Your support helps me study/.test(txt(act)) && !/Canna Wasi/i.test(txt(rec) + txt(act)));
+  const again = globalThis.__mail.length;
+  await call('claims', tok(PA.u), { action: 'verify', claim_id: PA.c.id });
+  check('«aviso recibido» solo una vez por aviso (verificar otra vez no lo repite)', globalThis.__mail.filter((m, i) => i >= again && /Recibimos tu aviso/.test(m.subject)).length === 0);
+}
 check('…auditada como auto-verify', (await q(`select count(*)::int c from admin_audit_log where action = 'claim_approved' and actor_label = 'auto-verify' and target_email = 'pago50@example.org'`))[0].c === 1);
 const PT = await payer(51, 10); putTx(PT.tx, { amount: PT.c.amount_units });
 r = await call('claims', tok(PT.u), { action: 'verify', claim_id: PT.c.id });
@@ -354,7 +366,7 @@ const cron = (await import('file:///' + cronOut)).default;
 const runCron = async (auth) => { let st, out; await cron({ headers: { authorization: auth } }, { status: (s) => ({ json: (j) => { st = s; out = j; } }) }); return { st, out }; };
 check('sin CRON_SECRET correcto -> 401', (await runCron('Bearer nope')).st === 401);
 const EXP = await user(60, 'vence@example.org');
-const ec = await asUser(EXP, 'create_support_claim', { p_flowers: 1 });
+const ec = await asUser(EXP, 'create_support_claim', { p_flowers: 1, p_purpose_ok: true });
 await db.exec(`update support_claims set expires_at = now() - interval '1 minute' where id = ${ec.id}`);
 const OLD = await user(61, 'vieja@example.org');
 await db.exec(`update profiles set subscription_status = 'active', subscription_active = true, subscription_expires_at = now() - interval '1 day' where id = '${OLD}'`);
@@ -368,6 +380,31 @@ check('cron: llamó al reintento de traducciones', cr.out.retranslate && typeof 
 const cronSrc = fs.readFileSync(`${APP}/api/subscription-cron.js`, 'utf8');
 check('cron: sin precios ni cobros en el código', !/7\.10|7\.99|19\.99|charge|PRICE|payment-nerds|Payment Nerds|Stripe/i.test(cronSrc));
 check('vercel.json: 23:00 UTC', JSON.parse(fs.readFileSync(`${APP}/vercel.json`, 'utf8')).crons[0].schedule === '0 23 * * *');
+
+// ================================================================ manual contribution e-mail (2026-11-03)
+{
+  const MU = await user(9077, 'manual@example.org');
+  await db.exec(`update profiles set subscription_status = 'trialing', trial_started_at = now() - interval '3 days', trial_ends_at = now() - interval '2 days' where id = '${MU}'`);
+  await db.exec(`reset role; select set_config('request.jwt.claims', '', false);`);
+  const mid = (await q(`select id from public.admin_record_manual_contribution('manual@example.org', 'paypal', 10, 'USD', null, 'PayPal prueba', current_date, 1)`))[0].id;
+  check('aporte manual: usuario normal -> 403', (await call('claims', tok(NORMAL, 'aal2'), { action: 'manual_confirm', manual_id: mid })).status === 403);
+  check('aporte manual: admin sin MFA -> 403', (await call('claims', tok(ADMIN), { action: 'manual_confirm', manual_id: mid })).status === 403);
+  const n0 = globalThis.__mail.length;
+  let r = await call('claims', A2, { action: 'manual_confirm', manual_id: mid });
+  const m = globalThis.__mail.slice(n0).find((x) => x.to === 'manual@example.org');
+  const txt = (x) => (x?.text || '') + (x?.html || '');
+  check('aporte manual: correo «acceso aprobado» a la persona, con el texto de Bertha en 4 idiomas', r.status === 200 && r.body.email_sent === true && !!m
+    && /Tu apoyo me ayuda a estudiar/.test(txt(m)) && /Your support helps me study/.test(txt(m)) && /Deine Unterstützung hilft mir beim Studieren/.test(txt(m)) && /Ton soutien m'aide à étudier/.test(txt(m)), JSON.stringify(r));
+  check('…queda en el Registro (manual_email_sent) y en los correos (manual_activation)', (await q(`select count(*)::int c from admin_audit_log where action = 'manual_email_sent' and target_user_id = '${MU}'`))[0].c === 1
+    && (await q(`select count(*)::int c from mail_events where kind = 'manual_activation' and ref = $1 and ok`, ['manual:' + mid]))[0].c === 1);
+  const n1 = globalThis.__mail.length;
+  r = await call('claims', A2, { action: 'manual_confirm', manual_id: mid });
+  check('…pulsar otra vez no lo envía dos veces', r.body.already === true && globalThis.__mail.length === n1);
+  await db.exec(`reset role; select set_config('request.jwt.claims', '', false);`);
+  await q(`select public.admin_void_manual_contribution(${mid}, 'prueba anulada')`);
+  r = await call('claims', A2, { action: 'manual_confirm', manual_id: mid });
+  check('…un aporte anulado no envía correo', r.status === 404);
+}
 
 // ================================================================ shared block
 const blk = (f) => { const s = fs.readFileSync(`${APP}/supabase/functions/${f}/index.ts`, 'utf8').replace(/\r\n/g, '\n'); return s.slice(s.indexOf('// ===== '.slice(0, 5)), s.length) && s.match(/\/\/ =+ MAIL\n[\s\S]*?\/\/ =+ \/MAIL/)[0]; };

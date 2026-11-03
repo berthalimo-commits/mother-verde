@@ -63,11 +63,11 @@ const tx = () => '0x' + (++txN).toString(16).padStart(64, 'a');
 // ================================================================ 1
 console.log('1. Borrar una cuenta con avisos de aporte');
 const P = await person('paga.y.borra@example.org');
-const c1 = (await rpc(tok(P), 'create_support_claim', { p_flowers: 2 })).body;
+const c1 = (await rpc(tok(P), 'create_support_claim', { p_flowers: 2, p_purpose_ok: true })).body;
 const TX1 = tx();
 await rpc(tok(P), 'submit_support_claim_tx', { p_claim_id: c1.id, p_tx_hash: TX1, p_contact_name: 'María López', p_contact_phone: '+51 987 654 321' });
 const R = await person('solo.reserva@example.org');
-const c2 = (await rpc(tok(R), 'create_support_claim', { p_flowers: 1 })).body;
+const c2 = (await rpc(tok(R), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 await db.query('delete from auth.users where id in ($1::uuid, $2::uuid)', [P, R]);
 const kept = (await q('select * from support_claims where id = $1', [c1.id]))[0];
 check('aviso con TXID: se conserva tras borrar la cuenta', !!kept && kept.tx_hash === TX1 && kept.status === 'submitted' && String(kept.amount_units) === String(c1.amount_units));
@@ -85,7 +85,7 @@ check('aprobar un aviso de cuenta borrada: queda «approved» (pago recibido), s
 check('…no intenta enviar correo (no hay a quién) y lo dice', r.body.email_sent === false && r.body.email_error === 'account_deleted' && globalThis.__mail.length === 0);
 check('…queda en el registro con «account_deleted» y sin correo', (await q(`select target_email, details from admin_audit_log where action = 'claim_approved' order by id desc limit 1`))[0].details.account_deleted === true);
 const P2 = await person('rechazo@example.org');
-const c3 = (await rpc(tok(P2), 'create_support_claim', { p_flowers: 1 })).body;
+const c3 = (await rpc(tok(P2), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 await rpc(tok(P2), 'submit_support_claim_tx', { p_claim_id: c3.id, p_tx_hash: tx() });
 await db.query('delete from auth.users where id = $1::uuid', [P2]);
 r = await call(A2, { action: 'admin_reject', claim_id: c3.id, reason: 'Monto distinto, cuenta borrada' });
@@ -109,7 +109,7 @@ const conflicts = (id) => q(`select * from support_claim_conflicts where (claim_
 
 // a) only your own expired reservation, only the exact amount
 const L = await person('tarde@example.org');
-const lc = (await rpc(tok(L), 'create_support_claim', { p_flowers: 1 })).body;
+const lc = (await rpc(tok(L), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 await expire(lc.id);
 check('el navegador ya no puede poner un TXID en una reserva vencida (va por la comprobación en Base)', JSON.stringify((await rpc(tok(L), 'submit_support_claim_tx', { p_claim_id: lc.id, p_tx_hash: tx() })).body).includes('expired'));
 const W = tx(); putTx(W, BigInt(lc.amount_units) - 100n);
@@ -121,7 +121,7 @@ const X = await person('ajena@example.org');
 r = await late(X, lc, W);
 check('la reserva vencida de OTRA persona -> not_found', r.status === 404);
 const OT = await person('vigente@example.org');
-const otc = (await rpc(tok(OT), 'create_support_claim', { p_flowers: 1 })).body;
+const otc = (await rpc(tok(OT), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 r = await late(OT, otc, tx());
 check('una reserva todavía vigente no usa el camino tardío (not_late)', r.body.error === 'not_late');
 const LT = tx(); putTx(LT, lc.amount_units);
@@ -148,10 +148,10 @@ check('…con motivo -> activado', r.status === 200 && (await q('select subscrip
 // d) ATTACK 1: the thief registers the victim's public TXID BEFORE the victim does
 console.log('   Ataque 1: el TXID ajeno se registra ANTES que su dueño');
 const THIEF = await person('ladron@example.org');
-const th = (await rpc(tok(THIEF), 'create_support_claim', { p_flowers: 1 })).body;
+const th = (await rpc(tok(THIEF), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 await expire(th.id);
 const VIC = await person('victima@example.org');
-const vc = (await rpc(tok(VIC), 'create_support_claim', { p_flowers: 1 })).body;
+const vc = (await rpc(tok(VIC), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 await db.query('update support_claims set amount_units = $1 where id = $2', [th.amount_units, vc.id]); // the expired amount was given again
 const VT = tx(); putTx(VT, th.amount_units);                                                       // the victim pays: public on Base
 r = await late(THIEF, th, VT);
@@ -186,10 +186,10 @@ check('todo queda en el registro de auditoría', (await q(`select count(*)::int 
 // d) ATTACK 2: the thief tries AFTER the owner registered it
 console.log('   Ataque 2: el TXID ajeno se registra DESPUÉS que su dueño');
 const T2 = await person('ladron2@example.org');
-const t2 = (await rpc(tok(T2), 'create_support_claim', { p_flowers: 2 })).body;
+const t2 = (await rpc(tok(T2), 'create_support_claim', { p_flowers: 2, p_purpose_ok: true })).body;
 await expire(t2.id);
 const V2 = await person('victima2@example.org');
-const v2 = (await rpc(tok(V2), 'create_support_claim', { p_flowers: 2 })).body;
+const v2 = (await rpc(tok(V2), 'create_support_claim', { p_flowers: 2, p_purpose_ok: true })).body;
 await db.query('update support_claims set amount_units = $1 where id = $2', [t2.amount_units, v2.id]);
 const V2T = tx(); putTx(V2T, t2.amount_units);
 r = await rpc(tok(V2), 'submit_support_claim_tx', { p_claim_id: v2.id, p_tx_hash: V2T });
@@ -210,9 +210,9 @@ check('resuelto: la dueña se activa; el ladrón queda rechazado', r.status === 
 
 // one open claim per person (from step 2) still holds
 const L3 = await person('tarde3@example.org');
-const l3a = (await rpc(tok(L3), 'create_support_claim', { p_flowers: 3 })).body;
+const l3a = (await rpc(tok(L3), 'create_support_claim', { p_flowers: 3, p_purpose_ok: true })).body;
 await expire(l3a.id);
-const l3b = (await rpc(tok(L3), 'create_support_claim', { p_flowers: 3 })).body;
+const l3b = (await rpc(tok(L3), 'create_support_claim', { p_flowers: 3, p_purpose_ok: true })).body;
 await rpc(tok(L3), 'submit_support_claim_tx', { p_claim_id: l3b.id, p_tx_hash: tx() });
 const L3T = tx(); putTx(L3T, l3a.amount_units);
 r = await late(L3, l3a, L3T);
@@ -225,7 +225,7 @@ console.log('3. Aviso a soporte cuando llega un TXID + contador del panel (A1.3)
 const notices = () => globalThis.__mail.filter((m) => /Nuevo aviso de aporte/.test(m.subject || ''));
 globalThis.__mail = [];
 const N1 = await person('nueva.aportante@example.org');
-const n1 = (await rpc(tok(N1), 'create_support_claim', { p_flowers: 3 })).body;
+const n1 = (await rpc(tok(N1), 'create_support_claim', { p_flowers: 3, p_purpose_ok: true })).body;
 await rpc(tok(N1), 'submit_support_claim_tx', { p_claim_id: n1.id, p_tx_hash: tx(), p_contact_name: 'Ana Prueba', p_contact_phone: '+51 999 888 777' });
 await call(tok(N1), { action: 'verify', claim_id: n1.id });
 let nm = notices();
@@ -237,7 +237,7 @@ await call(tok(N1), { action: 'verify', claim_id: n1.id });
 await call(tok(N1), { action: 'verify', claim_id: n1.id });
 check('volver a llamar no repite el correo (uno por aviso)', notices().length === 1);
 const N2 = await person('tardia2@example.org');
-const n2 = (await rpc(tok(N2), 'create_support_claim', { p_flowers: 4 })).body;
+const n2 = (await rpc(tok(N2), 'create_support_claim', { p_flowers: 4, p_purpose_ok: true })).body;
 await expire(n2.id);
 const N2T = tx(); putTx(N2T, n2.amount_units);
 r = await late(N2, n2, N2T);
@@ -245,13 +245,13 @@ check('pago tardío aceptado -> también avisa, marcado como tardío', r.status 
 // e-mail fails: the claim is kept and the failure shows in "Correos fallidos"
 globalThis.__smtpFail = 'SMTP 535 simulated';
 const N3 = await person('falla@example.org');
-const n3 = (await rpc(tok(N3), 'create_support_claim', { p_flowers: 5 })).body;
+const n3 = (await rpc(tok(N3), 'create_support_claim', { p_flowers: 5, p_purpose_ok: true })).body;
 await rpc(tok(N3), 'submit_support_claim_tx', { p_claim_id: n3.id, p_tx_hash: tx() });
 const failBefore = (await rpc(A2, 'admin_mail_failures_24h')).body;
 r = await call(tok(N3), { action: 'verify', claim_id: n3.id });
 globalThis.__smtpFail = null;
 check('si el correo falla, el aviso se guarda igual', r.status === 200 && (await crow(n3.id)).status === 'submitted', JSON.stringify(r));
-check('…y el fallo queda en «Correos fallidos» (sin direcciones)', (await rpc(A2, 'admin_mail_failures_24h')).body === failBefore + 1
+check('…y el fallo queda en «Correos fallidos» (sin direcciones): el aviso a soporte y el «aviso recibido»', (await rpc(A2, 'admin_mail_failures_24h')).body === failBefore + 2
   && (await q(`select count(*)::int c from mail_events where kind = 'txid_notice' and not ok and ref = $1`, ['claim:' + n3.id]))[0].c === 1);
 // panel counter
 let pc = (await rpc(A2, 'admin_pending_claims')).body;

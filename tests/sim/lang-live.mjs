@@ -56,7 +56,7 @@ check('al recargar conserva DE (html lang, botón marcado, textos)', after.lang 
 // 3) Desbloquear with a reserved amount
 await click(b, 'es');
 await b.ev(`showScreen('desbloquear'); 1`); await sleep(500);
-await b.ev(`document.getElementById('dsReservarBtn')?.click(); 1`); await sleep(1500);
+await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`); await sleep(1500);
 await sweep(b, 'Desbloquear (monto reservado)', 'dsEnviaExacto');
 // 4) gift code form open in Cuenta, with a typed value
 await click(b, 'es');

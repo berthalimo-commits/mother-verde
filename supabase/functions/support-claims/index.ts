@@ -291,19 +291,23 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
   const blocks: [string, string, string[]][] = [
     ["es", "Tu acceso completo está activo", [
       `Recibimos tu aporte de ${flowers} ${flowers === 1 ? "flor" : "flores"} (${es} USDC) y ya activamos el acceso completo en tu cuenta de Mother Verde.`,
-      "Gracias por apoyar Canna Wasi. Si no hiciste este aporte, responde a este correo.",
+      "¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar, y lo que aprenda lo compartiré contigo y con mi comunidad.",
+      "Si no hiciste este aporte, responde a este correo.",
     ]],
     ["en", "Your full access is active", [
       `We received your contribution of ${flowers} ${flowers === 1 ? "flower" : "flowers"} (${en} USDC) and full access is now active on your Mother Verde account.`,
-      "Thank you for supporting Canna Wasi. If you didn't make this contribution, reply to this e-mail.",
+      "Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study, and what I learn I will share with you and my community.",
+      "If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
       `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} (${es} USDC) erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
-      "Danke, dass du Canna Wasi unterstützt. Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
+      "Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren, und was ich lerne, teile ich mit dir und meiner Gemeinschaft.",
+      "Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [
       `Nous avons reçu ta contribution de ${flowers} ${flowers === 1 ? "fleur" : "fleurs"} (${es} USDC) et l'accès complet est maintenant actif sur ton compte Mother Verde.`,
-      "Merci de soutenir Canna Wasi. Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
+      "Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier, et ce que j'apprends, je le partage avec toi et ma communauté.",
+      "Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
     ]],
   ];
   return {
@@ -312,6 +316,69 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
     html: layout(blocks, undefined, { url: appUrl, label: "Mother Verde" }),
     text: plain(blocks, undefined, appUrl),
   };
+}
+
+// «Aviso recibido» (Bertha's text, 2026-11-03): to the person, once per claim.
+function receivedEmail(units: unknown, appUrl: string): Mail & { to: "" } {
+  const es = usdcText(units, ","), en = usdcText(units, ".");
+  const blocks: [string, string, string[]][] = [
+    ["es", "Recibimos tu aviso de aporte", [
+      "Gracias por tu aporte. Recuerda: tu aporte único de apoyo ayuda a Bertha Limo a terminar su bachillerato en horticultura en SUNY Morrisville. Revisaremos tu aviso en un plazo de hasta 24 horas.",
+      `Monto: ${es} USDC. Si no hiciste este aviso, responde a este correo.`,
+    ]],
+    ["en", "We received your contribution notice", [
+      "Thank you for your contribution. Remember: your one-time support contribution helps Bertha Limo finish her bachelor's degree in horticulture at SUNY Morrisville. We will review your notice within up to 24 hours.",
+      `Amount: ${en} USDC. If you didn't send this notice, reply to this e-mail.`,
+    ]],
+    ["de", "Wir haben deinen Hinweis erhalten", [
+      "Danke für deinen Beitrag. Zur Erinnerung: Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, ihren Bachelor in Gartenbau an der SUNY Morrisville abzuschließen. Wir prüfen deinen Hinweis innerhalb von bis zu 24 Stunden.",
+      `Betrag: ${es} USDC. Falls du diesen Hinweis nicht gesendet hast, antworte auf diese E-Mail.`,
+    ]],
+    ["fr", "Nous avons reçu ton avis de contribution", [
+      "Merci pour ta contribution. Pour rappel : ta contribution unique de soutien aide Bertha Limo à terminer son bachelor en horticulture à SUNY Morrisville. Nous examinerons ton avis dans un délai pouvant aller jusqu'à 24 heures.",
+      `Montant : ${es} USDC. Si tu n'as pas envoyé cet avis, réponds à cet e-mail.`,
+    ]],
+  ];
+  return {
+    to: "", subject: "Recibimos tu aviso de aporte · We received your contribution notice",
+    html: layout(blocks, undefined, { url: appUrl, label: "Mother Verde" }), text: plain(blocks, undefined, appUrl),
+  };
+}
+
+// «Acceso aprobado» for a manual contribution (Bertha's decision 6, 2026-11-03).
+function manualEmail(appUrl: string): Mail & { to: "" } {
+  const blocks: [string, string, string[]][] = [
+    ["es", "Tu acceso completo está activo", [
+      "¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar, y lo que aprenda lo compartiré contigo y con mi comunidad.",
+      "Si no hiciste este aporte, responde a este correo.",
+    ]],
+    ["en", "Your full access is active", [
+      "Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study, and what I learn I will share with you and my community.",
+      "If you didn't make this contribution, reply to this e-mail.",
+    ]],
+    ["de", "Dein Vollzugriff ist aktiv", [
+      "Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren, und was ich lerne, teile ich mit dir und meiner Gemeinschaft.",
+      "Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
+    ]],
+    ["fr", "Ton accès complet est actif", [
+      "Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier, et ce que j'apprends, je le partage avec toi et ma communauté.",
+      "Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
+    ]],
+  ];
+  return {
+    to: "", subject: "Tu acceso completo está activo · Your full access is active",
+    html: layout(blocks, undefined, { url: appUrl, label: "Mother Verde" }), text: plain(blocks, undefined, appUrl),
+  };
+}
+
+// deno-lint-ignore no-explicit-any
+async function sendReceived(svc: any, c: { id: number; amount_units: unknown; status: string; user_id?: string | null }, email: string | null) {
+  if (!email || !["submitted", "manual_review"].includes(c.status)) return null;
+  const ref = `claim:${c.id}`;
+  const { data: prev } = await svc.from("mail_events").select("id").eq("kind", "claim_received").eq("ref", ref).limit(1);
+  if (prev && prev.length) return null; // once per claim
+  const m = receivedEmail(c.amount_units, Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com");
+  return await deliver(svc, { ...m, to: email }, "claim_received", c.user_id ?? null, ref);
 }
 
 const STATUS_ES: Record<string, string> = { submitted: "código recibido, sin revisar", manual_review: "en revisión manual" };
@@ -408,6 +475,7 @@ Deno.serve(async (req) => {
       }
       // Neutral answer: never says whether another claim holds this TXID.
       await notifySupport(svc, { id: c.id, amount_units: c.amount_units, status: (data as { status: string }).status, late: true });
+      await sendReceived(svc, { id: c.id, amount_units: c.amount_units, status: (data as { status: string }).status, user_id: user.id }, user.email ?? null);
       return json({ ok: true, status: (data as { status: string }).status, review: "manual" });
     }
 
@@ -415,6 +483,7 @@ Deno.serve(async (req) => {
       const ctx = await loadCtx();
       if (!ctx || ctx.claim.user_id !== user.id) return json({ error: "not_found" }, 404);
       await notifySupport(svc, ctx.claim as unknown as { id: number; amount_units: unknown; status: string; late?: boolean });
+      await sendReceived(svc, { ...(ctx.claim as unknown as { id: number; amount_units: unknown; status: string }), user_id: user.id }, user.email ?? null);
       if (!ctx.auto_enabled) return json({ ok: true, mode: "manual", status: ctx.claim.status });
       if (ctx.claim.status !== "submitted") return json({ ok: true, mode: "auto", status: ctx.claim.status });
       const last = ctx.claim.verification?.checked_at ? new Date(ctx.claim.verification.checked_at).getTime() : 0;
@@ -441,6 +510,23 @@ Deno.serve(async (req) => {
     if (admErr) throw new Error(admErr.message);
     if (isAdmin !== true) return json({ error: "not_allowed" }, 403);
     const label = user.email ?? user.id;
+
+    if (body.action === "manual_confirm") {
+      const mid = Number((body as { manual_id?: unknown }).manual_id);
+      if (!Number.isInteger(mid) || mid < 1) return json({ error: "bad_request" }, 400);
+      const { data: m, error: mErr } = await svc.from("manual_contributions").select("id, user_id, email, voided_at").eq("id", mid).maybeSingle();
+      if (mErr) throw new Error(mErr.message);
+      if (!m || m.voided_at || !m.user_id) return json({ error: "not_found" }, 404);
+      const ref = `manual:${m.id}`;
+      const { data: prev } = await svc.from("mail_events").select("id").eq("kind", "manual_activation").eq("ref", ref).eq("ok", true).limit(1);
+      if (prev && prev.length) return json({ ok: true, already: true });
+      const r = await deliver(svc, { ...manualEmail(Deno.env.get("APP_URL") ?? "https://www.motherverdeny.com"), to: m.email }, "manual_activation", m.user_id, ref);
+      await svc.rpc("admin_log", {
+        p_action: r.ok ? "manual_email_sent" : "manual_email_failed", p_target_user: m.user_id,
+        p_reason: r.ok ? null : r.error, p_details: { manual_id: m.id, provider: r.provider, attempts: r.attempts }, p_actor_label: label,
+      });
+      return json({ ok: r.ok, email_sent: r.ok, email_error: r.ok ? null : r.error });
+    }
 
     if (body.action === "config") {
       const { data: on } = await svc.rpc("app_config_value", { p_key: "claim_auto_verify_enabled", p_default: 0 });

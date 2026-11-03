@@ -68,7 +68,7 @@ await db.query(`insert into auth.users (id, email, email_confirmed_at) values ($
 g = await grant();
 check('con la cuenta confirmada -> admin + supporter en una sola pasada', g === 'ok' && (await q('select subscription_status s from profiles where id = $1', [OWNER]))[0].s === 'supporter'
   && (await q('select count(*)::int c from admin_users where user_id = $1', [OWNER]))[0].c === 1, g);
-const claim = (await rpc(tok(PAYER), 'create_support_claim', { p_flowers: 1 })).body;
+const claim = (await rpc(tok(PAYER), 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).body;
 await rpc(tok(PAYER), 'submit_support_claim_tx', { p_claim_id: claim.id, p_tx_hash: '0x' + 'ab'.repeat(32) });
 const O1 = tok(OWNER, 'aal1'), O2 = tok(OWNER, 'aal2');
 
@@ -81,7 +81,7 @@ const cm = await api(O1, 'community_members', 'POST', { user_id: OWNER, display_
 check('Comunidad: puede crear su perfil del directorio', cm.status < 300 && (await q('select count(*)::int c from community_members where user_id = $1', [OWNER]))[0].c === 1, JSON.stringify(cm));
 const be = await api(O1, 'bitacora_entries', 'POST', { user_id: OWNER, etapa: 'vegetativo', nota: 'prueba de la dueña' });
 check('Bitácora: puede escribir y leer sus entradas', be.status < 300 && (await api(O1, 'bitacora_entries?select=id')).body?.length === 1, JSON.stringify(be));
-check('Desbloquear: no necesita aportar (already_supporter)', errOf(await rpc(O1, 'create_support_claim', { p_flowers: 1 })).includes('already_supporter'));
+check('Desbloquear: no necesita aportar (already_supporter)', errOf(await rpc(O1, 'create_support_claim', { p_flowers: 1, p_purpose_ok: true })).includes('already_supporter'));
 check('ningún vencimiento: sin fecha de fin (access_until vacío y estado supporter)', (await q('select access_until from profiles where id = $1', [OWNER]))[0].access_until === null);
 check('la tarea diaria no toca a un supporter (solo active/past_due/none)', !/'supporter'/.test(fs.readFileSync(APP + '/api/subscription-cron.js', 'utf8').match(/\.in\('subscription_status'[^)]*\)|\.eq\('subscription_status'[^)]*\)/g)?.join() ?? ''));
 

@@ -56,7 +56,7 @@ await db.exec(`insert into auth.users (id, email) values ('${ADMIN}', 'hello@mot
   update profiles set trial_ends_at = now() - interval '1 hour' where id in ('${ADMIN}', '${PAYER}', '${NEWBIE}');`);
 await db.exec(fs.readFileSync(APP + '/supabase/admin/grant-admin.sql', 'utf8'));
 const asU = (uid, fn, args) => rest(`${BASE}/rest/v1/rpc/${fn}`, { method: 'POST', headers: { Authorization: `Bearer u:${uid}:aal1` }, body: JSON.stringify(args) }).then((r) => r.json());
-const claim = await asU(PAYER, 'create_support_claim', { p_flowers: 2 });
+const claim = await asU(PAYER, 'create_support_claim', { p_flowers: 2, p_purpose_ok: true });
 const TX = '0x' + 'ab'.repeat(32);
 await asU(PAYER, 'submit_support_claim_tx', { p_claim_id: claim.id, p_tx_hash: TX });
 chain.receipts[TX] = { status: '0x1', blockNumber: '0x384', logs: [{ address: USDC, topics: [TOPIC, '0x' + '0'.repeat(24) + '22'.repeat(20), '0x' + '0'.repeat(24) + DEST.slice(2)], data: '0x' + BigInt(claim.amount_units).toString(16).padStart(64, '0') }] };
@@ -109,10 +109,21 @@ http.createServer(async (rq, rs) => {
       res = authSend('signup', b.email, { lang: b.data?.preferred_lang });
       if (!res) {
         const email = String(b.email).toLowerCase();
-        let row = (await rest.q('select id from auth.users where lower(email) = $1', [email])).rows[0];
-        if (!row) { row = (await rest.q('insert into auth.users (email, raw_user_meta_data) values ($1, $2) returning id', [email, JSON.stringify(b.data || {})])).rows[0]; (globalThis.__pw ||= {})[row.id] = b.password; }
-        res = J({ id: row.id, aud: 'authenticated', role: '', email, user_metadata: b.data || {}, identities: [{}], created_at: '' });
-        await linkFor('signup', email);
+        let row = (await rest.q('select id, email_confirmed_at from auth.users where lower(email) = $1', [email])).rows[0];
+        // Like Supabase: an existing CONFIRMED account -> «ok» with no identities, nothing sent;
+        // a new address goes through the «Before User Created» hook first.
+        let hookErr = null;
+        if (!row) {
+          const h = (await rest.q('select public.hook_before_user_created($1::jsonb) h', [JSON.stringify({ user: { email } })])).rows[0].h;
+          hookErr = h && h.error ? h.error : null;
+        }
+        if (hookErr) { authMail.pop(); res = J({ code: hookErr.http_code, error_code: 'hook_error', msg: hookErr.message }, hookErr.http_code); }
+        else if (row && row.email_confirmed_at) { authMail.pop(); res = J({ id: row.id, aud: 'authenticated', role: '', email, user_metadata: {}, identities: [], created_at: '' }); }
+        else {
+          if (!row) { row = (await rest.q('insert into auth.users (email, raw_user_meta_data) values ($1, $2) returning id', [email, JSON.stringify(b.data || {})])).rows[0]; (globalThis.__pw ||= {})[row.id] = b.password; }
+          res = J({ id: row.id, aud: 'authenticated', role: '', email, user_metadata: b.data || {}, identities: [{}], created_at: '' });
+          await linkFor('signup', email);
+        }
       }
     } else if (u.pathname === '/auth/v1/resend' && rq.method === 'POST') {
       const b = JSON.parse(body); res = authSend('resend_' + b.type, b.email);

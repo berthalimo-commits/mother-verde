@@ -76,9 +76,16 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
         <span id="searchBtnLabel" data-i18n="searchBtnLabel">Buscar</span>
       </button>
-      <button id="accountBtn" onclick="showProfile()" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
+      <div class="acct-wrap" id="acctWrap">
+      <button id="accountBtn" onclick="mvAccountBtn(event)" aria-haspopup="menu" aria-expanded="false" aria-controls="acctMenu" aria-label="Tu cuenta y tu perfil" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>
       </button>
+      <div class="acct-menu" id="acctMenu" role="menu" hidden>
+        <button type="button" role="menuitem" id="acctMenuCuenta" onclick="mvAcctGo('cuenta')" data-i18n="acctMenuCuenta">Mi cuenta (correo, acceso, código de regalo)</button>
+        <button type="button" role="menuitem" id="acctMenuPerfil" onclick="mvAcctGo('perfil')" data-i18n="acctMenuPerfil">Mi perfil en la Comunidad</button>
+        <button type="button" role="menuitem" id="acctMenuSalir" onclick="mvAcctGo('salir')" data-i18n="acctMenuSalir">Cerrar sesión</button>
+      </div>
+      </div>
       <nav class="tabs">
         <button class="active" data-screen="home" data-i18n="navHome">Inicio</button>
         <button data-screen="cultivo" data-i18n="navCultivo">Cultivo</button>
@@ -89,6 +96,8 @@
           <button type="button" id="tabsMoreBtn" onclick="toggleMoreMenu(event)"><span data-i18n="navMas">Más</span> ▾</button>
           <div class="tabs-more-menu" id="tabsMoreMenu" hidden>
             <button type="button" onclick="goMore('comunidad')" data-i18n="modComunidadTitle">Comunidad</button>
+            <button type="button" id="moreCuenta" onclick="goMore('cuenta')" data-i18n="navCuenta">Mi cuenta</button>
+            <button type="button" id="moreHistoria" onclick="closeMoreMenu(); window.mvOpenStory && window.mvOpenStory()" data-i18n="navHistoria">Nuestra historia</button>
             <div class="tabs-more-sep"></div>
             <button type="button" onclick="goMore('seguridad')" data-i18n="modSegTitle">Seguridad</button>
             <button type="button" onclick="goMore('historia')" data-i18n="modHistTitle">Historia global</button>
@@ -2732,6 +2741,7 @@
         <div class="specimen edu-card" data-pais="EEUU" data-esp="cultivo">
           <h4>SUNY Morrisville</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Nueva York, EE. UU. — Cultivo &amp; horticultura</div>
           <p class="method-desc" data-i18n="eduSunyP">Minor en Cannabis Industry, certificado en Specialty Crops &amp; Cannabis Production, con posibilidad de apilarlo hacia un A.A.S. o B.Tech en horticultura. Incluye una parcela de investigación de cannabis propia de la universidad.</p>
+          <p class="method-desc edu-founder" data-i18n="eduSunyFundadora">La fundadora estudia en esta institución.</p>
           <div class="spec-source"><a href="https://www.morrisville.edu/cannabis" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">morrisville.edu/cannabis</a></div></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="ciencia">
           <h4>Colorado State University – Pueblo</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Colorado, EE. UU. — Ciencia &amp; química</div>
@@ -3684,6 +3694,7 @@
   <!-- ============ ALERTAS DE CAMBIO LEGAL ============ -->
   
 </div>
+<div class="app-footer-links"><button type="button" class="link-btn" id="footerHistoria" onclick="window.mvOpenStory && window.mvOpenStory()" data-i18n="navHistoria">Nuestra historia</button></div>
 <div class="app-footer" data-i18n="footerCopy">© 2026 Mother Verde LLC. Todos los derechos reservados.</div>
 
   <!-- ============ SEARCH MODAL ============ -->
@@ -3745,6 +3756,7 @@
 <script type="module" src="/src/avatarCropper.js"></script>
 <script type="module" src="/src/pdf.js"></script>
 <script type="module" src="/src/desbloquear.js"></script>
+<script type="module" src="/src/story.js"></script>
 <script type="module" src="/src/gameFlag.js"></script>
 <script>
   if('serviceWorker' in navigator && location.hostname !== 'localhost'){

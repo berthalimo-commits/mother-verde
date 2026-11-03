@@ -25,7 +25,7 @@ check('«Prueba terminada» + «TXID enviado» -> aviso «lo estamos verificando
 await setState('expired', '');
 await b.ev(`showScreen('desbloquear'); 1`); await sleep(500);
 await b.ev(`document.querySelector('.ds-slot[data-n="3"]').click(); 1`); await sleep(300);
-await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(800);
+await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`); await sleep(800);
 const amt = await b.ev(`document.getElementById('dsAmount')?.textContent`);
 check(`Desbloquear: «Ver mi monto» con 3 flores -> monto de ejemplo ${amt} (simulado)`, /^30,00\d\d$/.test(amt || ''));
 await b.ev(`document.getElementById('dsClaimTx').value = '0x' + 'ab'.repeat(32); document.getElementById('dsClaimForm').requestSubmit(); 1`); await sleep(800);

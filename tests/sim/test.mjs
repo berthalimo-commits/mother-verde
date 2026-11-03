@@ -45,7 +45,7 @@ function diff(a, b) {
 // ---------------------------------------------------------------- setup
 await db.exec(fs.readFileSync(new URL('./shim.sql', import.meta.url), 'utf8'));
 const files = fs.readdirSync(path.join(REPO, 'migrations')).filter(f => f.endsWith('.sql')).sort();
-const NEW = ['20261010120000_access_support_model.sql', '20261010130000_community_full_access.sql', '20261011100000_admin_and_audit.sql', '20261011120000_support_claims.sql', '20261011130000_gift_codes_and_access.sql', '20261013100000_mail_delivery.sql', '20261013110000_mail_failures_panel.sql', '20261013120000_signup_fix_limits.sql', '20261014100000_claims_survive_account_deletion.sql', '20261014110000_late_payment.sql', '20261014120000_late_payment_conflicts.sql', '20261014130000_pending_claims_counter.sql', '20261014140000_one_access_rule.sql', '20261015100000_game_progress.sql', '20261020100000_bitacora_read_only_without_access.sql', '20261029100000_game_setup.sql', '20261031100000_game_plants.sql', '20261103100000_manual_contributions.sql'];
+const NEW = ['20261010120000_access_support_model.sql', '20261010130000_community_full_access.sql', '20261011100000_admin_and_audit.sql', '20261011120000_support_claims.sql', '20261011130000_gift_codes_and_access.sql', '20261013100000_mail_delivery.sql', '20261013110000_mail_failures_panel.sql', '20261013120000_signup_fix_limits.sql', '20261014100000_claims_survive_account_deletion.sql', '20261014110000_late_payment.sql', '20261014120000_late_payment_conflicts.sql', '20261014130000_pending_claims_counter.sql', '20261014140000_one_access_rule.sql', '20261015100000_game_progress.sql', '20261020100000_bitacora_read_only_without_access.sql', '20261029100000_game_setup.sql', '20261031100000_game_plants.sql', '20261103100000_manual_contributions.sql', '20261104100000_purpose_and_signup_message.sql'];
 console.log('1. Migraciones anteriores (las que ya están en producción):');
 for (const f of files.filter(f => !NEW.includes(f))) {
   try { await db.exec(read('migrations/' + f)); } catch (e) { check(f, false, e.message); continue; }
@@ -158,7 +158,7 @@ console.log('8. Hook de registro:');
 const hook = async (email) => (await as('supabase_auth_admin', null, `select public.hook_before_user_created($1::jsonb) v`, [JSON.stringify({ user: { email } })])).rows?.[0]?.v;
 check('desechable (mailinator.com) -> rechazado', (await hook('a@mailinator.com'))?.error?.message === 'signup_not_allowed');
 check('subdominio de desechable -> rechazado', (await hook('a@x.mailinator.com'))?.error?.message === 'signup_not_allowed');
-check('variante de un Gmail existente (bertha.limo+x@gmail.com) -> rechazado', (await hook('bertha.limo+x@gmail.com'))?.error?.message === 'signup_not_allowed');
+check('variante de un Gmail existente (bertha.limo+x@gmail.com) -> rechazado', (await hook('bertha.limo+x@gmail.com'))?.error?.message === 'account_exists');
 check('correo normal nuevo -> aceptado', JSON.stringify(await hook('alguien@example.org')) === '{}');
 check('Gmail nuevo -> aceptado', JSON.stringify(await hook('otra.persona@gmail.com')) === '{}');
 check('hello@motherverdeny.com (futura admin) -> aceptado por el hook', JSON.stringify(await hook('hello@motherverdeny.com')) === '{}');
@@ -175,7 +175,9 @@ let refused = false; try { await db.exec(read('admin/rollback-20261010120000.sql
 try { await db.exec('rollback'); } catch {}
 check('reversa 120000 ANTES que la 130000 -> se niega (depende de has_full_access)', refused);
 check('…y no deja nada a medias (has_full_access sigue existiendo)', (await q(`select count(*)::int c from pg_proc where proname='has_full_access'`))[0].c === 1);
-for (const rb of ['rollback-20261103100000.sql', 'rollback-20261031100000.sql', 'rollback-20261029100000.sql', 'rollback-20261020100000.sql', 'rollback-20261015100000.sql', 'rollback-20261014140000.sql', 'rollback-20261014130000.sql', 'rollback-20261014120000.sql', 'rollback-20261014110000.sql', 'rollback-20261014100000.sql', 'rollback-20261013120000.sql', 'rollback-20261013110000.sql', 'rollback-20261013100000.sql', 'rollback-20261011130000.sql', 'rollback-20261011120000.sql', 'rollback-20261011100000.sql']) { try { await db.exec(read('admin/' + rb)); check(rb, true); } catch (e) { check(rb, false, e.message); } }
+// 20261104100000's rollback refuses while acceptances exist (export first): clear them like an owner would after exporting
+await db.exec(`update public.support_claims set purpose_accepted_at = null`);
+for (const rb of ['rollback-20261104100000.sql', 'rollback-20261103100000.sql', 'rollback-20261031100000.sql', 'rollback-20261029100000.sql', 'rollback-20261020100000.sql', 'rollback-20261015100000.sql', 'rollback-20261014140000.sql', 'rollback-20261014130000.sql', 'rollback-20261014120000.sql', 'rollback-20261014110000.sql', 'rollback-20261014100000.sql', 'rollback-20261013120000.sql', 'rollback-20261013110000.sql', 'rollback-20261013100000.sql', 'rollback-20261011130000.sql', 'rollback-20261011120000.sql', 'rollback-20261011100000.sql']) { try { await db.exec(read('admin/' + rb)); check(rb, true); } catch (e) { check(rb, false, e.message); } }
 try { await db.exec(read('admin/rollback-20261010130000.sql')); check('reversa 130000', true); } catch (e) { check('reversa 130000', false, e.message); }
 try { await db.exec(read('admin/rollback-20261010120000.sql')); check('reversa 120000', true); } catch (e) { check('reversa 120000', false, e.message); }
 const after = await snapshot();

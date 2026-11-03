@@ -6,6 +6,9 @@ import QRCode from 'qrcode';
 import { SUPPORT, SUPPORT_RECIPIENT_TEXT, supportAddressIsValid } from './supportConfig.js';
 
 let flowers = 1;
+// «Entiendo el propósito de mi aporte y estoy de acuerdo» (migration
+// 20261104100000): without it there is no reservation, address or QR.
+let purposeOk = false;
 // main.js (classic script) can't import the config; it reads this.
 // The one line that tells the person how their claim is being checked. Normal
 // check: "hasta {h} horas". Manual review: no hours at all (and only ONE line).
@@ -75,14 +78,14 @@ function awaiting(c) { return c && c.status === 'awaiting_payment' && new Date(c
 // matches its flowers. Another count -> "Ver mi monto" again; the old one stays
 // open until a new amount is asked for (create_support_claim cancels it then),
 // so a person who already sent it can go back and register the code.
-function shownClaim() { const c = claimNow(); return awaiting(c) && c.flowers === flowers ? c : null; }
+function shownClaim() { const c = claimNow(); return awaiting(c) && c.flowers === flowers && (purposeOk || !!c.purpose_accepted_at || c.id === 0) ? c : null; }
 const flowersText = (n) => fmt(t(n === 1 ? 'dsFlorN1' : 'dsFlorN'), { n });
 
 const RPC_ERR = {
   email_not_confirmed: 'dsErrConfirm', no_free_amount: 'dsErrBusy', expired: 'dsErrExpired',
   bad_contact_name: 'dsErrContactoNombre', bad_contact_phone: 'dsErrContactoTel',
   bad_tx_format: 'dsFormErrTx', tx_already_used: 'dsFormErrDup', already_supporter: 'dsYaTienes',
-  claim_in_review: 'dsErrEnRevision',
+  claim_in_review: 'dsErrEnRevision', purpose_required: 'dsPropFalta',
 };
 // Late payment answers from the support-claims function.
 const LATE_ERR = { late_amount_mismatch: 'dsErrTardeMonto', late_tx_not_found: 'dsErrTardeNoEncontrada', not_late: 'dsFormErrGeneric' };
@@ -94,8 +97,9 @@ async function reserve() {
     window.mvLatestClaim = { id: 0, status: 'awaiting_payment', flowers, amount_units: flowers * 10000000 + 4000, expires_at: new Date(Date.now() + 72 * 3600000).toISOString() };
     renderDesbloquear(); return;
   }
+  if (!purposeOk) { if (msg) msg.textContent = t('dsPropFalta'); document.getElementById('dsPurposeOk')?.focus(); return; }
   if (msg) msg.textContent = t('dsFormSending');
-  const { data, error } = await window.mvSupabase.rpc('create_support_claim', { p_flowers: flowers });
+  const { data, error } = await window.mvSupabase.rpc('create_support_claim', { p_flowers: flowers, p_purpose_ok: purposeOk });
   if (error) { if (msg) msg.textContent = fmt(t(errKey(error)), { n: flowers }); return; }
   window.mvLatestClaim = data;
   renderDesbloquear();
@@ -200,7 +204,8 @@ function claimHtml() {
         <h3>${t('dsReservarH')}</h3>
         ${notes}${changed}
         <p>${fmt(t('dsReservarP'), { usdc: flowers * SUPPORT.FLOWER_USDC, cur: SUPPORT.CURRENCY })}</p>
-        <button type="button" class="btn btn-primary" id="dsReservarBtn">${t('dsReservarBtn')}</button>
+        <button type="button" class="btn btn-primary" id="dsReservarBtn" ${purposeOk ? '' : 'disabled aria-describedby="dsPurposeHint"'}>${t('dsReservarBtn')}</button>
+        ${purposeOk ? '' : `<p class="ds-claim-help" id="dsPurposeHint">${t('dsPropFalta')}</p>`}
         <p class="ds-claim-msg" id="dsClaimMsg" aria-live="polite"></p>
       </div>${lateCandidate(c) ? lateFormHtml(c) : ''}`;
   }
@@ -273,6 +278,24 @@ function helpHtml() {
     <p class="ds-no-usdc" id="dsNoUsdc">${t('dsNoUsdc').replace('{mail}', MAIL_LINK)}</p></div>`;
 }
 
+// «Antes de aportar: para qué es tu aporte» (Bertha's text, 2026-11-03) + the
+// wallet sentence; the tick box only where a reservation can be made.
+function purposeHtml(withCheck) {
+  const terms = `<a href="#" id="dsTermsLink">${t('dsPropTerms')}</a>`;
+  const c = claimNow();
+  if (c && c.purpose_accepted_at) purposeOk = true;
+  return `
+    <div class="card-block ds-purpose" id="dsPurpose">
+      <h3>${t('dsPropH3')}</h3>
+      <ul>
+        <li>${t('dsProp1')}</li><li>${t('dsProp2')}</li><li>${t('dsProp3')}</li>
+        <li>${t('dsProp4')}</li><li>${t('dsProp5')}</li><li>${t('dsProp6').replace('{terms}', terms)}</li>
+      </ul>
+      <p class="ds-wallet">${SUPPORT_RECIPIENT_TEXT[lang()] || SUPPORT_RECIPIENT_TEXT.es}</p>
+      ${withCheck ? `<label class="ds-purpose-check" for="dsPurposeOk"><input type="checkbox" id="dsPurposeOk" ${purposeOk ? 'checked' : ''}> <span>${t('dsPropCheck')}</span></label>` : ''}
+    </div>`;
+}
+
 function visitorHtml() {
   return `
     <div class="card-block ds-pay">
@@ -295,6 +318,7 @@ export function renderDesbloquear() {
 
   root.innerHTML = `
     <p class="subhead ds-intro">${t('dsIntro')}</p>
+    <p class="ds-aviso-corto" id="dsAvisoCorto">${t('dsAvisoCorto')}</p>
 
     <div class="ds-scale" aria-hidden="true">
       ${bud(26, 'ds-bud-on')}${bud(34, 'ds-bud-on')}${bud(42, 'ds-bud-on')}${bud(52, 'ds-bud-on')}${bud(64, 'ds-bud-on')}
@@ -314,16 +338,15 @@ export function renderDesbloquear() {
       <p class="ds-extra-note">${t('dsExtraNota')}</p>
     </div>
 
-    <div class="card-block ds-cannawasi">
-      <h3>${t('dsCannaWasiH3')}</h3>
-      <p>${SUPPORT_RECIPIENT_TEXT[lang()] || SUPPORT_RECIPIENT_TEXT.es}</p>
-    </div>
+    ${purposeHtml(signedIn && ready)}
 
     ${!ready ? `<div class="note-box">${t('dsProximamente')}</div>`
       : !signedIn ? visitorHtml()
       : paymentHtml()}
   `;
 
+  root.querySelector('#dsPurposeOk')?.addEventListener('change', (e) => { purposeOk = e.target.checked; renderDesbloquear(); document.getElementById('dsPurposeOk')?.focus(); });
+  root.querySelector('#dsTermsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.showScreen?.('terminos'); });
   root.querySelector('#dsMenos').onclick = () => { if (flowers > 1) { flowers--; renderDesbloquear(); } };
   root.querySelector('#dsMas').onclick = () => { if (flowers < SUPPORT.MAX_FLOWERS) { flowers++; renderDesbloquear(); } };
   root.querySelectorAll('.ds-slot').forEach((b) => { b.onclick = () => { flowers = Number(b.dataset.n); renderDesbloquear(); }; });

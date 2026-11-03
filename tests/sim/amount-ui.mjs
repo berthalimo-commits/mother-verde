@@ -24,7 +24,7 @@ await b.ev(`document.getElementById('ageGateModal').style.display='none'; docume
 for (const L of LANGS) { await lang(b, L); check(`antes de reservar · ${L.toUpperCase()}: «${PERFLOR[L]}»`, (await b.ev(`document.getElementById('dsPorFlor')?.innerText`)) === PERFLOR[L]); }
 await lang(b, 'es');
 await b.ev(`document.querySelector('.ds-slot[data-n="2"]').click(); 1`); await sleep(200);
-await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(1500);
+await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`); await sleep(1500);
 // force a code with a trailing zero (20.0040) to check it is never shown as 20.004
 await sql(`update support_claims set amount_units = 20004000 where user_id = '${NEWBIE}' and status = 'awaiting_payment'`);
 await b.send('Page.reload'); await sleep(6000);

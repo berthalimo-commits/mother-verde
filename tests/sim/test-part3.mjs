@@ -8,7 +8,7 @@ export async function run({ db, as, q, check, newUser, ADMIN }) {
   const P = await newUser(700);
   await db.exec(`update profiles set trial_ends_at = now() - interval '1 hour' where id = '${P}'`);
   await db.exec(`insert into community_members (user_id, display_name, country) values ('${P}', 'José Núñez', 'PE')`);
-  const c = (await as('authenticated', P, 'select * from create_support_claim(2)')).rows[0];
+  const c = (await as('authenticated', P, 'select * from create_support_claim(2, true)')).rows[0];
   const sub = (name, phone, tx = 'aa') => as('authenticated', P, `select * from submit_support_claim_tx(${c.id}, '0x${tx.repeat(32)}', $1, $2)`, [name, phone]);
   check('teléfono con formato inválido -> bad_contact_phone', err(await sub('María', 'llámame')).includes('bad_contact_phone'));
   check('nombre de más de 80 caracteres -> bad_contact_name', err(await sub('x'.repeat(81), null)).includes('bad_contact_name'));
@@ -21,7 +21,7 @@ export async function run({ db, as, q, check, newUser, ADMIN }) {
   check('otra cuenta no ve los avisos de otra persona', (await as('authenticated', Q, `select id from support_claims`)).rows?.length === 0);
   const lc = (await A2(`select contact_name, contact_phone from admin_list_claims(array['submitted']) where user_id = '${P}'`)).rows?.[0];
   check('el panel (admin con MFA) sí ve nombre y teléfono', lc?.contact_name === 'María López' && lc.contact_phone === '+51 987 654 321', JSON.stringify(lc));
-  const sub2 = (await as('authenticated', Q, 'select * from create_support_claim(1)')).rows[0];
+  const sub2 = (await as('authenticated', Q, 'select * from create_support_claim(1, true)')).rows[0];
   check('los campos son opcionales (enviar sin contacto funciona)', (await as('authenticated', Q, `select * from submit_support_claim_tx(${sub2.id}, '0x${'ce'.repeat(32)}')`)).rows?.[0]?.status === 'submitted');
 
   console.log('15b. Monto como texto con 4 decimales (sin números decimales):');

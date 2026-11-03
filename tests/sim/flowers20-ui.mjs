@@ -17,7 +17,7 @@ for (const [w, cols, label] of [[390, 5, 'móvil'], [1280, 10, 'pantalla grande'
   const t = await b.ev(`({ on: document.querySelectorAll('.ds-slot.on').length, total: document.getElementById('dsTotal').innerText, mas: document.getElementById('dsMas').disabled })`);
   check(`${label}: tocar el lugar 20 -> 20 flores · 200 USDC, botón + desactivado`, t.on === 20 && /20/.test(t.total) && /200/.test(t.total) && t.mas === true, JSON.stringify(t));
   if (w === 390) {
-    await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(1500);
+    await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`); await sleep(1500);
   }
   const amt = await b.ev(`document.getElementById('dsAmount')?.textContent`);
   const db = await sql(`select amount_units from support_claims where user_id = '${NEWBIE}' and status = 'awaiting_payment'`);

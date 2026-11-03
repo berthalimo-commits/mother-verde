@@ -24,7 +24,7 @@ for (const L of ['en', 'de', 'fr', 'es']) {
   check(`Desbloquear · ${L.toUpperCase()}: línea «dificultades con el pago en cripto» con enlace mailto`, h.t === HELP[L] && h.href === 'mailto:hello@motherverdeny.com?subject=Mother%20Verde', JSON.stringify(h));
 }
 await b.ev(`document.querySelector('.ds-slot[data-n="2"]').click(); 1`); await sleep(200);
-await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(1500);
+await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`); await sleep(1500);
 const NOTE = 'Solo para ayudarte con tu aporte si hace falta. Únicamente lo verá quien administra Mother Verde.';
 check('formulario: «Nombre (opcional)», «WhatsApp o teléfono (opcional)» y la nota', await b.ev(`document.querySelector('label[for=dsContactName]').textContent === 'Nombre (opcional)' && document.querySelector('label[for=dsContactPhone]').textContent === 'WhatsApp o teléfono (opcional)' && document.body.innerText.includes(${JSON.stringify(NOTE)})`));
 await b.ev(`document.getElementById('dsClaimTx').value = '0x' + 'cd'.repeat(32); document.getElementById('dsContactPhone').value = 'llámame'; document.getElementById('dsClaimForm').requestSubmit(); 1`); await sleep(500);

@@ -107,7 +107,7 @@ async function loadLatestClaim(){
   if(!window.mvCurrentUser){ window.mvLatestClaim = null; return; }
   if(loadLatestClaim.owner !== window.mvCurrentUser.id){ window.mvLatestClaim = null; loadLatestClaim.owner = window.mvCurrentUser.id; }
   const { data, error } = await supabase.from('support_claims')
-    .select('id, status, flowers, amount_units, created_at, expires_at, tx_hash, submitted_at, review_reason, reviewed_at, late')
+    .select('id, status, flowers, amount_units, created_at, expires_at, tx_hash, submitted_at, review_reason, reviewed_at, late, purpose_accepted_at')
     .order('created_at', { ascending: false }).limit(1).maybeSingle();
   if(!error) window.mvLatestClaim = data || null; // on error the last known claim stays
 }
@@ -159,8 +159,11 @@ function mapAuthError(err){
   // instead of "something went wrong".
   if(code === 'over_email_send_rate_limit' || err?.status === 429 || msg.includes('rate limit')) return 'authErrRate';
   if(msg.includes('error sending') || code === 'unexpected_failure') return 'authErrSend';
-  // Rejected by the "Before User Created" hook (disposable domain, or the same
-  // Gmail address already has an account). One message for both on purpose.
+  // «Before User Created» hook (20261104100000): 'account_exists' = the same
+  // address (or the same Gmail with dots / +tag / googlemail) already has an
+  // account -> «Ya tienes cuenta: entra o recupera tu contraseña» (Bertha's
+  // decision, 2026-11-03); 'signup_not_allowed' = disposable domain.
+  if(msg.includes('account_exists')) return 'authErrAccountExists';
   if(msg.includes('signup_not_allowed')) return 'authErrSignupNotAllowed';
   if(msg.includes('already registered') || msg.includes('already exists')) return 'authErrEmailTaken';
   if(msg.includes('invalid login credentials')) return 'authErrInvalidCredentials';
@@ -172,6 +175,16 @@ function mapAuthError(err){
 function setAuthMsg(text, isError){
   const el = document.getElementById('authMsg');
   if(!el) return;
+  if(text === window.t('authErrAccountExists')){
+    // with the two ways out: «Entrar» and «Olvidé mi contraseña»
+    el.innerHTML = '';
+    el.append(text + ' ');
+    const mk = (id, key, fn) => { const b = document.createElement('button'); b.type = 'button'; b.id = id; b.className = 'auth-link-btn'; b.textContent = window.t(key); b.onclick = fn; return b; };
+    el.append(mk('authExistsLogin', 'authExistsLogin', () => { authMode = 'login'; renderAuthMode(); document.getElementById('authPasswordInput')?.focus(); }), ' · ',
+      mk('authExistsForgot', 'authExistsForgot', () => { authMode = 'login'; renderAuthMode(); document.getElementById('authForgotLink')?.click(); }));
+    el.style.color = 'var(--clay)';
+    return;
+  }
   el.textContent = text || '';
   el.style.color = isError ? 'var(--clay)' : 'var(--moss-deep)';
 }
@@ -442,6 +455,9 @@ document.getElementById('authForm')?.addEventListener('submit', async (e) => {
         options: { data: { preferred_lang: (window.getCurrentLang && window.getCurrentLang()) || 'es' }, emailRedirectTo: MV_REDIRECT, ...captchaOptions() }
       });
       if(error) throw error;
+      // Same address already registered and confirmed: Supabase answers «ok»
+      // with no identities (and sends nothing) — say it clearly.
+      if(data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) throw { message: 'account_exists' };
       if(!data.session){
         // E-mail not confirmed yet: the access screen explains it and offers
         // to resend. The 24 h trial starts only once it's confirmed.

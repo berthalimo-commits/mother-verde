@@ -2306,7 +2306,7 @@ const translations = {
     tc2H3:'2. Elegibilidad y edad mínima', tc2P:'La App está destinada exclusivamente a personas de 18 años o más. Al confirmar tu edad en el acceso inicial, declaras y garantizas que cumples este requisito. Nos reservamos el derecho de suspender el acceso a cualquier cuenta si tenemos motivos razonables para creer que esta declaración es falsa.',
     tc3H3:'3. Naturaleza del contenido — esto no es asesoría médica ni legal', tc3P:'Todo el contenido de la App —incluyendo información sobre cultivo, elaboración, ciencia, dosificación, seguridad, y estatus legal por país— se ofrece <b>únicamente con fines educativos e informativos</b>. No constituye asesoría médica, diagnóstico, tratamiento, ni asesoría legal de ningún tipo. El estatus legal del cannabis cambia con frecuencia y varía por jurisdicción; es tu responsabilidad verificar la ley vigente en tu ubicación antes de actuar. Consulta siempre a un profesional de salud calificado antes de usar cannabis con fines medicinales, y a un abogado local para cualquier duda legal.',
     tc4H3:'4. Uso permitido', tc4P:'Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.',
-    tc5H3:'5. Acceso completo', tc5P:'[PENDIENTE: redactar con contador y abogado — prueba gratis de 24 horas al confirmar el correo, aporte único de apoyo en USDC (red Base), códigos de regalo y retirada del acceso en caso de fraude.]',
+    tc5H3:'5. Acceso completo', tc5P:'[PENDIENTE: texto final de abogado/a y contador — prueba gratis de 24 horas al confirmar el correo, aporte único de apoyo en USDC (red Base), códigos de regalo y retirada del acceso en caso de fraude.]',
     tc6H3:'6. Propiedad intelectual', tc6P:'Todo el contenido original de la App —textos, ilustraciones, marca, diseño— es propiedad de Mother Verde LLC o de sus licenciantes, y está protegido por las leyes de propiedad intelectual aplicables. No está permitida su reproducción comercial sin autorización previa por escrito.',
     tc7H3:'7. Contenido generado por el usuario', tc7P:'Herramientas como la Bitácora de cultivo almacenan la información que ingreses. Eres responsable del contenido que registras. No debes ingresar información sensible de terceros sin su consentimiento.',
     tc8H3:'8. Limitación de responsabilidad', tc8P:'En la medida permitida por la ley, Mother Verde LLC no será responsable por daños derivados del uso o la imposibilidad de uso de la App, incluyendo decisiones tomadas con base en la información proporcionada. La App se ofrece "tal cual", sin garantías de ningún tipo.',
@@ -3133,7 +3133,7 @@ const translations = {
     tc2H3:'2. Eligibility and minimum age', tc2P:'The App is intended exclusively for people 18 years of age or older. By confirming your age on initial access, you represent and warrant that you meet this requirement. We reserve the right to suspend access to any account if we have reasonable grounds to believe this statement is false.',
     tc3H3:'3. Nature of the content — this is not medical or legal advice', tc3P:'All content in the App — including information on growing, making, science, dosing, safety, and legal status by country — is provided <b>solely for educational and informational purposes</b>. It does not constitute medical advice, diagnosis, treatment, or legal advice of any kind. The legal status of cannabis changes frequently and varies by jurisdiction; it is your responsibility to verify the law in effect in your location before acting. Always consult a qualified health professional before using cannabis for medicinal purposes, and a local lawyer for any legal questions.',
     tc4H3:'4. Permitted use', tc4P:'You agree to use the App only in a lawful manner, in accordance with the laws of your jurisdiction. You must not use the App to facilitate illegal activities, nor attempt to access restricted parts of the service without authorization.',
-    tc5H3:'5. Full access', tc5P:'[PENDING: to be drafted with the accountant and the lawyer — 24-hour free trial on e-mail confirmation, one-time support contribution in USDC (Base network), gift codes and withdrawal of access in case of fraud.]',
+    tc5H3:'5. Full access', tc5P:'[PENDING: final text from the lawyer and the accountant — 24-hour free trial on e-mail confirmation, one-time support contribution in USDC (Base network), gift codes and withdrawal of access in case of fraud.]',
     tc6H3:'6. Intellectual property', tc6P:'All original content in the App — text, illustrations, brand, design — is the property of Mother Verde LLC or its licensors, and is protected by applicable intellectual property laws. Commercial reproduction is not permitted without prior written authorization.',
     tc7H3:'7. User-generated content', tc7P:'Tools such as the Grow Log store the information you enter. You are responsible for the content you record. You must not enter sensitive information about third parties without their consent.',
     tc8H3:'8. Limitation of liability', tc8P:'To the extent permitted by law, Mother Verde LLC will not be liable for damages arising from the use or inability to use the App, including decisions made based on the information provided. The App is offered "as is", without warranties of any kind.',
@@ -3959,7 +3959,7 @@ const translations = {
     tc2H3:'2. Berechtigung und Mindestalter', tc2P:'Die App ist ausschließlich für Personen ab 18 Jahren bestimmt. Durch die Bestätigung deines Alters beim ersten Zugriff versicherst du, dass du diese Anforderung erfüllst. Wir behalten uns das Recht vor, den Zugang zu jedem Konto zu sperren, wenn wir begründeten Anlass zu der Annahme haben, dass diese Angabe falsch ist.',
     tc3H3:'3. Art des Inhalts — dies ist keine medizinische oder rechtliche Beratung', tc3P:'Alle Inhalte der App — einschließlich Informationen zu Anbau, Verarbeitung, Wissenschaft, Dosierung, Sicherheit und rechtlichem Status nach Land — werden <b>ausschließlich zu Bildungs- und Informationszwecken</b> bereitgestellt. Sie stellen keine medizinische Beratung, Diagnose, Behandlung oder Rechtsberatung jeglicher Art dar. Der rechtliche Status von Cannabis ändert sich häufig und variiert je nach Rechtsprechung; es liegt in deiner Verantwortung, das an deinem Standort geltende Recht vor dem Handeln zu überprüfen. Konsultiere vor der medizinischen Nutzung von Cannabis stets eine qualifizierte Gesundheitsfachkraft und bei rechtlichen Fragen einen örtlichen Anwalt.',
     tc4H3:'4. Erlaubte Nutzung', tc4P:'Du verpflichtest dich, die App nur auf rechtmäßige Weise gemäß den Gesetzen deiner Rechtsprechung zu nutzen. Du darfst die App nicht zur Erleichterung illegaler Aktivitäten nutzen und nicht versuchen, ohne Berechtigung auf eingeschränkte Teile des Dienstes zuzugreifen.',
-    tc5H3:'5. Vollzugriff', tc5P:'[AUSSTEHEND: mit Steuerberatung und Anwalt zu verfassen — 24-stündige Gratis-Testphase nach Bestätigung der E-Mail, einmaliger Unterstützungsbeitrag in USDC (Base-Netzwerk), Geschenkcodes und Entzug des Zugangs bei Betrug.]',
+    tc5H3:'5. Vollzugriff', tc5P:'[AUSSTEHEND: endgültiger Text von Anwalt/Anwältin und Steuerberatung — 24-stündige Gratis-Testphase nach Bestätigung der E-Mail, einmaliger Unterstützungsbeitrag in USDC (Base-Netzwerk), Geschenkcodes und Entzug des Zugangs bei Betrug.]',
     tc6H3:'6. Geistiges Eigentum', tc6P:'Alle Originalinhalte der App — Texte, Illustrationen, Marke, Design — sind Eigentum von Mother Verde LLC oder ihrer Lizenzgeber und durch geltendes Recht zum Schutz geistigen Eigentums geschützt. Eine kommerzielle Vervielfältigung ist ohne vorherige schriftliche Genehmigung nicht gestattet.',
     tc7H3:'7. Von Nutzern erstellte Inhalte', tc7P:'Werkzeuge wie das Anbautagebuch speichern die von dir eingegebenen Informationen. Du bist für die von dir erfassten Inhalte verantwortlich. Du darfst keine sensiblen Informationen Dritter ohne deren Zustimmung eingeben.',
     tc8H3:'8. Haftungsbeschränkung', tc8P:'Soweit gesetzlich zulässig, haftet Mother Verde LLC nicht für Schäden, die aus der Nutzung oder der Unmöglichkeit der Nutzung der App entstehen, einschließlich Entscheidungen, die auf Basis der bereitgestellten Informationen getroffen wurden. Die App wird "wie besehen" ohne jegliche Gewährleistung angeboten.',
@@ -4784,7 +4784,7 @@ const translations = {
     tc2H3:'2. Éligibilité et âge minimum', tc2P:'L\u2019App est destinée exclusivement aux personnes de 18 ans ou plus. En confirmant ton âge lors de l\u2019accès initial, tu déclares et garantis que tu remplis cette condition. Nous nous réservons le droit de suspendre l\u2019accès à tout compte si nous avons des motifs raisonnables de croire que cette déclaration est fausse.',
     tc3H3:'3. Nature du contenu — ceci n\u2019est pas un avis médical ou juridique', tc3P:'Tout le contenu de l\u2019App — y compris les informations sur la culture, l\u2019élaboration, la science, le dosage, la sécurité et le statut légal par pays — est fourni <b>uniquement à des fins éducatives et informatives</b>. Il ne constitue ni avis médical, diagnostic, traitement, ni avis juridique d\u2019aucune sorte. Le statut légal du cannabis change fréquemment et varie selon la juridiction ; il est de ta responsabilité de vérifier la loi en vigueur à ton emplacement avant d\u2019agir. Consulte toujours un professionnel de santé qualifié avant d\u2019utiliser le cannabis à des fins médicinales, et un avocat local pour toute question juridique.',
     tc4H3:'4. Utilisation autorisée', tc4P:'Tu t\u2019engages à utiliser l\u2019App uniquement de manière licite, conformément aux lois de ta juridiction. Tu ne dois pas utiliser l\u2019App pour faciliter des activités illégales, ni tenter d\u2019accéder à des parties restreintes du service sans autorisation.',
-    tc5H3:'5. Accès complet', tc5P:'[EN ATTENTE : à rédiger avec le comptable et l’avocat — essai gratuit de 24 heures à la confirmation de l’e-mail, contribution unique de soutien en USDC (réseau Base), codes cadeaux et retrait de l’accès en cas de fraude.]',
+    tc5H3:'5. Accès complet', tc5P:'[EN ATTENTE : texte final de l’avocat·e et du comptable — essai gratuit de 24 heures à la confirmation de l’e-mail, contribution unique de soutien en USDC (réseau Base), codes cadeaux et retrait de l’accès en cas de fraude.]',
     tc6H3:'6. Propriété intellectuelle', tc6P:'Tout le contenu original de l\u2019App — textes, illustrations, marque, design — est la propriété de Mother Verde LLC ou de ses concédants, et est protégé par les lois applicables en matière de propriété intellectuelle. Sa reproduction commerciale n\u2019est pas autorisée sans autorisation écrite préalable.',
     tc7H3:'7. Contenu généré par l\u2019utilisateur', tc7P:'Des outils comme le Journal de culture stockent les informations que tu saisis. Tu es responsable du contenu que tu enregistres. Tu ne dois pas saisir d\u2019informations sensibles concernant des tiers sans leur consentement.',
     tc8H3:'8. Limitation de responsabilité', tc8P:'Dans la mesure permise par la loi, Mother Verde LLC ne sera pas responsable des dommages découlant de l\u2019utilisation ou de l\u2019impossibilité d\u2019utiliser l\u2019App, y compris les décisions prises sur la base des informations fournies. L\u2019App est proposée « telle quelle », sans garantie d\u2019aucune sorte.',
@@ -5776,14 +5776,6 @@ translations.es.dsExtraNota = "Una flor es suficiente. De verdad.";
 translations.en.dsExtraNota = "One flower is enough. Really.";
 translations.de.dsExtraNota = "Eine Blüte reicht. Wirklich.";
 translations.fr.dsExtraNota = "Une fleur suffit. Vraiment.";
-translations.es.dsCannaWasiH3 = "¿A dónde va tu aporte?";
-translations.en.dsCannaWasiH3 = "Where does your contribution go?";
-translations.de.dsCannaWasiH3 = "Wohin geht dein Beitrag?";
-translations.fr.dsCannaWasiH3 = "Où va ta contribution ?";
-translations.es.dsWasiNota = "«Wasi» significa «casa» en quechua.";
-translations.en.dsWasiNota = "“Wasi” means “house” in Quechua.";
-translations.de.dsWasiNota = "„Wasi“ bedeutet auf Quechua „Haus“.";
-translations.fr.dsWasiNota = "« Wasi » signifie « maison » en quechua.";
 translations.es.dsComoH3 = "Cómo enviar tu aporte";
 translations.en.dsComoH3 = "How to send your contribution";
 translations.de.dsComoH3 = "So sendest du deinen Beitrag";
@@ -6356,6 +6348,220 @@ translations.es.dsNoUsdc = "¿No usas USDC? Escríbenos a {mail}";
 translations.en.dsNoUsdc = "Don’t use USDC? Write to us at {mail}";
 translations.de.dsNoUsdc = "Du nutzt kein USDC? Schreib uns an {mail}";
 translations.fr.dsNoUsdc = "Tu n’utilises pas l’USDC ? Écris-nous à {mail}";
+// @purpose-texts-start — copied from src/purposeTexts.js (Bertha, 2026-11-03); purpose-texts test keeps them identical
+translations.es.storyDialog = "Nuestra historia";
+translations.en.storyDialog = "Our story";
+translations.de.storyDialog = "Unsere Geschichte";
+translations.fr.storyDialog = "Notre histoire";
+translations.es.storyNext = "Continuar";
+translations.en.storyNext = "Continue";
+translations.de.storyNext = "Weiter";
+translations.fr.storyNext = "Continuer";
+translations.es.storySkip = "Saltar e ir a la plataforma";
+translations.en.storySkip = "Skip and go to the platform";
+translations.de.storySkip = "Überspringen und zur Plattform";
+translations.fr.storySkip = "Passer et aller à la plateforme";
+translations.es.storyEnter = "Entrar a la plataforma";
+translations.en.storyEnter = "Enter the platform";
+translations.de.storyEnter = "Zur Plattform";
+translations.fr.storyEnter = "Entrer sur la plateforme";
+translations.es.storyBack = "Atrás";
+translations.en.storyBack = "Back";
+translations.de.storyBack = "Zurück";
+translations.fr.storyBack = "Retour";
+translations.es.storyStep = "Pantalla {n} de {total}";
+translations.en.storyStep = "Screen {n} of {total}";
+translations.de.storyStep = "Bildschirm {n} von {total}";
+translations.fr.storyStep = "Écran {n} sur {total}";
+translations.es.storyPhotoSoon = "Foto próximamente";
+translations.en.storyPhotoSoon = "Photo coming soon";
+translations.de.storyPhotoSoon = "Foto folgt";
+translations.fr.storyPhotoSoon = "Photo à venir";
+translations.es.story1H = "Bienvenida";
+translations.en.story1H = "Welcome";
+translations.de.story1H = "Willkommen";
+translations.fr.story1H = "Bienvenue";
+translations.es.story1P = "<p>Gracias por entrar a Mother Verde.</p><p>Esta es una plataforma única: aprendes sobre el cannabis con ciencia, con ética y en tu idioma. Encontrarás lecciones respaldadas por fuentes reales, herramientas prácticas, información para que te informes antes de viajar y una comunidad donde todos se entienden, aunque hablen idiomas distintos.</p><p><b>Solo para mayores de edad.</b></p><p>Antes de empezar, quiero contarte quién está detrás y por qué nació.</p>";
+translations.en.story1P = "<p>Thank you for coming to Mother Verde.</p><p>This is a one-of-a-kind platform where you learn about cannabis with science, with ethics and in your own language. You’ll find lessons backed by real sources, practical tools, information to help you prepare before you travel, and a community where everyone understands each other, even when they speak different languages.</p><p><b>For adults only.</b></p><p>Before you start, I’d like to tell you who is behind it and why it was born.</p>";
+translations.de.story1P = "<p>Danke, dass du bei Mother Verde bist.</p><p>Dies ist eine einzigartige Plattform: Du lernst über Cannabis mit Wissenschaft, mit Ethik und in deiner Sprache. Du findest Lektionen mit echten Quellen, praktische Werkzeuge, Informationen, damit du dich vor einer Reise informieren kannst, und eine Community, in der sich alle verstehen, auch wenn sie unterschiedliche Sprachen sprechen.</p><p><b>Nur für Erwachsene.</b></p><p>Bevor es losgeht, möchte ich dir erzählen, wer dahintersteckt und warum es entstanden ist.</p>";
+translations.fr.story1P = "<p>Merci d’être sur Mother Verde.</p><p>Cette plateforme est unique : tu apprends le cannabis avec la science, avec éthique et dans ta langue. Tu y trouveras des leçons appuyées sur de vraies sources, des outils pratiques, des informations pour te renseigner avant de voyager et une communauté où tout le monde se comprend, même en parlant des langues différentes.</p><p><b>Réservé aux adultes.</b></p><p>Avant de commencer, je veux te raconter qui est derrière et pourquoi elle est née.</p>";
+translations.es.story2H = "Quién está detrás";
+translations.en.story2H = "Who is behind it";
+translations.de.story2H = "Wer dahintersteckt";
+translations.fr.story2H = "Qui est derrière";
+translations.es.storyAlt1 = "Bertha sonríe junto a plantas jóvenes de cannabis en su carpa de cultivo.";
+translations.en.storyAlt1 = "Bertha smiles next to young cannabis plants in her grow tent.";
+translations.de.storyAlt1 = "Bertha lächelt neben jungen Cannabispflanzen in ihrem Growzelt.";
+translations.fr.storyAlt1 = "Bertha sourit à côté de jeunes plants de cannabis dans sa tente de culture.";
+translations.es.storyAlt2a = "Bertha, con una capucha de tejido andino, mira de cerca las flores de una planta de cannabis.";
+translations.en.storyAlt2a = "Bertha, wearing an Andean woven hood, looks closely at the flowers of a cannabis plant.";
+translations.de.storyAlt2a = "Bertha, mit einer gewebten Kapuze im Andenstil, betrachtet die Blüten einer Cannabispflanze aus der Nähe.";
+translations.fr.storyAlt2a = "Bertha, coiffée d’une capuche tissée andine, observe de près les fleurs d’une plante de cannabis.";
+translations.es.storyAlt2b = "Bertha, con lentes azules, sonríe junto a las hojas de una planta de cannabis.";
+translations.en.storyAlt2b = "Bertha, wearing blue glasses, smiles next to the leaves of a cannabis plant.";
+translations.de.storyAlt2b = "Bertha, mit blauer Brille, lächelt neben den Blättern einer Cannabispflanze.";
+translations.fr.storyAlt2b = "Bertha, avec des lunettes bleues, sourit à côté des feuilles d’une plante de cannabis.";
+translations.es.storyAlt3 = "Bertha, con una camiseta del Perú y una manguera en la mano, en un campo entre hileras de plantas.";
+translations.en.storyAlt3 = "Bertha, wearing a Peru T-shirt and holding a hose, in a field between rows of plants.";
+translations.de.storyAlt3 = "Bertha, in einem Peru-T-Shirt und mit einem Schlauch in der Hand, auf einem Feld zwischen Pflanzenreihen.";
+translations.fr.storyAlt3 = "Bertha, en t-shirt du Pérou et un tuyau à la main, dans un champ entre des rangées de plantes.";
+translations.es.storyAlt4 = "Bertha, con sombrero y guantes de jardín, abraza una planta muy alta en un campo.";
+translations.en.storyAlt4 = "Bertha, wearing a hat and garden gloves, hugs a very tall plant in a field.";
+translations.de.storyAlt4 = "Bertha, mit Hut und Gartenhandschuhen, umarmt auf einem Feld eine sehr hohe Pflanze.";
+translations.fr.storyAlt4 = "Bertha, avec un chapeau et des gants de jardin, enlace une très grande plante dans un champ.";
+translations.es.storyAlt5 = "Bertha rocía plantas en un campo con un pulverizador de mochila.";
+translations.en.storyAlt5 = "Bertha sprays plants in a field with a backpack sprayer.";
+translations.de.storyAlt5 = "Bertha besprüht auf einem Feld Pflanzen mit einer Rückenspritze.";
+translations.fr.storyAlt5 = "Bertha pulvérise des plantes dans un champ avec un pulvérisateur à dos.";
+translations.es.story2P = "<p>Soy Bertha Limo, peruana, de una familia de agrónomos y químicos farmacéuticos.</p><p>Desde muy pequeña quise unir esos dos mundos: la planta y la ciencia que la entiende. Siento que es un regalo que recibí de mi linaje.</p>";
+translations.en.story2P = "<p>I’m Bertha Limo, Peruvian, from a family of agronomists and pharmaceutical chemists.</p><p>Ever since I was very young I wanted to combine those two worlds: the plant and the science that understands it. I feel it’s a gift I received from my lineage.</p>";
+translations.de.story2P = "<p>Ich bin Bertha Limo, Peruanerin, aus einer Familie von Agronomen und pharmazeutischen Chemikern.</p><p>Schon als kleines Kind wollte ich diese beiden Welten verbinden: die Pflanze und die Wissenschaft, die sie versteht. Ich sehe es als Geschenk meiner Herkunft.</p>";
+translations.fr.story2P = "<p>Je suis Bertha Limo, péruvienne, issue d’une famille d’agronomes et de chimistes pharmaciens.</p><p>Toute petite, je voulais réunir ces deux mondes : la plante et la science qui la comprend. Je le vois comme un cadeau reçu de ma lignée.</p>";
+translations.es.story3H = "Un sueño hecho realidad";
+translations.en.story3H = "A dream come true";
+translations.de.story3H = "Ein wahr gewordener Traum";
+translations.fr.story3H = "Un rêve devenu réalité";
+translations.es.story3P = "<p>A los 40 años cumplí uno de mis sueños: viajar a Estados Unidos para estudiar plantas, en especial el cannabis. No fue fácil. Pasé por el choque de cultura, el idioma, la comida y una inversión enorme. Y valió la pena.</p><p>No solo recibí una educación de mucha calidad. También me nutrí de su gente y de su cultura, que al final me hicieron sentir como en casa.</p>";
+translations.en.story3P = "<p>At 40, I fulfilled one of my dreams: traveling to the United States to study plants, especially cannabis. It wasn’t easy. I went through culture shock, a new language, different food and a huge investment. And it was worth it.</p><p>I didn’t only receive a high-quality education. I was also nourished by its people and its culture, which in the end made me feel at home.</p>";
+translations.de.story3P = "<p>Mit 40 habe ich mir einen Traum erfüllt: in die USA zu reisen, um Pflanzen zu studieren, vor allem Cannabis. Es war nicht leicht. Ich erlebte den Kulturschock, eine neue Sprache, fremdes Essen und eine enorme Investition. Und es hat sich gelohnt.</p><p>Ich habe nicht nur eine hochwertige Ausbildung erhalten. Ich habe auch viel von den Menschen und ihrer Kultur mitgenommen, die mir am Ende das Gefühl gaben, zu Hause zu sein.</p>";
+translations.fr.story3P = "<p>À 40 ans, j’ai réalisé l’un de mes rêves : voyager aux États-Unis pour étudier les plantes, en particulier le cannabis. Ce n’était pas facile. J’ai traversé le choc culturel, une nouvelle langue, une nourriture différente et un investissement énorme. Et cela en valait la peine.</p><p>Je n’ai pas seulement reçu une éducation de grande qualité. Je me suis aussi nourrie de ses gens et de sa culture, qui, au final, m’ont fait me sentir chez moi.</p>";
+translations.es.story4H = "Mi reto de hoy";
+translations.en.story4H = "My challenge today";
+translations.de.story4H = "Meine Herausforderung heute";
+translations.fr.story4H = "Mon défi d’aujourd’hui";
+translations.es.story4P = "<p>Hoy estoy ante un gran reto. SUNY Morrisville me dio otra vez la oportunidad de volver y terminar mi bachillerato en Horticulture Business Management (B.Tech.). Volver a esa casa de estudios me emociona muchísimo.</p><p>Esta vez necesito tu ayuda. Por eso nació esta plataforma: para darte algo valioso a cambio de tu colaboración.</p><p>Puedes explorar gratis durante 24 horas. Si te sirve y quieres apoyarme, ahí estará la opción.</p>";
+translations.en.story4P = "<p>Today I face a big challenge. SUNY Morrisville has given me the chance, once again, to return and finish my bachelor’s degree in Horticulture Business Management (B.Tech.). Going back to that home of learning moves me deeply.</p><p>This time I need your help. That is why this platform was born: to give you something valuable in return for your collaboration.</p><p>You can explore for free for 24 hours. If it helps you and you’d like to support me, the option will be there.</p>";
+translations.de.story4P = "<p>Heute stehe ich vor einer großen Herausforderung. Die SUNY Morrisville hat mir erneut die Chance gegeben, zurückzukehren und meinen Bachelor in Horticulture Business Management (B.Tech.) abzuschließen. Die Rückkehr an diese Hochschule bewegt mich sehr.</p><p>Diesmal brauche ich deine Hilfe. Deshalb ist diese Plattform entstanden: um dir als Dank für deine Unterstützung etwas Wertvolles zu geben.</p><p>Du kannst 24 Stunden lang kostenlos erkunden. Wenn es dir nützt und du mich unterstützen möchtest, ist die Möglichkeit da.</p>";
+translations.fr.story4P = "<p>Aujourd’hui, je fais face à un grand défi. SUNY Morrisville m’a de nouveau donné la possibilité de revenir et de terminer mon bachelor en Horticulture Business Management (B.Tech.). Retourner dans cette maison d’études m’émeut profondément.</p><p>Cette fois, j’ai besoin de ton aide. C’est pour cela que cette plateforme est née : pour te donner quelque chose de précieux en retour de ta collaboration.</p><p>Tu peux explorer gratuitement pendant 24 heures. Si cela t’est utile et que tu veux me soutenir, l’option sera là.</p>";
+translations.es.story5H = "Lo que encontrarás aquí";
+translations.en.story5H = "What you’ll find here";
+translations.de.story5H = "Das findest du hier";
+translations.fr.story5H = "Ce que tu trouveras ici";
+translations.es.story5Calc = "Calculadoras para VPD, DLI, dosis, EC ↔ PPM, luz y más (17 en total).";
+translations.en.story5Calc = "Calculators for VPD, DLI, dosing, EC ↔ PPM, light and more (17 in total).";
+translations.de.story5Calc = "Rechner für VPD, DLI, Dosierung, EC ↔ PPM, Licht und mehr (17 insgesamt).";
+translations.fr.story5Calc = "Des calculateurs pour le VPD, le DLI, le dosage, EC ↔ PPM, la lumière et plus (17 au total).";
+translations.es.story5Viaje = "Información para viajar: ¿es legal donde viajas?, ¿a dónde acudir si necesitas ayuda? y qué países son estrictamente ilegales. Información orientativa; las leyes cambian. No es asesoría legal.";
+translations.en.story5Viaje = "Travel information: is it legal where you’re going? Where to turn if you need help? And which countries are strictly illegal. Guidance only; laws change. This is not legal advice.";
+translations.de.story5Viaje = "Reiseinformationen: Ist es dort legal, wohin du reist? Wohin kannst du dich wenden, wenn du Hilfe brauchst? Und welche Länder sind strikt illegal. Orientierende Information; Gesetze ändern sich. Keine Rechtsberatung.";
+translations.fr.story5Viaje = "Informations pour voyager : est-ce légal là où tu voyages ? Où t’adresser si tu as besoin d’aide ? Et quels pays sont strictement illégaux. Information indicative ; les lois changent. Ce n’est pas un conseil juridique.";
+translations.es.story5Juego = "Un juego que te enseña a cultivar paso a paso, con lecciones basadas en ciencia.";
+translations.en.story5Juego = "A game that teaches you to grow step by step, with science-based lessons.";
+translations.de.story5Juego = "Ein Spiel, das dir Schritt für Schritt den Anbau beibringt, mit wissenschaftlich fundierten Lektionen.";
+translations.fr.story5Juego = "Un jeu qui t’apprend à cultiver pas à pas, avec des leçons fondées sur la science.";
+translations.es.story5JuegoPronto = "Próximamente: un juego que te enseña a cultivar paso a paso, con lecciones basadas en ciencia.";
+translations.en.story5JuegoPronto = "Coming soon: a game that teaches you to grow step by step, with science-based lessons.";
+translations.de.story5JuegoPronto = "Bald verfügbar: ein Spiel, das dir Schritt für Schritt den Anbau beibringt, mit wissenschaftlich fundierten Lektionen.";
+translations.fr.story5JuegoPronto = "Bientôt : un jeu qui t’apprend à cultiver pas à pas, avec des leçons fondées sur la science.";
+translations.es.story5Comunidad = "Una comunidad sin barreras de idioma: escribes en el tuyo y quien habla otro idioma te lee en el suyo, automáticamente.";
+translations.en.story5Comunidad = "A community without language barriers: you write in yours, and someone who speaks another language reads you in theirs, automatically.";
+translations.de.story5Comunidad = "Eine Community ohne Sprachbarrieren: Du schreibst in deiner Sprache, und wer eine andere spricht, liest dich automatisch in seiner.";
+translations.fr.story5Comunidad = "Une communauté sans barrière de langue : tu écris dans la tienne, et la personne qui en parle une autre te lit automatiquement dans la sienne.";
+translations.es.story6H = "Gracias";
+translations.en.story6H = "Thank you";
+translations.de.story6H = "Danke";
+translations.fr.story6H = "Merci";
+translations.es.story6P = "<p>Tu aporte único de apoyo me ayuda a estudiar, y lo que aprendo lo comparto contigo y con mi comunidad, porque una de mis pasiones es enseñar con ética y responsabilidad.</p><p>Desde el Perú, y ahora con el mundo, quiero compartir lo que aprendo. Lo que estudie lo traeré aquí, en lecciones más sólidas y mejor conocimiento compartido.</p><p>Gracias por ser parte de esto desde el principio.</p>";
+translations.en.story6P = "<p>Your one-time support contribution helps me study, and what I learn I share with you and my community, because one of my passions is teaching with ethics and responsibility.</p><p>From Peru, and now with the world, I want to share what I learn. What I study I will bring here, in stronger lessons and better shared knowledge.</p><p>Thank you for being part of this from the beginning.</p>";
+translations.de.story6P = "<p>Dein einmaliger Unterstützungsbeitrag hilft mir beim Studieren, und was ich lerne, teile ich mit dir und meiner Gemeinschaft, denn eine meiner Leidenschaften ist es, mit Ethik und Verantwortung zu lehren.</p><p>Von Peru aus, und jetzt mit der Welt, möchte ich teilen, was ich lerne. Was ich studiere, bringe ich hierher: in solidere Lektionen und besser geteiltes Wissen.</p><p>Danke, dass du von Anfang an dabei bist.</p>";
+translations.fr.story6P = "<p>Ta contribution unique de soutien m’aide à étudier, et ce que j’apprends, je le partage avec toi et ma communauté, car l’une de mes passions est d’enseigner avec éthique et responsabilité.</p><p>Depuis le Pérou, et maintenant avec le monde, je veux partager ce que j’apprends. Ce que j’étudierai, je le rapporterai ici : des leçons plus solides et un savoir mieux partagé.</p><p>Merci de faire partie de cela dès le début.</p>";
+translations.es.storyIndependent = "Mother Verde es un proyecto independiente. No está afiliado ni respaldado por SUNY Morrisville.";
+translations.en.storyIndependent = "Mother Verde is an independent project. It is not affiliated with or endorsed by SUNY Morrisville.";
+translations.de.storyIndependent = "Mother Verde ist ein unabhängiges Projekt. Es ist nicht mit der SUNY Morrisville verbunden und wird nicht von ihr unterstützt.";
+translations.fr.storyIndependent = "Mother Verde est un projet indépendant. Il n’est ni affilié ni approuvé par SUNY Morrisville.";
+translations.es.navHistoria = "Nuestra historia";
+translations.en.navHistoria = "Our story";
+translations.de.navHistoria = "Unsere Geschichte";
+translations.fr.navHistoria = "Notre histoire";
+translations.es.dsAvisoCorto = "Tu aporte único de apoyo me ayuda a terminar mi bachillerato en horticultura en SUNY Morrisville, y lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado a SUNY Morrisville.";
+translations.en.dsAvisoCorto = "Your one-time support contribution helps me finish my bachelor’s degree in horticulture at SUNY Morrisville, and what I learn I will share with you and my community. In return you get full access to the platform. Mother Verde is not affiliated with SUNY Morrisville.";
+translations.de.dsAvisoCorto = "Dein einmaliger Unterstützungsbeitrag hilft mir, meinen Bachelor in Gartenbau an der SUNY Morrisville abzuschließen, und was ich lerne, teile ich mit dir und meiner Gemeinschaft. Dafür erhältst du vollen Zugang zur Plattform. Mother Verde ist nicht mit der SUNY Morrisville verbunden.";
+translations.fr.dsAvisoCorto = "Ta contribution unique de soutien m’aide à terminer mon bachelor en horticulture à SUNY Morrisville, et ce que j’apprends, je le partage avec toi et ma communauté. En échange, tu as un accès complet à la plateforme. Mother Verde n’est pas affilié à SUNY Morrisville.";
+translations.es.dsPropH3 = "Antes de aportar: para qué es tu aporte";
+translations.en.dsPropH3 = "Before you contribute: what your contribution is for";
+translations.de.dsPropH3 = "Bevor du beiträgst: wofür dein Beitrag gedacht ist";
+translations.fr.dsPropH3 = "Avant de contribuer : à quoi sert ta contribution";
+translations.es.dsProp1 = "Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a terminar su bachillerato en Horticulture Business Management (B.Tech.) en SUNY Morrisville.";
+translations.en.dsProp1 = "Your one-time support contribution helps Bertha Limo, founder of Mother Verde, finish her bachelor’s degree in Horticulture Business Management (B.Tech.) at SUNY Morrisville.";
+translations.de.dsProp1 = "Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, Gründerin von Mother Verde, ihren Bachelor in Horticulture Business Management (B.Tech.) an der SUNY Morrisville abzuschließen.";
+translations.fr.dsProp1 = "Ta contribution unique de soutien aide Bertha Limo, fondatrice de Mother Verde, à terminer son bachelor en Horticulture Business Management (B.Tech.) à SUNY Morrisville.";
+translations.es.dsProp2 = "A cambio recibes acceso completo a la plataforma.";
+translations.en.dsProp2 = "In return you receive full access to the platform.";
+translations.de.dsProp2 = "Dafür erhältst du vollen Zugang zur Plattform.";
+translations.fr.dsProp2 = "En échange, tu reçois un accès complet à la plateforme.";
+translations.es.dsProp3 = "Es voluntario y único. No es una donación ni es deducible de impuestos.";
+translations.en.dsProp3 = "It is voluntary and one-time. It is not a donation and is not tax-deductible.";
+translations.de.dsProp3 = "Er ist freiwillig und einmalig. Er ist keine Spende und nicht steuerlich absetzbar.";
+translations.fr.dsProp3 = "Elle est volontaire et unique. Ce n’est pas un don et elle n’est pas déductible des impôts.";
+translations.es.dsProp4 = "Lo que aprendo lo comparto con mi comunidad y con quienes aprenden aquí.";
+translations.en.dsProp4 = "What I learn I share with my community and with those who learn here.";
+translations.de.dsProp4 = "Was ich lerne, teile ich mit meiner Gemeinschaft und mit allen, die hier lernen.";
+translations.fr.dsProp4 = "Ce que j’apprends, je le partage avec ma communauté et avec celles et ceux qui apprennent ici.";
+translations.es.dsProp5 = "Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville.";
+translations.en.dsProp5 = "Mother Verde is an independent project, not affiliated with or endorsed by SUNY Morrisville.";
+translations.de.dsProp5 = "Mother Verde ist ein unabhängiges Projekt, nicht mit der SUNY Morrisville verbunden und nicht von ihr unterstützt.";
+translations.fr.dsProp5 = "Mother Verde est un projet indépendant, non affilié ni approuvé par SUNY Morrisville.";
+translations.es.dsProp6 = "Las condiciones completas están en los {terms}.";
+translations.en.dsProp6 = "Full conditions are in the {terms}.";
+translations.de.dsProp6 = "Alle Bedingungen findest du in den {terms}.";
+translations.fr.dsProp6 = "Les conditions complètes figurent dans les {terms}.";
+translations.es.dsPropTerms = "Términos y Condiciones";
+translations.en.dsPropTerms = "Terms and Conditions";
+translations.de.dsPropTerms = "Allgemeinen Geschäftsbedingungen";
+translations.fr.dsPropTerms = "Conditions générales";
+translations.es.dsPropCheck = "Entiendo el propósito de mi aporte y estoy de acuerdo.";
+translations.en.dsPropCheck = "I understand the purpose of my contribution and I agree.";
+translations.de.dsPropCheck = "Ich verstehe den Zweck meines Beitrags und bin einverstanden.";
+translations.fr.dsPropCheck = "Je comprends l’objet de ma contribution et je suis d’accord.";
+translations.es.dsPropFalta = "Marca la casilla para continuar.";
+translations.en.dsPropFalta = "Tick the box to continue.";
+translations.de.dsPropFalta = "Kreuze das Kästchen an, um fortzufahren.";
+translations.fr.dsPropFalta = "Coche la case pour continuer.";
+translations.es.eduSunyFundadora = "La fundadora estudia en esta institución.";
+translations.en.eduSunyFundadora = "The founder studies at this institution.";
+translations.de.eduSunyFundadora = "Die Gründerin studiert an dieser Hochschule.";
+translations.fr.eduSunyFundadora = "La fondatrice étudie dans cet établissement.";
+translations.es.pvPurposeAdd = "Si marcas la casilla de propósito antes de aportar, guardamos que la aceptaste y cuándo, junto a tu aviso de aporte.";
+translations.en.pvPurposeAdd = "If you tick the purpose box before contributing, we store that you accepted it and when, together with your contribution notice.";
+translations.de.pvPurposeAdd = "Wenn du vor deinem Beitrag das Kästchen zum Zweck ankreuzt, speichern wir, dass du zugestimmt hast und wann, zusammen mit deiner Beitragsmeldung.";
+translations.fr.pvPurposeAdd = "Si tu coches la case sur l’objet avant de contribuer, nous enregistrons que tu l’as acceptée et quand, avec ton avis de contribution.";
+translations.es.authErrAccountExists = "Ya tienes cuenta: entra o recupera tu contraseña.";
+translations.en.authErrAccountExists = "You already have an account: sign in or recover your password.";
+translations.de.authErrAccountExists = "Du hast schon ein Konto: Melde dich an oder stelle dein Passwort wieder her.";
+translations.fr.authErrAccountExists = "Tu as déjà un compte : connecte-toi ou récupère ton mot de passe.";
+translations.es.authExistsLogin = "Entrar";
+translations.en.authExistsLogin = "Sign in";
+translations.de.authExistsLogin = "Anmelden";
+translations.fr.authExistsLogin = "Se connecter";
+translations.es.authExistsForgot = "Olvidé mi contraseña";
+translations.en.authExistsForgot = "I forgot my password";
+translations.de.authExistsForgot = "Passwort vergessen";
+translations.fr.authExistsForgot = "Mot de passe oublié";
+translations.es.acctBtnIn = "Tu cuenta y tu perfil";
+translations.en.acctBtnIn = "Your account and profile";
+translations.de.acctBtnIn = "Dein Konto und Profil";
+translations.fr.acctBtnIn = "Ton compte et ton profil";
+translations.es.acctBtnOut = "Entrar o crear cuenta";
+translations.en.acctBtnOut = "Sign in or create an account";
+translations.de.acctBtnOut = "Anmelden oder Konto erstellen";
+translations.fr.acctBtnOut = "Se connecter ou créer un compte";
+translations.es.acctMenuCuenta = "Mi cuenta (correo, acceso, código de regalo)";
+translations.en.acctMenuCuenta = "My account (e-mail, access, gift code)";
+translations.de.acctMenuCuenta = "Mein Konto (E-Mail, Zugang, Geschenkcode)";
+translations.fr.acctMenuCuenta = "Mon compte (e-mail, accès, code cadeau)";
+translations.es.acctMenuPerfil = "Mi perfil en la Comunidad";
+translations.en.acctMenuPerfil = "My Community profile";
+translations.de.acctMenuPerfil = "Mein Community-Profil";
+translations.fr.acctMenuPerfil = "Mon profil dans la Communauté";
+translations.es.acctMenuSalir = "Cerrar sesión";
+translations.en.acctMenuSalir = "Sign out";
+translations.de.acctMenuSalir = "Abmelden";
+translations.fr.acctMenuSalir = "Se déconnecter";
+translations.es.navCuenta = "Mi cuenta";
+translations.en.navCuenta = "My account";
+translations.de.navCuenta = "Mein Konto";
+translations.fr.navCuenta = "Mon compte";
+// @purpose-texts-end
 translations.es.dsContactoNombre = "Nombre (opcional)";
 translations.en.dsContactoNombre = "Name (optional)";
 translations.de.dsContactoNombre = "Name (optional)";
@@ -6487,10 +6693,10 @@ translations.es.pv4H = "4. Aportes en USDC y la cadena de bloques";
 translations.en.pv4H = "4. USDC contributions and the blockchain";
 translations.de.pv4H = "4. Beiträge in USDC und die Blockchain";
 translations.fr.pv4H = "4. Contributions en USDC et la blockchain";
-translations.es.pv4P = "Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. [PENDIENTE: revisión de abogada: base legal y plazo de conservación de esa constancia.]";
-translations.en.pv4P = "Transfers on the Base network are <b>public and permanent</b>: anyone can see in an explorer the sending address, the receiving address, the amount and the date. Mother Verde cannot delete or change them. Our records link the transaction code to your account, and only the administrator sees that. If you delete your account, notices without a transaction code are deleted; those with a code are kept without your name, phone or account, as proof of the payment. [PENDING: lawyer review: legal basis and retention period for that proof.]";
-translations.de.pv4P = "Überweisungen im Base-Netzwerk sind <b>öffentlich und dauerhaft</b>: Jeder kann in einem Explorer die sendende und die empfangende Adresse, den Betrag und das Datum sehen. Mother Verde kann sie weder löschen noch ändern. Unsere Aufzeichnung verbindet den Transaktionscode mit deinem Konto, und das sieht nur die Administratorin. Wenn du dein Konto löschst, werden Meldungen ohne Transaktionscode gelöscht; die mit Code bleiben ohne deinen Namen, dein Telefon und dein Konto als Nachweis der Zahlung erhalten. [AUSSTEHEND: Prüfung durch eine Anwältin: Rechtsgrundlage und Aufbewahrungsfrist dieses Nachweises.]";
-translations.fr.pv4P = "Les transferts sur le réseau Base sont <b>publics et permanents</b> : n’importe qui peut voir dans un explorateur l’adresse d’envoi, celle de réception, le montant et la date. Mother Verde ne peut ni les effacer ni les modifier. Notre registre relie le code de transaction à ton compte, et seule l’administratrice le voit. Si tu supprimes ton compte, les avis sans code de transaction sont supprimés ; ceux avec un code sont conservés sans ton nom, ton téléphone ni ton compte, comme preuve du paiement. [EN ATTENTE : relecture par une avocate : base légale et durée de conservation de cette preuve.]";
+translations.es.pv4P = "Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. Si marcas la casilla de propósito antes de aportar, guardamos que la aceptaste y cuándo, junto a tu aviso de aporte. [PENDIENTE: revisión de abogada: base legal y plazo de conservación de esa constancia.]";
+translations.en.pv4P = "Transfers on the Base network are <b>public and permanent</b>: anyone can see in an explorer the sending address, the receiving address, the amount and the date. Mother Verde cannot delete or change them. Our records link the transaction code to your account, and only the administrator sees that. If you delete your account, notices without a transaction code are deleted; those with a code are kept without your name, phone or account, as proof of the payment. If you tick the purpose box before contributing, we store that you accepted it and when, together with your contribution notice. [PENDING: lawyer review: legal basis and retention period for that proof.]";
+translations.de.pv4P = "Überweisungen im Base-Netzwerk sind <b>öffentlich und dauerhaft</b>: Jeder kann in einem Explorer die sendende und die empfangende Adresse, den Betrag und das Datum sehen. Mother Verde kann sie weder löschen noch ändern. Unsere Aufzeichnung verbindet den Transaktionscode mit deinem Konto, und das sieht nur die Administratorin. Wenn du dein Konto löschst, werden Meldungen ohne Transaktionscode gelöscht; die mit Code bleiben ohne deinen Namen, dein Telefon und dein Konto als Nachweis der Zahlung erhalten. Wenn du vor deinem Beitrag das Kästchen zum Zweck ankreuzt, speichern wir, dass du zugestimmt hast und wann, zusammen mit deiner Beitragsmeldung. [AUSSTEHEND: Prüfung durch eine Anwältin: Rechtsgrundlage und Aufbewahrungsfrist dieses Nachweises.]";
+translations.fr.pv4P = "Les transferts sur le réseau Base sont <b>publics et permanents</b> : n’importe qui peut voir dans un explorateur l’adresse d’envoi, celle de réception, le montant et la date. Mother Verde ne peut ni les effacer ni les modifier. Notre registre relie le code de transaction à ton compte, et seule l’administratrice le voit. Si tu supprimes ton compte, les avis sans code de transaction sont supprimés ; ceux avec un code sont conservés sans ton nom, ton téléphone ni ton compte, comme preuve du paiement. Si tu coches la case sur l’objet avant de contribuer, nous enregistrons que tu l’as acceptée et quand, avec ton avis de contribution. [EN ATTENTE : relecture par une avocate : base légale et durée de conservation de cette preuve.]";
 translations.es.pv5H = "5. Quién procesa tus datos";
 translations.en.pv5H = "5. Who processes your data";
 translations.de.pv5H = "5. Wer deine Daten verarbeitet";
@@ -6685,6 +6891,8 @@ function applyLang(){
     const key = el.getAttribute('data-i18n-ph');
     if(translations[currentLang][key] !== undefined) el.setAttribute('placeholder', translations[currentLang][key]);
   });
+  const acctBtn = document.getElementById('accountBtn');
+  if(acctBtn){ const lbl = t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut'); acctBtn.setAttribute('aria-label', lbl); acctBtn.title = lbl; }
   if(document.getElementById('harvestChecklist')) renderHarvestChecklist();
   if(document.getElementById('glosarioList')) renderGlosario(document.getElementById('glSearchInput')?.value || '');
   if(comparadorOpen && isPremium) renderComparador();
@@ -7083,6 +7291,7 @@ function mvRenderAcceso(){
     const p = st === 'expired' ? 'accTerminoP' : 'accSinAccesoP';
     html = '<h2 class="acc-title">' + t(h) + '</h2>'
       + '<p class="acc-text">' + t(p) + '</p>'
+      + '<p class="acc-aviso" id="accAvisoCorto">' + t('dsAvisoCorto') + '</p>'
       + mvPendingNoteHtml()
       + (mvClaimPending() ? '' : '<div class="acc-actions"><button class="btn btn-primary" onclick="showScreen(\'desbloquear\')">' + t('accDesbloquearBtn') + '</button></div>')
       + '<p class="acc-note"><a onclick="mvOpenGiftForm()">' + t('giftTengo') + '</a></p>'
@@ -7632,6 +7841,8 @@ async function ageGateConfirm(isAdult){
       modal.classList.remove('active');
       modal.style.opacity = '';
       modal.style.transition = '';
+      // «Nuestra historia», once, right after the age confirmation (src/story.js)
+      window.mvMaybeOpenStory && window.mvMaybeOpenStory();
     }, 350);
   } else {
     document.getElementById('ageGateQuestion').style.display = 'none';
@@ -7694,9 +7905,46 @@ function mvAvatarHtml(member, sizePx){
 // and uploaded one; the original generic icon otherwise (logged out, no
 // directory profile yet, or no avatar set).
 const accountIconDefaultSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>';
+// Person icon (top bar): signed out -> «Entrar»; signed in -> a small menu
+// with «Mi cuenta», «Mi perfil en la Comunidad» and «Cerrar sesión» (2026-11-03:
+// «Cuenta» was hard to find from the icon).
+function mvCloseAcctMenu(){
+  const m = document.getElementById('acctMenu'), b = document.getElementById('accountBtn');
+  if(m) m.hidden = true;
+  if(b) b.setAttribute('aria-expanded', 'false');
+}
+function mvAccountBtn(e){
+  if(e) e.stopPropagation();
+  if(!window.mvCurrentUser){ mvCloseAcctMenu(); showScreen('cuenta'); window.mvSetAuthMode && window.mvSetAuthMode('login'); return; }
+  const m = document.getElementById('acctMenu'), b = document.getElementById('accountBtn');
+  if(!m || !b) return;
+  const open = m.hidden;
+  closeMoreMenu();
+  m.hidden = !open;
+  b.setAttribute('aria-expanded', String(open));
+  if(open) m.querySelector('[role=menuitem]')?.focus();
+}
+function mvAcctGo(where){
+  mvCloseAcctMenu();
+  if(where === 'cuenta') showScreen('cuenta');
+  else if(where === 'perfil') showProfile();
+  else if(where === 'salir') document.getElementById('authLogoutBtn')?.click();
+}
+document.addEventListener('click', e => { if(!e.target.closest('#acctWrap')) mvCloseAcctMenu(); });
+document.addEventListener('keydown', e => {
+  const m = document.getElementById('acctMenu');
+  if(!m || m.hidden) return;
+  const items = [...m.querySelectorAll('[role=menuitem]')];
+  const i = items.indexOf(document.activeElement);
+  if(e.key === 'Escape'){ mvCloseAcctMenu(); document.getElementById('accountBtn')?.focus(); }
+  else if(e.key === 'ArrowDown'){ e.preventDefault(); items[(i + 1) % items.length].focus(); }
+  else if(e.key === 'ArrowUp'){ e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+});
 async function renderAccountIcon(){
   const btn = document.getElementById('accountBtn');
   if(!btn) return;
+  btn.setAttribute('aria-label', t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut'));
+  btn.title = t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut');
   if(!window.mvCurrentUser || !window.mvCommunity){ btn.innerHTML = accountIconDefaultSvg; return; }
   try{
     const mine = await window.mvCommunity.getMyMemberProfile();

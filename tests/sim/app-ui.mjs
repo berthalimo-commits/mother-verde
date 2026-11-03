@@ -16,7 +16,7 @@ await b.ev(`showScreen('desbloquear'); 1`);
 s = await waitApp(b, /Ver mi monto/);
 check('Desbloquear sin monto reservado: botón «Ver mi monto», sin dirección ni QR todavía', /Ver mi monto/.test(s) && !/0x63bb/.test(s));
 await b.ev(`document.getElementById('dsMas').click(); 1`); await sleep(300);
-await b.ev(`document.getElementById('dsReservarBtn').click(); 1`);
+await b.ev(`(() => { const c = document.getElementById('dsPurposeOk'); if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); } document.getElementById('dsReservarBtn')?.click(); })(); 1`);
 s = await waitApp(b, /Envía exactamente/);
 const db1 = await sql(`select id, flowers, amount_units, status from support_claims where user_id = '${NEWBIE}' and status = 'awaiting_payment'`);
 // shown in Spanish with a decimal comma (20,0042); compared as text with the database
