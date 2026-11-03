@@ -683,7 +683,7 @@
             ],
             "fuente": "Glosario (Hash rosin, Live rosin) · criterio de la autora (flor fresca sin congelar)",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "malla": {
@@ -701,7 +701,7 @@
             ],
             "fuente": "P1 y P2 (rangos de malla, orientativo) · criterio de la autora (sin bolsa) · C2 (malla para flor fresca, práctica de la comunidad, orientativo)",
             "respaldo": "patente",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): documento técnico (patente), orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): documento técnico (patente), orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           },
           "ideal_por_material": {
             "congelado": [
@@ -709,7 +709,7 @@
               "estandar"
             ],
             "_fuente": "C2 (manual de NugSmasher, práctica de la comunidad, orientativo): 160 µm para flor fresca, 90 µm para flor seca · decisión de Bertha 2026-10-30",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): undefined. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): undefined. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           },
           "cifras": "fina 5–25 µm (25 µm habitual para hachís de agua, C1); estándar 25–220 µm (90 µm para flor seca, C2); flor fresca 160 µm (C2); todo orientativo · validado por Bertha (2026-11-02)"
         },
@@ -729,7 +729,7 @@
             "valor": "bolsa_cerrada",
             "fuente": "Criterio de la autora (decisión de Bertha 2026-10-30): la flor fresca congelada trae mucha agua; si la escarcha o la condensación llegan a la bolsa, el rosin sale húmedo o aguado",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "calor": {
@@ -742,7 +742,7 @@
             "valor": "medio",
             "fuente": "Elaboración → Concentrados («a temperatura media») · rango orientativo P2",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           },
           "cifras": "bajo 49–80 · medio 80–95 · alto 95–116 °C, orientativo (rango de P2; cortes: criterio de la autora) · validado por Bertha (2026-11-02)"
         },
@@ -756,7 +756,7 @@
             "valor": null,
             "fuente": "[CIFRA: BERTHA] — no hay fuente con valores: no puntúa",
             "respaldo": "sin",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): sin fuente: no puntúa. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): sin fuente: no puntúa. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "tiempo": {
@@ -769,7 +769,7 @@
             "valor": null,
             "fuente": "[CIFRA: BERTHA] — ninguna fuente da tiempos: no puntúa",
             "respaldo": "sin",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): sin fuente: no puntúa. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): sin fuente: no puntúa. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           },
           "cifras": "medio: 90–120 s, orientativo (C2, práctica de la comunidad) · validado por Bertha (2026-11-02)"
         },
@@ -785,7 +785,7 @@
             "valor": null,
             "fuente": "Criterio de la autora: cambia el control, no la nota",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "papel": {
@@ -799,7 +799,7 @@
             "valor": "pergamino",
             "fuente": "Elaboración → Concentrados (papel pergamino)",
             "respaldo": "practica",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "enfriado": {
@@ -815,7 +815,7 @@
             ],
             "fuente": "Criterio de la autora",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "guardar": {
@@ -828,7 +828,7 @@
             "valor": "frio",
             "fuente": "F8 (frío y oscuridad conservan; 25 °C y luz degradan)",
             "respaldo": "estudio",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): estudio publicado. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): estudio publicado. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "prioridad": {
@@ -841,7 +841,7 @@
             "valor": null,
             "fuente": "Criterio de la autora: más calor = más rendimiento y menos terpenos (sin estudio)",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "proteccion": {
@@ -853,7 +853,7 @@
             "valor": "guantes",
             "fuente": "Diseño aprobado de la fase 2: seguridad (superficies calientes, quemaduras)",
             "respaldo": "simple",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): regla de seguridad del juego. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): regla de seguridad del juego. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         }
       }
@@ -884,7 +884,7 @@
             "valor": null,
             "fuente": "Criterio de la autora: cada material da su resultado; C3 recomienda congelado para agua y hielo",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "separacion": {
@@ -898,7 +898,7 @@
             "valor": null,
             "fuente": "Criterio de la autora: cambia lo que llega a la prensa",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "tamiz_frio": {
@@ -915,7 +915,7 @@
             "valor": "congelado",
             "fuente": "C4 (congelar unas dos horas antes de tamizar)",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "tamiz_malla": {
@@ -936,7 +936,7 @@
             ],
             "fuente": "[CIFRA: BERTHA] micras · criterio de la autora (la gruesa deja pasar restos)",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "tamiz_frotar": {
@@ -953,7 +953,7 @@
             "valor": "suave",
             "fuente": "Criterio de la autora (frotar fuerte arranca restos de planta)",
             "respaldo": "autora",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "tamiz_tiempo": {
@@ -970,7 +970,7 @@
             "valor": "corto",
             "fuente": "C4 (la primera vuelta corta da la resina más pura)",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "agua_temp": {
@@ -988,7 +988,7 @@
             "valor": "helada",
             "fuente": "C3 (agua apenas sobre 0 °C; ideal 3–5 °C)",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "agua_agitar": {
@@ -1006,7 +1006,7 @@
             "valor": "suave",
             "fuente": "C3 (velocidad baja, por tandas con pausas)",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "agua_lavados": {
@@ -1024,7 +1024,7 @@
             "valor": null,
             "fuente": "C3 (el agua fría se reutiliza) · criterio de la autora: no puntúa",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         },
         "agua_bolsa": {
@@ -1045,7 +1045,7 @@
             ],
             "fuente": "C1 (25 µm, lo habitual para prensar hachís de agua) · [CIFRA: BERTHA] micras",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           },
           "cifras": "fina: 25 µm, orientativo (C1); media y gruesa sin micras (ninguna fuente) · validado por Bertha (2026-11-02)"
         },
@@ -1070,7 +1070,7 @@
             ],
             "fuente": "C3 (secar enseguida o se enmohece) · criterio de la autora (liofilizado, deshumidificador)",
             "respaldo": "comunidad",
-            "verificar": "REVISADO 2026-11 · B (rosin / extracción mecánica): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
           }
         }
       }
