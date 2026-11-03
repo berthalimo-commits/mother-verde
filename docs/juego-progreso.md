@@ -593,3 +593,11 @@ plantas motor 37 · repaso 39 · laboratorio 35 · base de datos 37 y 14. **Todo
 juego ni texto suyo); con `MV_GAME=1`, el juego y el laboratorio salen en archivos aparte que solo se descargan al
 entrar. Motor 61 · plantas motor 37 · repaso 39 · preparar motor 31: verde. `juego` quedó igual que `dev`.
 Para producción: pasos del juego añadidos en `docs/lanzamiento-produccion.md` (paso 6: 3 migraciones + `MV_GAME=1`).
+
+## Revisión de fuentes de los 90 valores (2026-11-03)
+Pedido del dueño: respaldar con estudios y guías universitarias, no con el criterio de Bertha (Bertha no valida nada
+hasta que juegue). Ya no queda ningún «[POR VERIFICAR POR BERTHA]» en `rules.json`: cada valor dice su nivel y sus
+códigos. Detalle, fuentes F12–F34 y 7 avisos al dueño en `docs/juego-fuentes.md` → «Revisión 2026-11».
+Recuento: estudio 40 · guía universitaria 2 · práctica de cultivadores 12 · práctica de la comunidad del rosin
+(orientativo) 24 · regla del juego 8 · sin fuente (criterio de la autora) 2 · etiquetas del archivo 2.
+Commits 7ef3336, 856d430 + fcf4c86, 6e41023.
