@@ -141,9 +141,10 @@ await click(b, 'jgPostNext'); await sleep(1200);
 const rosinTxt = await b.ev(`document.getElementById('jgPostForm').innerText`);
 check('prensa de rosin: aviso de seguridad visible, guía con casco y gafas, botón para no hacerla', (await gs(b)).stage === 'rosin' && /quemaduras/.test(rosinTxt)
   && await b.ev(`document.querySelector('#juego .jg-sci svg').dataset.pose`) === 'casco' && !!(await b.ev(`document.getElementById('jgSkipRosin')`)));
-// Bertha, 2026-10-28: figures only for the mesh and the plate heat, marked «orientativo»
+// Bertha, 2026-10-28: figures only for the mesh and the plate heat, marked «orientativo»;
+// 2026-11-02 (validation 9): also the medium pressing time (C2). Never pressure.
 const rosinFigs = await b.ev(`[...document.querySelectorAll('#jgPostForm fieldset')].filter((f) => /\\d/.test(f.innerText)).map((f) => [f.querySelector('input').name, f.innerText.includes('orientativo')])`);
-check('rosin: cifras solo en la malla y el calor, marcadas «orientativo»; ninguna en el guía', rosinFigs.length === 2 && rosinFigs.every(([n, o]) => /jgp-(malla|calor)/.test(n) && o)
+check('rosin: cifras solo en la malla, el calor y el tiempo medio, marcadas «orientativo»; ninguna en el guía', rosinFigs.length === 3 && rosinFigs.every(([n, o]) => /jgp-(malla|calor|tiempo)/.test(n) && o)
   && !/\d/.test(await b.ev(`document.getElementById('jgBubble').innerText`)), JSON.stringify(rosinFigs));
 const rosinTitles = {};
 for (const L of ['en', 'de', 'fr', 'es']) {

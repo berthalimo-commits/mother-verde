@@ -543,3 +543,47 @@ malla 90 µm flor seca y 25 µm hachís de agua, bolsa fina de agua 25 µm: todo
 queda en «Baja». Siempre hay una opción sin pérdida («Baja» en plántula y vegetativo cuenta como «Media-alta»; en
 floración, «Baja»). Al retirar los machos la carpa deja de estar llena. Con su «¿Por qué? · Carpa llena» y el aviso
 del guía. Test `game-plants-engine` 37 ok.
+
+## Fase 9 — Pulido final · HECHA (2026-11-02)
+
+**Revisión automática nueva** `tests/sim/game-polish.mjs` (25 ok): cada tipo de pantalla (preparar la carpa,
+germinación, semana con un problema, panel de un objeto abierto, floración con machos, carpa llena, secado, prensa,
+final con repaso y un «¿Por qué?» abierto, laboratorio) en **celular de 320 px** y **pantalla de 1920 px**:
+- **Contraste** de cada texto visible contra su fondo real (AA: 4,5:1; 3:1 en texto grande): sin fallos.
+- **Lector de pantalla:** todo botón, campo y dibujo tiene nombre; cada grupo de opciones tiene título; encabezados
+  en orden. **Arreglado:** el título del panel de un objeto de la carpa era `h4` justo después de un `h2` (saltaba
+  un nivel); ahora es `h3`.
+- **Teclado:** Tab recorre el juego en orden y el foco se ve en cada parada (también en las opciones dibujadas como
+  tarjetas).
+- **Control del propio test:** un texto de bajo contraste y un botón sin foco visible puestos a propósito se
+  detectan (el test no da «todo bien» por error).
+- **Idioma de la página** (`lang`) sigue al selector (en, de, fr, es).
+- **«Reducir movimiento»:** ya lo cubre la corrida completa 1 (sin animaciones con la preferencia activada).
+- **Claro y oscuro:** la plataforma hoy solo tiene **tema oscuro** (`public/style.css`); es el revisado.
+- Capturas: `tests/sim/out/jgpulido-*-320.png` y `-1920.png`.
+
+**Pesos** (compilado con el juego encendido; lo que se descarga **solo al entrar al juego**):
+
+| Pieza | Diseño (estimado) | Hoy | Comprimido |
+|---|---|---|---|
+| Entrada (al abrir la web, solo en `juego`) | ~3 KB | 5,7 KB | 2,5 KB |
+| Juego + carpa | ~140–170 KB | 319,5 KB | 95,4 KB |
+| Laboratorio (al visitarlo) | 36,7 KB | 36,2 KB | 12,6 KB |
+| Resto de la web | sin cambio | sin cambio | — |
+
+El juego pesa el doble de lo estimado por todo lo añadido después del diseño (sistemas, germinación, poscosecha 8b,
+repaso final, varias plantas). Cerca del 60 % son los **textos en 4 idiomas**, que se descargan juntos.
+**Propuesta (no hecha, decide el dueño):** descargar solo el idioma activo y los demás al cambiar de idioma: unos
+45 KB comprimidos menos. Cambia cómo funciona el selector de idioma dentro del juego.
+
+**Lo que queda para Bertha:**
+1. Nada pendiente de pegar en staging (`paso4c` y `paso4d` aplicadas).
+2. Valores todavía «[POR VERIFICAR POR BERTHA]» en `src/game/rules.json` de las fases 1–8 (las cifras de la
+   plataforma: semanas, ideales, puntos de juego). Los de esta etapa y del rosin ya están validados.
+3. Presión del rosin: sigue sin cifras (ninguna fuente).
+4. Artículo de Jorge Cervantes: en espera de que Bertha pase el enlace.
+
+**Batería completa al cerrar la fase 9** (una a una, cerrando servidor y navegador de pruebas entre cada una):
+pulido 25 · plantas UI 40 · juego 54 · jugar 35 · carpa 36 · tocar 37 · problemas 25 · preparar 27 · prensa 34 ·
+preparación 20 · partidas viejas 17 · repaso UI 19 · corridas completas 90 / 120 / 94 / 67 / 58 · motor 61 ·
+plantas motor 37 · repaso 39 · laboratorio 35 · base de datos 37 y 14. **Todo en verde.**

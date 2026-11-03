@@ -452,7 +452,7 @@ function panelHtml(open, choices, blocked, ctx) {
       }).join('')}</div>
     </fieldset>`).join('');
   return `<div class="jgt-panel" id="jgtPanel" role="group" aria-labelledby="jgtPanelH" data-obj="${open}">
-    <h4 id="jgtPanelH">${esc(t('jgObj_' + open))}</h4>
+    <h3 id="jgtPanelH">${esc(t('jgObj_' + open))}</h3>
     ${blocked ? `<p class="jgt-bloqueo">${esc(t('jgBloqueo'))}</p>` : ''}
     ${fields}
     <div class="jg-actions">
@@ -635,7 +635,7 @@ export const CSS = `
 ${Object.entries(OBJECTS).map(([k, o]) => `#juego .jgt-obj[data-obj="${k}"]{left:${f1(o.x / 2.4)}%;top:${f1(o.y / 2.16)}%}`).join('\n')}
 #juego .jgt-hint{margin:8px 0 0;font-size:12.5px;color:var(--ink-soft);text-align:center}
 #juego .jgt-panel{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
-#juego .jgt-panel h4{margin:0 0 8px;font-family:'Manrope',sans-serif;font-size:15px;color:var(--ink)}
+#juego .jgt-panel h3{margin:0 0 8px;font-family:'Manrope',sans-serif;font-size:15px;color:var(--ink)}
 #juego .jg-gauges{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 #juego .jg-g{display:flex;align-items:center;gap:8px;min-width:0;background:var(--paper-raised);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
 #juego .jg-g svg{flex:0 0 auto;width:30px;height:30px}
