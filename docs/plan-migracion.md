@@ -1,4 +1,7 @@
-# Plan de migración a www.motherverdeny.com — pasos pequeños (borrador, 2026-11-03)
+# Plan de migración a www.motherverdeny.com — pasos pequeños (borrador, 2026-11-03; juego encendido desde 2026-11-04)
+
+**Cambio 2026-11-04 (Bertha): lanzamos con el juego ENCENDIDO.** Pasos 12b, 16 y 18b; interruptor de emergencia en
+la sección E.
 
 Basado en `docs/lanzamiento-produccion.md` (los detalles técnicos de cada paso siguen allí). Nada de esto se ha
 hecho todavía: es un plan. Claude **no lee ni escribe** en Supabase de producción ni en Vercel Production.
@@ -31,11 +34,12 @@ páginas oficiales antes de pagar**: cambian sin aviso.
 | 9 | Copia de la base de producción (Supabase → Database → Backups → copia manual o exportar). | B | 10 min | bajo | no |
 | 10 | **Cerrar registros nuevos** mientras dura el cambio: Supabase → Authentication → Sign In / Providers → apagar «Allow new users to sign up». Quien ya tiene cuenta puede seguir entrando. | B | 2 min | bajo | no |
 | 11 | `precheck-before-20261010.sql` (solo lectura): todas las filas `ok`. Si alguna no lo está, **paras** y me lo mandas. | B | 5 min | bajo | no |
-| 12 | SQL Editor, cada archivo entero y **en este orden**: `20261010120000` → `seed-blocked-email-domains/part-01…07` → `20261010130000` → `20261011100000` → `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` → `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` → `20261020100000` → **`20261103100000` (aportes manuales, nuevo)** → `supporters-betian-mother-verde.sql` (PARTE 1, luego PARTE 2). **Sin las 3 del juego**: comprobado con la prueba `prod-nogame-db` (las 30 migraciones sin el juego se aplican en orden y el aporte manual funciona). | B (C prepara los archivos en `supabase/produccion/` con encabezados, como en staging) | 45 min | **alto** (cada archivo es una sola transacción: si falla, no se aplica nada de ese archivo) | **sí** |
+| 12 | SQL Editor, cada archivo entero y **en este orden**: `20261010120000` → `seed-blocked-email-domains/part-01…07` → `20261010130000` → `20261011100000` → `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` → `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` → `20261020100000` → **`20261103100000` (aportes manuales)** → **`20261104100000` (propósito del aporte + «Ya tienes cuenta»)** → `supporters-betian-mother-verde.sql` (PARTE 1, luego PARTE 2). Las 3 del juego van aparte, justo después (paso 12b). | B (C prepara los archivos en `supabase/produccion/` con encabezados, como en staging) | 45 min | **alto** (cada archivo es una sola transacción: si falla, no se aplica nada de ese archivo) | **sí** |
+| 12b | **Juego (sale encendido):** `supabase/admin/precheck-game.sql` (solo lectura, **todas las filas `ok`**; si sale `FALTA` o `YA EXISTE`, **paras** y me lo mandas) → `20261015100000_game_progress` → `20261029100000_game_setup` → `20261031100000_game_plants`, cada archivo entero y en este orden. Orden probado en Postgres real: prueba `prod-game-db` (plataforma → precheck → juego; pegarlas dos veces no rompe nada). | B | 10 min | medio (cada archivo es una transacción) | **sí** (con el 12) |
 | 13 | Comprobación de solo lectura de todo lo anterior (todas las filas `ok`). | B (C la prepara) | 5 min | bajo | no |
 | 14 | Edge Functions → Secrets (`MAIL_PROVIDER`, `MAIL_FROM`, `SMTP_*`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS`, `NOTIFY_TO` opcional). `BASE_RPC_URL` es opcional. | B | 15 min | medio | no |
 | 15 | Edge Functions: pegar `community-publish-post`, `community-publish-comment`, `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signup-fix-email` (las dos últimas con Verify JWT apagado). | B | 20 min | medio | no |
-| 16 | Vercel → Production: `RETRANSLATE_SECRET`. **No poner `MV_GAME`**: sin esa variable el juego no se incluye en el build y **queda apagado en producción**. | B | 5 min | bajo | no |
+| 16 | Vercel → Settings → Environment Variables → **Production**: `RETRANSLATE_SECRET` y **`MV_GAME` = `1`** (solo Production, antes del merge: así la primera publicación ya lleva el juego). Tiene que llamarse exactamente `MV_GAME` (`VITE_MV_GAME` no hace nada). | B | 5 min | bajo | no |
 | 17 | Supabase → Authentication: URLs del sitio, SMTP de hello@, las 13 plantillas, límite de correos a 150/hora, «Confirm email» y «Secure email change» encendidos. | B | 30 min | medio | no |
 | 18 | **Limpiar los usuarios de prueba de producción**: `cannawasi@gmail.com` y `berthalimo+prueba2@gmail.com` (Authentication → Users → ⋯ → Delete user). Claude no borra cuentas. Antes, mira si tienen publicaciones o aportes que quieras guardar: al borrar la cuenta se borra su perfil, y los avisos de aporte quedan marcados como de «cuenta borrada». | B | 10 min | medio (no se puede deshacer) | no |
 
@@ -43,6 +47,7 @@ páginas oficiales antes de pagar**: cambian sin aviso.
 
 | # | Paso | Quién | Dura | Riesgo | APRUEBO |
 |---|---|---|---|---|---|
+| 18b | **BLOQUEO: el juego verificado al 100 %.** Sin estas cuatro cosas **no hay merge** (paso 19): (1) partidas completas jugadas por Bertha en Preview, guardando y volviendo a entrar; (2) pruebas en verde sobre el commit exacto que se fusiona: `run-all` + `game-polish` + `game-plants-ui` + `prod-game-db` + `story-photos-ui`; (3) revisión independiente (`docs/revision-independiente.md`) sin hallazgos graves abiertos; (4) tu OK escrito: **«EL JUEGO ESTÁ LISTO AL 100 %»**. Todo anotado en `docs/juego-validacion.md`. | B + C (+ revisor) | — | — | **sí, esa frase** |
 | 19 | **Merge a `main`** (publica la web nueva). Solo con tu frase exacta **«APRUEBO EL MERGE A MAIN»**. Claude fusiona, espera a que Vercel diga READY y revisa la web sin iniciar sesión. | C | 15 min | **alto** | **sí, esa frase exacta** |
 | 20 | Registrarte con hello@, confirmar el correo, pegar `grant-admin.sql`, activar la verificación en dos pasos del panel y guardar la clave. | B | 20 min | medio | no |
 | 21 | Panel → «Enviar correo de prueba a mi correo»; «Corrígelo» con una contraseña equivocada debe decir «La contraseña no coincide». | B | 10 min | bajo | no |
@@ -67,7 +72,16 @@ después, el SQL en orden inverso.
 | **Vercel Pro** | Margen amplio de tráfico (en Hobby el sitio se pausa al pasar los límites). | — | Pro (paso 2). |
 | **Red de Base** (comprobar pagos) | La red pública gratis, sin clave. | Si se satura, «Comprobar en Base» tarda o falla; el aporte queda en revisión manual, sin perderse. | Opcional: un proveedor con clave (Alchemy) en `BASE_RPC_URL`. |
 
-## E. Si hay una caída: cómo avisar
+## E. Interruptor de emergencia del juego
+
+Si algo del **juego** falla y el resto de la web va bien (B, unos 5 minutos, sin tocar la base):
+1. Vercel → mother-verde → Settings → Environment Variables → `MV_GAME` (Production) → «…» → **Remove**.
+2. Vercel → Deployments → la última de Production → «…» → **Redeploy**. En 2–3 minutos la web sale sin el juego.
+3. Las partidas guardadas **se conservan**; para volver a encenderlo: `MV_GAME` = `1` y Redeploy.
+4. Si falla la web entera: *Instant Rollback* (`docs/lanzamiento-produccion.md`, sección 4).
+Quitar el juego también de la base es casi nunca necesario y **borra todas las partidas** (reversas en la sección 4).
+
+## F. Si hay una caída: cómo avisar
 
 1. **Mira dónde está el problema**: la página de estado de Supabase (status.supabase.com) y la de Vercel (vercel-status.com).
 2. **Avisa por fuera de la web**: un mensaje corto en tus redes y una respuesta preparada en hello@. Por ejemplo:

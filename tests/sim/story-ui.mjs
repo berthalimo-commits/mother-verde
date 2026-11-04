@@ -29,7 +29,7 @@ await b.shot('story-1-movil');
 for (let n = 2; n <= 6; n++) { await b.ev(`document.getElementById('storyNext').click(); 1`); await sleep(500); }
 s = await st(b);
 check('«Continuar» hasta la 6: «Gracias», «Entrar a la plataforma» y «Mother Verde es un proyecto independiente…»', s.step === 'Pantalla 6 de 6' && s.h === T.story6H.es && s.next === T.storyEnter.es && await b.ev(`document.querySelector('#storySlide6 .story-independent').textContent === ${JSON.stringify(T.storyIndependent.es)}`), JSON.stringify(s));
-check('pantalla 5: calculadoras (17), viajes, juego y comunidad', await b.ev(`(() => { const t = document.getElementById('storySlide5').innerText; return t.includes(${JSON.stringify(T.story5Calc.es)}) && t.includes(${JSON.stringify(T.story5Viaje.es)}) && t.includes(${JSON.stringify(T.story5Comunidad.es)}) && (t.includes(${JSON.stringify(T.story5Juego.es)}) || t.includes(${JSON.stringify(T.story5JuegoPronto.es)})); })()`));
+check('pantalla 5: calculadoras (17), viajes, el juego (sin «Próximamente»: sale encendido) y comunidad', await b.ev(`(() => { const t = document.getElementById('storySlide5').innerText; return t.includes(${JSON.stringify(T.story5Calc.es)}) && t.includes(${JSON.stringify(T.story5Viaje.es)}) && t.includes(${JSON.stringify(T.story5Comunidad.es)}) && t.includes(${JSON.stringify(T.story5Juego.es)}) && !/Próximamente/i.test(t); })()`));
 // viewport-only capture: the full-page capture enlarges the headless window and
 // moves the horizontal track (a test artifact; real resizes keep the screen)
 await (async () => { const r = await b.send('Page.captureScreenshot', { format: 'png' }); fs.writeFileSync(OUT + '/story-6-movil.png', Buffer.from(r.result.data, 'base64')); })();

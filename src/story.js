@@ -11,7 +11,6 @@
 // missing the frame shows «Foto próximamente» with the alt text.
 const t = (k) => (window.t ? window.t(k) : k);
 const SEEN = 'mv-story-seen';
-const GAME_ON = import.meta.env.VITE_MV_GAME === '1';
 import { STORY_PHOTOS } from './storyPhotos.js';
 const reduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -33,7 +32,7 @@ function bodyHtml(n) {
   if (n === 5) {
     const items = [
       ['🧮', t('story5Calc')], ['🧭', t('story5Viaje')],
-      ['🌱', t(GAME_ON ? 'story5Juego' : 'story5JuegoPronto')], ['💬', t('story5Comunidad')],
+      ['🌱', t('story5Juego')], ['💬', t('story5Comunidad')],
     ];
     return `<ul class="story-list">${items.map(([i, s]) => `<li><span class="story-ico" aria-hidden="true">${i}</span><span>${s}</span></li>`).join('')}</ul>`;
   }

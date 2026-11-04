@@ -93,6 +93,16 @@ La cuenta de administradora va **después del merge** porque hello@ se registra 
 
 ## 4. Plan de vuelta atrás
 
+**Interruptor de emergencia del juego (si algo del juego falla y el resto de la web va bien):**
+1. Vercel → mother-verde → Settings → Environment Variables → `MV_GAME` (Production) → «…» → **Remove**.
+2. Vercel → Deployments → la última de Production → «…» → **Redeploy**. En unos 2–3 minutos la web sale **sin**
+   el juego (sin el botón «¡Juega ya!»); la historia de bienvenida no cambia.
+3. **No se toca la base**: las partidas guardadas se conservan y vuelven cuando se encienda otra vez (`MV_GAME` = `1`
+   y Redeploy). Quien tenga la web abierta ve el aviso «hay una versión nueva» y al recargar ya no tiene el juego.
+4. Si el fallo es de la web entera, no del juego: *Instant Rollback* (abajo).
+Solo si hubiera que quitar el juego también de la base (casi nunca): `rollback-20261031100000.sql` →
+`rollback-20261029100000.sql` → `rollback-20261015100000.sql`, en ese orden; la última **borra todas las partidas**.
+
 **Web (un clic):** Vercel → proyecto mother-verde → *Deployments* → la versión de producción
 `d58f1aa` (`dpl_AYSGmSZc98Jy2kumc7zzaRaVzcZ5`, «Merge branch 'main' into dev») → «…» → **Instant Rollback**
 (o *Promote to Production*). Está lista y marcada como candidata a vuelta atrás.
@@ -105,6 +115,9 @@ no funciona bien con la base nueva y la nueva no funciona con la vieja).
 |---|---|---|
 | Hook | (sin SQL) Authentication → Hooks → apagar «Before User Created». **Primero esto.** | — |
 | `grant-admin.sql` (hello@ admin + acceso completo) | `rollback-grant-admin.sql` (PARTE 1 solo lectura, luego PARTE 2) | hello@ deja de ser admin y vuelve al estado de acceso que tenía antes (lo guarda el registro de auditoría) |
+| Juego: `20261031100000` → `20261029100000` → `20261015100000` | `rollback-20261031100000.sql`, `rollback-20261029100000.sql`, `rollback-20261015100000.sql` (primero quitar `MV_GAME`, ver interruptor) | la última **borra todas las partidas guardadas** |
+| `20261104100000` propósito del aporte | `rollback-20261104100000.sql` | se niega si ya hay reservas con el propósito aceptado (nada se pierde por accidente) |
+| `20261103100000` aportes manuales | `rollback-20261103100000.sql` | se niega si ya hay aportes manuales registrados |
 | `20261020100000` Bitácora de solo lectura sin acceso | `rollback-20261020100000.sql` | nada: vuelven las reglas anteriores (sin acceso se podía escribir) |
 | `20261014140000` regla de acceso única | `rollback-20261014140000.sql` (deshacer antes la web) | nada: vuelve la versión anterior de `is_premium`, con los mismos resultados |
 | `20261014130000` contador «Avisos sin revisar» | `rollback-20261014130000.sql` | nada (solo un contador de lectura) |
@@ -158,12 +171,15 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
    `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` →
    `20261020100000` (Bitácora de solo lectura sin acceso, también en el servidor) →
+   `20261103100000` (aportes manuales) → `20261104100000` (propósito del aporte + aviso «Ya tienes cuenta») →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
-   **Juego** (fusionado en `dev` el 2026-11-03; solo si el juego sale en el lanzamiento): `supabase/admin/precheck-game.sql`
-   (todo `ok`) → `20261015100000_game_progress` → `20261029100000_game_setup` → `20261031100000_game_plants`.
-   En staging ya están aplicadas (pasos 4b, 4c y 4d de `supabase/staging/`).
-   Y en **Vercel → Settings → Environment Variables → Production**: `MV_GAME` = `1`, luego volver a publicar. Sin esa
-   variable el juego **no aparece** en producción (en `dev` tampoco: se ve en Preview de la rama `juego`).
+6b. ☐ **Tú — el juego SALE ENCENDIDO en el lanzamiento** (decisión de Bertha, 2026-11-04). Justo después del paso 6,
+   cada archivo entero y en este orden: `supabase/admin/precheck-game.sql` (solo lectura: **todas las filas `ok`**;
+   `FALTA` = falta el paso 6, `YA EXISTE` = ya estaba aplicado: paras y me escribes) →
+   `20261015100000_game_progress` → `20261029100000_game_setup` → `20261031100000_game_plants`.
+   Este orden exacto (plataforma → precheck → las 3 del juego) está probado en una base Postgres real:
+   prueba `prod-game-db`. En staging ya están aplicadas (pasos 4b, 4c y 4d de `supabase/staging/`).
+   El código del juego solo entra en la web si la compilación ve `MV_GAME=1`: ver paso 9.
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
    y `RESEND_API_KEY` si toca.
@@ -173,7 +189,18 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    `signup-fix-email` (**Verify JWT apagado**). `delete-account` no se toca.
    **Importante:** `support-claims` tiene que ser la versión nueva (acción `submit_late`): con `20261014120000` el
    pago tardío ya no se puede registrar desde el navegador y solo pasa por esta función, que lo comprueba en Base.
-9. ☐ **Tú**: Vercel → Environment Variables: `RETRANSLATE_SECRET` (el mismo valor).
+9. ☐ **Tú**: Vercel → Settings → Environment Variables → **Production**: `RETRANSLATE_SECRET` (el mismo valor) y
+   **`MV_GAME` = `1`** (solo Production; antes del merge, para que la primera publicación ya lleve el juego).
+   Ojo: una variable llamada `VITE_MV_GAME` **no hace nada**; tiene que llamarse exactamente `MV_GAME`.
+10b. ☐ **BLOQUEO DEL MERGE — el juego verificado al 100 %.** No se hace el merge a `main` (paso 11) hasta que estén
+   las cuatro cosas, por escrito en `docs/juego-validacion.md`:
+   1. **Partidas completas** jugadas por Bertha en Preview (de germinación al final, varios sistemas y al menos
+      una partida con problemas), guardando y volviendo a entrar.
+   2. **Pruebas en verde**: la batería completa (`run-all`) más `game-polish` y `game-plants-ui` (no están en
+      `run-all`), `prod-game-db` y `story-photos-ui`, sobre el commit exacto que se va a fusionar.
+   3. **Revisión independiente** del código del juego (`docs/revision-independiente.md`), sin hallazgos graves abiertos.
+   4. **El OK escrito de Bertha**: «EL JUEGO ESTÁ LISTO AL 100 %».
+   Si falta una sola, el lanzamiento espera (o se lanza con el juego apagado: solo con una nueva decisión de Bertha).
 10. ☐ **Tú**: Supabase → Authentication:
     - URL Configuration: Site URL `https://www.motherverdeny.com`; Redirect URLs `https://www.motherverdeny.com/**` y `https://motherverdeny.com/**`.
     - SMTP: remitente `hello@motherverdeny.com`, nombre `Mother Verde`.
