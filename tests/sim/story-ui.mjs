@@ -4,7 +4,8 @@
 // tienes cuenta: entra o recupera tu contraseña», the purpose box with its
 // tick (Desbloquear) and the short notice on the lock screen.
 // Needs Vite on 5174 + a fresh fakeserver.
-import { check, sleep, sql, browser, summary } from './browser.mjs';
+import { check, sleep, sql, browser, summary, OUT } from './browser.mjs';
+import fs from 'fs';
 import path from 'path';
 const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const { PURPOSE_TEXTS: T } = await import('file:///' + path.join(APP, 'src/purposeTexts.js'));
@@ -22,14 +23,16 @@ let s = await st(b);
 check('al confirmar la edad se abre la historia (diálogo modal), pantalla 1 de 6 con el foco en su título', s.open && s.role === 'dialog' && s.modal === 'true' && s.step === 'Pantalla 1 de 6' && s.h === T.story1H.es && s.focus === 'storyH1', JSON.stringify(s));
 check('«Saltar e ir a la plataforma» y «Continuar» siempre visibles', s.skip === T.storySkip.es && s.next === T.storyNext.es && await b.ev(`[...document.querySelectorAll('#storySkip, #storyNext')].every((x) => x.getBoundingClientRect().bottom <= innerHeight && x.offsetParent !== null)`));
 await sleep(800);
-check('foto de la pantalla 1 (01-carpa) cargada, con su texto alternativo y sin marcador', await b.ev(`(() => { const f = document.querySelector('#storySlide1 .story-photo'); const img = f.querySelector('img'); return img.complete && img.naturalWidth > 0 && !img.hidden && f.querySelector('.story-photo-soon').hidden && img.alt === ${JSON.stringify(T.storyAlt1.es)} && /01-carpa.jpg$/.test(img.src); })()`));
-check('pantalla 2: dos fotos (07 y 05) con sus textos alternativos; las fotos de las pantallas 2 a 5 se cargan «perezosamente»', await b.ev(`document.querySelectorAll('#storySlide2 .story-photo').length === 2 && [...document.querySelectorAll('#storySlide2 img, #storySlide3 img, #storySlide4 img, #storySlide5 img')].every((i) => i.loading === 'lazy' && i.alt.length > 10)`));
+check('foto de la pantalla 1 (05-planta, src/storyPhotos.js) cargada, con su texto alternativo y sin marcador', await b.ev(`(() => { const f = document.querySelector('#storySlide1 .story-photo'); const img = f.querySelector('img'); return img.complete && img.naturalWidth > 0 && !img.hidden && f.querySelector('.story-photo-soon').hidden && img.alt === ${JSON.stringify(T.storyAlt1.es)} && /p-05-planta.jpg$/.test(img.src); })()`));
+check('una sola foto en cada una de las 6 pantallas; las de las pantallas 2 a 6 se cargan «perezosamente»', await b.ev(`[1, 2, 3, 4, 5, 6].every((n) => document.querySelectorAll('#storySlide' + n + ' .story-photo img').length === 1) && [...document.querySelectorAll('#storySlide2 img, #storySlide3 img, #storySlide4 img, #storySlide5 img, #storySlide6 img')].every((i) => i.loading === 'lazy' && i.alt.length > 10)`));
 await b.shot('story-1-movil');
 for (let n = 2; n <= 6; n++) { await b.ev(`document.getElementById('storyNext').click(); 1`); await sleep(500); }
 s = await st(b);
 check('«Continuar» hasta la 6: «Gracias», «Entrar a la plataforma» y «Mother Verde es un proyecto independiente…»', s.step === 'Pantalla 6 de 6' && s.h === T.story6H.es && s.next === T.storyEnter.es && await b.ev(`document.querySelector('#storySlide6 .story-independent').textContent === ${JSON.stringify(T.storyIndependent.es)}`), JSON.stringify(s));
 check('pantalla 5: calculadoras (17), viajes, juego y comunidad', await b.ev(`(() => { const t = document.getElementById('storySlide5').innerText; return t.includes(${JSON.stringify(T.story5Calc.es)}) && t.includes(${JSON.stringify(T.story5Viaje.es)}) && t.includes(${JSON.stringify(T.story5Comunidad.es)}) && (t.includes(${JSON.stringify(T.story5Juego.es)}) || t.includes(${JSON.stringify(T.story5JuegoPronto.es)})); })()`));
-await b.shot('story-6-movil');
+// viewport-only capture: the full-page capture enlarges the headless window and
+// moves the horizontal track (a test artifact; real resizes keep the screen)
+await (async () => { const r = await b.send('Page.captureScreenshot', { format: 'png' }); fs.writeFileSync(OUT + '/story-6-movil.png', Buffer.from(r.result.data, 'base64')); })();
 await b.ev(`document.getElementById('storyNext').click(); 1`); await sleep(300);
 check('«Entrar a la plataforma» la cierra y queda marcada como vista', !(await st(b)).open && await b.ev(`localStorage.getItem('mv-story-seen') === '1'`));
 await b.send('Page.reload'); await sleep(5000);

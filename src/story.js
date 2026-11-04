@@ -6,32 +6,27 @@
 // always visible; Esc = skip. A real dialog: focus stays inside, the screen
 // reader hears «Pantalla n de 6» and each heading; with «reduce motion» the
 // screens change without animation.
-// Photos: /historia/*.jpg (compressed, no metadata). Until a file exists the
-// frame shows «Foto próximamente» with the alt text already written.
+// Photos: one per screen, set in src/storyPhotos.js; files built by
+// tools/historia-fotos.mjs (4:5, compressed, no metadata). If a file is
+// missing the frame shows «Foto próximamente» with the alt text.
 const t = (k) => (window.t ? window.t(k) : k);
 const SEEN = 'mv-story-seen';
 const GAME_ON = import.meta.env.VITE_MV_GAME === '1';
+import { STORY_PHOTOS } from './storyPhotos.js';
 const reduced = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const PHOTOS = {
-  1: [['/historia/01-carpa.jpg', 'storyAlt1', '12% 45%']],
-  2: [['/historia/07-flores.jpg', 'storyAlt2a'], ['/historia/05-planta.jpg', 'storyAlt2b']],
-  3: [['/historia/02-campo.jpg', 'storyAlt3']],
-  4: [['/historia/03-abrazo.jpg', 'storyAlt4']],
-  5: [['/historia/08-rociando.jpg', 'storyAlt5']],
-  6: [],
-};
 const TOTAL = 6;
 
-function photosHtml(n) {
-  const list = PHOTOS[n];
-  if (!list.length) return '';
-  return `<div class="story-photos story-photos-${list.length}">${list.map(([src, alt, pos], i) => `
-    <figure class="story-photo">
-      <img src="${src}" alt="${t(alt)}"${pos ? ` style="object-position:${pos}"` : ''} ${n === 1 && i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"
+// One photo per screen, from src/storyPhotos.js (the only place to change one).
+// Shown whole (4:5), never cropped by CSS. Only screen 1 loads right away.
+function photoHtml(n) {
+  const p = STORY_PHOTOS[n];
+  if (!p) return '';
+  return `<figure class="story-photo">
+      <img src="/historia/${p.file}" alt="${t(p.alt)}" width="800" height="1000" ${n === 1 ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"
         onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
-      <div class="story-photo-soon" hidden><span>${t('storyPhotoSoon')}</span><small>${t(alt)}</small></div>
-    </figure>`).join('')}</div>`;
+      <div class="story-photo-soon" hidden><span>${t('storyPhotoSoon')}</span><small>${t(p.alt)}</small></div>
+    </figure>`;
 }
 
 function bodyHtml(n) {
@@ -47,7 +42,7 @@ function bodyHtml(n) {
 
 function slideHtml(n) {
   return `<section class="story-slide" id="storySlide${n}" data-n="${n}" aria-labelledby="storyH${n}" aria-roledescription="slide">
-      ${photosHtml(n)}
+      ${photoHtml(n)}
       <div class="story-text">
         <h2 id="storyH${n}" tabindex="-1">${t('story' + n + 'H')}</h2>
         ${bodyHtml(n)}
@@ -56,7 +51,7 @@ function slideHtml(n) {
     </section>`;
 }
 
-let current = 1, lastFocus = null, root = null;
+let current = 1, lastFocus = null, root = null, resizeObs = null;
 
 function update(focusHeading) {
   if (!root) return;
@@ -71,14 +66,14 @@ function update(focusHeading) {
 function go(n, focusHeading = true) {
   current = Math.max(1, Math.min(TOTAL, n));
   const track = root.querySelector('#storyTrack');
-  const slide = root.querySelector('#storySlide' + current);
-  track.scrollTo({ left: slide.offsetLeft, behavior: reduced() ? 'auto' : 'smooth' });
+  track.scrollTo({ left: (current - 1) * track.clientWidth, behavior: reduced() ? 'auto' : 'smooth' });
   update(focusHeading);
 }
 
 function close() {
   try { localStorage.setItem(SEEN, '1'); } catch (e) {}
   if (!root) return;
+  resizeObs?.disconnect(); resizeObs = null;
   root.remove(); root = null;
   document.documentElement.classList.remove('story-open');
   document.removeEventListener('keydown', onKey, true);
@@ -138,6 +133,10 @@ export function openStory() {
       if (n !== current && n >= 1 && n <= TOTAL) { current = n; update(false); }
     }, 120);
   }, { passive: true });
+  // a size change (phone rotated, window resized) keeps the same screen:
+  // without this the scroll position would point at another screen
+  resizeObs = new ResizeObserver(() => { if (root) track.scrollLeft = (current - 1) * track.clientWidth; });
+  resizeObs.observe(track);
   document.addEventListener('keydown', onKey, true);
   update(true);
 }
