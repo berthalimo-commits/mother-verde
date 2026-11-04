@@ -3560,8 +3560,8 @@
 
     <div class="card-block">
       <h3 data-i18n="cuentaLegalTitle">Legal</h3>
-      <div class="spec-row" style="cursor:pointer;" onclick="showScreen('terminos')"><span data-i18n="cuentaTerminosLabel">Términos y Condiciones</span><span>→</span></div>
-      <div class="spec-row" style="cursor:pointer;" onclick="showScreen('privacidad')"><span data-i18n="cuentaPrivacidadLabel">Política de Privacidad</span><span>→</span></div>
+      <div class="spec-row" style="cursor:pointer;" onclick="mvOpenLegal('terminos', 'cuenta')"><span data-i18n="cuentaTerminosLabel">Términos y Condiciones</span><span>→</span></div>
+      <div class="spec-row" style="cursor:pointer;" onclick="mvOpenLegal('privacidad', 'cuenta')"><span data-i18n="cuentaPrivacidadLabel">Política de Privacidad</span><span>→</span></div>
     </div>
 
     <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.</div>
@@ -3597,7 +3597,7 @@
 
   <!-- ============ TÉRMINOS Y CONDICIONES ============ -->
   <section class="screen" id="terminos">
-    <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
+    <span class="detail-back legal-back" onclick="mvLegalBack()" data-i18n="backToCuenta">← Volver a Cuenta</span>
     <div class="eyebrow" data-i18n="tcEyebrow">Legal</div>
     <h2 class="title" data-i18n="tcTitle">Términos y Condiciones</h2>
     <p class="subhead" style="margin-bottom:24px;" data-i18n="tcUpdated">Última actualización: julio de 2026</p>
@@ -3648,7 +3648,7 @@
 
   <!-- ============ POLÍTICA DE PRIVACIDAD ============ -->
   <section class="screen" id="privacidad">
-    <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
+    <span class="detail-back legal-back" onclick="mvLegalBack()" data-i18n="backToCuenta">← Volver a Cuenta</span>
     <div class="eyebrow" data-i18n="ppEyebrow">Legal</div>
     <h2 class="title" data-i18n="ppTitle">Política de Privacidad</h2>
     <p class="subhead" style="margin-bottom:24px;" data-i18n="pvUpdated">Última actualización: 14 de octubre de 2026 · borrador</p>

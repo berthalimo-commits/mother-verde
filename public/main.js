@@ -2350,7 +2350,7 @@ const translations = {
     eyCiencia:'Ciencia del cannabis', cienciaTitle:'La biblioteca de evidencia', cienciaSub:'Papers, investigadores activos e información clínica — con nivel de evidencia explícito en cada dato.',
     subPapers:'Papers', subCientificos:'Científicos', subMedico:'Médico', subMenores:'Cannabinoides menores', subTerpenos:'Terpenos y flavonoides', subMitos:'Mitos', subEcs:'SEC 101',
     detailEstado:'Estado actual', detailNote:'Dato ilustrativo para este prototipo — en producción cada campo se conecta a la fuente oficial y se actualiza automáticamente.', detailTimeline:'Línea de tiempo', detailTraveler:'Para el viajero', detailSources:'Fuentes oficiales', footerCopy:'© 2026 Mother Verde LLC. Todos los derechos reservados.',
-    backToHome:'← Volver a Inicio', backToCuenta:'← Volver a Cuenta',
+    backToHome:'← Volver a Inicio', backToCuenta:'← Volver a Cuenta', backToDesbloquear:'← Volver a Desbloquear', legalBack:'← Volver',
     calcEyebrow:'Herramientas interactivas', calcTitle:'Calculadoras', calcSub:'Las mismas fórmulas que ya viste en Cultivo e Elaboración, ahora interactivas.',
     calcVpdTitle:'Calculadora de VPD', calcVpdDesc:'Déficit de presión de vapor — la métrica real detrás de "¿está muy húmedo o muy seco?".', calcVpdTemp:'Temp. aire (°C)', calcVpdRH:'Humedad rel. (%)', calcVpdStage:'Etapa', calcVpdVeg:'Vegetativo (0.8–1.0 kPa)', calcVpdFlo:'Floración (1.0–1.5 kPa)',
     calcDliTitle:'Calculadora de DLI', calcDliDesc:'Integral de luz diaria — cuánta luz acumula tu cultivo en 24 h, no solo la intensidad de un instante.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Horas de luz/día',
@@ -3177,7 +3177,7 @@ const translations = {
     eyCiencia:'Cannabis science', cienciaTitle:'The evidence library', cienciaSub:'Papers, active researchers and clinical information — with an explicit evidence level on every data point.',
     subPapers:'Papers', subCientificos:'Scientists', subMedico:'Medical', subMenores:'Minor cannabinoids', subTerpenos:'Terpenes &amp; flavonoids', subMitos:'Myths', subEcs:'ECS 101',
     detailEstado:'Current status', detailNote:'Illustrative data for this prototype — in production each field connects to the official source and updates automatically.', detailTimeline:'Timeline', detailTraveler:'For travelers', detailSources:'Official sources', footerCopy:'© 2026 Mother Verde LLC. All rights reserved.',
-    backToHome:'← Back to Home', backToCuenta:'← Back to Account',
+    backToHome:'← Back to Home', backToCuenta:'← Back to Account', backToDesbloquear:'← Back to Unlock', legalBack:'← Back',
     calcEyebrow:'Interactive tools', calcTitle:'Calculators', calcSub:'The same formulas you already saw in Growing and Making, now interactive.',
     calcVpdTitle:'VPD Calculator', calcVpdDesc:'Vapor pressure deficit — the real metric behind "is it too humid or too dry?".', calcVpdTemp:'Air temp. (°C)', calcVpdRH:'Relative humidity (%)', calcVpdStage:'Stage', calcVpdVeg:'Vegetative (0.8–1.0 kPa)', calcVpdFlo:'Flowering (1.0–1.5 kPa)',
     calcDliTitle:'DLI Calculator', calcDliDesc:'Daily light integral — how much light your grow accumulates in 24 h, not just the intensity of one instant.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Hours of light/day',
@@ -4003,7 +4003,7 @@ const translations = {
     eyCiencia:'Cannabis-Wissenschaft', cienciaTitle:'Die Evidenzbibliothek', cienciaSub:'Studien, aktive Forscher und klinische Informationen — mit explizitem Evidenzgrad bei jedem Datenpunkt.',
     subPapers:'Studien', subCientificos:'Wissenschaftler', subMedico:'Medizinisch', subMenores:'Nebencannabinoide', subTerpenos:'Terpene &amp; Flavonoide', subMitos:'Mythen', subEcs:'ECS 101',
     detailEstado:'Aktueller Status', detailNote:'Illustrative Daten für diesen Prototyp — in der Produktion verbindet sich jedes Feld mit der offiziellen Quelle und aktualisiert sich automatisch.', detailTimeline:'Zeitleiste', detailTraveler:'Für Reisende', detailSources:'Offizielle Quellen', footerCopy:'© 2026 Mother Verde LLC. Alle Rechte vorbehalten.',
-    backToHome:'← Zurück zu Start', backToCuenta:'← Zurück zum Konto',
+    backToHome:'← Zurück zu Start', backToCuenta:'← Zurück zum Konto', backToDesbloquear:'← Zurück zu Freischalten', legalBack:'← Zurück',
     calcEyebrow:'Interaktive Werkzeuge', calcTitle:'Rechner', calcSub:'Dieselben Formeln, die du schon in Anbau und Verarbeitung gesehen hast, jetzt interaktiv.',
     calcVpdTitle:'VPD-Rechner', calcVpdDesc:'Dampfdruckdefizit — die echte Kennzahl hinter "ist es zu feucht oder zu trocken?".', calcVpdTemp:'Lufttemp. (°C)', calcVpdRH:'Relative Luftfeuchtigkeit (%)', calcVpdStage:'Phase', calcVpdVeg:'Vegetativ (0,8–1,0 kPa)', calcVpdFlo:'Blüte (1,0–1,5 kPa)',
     calcDliTitle:'DLI-Rechner', calcDliDesc:'Tägliches Lichtintegral — wie viel Licht dein Anbau in 24 Std. sammelt, nicht nur die Intensität eines Moments.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Lichtstunden/Tag',
@@ -4828,7 +4828,7 @@ const translations = {
     eyCiencia:'Science du cannabis', cienciaTitle:'La bibliothèque de preuves', cienciaSub:'Études, chercheurs actifs et informations cliniques — avec un niveau de preuve explicite pour chaque donnée.',
     subPapers:'Études', subCientificos:'Scientifiques', subMedico:'Médical', subMenores:'Cannabinoïdes mineurs', subTerpenos:'Terpènes et flavonoïdes', subMitos:'Mythes', subEcs:'SEC 101',
     detailEstado:'Statut actuel', detailNote:'Donnée illustrative pour ce prototype — en production, chaque champ se connecte à la source officielle et se met à jour automatiquement.', detailTimeline:'Chronologie', detailTraveler:'Pour les voyageurs', detailSources:'Sources officielles', footerCopy:'© 2026 Mother Verde LLC. Tous droits réservés.',
-    backToHome:"← Retour à l'accueil", backToCuenta:'← Retour au compte',
+    backToHome:"← Retour à l'accueil", backToCuenta:'← Retour au compte', backToDesbloquear:'← Retour à Débloquer', legalBack:'← Retour',
     calcEyebrow:'Outils interactifs', calcTitle:'Calculateurs', calcSub:'Les mêmes formules que tu as déjà vues dans Culture et Élaboration, maintenant interactives.',
     calcVpdTitle:'Calculateur de VPD', calcVpdDesc:'Déficit de pression de vapeur — la métrique réelle derrière « est-ce trop humide ou trop sec ? ».', calcVpdTemp:'Temp. air (°C)', calcVpdRH:'Humidité rel. (%)', calcVpdStage:'Stade', calcVpdVeg:'Végétatif (0,8–1,0 kPa)', calcVpdFlo:'Floraison (1,0–1,5 kPa)',
     calcDliTitle:'Calculateur de DLI', calcDliDesc:"Intégrale de lumière journalière — combien de lumière ta culture accumule en 24 h, pas seulement l'intensité d'un instant.", calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Heures de lumière/jour',
@@ -6516,7 +6516,7 @@ translations.de.dsProp6 = "Alle Bedingungen findest du in den {terms}.";
 translations.fr.dsProp6 = "Les conditions complètes figurent dans les {terms}.";
 translations.es.dsPropTerms = "Términos y Condiciones";
 translations.en.dsPropTerms = "Terms and Conditions";
-translations.de.dsPropTerms = "Allgemeinen Geschäftsbedingungen";
+translations.de.dsPropTerms = "Nutzungsbedingungen";
 translations.fr.dsPropTerms = "Conditions générales";
 translations.es.dsPropCheck = "Entiendo el propósito de mi aporte y estoy de acuerdo.";
 translations.en.dsPropCheck = "I understand the purpose of my contribution and I agree.";
@@ -7262,8 +7262,8 @@ function mvRenderAcceso(){
   const links = '<div class="acc-links">'
     + '<a onclick="showScreen(\'seguridad\')">' + t('accLinkSeguridad') + '</a>'
     + '<a onclick="showScreen(\'desbloquear\')">' + t('accLinkDesbloquear') + '</a>'
-    + '<a onclick="showScreen(\'terminos\')">' + t('cuentaTerminosLabel') + '</a>'
-    + '<a onclick="showScreen(\'privacidad\')">' + t('cuentaPrivacidadLabel') + '</a>'
+    + '<a href="#terminos" onclick="event.preventDefault(); mvOpenLegal(\'terminos\', \'acceso\')">' + t('cuentaTerminosLabel') + '</a>'
+    + '<a href="#privacidad" onclick="event.preventDefault(); mvOpenLegal(\'privacidad\', \'acceso\')">' + t('cuentaPrivacidadLabel') + '</a>'
     + '</div>';
   const keep = '<p class="acc-keep">' + t('accKeepP')
     .replace('{bit}', '<a onclick="showScreen(\'bitacora\')">')
@@ -7867,6 +7867,35 @@ async function checkAgeGate(){
   else modal.classList.add('active');
 }
 checkAgeGate();
+
+// Legal pages (Términos, Privacidad) — independent review 2026-11-04: they have
+// a real address (#terminos, #privacidad), so a new tab, a long press on the
+// phone or a copied link also opens them (the old links went to «#», i.e. the
+// home page). Every link opens them through mvOpenLegal(page, from), and
+// «← Volver» goes back to the screen the person came from.
+const MV_LEGAL_PAGES = ['terminos', 'privacidad'];
+const MV_LEGAL_BACK = { cuenta: 'backToCuenta', desbloquear: 'backToDesbloquear', home: 'backToHome' };
+let mvLegalFrom = 'cuenta';
+function mvSetLegalBack(){
+  const key = MV_LEGAL_BACK[mvLegalFrom] || 'legalBack';
+  document.querySelectorAll('.legal-back').forEach(b => { b.dataset.i18n = key; b.textContent = t(key); });
+}
+function mvOpenLegal(page, from){
+  mvLegalFrom = from && from !== page && !MV_LEGAL_PAGES.includes(from) ? from : 'cuenta';
+  mvSetLegalBack();
+  showScreen(page);
+}
+function mvLegalBack(){ showScreen(mvLegalFrom); }
+window.mvOpenLegal = mvOpenLegal;
+window.mvLegalBack = mvLegalBack;
+function mvLegalFromAddress(){
+  const page = location.hash.replace(/^#/, '');
+  if(!MV_LEGAL_PAGES.includes(page)) return;
+  mvOpenLegal(page, 'cuenta');
+  try { history.replaceState(null, '', location.pathname + location.search); } catch(e){}
+}
+mvLegalFromAddress();
+window.addEventListener('hashchange', mvLegalFromAddress);
 populateBuscarPaisSelect();
 populateBuscarVetSelect();
 

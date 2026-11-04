@@ -281,7 +281,7 @@ function helpHtml() {
 // «Antes de aportar: para qué es tu aporte» (Bertha's text, 2026-11-03) + the
 // wallet sentence; the tick box only where a reservation can be made.
 function purposeHtml(withCheck) {
-  const terms = `<a href="#" id="dsTermsLink">${t('dsPropTerms')}</a>`;
+  const terms = `<a href="#terminos" id="dsTermsLink">${t('dsPropTerms')}</a>`;
   const c = claimNow();
   if (c && c.purpose_accepted_at) purposeOk = true;
   return `
@@ -346,7 +346,8 @@ export function renderDesbloquear() {
   `;
 
   root.querySelector('#dsPurposeOk')?.addEventListener('change', (e) => { purposeOk = e.target.checked; renderDesbloquear(); document.getElementById('dsPurposeOk')?.focus(); });
-  root.querySelector('#dsTermsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.showScreen?.('terminos'); });
+  // a real address (#terminos) for a new tab / long press; a normal click stays in the app and «Volver» comes back here
+  root.querySelector('#dsTermsLink')?.addEventListener('click', (e) => { e.preventDefault(); window.mvOpenLegal?.('terminos', 'desbloquear'); });
   root.querySelector('#dsMenos').onclick = () => { if (flowers > 1) { flowers--; renderDesbloquear(); } };
   root.querySelector('#dsMas').onclick = () => { if (flowers < SUPPORT.MAX_FLOWERS) { flowers++; renderDesbloquear(); } };
   root.querySelectorAll('.ds-slot').forEach((b) => { b.onclick = () => { flowers = Number(b.dataset.n); renderDesbloquear(); }; });
