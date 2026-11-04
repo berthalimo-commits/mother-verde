@@ -103,7 +103,7 @@ await lang(b, 'es');
 await sql(`delete from support_claims where user_id = '${NEWBIE}'`);
 await b.ev(`showScreen('desbloquear'); 1`); await sleep(800);
 const box = await b.ev(`({ h: document.querySelector('#dsPurpose h3')?.textContent, items: [...document.querySelectorAll('#dsPurpose li')].map((x) => x.innerText), check: !!document.getElementById('dsPurposeOk'), checked: document.getElementById('dsPurposeOk')?.checked, btn: document.getElementById('dsReservarBtn')?.disabled, aviso: document.getElementById('dsAvisoCorto')?.textContent, wallet: document.querySelector('#dsPurpose .ds-wallet')?.textContent })`);
-check('Desbloquear: «Antes de aportar: para qué es tu aporte» con los 6 puntos, la billetera de Bertha y el aviso corto', box.h === T.dsPropH3.es && box.items.length === 6 && box.items[0] === T.dsProp1.es && box.items[2] === T.dsProp3.es && /billetera personal de cripto de Bertha Limo/.test(box.wallet) && box.aviso === T.dsAvisoCorto.es, JSON.stringify(box));
+check('Desbloquear: «Antes de aportar: para qué es tu aporte» con los 6 puntos, la billetera de Bertha y el aviso corto', box.h === T.dsPropH3.es && box.items.length === 6 && box.items[0] === T.dsProp1.es && box.items[2] === T.dsProp3.es && box.wallet === T.dsPropWallet.es && box.aviso === T.dsAvisoCorto.es, JSON.stringify(box));
 check('sin marcar la casilla, «Reservar» está desactivado', box.check && !box.checked && box.btn === true);
 await b.ev(`document.getElementById('dsReservarBtn').click(); 1`); await sleep(800);
 check('…y no se reserva nada', (await sql(`select count(*)::int n from support_claims where user_id = '${NEWBIE}'`))[0].n === 0);

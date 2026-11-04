@@ -3,7 +3,7 @@
 // or malformed, the page says "Próximamente" and shows no address, QR or form.
 // The QR is generated here (qrcode, MIT) — no external service is contacted.
 import QRCode from 'qrcode';
-import { SUPPORT, SUPPORT_RECIPIENT_TEXT, supportAddressIsValid } from './supportConfig.js';
+import { SUPPORT, supportAddressIsValid } from './supportConfig.js';
 
 let flowers = 1;
 // «Entiendo el propósito de mi aporte y estoy de acuerdo» (migration
@@ -291,7 +291,7 @@ function purposeHtml(withCheck) {
         <li>${t('dsProp1')}</li><li>${t('dsProp2')}</li><li>${t('dsProp3')}</li>
         <li>${t('dsProp4')}</li><li>${t('dsProp5')}</li><li>${t('dsProp6').replace('{terms}', terms)}</li>
       </ul>
-      <p class="ds-wallet">${SUPPORT_RECIPIENT_TEXT[lang()] || SUPPORT_RECIPIENT_TEXT.es}</p>
+      <p class="ds-wallet">${t('dsPropWallet')}</p>
       ${withCheck ? `<label class="ds-purpose-check" for="dsPurposeOk"><input type="checkbox" id="dsPurposeOk" ${purposeOk ? 'checked' : ''}> <span>${t('dsPropCheck')}</span></label>` : ''}
     </div>`;
 }

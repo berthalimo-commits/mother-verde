@@ -28,15 +28,8 @@ export const SUPPORT = {
   NORMAL_REVIEW_HOURS: 24,
 };
 
-// Who receives the contribution. Since 2026-11-03 only this sentence (Bertha's
-// decision 2); what it is for is in src/purposeTexts.js (dsProp*). Pending
-// accountant/lawyer review — edit only here.
-export const SUPPORT_RECIPIENT_TEXT = {
-  es: "Tu aporte llega a la billetera personal de cripto de Bertha Limo (horticultora y especialista en cannabis), fundadora de Mother Verde, en la red Base.",
-  en: "Your contribution goes to the personal crypto wallet of Bertha Limo (horticulturist and cannabis specialist), founder of Mother Verde, on the Base network.",
-  de: "Dein Beitrag geht an die persönliche Krypto-Wallet von Bertha Limo (Gartenbauerin und Cannabis-Spezialistin), Gründerin von Mother Verde, im Base-Netzwerk.",
-  fr: "Ta contribution arrive dans le portefeuille crypto personnel de Bertha Limo (horticultrice et spécialiste du cannabis), fondatrice de Mother Verde, sur le réseau Base.",
-};
+// Who receives the contribution and what it is for: src/purposeTexts.js
+// (dsProp1-6 and dsPropWallet, Bertha's first-person box, 2026-11-04).
 
 // Basic sanity check used by the page before showing anything payable.
 export function supportAddressIsValid(addr = SUPPORT.ADDRESS) {

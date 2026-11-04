@@ -21,7 +21,7 @@ Estado: hecho en `dev`. **Nada en producción.** Términos y Privacidad **no se 
 | Dónde | Texto actual (hasta hoy) | Texto nuevo |
 |---|---|---|
 | Historia, pantalla 4 | «Hoy estoy ante un gran reto. SUNY Morrisville me dio otra vez la oportunidad de volver y terminar mi bachillerato en Horticulture Business Management (B.Tech.). Volver a esa casa de estudios me emociona muchísimo.» | «Hoy estoy ante un gran reto. SUNY Morrisville me aceptó para continuar mi educación. Volver a esa casa de estudios me emociona muchísimo.» (el resto, igual) |
-| Pantalla de aporte, punto 1 | «Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a terminar su bachillerato en Horticulture Business Management (B.Tech.) en SUNY Morrisville.» | «Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir estudiando. En sus palabras: «SUNY Morrisville me aceptó para continuar mi educación.»» |
+| Pantalla de aporte, punto 1 | «Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a terminar su bachillerato en Horticulture Business Management (B.Tech.) en SUNY Morrisville.» | «Soy Bertha Limo, fundadora de Mother Verde. Tu aporte único de apoyo me ayuda a seguir estudiando. SUNY Morrisville me aceptó para continuar mi educación.» (ver 0b) |
 | Aviso corto (Desbloquear y pantalla de bloqueo) | «Tu aporte único de apoyo me ayuda a terminar mi bachillerato en horticultura en SUNY Morrisville, y lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado a SUNY Morrisville.» | «Tu aporte único de apoyo me ayuda a estudiar. SUNY Morrisville me aceptó para continuar mi educación. Lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado ni respaldado por SUNY Morrisville.» |
 | Correo «aviso recibido» | «Gracias por tu aporte. Recuerda: tu aporte único de apoyo ayuda a Bertha Limo a terminar su bachillerato en horticultura en SUNY Morrisville. Revisaremos tu aviso en un plazo de hasta 24 horas.» | «Gracias por tu aporte. Recuerda: tu aporte único de apoyo ayuda a Bertha Limo a seguir estudiando. En sus palabras: «SUNY Morrisville me aceptó para continuar mi educación.» Revisaremos tu aviso en un plazo de hasta 24 horas.» |
 | Correos «acceso aprobado» (USDC y aporte manual) | «¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar, y lo que aprenda lo compartiré contigo y con mi comunidad.» | «¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar. SUNY Morrisville me aceptó para continuar mi educación. Lo que aprenda lo compartiré contigo y con mi comunidad.» |
@@ -29,6 +29,24 @@ Estado: hecho en `dev`. **Nada en producción.** Términos y Privacidad **no se 
 | Términos, borrador cláusula 5 (no publicado) | «…ayuda a Bertha Limo, fundadora de Mother Verde, a terminar su bachillerato en Horticulture Business Management (B.Tech.) en SUNY Morrisville…» | Ver sección 1. |
 
 Se mantiene: «Mother Verde no está afiliado ni respaldado por SUNY Morrisville» (historia, pantalla de aporte y ahora también el aviso corto).
+
+## 0b. Cambio del 2026-11-04 (tarde): el recuadro «Antes de aportar» con una sola voz
+
+Decisión de Bertha: todos los puntos en **primera persona** (habla Bertha y trata de tú a quien lee). El punto 3 queda neutro.
+La frase de la billetera ya no repite «horticultora y especialista en cannabis».
+
+| Punto | Texto actual (hasta hoy) | Texto nuevo |
+|---|---|---|
+| 1 | «Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir estudiando. En sus palabras: «SUNY Morrisville me aceptó para continuar mi educación.»» | «Soy Bertha Limo, fundadora de Mother Verde. Tu aporte único de apoyo me ayuda a seguir estudiando. SUNY Morrisville me aceptó para continuar mi educación.» |
+| 2 | «A cambio recibes acceso completo a la plataforma.» | «A cambio, te doy acceso completo a la plataforma.» |
+| 3 | «Es voluntario y único. No es una donación ni es deducible de impuestos.» | «Es un aporte voluntario y único. No es una donación ni es deducible de impuestos.» |
+| 4 | «Lo que aprendo lo comparto con mi comunidad y con quienes aprenden aquí.» | igual |
+| 5 | «Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville.» | «Mother Verde es mi proyecto independiente: no está afiliado ni respaldado por SUNY Morrisville.» |
+| 6 | «Las condiciones completas están en los Términos y Condiciones.» | «Te explico las condiciones completas en los Términos y Condiciones.» (el enlace ahora abre de verdad los Términos, también en una pestaña nueva) |
+| Billetera | «Tu aporte llega a la billetera personal de cripto de Bertha Limo (horticultora y especialista en cannabis), fundadora de Mother Verde, en la red Base.» | «Tu aporte llega a mi billetera personal de cripto, en la red Base.» |
+
+No cambian: el título «Antes de aportar: para qué es tu aporte» y la casilla «Entiendo el propósito de mi aporte y estoy de
+acuerdo» (la dice quien aporta). En alemán, el enlace a los Términos se llama ahora igual que la página: «Nutzungsbedingungen».
 
 ## 1. Términos y Condiciones (cláusula 5, aportes) — sigue SIN texto final
 
@@ -47,7 +65,7 @@ Se mantiene: «Mother Verde no está afiliado ni respaldado por SUNY Morrisville
 
 | Texto actual | Texto nuevo |
 |---|---|
-| Título «¿A dónde va tu aporte?» y: «Tu aporte llega a la billetera personal de cripto de Bertha Limo (horticultora y especialista en cannabis), fundadora de Mother Verde, en la red Base. Lo recaudado se destinará a crear Canna Wasi, una asociación de pacientes de cannabis medicinal en Urubamba, Cusco (Valle Sagrado, Perú), que Bertha funda junto a su hermano César (arquitecto)…» y «Wasi significa casa en quechua». | Título «Antes de aportar: para qué es tu aporte» y 6 puntos: (1) «Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir estudiando. En sus palabras: «SUNY Morrisville me aceptó para continuar mi educación.»» (2) «A cambio recibes acceso completo a la plataforma.» (3) «Es voluntario y único. No es una donación ni es deducible de impuestos.» (4) «Lo que aprendo lo comparto con mi comunidad y con quienes aprenden aquí.» (5) «Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville.» (6) «Las condiciones completas están en los Términos y Condiciones.» Se mantiene: «Tu aporte llega a la billetera personal de cripto de Bertha Limo (horticultora y especialista en cannabis), fundadora de Mother Verde, en la red Base.» Casilla obligatoria: «Entiendo el propósito de mi aporte y estoy de acuerdo.» |
+| Título «¿A dónde va tu aporte?» y: «Tu aporte llega a la billetera personal de cripto de Bertha Limo (horticultora y especialista en cannabis), fundadora de Mother Verde, en la red Base. Lo recaudado se destinará a crear Canna Wasi, una asociación de pacientes de cannabis medicinal en Urubamba, Cusco (Valle Sagrado, Perú), que Bertha funda junto a su hermano César (arquitecto)…» y «Wasi significa casa en quechua». | Título «Antes de aportar: para qué es tu aporte» y 6 puntos, todos con la voz de Bertha (ver 0b): (1) «Soy Bertha Limo, fundadora de Mother Verde. Tu aporte único de apoyo me ayuda a seguir estudiando. SUNY Morrisville me aceptó para continuar mi educación.» (2) «A cambio, te doy acceso completo a la plataforma.» (3) «Es un aporte voluntario y único. No es una donación ni es deducible de impuestos.» (4) «Lo que aprendo lo comparto con mi comunidad y con quienes aprenden aquí.» (5) «Mother Verde es mi proyecto independiente: no está afiliado ni respaldado por SUNY Morrisville.» (6) «Te explico las condiciones completas en los Términos y Condiciones.» Debajo: «Tu aporte llega a mi billetera personal de cripto, en la red Base.» Casilla obligatoria: «Entiendo el propósito de mi aporte y estoy de acuerdo.» |
 | — | Aviso corto (arriba en Desbloquear y en la pantalla de bloqueo): «Tu aporte único de apoyo me ayuda a estudiar. SUNY Morrisville me aceptó para continuar mi educación. Lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado ni respaldado por SUNY Morrisville.» |
 
 ## 4. Correos
