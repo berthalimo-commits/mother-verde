@@ -286,27 +286,39 @@ function usdcText(units: unknown, sep: string): string {
   return p.slice(0, -6).replace(/^0+(?=\d)/, "") + sep + p.slice(-6, -2);
 }
 
+// The SUNY sentence (provisional). Do not edit here: it is copied from
+// src/purposeTexts.js (SUNY_ACCEPTED) by tools/apply-purpose-texts.mjs, and
+// the purpose-texts test fails if the two differ.
+// @suny-accepted-start
+const SUNY_ACCEPTED = {
+  es: "SUNY Morrisville me aceptó para continuar mi educación.",
+  en: "SUNY Morrisville accepted me to continue my education.",
+  de: "Die SUNY Morrisville hat mich aufgenommen, damit ich meine Ausbildung fortsetzen kann.",
+  fr: "SUNY Morrisville m’a acceptée pour poursuivre mes études.",
+};
+// @suny-accepted-end
+
 function activationEmail(flowers: number, units: unknown, appUrl: string): Mail & { to: "" } {
   const es = usdcText(units, ","), en = usdcText(units, ".");
   const blocks: [string, string, string[]][] = [
     ["es", "Tu acceso completo está activo", [
       `Recibimos tu aporte de ${flowers} ${flowers === 1 ? "flor" : "flores"} (${es} USDC) y ya activamos el acceso completo en tu cuenta de Mother Verde.`,
-      "¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar, y lo que aprenda lo compartiré contigo y con mi comunidad.",
+      `¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar. ${SUNY_ACCEPTED.es} Lo que aprenda lo compartiré contigo y con mi comunidad.`,
       "Si no hiciste este aporte, responde a este correo.",
     ]],
     ["en", "Your full access is active", [
       `We received your contribution of ${flowers} ${flowers === 1 ? "flower" : "flowers"} (${en} USDC) and full access is now active on your Mother Verde account.`,
-      "Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study, and what I learn I will share with you and my community.",
+      `Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study. ${SUNY_ACCEPTED.en} What I learn I will share with you and my community.`,
       "If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
       `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} (${es} USDC) erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
-      "Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren, und was ich lerne, teile ich mit dir und meiner Gemeinschaft.",
+      `Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren. ${SUNY_ACCEPTED.de} Was ich lerne, teile ich mit dir und meiner Gemeinschaft.`,
       "Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [
       `Nous avons reçu ta contribution de ${flowers} ${flowers === 1 ? "fleur" : "fleurs"} (${es} USDC) et l'accès complet est maintenant actif sur ton compte Mother Verde.`,
-      "Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier, et ce que j'apprends, je le partage avec toi et ma communauté.",
+      `Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier. ${SUNY_ACCEPTED.fr} Ce que j'apprends, je le partage avec toi et ma communauté.`,
       "Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
     ]],
   ];
@@ -323,19 +335,19 @@ function receivedEmail(units: unknown, appUrl: string): Mail & { to: "" } {
   const es = usdcText(units, ","), en = usdcText(units, ".");
   const blocks: [string, string, string[]][] = [
     ["es", "Recibimos tu aviso de aporte", [
-      "Gracias por tu aporte. Recuerda: tu aporte único de apoyo ayuda a Bertha Limo a terminar su bachillerato en horticultura en SUNY Morrisville. Revisaremos tu aviso en un plazo de hasta 24 horas.",
+      `Gracias por tu aporte. Recuerda: tu aporte único de apoyo ayuda a Bertha Limo a seguir estudiando. En sus palabras: «${SUNY_ACCEPTED.es}» Revisaremos tu aviso en un plazo de hasta 24 horas.`,
       `Monto: ${es} USDC. Si no hiciste este aviso, responde a este correo.`,
     ]],
     ["en", "We received your contribution notice", [
-      "Thank you for your contribution. Remember: your one-time support contribution helps Bertha Limo finish her bachelor's degree in horticulture at SUNY Morrisville. We will review your notice within up to 24 hours.",
+      `Thank you for your contribution. Remember: your one-time support contribution helps Bertha Limo keep studying. In her words: “${SUNY_ACCEPTED.en}” We will review your notice within up to 24 hours.`,
       `Amount: ${en} USDC. If you didn't send this notice, reply to this e-mail.`,
     ]],
     ["de", "Wir haben deinen Hinweis erhalten", [
-      "Danke für deinen Beitrag. Zur Erinnerung: Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, ihren Bachelor in Gartenbau an der SUNY Morrisville abzuschließen. Wir prüfen deinen Hinweis innerhalb von bis zu 24 Stunden.",
+      `Danke für deinen Beitrag. Zur Erinnerung: Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, weiter zu studieren. In ihren Worten: „${SUNY_ACCEPTED.de}“ Wir prüfen deinen Hinweis innerhalb von bis zu 24 Stunden.`,
       `Betrag: ${es} USDC. Falls du diesen Hinweis nicht gesendet hast, antworte auf diese E-Mail.`,
     ]],
     ["fr", "Nous avons reçu ton avis de contribution", [
-      "Merci pour ta contribution. Pour rappel : ta contribution unique de soutien aide Bertha Limo à terminer son bachelor en horticulture à SUNY Morrisville. Nous examinerons ton avis dans un délai pouvant aller jusqu'à 24 heures.",
+      `Merci pour ta contribution. Pour rappel : ta contribution unique de soutien aide Bertha Limo à poursuivre ses études. Selon ses mots : « ${SUNY_ACCEPTED.fr} » Nous examinerons ton avis dans un délai pouvant aller jusqu'à 24 heures.`,
       `Montant : ${es} USDC. Si tu n'as pas envoyé cet avis, réponds à cet e-mail.`,
     ]],
   ];
@@ -349,19 +361,19 @@ function receivedEmail(units: unknown, appUrl: string): Mail & { to: "" } {
 function manualEmail(appUrl: string): Mail & { to: "" } {
   const blocks: [string, string, string[]][] = [
     ["es", "Tu acceso completo está activo", [
-      "¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar, y lo que aprenda lo compartiré contigo y con mi comunidad.",
+      `¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar. ${SUNY_ACCEPTED.es} Lo que aprenda lo compartiré contigo y con mi comunidad.`,
       "Si no hiciste este aporte, responde a este correo.",
     ]],
     ["en", "Your full access is active", [
-      "Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study, and what I learn I will share with you and my community.",
+      `Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study. ${SUNY_ACCEPTED.en} What I learn I will share with you and my community.`,
       "If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
-      "Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren, und was ich lerne, teile ich mit dir und meiner Gemeinschaft.",
+      `Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren. ${SUNY_ACCEPTED.de} Was ich lerne, teile ich mit dir und meiner Gemeinschaft.`,
       "Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [
-      "Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier, et ce que j'apprends, je le partage avec toi et ma communauté.",
+      `Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier. ${SUNY_ACCEPTED.fr} Ce que j'apprends, je le partage avec toi et ma communauté.`,
       "Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
     ]],
   ];

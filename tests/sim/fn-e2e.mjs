@@ -288,9 +288,11 @@ check('auto ON + todo correcto -> activada sola + correo (y el aviso a soporte d
   const rec = globalThis.__mail.slice(n).find((m) => /Recibimos tu aviso de aporte/.test(m.subject));
   const act = globalThis.__mail.slice(n).find((m) => /Tu acceso completo está activo/.test(m.subject));
   const txt = (m) => (m?.text || '') + (m?.html || '');
-  check('«aviso recibido»: el texto de Bertha en 4 idiomas (SUNY Morrisville, hasta 24 horas)', /ayuda a Bertha Limo a terminar su bachillerato en horticultura en SUNY Morrisville/.test(txt(rec))
-    && /finish her bachelor's degree in horticulture at SUNY Morrisville/.test(txt(rec)) && /Bachelor in Gartenbau an der SUNY Morrisville/.test(txt(rec)) && /terminer son bachelor en horticulture à SUNY Morrisville/.test(txt(rec)));
-  check('«acceso aprobado»: el texto de Bertha y ninguna mención de Canna Wasi', /Tu apoyo me ayuda a estudiar/.test(txt(act)) && /Your support helps me study/.test(txt(act)) && !/Canna Wasi/i.test(txt(rec) + txt(act)));
+  const { SUNY_ACCEPTED: SA } = await import('../../src/purposeTexts.js');
+  const L4 = ['es', 'en', 'de', 'fr'];
+  check('«aviso recibido»: el texto de Bertha en 4 idiomas con la frase de SUNY (hasta 24 horas)', /ayuda a Bertha Limo a seguir estudiando/.test(txt(rec)) && L4.every((l) => txt(rec).includes(SA[l])) && /hasta 24 horas/.test(txt(rec)));
+  check('«acceso aprobado»: el texto de Bertha con la frase de SUNY y ninguna mención de Canna Wasi', /Tu apoyo me ayuda a estudiar/.test(txt(act)) && /Your support helps me study/.test(txt(act)) && L4.every((l) => txt(act).includes(SA[l])) && !/Canna Wasi/i.test(txt(rec) + txt(act)));
+  check('correos sin grado ni título (bachillerato, bachelor, B.Tech)', !/bachiller|bachelor|B\.?\s?Tech/i.test(txt(rec) + txt(act)));
   const again = globalThis.__mail.length;
   await call('claims', tok(PA.u), { action: 'verify', claim_id: PA.c.id });
   check('«aviso recibido» solo una vez por aviso (verificar otra vez no lo repite)', globalThis.__mail.filter((m, i) => i >= again && /Recibimos tu aviso/.test(m.subject)).length === 0);

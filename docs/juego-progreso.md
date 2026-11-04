@@ -655,8 +655,8 @@ Recuento: estudio 40 · guía universitaria 2 · práctica de cultivadores 12 ·
 Commits 7ef3336, 856d430 + fcf4c86, 6e41023.
 
 ### Nuevo motivo de los aportes + historia de bienvenida (2026-11-03) — HECHO en dev y staging
-Con el «APRUEBO» de Bertha (decisiones 1–9): Canna Wasi quitada; los aportes apoyan su Horticulture Business Management
-(B.Tech.) en SUNY Morrisville; casilla de propósito registrada (migración 20261104100000, staging paso 6: 7/7 «ok»);
+Con el «APRUEBO» de Bertha (decisiones 1–9): Canna Wasi quitada; los aportes apoyan su educación
+en SUNY Morrisville (desde 2026-11-04 sin nombrar grado ni título); casilla de propósito registrada (migración 20261104100000, staging paso 6: 7/7 «ok»);
 «Ya tienes cuenta…»; correos «aviso recibido» y «aporte manual confirmado» (función support-claims desplegada en
 staging); historia «Nuestra historia» (6 pantallas); menú del icono de persona; línea «La fundadora estudia en esta
 institución». Textos para abogado/a y contador: `docs/revision-legal-aportes.md` (Términos sigue con «PENDIENTE»).

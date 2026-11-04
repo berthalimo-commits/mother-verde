@@ -34,11 +34,17 @@ const mailBad = ['receivedEmail', 'manualEmail', 'activationEmail'].filter((fn) 
 check('sin «donación», «caridad», «sin fines de lucro» ni deducción de impuestos (salvo «No es una donación»)', bad.length === 0 && mailBad.length === 0, bad.concat(mailBad).join(', '));
 check('«No es una donación ni es deducible de impuestos» está tal cual en los 4 idiomas', /No es una donación ni es deducible de impuestos/.test(T.dsProp3.es) && /not a donation and is not tax-deductible/.test(T.dsProp3.en) && /keine Spende und nicht steuerlich absetzbar/.test(T.dsProp3.de) && /pas un don et elle n’est pas déductible/.test(T.dsProp3.fr));
 
-// program name never translated; independence in every language
-const PROG = 'Horticulture Business Management (B.Tech.)';
-check(`«${PROG}» sin traducir en los 4 idiomas (aporte e historia)`, L.every((l) => T.dsProp1[l].includes(PROG) && T.story4P[l].includes(PROG)));
-const indep = { es: /no (está )?afiliad/i, en: /not affiliated/i, de: /nicht mit der SUNY Morrisville verbunden/i, fr: /n(’|')?est ni affilié|non affilié|n’est pas affilié/i };
-check('«no afiliado a SUNY Morrisville» en la historia, el aviso corto y la pantalla de aporte, en los 4 idiomas', L.every((l) => indep[l].test(T.storyIndependent[l]) && indep[l].test(T.dsAvisoCorto[l]) && indep[l].test(T.dsProp5[l])));
+// the SUNY sentence (provisional, ONE place: SUNY_ACCEPTED) in the story, the
+// contribution screen, the short notice and the e-mails; no degree or title;
+// «no afiliado NI respaldado» in every language
+const { SUNY_ACCEPTED: SA } = await import('file:///' + path.join(APP, 'src/purposeTexts.js'));
+check('frase de SUNY (provisional) idéntica en historia 4, pantalla de aporte y aviso corto, en los 4 idiomas', L.every((l) => T.story4P[l].includes(SA[l]) && T.dsProp1[l].includes(SA[l]) && T.dsAvisoCorto[l].includes(SA[l])), JSON.stringify(SA));
+const fnBlock = fnSrc.slice(fnSrc.indexOf('@suny-accepted-start'), fnSrc.indexOf('@suny-accepted-end'));
+const mailUses = ['receivedEmail', 'manualEmail', 'activationEmail'].every((fn) => { const i = fnSrc.indexOf('function ' + fn); const body = fnSrc.slice(i, fnSrc.indexOf('\n}\n', i)); return L.every((l) => body.includes('${SUNY_ACCEPTED.' + l + '}')); });
+check('…y en los correos «aviso recibido» y «acceso aprobado»: la misma frase, copiada por la herramienta (no editada a mano)', L.every((l) => fnBlock.includes(JSON.stringify(SA[l]))) && mailUses);
+check('la frase es la de Bertha, sin «horticultura»', SA.es === 'SUNY Morrisville me aceptó para continuar mi educación.' && SA.en === 'SUNY Morrisville accepted me to continue my education.' && SA.de === 'Die SUNY Morrisville hat mich aufgenommen, damit ich meine Ausbildung fortsetzen kann.' && /^SUNY Morrisville m[’']a acceptée pour poursuivre mes études\.$/.test(SA.fr) && !L.some((l) => /horticul|Gartenbau/i.test(SA[l])));
+const indep = { es: /no está afiliado ni respaldado por SUNY Morrisville|no afiliado ni respaldado por SUNY Morrisville/i, en: /not affiliated with or endorsed by SUNY Morrisville/, de: /nicht mit der SUNY Morrisville verbunden und (wird )?nicht von ihr unterstützt/, fr: /ni affilié ni approuvé par SUNY Morrisville|non affilié ni approuvé par SUNY Morrisville/ };
+check('«no afiliado ni respaldado por SUNY Morrisville» en la historia, el aviso corto y la pantalla de aporte, en los 4 idiomas', L.every((l) => indep[l].test(T.storyIndependent[l]) && indep[l].test(T.dsAvisoCorto[l]) && indep[l].test(T.dsProp5[l])), L.map((l) => [l, indep[l].test(T.storyIndependent[l]), indep[l].test(T.dsAvisoCorto[l]), indep[l].test(T.dsProp5[l])]).join(' '));
 check('«aporte único de apoyo» con el término de cada idioma', /aporte único de apoyo/.test(T.dsProp1.es) && /one-time support contribution/.test(T.dsProp1.en) && /einmaliger Unterstützungsbeitrag/.test(T.dsProp1.de) && /contribution unique de soutien/.test(T.dsProp1.fr));
 check('fotos de campo (pantallas 3 y 6) sin la palabra «cannabis» en su texto alternativo', ['storyAlt3', 'storyAlt6'].every((k) => L.every((l) => !/cannabis/i.test(T[k][l]))));
 const HEMP = { es: /cáñamo/, en: /hemp/, de: /Hanf/, fr: /chanvre/ };

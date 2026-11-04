@@ -3,8 +3,22 @@
 // of the platform). One place for the lawyer and the accountant to read.
 // tools/apply-purpose-texts.mjs copies them into public/main.js (translations),
 // and the support-claims function has its own copy of the e-mail lines.
-// Rules: no «donación» except in «No es una donación»; program name never
-// translated: Horticulture Business Management (B.Tech.).
+// Rules: no «donación» except in «No es una donación»; NO degree or title is
+// ever named (no «bachillerato», «bachelor», «B.Tech.», program name; Bertha,
+// 2026-11-04): the no-degree-text test fails if one appears.
+
+// SUNY sentence — PROVISIONAL (Bertha will set the final wording). THE ONLY
+// PLACE to change it: edit these 4 lines, run `node tools/apply-purpose-texts.mjs`
+// (copies it to public/main.js and to the support-claims e-mails), then
+// redeploy the support-claims function (paste in the Supabase dashboard).
+export const SUNY_ACCEPTED = {
+  es: 'SUNY Morrisville me aceptó para continuar mi educación.',
+  en: 'SUNY Morrisville accepted me to continue my education.',
+  de: 'Die SUNY Morrisville hat mich aufgenommen, damit ich meine Ausbildung fortsetzen kann.',
+  fr: 'SUNY Morrisville m’a acceptée pour poursuivre mes études.',
+};
+const S = SUNY_ACCEPTED;
+
 export const PURPOSE_TEXTS = {
   // ---------------------------------------------------------- welcome story
   storyDialog: { es: 'Nuestra historia', en: 'Our story', de: 'Unsere Geschichte', fr: 'Notre histoire' },
@@ -46,10 +60,10 @@ export const PURPOSE_TEXTS = {
   },
   story4H: { es: 'Mi reto de hoy', en: 'My challenge today', de: 'Meine Herausforderung heute', fr: 'Mon défi d’aujourd’hui' },
   story4P: {
-    es: '<p>Hoy estoy ante un gran reto. SUNY Morrisville me dio otra vez la oportunidad de volver y terminar mi bachillerato en Horticulture Business Management (B.Tech.). Volver a esa casa de estudios me emociona muchísimo.</p><p>Esta vez necesito tu ayuda. Por eso nació esta plataforma: para darte algo valioso a cambio de tu colaboración.</p><p>Puedes explorar gratis durante 24 horas. Si te sirve y quieres apoyarme, ahí estará la opción.</p>',
-    en: '<p>Today I face a big challenge. SUNY Morrisville has given me the chance, once again, to return and finish my bachelor’s degree in Horticulture Business Management (B.Tech.). Going back to that home of learning moves me deeply.</p><p>This time I need your help. That is why this platform was born: to give you something valuable in return for your collaboration.</p><p>You can explore for free for 24 hours. If it helps you and you’d like to support me, the option will be there.</p>',
-    de: '<p>Heute stehe ich vor einer großen Herausforderung. Die SUNY Morrisville hat mir erneut die Chance gegeben, zurückzukehren und meinen Bachelor in Horticulture Business Management (B.Tech.) abzuschließen. Die Rückkehr an diese Hochschule bewegt mich sehr.</p><p>Diesmal brauche ich deine Hilfe. Deshalb ist diese Plattform entstanden: um dir als Dank für deine Unterstützung etwas Wertvolles zu geben.</p><p>Du kannst 24 Stunden lang kostenlos erkunden. Wenn es dir nützt und du mich unterstützen möchtest, ist die Möglichkeit da.</p>',
-    fr: '<p>Aujourd’hui, je fais face à un grand défi. SUNY Morrisville m’a de nouveau donné la possibilité de revenir et de terminer mon bachelor en Horticulture Business Management (B.Tech.). Retourner dans cette maison d’études m’émeut profondément.</p><p>Cette fois, j’ai besoin de ton aide. C’est pour cela que cette plateforme est née : pour te donner quelque chose de précieux en retour de ta collaboration.</p><p>Tu peux explorer gratuitement pendant 24 heures. Si cela t’est utile et que tu veux me soutenir, l’option sera là.</p>',
+    es: '<p>Hoy estoy ante un gran reto. ' + S.es + ' Volver a esa casa de estudios me emociona muchísimo.</p><p>Esta vez necesito tu ayuda. Por eso nació esta plataforma: para darte algo valioso a cambio de tu colaboración.</p><p>Puedes explorar gratis durante 24 horas. Si te sirve y quieres apoyarme, ahí estará la opción.</p>',
+    en: '<p>Today I face a big challenge. ' + S.en + ' Going back to that home of learning moves me deeply.</p><p>This time I need your help. That is why this platform was born: to give you something valuable in return for your collaboration.</p><p>You can explore for free for 24 hours. If it helps you and you’d like to support me, the option will be there.</p>',
+    de: '<p>Heute stehe ich vor einer großen Herausforderung. ' + S.de + ' Die Rückkehr an diese Hochschule bewegt mich sehr.</p><p>Diesmal brauche ich deine Hilfe. Deshalb ist diese Plattform entstanden: um dir als Dank für deine Unterstützung etwas Wertvolles zu geben.</p><p>Du kannst 24 Stunden lang kostenlos erkunden. Wenn es dir nützt und du mich unterstützen möchtest, ist die Möglichkeit da.</p>',
+    fr: '<p>Aujourd’hui, je fais face à un grand défi. ' + S.fr + ' Retourner dans cette maison d’études m’émeut profondément.</p><p>Cette fois, j’ai besoin de ton aide. C’est pour cela que cette plateforme est née : pour te donner quelque chose de précieux en retour de ta collaboration.</p><p>Tu peux explorer gratuitement pendant 24 heures. Si cela t’est utile et que tu veux me soutenir, l’option sera là.</p>',
   },
   story5H: { es: 'Lo que encontrarás aquí', en: 'What you’ll find here', de: 'Das findest du hier', fr: 'Ce que tu trouveras ici' },
   story5Calc: { es: 'Calculadoras para VPD, DLI, dosis, EC ↔ PPM, luz y más (17 en total).', en: 'Calculators for VPD, DLI, dosing, EC ↔ PPM, light and more (17 in total).', de: 'Rechner für VPD, DLI, Dosierung, EC ↔ PPM, Licht und mehr (17 insgesamt).', fr: 'Des calculateurs pour le VPD, le DLI, le dosage, EC ↔ PPM, la lumière et plus (17 au total).' },
@@ -67,9 +81,19 @@ export const PURPOSE_TEXTS = {
   navHistoria: { es: 'Nuestra historia', en: 'Our story', de: 'Unsere Geschichte', fr: 'Notre histoire' },
 
   // ---------------------------------------------------------- contribution
-  dsAvisoCorto: { es: 'Tu aporte único de apoyo me ayuda a terminar mi bachillerato en horticultura en SUNY Morrisville, y lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado a SUNY Morrisville.', en: 'Your one-time support contribution helps me finish my bachelor’s degree in horticulture at SUNY Morrisville, and what I learn I will share with you and my community. In return you get full access to the platform. Mother Verde is not affiliated with SUNY Morrisville.', de: 'Dein einmaliger Unterstützungsbeitrag hilft mir, meinen Bachelor in Gartenbau an der SUNY Morrisville abzuschließen, und was ich lerne, teile ich mit dir und meiner Gemeinschaft. Dafür erhältst du vollen Zugang zur Plattform. Mother Verde ist nicht mit der SUNY Morrisville verbunden.', fr: 'Ta contribution unique de soutien m’aide à terminer mon bachelor en horticulture à SUNY Morrisville, et ce que j’apprends, je le partage avec toi et ma communauté. En échange, tu as un accès complet à la plateforme. Mother Verde n’est pas affilié à SUNY Morrisville.' },
+  dsAvisoCorto: {
+    es: 'Tu aporte único de apoyo me ayuda a estudiar. ' + S.es + ' Lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado ni respaldado por SUNY Morrisville.',
+    en: 'Your one-time support contribution helps me study. ' + S.en + ' What I learn I will share with you and my community. In return you get full access to the platform. Mother Verde is not affiliated with or endorsed by SUNY Morrisville.',
+    de: 'Dein einmaliger Unterstützungsbeitrag hilft mir beim Studieren. ' + S.de + ' Was ich lerne, teile ich mit dir und meiner Gemeinschaft. Dafür erhältst du vollen Zugang zur Plattform. Mother Verde ist nicht mit der SUNY Morrisville verbunden und wird nicht von ihr unterstützt.',
+    fr: 'Ta contribution unique de soutien m’aide à étudier. ' + S.fr + ' Ce que j’apprends, je le partage avec toi et ma communauté. En échange, tu as un accès complet à la plateforme. Mother Verde n’est ni affilié ni approuvé par SUNY Morrisville.',
+  },
   dsPropH3: { es: 'Antes de aportar: para qué es tu aporte', en: 'Before you contribute: what your contribution is for', de: 'Bevor du beiträgst: wofür dein Beitrag gedacht ist', fr: 'Avant de contribuer : à quoi sert ta contribution' },
-  dsProp1: { es: 'Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a terminar su bachillerato en Horticulture Business Management (B.Tech.) en SUNY Morrisville.', en: 'Your one-time support contribution helps Bertha Limo, founder of Mother Verde, finish her bachelor’s degree in Horticulture Business Management (B.Tech.) at SUNY Morrisville.', de: 'Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, Gründerin von Mother Verde, ihren Bachelor in Horticulture Business Management (B.Tech.) an der SUNY Morrisville abzuschließen.', fr: 'Ta contribution unique de soutien aide Bertha Limo, fondatrice de Mother Verde, à terminer son bachelor en Horticulture Business Management (B.Tech.) à SUNY Morrisville.' },
+  dsProp1: {
+    es: 'Tu aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir estudiando. En sus palabras: «' + S.es + '»',
+    en: 'Your one-time support contribution helps Bertha Limo, founder of Mother Verde, keep studying. In her words: “' + S.en + '”',
+    de: 'Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, Gründerin von Mother Verde, weiter zu studieren. In ihren Worten: „' + S.de + '“',
+    fr: 'Ta contribution unique de soutien aide Bertha Limo, fondatrice de Mother Verde, à poursuivre ses études. Selon ses mots : « ' + S.fr + ' »',
+  },
   dsProp2: { es: 'A cambio recibes acceso completo a la plataforma.', en: 'In return you receive full access to the platform.', de: 'Dafür erhältst du vollen Zugang zur Plattform.', fr: 'En échange, tu reçois un accès complet à la plateforme.' },
   dsProp3: { es: 'Es voluntario y único. No es una donación ni es deducible de impuestos.', en: 'It is voluntary and one-time. It is not a donation and is not tax-deductible.', de: 'Er ist freiwillig und einmalig. Er ist keine Spende und nicht steuerlich absetzbar.', fr: 'Elle est volontaire et unique. Ce n’est pas un don et elle n’est pas déductible des impôts.' },
   dsProp4: { es: 'Lo que aprendo lo comparto con mi comunidad y con quienes aprenden aquí.', en: 'What I learn I share with my community and with those who learn here.', de: 'Was ich lerne, teile ich mit meiner Gemeinschaft und mit allen, die hier lernen.', fr: 'Ce que j’apprends, je le partage avec ma communauté et avec celles et ceux qui apprennent ici.' },
