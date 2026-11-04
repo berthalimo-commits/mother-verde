@@ -5,7 +5,7 @@ import './stageBadge.js'; // «STAGING · pruebas» when this build uses the tes
 // What an e-mail link brought back, read BEFORE the client consumes the URL.
 // Supabase sends the person to the site with, in the hash (or the query):
 //   error=access_denied&error_code=otp_expired   link expired or already used
-//   type=recovery | signup | email_change        link worked (plus the tokens)
+//   type=recovery | invite | signup | email_change  link worked (plus the tokens)
 //   message=Confirmation link accepted…          e-mail change: one of the two
 //                                                links done, the other one left
 // The links use the implicit flow: they work in any browser or phone, even one
@@ -323,11 +323,13 @@ document.getElementById('authForgotLink')?.addEventListener('click', async () =>
 
 /* ---------------------- Coming back from an e-mail link ---------------------- */
 let linkNotice = null;       // 'expired' | 'error' | 'half' | 'changed' | null
-let recoveryPending = false; // opened a "reset password" link
+let recoveryPending = false; // opened a "reset password" or "invite" link
+let recoveryInvite = false;  // invite (Supabase → Authentication → Users → Invite): «Crea tu contraseña»
 if(MV_LINK.error) linkNotice = (MV_LINK.code === 'otp_expired' || MV_LINK.error === 'access_denied') ? 'expired' : 'error';
 else if(MV_LINK.message) linkNotice = 'half';
 else if(MV_LINK.type === 'email_change') linkNotice = 'changed';
-if(MV_LINK.type === 'recovery') recoveryPending = true;
+if(MV_LINK.type === 'recovery' || MV_LINK.type === 'invite') recoveryPending = true;
+if(MV_LINK.type === 'invite') recoveryInvite = true;
 
 function renderLinkCard(){
   const card = document.getElementById('authLinkCard');
@@ -368,7 +370,12 @@ document.getElementById('authLinkCard')?.addEventListener('click', async (e) => 
 /* ---------------------- New password (after a reset link) ---------------------- */
 function renderRecovery(){
   const card = document.getElementById('authRecoveryCard');
-  if(card) card.hidden = !(recoveryPending && window.mvCurrentUser);
+  if(!card) return;
+  card.hidden = !(recoveryPending && window.mvCurrentUser);
+  // same form; only the title and the line above it change for an invitation
+  const h = card.querySelector('h3'), p = card.querySelector('p.acc-text');
+  h.dataset.i18n = recoveryInvite ? 'recInvH' : 'recH'; h.textContent = window.t(h.dataset.i18n);
+  p.dataset.i18n = recoveryInvite ? 'recInvP' : 'recP'; p.textContent = window.t(p.dataset.i18n);
 }
 document.getElementById('authRecoveryForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -385,6 +392,7 @@ document.getElementById('authRecoveryForm')?.addEventListener('submit', async (e
   }
   e.target.reset();
   recoveryPending = false;
+  recoveryInvite = false;
   renderRecovery();
   setCeMsg(window.t('recOk'));
 });

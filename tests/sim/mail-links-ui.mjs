@@ -78,6 +78,19 @@ await b.ev(`document.getElementById('recPass2').value='nueva-clave-1'; document.
 check('…si coinciden, guarda y confirma', (await auth()).some((x) => x.type === 'password_set') && /tu contraseña cambió/.test(await screenText(b)) && await b.ev(`document.getElementById('authRecoveryCard').hidden`));
 await b.close();
 
+// ---------------------------------------------------------------- 3b. invitation (Authentication → Users → Invite) -> «Crea tu contraseña»
+b = await browser(null, null, 390);
+await open(b, APP + `#access_token=u:${NEWBIE}:aal1&expires_at=${exp}&expires_in=3600&refresh_token=r:${NEWBIE}:aal1&token_type=bearer&type=invite`);
+s = await waitText(b, /Crea tu contraseña/);
+check('enlace de invitación -> «Crea tu contraseña» (mismo formulario que la recuperación)', /Crea tu contraseña/.test(s) && /Te invitaron/.test(s) && !(await b.ev(`document.getElementById('authRecoveryCard').hidden`)), s.slice(0, 300));
+check('…los datos del enlace de invitación salen de la barra de direcciones', !(await b.ev('location.href')).includes('access_token'));
+await b.ev(`document.querySelector('#langSwitch button[data-lang=en]').click(); 1`); await sleep(300);
+check('…en inglés: «Create your password»', /Create your password/.test(await screenText(b)));
+await b.ev(`document.querySelector('#langSwitch button[data-lang=es]').click(); 1`); await sleep(300);
+await b.ev(`document.getElementById('recPass1').value='invitada-1'; document.getElementById('recPass2').value='invitada-1'; document.getElementById('authRecoveryForm').requestSubmit(); 1`); await sleep(800);
+check('…guarda la contraseña y cierra la tarjeta', (await auth()).filter((x) => x.type === 'password_set').length >= 2 && await b.ev(`document.getElementById('authRecoveryCard').hidden`));
+await b.close();
+
 // ---------------------------------------------------------------- 4. change the sign-in e-mail
 b = await browser(NEWBIE, 'aal1', 390);
 await open(b, APP);
