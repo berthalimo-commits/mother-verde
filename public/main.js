@@ -5736,6 +5736,15 @@ translations.fr.dsProximamente = "Bientôt disponible.";
 translations.en.legalTeaserDesbloquea = "Unlock all 50 countries with full access.";
 translations.de.legalTeaserDesbloquea = "Schalte alle 50 Länder mit Vollzugriff frei.";
 translations.fr.legalTeaserDesbloquea = "Débloque les 50 pays avec l’accès complet.";
+translations.en.legalTeaserVisto = "You’ve seen";
+translations.de.legalTeaserVisto = "Gesehen:";
+translations.fr.legalTeaserVisto = "Tu as vu";
+translations.en.legalTeaserDe = "of";
+translations.de.legalTeaserDe = "von";
+translations.fr.legalTeaserDe = "sur";
+translations.en.pmOsteoartritisNote = "<b>CBD for canine osteoarthritis: what the foundational study shows.</b> That first Cornell trial mentioned above (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University and Colorado State University) found that 2 mg/kg of CBD twice a day reduced pain and increased activity in dogs with osteoarthritis, measured with validated veterinary scales, with no side effects reported by the owners. The honest caveat: blood tests did detect a rise in alkaline phosphatase during treatment — something only a veterinarian can detect, and the reason any therapeutic use of CBD in pets needs veterinary supervision rather than self-administration.";
+translations.de.pmOsteoartritisNote = "<b>CBD bei Arthrose beim Hund: Was die grundlegende Studie zeigt.</b> Die oben erwähnte erste Cornell-Studie (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University und Colorado State University) fand, dass 2 mg/kg CBD zweimal täglich bei Hunden mit Arthrose die Schmerzen verringerte und die Aktivität steigerte, gemessen mit validierten tierärztlichen Skalen, ohne von den Haltern berichtete Nebenwirkungen. Der ehrliche Hinweis: In den Blutuntersuchungen wurde während der Behandlung ein Anstieg der alkalischen Phosphatase festgestellt — etwas, das nur eine Tierärztin oder ein Tierarzt erkennen kann, und der Grund, warum jede therapeutische Anwendung von CBD bei Haustieren tierärztliche Begleitung braucht und nicht auf eigene Faust erfolgen sollte.";
+translations.fr.pmOsteoartritisNote = "<b>Le CBD contre l’arthrose du chien : ce que montre l’étude fondatrice.</b> Ce premier essai de Cornell mentionné plus haut (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University et Colorado State University) a montré que 2 mg/kg de CBD deux fois par jour réduisaient la douleur et augmentaient l’activité chez des chiens arthrosiques, mesurées avec des échelles vétérinaires validées, sans effets secondaires signalés par les propriétaires. Le point honnête : une hausse des phosphatases alcalines a bien été détectée dans les analyses de sang pendant le traitement — ce que seul un vétérinaire peut repérer, et la raison pour laquelle tout usage thérapeutique du CBD chez l’animal doit se faire sous suivi vétérinaire, pas en automédication.";
 translations.de.alertasEyebrow = "Im Vollzugriff enthalten";
 translations.fr.alertasEyebrow = "Inclus dans l’accès complet";
 
@@ -5824,10 +5833,6 @@ translations.es.dsPaso4 = "Pega aquí ese código. Revisamos cada aporte y activ
 translations.en.dsPaso4 = "Paste that code here. We check every contribution and turn on your full access within up to {h} hours.";
 translations.de.dsPaso4 = "Füge diesen Code hier ein. Wir prüfen jeden Beitrag und schalten deinen Vollzugriff in bis zu {h} Stunden frei.";
 translations.fr.dsPaso4 = "Colle ce code ici. Nous vérifions chaque contribution et activons ton accès complet en jusqu’à {h} heures.";
-translations.es.dsFormProximamente = "El formulario para avisarnos de tu aporte estará aquí muy pronto. Todavía no envíes nada: espera a que aparezca.";
-translations.en.dsFormProximamente = "The form to tell us about your contribution will be here very soon. Please don’t send anything yet: wait until it appears.";
-translations.de.dsFormProximamente = "Das Formular, mit dem du uns über deinen Beitrag informierst, kommt sehr bald hierher. Bitte sende noch nichts: Warte, bis es erscheint.";
-translations.fr.dsFormProximamente = "Le formulaire pour nous signaler ta contribution sera ici très bientôt. N’envoie rien pour l’instant : attends qu’il apparaisse.";
 
 // Signup rejected by the Before User Created hook (src/auth.js mapAuthError)
 translations.es.authErrSignupNotAllowed = "No pudimos crear la cuenta con ese correo. Si ya tienes una cuenta, inicia sesión; si no, prueba con otro correo (no aceptamos correos temporales).";

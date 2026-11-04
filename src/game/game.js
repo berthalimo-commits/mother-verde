@@ -73,6 +73,11 @@ async function persist(s) {
   const { data, error } = res;
   if (error) {
     const m = String(error.message || '');
+    // bad_state: the server refused this step (it is not a connection problem):
+    // say so honestly, do NOT say «saved on this device» and do NOT retry on
+    // its own (pending = false: no 'online' resend, no timer). The copy stays
+    // on the device; the next reload offers it once more.
+    if (m.includes('bad_state')) { pending = false; sync = 'bad'; return paintSync(); }
     sync = m.includes('rate_limited') ? 'lento' : m.includes('no_access') ? 'err' : 'local';
     if (m.includes('no_access')) window.mvRefreshAuth?.(); // access ended: the app locks with the usual screen
     if (sync === 'lento') setTimeout(() => pending && persist(state), 61000);
@@ -490,7 +495,7 @@ const WHY_CTX = { t, esc, lessonBtn: (l) => lessonBtn(l), bindLessons };
 const RV_CTX = { ...WHY_CTX, fmt };
 
 function syncText() {
-  return { ok: 'jgSync_ok', local: 'jgSync_local', stale: 'jgSync_stale', preview: 'jgSync_preview', lento: 'jgSync_lento', err: 'jgErrGuardar' }[sync];
+  return { ok: 'jgSync_ok', local: 'jgSync_local', stale: 'jgSync_stale', preview: 'jgSync_preview', lento: 'jgSync_lento', bad: 'jgSync_bad', err: 'jgErrGuardar' }[sync];
 }
 function paintSync() {
   const el = document.getElementById('jgSync');
