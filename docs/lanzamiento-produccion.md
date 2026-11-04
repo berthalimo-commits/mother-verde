@@ -1,4 +1,13 @@
-# Puesta en producción de www.motherverdeny.com — preparación (13 de octubre de 2026)
+# Puesta en producción de www.motherverdeny.com — preparación (13 de octubre de 2026; actualizado el 4 de noviembre de 2026)
+
+**Última actualización:** 4 de noviembre de 2026, sobre `dev` en `165180e` (revisión independiente).
+- hello@ se registra antes de cerrar los registros (paso 4b).
+- Archivos SQL numerados en `supabase/produccion/`.
+- Comprobación final `31-read-only-checks.sql`.
+- Variables de Vercel que faltaban, y rotar la clave de servicio.
+- Migración `20261105100000`: la prueba de 24 h, una vez por persona.
+
+El orden corto, paso a paso, está en `docs/plan-migracion.md`.
 
 **Nada está publicado.** Producción sigue en `d58f1aa` (Vercel `dpl_AYSGmSZc98Jy2kumc7zzaRaVzcZ5`).
 El merge a `main` se hace solo cuando escribas exactamente: «APRUEBO EL MERGE A MAIN».
@@ -98,7 +107,9 @@ La cuenta de administradora va **después del merge** porque hello@ se registra 
 2. Vercel → Deployments → la última de Production → «…» → **Redeploy**. En unos 2–3 minutos la web sale **sin**
    el juego (sin el botón «¡Juega ya!»); la historia de bienvenida no cambia.
 3. **No se toca la base**: las partidas guardadas se conservan y vuelven cuando se encienda otra vez (`MV_GAME` = `1`
-   y Redeploy). Quien tenga la web abierta ve el aviso «hay una versión nueva» y al recargar ya no tiene el juego.
+   y Redeploy). **Quien ya tiene la web abierta sigue viendo el juego hasta que recarga la página.** Mientras tanto
+   puede seguir jugando y guardando: la base no cambia. Puede que le salga el aviso «hay una versión nueva», pero
+   no siempre. Al recargar, ya no tiene el juego.
 4. Si el fallo es de la web entera, no del juego: *Instant Rollback* (abajo).
 Solo si hubiera que quitar el juego también de la base (casi nunca): `rollback-20261031100000.sql` →
 `rollback-20261029100000.sql` → `rollback-20261015100000.sql`, en ese orden; la última **borra todas las partidas**.
@@ -116,6 +127,7 @@ no funciona bien con la base nueva y la nueva no funciona con la vieja).
 | Hook | (sin SQL) Authentication → Hooks → apagar «Before User Created». **Primero esto.** | — |
 | `grant-admin.sql` (hello@ admin + acceso completo) | `rollback-grant-admin.sql` (PARTE 1 solo lectura, luego PARTE 2) | hello@ deja de ser admin y vuelve al estado de acceso que tenía antes (lo guarda el registro de auditoría) |
 | Juego: `20261031100000` → `20261029100000` → `20261015100000` | `rollback-20261031100000.sql`, `rollback-20261029100000.sql`, `rollback-20261015100000.sql` (primero quitar `MV_GAME`, ver interruptor) | la última **borra todas las partidas guardadas** |
+| `20261105100000` prueba una vez por persona | `rollback-20261105100000.sql` | se niega mientras haya huellas guardadas (son lo único que recuerda quién ya usó la prueba); vaciarlas es una decisión aparte |
 | `20261104100000` propósito del aporte | `rollback-20261104100000.sql` | se niega si ya hay reservas con el propósito aceptado (nada se pierde por accidente) |
 | `20261103100000` aportes manuales | `rollback-20261103100000.sql` | se niega si ya hay aportes manuales registrados |
 | `20261020100000` Bitácora de solo lectura sin acceso | `rollback-20261020100000.sql` | nada: vuelven las reglas anteriores (sin acceso se podía escribir) |
@@ -162,16 +174,34 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    la dirección ya está en `src/supportConfig.js` y quedará pública con el merge.
 2. ☐ **Tú**: hacer una copia de la base (Supabase → Database → Backups, o exportar) justo antes de empezar.
 3. ☐ **Tú**: tener a mano la contraseña del buzón hello@ y, si usarás Resend, su clave.
+3b. ☐ **Tú**: decirme qué tipo de claves ves en Supabase → Project Settings → API Keys, **sin los valores**:
+   - las **antiguas**, JWT que empiezan por `eyJ…`;
+   - o las **nuevas**: `sb_publishable_…` / `sb_secret_…`.
+
+   Con eso preparo el paso 9b (rotar la clave de servicio).
 4. ☐ **Yo** (si me lo pides): terminar los bloques «icono» y «velocidad y privacidad» y volver a pasar las pruebas.
 
-**El día, en una sola sesión**
-5. ☐ **Tú**: SQL Editor → `precheck-before-20261010.sql`. Todas las filas `ok`. Si no: paras y me escribes.
-6. ☐ **Tú**: SQL Editor, cada archivo entero y en orden:
+**El día, en una sola sesión.** Todos los archivos SQL están numerados en `supabase/produccion/` (`00-LEEME.md`).
+Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica así en un Postgres real.
+4b. ☐ **Tú — ANTES de cerrar los registros**:
+   1. En la web publicada ahora, regístrate con `hello@motherverdeny.com`.
+   2. Confirma el correo.
+   3. Comprueba en Authentication → Users que hello@ sale como «Confirmed».
+
+   **Si el correo no llega:** Supabase puede estar usando aún su correo de prueba, que solo llega al equipo.
+   - Configura antes el SMTP del paso 10 (no afecta a la web publicada) y pide otro enlace.
+   - O usa Authentication → Users → «Add user» → «Create new user», con «Auto Confirm User».
+   - «Invite user» también sirve: el enlace abre «Crea tu contraseña».
+
+   **Después** cierra los registros: Authentication → Sign In / Providers → apagar «Allow new users to sign up».
+5. ☐ **Tú**: SQL Editor → `01-precheck-before-20261010.sql`. Todas las filas `ok`. Si no: paras y me escribes.
+6. ☐ **Tú**: SQL Editor, los archivos `02` a `26`, cada uno entero y en orden:
    `20261010120000` → `seed-blocked-email-domains/part-01` … `part-07` → `20261010130000` → `20261011100000` →
    `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
    `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` →
    `20261020100000` (Bitácora de solo lectura sin acceso, también en el servidor) →
    `20261103100000` (aportes manuales) → `20261104100000` (propósito del aporte + aviso «Ya tienes cuenta») →
+   `20261105100000` (la prueba de 24 h, una vez por persona) →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
 6b. ☐ **Tú — el juego SALE ENCENDIDO en el lanzamiento** (decisión de Bertha, 2026-11-04). Justo después del paso 6,
    cada archivo entero y en este orden: `supabase/admin/precheck-game.sql` (solo lectura: **todas las filas `ok`**;
@@ -180,6 +210,17 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    Este orden exacto (plataforma → precheck → las 3 del juego) está probado en una base Postgres real:
    prueba `prod-game-db`. En staging ya están aplicadas (pasos 4b, 4c y 4d de `supabase/staging/`).
    El código del juego solo entra en la web si la compilación ve `MV_GAME=1`: ver paso 9.
+   Son los archivos `27` (precheck) a `30` de `supabase/produccion/`.
+6c. ☐ **Tú**: `31-read-only-checks.sql`. Es solo lectura y una sola consulta: las **23 filas** dicen `ok`.
+   Revisa plataforma, aportes manuales, propósito, la prueba una vez por persona, juego, RLS y tus dos cuentas.
+   **Nunca da error**: lo que falte sale como `FALTA`. Si una fila no dice `ok`, paras y me mandas la captura.
+6d. ☐ **Tú**: SQL Editor → `grant-admin.sql` para hello@ (registrada en el paso 4b).
+   1. Primero la **PARTE 1** sola (solo lectura): debe salir una fila, hello@motherverdeny.com, `email_confirmed = true`.
+   2. Después el archivo entero: al final, una fila con `is_admin = true`, `subscription_status = supporter`,
+      `full_access = true`.
+
+   Si dice «NO SE HIZO NADA», lee el mensaje (cuenta sin crear o sin confirmar), arréglalo y vuelve a pegarlo: se
+   puede pegar las veces que haga falta. Para deshacerlo: `rollback-grant-admin.sql`.
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
    y `RESEND_API_KEY` si toca.
@@ -189,9 +230,25 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    `signup-fix-email` (**Verify JWT apagado**). `delete-account` no se toca.
    **Importante:** `support-claims` tiene que ser la versión nueva (acción `submit_late`): con `20261014120000` el
    pago tardío ya no se puede registrar desde el navegador y solo pasa por esta función, que lo comprueba en Base.
-9. ☐ **Tú**: Vercel → Settings → Environment Variables → **Production**: `RETRANSLATE_SECRET` (el mismo valor) y
-   **`MV_GAME` = `1`** (solo Production; antes del merge, para que la primera publicación ya lleve el juego).
-   Ojo: una variable llamada `VITE_MV_GAME` **no hace nada**; tiene que llamarse exactamente `MV_GAME`.
+9. ☐ **Tú**: Vercel → Settings → Environment Variables → **Production** (solo Production). Comprueba que están todas:
+   - `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` (producción);
+   - `RETRANSLATE_SECRET` (el mismo valor que en las Edge Functions);
+   - **`CRON_SECRET`** (faltaba). Una cadena larga al azar. Sin ella, la tarea diaria `/api/subscription-cron`
+     rechaza todas las llamadas y no caduca avisos ni pruebas.
+   - **`SUPABASE_SERVICE_ROLE_KEY`** (faltaba). La clave secreta de producción. Solo la usa la tarea diaria, en el
+     servidor; márcala «Sensitive».
+   - **`MV_GAME` = `1`**, antes del merge, para que la primera publicación ya lleve el juego. Ojo: una variable
+     llamada `VITE_MV_GAME` **no hace nada**; tiene que llamarse exactamente `MV_GAME`.
+   - `RESEND_API_KEY` si toca (formulario de anuncios).
+
+   **Formato de claves:** usa el mismo tipo, antiguas (`eyJ…`) o nuevas (`sb_…`), en las dos variables de
+   Supabase. Si son las nuevas, avísame: compruebo la tarea diaria con ese formato en staging antes del día.
+9b. ☐ **Tú**: **rotar la clave de servicio de producción** y actualizarla en Vercel Production. Estuvo en un
+   `.env.local` del ordenador, ya borrada de allí.
+   - **Claves nuevas:** crear una `sb_secret_` nueva → ponerla en Vercel → Redeploy → borrar la vieja.
+     No afecta a nadie.
+   - **Claves antiguas:** cambiar el *JWT secret*. Cambian también la anon y la service_role, y se cierran todas
+     las sesiones. Hazlo con los registros cerrados y antes del merge, y actualiza en Vercel las dos variables.
 10b. ☐ **BLOQUEO DEL MERGE — el juego verificado al 100 %.** No se hace el merge a `main` (paso 11) hasta que estén
    las cuatro cosas, por escrito en `docs/juego-validacion.md`:
    1. **Partidas completas** jugadas por Bertha en Preview (de germinación al final, varios sistemas y al menos
@@ -209,13 +266,9 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
     - Providers → Email: «Confirm email» y «Secure email change» activados.
 11. ☐ **Tú**: escribirme «APRUEBO EL MERGE A MAIN». **Yo**: fusiono el pull request, espero a que Vercel
     diga READY y compruebo la web publicada sin iniciar sesión.
-12. ☐ **Tú**: registrarte en la web con `hello@motherverdeny.com` y confirmar el correo (comprueba que llega).
-13. ☐ **Tú**: SQL Editor → `grant-admin.sql`. Primero **PARTE 1** sola (solo lectura): debe salir una fila,
-    hello@motherverdeny.com, `email_confirmed = true`. Después el archivo entero: al final, una fila con
-    `is_admin = true`, `subscription_status = supporter`, `full_access = true`. Si dice «NO SE HIZO NADA», lee el
-    mensaje (cuenta sin crear o sin confirmar), arréglalo y vuelve a pegarlo: se puede pegar las veces que haga falta.
-    Para deshacerlo: `rollback-grant-admin.sql`.
-14. ☐ **Tú**: abrir `/panel-mv.html`, activar la verificación en dos pasos y **guardar la clave**.
+12. ☐ (Pasó al 4b: hello@ se registra antes de cerrar los registros.)
+13. ☐ (Pasó al 6d: `grant-admin.sql` justo después del SQL.)
+14. ☐ **Tú**: entrar con hello@ en `/panel-mv.html`, activar la verificación en dos pasos y **guardar la clave**.
 15. ☐ **Tú**: en el panel, «Enviar correo de prueba a mi correo». Llega a hello@.
 16. ☐ **Tú**: con una cuenta de prueba **sin confirmar**, probar «Corrígelo» con una contraseña equivocada:
     tiene que decir «La contraseña no coincide». Si no, me avisas.

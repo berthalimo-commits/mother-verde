@@ -18,6 +18,8 @@
 -- Nobody can read these from the browser (RLS on, no policies, no grants).
 -- Rollback: supabase/admin/rollback-20261105100000.sql.
 -- Check:    supabase/admin/check-20261105100000.sql (read only).
+-- Runs as ONE transaction: if any statement fails, nothing is applied.
+begin;
 
 -- ---------------------------------------------------------------------------
 -- 1. Normalized e-mail
@@ -142,3 +144,5 @@ begin
 end;
 $$;
 revoke execute on function public.start_trial_on_email_confirmed() from public, anon, authenticated;
+
+commit;
