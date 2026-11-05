@@ -12,10 +12,10 @@
 // (copies it to public/main.js and to the support-claims e-mails), then
 // redeploy the support-claims function (paste in the Supabase dashboard).
 export const SUNY_ACCEPTED = {
-  es: 'SUNY Morrisville me aceptó para continuar mi educación.',
-  en: 'SUNY Morrisville accepted me to continue my education.',
-  de: 'Die SUNY Morrisville hat mich aufgenommen, damit ich meine Ausbildung fortsetzen kann.',
-  fr: 'SUNY Morrisville m’a acceptée pour poursuivre mes études.',
+  es: 'SUNY Morrisville me abrió otra vez sus puertas para seguir aprendiendo y creciendo en mi vida profesional.',
+  en: 'SUNY Morrisville opened its doors to me once again so I can keep learning and growing in my professional life.',
+  de: 'Die SUNY Morrisville hat mir ihre Türen noch einmal geöffnet, damit ich weiter lernen und in meinem Berufsleben wachsen kann.',
+  fr: 'SUNY Morrisville m’a de nouveau ouvert ses portes pour que je continue d’apprendre et de grandir dans ma vie professionnelle.',
 };
 const S = SUNY_ACCEPTED;
 

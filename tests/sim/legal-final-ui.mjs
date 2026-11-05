@@ -16,10 +16,10 @@ const L = ['es', 'en', 'de', 'fr'];
 const MARK = /PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE/;
 const STILL_PENDING = []; // none left (2026-11-05)
 const TC5 = {
-  es: /^El aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a continuar su educación en SUNY Morrisville.*La prueba gratuita de 24 horas se ofrece una sola vez por persona\. Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville\./,
-  en: /^The one-time support contribution helps Bertha Limo.*not affiliated with or endorsed by SUNY Morrisville\./,
-  de: /^Der einmalige Unterstützungsbeitrag hilft Bertha Limo.*nicht von ihr unterstützt\./,
-  fr: /^La contribution unique de soutien aide Bertha Limo.*non affilié ni approuvé par SUNY Morrisville\./,
+  es: /^El aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir aprendiendo y creciendo en su vida profesional en SUNY Morrisville, que le abrió otra vez sus puertas.*La prueba gratuita de 24 horas se ofrece una sola vez por persona\. Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville\./,
+  en: /^The one-time support contribution helps Bertha Limo, founder of Mother Verde, keep learning and growing in her professional life at SUNY Morrisville, which opened its doors to her once again.*not affiliated with or endorsed by SUNY Morrisville\./,
+  de: /^Der einmalige Unterstützungsbeitrag hilft Bertha Limo, Gründerin von Mother Verde, an der SUNY Morrisville, die ihr noch einmal ihre Türen geöffnet hat, weiter zu lernen.*nicht von ihr unterstützt\./,
+  fr: /^La contribution unique de soutien aide Bertha Limo, fondatrice de Mother Verde, à continuer d’apprendre et de grandir dans sa vie professionnelle à SUNY Morrisville, qui lui a de nouveau ouvert ses portes.*non affilié ni approuvé par SUNY Morrisville\./,
 };
 const UPD = { es: 'Última actualización: 5 de noviembre de 2026', en: 'Last updated: 5 November 2026', de: 'Zuletzt aktualisiert: 5. November 2026', fr: 'Dernière mise à jour : 5 novembre 2026' };
 const FP = { es: 'guardamos solo una huella cifrada e irreversible de tu correo', en: 'we keep only an encrypted, irreversible fingerprint of your e-mail', de: 'speichern wir nur einen verschlüsselten, nicht umkehrbaren Fingerabdruck', fr: 'nous gardons seulement une empreinte chiffrée et irréversible' };
