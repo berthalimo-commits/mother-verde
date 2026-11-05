@@ -37,11 +37,17 @@ check('«No es una donación ni es deducible de impuestos» está tal cual en lo
 // the SUNY sentence (provisional, ONE place: SUNY_ACCEPTED) in the story, the
 // contribution screen, the short notice and the e-mails; no degree or title;
 // «no afiliado NI respaldado» in every language
-const { SUNY_ACCEPTED: SA } = await import('file:///' + path.join(APP, 'src/purposeTexts.js'));
+const { SUNY_ACCEPTED: SA, SUPPORT_HELPS: SH } = await import('file:///' + path.join(APP, 'src/purposeTexts.js'));
 check('frase de SUNY (provisional) idéntica en historia 4, pantalla de aporte y aviso corto, en los 4 idiomas', L.every((l) => T.story4P[l].includes(SA[l]) && T.dsProp1[l].includes(SA[l]) && T.dsAvisoCorto[l].includes(SA[l])), JSON.stringify(SA));
 const fnBlock = fnSrc.slice(fnSrc.indexOf('@suny-accepted-start'), fnSrc.indexOf('@suny-accepted-end'));
-const mailUses = ['receivedEmail', 'manualEmail', 'activationEmail'].every((fn) => { const i = fnSrc.indexOf('function ' + fn); const body = fnSrc.slice(i, fnSrc.indexOf('\n}\n', i)); return L.every((l) => body.includes('${SUNY_ACCEPTED.' + l + '}')); });
-check('…y en los correos «aviso recibido» y «acceso aprobado»: la misma frase, copiada por la herramienta (no editada a mano)', L.every((l) => fnBlock.includes(JSON.stringify(SA[l]))) && mailUses);
+// the e-mails use the copied sentences: «aviso recibido» directly, «acceso
+// activo» and «aporte manual confirmado» through THANKS (= SUPPORT_HELPS + SUNY)
+const bodyOf = (fn) => { const i = fnSrc.indexOf(fn); return fnSrc.slice(i, fnSrc.indexOf('\n}', i)); };
+const thanks = bodyOf('const THANKS = {');
+const uses = (body, l) => body.includes('${SUPPORT_HELPS.' + l + '} ${SUNY_ACCEPTED.' + l + '}') || body.includes('${THANKS.' + l + '}');
+const mailUses = L.every((l) => uses(thanks, l) && thanks.includes('${SUPPORT_HELPS.' + l + '} ${SUNY_ACCEPTED.' + l + '}'))
+  && ['function receivedEmail', 'function manualEmail', 'function activationEmail'].every((fn) => L.every((l) => uses(bodyOf(fn), l)));
+check('…y en los 3 correos («aviso recibido», «acceso activo», «aporte manual confirmado»): las mismas frases que el recuadro (SUPPORT_HELPS + SUNY_ACCEPTED), copiadas por la herramienta (no editadas a mano)', L.every((l) => fnBlock.includes(JSON.stringify(SA[l])) && fnBlock.includes(JSON.stringify(SH[l])) && T.dsProp1[l].includes(SH[l] + ' ' + SA[l])) && mailUses);
 check('la frase es la de Bertha, sin «horticultura»', SA.es === 'SUNY Morrisville me aceptó para continuar mi educación.' && SA.en === 'SUNY Morrisville accepted me to continue my education.' && SA.de === 'Die SUNY Morrisville hat mich aufgenommen, damit ich meine Ausbildung fortsetzen kann.' && /^SUNY Morrisville m[’']a acceptée pour poursuivre mes études\.$/.test(SA.fr) && !L.some((l) => /horticul|Gartenbau/i.test(SA[l])));
 const indep = { es: /no está afiliado ni respaldado por SUNY Morrisville|no afiliado ni respaldado por SUNY Morrisville/i, en: /not affiliated with or endorsed by SUNY Morrisville/, de: /nicht mit der SUNY Morrisville verbunden und (wird )?nicht von ihr unterstützt/, fr: /ni affilié ni approuvé par SUNY Morrisville|non affilié ni approuvé par SUNY Morrisville/ };
 check('«no afiliado ni respaldado por SUNY Morrisville» en la historia, el aviso corto y la pantalla de aporte, en los 4 idiomas', L.every((l) => indep[l].test(T.storyIndependent[l]) && indep[l].test(T.dsAvisoCorto[l]) && indep[l].test(T.dsProp5[l])), L.map((l) => [l, indep[l].test(T.storyIndependent[l]), indep[l].test(T.dsAvisoCorto[l]), indep[l].test(T.dsProp5[l])]).join(' '));

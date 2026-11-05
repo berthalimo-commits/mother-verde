@@ -5,7 +5,7 @@
 // Usage: node tools/apply-purpose-texts.mjs
 import fs from 'fs';
 import path from 'path';
-import { PURPOSE_TEXTS, SUNY_ACCEPTED } from '../src/purposeTexts.js';
+import { PURPOSE_TEXTS, SUNY_ACCEPTED, SUPPORT_HELPS } from '../src/purposeTexts.js';
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..');
 const file = path.join(ROOT, 'public/main.js');
 const m = fs.readFileSync(file, 'utf8').split('\n');
@@ -17,14 +17,15 @@ m.splice(a + 1, b - a - 1, ...lines);
 fs.writeFileSync(file, m.join('\n'));
 console.log(`${lines.length} líneas copiadas a public/main.js`);
 
-// The SUNY sentence also goes into the e-mails of the support-claims function
+// The SUNY sentence and «Tu aporte único de apoyo me ayuda…» also go into the e-mails of the support-claims function
 // (between @suny-accepted-start / -end). After this, redeploy that function.
 const fn = path.join(ROOT, 'supabase/functions/support-claims/index.ts');
 const f = fs.readFileSync(fn, 'utf8').split('\n');
 const fa = f.findIndex((l) => l.includes('@suny-accepted-start')), fb = f.findIndex((l) => l.includes('@suny-accepted-end'));
 if (fa < 0 || fb < fa) throw new Error('faltan los marcadores @suny-accepted en support-claims/index.ts');
-const block = ['const SUNY_ACCEPTED = {', ...['es', 'en', 'de', 'fr'].map((l) => `  ${l}: ${JSON.stringify(SUNY_ACCEPTED[l])},`), '};'];
+const obj = (name, v) => [`const ${name} = {`, ...['es', 'en', 'de', 'fr'].map((l) => `  ${l}: ${JSON.stringify(v[l])},`), '};'];
+const block = [...obj('SUPPORT_HELPS', SUPPORT_HELPS), ...obj('SUNY_ACCEPTED', SUNY_ACCEPTED)];
 const before = f.slice(fa + 1, fb).join('\n');
 f.splice(fa + 1, fb - fa - 1, ...block);
 fs.writeFileSync(fn, f.join('\n'));
-console.log(before === block.join('\n') ? 'support-claims: la frase de SUNY ya estaba igual' : 'support-claims: frase de SUNY actualizada -> vuelve a desplegar la función');
+console.log(before === block.join('\n') ? 'support-claims: las frases ya estaban iguales' : 'support-claims: frases actualizadas -> vuelve a desplegar la función');

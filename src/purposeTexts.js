@@ -19,6 +19,18 @@ export const SUNY_ACCEPTED = {
 };
 const S = SUNY_ACCEPTED;
 
+// «Tu aporte único de apoyo me ayuda a seguir estudiando.» — Bertha's own
+// sentence, ONE place: the «Antes de aportar» box (dsProp1) and the three
+// contribution e-mails («aviso recibido», «acceso activo», «aporte manual
+// confirmado», copied into support-claims by tools/apply-purpose-texts.mjs).
+export const SUPPORT_HELPS = {
+  es: 'Tu aporte único de apoyo me ayuda a seguir estudiando.',
+  en: 'Your one-time support contribution helps me keep studying.',
+  de: 'Dein einmaliger Unterstützungsbeitrag hilft mir, weiter zu studieren.',
+  fr: 'Ta contribution unique de soutien m’aide à étudier.',
+};
+const H = SUPPORT_HELPS;
+
 export const PURPOSE_TEXTS = {
   // ---------------------------------------------------------- welcome story
   storyDialog: { es: 'Nuestra historia', en: 'Our story', de: 'Unsere Geschichte', fr: 'Notre histoire' },
@@ -91,10 +103,10 @@ export const PURPOSE_TEXTS = {
   // «Antes de aportar» box: ONE voice — Bertha, in the first person, speaking
   // to the reader as tú/you/du/tu (Bertha, 2026-11-04). Point 3 stays neutral.
   dsProp1: {
-    es: 'Soy Bertha Limo, fundadora de Mother Verde. Tu aporte único de apoyo me ayuda a seguir estudiando. ' + S.es,
-    en: 'I am Bertha Limo, founder of Mother Verde. Your one-time support contribution helps me keep studying. ' + S.en,
-    de: 'Ich bin Bertha Limo, Gründerin von Mother Verde. Dein einmaliger Unterstützungsbeitrag hilft mir, weiter zu studieren. ' + S.de,
-    fr: 'Je suis Bertha Limo, fondatrice de Mother Verde. Ta contribution unique de soutien m’aide à étudier. ' + S.fr,
+    es: 'Soy Bertha Limo, fundadora de Mother Verde. ' + H.es + ' ' + S.es,
+    en: 'I am Bertha Limo, founder of Mother Verde. ' + H.en + ' ' + S.en,
+    de: 'Ich bin Bertha Limo, Gründerin von Mother Verde. ' + H.de + ' ' + S.de,
+    fr: 'Je suis Bertha Limo, fondatrice de Mother Verde. ' + H.fr + ' ' + S.fr,
   },
   dsProp2: { es: 'A cambio, te doy acceso completo a la plataforma.', en: 'In return, I give you full access to the platform.', de: 'Dafür gebe ich dir vollen Zugang zur Plattform.', fr: 'En échange, je te donne un accès complet à la plateforme.' },
   dsProp3: { es: 'Es un aporte voluntario y único. No es una donación ni es deducible de impuestos.', en: 'It is a voluntary, one-time contribution. It is not a donation and is not tax-deductible.', de: 'Es ist ein freiwilliger, einmaliger Beitrag. Er ist keine Spende und nicht steuerlich absetzbar.', fr: 'C’est une contribution volontaire et unique. Ce n’est pas un don et elle n’est pas déductible des impôts.' },

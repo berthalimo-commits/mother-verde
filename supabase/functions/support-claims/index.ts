@@ -286,10 +286,17 @@ function usdcText(units: unknown, sep: string): string {
   return p.slice(0, -6).replace(/^0+(?=\d)/, "") + sep + p.slice(-6, -2);
 }
 
-// The SUNY sentence (provisional). Do not edit here: it is copied from
-// src/purposeTexts.js (SUNY_ACCEPTED) by tools/apply-purpose-texts.mjs, and
-// the purpose-texts test fails if the two differ.
+// Bertha's sentences, shared with the «Antes de aportar» box. Do not edit
+// here: copied from src/purposeTexts.js (SUPPORT_HELPS, SUNY_ACCEPTED — the SUNY
+// one is provisional) by tools/apply-purpose-texts.mjs; the purpose-texts test
+// fails if they differ.
 // @suny-accepted-start
+const SUPPORT_HELPS = {
+  es: "Tu aporte único de apoyo me ayuda a seguir estudiando.",
+  en: "Your one-time support contribution helps me keep studying.",
+  de: "Dein einmaliger Unterstützungsbeitrag hilft mir, weiter zu studieren.",
+  fr: "Ta contribution unique de soutien m’aide à étudier.",
+};
 const SUNY_ACCEPTED = {
   es: "SUNY Morrisville me aceptó para continuar mi educación.",
   en: "SUNY Morrisville accepted me to continue my education.",
@@ -298,27 +305,37 @@ const SUNY_ACCEPTED = {
 };
 // @suny-accepted-end
 
+// The three contribution e-mails speak with ONE voice, like the «Antes de
+// aportar» box: Bertha, in the first person, to the reader as tú/you/du/tu
+// (Bertha's APRUEBO, 2026-11-05).
+const THANKS = {
+  es: `${SUPPORT_HELPS.es} ${SUNY_ACCEPTED.es} Lo que aprendo lo comparto contigo y con mi comunidad.`,
+  en: `${SUPPORT_HELPS.en} ${SUNY_ACCEPTED.en} What I learn I share with you and my community.`,
+  de: `${SUPPORT_HELPS.de} ${SUNY_ACCEPTED.de} Was ich lerne, teile ich mit dir und meiner Gemeinschaft.`,
+  fr: `${SUPPORT_HELPS.fr} ${SUNY_ACCEPTED.fr} Ce que j’apprends, je le partage avec toi et ma communauté.`,
+};
+
 function activationEmail(flowers: number, units: unknown, appUrl: string): Mail & { to: "" } {
   const es = usdcText(units, ","), en = usdcText(units, ".");
   const blocks: [string, string, string[]][] = [
     ["es", "Tu acceso completo está activo", [
-      `Recibimos tu aporte de ${flowers} ${flowers === 1 ? "flor" : "flores"} (${es} USDC) y ya activamos el acceso completo en tu cuenta de Mother Verde.`,
-      `¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar. ${SUNY_ACCEPTED.es} Lo que aprenda lo compartiré contigo y con mi comunidad.`,
+      `Recibí tu aporte de ${flowers} ${flowers === 1 ? "flor" : "flores"} (${es} USDC) y ya activé el acceso completo en tu cuenta de Mother Verde.`,
+      `¡Gracias! ${THANKS.es}`,
       "Si no hiciste este aporte, responde a este correo.",
     ]],
     ["en", "Your full access is active", [
-      `We received your contribution of ${flowers} ${flowers === 1 ? "flower" : "flowers"} (${en} USDC) and full access is now active on your Mother Verde account.`,
-      `Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study. ${SUNY_ACCEPTED.en} What I learn I will share with you and my community.`,
+      `I received your contribution of ${flowers} ${flowers === 1 ? "flower" : "flowers"} (${en} USDC) and I have activated full access on your Mother Verde account.`,
+      `Thank you! ${THANKS.en}`,
       "If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
-      `Wir haben deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} (${es} USDC) erhalten, und der Vollzugriff ist in deinem Mother-Verde-Konto jetzt aktiv.`,
-      `Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren. ${SUNY_ACCEPTED.de} Was ich lerne, teile ich mit dir und meiner Gemeinschaft.`,
+      `Ich habe deinen Beitrag von ${flowers} ${flowers === 1 ? "Blüte" : "Blüten"} (${es} USDC) erhalten und den Vollzugriff in deinem Mother-Verde-Konto freigeschaltet.`,
+      `Danke! ${THANKS.de}`,
       "Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [
-      `Nous avons reçu ta contribution de ${flowers} ${flowers === 1 ? "fleur" : "fleurs"} (${es} USDC) et l'accès complet est maintenant actif sur ton compte Mother Verde.`,
-      `Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier. ${SUNY_ACCEPTED.fr} Ce que j'apprends, je le partage avec toi et ma communauté.`,
+      `J’ai reçu ta contribution de ${flowers} ${flowers === 1 ? "fleur" : "fleurs"} (${es} USDC) et j’ai activé l’accès complet sur ton compte Mother Verde.`,
+      `Merci ! ${THANKS.fr}`,
       "Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
     ]],
   ];
@@ -330,50 +347,50 @@ function activationEmail(flowers: number, units: unknown, appUrl: string): Mail 
   };
 }
 
-// «Aviso recibido» (Bertha's text, 2026-11-03): to the person, once per claim.
+// «Aviso recibido»: to the person, once per claim.
 function receivedEmail(units: unknown, appUrl: string): Mail & { to: "" } {
   const es = usdcText(units, ","), en = usdcText(units, ".");
   const blocks: [string, string, string[]][] = [
-    ["es", "Recibimos tu aviso de aporte", [
-      `Gracias por tu aporte. Recuerda: tu aporte único de apoyo ayuda a Bertha Limo a seguir estudiando. En sus palabras: «${SUNY_ACCEPTED.es}» Revisaremos tu aviso en un plazo de hasta 24 horas.`,
+    ["es", "Recibí tu aviso de aporte", [
+      `Gracias por tu aporte. ${SUPPORT_HELPS.es} ${SUNY_ACCEPTED.es} Revisaré tu aviso en un plazo de hasta 24 horas.`,
       `Monto: ${es} USDC. Si no hiciste este aviso, responde a este correo.`,
     ]],
-    ["en", "We received your contribution notice", [
-      `Thank you for your contribution. Remember: your one-time support contribution helps Bertha Limo keep studying. In her words: “${SUNY_ACCEPTED.en}” We will review your notice within up to 24 hours.`,
+    ["en", "I received your contribution notice", [
+      `Thank you for your contribution. ${SUPPORT_HELPS.en} ${SUNY_ACCEPTED.en} I will review your notice within up to 24 hours.`,
       `Amount: ${en} USDC. If you didn't send this notice, reply to this e-mail.`,
     ]],
-    ["de", "Wir haben deinen Hinweis erhalten", [
-      `Danke für deinen Beitrag. Zur Erinnerung: Dein einmaliger Unterstützungsbeitrag hilft Bertha Limo, weiter zu studieren. In ihren Worten: „${SUNY_ACCEPTED.de}“ Wir prüfen deinen Hinweis innerhalb von bis zu 24 Stunden.`,
+    ["de", "Ich habe deinen Hinweis erhalten", [
+      `Danke für deinen Beitrag. ${SUPPORT_HELPS.de} ${SUNY_ACCEPTED.de} Ich prüfe deinen Hinweis innerhalb von bis zu 24 Stunden.`,
       `Betrag: ${es} USDC. Falls du diesen Hinweis nicht gesendet hast, antworte auf diese E-Mail.`,
     ]],
-    ["fr", "Nous avons reçu ton avis de contribution", [
-      `Merci pour ta contribution. Pour rappel : ta contribution unique de soutien aide Bertha Limo à poursuivre ses études. Selon ses mots : « ${SUNY_ACCEPTED.fr} » Nous examinerons ton avis dans un délai pouvant aller jusqu'à 24 heures.`,
+    ["fr", "J’ai reçu ton avis de contribution", [
+      `Merci pour ta contribution. ${SUPPORT_HELPS.fr} ${SUNY_ACCEPTED.fr} J’examinerai ton avis dans un délai pouvant aller jusqu'à 24 heures.`,
       `Montant : ${es} USDC. Si tu n'as pas envoyé cet avis, réponds à cet e-mail.`,
     ]],
   ];
   return {
-    to: "", subject: "Recibimos tu aviso de aporte · We received your contribution notice",
+    to: "", subject: "Recibí tu aviso de aporte · I received your contribution notice",
     html: layout(blocks, undefined, { url: appUrl, label: "Mother Verde" }), text: plain(blocks, undefined, appUrl),
   };
 }
 
-// «Acceso aprobado» for a manual contribution (Bertha's decision 6, 2026-11-03).
+// «Aporte manual confirmado» (Bertha's decision 6, 2026-11-03).
 function manualEmail(appUrl: string): Mail & { to: "" } {
   const blocks: [string, string, string[]][] = [
     ["es", "Tu acceso completo está activo", [
-      `¡Gracias! Tu aporte fue confirmado y ya tienes acceso completo. Tu apoyo me ayuda a estudiar. ${SUNY_ACCEPTED.es} Lo que aprenda lo compartiré contigo y con mi comunidad.`,
+      `¡Gracias! Confirmé tu aporte y ya tienes acceso completo. ${THANKS.es}`,
       "Si no hiciste este aporte, responde a este correo.",
     ]],
     ["en", "Your full access is active", [
-      `Thank you! Your contribution has been confirmed and you now have full access. Your support helps me study. ${SUNY_ACCEPTED.en} What I learn I will share with you and my community.`,
+      `Thank you! I confirmed your contribution and you now have full access. ${THANKS.en}`,
       "If you didn't make this contribution, reply to this e-mail.",
     ]],
     ["de", "Dein Vollzugriff ist aktiv", [
-      `Danke! Dein Beitrag wurde bestätigt und du hast jetzt vollen Zugang. Deine Unterstützung hilft mir beim Studieren. ${SUNY_ACCEPTED.de} Was ich lerne, teile ich mit dir und meiner Gemeinschaft.`,
+      `Danke! Ich habe deinen Beitrag bestätigt und du hast jetzt vollen Zugang. ${THANKS.de}`,
       "Falls du diesen Beitrag nicht geleistet hast, antworte auf diese E-Mail.",
     ]],
     ["fr", "Ton accès complet est actif", [
-      `Merci ! Ta contribution a été confirmée et tu as maintenant un accès complet. Ton soutien m'aide à étudier. ${SUNY_ACCEPTED.fr} Ce que j'apprends, je le partage avec toi et ma communauté.`,
+      `Merci ! J’ai confirmé ta contribution et tu as maintenant un accès complet. ${THANKS.fr}`,
       "Si tu n'as pas fait cette contribution, réponds à cet e-mail.",
     ]],
   ];

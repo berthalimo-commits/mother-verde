@@ -283,19 +283,21 @@ n = globalThis.__mail.length;
 r = await call('claims', tok(PA.u), { action: 'verify', claim_id: PA.c.id });
 check('auto ON + todo correcto -> activada sola + correo (y el aviso a soporte del TXID nuevo, y «aviso recibido» a la persona)', r.body.status === 'approved' && r.body.email_sent === true && globalThis.__mail.length === n + 3
   && globalThis.__mail.slice(n).filter((m) => /Nuevo aviso de aporte/.test(m.subject)).length === 1
-  && globalThis.__mail.slice(n).filter((m) => /Recibimos tu aviso de aporte/.test(m.subject)).length === 1, JSON.stringify(r));
+  && globalThis.__mail.slice(n).filter((m) => /Recibí tu aviso de aporte/.test(m.subject)).length === 1, JSON.stringify(r));
 {
-  const rec = globalThis.__mail.slice(n).find((m) => /Recibimos tu aviso de aporte/.test(m.subject));
+  const rec = globalThis.__mail.slice(n).find((m) => /Recibí tu aviso de aporte/.test(m.subject));
   const act = globalThis.__mail.slice(n).find((m) => /Tu acceso completo está activo/.test(m.subject));
   const txt = (m) => (m?.text || '') + (m?.html || '');
-  const { SUNY_ACCEPTED: SA } = await import('../../src/purposeTexts.js');
+  const { SUNY_ACCEPTED: SA, SUPPORT_HELPS: SH } = await import('../../src/purposeTexts.js');
   const L4 = ['es', 'en', 'de', 'fr'];
-  check('«aviso recibido»: el texto de Bertha en 4 idiomas con la frase de SUNY (hasta 24 horas)', /ayuda a Bertha Limo a seguir estudiando/.test(txt(rec)) && L4.every((l) => txt(rec).includes(SA[l])) && /hasta 24 horas/.test(txt(rec)));
-  check('«acceso aprobado»: el texto de Bertha con la frase de SUNY y ninguna mención de Canna Wasi', /Tu apoyo me ayuda a estudiar/.test(txt(act)) && /Your support helps me study/.test(txt(act)) && L4.every((l) => txt(act).includes(SA[l])) && !/Canna Wasi/i.test(txt(rec) + txt(act)));
+  check('«aviso recibido»: asunto «Recibí tu aviso de aporte» y el texto en primera persona, 4 idiomas (misma frase que el recuadro + SUNY, «Revisaré… hasta 24 horas»)', /Recibí tu aviso de aporte · I received your contribution notice/.test(rec?.subject) && L4.every((l) => txt(rec).includes(SH[l] + ' ' + SA[l])) && /Revisaré tu aviso en un plazo de hasta 24 horas/.test(txt(rec)) && /I will review your notice/.test(txt(rec)) && /Ich prüfe deinen Hinweis/.test(txt(rec)) && /J’examinerai ton avis/.test(txt(rec)));
+  check('«acceso activo»: «Recibí tu aporte… y ya activé…» + la misma frase que el recuadro + SUNY, 4 idiomas; sin Canna Wasi', /Recibí tu aporte de \d+ (flor|flores) \(/.test(txt(act)) && /ya activé el acceso completo/.test(txt(act)) && L4.every((l) => txt(act).includes(SH[l] + ' ' + SA[l])) && !/Canna Wasi/i.test(txt(rec) + txt(act)));
+  const THIRD = /ayuda a Bertha|En sus palabras|helps Bertha|In her words|hilft Bertha|In ihren Worten|aide Bertha|Selon ses mots|Revisaremos|Recibimos|activamos|We received|We will review|Wir haben deinen|Wir prüfen|Nous avons reçu|Nous examinerons|Recuerda:/;
+  check('una sola voz (primera persona de Bertha) en «aviso recibido» y «acceso activo»: sin «ayuda a Bertha», «En sus palabras», «Recibimos», «Revisaremos»… en ningún idioma', !THIRD.test(txt(rec) + txt(act)), (txt(rec) + txt(act)).match(THIRD)?.[0]);
   check('correos sin grado ni título (bachillerato, bachelor, B.Tech)', !/bachiller|bachelor|B\.?\s?Tech/i.test(txt(rec) + txt(act)));
   const again = globalThis.__mail.length;
   await call('claims', tok(PA.u), { action: 'verify', claim_id: PA.c.id });
-  check('«aviso recibido» solo una vez por aviso (verificar otra vez no lo repite)', globalThis.__mail.filter((m, i) => i >= again && /Recibimos tu aviso/.test(m.subject)).length === 0);
+  check('«aviso recibido» solo una vez por aviso (verificar otra vez no lo repite)', globalThis.__mail.filter((m, i) => i >= again && /Recibí tu aviso/.test(m.subject)).length === 0);
 }
 check('…auditada como auto-verify', (await q(`select count(*)::int c from admin_audit_log where action = 'claim_approved' and actor_label = 'auto-verify' and target_email = 'pago50@example.org'`))[0].c === 1);
 const PT = await payer(51, 10); putTx(PT.tx, { amount: PT.c.amount_units });
@@ -392,11 +394,13 @@ check('vercel.json: 23:00 UTC', JSON.parse(fs.readFileSync(`${APP}/vercel.json`,
   check('aporte manual: usuario normal -> 403', (await call('claims', tok(NORMAL, 'aal2'), { action: 'manual_confirm', manual_id: mid })).status === 403);
   check('aporte manual: admin sin MFA -> 403', (await call('claims', tok(ADMIN), { action: 'manual_confirm', manual_id: mid })).status === 403);
   const n0 = globalThis.__mail.length;
+  const { SUNY_ACCEPTED: SA2, SUPPORT_HELPS: SH2 } = await import('../../src/purposeTexts.js');
   let r = await call('claims', A2, { action: 'manual_confirm', manual_id: mid });
   const m = globalThis.__mail.slice(n0).find((x) => x.to === 'manual@example.org');
   const txt = (x) => (x?.text || '') + (x?.html || '');
-  check('aporte manual: correo «acceso aprobado» a la persona, con el texto de Bertha en 4 idiomas', r.status === 200 && r.body.email_sent === true && !!m
-    && /Tu apoyo me ayuda a estudiar/.test(txt(m)) && /Your support helps me study/.test(txt(m)) && /Deine Unterstützung hilft mir beim Studieren/.test(txt(m)) && /Ton soutien m'aide à étudier/.test(txt(m)), JSON.stringify(r));
+  check('aporte manual: correo «aporte manual confirmado» a la persona, en primera persona («Confirmé tu aporte…» + la frase del recuadro + SUNY), 4 idiomas', r.status === 200 && r.body.email_sent === true && !!m
+    && /Confirmé tu aporte y ya tienes acceso completo/.test(txt(m)) && /I confirmed your contribution/.test(txt(m)) && /Ich habe deinen Beitrag bestätigt/.test(txt(m)) && /J’ai confirmé ta contribution/.test(txt(m))
+    && ['es', 'en', 'de', 'fr'].every((l) => txt(m).includes(SH2[l] + ' ' + SA2[l])) && !/ayuda a Bertha|En sus palabras|fue confirmado|has been confirmed|wurde bestätigt|a été confirmée/.test(txt(m)), JSON.stringify(r));
   check('…queda en el Registro (manual_email_sent) y en los correos (manual_activation)', (await q(`select count(*)::int c from admin_audit_log where action = 'manual_email_sent' and target_user_id = '${MU}'`))[0].c === 1
     && (await q(`select count(*)::int c from mail_events where kind = 'manual_activation' and ref = $1 and ok`, ['manual:' + mid]))[0].c === 1);
   const n1 = globalThis.__mail.length;
