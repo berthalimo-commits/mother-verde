@@ -21,7 +21,10 @@ for (const l of L) {
   const t = all(l);
   check(`${l}: Supabase, Vercel, Hostinger, Resend, DeepL, red Base, Google Fonts y flagcdn`, ['Supabase', 'Vercel', 'Hostinger', 'Resend', 'DeepL', 'Base', 'Google Fonts', 'flagcdn'].every((w) => t.includes(w)));
   check(`${l}: TXID público y permanente en la cadena, nombre/teléfono opcionales, hello@`, /TXID/.test(t) && /hello@motherverdeny\.com/.test(t) && /(públicas y permanentes|public and permanent|öffentlich und dauerhaft|publics et permanents)/.test(t));
-  check(`${l}: lo que depende de la ley queda marcado como pendiente de revisión`, (t.match(/\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/g) || []).length >= 5);
+  // final since 2026-11-05 (Bertha's APRUEBO): no pending note; legal basis, transfers outside the EU and response time stated
+  check(`${l}: Privacidad final: sin notas pendientes; base legal, transferencias fuera de la UE y respuesta «en un plazo razonable»`, !/\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/.test(t)
+    && /(interés legítimo|legitimate interest|berechtigten Interesses|intérêt légitime)/.test(t) && /(fuera de la Unión Europea|outside the European Union|außerhalb der Europäischen Union|hors de l’Union européenne)/.test(t)
+    && /(plazo razonable|reasonable time|angemessenen Frist|délai raisonnable)/.test(t));
   check(`${l}: dice la región del servidor (Central EU, Fráncfort) y ya no la deja pendiente`, /Central EU/.test(t) && /(Fráncfort|Frankfurt|Francfort)/.test(t) && !/(región del servidor|server region|Serverregion|région du serveur)/.test(t));
 }
 check('no promete lo que no existe (cookies de analítica, exportar datos)', !/Google Analytics|exportar tus datos|export your data/i.test(L.map(all).join(' ')));

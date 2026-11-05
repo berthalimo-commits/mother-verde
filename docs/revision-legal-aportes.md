@@ -6,14 +6,15 @@
 > - **Términos, cláusula 5:** el texto de la sección 1 (abajo) sustituye al «PENDIENTE». Fecha «5 de noviembre de 2026»;
 >   se quitó la nota «este texto es una base… no reemplaza la revisión de un abogado».
 > - **Privacidad, sección 7:** se añadió la frase de la huella cifrada del correo (sección 2).
-> - **Siguen PENDIENTES en Privacidad** (no había texto aprobado; Bertha espera el texto de su abogado/a): introducción
->   (responsable, base legal, plazos, transferencias, derechos), 1 (datos completos del responsable, representante en la UE),
->   4 (base legal y plazo de la constancia de pago), 5 (contratos con proveedores, transferencias fuera de la UE) y 7 (derechos
->   y plazos de respuesta). Privacidad conserva «borrador» en la fecha hasta entonces.
-> - **No cubierto por el texto aprobado de la cláusula 5** (avisado a Bertha): códigos de regalo, retirada del acceso por
->   fraude y aportes manuales (PayPal, Cash App…).
-> - Prueba `legal-final-ui`: Términos sin ninguna marca de pendiente en los 4 idiomas; en toda la web solo quedan las 5 notas
->   de Privacidad de arriba.
+> - **Privacidad también FINAL (2026-11-05, «APRUEBO» de Bertha, sin preguntas para abogado/a):** las 5 notas
+>   «PENDIENTE» se sustituyeron por texto redactado solo con hechos verificados en el código y en staging (base legal con
+>   categorías estándar, responsable «Mother Verde LLC, Hamilton, NY» + hello@, sin representante en la UE, constancias de
+>   pago sin borrado automático, transferencias fuera de la UE, derechos con respuesta «en un plazo razonable»). Fecha
+>   «5 de noviembre de 2026», sin «borrador». Texto completo en los 4 idiomas y tabla «hecho verificado | dónde»:
+>   `docs/legal-final-propuesta.md`.
+> - **Términos, cláusula 5:** se añadió el párrafo de códigos de regalo (7 días), retiro del acceso por fraude y aportes
+>   manuales registrados por la administración.
+> - Prueba `legal-final-ui` (10): ningún «PENDIENTE / PENDING / AUSSTEHEND / EN ATTENTE» en toda la web, 4 idiomas.
 
 Cambio decidido por Bertha Limo:
 - **Antes:** el aporte único de apoyo se destinaba a crear Canna Wasi.
