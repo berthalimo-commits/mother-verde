@@ -22,9 +22,9 @@ for (const l of L) {
   check(`${l}: Supabase, Vercel, Hostinger, Resend, DeepL, red Base, Google Fonts y flagcdn`, ['Supabase', 'Vercel', 'Hostinger', 'Resend', 'DeepL', 'Base', 'Google Fonts', 'flagcdn'].every((w) => t.includes(w)));
   check(`${l}: TXID público y permanente en la cadena, nombre/teléfono opcionales, hello@`, /TXID/.test(t) && /hello@motherverdeny\.com/.test(t) && /(públicas y permanentes|public and permanent|öffentlich und dauerhaft|publics et permanents)/.test(t));
   // final since 2026-11-05 (Bertha's APRUEBO): no pending note; legal basis, transfers outside the EU and response time stated
-  check(`${l}: Privacidad final: sin notas pendientes; base legal, transferencias fuera de la UE y respuesta «en un plazo razonable»`, !/\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/.test(t)
+  check(`${l}: Privacidad final: sin notas pendientes; base legal, transferencias fuera de la UE y respuesta «en un máximo de 30 días» y autoridad de protección de datos`, !/\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/.test(t)
     && /(interés legítimo|legitimate interest|berechtigten Interesses|intérêt légitime)/.test(t) && /(fuera de la Unión Europea|outside the European Union|außerhalb der Europäischen Union|hors de l’Union européenne)/.test(t)
-    && /(plazo razonable|reasonable time|angemessenen Frist|délai raisonnable)/.test(t));
+    && /(en un máximo de 30 días|within 30 days at most|innerhalb von höchstens 30 Tagen|délai maximal de 30 jours)/.test(t) && /(autoridad de protección de datos|data protection authority|Datenschutzbehörde|autorité de protection des données)/.test(t) && !/(plazo razonable|reasonable time|angemessenen Frist|délai raisonnable)/.test(t));
   check(`${l}: dice la región del servidor (Central EU, Fráncfort) y ya no la deja pendiente`, /Central EU/.test(t) && /(Fráncfort|Frankfurt|Francfort)/.test(t) && !/(región del servidor|server region|Serverregion|région du serveur)/.test(t));
 }
 check('no promete lo que no existe (cookies de analítica, exportar datos)', !/Google Analytics|exportar tus datos|export your data/i.test(L.map(all).join(' ')));

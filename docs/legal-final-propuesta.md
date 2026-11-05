@@ -36,10 +36,10 @@ su dirección registrada y hello@motherverdeny.com; solo hechos verificados en e
 
 ## 5. Privacidad — 7. Lo que puedes hacer (`pv7P`): sustituye «[PENDIENTE: … derechos … y plazos de respuesta.]»
 
-- **ES:** También puedes escribir a hello@motherverdeny.com para pedir una copia de tus datos, corregirlos, borrarlos u oponerte a algún uso. Te responderemos por correo en un plazo razonable.
-- **EN:** You can also write to hello@motherverdeny.com to ask for a copy of your data, to correct or delete it, or to object to a use of it. We will reply by e-mail within a reasonable time.
-- **DE:** Du kannst auch an hello@motherverdeny.com schreiben, um eine Kopie deiner Daten zu verlangen, sie berichtigen oder löschen zu lassen oder einer Nutzung zu widersprechen. Wir antworten dir per E-Mail innerhalb einer angemessenen Frist.
-- **FR :** Tu peux aussi écrire à hello@motherverdeny.com pour demander une copie de tes données, les faire corriger ou supprimer, ou t’opposer à une utilisation. Nous te répondrons par e-mail dans un délai raisonnable.
+- **ES:** También puedes escribir a hello@motherverdeny.com para pedir una copia de tus datos, corregirlos, borrarlos u oponerte a algún uso. Te responderemos por correo en un máximo de 30 días. Si crees que tratamos mal tus datos, también puedes presentar una reclamación ante la autoridad de protección de datos de tu país.
+- **EN:** You can also write to hello@motherverdeny.com to ask for a copy of your data, to correct or delete it, or to object to a use of it. We will reply by e-mail within 30 days at most. If you believe we are mishandling your data, you can also file a complaint with the data protection authority in your country.
+- **DE:** Du kannst auch an hello@motherverdeny.com schreiben, um eine Kopie deiner Daten zu verlangen, sie berichtigen oder löschen zu lassen oder einer Nutzung zu widersprechen. Wir antworten dir per E-Mail innerhalb von höchstens 30 Tagen. Wenn du der Meinung bist, dass wir deine Daten nicht richtig behandeln, kannst du dich auch bei der Datenschutzbehörde deines Landes beschweren.
+- **FR :** Tu peux aussi écrire à hello@motherverdeny.com pour demander une copie de tes données, les faire corriger ou supprimer, ou t’opposer à une utilisation. Nous te répondrons par e-mail dans un délai maximal de 30 jours. Si tu penses que nous traitons mal tes données, tu peux aussi déposer une réclamation auprès de l’autorité de protection des données de ton pays.
 
 Fecha de Privacidad (`pvUpdated`): «Última actualización: 5 de noviembre de 2026» (sin «borrador»; EN/DE/FR igual que Términos).
 
@@ -71,4 +71,4 @@ Fecha de Privacidad (`pvUpdated`): «Última actualización: 5 de noviembre de 2
 | Códigos de regalo enviados desde el panel: 7 días de acceso, 7 días para canjearlos, un solo uso | `supabase/functions/admin-send-gift-code/index.ts` líneas 36-37 (`CODE_DAYS = 7`, `CODE_VALID_DAYS = 7`); migración `20261011130000` («One use») |
 | Retiro de acceso con motivo obligatorio, anotado en el registro | Migración `20261011130000` (`admin_revoke_access`: motivo ≥ 5 caracteres, `access_revoked` en `admin_audit_log`); también rechazo de avisos con motivo en el panel |
 | Aportes manuales: medios PayPal, CashApp, transferencia, efectivo, otro; activan el acceso completo como un USDC aprobado; quedan en el registro y se anulan, nunca se borran | Migración `20261103100000` (`p_method in ('paypal','cashapp','transferencia','efectivo','otro')`, sin borrado); texto del panel «Al guardar se activa el acceso completo, igual que un aporte en USDC aprobado…»; probado hoy en staging |
-| No hay plazos de respuesta en el código | Por eso: «en un plazo razonable» (sin número) |
+| Plazo de respuesta: máximo 30 días; reclamación ante la autoridad de protección de datos | Decisión de Bertha (2026-11-05), no sale del código |
