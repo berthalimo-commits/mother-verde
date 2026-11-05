@@ -65,7 +65,8 @@ check('fotos de campo 02 y 03 (pantallas 3 y 6): «cáñamo» / «hemp» / «Han
 check('la lista de calculadoras dice «17»', L.every((l) => /17/.test(T.story5Calc[l])));
 
 // Terms keep the lawyer/accountant marker; Privacy has the acceptance sentence
-check('Términos: la cláusula de aportes conserva el marcador «PENDIENTE: texto final de abogado/a y contador» (4 idiomas)', /tc5P:'\[PENDIENTE: texto final de abogado\/a y contador/.test(main) && /tc5P:'\[PENDING: final text from the lawyer and the accountant/.test(main) && /tc5P:'\[AUSSTEHEND: endgültiger Text/.test(main) && /tc5P:'\[EN ATTENTE : texte final/.test(main));
+// Terms clause 5: final text approved by Bertha's lawyer (2026-11-05), no marker left
+check('Términos: la cláusula de aportes tiene el texto final aprobado (sin marcador de pendiente), 4 idiomas', /tc5P:'El aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a continuar su educación en SUNY Morrisville/.test(main) && /tc5P:'The one-time support contribution helps Bertha Limo/.test(main) && /tc5P:'Der einmalige Unterstützungsbeitrag hilft Bertha Limo/.test(main) && /tc5P:'La contribution unique de soutien aide Bertha Limo/.test(main) && !/tc5P:'\[(PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE)/.test(main));
 check('Privacidad: la frase de la casilla en los 4 idiomas', L.every((l) => new RegExp(`translations\\.${l}\\.pv4P = "[^\\n]*${T.pvPurposeAdd[l].slice(0, 30).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(main)));
 check('SUNY Morrisville en «dónde estudiar»: «La fundadora estudia en esta institución»', /data-i18n="eduSunyFundadora"/.test(read('index.html')) && L.every((l) => !!T.eduSunyFundadora[l]));
 console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);

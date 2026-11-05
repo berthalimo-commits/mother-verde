@@ -1,4 +1,19 @@
-# Motivo de los aportes — textos para abogado/a y contador (2026-11-03; actualizado 2026-11-04)
+# Motivo de los aportes — textos para abogado/a y contador (2026-11-03; actualizado 2026-11-05)
+
+> **2026-11-05 — PUBLICADO EN DEV COMO FINAL.** Bertha: su abogado/a aprobó por teléfono los textos de este documento
+> (conviene pedir la confirmación por escrito antes de producción). Publicados en `dev` (Términos y Privacidad, 4 idiomas;
+> EN/DE/FR traducidos por Claude del español aprobado):
+> - **Términos, cláusula 5:** el texto de la sección 1 (abajo) sustituye al «PENDIENTE». Fecha «5 de noviembre de 2026»;
+>   se quitó la nota «este texto es una base… no reemplaza la revisión de un abogado».
+> - **Privacidad, sección 7:** se añadió la frase de la huella cifrada del correo (sección 2).
+> - **Siguen PENDIENTES en Privacidad** (no había texto aprobado; Bertha espera el texto de su abogado/a): introducción
+>   (responsable, base legal, plazos, transferencias, derechos), 1 (datos completos del responsable, representante en la UE),
+>   4 (base legal y plazo de la constancia de pago), 5 (contratos con proveedores, transferencias fuera de la UE) y 7 (derechos
+>   y plazos de respuesta). Privacidad conserva «borrador» en la fecha hasta entonces.
+> - **No cubierto por el texto aprobado de la cláusula 5** (avisado a Bertha): códigos de regalo, retirada del acceso por
+>   fraude y aportes manuales (PayPal, Cash App…).
+> - Prueba `legal-final-ui`: Términos sin ninguna marca de pendiente en los 4 idiomas; en toda la web solo quedan las 5 notas
+>   de Privacidad de arriba.
 
 Cambio decidido por Bertha Limo:
 - **Antes:** el aporte único de apoyo se destinaba a crear Canna Wasi.
@@ -48,9 +63,9 @@ La frase de la billetera ya no repite «horticultora y especialista en cannabis�
 No cambian: el título «Antes de aportar: para qué es tu aporte» y la casilla «Entiendo el propósito de mi aporte y estoy de
 acuerdo» (la dice quien aporta). En alemán, el enlace a los Términos se llama ahora igual que la página: «Nutzungsbedingungen».
 
-## 1. Términos y Condiciones (cláusula 5, aportes) — sigue SIN texto final
+## 1. Términos y Condiciones (cláusula 5, aportes) — FINAL, publicado en dev el 2026-11-05
 
-| Texto actual publicado (staging) | Borrador propuesto (NO publicado; solo para esta revisión) |
+| Texto anterior | Texto final (aprobado; publicado en dev el 2026-11-05) |
 |---|---|
 | «[PENDIENTE: texto final de abogado/a y contador — prueba gratis de 24 horas al confirmar el correo, aporte único de apoyo en USDC (red Base), códigos de regalo y retirada del acceso en caso de fraude.]» | «El aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a continuar su educación en SUNY Morrisville, que la aceptó como estudiante. A cambio, la persona recibe acceso completo a la plataforma. Es voluntario y único; no es una donación ni es deducible de impuestos. El aporte llega a la billetera personal de cripto de Bertha Limo en la red Base. La prueba gratuita de 24 horas se ofrece una sola vez por persona. Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville.» |
 
@@ -59,7 +74,7 @@ acuerdo» (la dice quien aporta). En alemán, el enlace a los Términos se llama
 | Texto actual | Texto nuevo propuesto |
 |---|---|
 | (no hablaba de la casilla) | Sección 4 (publicado en staging): «Si marcas la casilla de propósito antes de aportar, guardamos que la aceptaste y cuándo, junto a tu aviso de aporte.» (Se guarda solo la fecha y hora; nada más.) |
-| (no hablaba de la prueba al borrar la cuenta) | **Propuesta, NO publicada (2026-11-04):** «Si borras tu cuenta, guardamos solo una huella cifrada e irreversible de tu correo, sin ningún otro dato, para que la prueba gratuita de 24 horas se use una sola vez por persona.» (Técnico: SHA-256 del correo normalizado con una clave secreta; sin id de cuenta, sin el correo en claro. Migración `20261105100000`.) |
+| (no hablaba de la prueba al borrar la cuenta) | **Aprobada y publicada en dev el 2026-11-05 (sección 7 de Privacidad):** «Si borras tu cuenta, guardamos solo una huella cifrada e irreversible de tu correo, sin ningún otro dato, para que la prueba gratuita de 24 horas se use una sola vez por persona.» (Técnico: SHA-256 del correo normalizado con una clave secreta; sin id de cuenta, sin el correo en claro. Migración `20261105100000`.) |
 
 ## 3. Pantalla de aporte (Desbloquear)
 
