@@ -54,7 +54,12 @@ Si pierdes la laptop, las copias de Google Drive siguen sirviendo, **siempre que
 
 - **Cada día:** el aviso de las 8 pm.
 - **De vez en cuando:**
-  - abre `C:\CopiasMotherVerde\registro-staging.txt`: la última línea debe decir «HECHA»;
+  - abre `C:\CopiasMotherVerde\registro-staging.txt`: la última línea debe decir «HECHA», con las tablas copiadas
+    por esquema. En staging, el 2026-11-06 eran **66 tablas copiadas, con o sin filas**: auth 27, public 26,
+    storage 10, realtime 2 y vault 1. La base tiene 67: la que no cuenta es `realtime.messages`, una tabla
+    «contenedor» de Supabase que no guarda filas propias. Su estructura sí va en la copia.
+    La comparación de `comprobar.sql` mira las **63** de auth, public y storage, que son las de Mother Verde;
+    realtime y vault son internas de Supabase;
   - en Google Drive (drive.google.com → «Ordenadores»), la carpeta debe tener la copia de hoy.
 - **Una vez al mes, prueba que una copia se puede restaurar** (abajo, «Restaurar en una base de prueba»).
 

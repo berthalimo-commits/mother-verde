@@ -89,7 +89,11 @@ try {
   # 3. ¿Se puede leer?
   & (Join-Path $PgBin 'pg_restore.exe') --list $dump > (Join-Path $tmp 'lista.txt') 2> $err
   if ($LASTEXITCODE -ne 0) { Fallo 'La copia se descargó pero no se puede leer.' }
-  $tablas = (Select-String -Path (Join-Path $tmp 'lista.txt') -Pattern ' TABLE DATA ').Count
+  # Tablas cuyo contenido va en la copia (también las vacías), por esquema. No cuenta las tablas «contenedor»
+  # particionadas (p. ej. realtime.messages): no tienen filas propias; su estructura sí va en la copia.
+  $conDatos = @(Select-String -Path (Join-Path $tmp 'lista.txt') -Pattern ' TABLE DATA (\S+) ' | ForEach-Object { $_.Matches[0].Groups[1].Value })
+  $tablas = $conDatos.Count
+  $porEsquema = ($conDatos | Group-Object | Sort-Object Count -Descending | ForEach-Object { "$($_.Name) $($_.Count)" }) -join ', '
 
   # 4. Cifrar (AES-256; -mhe=on cifra también los nombres) y 5. comprobar
   $info = Join-Path $tmp 'LEEME.txt'
@@ -97,7 +101,7 @@ try {
     "Copia de Mother Verde ($Proyecto, $($p.Ref))",
     "Hecha: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss zzz')",
     "Herramienta: $(& (Join-Path $PgBin 'pg_dump.exe') --version)",
-    "Tablas con datos: $tablas",
+    "Tablas copiadas (con o sin filas): $tablas ($porEsquema)",
     "SHA-256 de $nombre.dump: $((Get-FileHash $dump -Algorithm SHA256).Hash)",
     'Cómo restaurar: docs/copias-seguridad.md (también en la carpeta herramientas).'
   ) | Set-Content -Path $info -Encoding UTF8
@@ -127,8 +131,8 @@ try {
     }
   }
 
-  Escribir-Registro "HECHA: $nombre.7z ($tamano, $tablas tablas con datos; copias viejas borradas: $borradas)"
-  Mostrar-Aviso "Mother Verde: copia hecha ($Proyecto)" "$nombre.7z · $tamano · $tablas tablas"
+  Escribir-Registro "HECHA: $nombre.7z ($tamano; $tablas tablas copiadas, con o sin filas: $porEsquema; copias viejas borradas: $borradas)"
+  Mostrar-Aviso "Mother Verde: copia hecha ($Proyecto)" "$nombre.7z · $tamano · $tablas tablas copiadas"
   exit 0
 }
 finally {
