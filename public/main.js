@@ -6121,10 +6121,14 @@ translations.es.ppTitle16 = "Revisión sistemática en estudiantes del mundo ár
 translations.en.ppTitle16 = "Systematic review among students in the Arab world";
 translations.de.ppTitle16 = "Systematische Übersichtsarbeit zu Studierenden in der arabischen Welt";
 translations.fr.ppTitle16 = "Revue systématique chez les étudiants du monde arabe";
-translations.es.ppMetaX1 = "Instituto Fiocruz · Revista Fitos · diciembre 2025";
-translations.en.ppMetaX1 = "Fiocruz Institute · Revista Fitos · December 2025";
-translations.de.ppMetaX1 = "Fiocruz-Institut · Revista Fitos · Dezember 2025";
-translations.fr.ppMetaX1 = "Institut Fiocruz · Revista Fitos · décembre 2025";
+translations.es.ppTitle17 = "El primer medicamento de CBD 100% marroquí";
+translations.en.ppTitle17 = "The first 100% Moroccan CBD medicine";
+translations.de.ppTitle17 = "Das erste zu 100 % marokkanische CBD-Arzneimittel";
+translations.fr.ppTitle17 = "Le premier médicament au CBD 100 % marocain";
+translations.es.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.en.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.de.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.fr.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
 translations.es.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025";
 translations.en.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · June 2025";
 translations.de.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · Juni 2025";
@@ -6133,10 +6137,10 @@ translations.es.ppMetaX3 = "Universidades de Hamburgo y Leipzig · The Lancet Re
 translations.en.ppMetaX3 = "Universities of Hamburg and Leipzig · The Lancet Regional Health – Europe · 2026";
 translations.de.ppMetaX3 = "Universitäten Hamburg und Leipzig · The Lancet Regional Health – Europe · 2026";
 translations.fr.ppMetaX3 = "Universités de Hambourg et de Leipzig · The Lancet Regional Health – Europe · 2026";
-translations.es.ppMetaX4 = "Universidad de Hamburgo · International Journal of Drug Policy · 2026";
-translations.en.ppMetaX4 = "University of Hamburg · International Journal of Drug Policy · 2026";
-translations.de.ppMetaX4 = "Universität Hamburg · International Journal of Drug Policy · 2026";
-translations.fr.ppMetaX4 = "Université de Hambourg · International Journal of Drug Policy · 2026";
+translations.es.ppMetaX4 = "Centro Médico Universitario Hamburgo-Eppendorf · International Journal of Drug Policy · 2026";
+translations.en.ppMetaX4 = "University Medical Center Hamburg-Eppendorf · International Journal of Drug Policy · 2026";
+translations.de.ppMetaX4 = "Universitätsklinikum Hamburg-Eppendorf · International Journal of Drug Policy · 2026";
+translations.fr.ppMetaX4 = "Centre médical universitaire de Hambourg-Eppendorf · International Journal of Drug Policy · 2026";
 translations.es.ppMetaX5 = "15 países europeos · Frontiers in Psychiatry · 2026";
 translations.en.ppMetaX5 = "15 European countries · Frontiers in Psychiatry · 2026";
 translations.de.ppMetaX5 = "15 europäische Länder · Frontiers in Psychiatry · 2026";
@@ -6145,22 +6149,22 @@ translations.es.ppMetaX6 = "Instituto Trimbos · desde 2025";
 translations.en.ppMetaX6 = "Trimbos Institute · since 2025";
 translations.de.ppMetaX6 = "Trimbos-Institut · seit 2025";
 translations.fr.ppMetaX6 = "Institut Trimbos · depuis 2025";
-translations.es.ppMetaX7 = "Global Oncology University, Johannesburgo · Complementary Therapies in Medicine · 2025";
-translations.en.ppMetaX7 = "Global Oncology University, Johannesburg · Complementary Therapies in Medicine · 2025";
-translations.de.ppMetaX7 = "Global Oncology University, Johannesburg · Complementary Therapies in Medicine · 2025";
-translations.fr.ppMetaX7 = "Global Oncology University, Johannesburg · Complementary Therapies in Medicine · 2025";
-translations.es.ppMetaX8 = "Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2025";
-translations.en.ppMetaX8 = "Seoul Welfare Foundation · International Journal of Environmental Research and Public Health · 2025";
-translations.de.ppMetaX8 = "Seouler Wohlfahrtsstiftung · International Journal of Environmental Research and Public Health · 2025";
-translations.fr.ppMetaX8 = "Fondation pour le bien-être de Séoul · International Journal of Environmental Research and Public Health · 2025";
+translations.es.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.en.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.de.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.fr.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.es.ppMetaX8 = "Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2024";
+translations.en.ppMetaX8 = "Seoul Welfare Foundation · International Journal of Environmental Research and Public Health · 2024";
+translations.de.ppMetaX8 = "Seouler Wohlfahrtsstiftung · International Journal of Environmental Research and Public Health · 2024";
+translations.fr.ppMetaX8 = "Fondation pour le bien-être de Séoul · International Journal of Environmental Research and Public Health · 2024";
 translations.es.ppMetaX9 = "Estudio internacional · 2025";
 translations.en.ppMetaX9 = "International study · 2025";
 translations.de.ppMetaX9 = "Internationale Studie · 2025";
 translations.fr.ppMetaX9 = "Étude internationale · 2025";
-translations.es.ppMetaX10 = "Clinical Therapeutics · diciembre 2025";
-translations.en.ppMetaX10 = "Clinical Therapeutics · December 2025";
-translations.de.ppMetaX10 = "Clinical Therapeutics · Dezember 2025";
-translations.fr.ppMetaX10 = "Clinical Therapeutics · décembre 2025";
+translations.es.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.en.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.de.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.fr.ppMetaX10 = "Clinical Therapeutics · 2026";
 translations.es.ppMetaX11 = "Universidad Americana de Beirut · Frontiers in Psychiatry · 2025";
 translations.en.ppMetaX11 = "American University of Beirut · Frontiers in Psychiatry · 2025";
 translations.de.ppMetaX11 = "Amerikanische Universität Beirut · Frontiers in Psychiatry · 2025";
@@ -8033,6 +8037,7 @@ const sourceLinks = {
   hcThcCbdNote: 'https://www.ahajournals.org/doi/10.1161/JAHA.124.037731',
   alSmokabilityP2: 'https://www.cannabissciencetech.com/view/impact-of-water-activity-on-the-chemical-composition-and-smoking-quality-of-cannabis-flower-the-science-of-smokability-phase-i-results',
   skPenetraP1: 'https://doi.org/10.1159/000526769',
+  pp11desc: 'https://doi.org/10.32712/2446-4775.2025.1817',
   pp10desc: 'https://doi.org/10.58731/2965-0771.2025.106',
   pp12desc: 'https://doi.org/10.55563/clinexprheumatol/o23y55',
   pp13desc: 'https://doi.org/10.1016/j.lanepe.2026.101593',

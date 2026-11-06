@@ -3,17 +3,17 @@
 // page (also hidden screens and inputs' placeholders / aria-labels / titles)
 // after switching language and after rendering the dynamic parts (search,
 // calculators, travel checklist, Médico, education), looking for words that
-// only Spanish uses. Allowed on purpose, marked in the HTML with
-// translate="no": proper names (universities, institutions, published titles)
-// and quotes in the original language.
+// only Spanish uses. It also scans what is marked translate="no" (published
+// titles stay as published, in English): the only exceptions are the proper
+// names in PROPER below.
 // Needs Vite on 5174 + fakeserver.
 import { check, sleep, browser, summary } from './browser.mjs';
 // words that are Spanish and not English/German/French (whole words, case-insensitive).
 // Left out on purpose because they also exist in French, German or English: que, los,
 // con, sin, alto, mayo, par, une, firma (German «Firma» = company).
-const ES = /(?<![\p{L}])(las|del|para|una|unos|unas|por|está|están|más|también|según|días|semanas|meses|horas|porción|porciones|resultados|verificados|listo|viajar|objetivo|rango|bajo|dentro|ambiente|seco|húmedo|cerrar|correo|tipo|siglo|archivado|nueva|nuevo|lote|sello|contacto|universidad|estudio|países|país|europeos|diciembre|enero|febrero|marzo|abril|junio|julio|agosto|septiembre|octubre|noviembre|médico|salud|pública|cultivo|horticultura|medicina|perú|alemania|reino unido|países bajos|ee\. ?uu\.)(?![\p{L}])/iu;
+const ES = /(?<![\p{L}])(las|del|para|una|unos|unas|por|está|están|más|también|según|días|semanas|meses|horas|porción|porciones|resultados|verificados|listo|viajar|objetivo|rango|bajo|dentro|ambiente|seco|húmedo|cerrar|correo|tipo|siglo|archivado|nueva|nuevo|lote|sello|contacto|universidad|estudio|países|país|europeos|diciembre|enero|febrero|marzo|abril|junio|julio|agosto|septiembre|octubre|noviembre|médico|salud|pública|cultivo|horticultura|medicina|medicamento|marroquí|extensión|agrícola|perú|alemania|reino unido|países bajos|ee\. ?uu\.)(?![\p{L}])/iu;
 // Proper names that stay in Spanish in every language (people, institutions, a journal, places)
-const PROPER = /Di Marzo|Fundación Ciencias para la Cannabis|Centro Médico Cannabimed|Viña del Mar|Concepción|Cannabis y Salud|Instituto de Regulación y Control del Cannabis|Instituto Argentino del Cannabis|Universidad de Caldas|Universidad [A-ZÁÉÍÓÚ][\p{L} .]*/gu;
+const PROPER = /Di Marzo|Fundación Ciencias para la Cannabis|Centro Médico Cannabimed|Viña del Mar|Concepción|Cannabis y Salud|Instituto de Regulación y Control del Cannabis|Instituto Argentino del Cannabis|Universidad de Caldas|Universidad (?:de (?:los |la )?)?[A-ZÁÉÍÓÚ][\p{L} .]*/gu;
 const LANGS = (process.env.MV_LANGS || 'en,de,fr').split(',');
 
 const b = await browser(null, null, 1200, { lang: 'en' });
@@ -24,7 +24,7 @@ const scan = () => b.ev(`(() => {
   const RE = ${ES};
   const PROPER = ${PROPER};
   const out = [];
-  const skip = (el) => el.closest('script,style,noscript,[translate="no"],#mvDevPreview,svg title');
+  const skip = (el) => el.closest('script,style,noscript,#mvDevPreview,svg title');
   const where = (el) => { const s = el.closest('[id]'); const k = el.closest('[data-i18n]'); return (s ? '#' + s.id : '') + (k ? ' [' + k.getAttribute('data-i18n') + ']' : ''); };
   const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   for (let n; (n = w.nextNode());) {
@@ -71,6 +71,8 @@ const tc = await b.ev(`(() => { renderTravelChecklist(); const c = document.quer
 check('checklist de viaje: en alemán, conserva lo marcado y el contador está traducido', tc.ticked && /Reiseziel/.test(tc.text) && /^1 von 6 geprüft/.test(tc.prog), JSON.stringify(tc));
 const med = await b.ev(`[...document.querySelectorAll('#ciencia-medico [data-cc]')].map((x) => x.textContent).slice(0, 5)`);
 check('Médico: los nombres de país siguen el idioma (alemán: Peru, Chile, Spanien, Deutschland…)', med.includes('Deutschland') && med.includes('Spanien'), JSON.stringify(med));
+const p26 = await b.ev(`(() => { document.querySelector('#langSwitch button[data-lang=en]').click(); const c = [...document.querySelectorAll('#ciencia-papers .paper-card')]; return [c[25]?.querySelector('h4')?.textContent, c[2]?.querySelector('.paper-meta')?.textContent]; })()`);
+check('Investigación en inglés: encabezado de la tarjeta 26 y fuente de la 3 traducidos', p26[0] === 'The first 100% Moroccan CBD medicine' && /^Agricultural extension/.test(p26[1] || ''), JSON.stringify(p26));
 check('sin errores de JavaScript', b.events.filter((e) => e.method === 'Runtime.exceptionThrown').length === 0);
 await b.close();
 summary();
