@@ -118,7 +118,7 @@ Paso 7. Supabase → **Edge Functions → Deploy a new function → Via Editor**
 | `community-publish-comment` | **encendido** | solo con sesión |
 | `delete-account` | **encendido** | solo con sesión (y vuelve a pedir la contraseña) |
 
-`community-translate` no hace falta (la app ya no la llama).
+`community-translate` **ya no existe en el repositorio** (borrada el 2026-11-06: llamaba a DeepL sin límite y la app no la usaba). Si sigue desplegada en staging: Supabase (staging) → Edge Functions → `community-translate` → Settings → **Delete function**. En producción no está en la lista de funciones del plan.
 
 ### 2.5 Correo y direcciones
 Paso 8. Supabase → **Authentication** (en staging):

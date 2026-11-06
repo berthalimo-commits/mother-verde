@@ -178,7 +178,17 @@ check('…y no deja nada a medias (has_full_access sigue existiendo)', (await q(
 // 20261104100000's rollback refuses while acceptances exist (export first): clear them like an owner would after exporting
 await db.exec(`update public.support_claims set purpose_accepted_at = null`);
 await db.exec(`do $$ begin if to_regclass('public.trial_email_hashes') is not null then delete from public.trial_email_hashes; end if; end $$`); // 20261105 refuses while fingerprints exist (by design)
-for (const rb of ['rollback-20261106100000.sql', 'rollback-20261105100000.sql', 'rollback-20261104100000.sql', 'rollback-20261103100000.sql', 'rollback-20261031100000.sql', 'rollback-20261029100000.sql', 'rollback-20261020100000.sql', 'rollback-20261015100000.sql', 'rollback-20261014140000.sql', 'rollback-20261014130000.sql', 'rollback-20261014120000.sql', 'rollback-20261014110000.sql', 'rollback-20261014100000.sql', 'rollback-20261013120000.sql', 'rollback-20261013110000.sql', 'rollback-20261013100000.sql', 'rollback-20261011130000.sql', 'rollback-20261011120000.sql', 'rollback-20261011100000.sql']) { try { await db.exec(read('admin/' + rb)); check(rb, true); } catch (e) { check(rb, false, e.message); } }
+for (const rb of ['rollback-20261106100000.sql', 'rollback-20261105100000.sql', 'rollback-20261104100000.sql', 'rollback-20261103100000.sql', 'rollback-20261031100000.sql', 'rollback-20261029100000.sql', 'rollback-20261020100000.sql', 'rollback-20261015100000.sql', 'rollback-20261014140000.sql', 'rollback-20261014130000.sql', 'rollback-20261014120000.sql', 'rollback-20261014110000.sql', 'rollback-20261014100000.sql', 'rollback-20261013120000.sql', 'rollback-20261013110000.sql', 'rollback-20261013100000.sql', 'rollback-20261011130000.sql', 'rollback-20261011120000.sql', 'rollback-20261011100000.sql']) {
+  // 2nd review (2026-11-06): these 3 refuse while their table has rows; first check they refuse,
+  // then do what the owner would do after exporting: empty the table, and roll back
+  const guarded = { 'rollback-20261011120000.sql': 'support_claims', 'rollback-20261011130000.sql': 'gift_codes', 'rollback-20261011100000.sql': 'admin_audit_log' }[rb];
+  if (guarded) {
+    let refused = ''; try { await db.exec(read('admin/' + rb)); } catch (e) { refused = e.message; } await db.exec('rollback').catch(() => {});
+    check(rb + ': se niega mientras ' + guarded + ' tiene filas', /has_rows/.test(refused), refused);
+    await db.exec('delete from public.' + guarded);
+  }
+  try { await db.exec(read('admin/' + rb)); check(rb, true); } catch (e) { check(rb, false, e.message); }
+}
 try { await db.exec(read('admin/rollback-20261010130000.sql')); check('reversa 130000', true); } catch (e) { check('reversa 130000', false, e.message); }
 try { await db.exec(read('admin/rollback-20261010120000.sql')); check('reversa 120000', true); } catch (e) { check('reversa 120000', false, e.message); }
 const after = await snapshot();

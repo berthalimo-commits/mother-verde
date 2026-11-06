@@ -3,7 +3,7 @@
 **Última actualización:** 4 de noviembre de 2026, sobre `dev` en `165180e` (revisión independiente).
 - hello@ se registra antes de cerrar los registros (paso 4b).
 - Archivos SQL numerados en `supabase/produccion/`.
-- Comprobación final `31-read-only-checks.sql`.
+- Comprobación final `32-read-only-checks.sql` (24 filas; renumerado el 2026-11-06 por la migración `20261106100000`).
 - Variables de Vercel que faltaban, y rotar la clave de servicio.
 - Migración `20261105100000`: la prueba de 24 h, una vez por persona.
 
@@ -60,7 +60,7 @@ El merge a `main` se hace solo cuando escribas exactamente: «APRUEBO EL MERGE A
   que solo ve el panel; la persona solo lee «Lo revisaremos manualmente».
 - Si la administradora activa o retira el acceso, la app abierta se entera sola: al volver a la pestaña o, en la
   pantalla de bloqueo, en un minuto como mucho.
-- La pantalla de Privacidad describe lo que la plataforma hace de verdad (con lo legal marcado `[PENDIENTE]`).
+- La pantalla de Privacidad describe lo que la plataforma hace de verdad; desde el 2026-11-05 es el texto final, sin notas pendientes (ver `docs/legal-final-propuesta.md`).
 
 ### Lo que verá una persona que ya tiene cuenta
 - **No recibe la prueba de 24 h**: en su primer inicio de sesión ve «Esta cuenta no tiene acceso activo»
@@ -71,7 +71,7 @@ El merge a `main` se hace solo cuando escribas exactamente: «APRUEBO EL MERGE A
   (sin acceso; antes la app decía que sí). No se cambia ninguna: `supabase/admin/legacy-active-accounts.sql` (solo
   lectura) las lista para que decidas.
 - **hello@motherverdeny.com (tú, administradora)**: acceso completo sin fecha **y** panel (SQL `grant-admin.sql`,
-  paso 13). Nunca ve la pantalla de bloqueo; para revisarla, en la web de dev: «Ver como persona con prueba vencida».
+  paso 6d). Nunca ve la pantalla de bloqueo; para revisarla, en la web de dev: «Ver como persona con prueba vencida».
 - Su Bitácora, sus publicaciones y su perfil no se borran. Si está bloqueada, puede leer y descargar
   su Bitácora y eliminar su cuenta.
 - Ya no tiene que cancelar ninguna suscripción: no se cobra nada automáticamente.
@@ -94,11 +94,11 @@ Se rompería esto:
 Y al revés (SQL pegado y la web vieja todavía publicada): el botón de prueba de 3 días falla y la
 Comunidad rechaza a quien no tenga acceso completo. Por eso todo va **seguido, en una misma sesión**.
 
-**Orden seguro confirmado** (el del informe, con lo nuevo de correos):
-SQL → secretos → funciones → variables de Vercel → plantillas y ajustes de correo → merge →
-cuenta de administradora (`grant-admin.sql`: admin + acceso completo) → hook al final.
-La cuenta de administradora va **después del merge** porque hello@ se registra y confirma en la web nueva, y
-**antes del hook** para que el hook no pueda impedir ese registro.
+**Orden seguro confirmado** (actualizado el 2026-11-06):
+registrar hello@ (4b, con los registros todavía abiertos) → cerrar registros → SQL → `grant-admin.sql` (6d) →
+secretos → funciones → variables de Vercel → plantillas y ajustes de correo → (rotar clave antigua, 10c) → merge →
+verificación en dos pasos del panel → abrir registros unos minutos para «Corrígelo» y el hook (15b) → hook al final → cerrar registros.
+hello@ se registra **antes** de cerrar los registros y **antes del hook**, para que nada impida ese registro.
 
 ## 4. Plan de vuelta atrás
 
@@ -195,13 +195,14 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
 
    **Después** cierra los registros: Authentication → Sign In / Providers → apagar «Allow new users to sign up».
 5. ☐ **Tú**: SQL Editor → `01-precheck-before-20261010.sql`. Todas las filas `ok`. Si no: paras y me escribes.
-6. ☐ **Tú**: SQL Editor, los archivos `02` a `26`, cada uno entero y en orden:
+6. ☐ **Tú**: SQL Editor, los archivos `02` a `27`, cada uno entero y en orden:
    `20261010120000` → `seed-blocked-email-domains/part-01` … `part-07` → `20261010130000` → `20261011100000` →
    `20261011120000` → `20261011130000` → `20261013100000` → `20261013110000` → `20261013120000` →
    `20261014100000` → `20261014110000` → `20261014120000` → `20261014130000` → `20261014140000` →
    `20261020100000` (Bitácora de solo lectura sin acceso, también en el servidor) →
    `20261103100000` (aportes manuales) → `20261104100000` (propósito del aporte + aviso «Ya tienes cuenta») →
    `20261105100000` (la prueba de 24 h, una vez por persona) →
+   `20261106100000` (códigos de regalo creados desde SQL: 7 días para canjear) →
    `supporters-betian-mother-verde.sql` (PARTE 1: 2 cuentas; luego PARTE 2).
 6b. ☐ **Tú — el juego SALE ENCENDIDO en el lanzamiento** (decisión de Bertha, 2026-11-04). Justo después del paso 6,
    cada archivo entero y en este orden: `supabase/admin/precheck-game.sql` (solo lectura: **todas las filas `ok`**;
@@ -210,8 +211,8 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
    Este orden exacto (plataforma → precheck → las 3 del juego) está probado en una base Postgres real:
    prueba `prod-game-db`. En staging ya están aplicadas (pasos 4b, 4c y 4d de `supabase/staging/`).
    El código del juego solo entra en la web si la compilación ve `MV_GAME=1`: ver paso 9.
-   Son los archivos `27` (precheck) a `30` de `supabase/produccion/`.
-6c. ☐ **Tú**: `31-read-only-checks.sql`. Es solo lectura y una sola consulta: las **23 filas** dicen `ok`.
+   Son los archivos `28` (precheck) a `31` de `supabase/produccion/`.
+6c. ☐ **Tú**: `32-read-only-checks.sql`. Es solo lectura y una sola consulta: las **24 filas** dicen `ok`.
    Revisa plataforma, aportes manuales, propósito, la prueba una vez por persona, juego, RLS y tus dos cuentas.
    **Nunca da error**: lo que falte sale como `FALTA`. Si una fila no dice `ok`, paras y me mandas la captura.
 6d. ☐ **Tú**: SQL Editor → `grant-admin.sql` para hello@ (registrada en el paso 4b).
@@ -223,11 +224,15 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
    puede pegar las veces que haga falta. Para deshacerlo: `rollback-grant-admin.sql`.
 7. ☐ **Tú**: Edge Functions → Secrets: `MAIL_PROVIDER` (`smtp`, o `smtp,resend` si Resend está listo), `MAIL_FROM`,
    `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `APP_URL`, `RETRANSLATE_SECRET`, `SUPPORT_ADDRESS` (paso 1 hecho),
-   y `RESEND_API_KEY` si toca.
+   `RESEND_API_KEY` si `MAIL_PROVIDER` incluye `resend`, y `DEEPL_API_KEY` (la usan las funciones de Comunidad para
+   traducir; debería existir ya desde octubre: compruébalo).
    Opcional: `NOTIFY_TO` = dirección que recibe el aviso de cada TXID nuevo (si no se pone: hello@motherverdeny.com).
-8. ☐ **Tú**: Edge Functions, pegar cada `index.ts` entero: `community-publish-post`, `community-publish-comment`,
-   `support-claims`, `admin-send-gift-code`, `community-retranslate` (**Verify JWT apagado**) y
-   `signup-fix-email` (**Verify JWT apagado**). `delete-account` no se toca.
+8. ☐ **Tú**: Edge Functions, pegar cada `index.ts` entero, con la casilla **Verify JWT** igual que en staging
+   (`docs/staging.md` 2.4, donde está probada):
+   - `support-claims`: **apagado** · `admin-send-gift-code`: **apagado** · `community-retranslate`: **apagado** ·
+     `signup-fix-email`: **apagado**;
+   - `community-publish-post`: **encendido** · `community-publish-comment`: **encendido**;
+   - `delete-account` no se toca (encendido). `community-translate` ya no existe (borrada el 2026-11-06): no se despliega.
    **Importante:** `support-claims` tiene que ser la versión nueva (acción `submit_late`): con `20261014120000` el
    pago tardío ya no se puede registrar desde el navegador y solo pasa por esta función, que lo comprueba en Base.
 9. ☐ **Tú**: Vercel → Settings → Environment Variables → **Production** (solo Production). Comprueba que están todas:
@@ -248,7 +253,11 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
    - **Claves nuevas:** crear una `sb_secret_` nueva → ponerla en Vercel → Redeploy → borrar la vieja.
      No afecta a nadie.
    - **Claves antiguas:** cambiar el *JWT secret*. Cambian también la anon y la service_role, y se cierran todas
-     las sesiones. Hazlo con los registros cerrados y antes del merge, y actualiza en Vercel las dos variables.
+     las sesiones. ⚠️ **Además tira la web publicada:** la web en línea lleva la anon antigua dentro de su código, así
+     que nadie podrá usarla hasta que se publique la nueva. **No lo hagas aquí:** hazlo en el paso **10c**, justo antes
+     del merge, y actualiza en Vercel las dos variables antes de fusionar.
+10c. ☐ **Tú, solo con claves antiguas (`eyJ…`)**: rotar ahora la clave (ver 9b), **justo antes del merge**, con todo lo
+   demás listo. Desde este momento la web publicada no funciona para nadie hasta el paso 11: sigue enseguida.
 10b. ☐ **BLOQUEO DEL MERGE — el juego verificado al 100 %.** No se hace el merge a `main` (paso 11) hasta que estén
    las cuatro cosas, por escrito en `docs/juego-validacion.md`:
    1. **Partidas completas** jugadas por Bertha en Preview (de germinación al final, varios sistemas y al menos
@@ -270,9 +279,13 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
 13. ☐ (Pasó al 6d: `grant-admin.sql` justo después del SQL.)
 14. ☐ **Tú**: entrar con hello@ en `/panel-mv.html`, activar la verificación en dos pasos y **guardar la clave**.
 15. ☐ **Tú**: en el panel, «Enviar correo de prueba a mi correo». Llega a hello@.
+15b. ☐ **Tú**: **abre los registros unos minutos**, solo para los pasos 16 y 17 (Authentication → Sign In / Providers →
+   «Allow new users to sign up» encendido). Al terminar el 17, **vuelve a apagarlo**. Sin esto no se puede crear la
+   cuenta de prueba sin confirmar del 16 ni la cuenta nueva de la prueba 3 del hook.
 16. ☐ **Tú**: con una cuenta de prueba **sin confirmar**, probar «Corrígelo» con una contraseña equivocada:
     tiene que decir «La contraseña no coincide». Si no, me avisas.
 17. ☐ **Tú**: activar el hook «Before User Created» siguiendo `hook-activation-plan.md`. **Siempre al final.**
+    Después de sus pruebas, **vuelve a cerrar los registros** (paso 15b).
 
 **Después**
 18. ☐ **Tú**: al día siguiente, `select * from public.cron_runs order by started_at desc limit 3;` → `ok = true`.

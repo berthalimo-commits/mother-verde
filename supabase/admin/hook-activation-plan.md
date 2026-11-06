@@ -16,6 +16,10 @@ registros vuelven a funcionar al instante.
 4. Tienes a mano un correo de prueba nuevo, que nunca se registró en Mother
    Verde (por ejemplo, un alias de un correo que controlas en otro proveedor).
 
+**Registros abiertos durante las pruebas (2026-11-06):** el día del lanzamiento los registros están cerrados (plan, paso 10). Para estas pruebas **ábrelos unos minutos** (Authentication → Sign In / Providers → «Allow new users to sign up» encendido) y **vuelve a cerrarlos al terminar**. Con los registros cerrados, las pruebas 1 y 2 salen «rechazado» por estar cerrados (no prueban el hook) y la 3 no puede salir bien.
+
+**Correo de prueba:** después de la migración `20261105100000`, borrar la cuenta de prueba (prueba 8) guarda la huella de su correo: ese correo ya no tendrá otra prueba de 24 h. Usa uno que no vayas a necesitar.
+
 ## Activar
 
 Authentication → Hooks → **Before User Created** → tipo **Postgres** →

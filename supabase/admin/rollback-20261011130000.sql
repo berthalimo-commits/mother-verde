@@ -3,6 +3,17 @@
 -- in profiles.access_until (removed by rollback-20261010120000 if you go that far).
 -- Run BEFORE rollback-20261011120000. Runs as ONE transaction.
 begin;
+
+-- Refuses while the table has rows (2nd independent review, 2026-11-06), like
+-- the newer rollbacks: nothing real is lost by accident. To roll back anyway,
+-- first export (select * from public.gift_codes;) and then, on its own, run:
+--   delete from public.gift_codes;
+do $$
+begin
+  if to_regclass('public.gift_codes') is not null and exists (select 1 from public.gift_codes) then
+    raise exception 'gift_codes_has_rows: export first (select * from public.gift_codes;), then run «delete from public.gift_codes;» only if you really want to lose them (códigos de regalo)';
+  end if;
+end $$;
 drop function if exists public.admin_export_csv(text, jsonb);
 drop function if exists public.csv_cell(text);
 drop function if exists public.admin_summary();

@@ -3,6 +3,17 @@
 -- Run AFTER rollback-20261011130000 and BEFORE rollback-20261011100000.
 -- Runs as ONE transaction.
 begin;
+
+-- Refuses while the table has rows (2nd independent review, 2026-11-06), like
+-- the newer rollbacks: nothing real is lost by accident. To roll back anyway,
+-- first export (select * from public.support_claims;) and then, on its own, run:
+--   delete from public.support_claims;
+do $$
+begin
+  if to_regclass('public.support_claims') is not null and exists (select 1 from public.support_claims) then
+    raise exception 'support_claims_has_rows: export first (select * from public.support_claims;), then run «delete from public.support_claims;» only if you really want to lose them (avisos de aporte (también los pagados con TXID))';
+  end if;
+end $$;
 drop function if exists public.admin_reject_claim(bigint, text);
 drop function if exists public.admin_approve_claim(bigint, text);
 drop function if exists public.admin_list_claims(text[]);

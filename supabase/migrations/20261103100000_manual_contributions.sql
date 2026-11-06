@@ -16,7 +16,7 @@
 -- - Every step goes to the Registro (admin_audit_log).
 -- - No e-mail is sent (they are already talking); the flowers are only
 --   recorded in the user's file.
--- Runs as ONE transaction. Rollback: supabase/staging/paso5-rollback.sql.
+-- Runs as ONE transaction. Rollback: supabase/admin/rollback-20261103100000.sql.
 begin;
 
 create table if not exists public.manual_contributions (
