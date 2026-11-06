@@ -27,7 +27,7 @@ export const SUPPORT_HELPS = {
   es: 'Tu aporte único de apoyo me ayuda a seguir estudiando.',
   en: 'Your one-time support contribution helps me keep studying.',
   de: 'Dein einmaliger Unterstützungsbeitrag hilft mir, weiter zu studieren.',
-  fr: 'Ta contribution unique de soutien m’aide à étudier.',
+  fr: 'Ta contribution unique de soutien m’aide à continuer d’étudier.',
 };
 const H = SUPPORT_HELPS;
 
@@ -72,10 +72,10 @@ export const PURPOSE_TEXTS = {
   },
   story4H: { es: 'Mi reto de hoy', en: 'My challenge today', de: 'Meine Herausforderung heute', fr: 'Mon défi d’aujourd’hui' },
   story4P: {
-    es: '<p>Hoy estoy ante un gran reto. ' + S.es + ' Volver a esa casa de estudios me emociona muchísimo.</p><p>Esta vez necesito tu ayuda. Por eso nació esta plataforma: para darte algo valioso a cambio de tu colaboración.</p><p>Puedes explorar gratis durante 24 horas. Si te sirve y quieres apoyarme, ahí estará la opción.</p>',
-    en: '<p>Today I face a big challenge. ' + S.en + ' Going back to that home of learning moves me deeply.</p><p>This time I need your help. That is why this platform was born: to give you something valuable in return for your collaboration.</p><p>You can explore for free for 24 hours. If it helps you and you’d like to support me, the option will be there.</p>',
-    de: '<p>Heute stehe ich vor einer großen Herausforderung. ' + S.de + ' Die Rückkehr an diese Hochschule bewegt mich sehr.</p><p>Diesmal brauche ich deine Hilfe. Deshalb ist diese Plattform entstanden: um dir als Dank für deine Unterstützung etwas Wertvolles zu geben.</p><p>Du kannst 24 Stunden lang kostenlos erkunden. Wenn es dir nützt und du mich unterstützen möchtest, ist die Möglichkeit da.</p>',
-    fr: '<p>Aujourd’hui, je fais face à un grand défi. ' + S.fr + ' Retourner dans cette maison d’études m’émeut profondément.</p><p>Cette fois, j’ai besoin de ton aide. C’est pour cela que cette plateforme est née : pour te donner quelque chose de précieux en retour de ta collaboration.</p><p>Tu peux explorer gratuitement pendant 24 heures. Si cela t’est utile et que tu veux me soutenir, l’option sera là.</p>',
+    es: '<p>Hoy estoy ante un gran reto. ' + S.es + ' Volver a esa casa de estudios me emociona muchísimo.</p><p>Esta vez necesito tu ayuda. Por eso nació esta plataforma: para darte algo valioso a cambio de tu colaboración.</p><p>La primera vez, puedes explorar gratis durante 24 horas. Si te sirve y quieres apoyarme, ahí estará la opción.</p>',
+    en: '<p>Today I face a big challenge. ' + S.en + ' Going back to that home of learning moves me deeply.</p><p>This time I need your help. That is why this platform was born: to give you something valuable in return for your collaboration.</p><p>The first time, you can explore for free for 24 hours. If it helps you and you’d like to support me, the option will be there.</p>',
+    de: '<p>Heute stehe ich vor einer großen Herausforderung. ' + S.de + ' Die Rückkehr an diese Hochschule bewegt mich sehr.</p><p>Diesmal brauche ich deine Hilfe. Deshalb ist diese Plattform entstanden: um dir als Dank für deine Unterstützung etwas Wertvolles zu geben.</p><p>Beim ersten Mal kannst du 24 Stunden lang kostenlos erkunden. Wenn es dir nützt und du mich unterstützen möchtest, ist die Möglichkeit da.</p>',
+    fr: '<p>Aujourd’hui, je fais face à un grand défi. ' + S.fr + ' Retourner dans cette maison d’études m’émeut profondément.</p><p>Cette fois, j’ai besoin de ton aide. C’est pour cela que cette plateforme est née : pour te donner quelque chose de précieux en retour de ta collaboration.</p><p>La première fois, tu peux explorer gratuitement pendant 24 heures. Si cela t’est utile et que tu veux me soutenir, l’option sera là.</p>',
   },
   story5H: { es: 'Lo que encontrarás aquí', en: 'What you’ll find here', de: 'Das findest du hier', fr: 'Ce que tu trouveras ici' },
   story5Calc: { es: 'Calculadoras para VPD, DLI, dosis, EC ↔ PPM, luz y más (17 en total).', en: 'Calculators for VPD, DLI, dosing, EC ↔ PPM, light and more (17 in total).', de: 'Rechner für VPD, DLI, Dosierung, EC ↔ PPM, Licht und mehr (17 insgesamt).', fr: 'Des calculateurs pour le VPD, le DLI, le dosage, EC ↔ PPM, la lumière et plus (17 au total).' },

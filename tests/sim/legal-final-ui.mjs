@@ -12,6 +12,7 @@
 //  - the whole site: NO pending marker anywhere, in any language.
 // Needs Vite on 5174 + fakeserver.
 import { check, sleep, browser, summary } from './browser.mjs';
+import fs from 'fs';
 const L = ['es', 'en', 'de', 'fr'];
 const MARK = /PENDIENTE|PENDING|AUSSTEHEND|EN ATTENTE/;
 const STILL_PENDING = []; // none left (2026-11-05)
@@ -51,6 +52,14 @@ const PV = {
   upd: { es: 'Última actualización: 5 de noviembre de 2026', en: 'Last updated: 5 November 2026', de: 'Letzte Aktualisierung: 5. November 2026', fr: 'Dernière mise à jour : 5 novembre 2026' },
 };
 check('Privacidad: base legal, constancias de pago, transferencias fuera de la UE, derechos con respuesta «en un máximo de 30 días» y reclamación ante la autoridad de protección de datos y responsable «Mother Verde LLC, Hamilton, NY» con hello@, 4 idiomas', L.every((l) => PV.basis[l].test(res[l].pv.intro) && PV.pv4[l].test(res[l].pv.pv4) && PV.pv5[l].test(res[l].pv.pv5) && PV.pv7[l].test(res[l].pv.pv7) && res[l].pv.pv1.startsWith('Mother Verde LLC, Hamilton, NY.') && /hello@motherverdeny\.com/.test(res[l].pv.pv1)), JSON.stringify(L.map((l) => [l, PV.basis[l].test(res[l].pv.intro), PV.pv4[l].test(res[l].pv.pv4), PV.pv5[l].test(res[l].pv.pv5), PV.pv7[l].test(res[l].pv.pv7)])));
+check('Términos, cláusula 5: no nombra apps de pago (regla del 3-11), «otro medio acordado», 4 idiomas', L.every((l) => !/paypal|cash\s?app|venmo|zelle/i.test(res[l].tc.tc5)) && /otro medio acordado|another agreed means|anderen vereinbarten Weg|autre moyen convenu/.test(L.map((l) => res[l].tc.tc5).join(' ')));
+{
+  const main = fs.readFileSync(new URL('../../public/main.js', import.meta.url), 'utf8');
+  const tpl = fs.readFileSync(new URL('../../supabase/email-templates/confirm-signup.html', import.meta.url), 'utf8');
+  const first = { es: /primera vez/, en: /first time/, de: /zum ersten Mal|Beim ersten Mal/, fr: /première fois/ };
+  const val = (l, k) => JSON.parse(main.match(new RegExp('^translations\\.' + l + '\\.' + k + ' = (".*");$', 'm'))[1]);
+  check('la prueba de 24 h se promete solo «la primera vez» (entrada, confirmación, historia 4 y plantilla de confirmación), 4 idiomas', L.every((l) => first[l].test(val(l, 'accEntradaP')) && first[l].test(val(l, 'accConfirmaP')) && first[l].test(val(l, 'story4P')) && first[l].test(tpl)) && !L.some((l) => /24/.test(val(l, 'accConfirmaH'))));
+}
 check('Privacidad: fecha «5 de noviembre de 2026», sin «borrador», 4 idiomas', L.every((l) => res[l].pv.upd === PV.upd[l]), JSON.stringify(L.map((l) => res[l].pv.upd)));
 const TC5B = { es: /Códigos de regalo:.*7 días de acceso completo.*7 días.*Retiro del acceso:.*Aportes manuales:/, en: /Gift codes:.*7 days of full access.*7 days.*Withdrawal of access:.*Manual contributions:/, de: /Geschenkcodes:.*7 Tage Vollzugriff.*7 Tagen.*Entzug des Zugangs:.*Manuelle Beiträge:/, fr: /Codes cadeaux :.*7 jours d’accès complet.*7 jours.*Retrait de l’accès :.*Contributions manuelles :/ };
 check('Términos, cláusula 5: párrafo de códigos de regalo (7 días), retiro de acceso y aportes manuales, 4 idiomas', L.every((l) => TC5B[l].test(res[l].tc.tc5)));

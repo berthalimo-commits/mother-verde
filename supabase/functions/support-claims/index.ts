@@ -295,7 +295,7 @@ const SUPPORT_HELPS = {
   es: "Tu aporte único de apoyo me ayuda a seguir estudiando.",
   en: "Your one-time support contribution helps me keep studying.",
   de: "Dein einmaliger Unterstützungsbeitrag hilft mir, weiter zu studieren.",
-  fr: "Ta contribution unique de soutien m’aide à étudier.",
+  fr: "Ta contribution unique de soutien m’aide à continuer d’étudier.",
 };
 const SUNY_ACCEPTED = {
   es: "SUNY Morrisville me abrió otra vez sus puertas para seguir aprendiendo y creciendo en mi vida profesional.",
