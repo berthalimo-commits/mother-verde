@@ -2377,8 +2377,7 @@ const translations = {
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
     cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.',
     cuentaPremiumActivo:'✓ Acceso completo activo.', 
-    pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', 
-    alertasEyebrow:'Incluido en el acceso completo', alertasTitle:'Alertas de cambio legal', alertasSub:'Sigue países específicos — te avisamos apenas cambie su estatus, sin que tengas que revisar manualmente.', alertasSigues:'Países que sigues', alertasSeguirBtn:'Seguir', alertasEjemploTitle:'Así se vería una alerta real', alertasEjemploH4:'Alemania actualizó su límite de posesión personal', alertasEjemploTag:'Cambio confirmado', alertasEjemploMeta:'Hace 2 días · Fuente: BfArM', alertasEjemploBody:'Ejemplo ilustrativo de cómo llegaría una notificación real cuando un país que sigues actualiza su marco legal.',
+    pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses',
     alertaSemillasH4:'EE. UU.: prohibición federal al comercio interestatal de semillas con 0.3%+ THC', alertaSemillasTag:'Alerta real — no ilustrativa', alertaSemillasMeta:'21 de julio de 2026 · Fuente: MJBizDaily',
     alertaSemillasBody:'La redefinición federal del cáñamo hace ilegal enviar semillas de cultivares con 0.3% THC o más entre estados, a partir del <b>12 de noviembre de 2026</b>. Bancos de semillas ya están diversificando operaciones a distintos estados para poder seguir operando después de esa fecha.',
     alertaSemillasLink:'Leer más en mjbizdaily.com →',
@@ -3064,7 +3063,7 @@ const translations = {
     cmSuelo1h4:'Traditional soil', cmSuelo1sci:'The oldest starting point', cmSuelo1desc:'Direct growing in garden soil or open field. It’s the oldest method and the most forgiving of watering or nutrient mistakes — the soil itself buffers imbalances.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSuelo2h4:'Potted substrate', cmSuelo2sci:'Pre-mixed blends', cmSuelo2desc:'Commercial blends of peat, compost, and perlite in containers — the middle ground between hydroponic control and traditional soil simplicity.', cmSuelo2src:'<a href="https://hemp.cals.cornell.edu/resources/reports-factsheets/2022-cornell-hemp-field-day-handouts/high-tunnel-soil-management-for-cannabis-sativa/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSecHidro:'Hydroponic',
-    cmHidroIntro:'Combines an inert substrate (coco coir, rockwool, perlite — see <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Substrate &amp; nutrition</a>) with an open-water system that delivers the nutrient solution directly to the root.',
+    cmHidroIntro:'Combines an inert substrate (coco coir, rockwool, perlite — see <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Substrate &amp; nutrition</a>) with an open-water system that delivers the nutrient solution directly to the root.',
     cmHidro1h4:'DWC (deep water culture)', cmHidro1sci:'Deep Water Culture', cmHidro1desc:'Roots hang directly in a reservoir of oxygenated nutrient solution. Simple and cheap to set up; requires constant monitoring of dissolved oxygen and water temperature.', cmHidro1src:'<a href="https://cannabis.ucdavis.edu/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabis.ucdavis.edu</a>',
     cmHidro2h4:'NFT', cmHidro2sci:'Nutrient Film Technique', cmHidro2desc:'A thin film of nutrient solution flows continuously over the roots in sloped channels. Very water-efficient; vulnerable to power outages since there’s no solution reserve at the root.', cmHidro2src:'<a href="https://extension.oregonstate.edu/catalog/pub/em-9457-hydro-hints-nutrient-film-technique" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">extension.oregonstate.edu</a>',
     cmHidro3h4:'Ebb &amp; Flow', cmHidro3sci:'Flood and drain', cmHidro3desc:'A tray floods with nutrient solution on a timed cycle, then drains completely — roots alternate between feeding and oxygenation. A flexible system that works with different inert substrates.', cmHidro3src:'<a href="https://cpb-us-e1.wpmucdn.com/blogs.cornell.edu/dist/8/8824/files/2019/06/Cornell-CEA-Lettuce-Handbook-.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">blogs.cornell.edu — Cornell CEA Handbook</a>',
@@ -3204,8 +3203,7 @@ const translations = {
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
     cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and your data are stored on our server, not only on this device.',
     cuentaPremiumActivo:'✓ Full access active.', 
-    pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', 
-    alertasEyebrow:'Included in full access', alertasTitle:'Legal change alerts', alertasSub:'Follow specific countries — we notify you as soon as their status changes, no need to check manually.', alertasSigues:'Countries you follow', alertasSeguirBtn:'Follow', alertasEjemploTitle:'This is what a real alert would look like', alertasEjemploH4:'Germany updated its personal possession limit', alertasEjemploTag:'Confirmed change', alertasEjemploMeta:'2 days ago · Source: BfArM', alertasEjemploBody:'Illustrative example of how a real notification would arrive when a country you follow updates its legal framework.',
+    pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months',
     alertaSemillasH4:'U.S.: federal ban on interstate trade of seeds with 0.3%+ THC', alertaSemillasTag:'Real alert — not illustrative', alertaSemillasMeta:'July 21, 2026 · Source: MJBizDaily',
     alertaSemillasBody:'The federal redefinition of hemp makes it illegal to ship seeds from cultivars with 0.3% THC or more across state lines, starting <b>November 12, 2026</b>. Seed banks are already diversifying operations to different states in order to keep operating after that date.',
     alertaSemillasLink:'Read more at mjbizdaily.com →',
@@ -3890,7 +3888,7 @@ const translations = {
     cmSuelo1h4:'Traditionelle Erde', cmSuelo1sci:'Der älteste Ausgangspunkt', cmSuelo1desc:'Direkter Anbau in Gartenerde oder im Freiland. Die älteste Methode und am verzeihendsten bei Gieß- oder Nährstofffehlern — die Erde selbst puffert Ungleichgewichte ab.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSuelo2h4:'Substrat im Topf', cmSuelo2sci:'Vorgemischte Erden', cmSuelo2desc:'Kommerzielle Mischungen aus Torf, Kompost und Perlit in Containern — der Mittelweg zwischen der Kontrolle der Hydroponik und der Einfachheit traditioneller Erde.', cmSuelo2src:'<a href="https://hemp.cals.cornell.edu/resources/reports-factsheets/2022-cornell-hemp-field-day-handouts/high-tunnel-soil-management-for-cannabis-sativa/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSecHidro:'Hydroponik',
-    cmHidroIntro:'Kombiniert ein inertes Substrat (Kokosfaser, Steinwolle, Perlit — siehe <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Substrat &amp; Nährstoffe</a>) mit einem offenen Wassersystem, das die Nährlösung direkt an die Wurzel liefert.',
+    cmHidroIntro:'Kombiniert ein inertes Substrat (Kokosfaser, Steinwolle, Perlit — siehe <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Substrat &amp; Nährstoffe</a>) mit einem offenen Wassersystem, das die Nährlösung direkt an die Wurzel liefert.',
     cmHidro1h4:'DWC (schwimmende Wurzel)', cmHidro1sci:'Deep Water Culture', cmHidro1desc:'Die Wurzeln hängen direkt in einem Reservoir mit sauerstoffangereicherter Nährlösung. Einfach und günstig aufzubauen; erfordert ständige Überwachung von gelöstem Sauerstoff und Wassertemperatur.', cmHidro1src:'<a href="https://cannabis.ucdavis.edu/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabis.ucdavis.edu</a>',
     cmHidro2h4:'NFT', cmHidro2sci:'Nutrient Film Technique', cmHidro2desc:'Ein dünner Film Nährlösung fließt kontinuierlich über die Wurzeln in geneigten Kanälen. Sehr wassereffizient; anfällig bei Stromausfällen, da kein Nährstoffreservoir an der Wurzel besteht.', cmHidro2src:'<a href="https://extension.oregonstate.edu/catalog/pub/em-9457-hydro-hints-nutrient-film-technique" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">extension.oregonstate.edu</a>',
     cmHidro3h4:'Ebb &amp; Flow', cmHidro3sci:'Flut- und Drainagesystem', cmHidro3desc:'Eine Wanne wird zeitgesteuert mit Nährlösung geflutet und läuft dann vollständig ab — die Wurzeln wechseln zwischen Ernährung und Sauerstoffversorgung. Ein flexibles System, das mit verschiedenen inerten Substraten funktioniert.', cmHidro3src:'<a href="https://cpb-us-e1.wpmucdn.com/blogs.cornell.edu/dist/8/8824/files/2019/06/Cornell-CEA-Lettuce-Handbook-.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">blogs.cornell.edu — Cornell CEA Handbook</a>',
@@ -4715,7 +4713,7 @@ const translations = {
     cmSuelo1h4:'Terre traditionnelle', cmSuelo1sci:'Le point de départ le plus ancien', cmSuelo1desc:'Culture directe en terre de jardin ou en plein champ. La méthode la plus ancienne et la plus tolérante aux erreurs d’arrosage ou de nutrition — le sol lui-même amortit les déséquilibres.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSuelo2h4:'Substrat en pot', cmSuelo2sci:'Mélanges prêts à l’emploi', cmSuelo2desc:'Mélanges commerciaux de tourbe, compost et perlite en contenants — le juste milieu entre le contrôle de l’hydroponie et la simplicité de la terre traditionnelle.', cmSuelo2src:'<a href="https://hemp.cals.cornell.edu/resources/reports-factsheets/2022-cornell-hemp-field-day-handouts/high-tunnel-soil-management-for-cannabis-sativa/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSecHidro:'Hydroponique',
-    cmHidroIntro:'Combine un substrat inerte (fibre de coco, laine de roche, perlite — voir <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Substrat &amp; nutrition</a>) avec un système à eau ouverte qui délivre la solution nutritive directement à la racine.',
+    cmHidroIntro:'Combine un substrat inerte (fibre de coco, laine de roche, perlite — voir <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Substrat &amp; nutrition</a>) avec un système à eau ouverte qui délivre la solution nutritive directement à la racine.',
     cmHidro1h4:'DWC (racines flottantes)', cmHidro1sci:'Deep Water Culture', cmHidro1desc:'Les racines pendent directement dans un réservoir de solution nutritive oxygénée. Simple et économique à installer ; exige une surveillance constante de l’oxygène dissous et de la température de l’eau.', cmHidro1src:'<a href="https://cannabis.ucdavis.edu/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabis.ucdavis.edu</a>',
     cmHidro2h4:'NFT', cmHidro2sci:'Technique du film nutritif', cmHidro2desc:'Un film fin de solution nutritive circule en continu sur les racines, dans des canaux inclinés. Très économe en eau ; vulnérable aux coupures de courant car il n’y a pas de réserve de solution au niveau de la racine.', cmHidro2src:'<a href="https://extension.oregonstate.edu/catalog/pub/em-9457-hydro-hints-nutrient-film-technique" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">extension.oregonstate.edu</a>',
     cmHidro3h4:'Flux et reflux', cmHidro3sci:'Ebb &amp; Flow', cmHidro3desc:'Un bac est inondé de solution nutritive par cycles minutés puis se draine complètement — les racines alternent entre nutrition et oxygénation. Système flexible, fonctionne avec différents substrats inertes.', cmHidro3src:'<a href="https://cpb-us-e1.wpmucdn.com/blogs.cornell.edu/dist/8/8824/files/2019/06/Cornell-CEA-Lettuce-Handbook-.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">blogs.cornell.edu — Cornell CEA Handbook</a>',
@@ -5748,8 +5746,6 @@ translations.fr.legalTeaserDe = "sur";
 translations.en.pmOsteoartritisNote = "<b>CBD for canine osteoarthritis: what the foundational study shows.</b> That first Cornell trial mentioned above (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University and Colorado State University) found that 2 mg/kg of CBD twice a day reduced pain and increased activity in dogs with osteoarthritis, measured with validated veterinary scales, with no side effects reported by the owners. The honest caveat: blood tests did detect a rise in alkaline phosphatase during treatment — something only a veterinarian can detect, and the reason any therapeutic use of CBD in pets needs veterinary supervision rather than self-administration.";
 translations.de.pmOsteoartritisNote = "<b>CBD bei Arthrose beim Hund: Was die grundlegende Studie zeigt.</b> Die oben erwähnte erste Cornell-Studie (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University und Colorado State University) fand, dass 2 mg/kg CBD zweimal täglich bei Hunden mit Arthrose die Schmerzen verringerte und die Aktivität steigerte, gemessen mit validierten tierärztlichen Skalen, ohne von den Haltern berichtete Nebenwirkungen. Der ehrliche Hinweis: In den Blutuntersuchungen wurde während der Behandlung ein Anstieg der alkalischen Phosphatase festgestellt — etwas, das nur eine Tierärztin oder ein Tierarzt erkennen kann, und der Grund, warum jede therapeutische Anwendung von CBD bei Haustieren tierärztliche Begleitung braucht und nicht auf eigene Faust erfolgen sollte.";
 translations.fr.pmOsteoartritisNote = "<b>Le CBD contre l’arthrose du chien : ce que montre l’étude fondatrice.</b> Ce premier essai de Cornell mentionné plus haut (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University et Colorado State University) a montré que 2 mg/kg de CBD deux fois par jour réduisaient la douleur et augmentaient l’activité chez des chiens arthrosiques, mesurées avec des échelles vétérinaires validées, sans effets secondaires signalés par les propriétaires. Le point honnête : une hausse des phosphatases alcalines a bien été détectée dans les analyses de sang pendant le traitement — ce que seul un vétérinaire peut repérer, et la raison pour laquelle tout usage thérapeutique du CBD chez l’animal doit se faire sous suivi vétérinaire, pas en automédication.";
-translations.de.alertasEyebrow = "Im Vollzugriff enthalten";
-translations.fr.alertasEyebrow = "Inclus dans l’accès complet";
 
 // Desbloquear page (src/desbloquear.js). Payment data + recipient text live in src/supportConfig.js.
 translations.es.dsIntro = "Creemos que aprender sobre cannabis debería estar al alcance del bolsillo de cada persona. Por eso aquí no hay pagos mensuales ni cobros automáticos: con un <b>aporte único de apoyo</b> tienes acceso completo a todo el contenido y a la Comunidad, mientras la plataforma esté activa.";
@@ -6000,6 +5996,331 @@ translations.es.recP = "Abriste el enlace para cambiar tu contraseña. Escríbel
 translations.en.recP = "You opened the link to reset your password. Type the new one twice.";
 translations.de.recP = "Du hast den Link zum Zurücksetzen geöffnet. Gib das neue Passwort zweimal ein.";
 translations.fr.recP = "Tu as ouvert le lien pour changer ton mot de passe. Saisis le nouveau deux fois.";
+// UI texts that were fixed Spanish (2026-11-06, translation batch)
+translations.es.eduLoc1 = "Nueva York, EE. UU. — Cultivo &amp; horticultura";
+translations.en.eduLoc1 = "New York, USA — Growing &amp; horticulture";
+translations.de.eduLoc1 = "New York, USA — Anbau &amp; Gartenbau";
+translations.fr.eduLoc1 = "New York, États-Unis — Culture &amp; horticulture";
+translations.es.eduLoc2 = "Colorado, EE. UU. — Ciencia &amp; química";
+translations.en.eduLoc2 = "Colorado, USA — Science &amp; chemistry";
+translations.de.eduLoc2 = "Colorado, USA — Wissenschaft &amp; Chemie";
+translations.fr.eduLoc2 = "Colorado, États-Unis — Sciences &amp; chimie";
+translations.es.eduLoc3 = "Colorado, EE. UU. — Medicina &amp; farmacia";
+translations.en.eduLoc3 = "Colorado, USA — Medicine &amp; pharmacy";
+translations.de.eduLoc3 = "Colorado, USA — Medizin &amp; Pharmazie";
+translations.fr.eduLoc3 = "Colorado, États-Unis — Médecine &amp; pharmacie";
+translations.es.eduLoc4 = "Saskatchewan, Canadá — Cultivo &amp; horticultura";
+translations.en.eduLoc4 = "Saskatchewan, Canada — Growing &amp; horticulture";
+translations.de.eduLoc4 = "Saskatchewan, Kanada — Anbau &amp; Gartenbau";
+translations.fr.eduLoc4 = "Saskatchewan, Canada — Culture &amp; horticulture";
+translations.es.eduLoc5 = "Ontario, Canadá — Cultivo &amp; negocio";
+translations.en.eduLoc5 = "Ontario, Canada — Growing &amp; business";
+translations.de.eduLoc5 = "Ontario, Kanada — Anbau &amp; Wirtschaft";
+translations.fr.eduLoc5 = "Ontario, Canada — Culture &amp; commerce";
+translations.es.eduLoc6 = "Cataluña, España — Ciencia &amp; regulación";
+translations.en.eduLoc6 = "Catalonia, Spain — Science &amp; regulation";
+translations.de.eduLoc6 = "Katalonien, Spanien — Wissenschaft &amp; Regulierung";
+translations.fr.eduLoc6 = "Catalogne, Espagne — Sciences &amp; réglementation";
+translations.es.eduLoc7 = "Comunidad Valenciana, España — Ciencia &amp; regulación";
+translations.en.eduLoc7 = "Valencian Community, Spain — Science &amp; regulation";
+translations.de.eduLoc7 = "Valencianische Gemeinschaft, Spanien — Wissenschaft &amp; Regulierung";
+translations.fr.eduLoc7 = "Communauté valencienne, Espagne — Sciences &amp; réglementation";
+translations.es.eduLoc8 = "Alicante, España — Negocio &amp; industria digital";
+translations.en.eduLoc8 = "Alicante, Spain — Business &amp; digital industry";
+translations.de.eduLoc8 = "Alicante, Spanien — Wirtschaft &amp; digitale Industrie";
+translations.fr.eduLoc8 = "Alicante, Espagne — Commerce &amp; industrie numérique";
+translations.es.eduLoc9 = "Bogotá, Colombia — Negocio &amp; regulación";
+translations.en.eduLoc9 = "Bogotá, Colombia — Business &amp; regulation";
+translations.de.eduLoc9 = "Bogotá, Kolumbien — Wirtschaft &amp; Regulierung";
+translations.fr.eduLoc9 = "Bogotá, Colombie — Commerce &amp; réglementation";
+translations.es.eduLoc10 = "Rhode Island, EE. UU. — Ciencia &amp; medicina";
+translations.en.eduLoc10 = "Rhode Island, USA — Science &amp; medicine";
+translations.de.eduLoc10 = "Rhode Island, USA — Wissenschaft &amp; Medizin";
+translations.fr.eduLoc10 = "Rhode Island, États-Unis — Sciences &amp; médecine";
+translations.es.eduLoc11 = "Lima, Perú — Medicina &amp; salud pública";
+translations.en.eduLoc11 = "Lima, Peru — Medicine &amp; public health";
+translations.de.eduLoc11 = "Lima, Peru — Medizin &amp; öffentliche Gesundheit";
+translations.fr.eduLoc11 = "Lima, Pérou — Médecine &amp; santé publique";
+translations.es.eduLoc12 = "Santiago, Chile — Ciencia &amp; química";
+translations.en.eduLoc12 = "Santiago, Chile — Science &amp; chemistry";
+translations.de.eduLoc12 = "Santiago, Chile — Wissenschaft &amp; Chemie";
+translations.fr.eduLoc12 = "Santiago, Chili — Sciences &amp; chimie";
+translations.es.eduLoc13 = "Rosario, Argentina — Medicina &amp; salud";
+translations.en.eduLoc13 = "Rosario, Argentina — Medicine &amp; health";
+translations.de.eduLoc13 = "Rosario, Argentinien — Medizin &amp; Gesundheit";
+translations.fr.eduLoc13 = "Rosario, Argentine — Médecine &amp; santé";
+translations.es.eduLoc14 = "La Rioja, Argentina — Cultivo &amp; industrialización";
+translations.en.eduLoc14 = "La Rioja, Argentina — Growing &amp; industrialisation";
+translations.de.eduLoc14 = "La Rioja, Argentinien — Anbau &amp; Industrialisierung";
+translations.fr.eduLoc14 = "La Rioja, Argentine — Culture &amp; industrialisation";
+translations.es.eduLoc15 = "Buenos Aires, Argentina — Medicina &amp; salud";
+translations.en.eduLoc15 = "Buenos Aires, Argentina — Medicine &amp; health";
+translations.de.eduLoc15 = "Buenos Aires, Argentinien — Medizin &amp; Gesundheit";
+translations.fr.eduLoc15 = "Buenos Aires, Argentine — Médecine &amp; santé";
+translations.es.ppTitle1 = "Cannabis y psicoterapia: acceso desigual y estigma";
+translations.en.ppTitle1 = "Cannabis and psychotherapy: unequal access and stigma";
+translations.de.ppTitle1 = "Cannabis und Psychotherapie: ungleicher Zugang und Stigma";
+translations.fr.ppTitle1 = "Cannabis et psychothérapie : accès inégal et stigmatisation";
+translations.es.ppTitle2 = "CBD y extinción de memorias de miedo";
+translations.en.ppTitle2 = "CBD and the extinction of fear memories";
+translations.de.ppTitle2 = "CBD und die Löschung von Angsterinnerungen";
+translations.fr.ppTitle2 = "Le CBD et l’extinction des souvenirs de peur";
+translations.es.ppTitle3 = "Cannabis medicinal para dolor crónico: expectativas calibradas con rigor científico";
+translations.en.ppTitle3 = "Medical cannabis for chronic pain: expectations calibrated with scientific rigour";
+translations.de.ppTitle3 = "Medizinisches Cannabis bei chronischen Schmerzen: mit wissenschaftlicher Strenge abgestimmte Erwartungen";
+translations.fr.ppTitle3 = "Cannabis médical contre la douleur chronique : des attentes calibrées avec rigueur scientifique";
+translations.es.ppTitle4 = "Conducir bajo efecto tras la legalización";
+translations.en.ppTitle4 = "Driving under the influence after legalisation";
+translations.de.ppTitle4 = "Fahren unter Cannabiseinfluss nach der Legalisierung";
+translations.fr.ppTitle4 = "Conduite sous influence après la légalisation";
+translations.es.ppTitle5 = "Proyección de efectos netos en salud de la legalización alemana";
+translations.en.ppTitle5 = "Projected net health effects of the German legalisation";
+translations.de.ppTitle5 = "Prognose der gesundheitlichen Nettoeffekte der deutschen Legalisierung";
+translations.fr.ppTitle5 = "Projection des effets nets sur la santé de la légalisation allemande";
+translations.es.ppTitle6 = "Oferta y demanda tras la legalización en Alemania";
+translations.en.ppTitle6 = "Supply and demand after legalisation in Germany";
+translations.de.ppTitle6 = "Angebot und Nachfrage nach der Legalisierung in Deutschland";
+translations.fr.ppTitle6 = "L’offre et la demande après la légalisation en Allemagne";
+translations.es.ppTitle7 = "Salud mental y potencia de THC en Europa";
+translations.en.ppTitle7 = "Mental health and THC potency in Europe";
+translations.de.ppTitle7 = "Psychische Gesundheit und THC-Gehalt in Europa";
+translations.fr.ppTitle7 = "Santé mentale et puissance du THC en Europe";
+translations.es.ppTitle8 = "Experimento de cadena de suministro cerrada en los Países Bajos";
+translations.en.ppTitle8 = "Closed supply chain experiment in the Netherlands";
+translations.de.ppTitle8 = "Experiment mit geschlossener Lieferkette in den Niederlanden";
+translations.fr.ppTitle8 = "Expérience de chaîne d’approvisionnement fermée aux Pays-Bas";
+translations.es.ppTitle9 = "De la granja a la cama del paciente: acceso global al cannabis medicinal";
+translations.en.ppTitle9 = "From farm to bedside: global access to medical cannabis";
+translations.de.ppTitle9 = "Vom Feld ans Krankenbett: weltweiter Zugang zu medizinischem Cannabis";
+translations.fr.ppTitle9 = "De la ferme au chevet du patient : l’accès mondial au cannabis médical";
+translations.es.ppTitle10 = "Reforma de la Ley de Control de Cannabis en Japón";
+translations.en.ppTitle10 = "Reform of Japan’s Cannabis Control Law";
+translations.de.ppTitle10 = "Reform des Cannabiskontrollgesetzes in Japan";
+translations.fr.ppTitle10 = "Réforme de la loi japonaise sur le contrôle du cannabis";
+translations.es.ppTitle11 = "Revisando la hipótesis de la \"puerta de entrada\" en Japón";
+translations.en.ppTitle11 = "Revisiting the “gateway” hypothesis in Japan";
+translations.de.ppTitle11 = "Die „Einstiegsdrogen“-Hypothese in Japan neu betrachtet";
+translations.fr.ppTitle11 = "Réexamen de l’hypothèse de la « porte d’entrée » au Japon";
+translations.es.ppTitle12 = "Normas sociales y severidad de consumo en Corea del Sur";
+translations.en.ppTitle12 = "Social norms and severity of use in South Korea";
+translations.de.ppTitle12 = "Soziale Normen und Schwere des Konsums in Südkorea";
+translations.fr.ppTitle12 = "Normes sociales et gravité de la consommation en Corée du Sud";
+translations.es.ppTitle13 = "Modelos internacionales de suministro regulado";
+translations.en.ppTitle13 = "International models of regulated supply";
+translations.de.ppTitle13 = "Internationale Modelle regulierter Versorgung";
+translations.fr.ppTitle13 = "Modèles internationaux d’approvisionnement réglementé";
+translations.es.ppTitle14 = "Política y terapéutica del cannabis a nivel internacional (parte 1)";
+translations.en.ppTitle14 = "International cannabis policy and therapeutics (part 1)";
+translations.de.ppTitle14 = "Internationale Cannabispolitik und -therapie (Teil 1)";
+translations.fr.ppTitle14 = "Politique et thérapeutique du cannabis à l’échelle internationale (partie 1)";
+translations.es.ppTitle15 = "Actitudes juveniles hacia la nueva legislación en Marruecos";
+translations.en.ppTitle15 = "Young people’s attitudes towards Morocco’s new legislation";
+translations.de.ppTitle15 = "Einstellungen junger Menschen zur neuen Gesetzgebung in Marokko";
+translations.fr.ppTitle15 = "Attitudes des jeunes face à la nouvelle législation au Maroc";
+translations.es.ppTitle16 = "Revisión sistemática en estudiantes del mundo árabe";
+translations.en.ppTitle16 = "Systematic review among students in the Arab world";
+translations.de.ppTitle16 = "Systematische Übersichtsarbeit zu Studierenden in der arabischen Welt";
+translations.fr.ppTitle16 = "Revue systématique chez les étudiants du monde arabe";
+translations.es.ppMetaX1 = "Instituto Fiocruz · Revista Fitos · diciembre 2025";
+translations.en.ppMetaX1 = "Fiocruz Institute · Revista Fitos · December 2025";
+translations.de.ppMetaX1 = "Fiocruz-Institut · Revista Fitos · Dezember 2025";
+translations.fr.ppMetaX1 = "Institut Fiocruz · Revista Fitos · décembre 2025";
+translations.es.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025";
+translations.en.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · June 2025";
+translations.de.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · Juni 2025";
+translations.fr.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · juin 2025";
+translations.es.ppMetaX3 = "Universidades de Hamburgo y Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.en.ppMetaX3 = "Universities of Hamburg and Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.de.ppMetaX3 = "Universitäten Hamburg und Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.fr.ppMetaX3 = "Universités de Hambourg et de Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.es.ppMetaX4 = "Universidad de Hamburgo · International Journal of Drug Policy · 2026";
+translations.en.ppMetaX4 = "University of Hamburg · International Journal of Drug Policy · 2026";
+translations.de.ppMetaX4 = "Universität Hamburg · International Journal of Drug Policy · 2026";
+translations.fr.ppMetaX4 = "Université de Hambourg · International Journal of Drug Policy · 2026";
+translations.es.ppMetaX5 = "15 países europeos · Frontiers in Psychiatry · 2026";
+translations.en.ppMetaX5 = "15 European countries · Frontiers in Psychiatry · 2026";
+translations.de.ppMetaX5 = "15 europäische Länder · Frontiers in Psychiatry · 2026";
+translations.fr.ppMetaX5 = "15 pays européens · Frontiers in Psychiatry · 2026";
+translations.es.ppMetaX6 = "Instituto Trimbos · desde 2025";
+translations.en.ppMetaX6 = "Trimbos Institute · since 2025";
+translations.de.ppMetaX6 = "Trimbos-Institut · seit 2025";
+translations.fr.ppMetaX6 = "Institut Trimbos · depuis 2025";
+translations.es.ppMetaX7 = "Global Oncology University, Johannesburgo · Complementary Therapies in Medicine · 2025";
+translations.en.ppMetaX7 = "Global Oncology University, Johannesburg · Complementary Therapies in Medicine · 2025";
+translations.de.ppMetaX7 = "Global Oncology University, Johannesburg · Complementary Therapies in Medicine · 2025";
+translations.fr.ppMetaX7 = "Global Oncology University, Johannesburg · Complementary Therapies in Medicine · 2025";
+translations.es.ppMetaX8 = "Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2025";
+translations.en.ppMetaX8 = "Seoul Welfare Foundation · International Journal of Environmental Research and Public Health · 2025";
+translations.de.ppMetaX8 = "Seouler Wohlfahrtsstiftung · International Journal of Environmental Research and Public Health · 2025";
+translations.fr.ppMetaX8 = "Fondation pour le bien-être de Séoul · International Journal of Environmental Research and Public Health · 2025";
+translations.es.ppMetaX9 = "Estudio internacional · 2025";
+translations.en.ppMetaX9 = "International study · 2025";
+translations.de.ppMetaX9 = "Internationale Studie · 2025";
+translations.fr.ppMetaX9 = "Étude internationale · 2025";
+translations.es.ppMetaX10 = "Clinical Therapeutics · diciembre 2025";
+translations.en.ppMetaX10 = "Clinical Therapeutics · December 2025";
+translations.de.ppMetaX10 = "Clinical Therapeutics · Dezember 2025";
+translations.fr.ppMetaX10 = "Clinical Therapeutics · décembre 2025";
+translations.es.ppMetaX11 = "Universidad Americana de Beirut · Frontiers in Psychiatry · 2025";
+translations.en.ppMetaX11 = "American University of Beirut · Frontiers in Psychiatry · 2025";
+translations.de.ppMetaX11 = "Amerikanische Universität Beirut · Frontiers in Psychiatry · 2025";
+translations.fr.ppMetaX11 = "Université américaine de Beyrouth · Frontiers in Psychiatry · 2025";
+translations.es.gnRatioI = "Tipo I";
+translations.en.gnRatioI = "Type I";
+translations.de.gnRatioI = "Typ I";
+translations.fr.gnRatioI = "Type I";
+translations.es.gnRatioII = "Tipo II";
+translations.en.gnRatioII = "Type II";
+translations.de.gnRatioII = "Typ II";
+translations.fr.gnRatioII = "Type II";
+translations.es.gnRatioIII = "Tipo III";
+translations.en.gnRatioIII = "Type III";
+translations.de.gnRatioIII = "Typ III";
+translations.fr.gnRatioIII = "Type III";
+translations.es.epDuracionVal = "7–14 días";
+translations.en.epDuracionVal = "7–14 days";
+translations.de.epDuracionVal = "7–14 Tage";
+translations.fr.epDuracionVal = "7–14 jours";
+translations.es.epDuracionMinVal = "2–4 semanas";
+translations.en.epDuracionMinVal = "2–4 weeks";
+translations.de.epDuracionMinVal = "2–4 Wochen";
+translations.fr.epDuracionMinVal = "2–4 semaines";
+translations.es.ilDliVeg = "20–40 mol/m²/día";
+translations.en.ilDliVeg = "20–40 mol/m²/day";
+translations.de.ilDliVeg = "20–40 mol/m²/Tag";
+translations.fr.ilDliVeg = "20–40 mol/m²/jour";
+translations.es.ilDliFlor = "30–50 mol/m²/día";
+translations.en.ilDliFlor = "30–50 mol/m²/day";
+translations.de.ilDliFlor = "30–50 mol/m²/Tag";
+translations.fr.ilDliFlor = "30–50 mol/m²/jour";
+translations.es.histSiglo16 = "Siglo XVI";
+translations.en.histSiglo16 = "16th century";
+translations.de.histSiglo16 = "16. Jahrhundert";
+translations.fr.histSiglo16 = "XVIe siècle";
+translations.es.srcHemptodayArch = "hemptoday.net (archivado)";
+translations.en.srcHemptodayArch = "hemptoday.net (archived)";
+translations.de.srcHemptodayArch = "hemptoday.net (archiviert)";
+translations.fr.srcHemptodayArch = "hemptoday.net (archivé)";
+translations.es.tcH4 = "Checklist pre-viaje";
+translations.en.tcH4 = "Pre-trip checklist";
+translations.de.tcH4 = "Checkliste vor der Reise";
+translations.fr.tcH4 = "Liste de contrôle avant le voyage";
+translations.es.coaLote = "LOTE #4471-A · 12/03/2026";
+translations.en.coaLote = "BATCH #4471-A · 12/03/2026";
+translations.de.coaLote = "CHARGE #4471-A · 12/03/2026";
+translations.fr.coaLote = "LOT #4471-A · 12/03/2026";
+translations.es.coaCannab = "CANNABINOIDES";
+translations.en.coaCannab = "CANNABINOIDS";
+translations.de.coaCannab = "CANNABINOIDE";
+translations.fr.coaCannab = "CANNABINOÏDES";
+translations.es.coaPest = "PESTICIDAS (58 compuestos)";
+translations.en.coaPest = "PESTICIDES (58 compounds)";
+translations.de.coaPest = "PESTIZIDE (58 Verbindungen)";
+translations.fr.coaPest = "PESTICIDES (58 composés)";
+translations.es.coaMetal = "METALES PESADOS";
+translations.en.coaMetal = "HEAVY METALS";
+translations.de.coaMetal = "SCHWERMETALLE";
+translations.fr.coaMetal = "MÉTAUX LOURDS";
+translations.es.coaMicro = "MICROBIANOS";
+translations.en.coaMicro = "MICROBIALS";
+translations.de.coaMicro = "MIKROBIOLOGIE";
+translations.fr.coaMicro = "MICROBIOLOGIE";
+translations.es.coaSolv = "SOLVENTES RESIDUALES";
+translations.en.coaSolv = "RESIDUAL SOLVENTS";
+translations.de.coaSolv = "LÖSUNGSMITTELRÜCKSTÄNDE";
+translations.fr.coaSolv = "SOLVANTS RÉSIDUELS";
+translations.es.coaLab = "Lab: [Nombre] · Contacto: [correo/tel]";
+translations.en.coaLab = "Lab: [Name] · Contact: [e-mail/phone]";
+translations.de.coaLab = "Labor: [Name] · Kontakt: [E-Mail/Tel.]";
+translations.fr.coaLab = "Labo : [Nom] · Contact : [e-mail/tél.]";
+translations.es.coaFirma = "FIRMA /";
+translations.en.coaFirma = "SIGNATURE /";
+translations.de.coaFirma = "UNTERSCHRIFT /";
+translations.fr.coaFirma = "SIGNATURE /";
+translations.es.coaSello = "SELLO LAB";
+translations.en.coaSello = "LAB STAMP";
+translations.de.coaSello = "LABORSTEMPEL";
+translations.fr.coaSello = "CACHET DU LABO";
+translations.es.emailPh = "tu@correo.com";
+translations.en.emailPh = "you@example.com";
+translations.de.emailPh = "du@beispiel.de";
+translations.fr.emailPh = "toi@exemple.fr";
+translations.es.newEmailPh = "nuevo@correo.com";
+translations.en.newEmailPh = "new@example.com";
+translations.de.newEmailPh = "neu@beispiel.de";
+translations.fr.newEmailPh = "nouveau@exemple.fr";
+translations.es.closeLabel = "Cerrar";
+translations.en.closeLabel = "Close";
+translations.de.closeLabel = "Schließen";
+translations.fr.closeLabel = "Fermer";
+translations.es.tierSwitchTitle = "Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.";
+translations.en.tierSwitchTitle = "This selector is only to try how the app looks in each plan — it is not a real purchase.";
+translations.de.tierSwitchTitle = "Dieser Schalter dient nur dazu, zu sehen, wie die App in jedem Plan aussieht — es ist kein echter Kauf.";
+translations.fr.tierSwitchTitle = "Ce sélecteur sert seulement à voir à quoi ressemble l’app dans chaque formule — ce n’est pas un vrai achat.";
+translations.es.calcVpdOk = "✓ Dentro del rango objetivo";
+translations.en.calcVpdOk = "✓ Within the target range";
+translations.de.calcVpdOk = "✓ Im Zielbereich";
+translations.fr.calcVpdOk = "✓ Dans la plage cible";
+translations.es.calcVpdHigh = "⚠ Más alto que el objetivo — ambiente muy seco";
+translations.en.calcVpdHigh = "⚠ Higher than the target — air too dry";
+translations.de.calcVpdHigh = "⚠ Höher als das Ziel — Luft zu trocken";
+translations.fr.calcVpdHigh = "⚠ Plus élevé que la cible — air trop sec";
+translations.es.calcVpdLow = "⚠ Más bajo que el objetivo — ambiente muy húmedo";
+translations.en.calcVpdLow = "⚠ Lower than the target — air too humid";
+translations.de.calcVpdLow = "⚠ Niedriger als das Ziel — Luft zu feucht";
+translations.fr.calcVpdLow = "⚠ Plus bas que la cible — air trop humide";
+translations.es.calcDliUnit = "mol/m²/día";
+translations.en.calcDliUnit = "mol/m²/day";
+translations.de.calcDliUnit = "mol/m²/Tag";
+translations.fr.calcDliUnit = "mol/m²/jour";
+translations.es.calcPerServing = "mg / porción";
+translations.en.calcPerServing = "mg / serving";
+translations.de.calcPerServing = "mg / Portion";
+translations.fr.calcPerServing = "mg / portion";
+translations.es.calcMgThc = "mg de THC";
+translations.en.calcMgThc = "mg of THC";
+translations.de.calcMgThc = "mg THC";
+translations.fr.calcMgThc = "mg de THC";
+translations.es.gnRatioIV = "Tipo IV";
+translations.en.gnRatioIV = "Type IV";
+translations.de.gnRatioIV = "Typ IV";
+translations.fr.gnRatioIV = "Type IV";
+translations.es.tcItem1 = "Verifiqué el estatus legal de mi destino en el explorador";
+translations.en.tcItem1 = "I checked the legal status of my destination in the explorer";
+translations.de.tcItem1 = "Ich habe den rechtlichen Status meines Reiseziels im Explorer geprüft";
+translations.fr.tcItem1 = "J’ai vérifié le statut légal de ma destination dans l’explorateur";
+translations.es.tcItem2 = "Verifiqué el estatus del CBD por separado — no asumo que va incluido";
+translations.en.tcItem2 = "I checked the status of CBD separately — I don’t assume it is included";
+translations.de.tcItem2 = "Ich habe den Status von CBD separat geprüft — ich gehe nicht davon aus, dass es inbegriffen ist";
+translations.fr.tcItem2 = "J’ai vérifié séparément le statut du CBD — je ne suppose pas qu’il est inclus";
+translations.es.tcItem3 = "Revisé si mi vuelo tiene escala en un país con ley distinta";
+translations.en.tcItem3 = "I checked whether my flight stops over in a country with a different law";
+translations.de.tcItem3 = "Ich habe geprüft, ob mein Flug in einem Land mit anderem Gesetz zwischenlandet";
+translations.fr.tcItem3 = "J’ai vérifié si mon vol fait escale dans un pays où la loi est différente";
+translations.es.tcItem4 = "No llevo ningún producto conmigo, ni de ida ni de vuelta";
+translations.en.tcItem4 = "I am not carrying any product with me, on the way out or back";
+translations.de.tcItem4 = "Ich habe keine Produkte dabei, weder auf dem Hin- noch auf dem Rückweg";
+translations.fr.tcItem4 = "Je ne transporte aucun produit, ni à l’aller ni au retour";
+translations.es.tcItem5 = "Guardé copia de mi documentación médica, si mi viaje es por uso medicinal";
+translations.en.tcItem5 = "I kept a copy of my medical documents, if my trip involves medical use";
+translations.de.tcItem5 = "Ich habe eine Kopie meiner medizinischen Unterlagen dabei, falls meine Reise mit medizinischer Nutzung zu tun hat";
+translations.fr.tcItem5 = "J’ai gardé une copie de mes documents médicaux, si mon voyage concerne un usage médical";
+translations.es.tcItem6 = "Verifiqué también el estatus del país al que regreso";
+translations.en.tcItem6 = "I also checked the status of the country I am returning to";
+translations.de.tcItem6 = "Ich habe auch den Status des Landes geprüft, in das ich zurückkehre";
+translations.fr.tcItem6 = "J’ai aussi vérifié le statut du pays où je rentre";
+translations.es.tcProgress = "{n} de {total} verificados";
+translations.en.tcProgress = "{n} of {total} checked";
+translations.de.tcProgress = "{n} von {total} geprüft";
+translations.fr.tcProgress = "{n} sur {total} vérifiés";
+translations.es.tcReady = " — ✓ listo para viajar";
+translations.en.tcReady = " — ✓ ready to travel";
+translations.de.tcReady = " — ✓ bereit für die Reise";
+translations.fr.tcReady = " — ✓ prêt·e à voyager";
+translations.es.searchNone = "Sin resultados para «{q}»";
+translations.en.searchNone = "No results for “{q}”";
+translations.de.searchNone = "Keine Ergebnisse für „{q}“";
+translations.fr.searchNone = "Aucun résultat pour « {q} »";
 translations.es.metaDescription = "Una enciclopedia de cannabis medicinal y recreacional basada en evidencia, en cuatro idiomas, con una comunidad para aprender juntos.";
 translations.en.metaDescription = "An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together.";
 translations.de.metaDescription = "Eine evidenzbasierte Enzyklopädie über medizinisches und Freizeit-Cannabis, in vier Sprachen, mit einer Community, um gemeinsam zu lernen.";
@@ -6919,6 +7240,9 @@ function applyLang(){
     const key = el.getAttribute('data-i18n');
     if(translations[currentLang][key] !== undefined) el.innerHTML = translations[currentLang][key];
   });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{ const v = translations[currentLang][el.getAttribute('data-i18n-aria')]; if(v !== undefined) el.setAttribute('aria-label', v); });
+  document.querySelectorAll('[data-i18n-title]').forEach(el=>{ const v = translations[currentLang][el.getAttribute('data-i18n-title')]; if(v !== undefined) el.setAttribute('title', v); });
+  document.querySelectorAll('[data-cc]').forEach(el=>{ const n = countryNamesI18n[el.dataset.cc]; if(n) el.textContent = n[currentLang] || n.en; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
     const key = el.getAttribute('data-i18n-ph');
     if(translations[currentLang][key] !== undefined) el.setAttribute('placeholder', translations[currentLang][key]);
@@ -6926,6 +7250,9 @@ function applyLang(){
   const acctBtn = document.getElementById('accountBtn');
   if(acctBtn){ const lbl = t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut'); acctBtn.setAttribute('aria-label', lbl); acctBtn.title = lbl; }
   if(document.getElementById('harvestChecklist')) renderHarvestChecklist();
+  if(window.mvSelectsReady) rebuildLocalizedSelects(); // community selects follow the language (set up at the end of this file)
+  if(document.getElementById('travelChecklist')?.children.length) renderTravelChecklist();
+  if(document.getElementById('searchModal')?.classList.contains('active')) runSearch();
   if(document.getElementById('glosarioList')) renderGlosario(document.getElementById('glSearchInput')?.value || '');
   if(comparadorOpen && isPremium) renderComparador();
   if(document.getElementById('vpdTemp')){ updateVPD(); updateDLI(); updateDose(); }
@@ -7850,10 +8177,17 @@ document.getElementById('adInquiryForm')?.addEventListener('submit', async (e) =
 });
 
 /* ===================== BÚSQUEDA GLOBAL ===================== */
+// Search in the 4 languages (2026-11-06): each entry has its title and category in
+// es/en/de/fr; a match in ANY language counts (so «Germany», «Deutschland» and
+// «Alemania» find the same country) and the result is shown in the current one.
+const SEARCH_T = {"Oídio (mildiu polvoso)":["Powdery mildew","Echter Mehltau","Oïdium (blanc)"],"Botrytis (bud rot)":["Botrytis (bud rot)","Botrytis (Knospenfäule)","Botrytis (pourriture des têtes)"],"Ácaros / araña roja":["Spider mites","Spinnmilben","Acariens / araignée rouge"],"Viroide latente del lúpulo (HLVd)":["Hop latent viroid (HLVd)","Hopfen-Latent-Viroid (HLVd)","Viroïde latent du houblon (HLVd)"],"Pulgones (áfidos)":["Aphids","Blattläuse","Pucerons"],"Trips":["Thrips","Thripse","Thrips"],"Mosca blanca":["Whitefly","Weiße Fliege","Aleurodes (mouche blanche)"],"Pythium (pudrición de raíz)":["Pythium (root rot)","Pythium (Wurzelfäule)","Pythium (pourriture des racines)"],"Deficiencia de nitrógeno":["Nitrogen deficiency","Stickstoffmangel","Carence en azote"],"Deficiencia de magnesio":["Magnesium deficiency","Magnesiummangel","Carence en magnésium"],"Predictor de cruces genéticos":["Genetic cross predictor","Kreuzungsrechner","Prédicteur de croisements génétiques"],"PPFD y DLI":["PPFD and DLI","PPFD und DLI","PPFD et DLI"],"Feminización de semillas":["Seed feminisation","Feminisierung von Samen","Féminisation des graines"],"Injertos":["Grafting","Veredelung","Greffes"],"Decarboxilación":["Decarboxylation","Decarboxylierung","Décarboxylation"],"Tinturas sublinguales":["Sublingual tinctures","Sublinguale Tinkturen","Teintures sublinguales"],"Mirceno":["Myrcene","Myrcen","Myrcène"],"Cariofileno":["Caryophyllene","Caryophyllen","Caryophyllène"],"Cannflavina A y B":["Cannflavin A and B","Cannflavin A und B","Cannflavine A et B"],"Dra. Daniela Vergara":["Dr. Daniela Vergara","Dr. Daniela Vergara","Dre Daniela Vergara"],"Química de la raíz":["Root chemistry","Chemie der Wurzel","Chimie de la racine"],"Mito indica vs. sativa":["The indica vs. sativa myth","Mythos Indica vs. Sativa","Le mythe indica vs sativa"],"Mito del flushing":["The flushing myth","Mythos Flushing","Le mythe du rinçage (flushing)"],"Calculadora de VPD":["VPD calculator","VPD-Rechner","Calculateur de VPD"],"Calculadora de DLI":["DLI calculator","DLI-Rechner","Calculateur de DLI"],"Bitácora de cultivo":["Grow log","Anbau-Logbuch","Journal de culture"],"Licencias":["Licences","Lizenzen","Licences"],"Trazabilidad semilla-a-venta":["Seed-to-sale traceability","Rückverfolgbarkeit vom Samen bis zum Verkauf","Traçabilité de la graine à la vente"],"Interacciones con medicamentos":["Drug interactions","Wechselwirkungen mit Medikamenten","Interactions médicamenteuses"],"Warfarina y anticoagulantes":["Warfarin and anticoagulants","Warfarin und Gerinnungshemmer","Warfarine et anticoagulants"],"Embarazo y lactancia":["Pregnancy and breastfeeding","Schwangerschaft und Stillzeit","Grossesse et allaitement"],"Manejo y conducción":["Driving","Autofahren","Conduite"],"Salud mental y psicosis":["Mental health and psychosis","Psychische Gesundheit und Psychose","Santé mentale et psychose"],"Cannabis y mascotas":["Cannabis and pets","Cannabis und Haustiere","Cannabis et animaux de compagnie"],"Cannabis y deporte":["Cannabis and sport","Cannabis und Sport","Cannabis et sport"],"Corazón y presión arterial":["Heart and blood pressure","Herz und Blutdruck","Cœur et tension artérielle"],"Personas mayores":["Older adults","Ältere Menschen","Personnes âgées"],"Seguridad ocupacional":["Occupational safety","Arbeitssicherheit","Sécurité au travail"]};
+const SEARCH_CAT = {"Diagnóstico":["Diagnosis","Diagnose","Diagnostic"],"Landrace":["Landrace","Landrasse","Landrace"],"Herramienta":["Tool","Werkzeug","Outil"],"Iluminación":["Lighting","Beleuchtung","Éclairage"],"Nutrición":["Nutrition","Ernährung","Nutrition"],"Entrenamiento":["Training","Pflanzentraining","Palissage"],"Propagación":["Propagation","Vermehrung","Multiplication"],"Concentrado":["Concentrate","Konzentrat","Concentré"],"Seguridad":["Safety","Sicherheit","Sécurité"],"Comestibles":["Edibles","Esswaren","Comestibles"],"Dosis medida":["Measured dose","Abgemessene Dosis","Dose mesurée"],"Terpeno":["Terpene","Terpen","Terpène"],"Flavonoide":["Flavonoid","Flavonoid","Flavonoïde"],"Cannabinoide menor":["Minor cannabinoid","Nebencannabinoid","Cannabinoïde mineur"],"Científico":["Scientist","Wissenschaftler·in","Scientifique"],"Médico":["Medical","Medizinisch","Médical"],"Mito":["Myth","Mythos","Mythe"],"Negocio":["Business","Geschäft","Entreprise"],"País":["Country","Land","Pays"],"Cultivar":["Cultivar","Sorte","Cultivar"]};
+const searchL = (es, map) => { const t = map[es]; return { es, en: t ? t[0] : es, de: t ? t[1] : es, fr: t ? t[2] : es }; };
 function buildSearchIndex(){
-  const fromCountries = countries.map(c=>({title:c.name, cat:'País', screen:'legal', countryRef:c.name}));
-  const fromCultivars = cultivars.map(c=>({title:c.name, cat:'Cultivar', screen:'variedades'}));
-  return [...searchIndexStatic, ...fromCountries, ...fromCultivars];
+  const fromStatic = searchIndexStatic.map(e => ({ ...e, titles: searchL(e.title, SEARCH_T), cats: searchL(e.cat, SEARCH_CAT) }));
+  const fromCountries = countries.map(c=>{ const iso = isoFromFlag(c.flag); const n = iso && countryNamesI18n[iso]; return { titles: n ? { es: n.es, en: n.en, de: n.de, fr: n.fr } : searchL(c.name, {}), alt: [c.name], cats: searchL('País', SEARCH_CAT), screen:'legal', countryRef:c.name }; });
+  const fromCultivars = cultivars.map(c=>({ titles: searchL(c.name, {}), cats: searchL('Cultivar', SEARCH_CAT), screen:'variedades' }));
+  return [...fromStatic, ...fromCountries, ...fromCultivars];
 }
 function openSearch(){
   document.getElementById('searchModal').classList.add('active');
@@ -8949,15 +9283,17 @@ function runSearch(){
   const resultsEl = document.getElementById('searchResults');
   if(q.length < 2){ resultsEl.innerHTML = ''; return; }
   const index = buildSearchIndex();
-  const matches = index.filter(item => norm(item.title.toLowerCase()).includes(q) || (item.cat && norm(item.cat.toLowerCase()).includes(q))).slice(0,20);
+  const has = (s) => s && norm(String(s).toLowerCase()).includes(q);
+  const matches = index.filter(item => Object.values(item.titles).some(has) || (item.alt || []).some(has) || has(item.cats[currentLang])).slice(0,20);
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   if(matches.length===0){
-    resultsEl.innerHTML = '<div class="search-empty">Sin resultados para "'+q+'"</div>';
+    resultsEl.innerHTML = '<div class="search-empty">' + esc(t('searchNone').replace('{q}', q)) + '</div>';
     return;
   }
   resultsEl.innerHTML = matches.map((m,i)=>`
     <div class="search-result" data-idx="${i}">
-      <span class="search-result-title">${m.title}</span>
-      <span class="search-result-cat">${m.cat}</span>
+      <span class="search-result-title">${esc(m.titles[currentLang] || m.titles.en)}</span>
+      <span class="search-result-cat">${esc(m.cats[currentLang] || m.cats.en)}</span>
     </div>`).join('');
   resultsEl.querySelectorAll('.search-result').forEach((row,i)=>{
     row.onclick = ()=>{
@@ -9109,23 +9445,23 @@ document.querySelectorAll('.chip[data-cf]').forEach(chip=>{
 /* ===================== CALCULADORAS ===================== */
 function svp(t){ return 0.6108 * Math.exp(17.27*t/(t+237.3)); }
 function updateVPD(){
-  const t = parseFloat(document.getElementById('vpdTemp').value) || 0;
+  const airT = parseFloat(document.getElementById('vpdTemp').value) || 0; // not «t»: t() is the translator
   const rh = parseFloat(document.getElementById('vpdRH').value) || 0;
   const leafOffset = -2;
-  const leafT = t + leafOffset;
-  const vpd = svp(leafT) - (rh/100)*svp(t);
+  const leafT = airT + leafOffset;
+  const vpd = svp(leafT) - (rh/100)*svp(airT);
   const target = parseFloat(document.getElementById('vpdStage').value);
   document.getElementById('vpdResult').textContent = vpd.toFixed(2) + ' kPa';
   const diff = Math.abs(vpd - target);
   const verdictEl = document.getElementById('vpdVerdict');
-  if(diff < 0.15){ verdictEl.textContent = '✓ Dentro del rango objetivo'; verdictEl.style.color = 'var(--moss-deep)'; }
-  else { verdictEl.textContent = vpd > target ? '⚠ Más alto que el objetivo — ambiente muy seco' : '⚠ Más bajo que el objetivo — ambiente muy húmedo'; verdictEl.style.color = 'var(--resin)'; }
+  if(diff < 0.15){ verdictEl.textContent = t('calcVpdOk'); verdictEl.style.color = 'var(--moss-deep)'; }
+  else { verdictEl.textContent = vpd > target ? t('calcVpdHigh') : t('calcVpdLow'); verdictEl.style.color = 'var(--resin)'; }
 }
 function updateDLI(){
   const ppfd = parseFloat(document.getElementById('dliPPFD').value) || 0;
   const hours = parseFloat(document.getElementById('dliHours').value) || 0;
   const dli = ppfd * hours * 0.0036;
-  document.getElementById('dliResult').textContent = dli.toFixed(1) + ' mol/m²/día';
+  document.getElementById('dliResult').textContent = dli.toFixed(1) + ' ' + t('calcDliUnit');
 }
 // Guidance context under the per-serving result, from official government
 // sources only (Health Canada "Lower your risks" + Colorado cannabis.gov):
@@ -9159,7 +9495,7 @@ function renderEdibleSafetyCards(){
 // Before, 0 servings silently counted as 1 and negative numbers gave negative doses.
 function doseText(mg, servings){
   if(!(mg > 0) || !(servings > 0)) return { ok: false, text: t('calcDoseInvalid') };
-  return { ok: true, text: (mg / servings).toFixed(1) + ' mg / porción' };
+  return { ok: true, text: (mg / servings).toFixed(1) + ' ' + t('calcPerServing') };
 }
 function showDose(el, mg, servings){
   const d = doseText(mg, servings);
@@ -9186,7 +9522,7 @@ function updateDecarbCalc(){
   const pct = parseFloat(pctEl.value) || 0;
   const mgThca = gramos * 1000 * (pct / 100);
   const mgThc = mgThca * 0.877;
-  resultEl.textContent = mgThc.toFixed(0) + ' mg de THC';
+  resultEl.textContent = mgThc.toFixed(0) + ' ' + t('calcMgThc');
 }
 ['cmDecarbGramos','cmDecarbPct'].forEach(id=>{
   const el = document.getElementById(id);
@@ -9666,7 +10002,7 @@ function computeCross(){
     counts[classifyPair(x,y)]++;
   });});
   const colors = {I:'var(--moss-deep)', II:'var(--resin)', III:'var(--teal)', IV:'var(--clay)'};
-  const labels = {I:'Tipo I', II:'Tipo II', III:'Tipo III', IV:'Tipo IV'};
+  const labels = {I:t('gnRatioI'), II:t('gnRatioII'), III:t('gnRatioIII'), IV:t('gnRatioIV')};
   const resultEl = document.getElementById('breedResult');
   resultEl.innerHTML = '';
   ['I','II','III','IV'].forEach(t=>{
@@ -9957,23 +10293,17 @@ window.loadTrichLog = loadTrichLog;
 if(document.getElementById('trichLogGate')){ renderTrichLogGate(); loadTrichLog(); }
 
 /* ===================== CHECKLIST PRE-VIAJE ===================== */
-const travelChecklistItems = [
-  'Verifiqué el estatus legal de mi destino en el explorador',
-  'Verifiqué el estatus del CBD por separado — no asumo que va incluido',
-  'Revisé si mi vuelo tiene escala en un país con ley distinta',
-  'No llevo ningún producto conmigo, ni de ida ni de vuelta',
-  'Guardé copia de mi documentación médica, si mi viaje es por uso medicinal',
-  'Verifiqué también el estatus del país al que regreso'
-];
+const travelChecklistItems = ['tcItem1', 'tcItem2', 'tcItem3', 'tcItem4', 'tcItem5', 'tcItem6'];
 function renderTravelChecklist(){
   const el = document.getElementById('travelChecklist');
-  if(!el || el.dataset.built) { updateChecklistProgress(); return; }
-  el.innerHTML = travelChecklistItems.map((item,i)=>`
+  if(!el) return;
+  // rebuilt on every call (language change); the ticks already made are kept
+  const ticked = new Set([...el.querySelectorAll('.tc-item:checked')].map((b) => b.dataset.idx));
+  el.innerHTML = travelChecklistItems.map((key,i)=>`
     <label style="display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-top:1px solid var(--line); font-size:13px; color:var(--ink-soft); cursor:pointer;">
-      <input type="checkbox" class="tc-item" data-idx="${i}" style="margin-top:3px;">
-      <span>${item}</span>
+      <input type="checkbox" class="tc-item" data-idx="${i}" style="margin-top:3px;"${ticked.has(String(i)) ? ' checked' : ''}>
+      <span>${t(key)}</span>
     </label>`).join('');
-  el.dataset.built = '1';
   el.querySelectorAll('.tc-item').forEach(cb=> cb.addEventListener('change', updateChecklistProgress));
   updateChecklistProgress();
 }
@@ -9981,7 +10311,7 @@ function updateChecklistProgress(){
   const boxes = document.querySelectorAll('.tc-item');
   const checked = document.querySelectorAll('.tc-item:checked').length;
   const progEl = document.getElementById('travelChecklistProgress');
-  if(progEl) progEl.textContent = `${checked} de ${boxes.length} verificados` + (checked===boxes.length && boxes.length>0 ? ' — ✓ listo para viajar' : '');
+  if(progEl) progEl.textContent = t('tcProgress').replace('{n}', checked).replace('{total}', boxes.length) + (checked===boxes.length && boxes.length>0 ? t('tcReady') : '');
 }
 
 /* ===================== CHECKLIST DE COSECHA (tricomas) ===================== */
@@ -10169,3 +10499,7 @@ applyLang();
 // Support model: lock / unlock the UI as soon as the script has run (fails closed:
 // visitor until auth.js reports a session and profile).
 mvApplyAccessState();
+
+// Community selects in the current language from the first paint (2026-11-06). Here, at the
+// very end, every list they use already exists; applyLang() keeps them in step afterwards.
+try { rebuildLocalizedSelects(); window.mvSelectsReady = true; } catch(e){ console.error('rebuildLocalizedSelects', e); }

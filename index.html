@@ -131,7 +131,7 @@
            reachable by real visitors. main.js hides #tierPreviewWrap on any
            host that isn't localhost / 127.0.0.1. -->
       <div id="tierPreviewWrap" style="display:none; align-items:center;">
-        <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.">Vista previa:</span>
+        <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real." data-i18n-title="tierSwitchTitle">Vista previa:</span>
         <div class="tier-switch" id="tierSwitch">
           <button data-tier="free">Gratis</button>
           <button data-tier="premium" class="tier-on">Acceso completo</button>
@@ -144,7 +144,7 @@
   <div class="mv-trial-strip" id="trialCountdown" hidden role="status">
     <span id="trialCountdownText"></span>
     <button type="button" class="mv-trial-go" onclick="showScreen('desbloquear')" data-i18n="accDesbloquearBtn">Desbloquear</button>
-    <button type="button" class="mv-trial-x" id="trialCountdownClose" aria-label="Cerrar">×</button>
+    <button type="button" class="mv-trial-x" id="trialCountdownClose" aria-label="Cerrar" data-i18n-aria="closeLabel">×</button>
   </div>
 
   <!-- ============ ACCESO (support model) ============
@@ -451,11 +451,11 @@
           <div class="spec-row"><span data-i18n="ilFoto">Fotoperiodo</span><span>18/6 h</span></div></div>
         <div class="specimen"><h4 data-i18n="ilVegH4">Vegetativo</h4><div class="sci" data-i18n="ilVegSci">Crecimiento estructural</div>
           <div class="spec-row"><span>PPFD</span><span>300–600 μmol/m²/s</span></div>
-          <div class="spec-row"><span>DLI</span><span>20–40 mol/m²/día</span></div>
+          <div class="spec-row"><span>DLI</span><span data-i18n="ilDliVeg">20–40 mol/m²/día</span></div>
           <div class="spec-row"><span data-i18n="ilFoto2">Fotoperiodo</span><span>18/6 h</span></div></div>
         <div class="specimen"><h4 data-i18n="ilFloH4">Floración</h4><div class="sci" data-i18n="ilFloSci">Desarrollo de cogollos</div>
           <div class="spec-row"><span>PPFD</span><span>600–1,000 μmol/m²/s (<span data-i18n="ilHastaCO2">hasta 1,500 con CO2</span>)</span></div>
-          <div class="spec-row"><span>DLI</span><span>30–50 mol/m²/día</span></div>
+          <div class="spec-row"><span>DLI</span><span data-i18n="ilDliFlor">30–50 mol/m²/día</span></div>
           <div class="spec-row"><span data-i18n="ilFoto3">Fotoperiodo</span><span>12/12 h</span></div></div>
       </div>
       <div class="section-title" data-i18n="ilSecEspectro">Espectro y tipo de luz</div>
@@ -796,9 +796,9 @@
       </div>
       <div class="section-title" data-i18n="gnSecQuimio">Clasificación por quimiotipo</div>
       <div class="chemo-grid">
-        <div class="chemo-card"><div class="ratio">Tipo I</div><h4 data-i18n="gnT1h4">THC dominante</h4><p data-i18n="gnT1p">THC alto, CBD bajo. El perfil más común en cannabis de uso recreativo tradicional.</p></div>
-        <div class="chemo-card"><div class="ratio">Tipo II</div><h4 data-i18n="gnT2h4">Balanceado</h4><p data-i18n="gnT2p">Proporción THC:CBD cercana a 1:1. Frecuente en productos orientados a uso medicinal.</p></div>
-        <div class="chemo-card"><div class="ratio">Tipo III</div><h4 data-i18n="gnT3h4">CBD dominante</h4><p data-i18n="gnT3p">CBD alto, THC bajo o trazas. Perfil no psicoactivo, común en hemp medicinal.</p></div>
+        <div class="chemo-card"><div class="ratio" data-i18n="gnRatioI">Tipo I</div><h4 data-i18n="gnT1h4">THC dominante</h4><p data-i18n="gnT1p">THC alto, CBD bajo. El perfil más común en cannabis de uso recreativo tradicional.</p></div>
+        <div class="chemo-card"><div class="ratio" data-i18n="gnRatioII">Tipo II</div><h4 data-i18n="gnT2h4">Balanceado</h4><p data-i18n="gnT2p">Proporción THC:CBD cercana a 1:1. Frecuente en productos orientados a uso medicinal.</p></div>
+        <div class="chemo-card"><div class="ratio" data-i18n="gnRatioIII">Tipo III</div><h4 data-i18n="gnT3h4">CBD dominante</h4><p data-i18n="gnT3p">CBD alto, THC bajo o trazas. Perfil no psicoactivo, común en hemp medicinal.</p></div>
       </div>
 
       <div class="section-title" data-i18n="gnSecBreeder">Herramienta para breeders: predictor de cruces</div>
@@ -873,7 +873,7 @@
       <div class="card-block">
         <h3 data-i18n="inH3">India: el "tesoro" genético que la política todavía no libera</h3>
         <p data-i18n="inP1">Vikramm Mitra, cofundador de Delta Botanicals & Research, lidera un proyecto financiado por el gobierno indio para desarrollar genética estable de cannabis. Su argumento central: India es una "mina de oro" de diversidad genética de cannabis — el país tiene poblaciones silvestres y landrace que se remontan a miles de años, en regiones como el Himalaya — pero cuánto se puede desarrollar comercialmente todavía depende enteramente de la política, no de la biología disponible.</p>
-        <div class="spec-source"><a href="https://web.archive.org/web/20260515023444/https://hemptoday.net/india-is-treasure-trove-of-cannabis-genetics-but-policy-will-determine-development/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemptoday.net (archivado)</a></div>
+        <div class="spec-source"><a data-i18n="srcHemptodayArch" href="https://web.archive.org/web/20260515023444/https://hemptoday.net/india-is-treasure-trove-of-cannabis-genetics-but-policy-will-determine-development/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemptoday.net (archivado)</a></div>
       </div>
       <div class="section-title" data-i18n="gnSecCrispr">La próxima frontera: edición genética dirigida</div>
       <div class="card-block">
@@ -1180,11 +1180,11 @@
         <div class="specimen"><div class="tag-index">SOP—01</div><h4 data-i18n="ep01h4">Secado</h4><div class="sci" data-i18n="ep01sci">Espacio &amp; ambiente</div>
           <div class="spec-row"><span data-i18n="epTempSala">Temp. sala</span><span>15–18 °C</span></div>
           <div class="spec-row"><span data-i18n="epHrSala">HR sala</span><span>55–60 %</span></div>
-          <div class="spec-row"><span data-i18n="epDuracion">Duración típica</span><span>7–14 días</span></div>
+          <div class="spec-row"><span data-i18n="epDuracion">Duración típica</span><span data-i18n="epDuracionVal">7–14 días</span></div>
           <div class="spec-source" data-i18n="ep01src"><a href="https://www.canada.ca/content/dam/hc-sc/documents/services/cannabis-regulations-licensed-producers/good-production-practices-guide/guidance-document/good-production-practices-guide-for-cannabis-2019-10.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">canada.ca — Health Canada GPP Guide</a></div></div>
         <div class="specimen"><div class="tag-index">SOP—02</div><h4 data-i18n="ep02h4">Curado</h4><div class="sci" data-i18n="ep02sci">Contenedores &amp; tiempo</div>
           <div class="spec-row"><span data-i18n="epHrFrasco">HR objetivo en frasco</span><span>58–62 %</span></div>
-          <div class="spec-row"><span data-i18n="epDuracionMin">Duración mínima</span><span>2–4 semanas</span></div>
+          <div class="spec-row"><span data-i18n="epDuracionMin">Duración mínima</span><span data-i18n="epDuracionMinVal">2–4 semanas</span></div>
           <div class="spec-source" data-i18n="ep02src"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11821007/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">pmc.ncbi.nlm.nih.gov</a></div></div>
         <div class="specimen"><div class="tag-index">SOP—03</div><h4 data-i18n="ep03h4">Trimming</h4><div class="sci" data-i18n="ep03sci">Espacio de trabajo</div>
           <div class="spec-row"><span data-i18n="epTempSala2">Temp. sala</span><span>18–21 °C</span></div>
@@ -1601,25 +1601,25 @@
           <rect x="255" y="12" width="63" height="22" rx="3" fill="var(--moss)" opacity="0.25"/>
           <text x="286.5" y="21" text-anchor="middle" font-size="6" fill="var(--moss-deep)" font-family="'IBM Plex Mono',monospace" font-weight="600">ISO/IEC</text>
           <text x="286.5" y="29" text-anchor="middle" font-size="6" fill="var(--moss-deep)" font-family="'IBM Plex Mono',monospace" font-weight="600">17025</text>
-          <text x="22" y="55" font-size="7.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">LOTE #4471-A · 12/03/2026</text>
+          <text data-i18n="coaLote" x="22" y="55" font-size="7.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">LOTE #4471-A · 12/03/2026</text>
           <rect x="22" y="63" width="296" height="34" rx="3" fill="var(--paper-raised)"/>
-          <text x="30" y="76" font-size="7" fill="var(--ink)" font-family="'IBM Plex Mono',monospace" font-weight="600">CANNABINOIDES</text>
+          <text data-i18n="coaCannab" x="30" y="76" font-size="7" fill="var(--ink)" font-family="'IBM Plex Mono',monospace" font-weight="600">CANNABINOIDES</text>
           <text x="30" y="90" font-size="9" fill="var(--moss-deep)" font-family="'Manrope',sans-serif" font-weight="600">THC 22.4%</text>
           <text x="120" y="90" font-size="9" fill="var(--teal)" font-family="'Manrope',sans-serif" font-weight="600">CBD 0.8%</text>
           <g font-size="7.5" font-family="'IBM Plex Mono',monospace" fill="var(--ink-soft)">
-            <text x="22" y="112">PESTICIDAS (58 compuestos)</text><text x="308" y="112" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaPest" x="22" y="112">PESTICIDAS (58 compuestos)</text><text x="308" y="112" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="118" x2="318" y2="118" stroke="var(--line)" stroke-width="0.5"/>
-            <text x="22" y="132">METALES PESADOS</text><text x="308" y="132" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaMetal" x="22" y="132">METALES PESADOS</text><text x="308" y="132" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="138" x2="318" y2="138" stroke="var(--line)" stroke-width="0.5"/>
-            <text x="22" y="152">MICROBIANOS</text><text x="308" y="152" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaMicro" x="22" y="152">MICROBIANOS</text><text x="308" y="152" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="158" x2="318" y2="158" stroke="var(--line)" stroke-width="0.5"/>
-            <text x="22" y="172">SOLVENTES RESIDUALES</text><text x="308" y="172" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaSolv" x="22" y="172">SOLVENTES RESIDUALES</text><text x="308" y="172" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
           </g>
           <line x1="22" y1="188" x2="318" y2="188" stroke="var(--line-strong)" stroke-width="1"/>
-          <text x="22" y="202" font-size="6.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">Lab: [Nombre] · Contacto: [correo/tel]</text>
+          <text data-i18n="coaLab" x="22" y="202" font-size="6.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">Lab: [Nombre] · Contacto: [correo/tel]</text>
           <rect x="230" y="210" width="88" height="30" rx="3" fill="none" stroke="var(--clay)" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="274" y="222" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">FIRMA /</text>
-          <text x="274" y="230" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">SELLO LAB</text>
+          <text data-i18n="coaFirma" x="274" y="222" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">FIRMA /</text>
+          <text data-i18n="coaSello" x="274" y="230" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">SELLO LAB</text>
         </svg>
         <p style="font-size:11px; color:var(--ink-soft); text-align:center;" data-i18n="coaMockCaption">Ejemplo ilustrativo de cómo se ve un COA real — los valores y el diseño exacto varían por laboratorio, pero estas 5 secciones deberían estar siempre presentes.</p>
       </div>
@@ -1700,7 +1700,7 @@
       <p style="margin-top:14px;" data-i18n="tpComprarNote">Esta app no lista direcciones ni facilita compra dentro de la aplicación — solo te orienta sobre qué tipo de establecimiento buscar en cada país.</p>
     </div>
     <div class="travel-panel" id="tp-checklist">
-      <h4>Checklist pre-viaje</h4>
+      <h4 data-i18n="tcH4">Checklist pre-viaje</h4>
       <div id="travelChecklist"></div>
       <div id="travelChecklistProgress" style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss-deep);"></div>
     </div>
@@ -1785,133 +1785,133 @@
       <div class="note-box" style="margin-bottom:20px;" data-i18n="ppNote">Selección ilustrativa para este prototipo — en producción, este feed se actualiza con publicaciones nuevas de PubMed, ClinicalTrials.gov y revistas especializadas.</div>
       <div class="note-box" style="border-color:var(--teal); margin-bottom:20px;" data-i18n="ppSlicNote"><b>El panorama real de 2025:</b> la Sociedad Latinoamericana e Ibérica de Cannabinología (SLIC) analizó los ensayos clínicos indexados en PubMed durante 2025 con "cannabis" o "cannabinoides" en el título — encontraron 85 estudios reales, cubriendo salud mental, salud pública, intervenciones clínicas, seguridad y políticas. Una parte considerable se enfoca en salud mental y consumo en adolescentes, examinando vínculos con depresión, ansiedad y consumo conjunto con nicotina o alcohol. <a href="https://www.slicannabinologia.org/blog/zzrru8bjf3d036jwwhz0ocxdid8l5n" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">slicannabinologia.org</a></div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Widely assumed phenotypic associations in Cannabis sativa lack a shared genetic basis</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag1">Estudio genético</span></div>
-        <div class="paper-meta">Vergara D. et al. · PeerJ · 2021</div>
+        <div class="paper-top"><h4 translate="no">Widely assumed phenotypic associations in Cannabis sativa lack a shared genetic basis</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag1">Estudio genético</span></div>
+        <div class="paper-meta" translate="no">Vergara D. et al. · PeerJ · 2021</div>
         <p data-i18n="pp1desc">Analiza 297 plantas híbridas y no encuentra relación significativa entre morfología de hoja y contenido de cannabinoides — base científica para reemplazar indica/sativa por clasificación de quimiotipo.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Trial of cannabidiol for drug-resistant seizures in the Dravet syndrome</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag2">Ensayo clínico aleatorizado</span></div>
-        <div class="paper-meta">Devinsky O. et al. · New England Journal of Medicine · 2017</div>
+        <div class="paper-top"><h4 translate="no">Trial of cannabidiol for drug-resistant seizures in the Dravet syndrome</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag2">Ensayo clínico aleatorizado</span></div>
+        <div class="paper-meta" translate="no">Devinsky O. et al. · New England Journal of Medicine · 2017</div>
         <p data-i18n="pp2desc">Ensayo controlado que respalda el uso de CBD purificado en un síndrome de epilepsia infantil refractaria — base de la aprobación regulatoria de Epidiolex.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Vapor pressure deficit and cannabis yield optimization</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag3">Estudio agronómico</span></div>
+        <div class="paper-top"><h4 translate="no">Vapor pressure deficit and cannabis yield optimization</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag3">Estudio agronómico</span></div>
         <div class="paper-meta" data-i18n="pp3meta">Extensión agrícola · Cornell University · 2022</div>
         <p data-i18n="pp3desc">Establece rangos de VPD óptimos por fase de crecimiento para maximizar rendimiento y calidad de flor en cultivo indoor.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Beyond terpenes: novel sulfur- and fatty-acid-derived aroma compounds in cannabis ice hash rosin</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag4">Análisis químico de laboratorio</span></div>
-        <div class="paper-meta">Abstrax Tech · ACS Omega · 2023</div>
+        <div class="paper-top"><h4 translate="no">Beyond terpenes: novel sulfur- and fatty-acid-derived aroma compounds in cannabis ice hash rosin</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag4">Análisis químico de laboratorio</span></div>
+        <div class="paper-meta" translate="no">Abstrax Tech · ACS Omega · 2023</div>
         <p data-i18n="pp4desc">Analiza más de 30 muestras de rosin de hash con cromatografía de gases 2D y encuentra compuestos nunca antes vistos en cannabis — incluidos tioles (notas "a gas") y ácidos grasos (notas "a queso") que no son terpenos. Sugiere que el aroma distintivo de cada variedad depende de compuestos minoritarios, no solo del perfil de terpenos tradicional.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>A haplotype-resolved pangenome of Cannabis sativa</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag5">Genómica de vanguardia</span></div>
+        <div class="paper-top"><h4 translate="no">A haplotype-resolved pangenome of Cannabis sativa</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag5">Genómica de vanguardia</span></div>
         <div class="paper-meta" data-i18n="pp5meta">Nature · 2025</div>
         <p data-i18n="pp5desc">Secuencia el genoma completo de múltiples variedades de cannabis, no solo una referencia única — revela cuánta diversidad genética real existe entre variedades comerciales, sentando las bases para futura mejora genética basada en datos duros.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Interactions between cannabinoids and drugs metabolized by CYP450 enzymes</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag6">Revisión sistemática</span></div>
-        <div class="paper-meta">Nachnani R. et al. · Frontiers in Pharmacology · 2024</div>
+        <div class="paper-top"><h4 translate="no">Interactions between cannabinoids and drugs metabolized by CYP450 enzymes</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag6">Revisión sistemática</span></div>
+        <div class="paper-meta" translate="no">Nachnani R. et al. · Frontiers in Pharmacology · 2024</div>
         <p data-i18n="pp6desc">Revisa 31 casos documentados de interacción entre cannabis y 16 medicamentos de índice terapéutico estrecho, en 889 personas — 58% mostró niveles inesperados del medicamento en sangre. La base de por qué las interacciones medicamentosas importan tanto como el propio cannabis.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Formation and inactivation of endogenous cannabinoid anandamide in central neurons</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag7">Estudio fundacional</span></div>
-        <div class="paper-meta">Di Marzo V. et al. · Nature · 1994</div>
+        <div class="paper-top"><h4 translate="no">Formation and inactivation of endogenous cannabinoid anandamide in central neurons</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag7">Estudio fundacional</span></div>
+        <div class="paper-meta" translate="no">Di Marzo V. et al. · Nature · 1994</div>
         <p data-i18n="pp7desc">El estudio que acuñó el término "endocannabinoide" y describió por primera vez cómo el cuerpo produce y descompone su propia anandamida — la base de todo lo que hoy sabemos sobre el sistema endocannabinoide humano.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Labeling accuracy of cannabidiol extracts sold online</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag8">Estudio de mercado</span></div>
-        <div class="paper-meta">Bonn-Miller M. et al. · JAMA · 2017</div>
+        <div class="paper-top"><h4 translate="no">Labeling accuracy of cannabidiol extracts sold online</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag8">Estudio de mercado</span></div>
+        <div class="paper-meta" translate="no">Bonn-Miller M. et al. · JAMA · 2017</div>
         <p data-i18n="pp8desc">Analizó 84 productos de CBD comprados en línea: solo el 30.95% tenía un etiquetado preciso dentro de un margen razonable — 42.85% contenía más CBD del declarado, 26.19% menos. La evidencia detrás de por qué siempre recomendamos exigir un COA.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Cannabis use during pregnancy and lactation</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag9">Consenso clínico</span></div>
+        <div class="paper-top"><h4 translate="no">Cannabis use during pregnancy and lactation</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag9">Consenso clínico</span></div>
         <div class="paper-meta" data-i18n="pp9meta">Colegio Americano de Ginecología y Obstetricia (ACOG) · 2025</div>
         <p data-i18n="pp9desc">Actualización del consenso clínico más reciente sobre cannabis en embarazo y lactancia — recomienda su cese durante ambos periodos, documentando riesgos de bajo peso al nacer y mayor ingreso a UCI neonatal.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Cannabis y psicoterapia: acceso desigual y estigma</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag10">Estudio social</span></div>
-        <div class="paper-meta">Revista Brasileira de Cannabis (RBCann) · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle1">Cannabis y psicoterapia: acceso desigual y estigma</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag10">Estudio social</span></div>
+        <div class="paper-meta" translate="no">Revista Brasileira de Cannabis (RBCann) · 2025</div>
         <p data-i18n="pp10desc">Estudio real sobre el potencial terapéutico de la Cannabis sativa en psicoterapia, documentando cómo el racismo estructural y la guerra contra las drogas limitan el acceso — publicado en la primera revista científica de cannabis de Brasil y Latinoamérica.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>CBD y extinción de memorias de miedo</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag11">Revisión científica</span></div>
-        <div class="paper-meta">Instituto Fiocruz · Revista Fitos · diciembre 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle2">CBD y extinción de memorias de miedo</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag11">Revisión científica</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX1">Instituto Fiocruz · Revista Fitos · diciembre 2025</div>
         <p data-i18n="pp11desc">Revisión publicada por Fiocruz (una de las instituciones de salud pública más prestigiosas de Latinoamérica) sobre cómo el CBD afecta la extinción y reconsolidación de memorias aversivas, y la expresión de miedo y ansiedad en modelos animales.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Cannabis medicinal para dolor crónico: expectativas calibradas con rigor científico</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag12">Revisión sistemática</span></div>
-        <div class="paper-meta">Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle3">Cannabis medicinal para dolor crónico: expectativas calibradas con rigor científico</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag12">Revisión sistemática</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX2">Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025</div>
         <p data-i18n="pp12desc">Equipo multidisciplinario de la Universidad de Verona, liderado por el prof. Vittorio Schweiger — encuentra reducción real del dolor en varias revisiones sistemáticas, pero con llamado explícito a calibrar expectativas según evidencia real, no promesas.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Conducir bajo efecto tras la legalización</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag13">Estudio comparativo</span></div>
-        <div class="paper-meta">Universidades de Hamburgo y Leipzig · The Lancet Regional Health – Europe · 2026</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle4">Conducir bajo efecto tras la legalización</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag13">Estudio comparativo</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX3">Universidades de Hamburgo y Leipzig · The Lancet Regional Health – Europe · 2026</div>
         <p data-i18n="pp13desc">Compara Alemania (tras la legalización de 2024) contra Austria como control — encuentra el impacto real de la legalización en la conducción bajo efecto de cannabis.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Proyección de efectos netos en salud de la legalización alemana</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag14">Modelo matemático</span></div>
-        <div class="paper-meta">Frankfurt School of Finance &amp; Management · PLOS ONE · 2026</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle5">Proyección de efectos netos en salud de la legalización alemana</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag14">Modelo matemático</span></div>
+        <div class="paper-meta" translate="no">Frankfurt School of Finance &amp; Management · PLOS ONE · 2026</div>
         <p data-i18n="pp14desc">Modela matemáticamente si la legalización alemana reduce o aumenta el daño neto a la salud pública, comparando menos contaminantes en el producto legal contra un posible aumento del consumo.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Oferta y demanda tras la legalización en Alemania</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag15">Estudio de mercado</span></div>
-        <div class="paper-meta">Universidad de Hamburgo · International Journal of Drug Policy · 2026</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle6">Oferta y demanda tras la legalización en Alemania</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag15">Estudio de mercado</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX4">Universidad de Hamburgo · International Journal of Drug Policy · 2026</div>
         <p data-i18n="pp15desc">Analiza 12 meses de datos reales de una farmacia online — Alemania ya es el mercado legal de cannabis más grande de Europa (~200 toneladas en 2025).</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Salud mental y potencia de THC en Europa</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag16">Revisión sistemática</span></div>
-        <div class="paper-meta">15 países europeos · Frontiers in Psychiatry · 2026</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle7">Salud mental y potencia de THC en Europa</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag16">Revisión sistemática</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX5">15 países europeos · Frontiers in Psychiatry · 2026</div>
         <p data-i18n="pp16desc">Revisión que cubre Francia, Países Bajos, Bélgica, Alemania, República Checa, España, Italia, Portugal, Polonia, Hungría y más — encuentra que el THC de alta potencia (+15-20%) se asocia con 4 a 5 veces más riesgo de psicosis de primer episodio.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Experimento de cadena de suministro cerrada en los Países Bajos</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag17">Ensayo regulatorio</span></div>
-        <div class="paper-meta">Instituto Trimbos · desde 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle8">Experimento de cadena de suministro cerrada en los Países Bajos</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag17">Ensayo regulatorio</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX6">Instituto Trimbos · desde 2025</div>
         <p data-i18n="pp17desc">El Instituto Trimbos (agencia nacional holandesa) prueba cannabis regulado en 10 municipios desde 2025, con estudio base de contaminantes (pesticidas, metales pesados) comparando municipios de control e intervención.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>De la granja a la cama del paciente: acceso global al cannabis medicinal</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag18">Panorama global</span></div>
-        <div class="paper-meta">Global Oncology University, Johannesburgo · Complementary Therapies in Medicine · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle9">De la granja a la cama del paciente: acceso global al cannabis medicinal</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag18">Panorama global</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX7">Global Oncology University, Johannesburgo · Complementary Therapies in Medicine · 2025</div>
         <p data-i18n="pp18desc">Panorama mundial de acceso al cannabis medicinal, con foco específico en cómo los países en desarrollo —incluyendo África— quedan rezagados en regulación.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Reforma de la Ley de Control de Cannabis en Japón</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag19">Análisis regulatorio</span></div>
-        <div class="paper-meta">Cannabis and Cannabinoid Research · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle10">Reforma de la Ley de Control de Cannabis en Japón</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag19">Análisis regulatorio</span></div>
+        <div class="paper-meta" translate="no">Cannabis and Cannabinoid Research · 2025</div>
         <p data-i18n="pp19desc">Analiza la primera revisión importante desde 1948 de la ley japonesa (2023), que incluye un nuevo marco de "investigación clínica especial" para epilepsia refractaria.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Revisando la hipótesis de la "puerta de entrada" en Japón</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag20">Encuesta nacional</span></div>
-        <div class="paper-meta">Neuropsychopharmacology Reports · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle11">Revisando la hipótesis de la "puerta de entrada" en Japón</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag20">Encuesta nacional</span></div>
+        <div class="paper-meta" translate="no">Neuropsychopharmacology Reports · 2025</div>
         <p data-i18n="pp20desc">Encuesta a 3,900 usuarios japoneses que examina si el cannabis realmente funciona como "puerta de entrada" a otras sustancias, encontrando evidencia causal limitada.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Normas sociales y severidad de consumo en Corea del Sur</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag21">Estudio comparativo</span></div>
-        <div class="paper-meta">Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle12">Normas sociales y severidad de consumo en Corea del Sur</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag21">Estudio comparativo</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX8">Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2025</div>
         <p data-i18n="pp21desc">Primer estudio en diferenciar patrones de uso entre personas que usan cannabis y quienes usan otras sustancias psicotrópicas en Corea del Sur.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Modelos internacionales de suministro regulado</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag22">Revisión comparativa</span></div>
-        <div class="paper-meta">Estudio internacional · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle13">Modelos internacionales de suministro regulado</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag22">Revisión comparativa</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX9">Estudio internacional · 2025</div>
         <p data-i18n="pp22desc">Compara los distintos modelos de regulación —asociaciones sin fines de lucro, producción estatal, farmacias especializadas— entre Alemania, Suiza, Malta, Colombia, México y República Checa.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Política y terapéutica del cannabis a nivel internacional (parte 1)</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag23">Panorama de políticas</span></div>
-        <div class="paper-meta">Clinical Therapeutics · diciembre 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle14">Política y terapéutica del cannabis a nivel internacional (parte 1)</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag23">Panorama de políticas</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX10">Clinical Therapeutics · diciembre 2025</div>
         <p data-i18n="pp23desc">Panorama comparativo de políticas globales — solo Canadá y Uruguay tienen legalización federal completa para uso adulto; analiza el cambio de reclasificación en EE. UU. de finales de 2025.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Actitudes juveniles hacia la nueva legislación en Marruecos</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag24">Encuesta</span></div>
-        <div class="paper-meta">Journal of Youth Studies · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle15">Actitudes juveniles hacia la nueva legislación en Marruecos</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag24">Encuesta</span></div>
+        <div class="paper-meta" translate="no">Journal of Youth Studies · 2025</div>
         <p data-i18n="pp24desc">Encuesta real a 4,040 estudiantes de secundaria y universidad en el sur de Marruecos — encontró que las mujeres se oponen más al uso médico de cannabis que los hombres, y perciben más riesgo de que la ley "desaliente" dejar de consumir.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Revisión sistemática en estudiantes del mundo árabe</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag25">Revisión sistemática</span></div>
-        <div class="paper-meta">Universidad Americana de Beirut · Frontiers in Psychiatry · 2025</div>
+        <div class="paper-top"><h4 data-i18n="ppTitle16">Revisión sistemática en estudiantes del mundo árabe</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag25">Revisión sistemática</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX11">Universidad Americana de Beirut · Frontiers in Psychiatry · 2025</div>
         <p data-i18n="pp25desc">Cubre Irak, Marruecos, Túnez, Líbano y Egipto: la prevalencia de vida reportada va desde 0.7% (Irak, escolares) hasta 32% (Líbano y Egipto, universitarios).</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>El primer medicamento de CBD 100% marroquí</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag26">Desarrollo farmacéutico</span></div>
-        <div class="paper-meta">Pharma 5 · International Journal of Drug Policy · 2025</div>
+        <div class="paper-top"><h4 translate="no">El primer medicamento de CBD 100% marroquí</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag26">Desarrollo farmacéutico</span></div>
+        <div class="paper-meta" translate="no">Pharma 5 · International Journal of Drug Policy · 2025</div>
         <p data-i18n="pp26desc">En 2025, la farmacéutica marroquí Pharma 5 lanzó el primer medicamento local a base de CBD para epilepsia resistente en niños — producción completa desde cultivo hasta manufactura, bajo la Ley 13-21 (2021).</p>
       </div>
     </div>
@@ -2000,49 +2000,49 @@
       <div class="card-block">
         <h3 data-i18n="mdPaisH3">Por país: lo que encontramos investigando a fondo</h3>
         <p data-i18n="mdPaisIntro">Cada país regula el acceso de forma distinta — así que "encontrar un médico" significa algo diferente según dónde estés. Esto es lo que verificamos con fuentes reales, no una lista completa ni definitiva.</p>
-        <div class="spec-row" style="margin-top:14px;"><span><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Perú</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:14px;"><span><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="pe">Perú</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdPeruP">Clínica Cannavital (Lima) — cofundada por el Dr. José Francisco Ramírez Méndez, médico cirujano con formación acreditada por la Society of Cannabis Clinicians. Su trabajo clínico fue documentado en un estudio revisado por pares publicado en 2024 (revista Heliyon). <a href="https://cannavital.com.pe/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannavital.com.pe</a></p>
         <div class="note-box" data-i18n="mdPeruPapersNote"><b>Investigación académica peruana real sobre el tema:</b> Chambergo-Michilot y Velit-Ríos (2019) catalogaron toda la producción científica peruana sobre cannabis indexada en PubMed, Scopus y SciELO — publicado por la Universidad Nacional Mayor de San Marcos. Mendoza-Chuctaya (2022) señaló vacíos regulatorios reales de la ley peruana en la <em>Revista Colombiana de Psiquiatría</em>. Y la Universidad Católica de Santa María (Arequipa) tiene una tesis de revisión sistemática sobre cannabis medicinal para epilepsia. <a href="https://doi.org/10.15381/anales.803.16311" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.15381/anales.803.16311</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Chile</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="cl">Chile</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdChileP">Fundación Ciencias para la Cannabis (Concepción) — dirigida por la Dra. Catalina Verdugo Droguett desde 2017. <a href="https://cienciascannabis.cl/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cienciascannabis.cl</a> — También Centro Médico Cannabimed (Viña del Mar), primer centro de su tipo con autorización oficial de la autoridad sanitaria regional desde 2018. <a href="https://cannabimed.cl/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabimed.cl</a></p>
         <div class="note-box" data-i18n="mdChilePapersNote"><b>Investigación académica chilena real sobre el tema:</b> la Universidad de Chile publicó en julio de 2026 un estudio proponiendo mejorar la solubilidad de cannabinoides sintéticos mediante nanotecnología (nanosponges de ciclodextrina), resolviendo un cuello de botella real de formulación. Y en un ejemplo honesto de ciencia rigurosa, no solo resultados favorables: investigadores de la Pontificia Universidad Católica (Fundación Epistemonikos, 2018) publicaron una revisión más amplia que encontró resultados menos favorables de lo esperado para varias condiciones, incluida la esclerosis múltiple. <a href="https://doi.org/10.1016/j.jddst.2026.108539" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1016/j.jddst.2026.108539</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>España</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="es">España</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdEspanaP">Marco nuevo desde 2025 (Real Decreto 903/2025): el acceso oficial es solo vía médico especialista hospitalario del Sistema Nacional de Salud. Para acompañamiento clínico existe la Sociedad Clínica de Endocannabinología, con código deontológico propio. <a href="https://www.endocannabinologia.es/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">endocannabinologia.es</a></p>
         <div class="note-box" data-i18n="mdEspanaPapersNote"><b>Investigación académica española real sobre el tema:</b> la Universidad Complutense de Madrid lanza en el curso 2025-2026 el primer Máster Universitario en Investigación sobre Cannabis Medicinal de España — título inter-facultativo real (Medicina, Farmacia, Química, Biología, Derecho), coordinado por José Javier Fernández Ruiz. Algunos de sus catedráticos figuran entre los científicos más citados del mundo según la "World's Top 2% Scientist List" de Stanford (2022) — posiblemente la mayor concentración de investigadores de cannabinoides de Europa. <a href="https://www.ucm.es/estudios/master-cannabismedicinal" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">ucm.es/estudios/master-cannabismedicinal</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/de.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Alemania</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/de.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="de">Alemania</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdAlemaniaP">Desde 2017, cualquier médico colegiado puede recetar cannabis medicinal — no existe una certificación de "especialista" formal. El reto real no es encontrar autorización, sino encontrar experiencia clínica específica con esta terapia.</p>
         <div class="note-box" data-i18n="mdAlemaniaPapersNote"><b>Investigación académica alemana real sobre el tema:</b> la Universität Bonn, junto a la Universidad Hebrea de Jerusalén, publicó en <em>Nature Medicine</em> (2017) un estudio donde dosis diarias de THC en ratones mayores revirtieron marcadores de envejecimiento cerebral, recuperando un rendimiento cognitivo similar al de ratones jóvenes. Más recientemente, la agencia federal alemana de agricultura (BLE) aprobó en julio de 2026 sus primeros 4 proyectos de investigación de cannabis, de casi 70 propuestas recibidas desde finales de 2024. <a href="https://doi.org/10.1038/nm.4311" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1038/nm.4311</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Estados Unidos</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="us">Estados Unidos</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdEeuuP">Dr. Dustin Sulak, D.O. — fundador de Integr8 Health (Falmouth, Maine), en práctica desde 2009. Miembro de la junta directiva de la propia Society of Cannabis Clinicians y de Patients Out of Time. Él y sus 7 colegas médicos han tratado a más de 8,000 pacientes con cannabis medicinal. Reconocido internacionalmente como experto en medicina integrativa y cannabinoide. <a href="https://integr8health.com/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">integr8health.com</a></p>
         <div class="note-box" data-i18n="mdEeuuPapersNote"><b>Investigación académica estadounidense real sobre el tema:</b> el Instituto Salk (California) creó en mayo de 2025 el pangenoma más completo de cannabis jamás construido, analizando 193 genomas distintos — el mismo estudio que ya citamos en <a onclick="showSub(&#39;ciencia&#39;,&#39;papers&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Ciencia → Papers</a>, publicado en <em>Nature</em>. Y el <em>Journal of Cannabis Research</em>, la primera revista científica internacional multidisciplinaria dedicada al tema, fue fundada por el Instituto de Investigación de Cannabis de Colorado State University-Pueblo, con junta editorial de más de 30 científicos en 9 países.</div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Canadá</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="ca">Canadá</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdCanadaP">Santé Cannabis (Quebec) — en funcionamiento desde 2014, expandida a 4 sedes, afiliada a McGill University. Su modelo de atención propio fue publicado en una revista revisada por pares en 2021. <a href="https://santecannabis.ca/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">santecannabis.ca</a> — Canadá tiene cobertura real en ambos idiomas oficiales: en Quebec existen clínicas específicamente francófonas como Solution Cannabis Médical (establecida en 2017), además de servicio en francés de las cadenas nacionales.</p>
         <div class="note-box" data-i18n="mdCanadaPapersNote"><b>Investigación académica canadiense real sobre el tema:</b> un estudio publicado en marzo de 2025 en el <em>Canadian Journal on Aging</em> encontró que, desde la legalización recreativa de 2018, el consumo de cannabis entre canadienses mayores de 60 años ha aumentado más que en cualquier otro grupo de edad — el mismo patrón que ya documentamos para EE. UU. en <a onclick="showSub(&#39;seguridad&#39;,&#39;mayores&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Seguridad → Personas mayores</a>. <a href="https://doi.org/10.1017/S0714980824000357" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1017/S0714980824000357</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Israel</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="il">Israel</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdIsraelP">El Dr. Adi Aran (Shaare Zedek, Jerusalén) ya lo mencionamos por su ensayo clínico pionero sobre autismo — pero Israel es también donde se descubrieron el THC (1964) y la anandamida (1992), y sigue siendo un centro real de investigación clínica de cannabinoides.</p>
         <div class="note-box" data-i18n="mdIsraelPapersNote"><b>Investigación académica israelí real sobre el tema:</b> la revisión retrospectiva más completa hasta ahora sobre política de cannabis medicinal en Israel (Aviram, Universidad Ariel, noviembre de 2025) analiza 2011-2025 completos — patrones de prescripción, tendencias de dosis, y transformación regulatoria desde la primera aprobación en 1992. <a href="https://doi.org/10.1186/s42238-025-00344-1" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1186/s42238-025-00344-1</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Australia</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="au">Australia</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdAustraliaP">El Lambert Initiative for Cannabinoid Therapeutics, de la Universidad de Sydney, es un centro real de investigación clínica dedicado exclusivamente a cannabinoides — con investigadores como Iain McGregor y Jonathon Arnold publicando activamente.</p>
         <div class="note-box" data-i18n="mdAustraliaPapersNote"><b>Investigación académica australiana real sobre el tema:</b> la encuesta CAMS-22 del propio Lambert Initiative, siete años después de la legalización, encontró que los usuarios con cannabis medicinal prescrito tenían 25 veces más certeza sobre la composición real de lo que consumían, comparado con usuarios de fuentes ilícitas — evidencia concreta de por qué el acceso regulado importa. <a href="https://doi.org/10.1186/s12954-024-00992-1" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1186/s12954-024-00992-1</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/fr.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Francia</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/fr.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="fr">Francia</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdFranciaP">Sistema centralizado a través de la ANSM (agencia nacional de medicamentos), en transición a marco permanente desde enero de 2025. El acceso es mediante estructuras de referencia designadas por la propia agencia, con médicos capacitados específicamente por ella — no por búsqueda libre. <a href="https://ansm.sante.fr/dossiers-thematiques/cannabis-a-usage-medical" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">ansm.sante.fr</a></p>
         <div class="note-box" data-i18n="mdFranciaPapersNote"><b>Investigación académica francesa real sobre el tema:</b> el estudio U.CANNABIS, de la Universidad de Burdeos (equipo AHeaD, Inserm), encargado por la propia ANSM, siguió a 1,971 pacientes antes y después del tratamiento — encontrando reducción real en el consumo de opioides y analgésicos en las 4 indicaciones estudiadas. Un dato honesto sobre gobernanza: el informe se completó en septiembre de 2025 pero permaneció sin publicar 9 meses, hasta que una solicitud de transparencia de la industria forzó su divulgación en 2026.</div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ec.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Ecuador</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ec.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="ec">Ecuador</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdEcuadorP">We Mayu Ecuador — primera instalación del país dedicada a tratamiento con cannabinoides, con certificación sanitaria oficial de ARCSA (la agencia regulatoria ecuatoriana). El CBD no requiere receta médica, pero se recomienda consulta profesional para la dosis correcta. <a href="https://mayuecuador.com/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">mayuecuador.com</a><br><b>Dr. Alonso Martínez-Aguirre, MD</b> — fundador y director de IndicaMed, con maestría en Terapia del Dolor; integra el manejo clínico del dolor crónico con cannabinoides, docencia universitaria e investigación aplicada. Coautor de un caso clínico publicado sobre cannabinoides y dolor crónico (Cannamerica). Referente en Ecuador en endocannabinología. <a href="https://www.instagram.com/dr.alonso_martinez/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">@dr.alonso_martinez</a></p>
         <div class="note-box" data-i18n="mdEcuadorPapersNote"><b>Investigación académica ecuatoriana real sobre el tema:</b> la Universidad Central del Ecuador publicó en julio de 2025 una caracterización química de semillas de cáñamo cultivadas a 2,450 metros de altitud en los Andes ecuatorianos — un ángulo geográfico genuinamente único, financiado por dos proyectos institucionales propios de la universidad sobre valor nutricional y extracción de cannabinoides de variedades no psicoactivas. <a href="https://doi.org/10.1080/19476337.2025.2520539" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1080/19476337.2025.2520539</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Colombia</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="co">Colombia</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdColombiaP">Existen especialistas verificados en manejo del dolor con cannabis medicinal en Bogotá, listados en plataformas médicas como Top Doctors — con reseñas de pacientes reales y disponibilidad verificable. <a href="https://www.topdoctors.com.co/marihuana-medicinal/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">topdoctors.com.co</a></p>
         <div class="note-box" data-i18n="mdColombiaPapersNote"><b>Investigación académica colombiana real sobre el tema:</b> la Universidad Nacional de Colombia publicó en abril de 2025 una revisión narrativa sobre las barreras reales de acceso al cannabis medicinal en el país — un ángulo honesto sobre lo que aún no funciona, no solo lo que sí. Colombia tiene más de 57,000 hectáreas de cultivo legal según el Ministerio de Justicia, y un decreto en desarrollo (2025) que permitiría a universidades obtener licencias de investigación independientes, algo actualmente restringido. <a href="https://doi.org/10.15446/rcciquifa.v54n1.119551" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.15446/rcciquifa.v54n1.119551</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Argentina</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="ar">Argentina</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdArgentinaP">Bajo la Ley Nacional 27.350, existen clínicas especializadas en varias ciudades — incluido el Instituto Argentino del Cannabis, fundado por un médico oftalmólogo tras el diagnóstico de glaucoma congénito de su hija, con más de 5,000 pacientes atendidos.</p>
         <div class="note-box" data-i18n="mdArgentinaPapersNote"><b>Investigación académica argentina real sobre el tema:</b> Argentina lanzó "Cannabis y Salud" — la primera revista científica indexada dedicada exclusivamente al tema en todo Latinoamérica, con aval del CONICET, nacida en el Centro de Investigaciones del Medioambiente (CONICET-UNLP). El Programa de Investigación y Desarrollo en Cannabis del CONICET ya aprobó 13 proyectos con financiamiento real, en instituciones como la Universidad de Buenos Aires, sobre temas que van desde cannabinoides y cáncer de mama hasta biofertilizantes para el cultivo mismo. <a href="https://www.cannabisysalud.org/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabisysalud.org</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Reino Unido</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="gb">Reino Unido</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdReinoUnidoP">Mamedica — la clínica líder de cannabis medicinal del país: más de 15,000 pacientes tratados, registrada ante la CQC (Care Quality Commission, el regulador de salud del Reino Unido), reconocida en el Sunday Times 100 (2026) como una de las empresas privadas de más rápido crecimiento del país. <a href="https://mamedica.co.uk/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">mamedica.co.uk</a></p>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/pt.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Portugal</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/pt.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="pt">Portugal</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdPortugalP">El regulador oficial es INFARMED. Un contraste real y medido: solo 757 recetas médicas emitidas hasta el tercer trimestre de 2024, mientras Portugal exportó 32,558 kg ese mismo año (+172% interanual) — mayormente a Alemania y España. Uno de los países que más produce, con menor acceso doméstico. <a href="https://www.infarmed.pt/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">infarmed.pt</a></p>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/nl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Países Bajos</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/nl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="nl">Países Bajos</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdPaisesBajosP">El acceso médico formal pasa por el Bureau voor Medicinale Cannabis (BMC), la oficina gubernamental —parte del Ministerio de Salud— que regula y provee cannabis medicinal desde el año 2000, con monopolio de suministro a farmacias, universidades y hospitales. Distinto del sistema de coffeeshops, que es para uso recreativo tolerado. <a href="https://www.cannabisbureau.nl/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabisbureau.nl</a></p>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/uy.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Uruguay</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/uy.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="uy">Uruguay</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdUruguayP">El Instituto de Regulación y Control del Cannabis (IRCCA), la agencia estatal que supervisa todo el sistema desde 2013 — Uruguay fue el primer país del mundo en legalizar completamente venta y cultivo. El acceso es exclusivo para residentes y ciudadanos registrados; los turistas no pueden comprar legalmente. <a href="https://www.ircca.gub.uy/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">ircca.gub.uy</a></p>
         <div class="note-box" data-i18n="mdPaisNote">Esta lista es un punto de partida verificado, no un directorio completo — sabemos que existen muchos más médicos y clínicas serias en estos países y en otros que todavía no investigamos a fondo. Si conoces alguno que deberíamos verificar y agregar, cuéntanos.</div>
       </div>
@@ -2055,11 +2055,11 @@
       <div class="card-block">
         <h3 data-i18n="mdPediatriaH3">Para familias que buscan ayuda pediátrica: autismo, convulsiones y más</h3>
         <p data-i18n="mdPediatriaIntro">Sabemos que esto es lo que más urge a muchas familias. Estos son los nombres que encontramos con la investigación más sólida y mejor documentada en el mundo, específicamente en niños.</p>
-        <div class="spec-row"><span><b>Dr. Adi Aran</b> — <img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Israel</span><span></span></div>
+        <div class="spec-row"><span><b>Dr. Adi Aran</b> — <img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-cc="il">Israel</span></span><span></span></div>
         <p class="method-desc" data-i18n="mdAranP">Director de Neurología Pediátrica del Centro Médico Shaare Zedek (Jerusalén). Dirigió el primer estudio clínico del mundo sobre cannabis en niños con autismo, publicado en <em>Journal of Autism and Developmental Disorders</em> (2019) — 80% de los niños mostraron mejoría. Presentado en un documental de CNN sobre cannabis y autismo.</p>
-        <div class="spec-row" style="margin-top:10px;"><span><b>Dra. Bonni Goldstein</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> EE. UU.</span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><b>Dra. Bonni Goldstein</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-cc="us">EE. UU.</span></span><span></span></div>
         <p class="method-desc" data-i18n="mdGoldsteinP">Pediatra, directora de Canna-Centers (red de médicos en California), autora del libro <em>Cannabis is Medicine</em>. Coautora de un estudio real sobre biomarcadores de respuesta al cannabis en niños con autismo, publicado en Cannabis and Cannabinoid Research.</p>
-        <div class="spec-row" style="margin-top:10px;"><span><b>Dr. Orrin Devinsky</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> EE. UU.</span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><b>Dr. Orrin Devinsky</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-cc="us">EE. UU.</span></span><span></span></div>
         <p class="method-desc" data-i18n="mdDevinskyP">Ya lo conoces de <a onclick="showSub(&#39;ciencia&#39;,&#39;papers&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Ciencia → Papers</a>: dirige el Centro Integral de Epilepsia en NYU Langone, y lideró el ensayo clínico que llevó a la aprobación del primer medicamento a base de CBD (Epidiolex) para el síndrome de Dravet en niños.</p>
         <div class="note-box" data-i18n="mdPediatriaNote">El tratamiento pediátrico con cannabis es un área donde la supervisión médica constante importa aún más — nunca es algo para experimentar en casa sin un especialista guiando cada paso.</div>
       </div>
@@ -2751,54 +2751,54 @@
       </div>
       <div class="specimen-grid" id="eduGrid">
         <div class="specimen edu-card" data-pais="EEUU" data-esp="cultivo">
-          <h4>SUNY Morrisville</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Nueva York, EE. UU. — Cultivo &amp; horticultura</div>
+          <h4>SUNY Morrisville</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc1">Nueva York, EE. UU. — Cultivo &amp; horticultura</span></div>
           <p class="method-desc" data-i18n="eduSunyP">Minor en Cannabis Industry y certificado en Specialty Crops &amp; Cannabis Production. Incluye una parcela de investigación de cannabis propia de la universidad.</p>
           <p class="method-desc edu-founder" data-i18n="eduSunyFundadora">La fundadora estudia en esta institución.</p>
           <div class="spec-source"><a href="https://www.morrisville.edu/cannabis" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">morrisville.edu/cannabis</a></div></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="ciencia">
-          <h4>Colorado State University – Pueblo</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Colorado, EE. UU. — Ciencia &amp; química</div>
+          <h4>Colorado State University – Pueblo</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc2">Colorado, EE. UU. — Ciencia &amp; química</span></div>
           <p class="method-desc" data-i18n="eduCsuP">Licenciatura completa (BS) en Cannabis Biology and Chemistry, acreditada por la Higher Learning Commission — uno de los grados universitarios de 4 años más completos que existen en el tema, con concentraciones en agricultura de cáñamo, análisis, productos naturales, y gestión industrial.</p>
           <div class="spec-source"><a href="https://www.csupueblo.edu/cannabis/index.html" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">csupueblo.edu/cannabis</a></div></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="medicina">
-          <h4>University of Colorado — Skaggs School of Pharmacy</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Colorado, EE. UU. — Medicina &amp; farmacia</div>
+          <h4>University of Colorado — Skaggs School of Pharmacy</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc3">Colorado, EE. UU. — Medicina &amp; farmacia</span></div>
           <p class="method-desc" data-i18n="eduCuP">Tres programas de Cannabis Science and Medicine, desde un curso introductorio de 8 semanas hasta una Maestría completa — todos en línea, impartidos por expertos internacionales en el campo, dentro de una escuela de farmacia real.</p>
           <div class="spec-source"><a href="https://pharmacy.cuanschutz.edu/academics/cannabis-science-and-medicine" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">pharmacy.cuanschutz.edu</a></div></div>
         <div class="specimen edu-card" data-pais="Canada" data-esp="cultivo">
-          <h4>University of Saskatchewan</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Saskatchewan, Canadá — Cultivo &amp; horticultura</div>
+          <h4>University of Saskatchewan</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc4">Saskatchewan, Canadá — Cultivo &amp; horticultura</span></div>
           <p class="method-desc" data-i18n="eduSaskP">Su certificado de Horticultura de las Praderas ahora incluye un curso específico de Producción de Cultivo de Cannabis — propagación, genética, y criterios de cosecha, todo en línea.</p></div>
         <div class="specimen edu-card" data-pais="Canada" data-esp="negocio">
-          <h4>Niagara College</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Ontario, Canadá — Cultivo &amp; negocio</div>
+          <h4>Niagara College</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc5">Ontario, Canadá — Cultivo &amp; negocio</span></div>
           <p class="method-desc" data-i18n="eduNiagaraP">Programa de Producción Comercial de Cannabis, creado en 2018 ante la demanda real de la industria de personal capacitado — más de 300 personas aplicaron en su primera convocatoria.</p></div>
         <div class="specimen edu-card" data-pais="Espana" data-esp="ciencia">
-          <h4>Universitat Politècnica de Catalunya</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Cataluña, España — Ciencia &amp; regulación</div>
+          <h4 translate="no">Universitat Politècnica de Catalunya</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc6">Cataluña, España — Ciencia &amp; regulación</span></div>
           <p class="method-desc" data-i18n="eduUpcP">Posgrado en Tecnologías de Producción y Transformación del Cannabis, impartido a través de UPC School (su escuela de posgrado) en colaboración con Cannabis Hub — el primer posgrado sobre cannabis del país, lanzado en noviembre de 2022. 20 créditos ECTS, 160 horas lectivas, título oficial emitido bajo la normativa universitaria española vigente.</p>
           <div class="spec-source"><a href="https://www.talent.upc.edu/esp/estudis/formacio/curs/319500/posgrado-tecnologias-produccion-transformacion-cannabis/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">talent.upc.edu</a></div></div>
         <div class="specimen edu-card" data-pais="Espana" data-esp="ciencia">
-          <h4>Universidad Miguel Hernández de Elche</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Comunidad Valenciana, España — Ciencia &amp; regulación</div>
+          <h4 translate="no">Universidad Miguel Hernández de Elche</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc7">Comunidad Valenciana, España — Ciencia &amp; regulación</span></div>
           <p class="method-desc" data-i18n="eduUmhP">Título propio de "Especialista universitario en el uso de cannabis y derivados cannabinoides", lanzado en 2021 — un año antes que el posgrado de la UPC. También coorganiza, junto a la Universidad de Alicante y el Tecnológico de Antioquia (Colombia), el curso "Experto en Industria y Agronomía Digital del Cannabis".</p></div>
         <div class="specimen edu-card" data-pais="Espana" data-esp="negocio">
-          <h4>Universidad de Alicante</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Alicante, España — Negocio &amp; industria digital</div>
+          <h4 translate="no">Universidad de Alicante</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc8">Alicante, España — Negocio &amp; industria digital</span></div>
           <p class="method-desc" data-i18n="eduAlicanteP">"Experto en Industria y Agronomía Digital del Cannabis" — un curso real coorganizado entre tres universidades de dos países (Alicante y Miguel Hernández en España, Tecnológico de Antioquia en Colombia), enfocado en tecnología aplicada a la cadena de valor del cannabis.</p></div>
         <div class="specimen edu-card" data-pais="Colombia" data-esp="negocio">
-          <h4>Universidad de los Andes</h4><div class="sci"><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Bogotá, Colombia — Negocio &amp; regulación</div>
+          <h4 translate="no">Universidad de los Andes</h4><div class="sci"><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc9">Bogotá, Colombia — Negocio &amp; regulación</span></div>
           <p class="method-desc" data-i18n="eduAndesP">Programas ejecutivos y de educación continua en regulación y negocios del cannabis, desde una de las universidades más prestigiosas de Latinoamérica, aprovechando la posición de Colombia como líder regional de la industria.</p></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="medicina">
-          <h4>University of Rhode Island</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Rhode Island, EE. UU. — Ciencia &amp; medicina</div>
+          <h4>University of Rhode Island</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc10">Rhode Island, EE. UU. — Ciencia &amp; medicina</span></div>
           <p class="method-desc" data-i18n="eduUriP">Certificate in Cannabis Studies, acreditado por la AACSB — 4 cursos de 3 créditos, 100% asíncrono, cubre potencial terapéutico, separación y análisis de productos naturales, y desarrollo de producto.</p></div>
         <div class="specimen edu-card" data-pais="Peru" data-esp="medicina">
-          <h4>Universidad Peruana Cayetano Heredia</h4><div class="sci"><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Lima, Perú — Medicina &amp; salud pública</div>
+          <h4 translate="no">Universidad Peruana Cayetano Heredia</h4><div class="sci"><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc11">Lima, Perú — Medicina &amp; salud pública</span></div>
           <p class="method-desc" data-i18n="eduUpchP">Curso Internacional "Uso Medicinal del Cannabis" de su Escuela de Posgrado, con el primer Diplomado del país en Uso de Cannabis y sus Derivados en Salud (2020–2021). Coordinado por un ex-Jefe del Instituto Nacional de Salud del Perú, con maestría de la Universidad de Heidelberg (Alemania).</p></div>
         <div class="specimen edu-card" data-pais="Chile" data-esp="ciencia">
-          <h4>Universidad de Santiago de Chile</h4><div class="sci"><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Santiago, Chile — Ciencia &amp; química</div>
+          <h4 translate="no">Universidad de Santiago de Chile</h4><div class="sci"><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc12">Santiago, Chile — Ciencia &amp; química</span></div>
           <p class="method-desc" data-i18n="eduUsachP">Diplomado en Uso Medicinal de Fitocannabinoides de la Facultad de Química y Biología — ya en su tercera versión. El primero de su tipo dictado por una institución de educación superior en Chile, con farmacólogos y neurocientistas de la propia universidad.</p></div>
         <div class="specimen edu-card" data-pais="Argentina" data-esp="medicina">
-          <h4>Universidad Nacional de Rosario</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Rosario, Argentina — Medicina &amp; salud</div>
+          <h4 translate="no">Universidad Nacional de Rosario</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc13">Rosario, Argentina — Medicina &amp; salud</span></div>
           <p class="method-desc" data-i18n="eduUnrP">Curso de posgrado virtual "Abordaje integral de la planta de cannabis para la salud", dirigido específicamente a integrantes de equipos de salud — universidad pública argentina.</p></div>
         <div class="specimen edu-card" data-pais="Argentina" data-esp="cultivo">
-          <h4>Universidad Nacional de Chilecito</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> La Rioja, Argentina — Cultivo &amp; industrialización</div>
+          <h4 translate="no">Universidad Nacional de Chilecito</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc14">La Rioja, Argentina — Cultivo &amp; industrialización</span></div>
           <p class="method-desc" data-i18n="eduUndecP">Diplomatura Superior en Producción e Industrialización del Cannabis para Usos Medicinales e Industriales, de su Escuela de Posgrado. 8 módulos (6 virtuales, 2 prácticos presenciales), un año de duración, ya en su segunda cohorte.</p></div>
         <div class="specimen edu-card" data-pais="Argentina" data-esp="medicina">
-          <h4>Universidad Nacional Arturo Jauretche</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Buenos Aires, Argentina — Medicina &amp; salud</div>
+          <h4 translate="no">Universidad Nacional Arturo Jauretche</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc15">Buenos Aires, Argentina — Medicina &amp; salud</span></div>
           <p class="method-desc" data-i18n="eduUnajP">Diplomatura Superior en Cannabis y sus Usos Medicinales — con un cuerpo docente que incluye a la Dra. Gabriela Reyes Valenzuela, neuróloga infantil y epileptóloga del Hospital Garrahan, el hospital pediátrico de referencia nacional en Argentina.</p></div>
       </div>
       <div class="note-box" data-i18n="eduNota">Esta es una muestra verificada, no un directorio completo — sabemos que existen más programas académicos reales en otros países que todavía no investigamos a fondo.</div>
@@ -3026,7 +3026,7 @@
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliPPFD">PPFD (μmol/m²/s)</label><input type="number" id="dliPPFD" value="600" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliHours">Horas de luz/día</label><input type="number" id="dliHours" value="18" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
       </div>
-      <div id="dliResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mol/m²/día</div>
+      <div id="dliResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mol/m²/day</div>
     </div>
 
     <div class="card-block" id="calc-dose-card">
@@ -3369,7 +3369,7 @@
         <p data-i18n="hiHachisP">El cannabis no se menciona en el Corán (siglo VII), a diferencia del alcohol, que sí está prohibido explícitamente como khamr —por eso no enfrentó la misma oposición religiosa inicial. Entró al mundo islámico desde Persia e India, popularizándose hacia finales del siglo XI, posiblemente a través del jeque sufí persa Haydar. Los sufíes, un movimiento místico islámico, fueron clave en su difusión como herramienta de búsqueda espiritual, llevándolo a Siria y Egipto durante el siglo XII. Varios eruditos lo documentaron con seriedad médica: Ibn Sina (Avicena) lo incluyó en su Canon de Medicina para dolores de cabeza severos y enfermedades óseas y articulares; Ibn Wahshiyya, a inicios del siglo X, advirtió en su tratado sobre venenos que mezclarlo con otras sustancias aromáticas podía ser letal. Dato de leyenda vs. hecho: la palabra inglesa "assassin" sí proviene etimológicamente de "hashshashin", pero el relato popular de "asesinos drogados con hachís" es considerado por la erudición académica moderna (Rosenthal, 1971) como en gran parte apócrifo, no un hecho histórico confirmado —algunos historiadores incluso cuestionan si la propia etimología refleja una práctica real o proviene de un relato posiblemente impreciso de Marco Polo.</p>
       </div>
       <div class="hist-item">
-        <div class="hist-year">Siglo XVI</div>
+        <div class="hist-year" data-i18n="histSiglo16">Siglo XVI</div>
         <h4 data-i18n="hi7H4">Un cambio poco conocido: de comestible a fumado</h4>
         <p data-i18n="hi7P">Un dato que casi nadie menciona: hasta que fumar se introdujo en Eurasia desde América en el siglo XVI, el cannabis se consumía principalmente como comestible, no fumado. El patrón de consumo que hoy parece "tradicional" es, en términos históricos, relativamente reciente.</p>
       </div>
@@ -3503,7 +3503,7 @@
         <button type="button" class="sub-pill" data-auth-tab="signup" data-i18n="authTabSignup">Crear cuenta</button>
       </div>
       <form id="authForm" style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required data-i18n-ph="emailPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authPasswordLabel">Contraseña</label><input type="password" id="authPasswordInput" required minlength="8" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div id="authCaptcha"></div>
         <button type="submit" class="btn btn-primary" id="authSubmitBtn" data-i18n="authLoginBtn">Entrar</button>
@@ -3523,7 +3523,7 @@
       <div class="card-block">
         <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" data-i18n-ph="emailPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
         </div>
         <!-- Sign-in e-mail (auth), not the contact e-mail above. Logic in src/auth.js. -->
@@ -3531,7 +3531,7 @@
           <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ceH">Correo para iniciar sesión</label>
           <div><b id="ceActual"></b> <button type="button" class="auth-link-btn" id="ceOpenBtn" data-i18n="ceBtn">Cambiar</button></div>
           <form id="ceForm" class="auth-mini-form" hidden>
-            <input type="email" id="ceInput" required autocomplete="email" placeholder="nuevo@correo.com" aria-labelledby="ceOpenBtn">
+            <input type="email" id="ceInput" required autocomplete="email" data-i18n-ph="newEmailPh" placeholder="nuevo@correo.com" aria-labelledby="ceOpenBtn">
             <button type="submit" class="btn btn-ghost" id="ceSendBtn" data-i18n="ceEnviar">Enviar enlace de confirmación</button>
           </form>
           <div id="ceMsg" class="acc-note" role="status"></div>

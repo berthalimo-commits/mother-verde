@@ -12,7 +12,7 @@ function formatDatos(e, L){
   if(e.ph) parts.push(`pH ${e.ph}`);
   if(e.ec) parts.push(`EC ${e.ec}`);
   if(e.temp) parts.push(`${e.temp}°C`);
-  if(e.hum) parts.push(`${e.hum}% HR`);
+  if(e.hum) parts.push(`${e.hum}% ${({ es: 'HR', en: 'RH', de: 'rF', fr: 'HR' })[window.getCurrentLang?.() || 'en'] || 'RH'}`);
   return parts.join('  ·  ');
 }
 
