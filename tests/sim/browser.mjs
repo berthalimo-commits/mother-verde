@@ -10,7 +10,10 @@ export { failures, check, sleep, OUT, ADMIN, PAYER };
 export const sql = async (q) => (await fetch('http://localhost:54322/__sql?q=' + encodeURIComponent(q))).json();
 export const mail = async () => (await fetch('http://localhost:54322/__mail')).json();
 export const summary = () => console.log(`\nRESULTADO: ${pass} ok, ${fail} fallas${fail ? ' -> ' + failures.join(' | ') : ''}`);
-export async function browser(uid, aal, w = 420) {
+// opts.lang: the language this test browser has "already chosen" (default 'es', the language most
+// tests were written in). Pass { lang: null } to start like a first visit with no language saved
+// (the site then shows its default, English, since 2026-11-06).
+export async function browser(uid, aal, w = 420, opts = {}) {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'mv-panel-'));
   // Launch with a time limit and retries: two long runs hung forever when a
   // second browser never answered (busy random port or a slow start). Now a
@@ -36,6 +39,8 @@ export async function browser(uid, aal, w = 420) {
   await send('Page.enable'); await send('Runtime.enable');
   await send('Emulation.setDeviceMetricsOverride', { width: w, height: 900, deviceScaleFactor: 1, mobile: w < 600 });
   const sess = { access_token: `u:${uid}:${aal}`, refresh_token: `r:${uid}:${aal}`, token_type: 'bearer', expires_in: 360000, expires_at: Math.floor(Date.now() / 1000) + 360000, user: { id: uid, aud: 'authenticated', role: 'authenticated', email: 'x', app_metadata: {}, user_metadata: {}, created_at: '' } };
+  const seedLang = opts.lang === undefined ? 'es' : opts.lang;
+  if (seedLang) await send('Page.addScriptToEvaluateOnNewDocument', { source: `if (location.port === '5174') { try { if (!localStorage.getItem('mv-lang')) localStorage.setItem('mv-lang', '${seedLang}'); } catch (e) {} }` });
   if (uid) await send('Page.addScriptToEvaluateOnNewDocument', { source: `if (location.port === '5174' && !sessionStorage.getItem('seeded')) { localStorage.setItem('sb-localhost-auth-token', ${JSON.stringify(JSON.stringify(sess))}); sessionStorage.setItem('seeded', '1'); }` });
   const shot = async (label) => { const r = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true }); fs.writeFileSync(`${OUT}/${label}.png`, Buffer.from(r.result.data, 'base64')); };
   const text = () => ev('document.getElementById("app").innerText');

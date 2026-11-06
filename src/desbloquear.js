@@ -20,7 +20,7 @@ function pendingLine(c) {
 window.mvPendingLine = pendingLine;
 
 const t = (k) => (window.t ? window.t(k) : k);
-const lang = () => (window.getCurrentLang ? window.getCurrentLang() : 'es');
+const lang = () => (window.getCurrentLang ? window.getCurrentLang() : 'en');
 
 // Approved flower (outline v2, never filled): #mvBud full drawing, #mvBudS
 // simplified for small sizes. "ds-bud-on" = chosen: app green, amber hairs,

@@ -86,6 +86,8 @@ async function refreshAuthState(){
   if(window.mvCurrentUser && !window.mvCurrentProfile) window.mvApplyAccessState?.();
   else window.mvArmStuck?.();
   window.mvCurrentProfile = window.mvCurrentUser ? await loadProfile(window.mvCurrentUser.id) : null;
+  // The profile's language counts as the person's choice on a browser with none saved yet.
+  if(window.mvCurrentProfile?.preferred_lang) window.mvApplyProfileLang?.(window.mvCurrentProfile.preferred_lang);
   const accessOk = await loadAccess();
   if(window.mvCurrentUser && (!window.mvCurrentProfile || !accessOk)) load.failed = true;
   window.setIsPremium?.(hasFullAccess());
@@ -460,7 +462,7 @@ document.getElementById('authForm')?.addEventListener('submit', async (e) => {
     if(authMode === 'signup'){
       const { data, error } = await supabase.auth.signUp({
         email, password,
-        options: { data: { preferred_lang: (window.getCurrentLang && window.getCurrentLang()) || 'es' }, emailRedirectTo: MV_REDIRECT, ...captchaOptions() }
+        options: { data: { preferred_lang: (window.getCurrentLang && window.getCurrentLang()) || 'en' }, emailRedirectTo: MV_REDIRECT, ...captchaOptions() }
       });
       if(error) throw error;
       // Same address already registered and confirmed: Supabase answers «ok»

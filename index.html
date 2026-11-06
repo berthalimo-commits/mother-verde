@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mother Verde — Codex Global</title>
+<meta name="description" content="An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
@@ -33,16 +34,27 @@
       <button type="button" class="ag-lang" aria-pressed="false" onclick="document.querySelector('#langSwitch button[data-lang=fr]').click(); this.parentElement.querySelectorAll('.ag-lang').forEach(b=>{b.classList.remove('on'); b.setAttribute('aria-pressed','false');}); this.classList.add('on'); this.setAttribute('aria-pressed','true');">FR</button>
     </div>
     <svg viewBox="0 0 60 70" width="44" height="52" style="margin:0 auto 18px; display:block;"><path d="M30,8 C36,16 40,26 37,36 C34,45 30,52 25,55 C20,51 17,44 19,35 C21,25 25,15 30,8 Z" fill="var(--moss)" stroke="var(--moss-deep)" stroke-width="1.5"/></svg>
-    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Verificación de edad</h2>
-    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:26px;" data-i18n="agBody">Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.</p>
-    <button class="btn btn-primary" style="width:100%; padding:13px; margin-bottom:10px;" onclick="ageGateConfirm(true)" data-i18n="agYes">Sí, tengo 18 años o más</button>
-    <button class="btn" style="width:100%; padding:13px; background:transparent; border:1px solid var(--line-strong); color:var(--ink-soft);" onclick="ageGateConfirm(false)" data-i18n="agNo">No, soy menor de 18</button>
+    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Age verification</h2>
+    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:26px;" data-i18n="agBody">This content is intended for adults 18 and older, and includes information about cannabis for educational, medical, and informational purposes.</p>
+    <button class="btn btn-primary" style="width:100%; padding:13px; margin-bottom:10px;" onclick="ageGateConfirm(true)" data-i18n="agYes">Yes, I am 18 or older</button>
+    <button class="btn" style="width:100%; padding:13px; background:transparent; border:1px solid var(--line-strong); color:var(--ink-soft);" onclick="ageGateConfirm(false)" data-i18n="agNo">No, I am under 18</button>
   </div>
   <div class="premium-sheet" style="max-width:420px; text-align:center; display:none;" id="ageGateBlocked">
-    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agBlockedTitle">Acceso no disponible</h2>
-    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6;" data-i18n="agBlockedBody">Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.</p>
+    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agBlockedTitle">Access not available</h2>
+    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6;" data-i18n="agBlockedBody">This content is restricted to people 18 and older. We are unable to grant you access at this time.</p>
   </div>
 </div>
+<script>
+  /* Age gate in the visitor's language from the first paint (the big main.js
+     comes later). Saved language if any, otherwise English (the default since
+     2026-11-06). No browser-language detection. */
+  (function(){
+    var T = {"agTitle":{"es":"Verificación de edad","en":"Age verification","de":"Altersverifizierung","fr":"Vérification de l’âge"},"agBody":{"es":"Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.","en":"This content is intended for adults 18 and older, and includes information about cannabis for educational, medical, and informational purposes.","de":"Dieser Inhalt ist nur für Personen ab 18 Jahren bestimmt und enthält Informationen über Cannabis zu Bildungs-, medizinischen und Informationszwecken.","fr":"Ce contenu est destiné aux personnes de 18 ans et plus, et inclut des informations sur le cannabis à des fins éducatives, médicales et informatives."},"agYes":{"es":"Sí, tengo 18 años o más","en":"Yes, I am 18 or older","de":"Ja, ich bin 18 Jahre oder älter","fr":"Oui, j’ai 18 ans ou plus"},"agNo":{"es":"No, soy menor de 18","en":"No, I am under 18","de":"Nein, ich bin unter 18","fr":"Non, j’ai moins de 18 ans"},"agBlockedTitle":{"es":"Acceso no disponible","en":"Access not available","de":"Zugriff nicht verfügbar","fr":"Accès non disponible"},"agBlockedBody":{"es":"Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.","en":"This content is restricted to people 18 and older. We are unable to grant you access at this time.","de":"Dieser Inhalt ist auf Personen ab 18 Jahren beschränkt. Wir können dir derzeit keinen Zugang gewähren.","fr":"Ce contenu est réservé aux personnes de 18 ans et plus. Nous ne pouvons pas vous donner accès pour le moment."}};
+    var l = 'en'; try { var s = localStorage.getItem('mv-lang'); if (s === 'es' || s === 'en' || s === 'de' || s === 'fr') l = s; } catch (e) {}
+    document.documentElement.lang = l;
+    for (var k in T) { var el = document.querySelector('[data-i18n="' + k + '"]'); if (el && T[k][l]) el.innerHTML = T[k][l]; }
+  })();
+</script>
 <svg class="bg-pattern" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <pattern id="leafTile" width="110" height="110" patternUnits="userSpaceOnUse" patternTransform="rotate(12)">
@@ -3771,8 +3783,8 @@
     let reloading = false;
     function showUpdateNotice(worker){
       if(document.getElementById('swUpdateNotice')) return;
-      const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
-      const [msg, action, close] = UPDATE_TEXT[lang] || UPDATE_TEXT.es;
+      const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+      const [msg, action, close] = UPDATE_TEXT[lang] || UPDATE_TEXT.en;
       const el = document.createElement('div');
       el.id = 'swUpdateNotice';
       el.className = 'sw-update';

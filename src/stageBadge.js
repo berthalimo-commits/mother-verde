@@ -19,9 +19,9 @@ export function mountStageBadge(stage = import.meta.env.VITE_MV_STAGE) {
   el.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:2147483000;pointer-events:none;background:#E3A75F;color:#07100D;'
     + 'font:700 12px/1 system-ui,-apple-system,sans-serif;letter-spacing:.06em;padding:7px 10px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.4)';
   const paint = () => {
-    const l = (document.documentElement.lang || 'es').slice(0, 2);
-    el.textContent = TEXT[l] || TEXT.es;
-    el.setAttribute('aria-label', LABEL[l] || LABEL.es);
+    const l = (document.documentElement.lang || 'en').slice(0, 2);
+    el.textContent = TEXT[l] || TEXT.en;
+    el.setAttribute('aria-label', LABEL[l] || LABEL.en);
     if (!/^\[STAGING\] /.test(document.title)) document.title = '[STAGING] ' + document.title;
   };
   paint();

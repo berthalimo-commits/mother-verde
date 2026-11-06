@@ -29,7 +29,7 @@ const usdc = (units) => { const t = String(units ?? ''); if (!/^\d+$/.test(t)) r
 // ------------------------------------------------------------ texts (4 languages)
 const LANGS = ['es', 'en', 'de', 'fr'];
 const LOCALE = { es: 'es-ES', en: 'en-US', de: 'de-DE', fr: 'fr-FR' };
-let lang = (() => { try { const l = localStorage.getItem('mv-lang'); return LANGS.includes(l) ? l : 'es'; } catch (e) { return 'es'; } })();
+let lang = (() => { try { const l = localStorage.getItem('mv-lang'); return LANGS.includes(l) ? l : 'en'; } catch (e) { return 'en'; } })();
 const when = (iso) => (iso ? new Date(iso).toLocaleString(LOCALE[lang], { dateStyle: 'short', timeStyle: 'short' }) : '—');
 
 const T = {

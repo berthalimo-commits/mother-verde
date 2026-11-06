@@ -994,7 +994,7 @@ function ensureMapTooltipEl(){
 function getMapTooltipName(iso){
   const n = countryNamesI18n[iso];
   if(!n) return null;
-  return n[currentLang] || n.es;
+  return n[currentLang] || n.en;
 }
 function showMapTooltip(iso, x, y){
   const name = getMapTooltipName(iso);
@@ -5561,7 +5561,10 @@ translations.fr = Object.assign(translations.fr, {
 // Language chosen last time in this browser (kept across reloads); Spanish otherwise.
 const MV_LANGS = ['es', 'en', 'de', 'fr'];
 let currentLang = (function(){
-  try { const l = localStorage.getItem('mv-lang'); return MV_LANGS.includes(l) ? l : 'es'; } catch(e){ return 'es'; }
+  // Default: ENGLISH for a first visit with no saved language (Bertha, 2026-11-06).
+  // A language already chosen (saved here, or in the profile: see mvApplyProfileLang) is kept.
+  // No detection of the browser language: only a choice saved here or in the profile counts.
+  try { const l = localStorage.getItem('mv-lang'); return MV_LANGS.includes(l) ? l : 'en'; } catch(e){ return 'en'; }
 })();
 window.getCurrentLang = function(){ return currentLang; };
 // Modules loaded later (the game) add their texts to the same translations.
@@ -5997,6 +6000,10 @@ translations.es.recP = "Abriste el enlace para cambiar tu contraseña. Escríbel
 translations.en.recP = "You opened the link to reset your password. Type the new one twice.";
 translations.de.recP = "Du hast den Link zum Zurücksetzen geöffnet. Gib das neue Passwort zweimal ein.";
 translations.fr.recP = "Tu as ouvert le lien pour changer ton mot de passe. Saisis le nouveau deux fois.";
+translations.es.metaDescription = "Una enciclopedia de cannabis medicinal y recreacional basada en evidencia, en cuatro idiomas, con una comunidad para aprender juntos.";
+translations.en.metaDescription = "An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together.";
+translations.de.metaDescription = "Eine evidenzbasierte Enzyklopädie über medizinisches und Freizeit-Cannabis, in vier Sprachen, mit einer Community, um gemeinsam zu lernen.";
+translations.fr.metaDescription = "Une encyclopédie du cannabis médical et récréatif fondée sur les preuves, en quatre langues, avec une communauté pour apprendre ensemble.";
 translations.es.calcDoseInvalid = "Escribe números mayores que 0.";
 translations.en.calcDoseInvalid = "Enter numbers greater than 0.";
 translations.de.calcDoseInvalid = "Gib Zahlen größer als 0 ein.";
@@ -6819,7 +6826,7 @@ translations.en.giftErrGeneric = "We couldn’t check the code right now. Try ag
 translations.de.giftErrGeneric = "Wir konnten den Code gerade nicht prüfen. Versuch es in ein paar Minuten noch einmal.";
 translations.fr.giftErrGeneric = "Nous n’avons pas pu vérifier le code pour le moment. Réessaie dans quelques minutes.";
 
-function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
+function t(key){ return translations[currentLang][key] || translations['en'][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
   const labels = {
@@ -6846,7 +6853,7 @@ function renderGrid(filter){
         <div><h4>${flagImg(c.flag)} ${countryDisplayName(c)}</h4><div class="region">${regionNames[c.region][currentLang]}</div></div>
         <div class="badge">${statusLabel(c.status)}</div>
       </div>
-      <div class="desc">${c.desc[currentLang] || c.desc.es}</div>`;
+      <div class="desc">${c.desc[currentLang] || c.desc.en}</div>`;
     grid.appendChild(el);
   });
   if(!isPremium && filtered.length>3){
@@ -6883,11 +6890,11 @@ function showDetail(c){
     </div>
     <div class="detail-grid">
       <div>
-        <div class="card-block"><h3>${t('detailEstado')}</h3><p>${c.desc[currentLang] || c.desc.es}</p><div class="note-box">${t('detailNote')}</div></div>
+        <div class="card-block"><h3>${t('detailEstado')}</h3><p>${c.desc[currentLang] || c.desc.en}</p><div class="note-box">${t('detailNote')}</div></div>
         <div class="card-block"><h3>${t('detailTimeline')}</h3><div class="timeline">${c.history.map(h=>`<div class="tl-item"><div class="yr">${h[0]}</div><div class="tx">${h[1][currentLang] || h[1].es}</div></div>`).join('')}</div></div>
       </div>
       <div>
-        <div class="card-block"><h3>${t('detailTraveler')}</h3><p>${c.portar[currentLang] || c.portar.es}</p></div>
+        <div class="card-block"><h3>${t('detailTraveler')}</h3><p>${c.portar[currentLang] || c.portar.en}</p></div>
         <div class="card-block"><h3>${t('detailSources')}</h3>${c.sources.map(s=>{
           const label = typeof s === 'string' ? s : s.label;
           const link = (typeof s === 'object' && s.url && isPremium) ? ` <a href="${s.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">→</a>` : '';
@@ -6898,8 +6905,16 @@ function showDetail(c){
   showScreen('detail');
 }
 
+// The language saved in the profile is a choice too: on sign-in, if THIS browser has no
+// language saved yet (new device), use the profile's. A language chosen here always wins.
+window.mvApplyProfileLang = function(lang){
+  let saved = null; try { saved = localStorage.getItem('mv-lang'); } catch(e){}
+  if(saved || !MV_LANGS.includes(lang) || lang === currentLang) return;
+  document.querySelector('#langSwitch button[data-lang="' + lang + '"]')?.click();
+};
 function applyLang(){
   document.documentElement.lang = currentLang;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', t('metaDescription'));
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(translations[currentLang][key] !== undefined) el.innerHTML = translations[currentLang][key];
@@ -7036,8 +7051,8 @@ function renderGlosario(query){
   if(!el) return;
   const q = (query||'').toLowerCase().trim();
   const filtered = glossary.filter(g=>{
-    const termText = (g.term[currentLang]||g.term.es).toLowerCase();
-    const defText = (g.def[currentLang]||g.def.es).toLowerCase();
+    const termText = (g.term[currentLang]||g.term.en).toLowerCase();
+    const defText = (g.def[currentLang]||g.def.en).toLowerCase();
     return !q || termText.includes(q) || defText.includes(q);
   });
   if(filtered.length === 0){
@@ -7046,8 +7061,8 @@ function renderGlosario(query){
   }
   el.innerHTML = filtered.map(g=>`
     <div class="card-block" style="padding:14px 18px;">
-      <h4 style="margin:0 0 6px; font-family:'Manrope',sans-serif; font-size:15px; color:var(--moss-deep);">${g.term[currentLang]||g.term.es}</h4>
-      <p style="margin:0; font-size:13px; color:var(--ink-soft);">${g.def[currentLang]||g.def.es}</p>
+      <h4 style="margin:0 0 6px; font-family:'Manrope',sans-serif; font-size:15px; color:var(--moss-deep);">${g.term[currentLang]||g.term.en}</h4>
+      <p style="margin:0; font-size:13px; color:var(--ink-soft);">${g.def[currentLang]||g.def.en}</p>
     </div>`).join('');
 }
 
@@ -8140,12 +8155,12 @@ function buscarVeterinario(){
   let html = '';
   const exact = researchedVets[selectedName];
   if(exact){
-    html += `<div class="note-box" style="margin-bottom:8px;"><b>${exact.flag} ${t('mdBuscarTuPais')}</b><br><b>${exact.name}</b> — ${exact.role[currentLang] || exact.role.es}<br><a href="${exact.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">${exact.org}</a></div>`;
+    html += `<div class="note-box" style="margin-bottom:8px;"><b>${exact.flag} ${t('mdBuscarTuPais')}</b><br><b>${exact.name}</b> — ${exact.role[currentLang] || exact.role.en}<br><a href="${exact.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">${exact.org}</a></div>`;
   }
   const cercanos = Object.entries(researchedVets).filter(([name, d]) => name !== selectedName && d.region === selectedRegion);
   if(cercanos.length > 0){
     html += `<div class="note-box" style="margin-bottom:8px;"><b>${t('mdBuscarCerca')}</b><br>` +
-      cercanos.map(([name, d]) => `${d.flag} <b>${name} — ${d.name}:</b> ${d.role[currentLang] || d.role.es}`).join('<br><br>') + `</div>`;
+      cercanos.map(([name, d]) => `${d.flag} <b>${name} — ${d.name}:</b> ${d.role[currentLang] || d.role.en}`).join('<br><br>') + `</div>`;
   }
   html += `<div class="note-box"><b>${t('mdBuscarGlobal')}</b><br><a href="https://veterinarycannabissociety.org/directory-of-practitioners/" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">Veterinary Cannabis Society →</a></div>`;
   resultEl.innerHTML = html;
@@ -8172,7 +8187,7 @@ function populateCondicionSelect(){
     html += `<optgroup label="${t(MED_GROUP_KEY[lvl])}">`;
     items.forEach(c => {
       const T = MED_CONDITION_TEXT[c.id];
-      const label = (T && (T.label[currentLang] || T.label.es)) || c.id;
+      const label = (T && (T.label[currentLang] || T.label.en)) || c.id;
       html += `<option value="${c.id}">${label}</option>`;
     });
     html += `</optgroup>`;
@@ -8214,8 +8229,8 @@ function mdLocationOutputHtml(matched){
 // The evidence block shown when a condition is picked from the dropdown.
 function mdConditionResultHtml(cond){
   const T = MED_CONDITION_TEXT[cond.id];
-  const label = (T.label[currentLang] || T.label.es);
-  const note = (T.note[currentLang] || T.note.es);
+  const label = (T.label[currentLang] || T.label.en);
+  const note = (T.note[currentLang] || T.note.en);
   const specLabel = cond.spec && specialtyLabels[cond.spec] ? (specialtyLabels[cond.spec][currentLang] || specialtyLabels[cond.spec].es) : null;
   let h = `<div class="note-box" style="margin-bottom:10px;">`;
   h += `<div style="margin-bottom:8px;"><span class="md-evlevel ${cond.level}">${t(MED_LEVEL_KEY[cond.level])}</span></div>`;
@@ -9014,13 +9029,13 @@ function renderCultivars(filter){
   visible.forEach(c=>{
     const el = document.createElement('div');
     el.className = 'specimen';
-    el.innerHTML = `<h4>${c.name}</h4><div class="sci">${c.tipo[currentLang] || c.tipo.es} — ${t('vrTipoPrefix')} ${c.quimiotipo}</div>
+    el.innerHTML = `<h4>${c.name}</h4><div class="sci">${c.tipo[currentLang] || c.tipo.en} — ${t('vrTipoPrefix')} ${c.quimiotipo}</div>
       <div class="spec-row"><span>THC</span><span>${c.thc}</span></div>
       <div class="spec-row"><span>CBD</span><span>${c.cbd}</span></div>
-      <div class="spec-row"><span>${t('vrFloracion')}</span><span>${c.floracion[currentLang] || c.floracion.es}</span></div>
-      <div class="spec-row"><span>${t('vrLinaje')}</span><span>${c.linaje[currentLang] || c.linaje.es}</span></div>
-      <div class="spec-row"><span>${t('vrTerpenos')}</span><span>${c.terpenos[currentLang] || c.terpenos.es}</span></div>
-      <div class="spec-row"><span>${t('vrDificultad')}</span><span>${c.dificultad[currentLang] || c.dificultad.es}</span></div>
+      <div class="spec-row"><span>${t('vrFloracion')}</span><span>${c.floracion[currentLang] || c.floracion.en}</span></div>
+      <div class="spec-row"><span>${t('vrLinaje')}</span><span>${c.linaje[currentLang] || c.linaje.en}</span></div>
+      <div class="spec-row"><span>${t('vrTerpenos')}</span><span>${c.terpenos[currentLang] || c.terpenos.en}</span></div>
+      <div class="spec-row"><span>${t('vrDificultad')}</span><span>${c.dificultad[currentLang] || c.dificultad.en}</span></div>
       ${c.parents ? buildLineageTree(c.parents, c.name) : ''}`;
     cvGrid.appendChild(el);
   });
@@ -9073,10 +9088,10 @@ function renderComparador(){
     [t('vrTipoPrefix'), `${t('vrTipoPrefix')} ${a.quimiotipo}`, `${t('vrTipoPrefix')} ${b.quimiotipo}`],
     ['THC', a.thc, b.thc],
     ['CBD', a.cbd, b.cbd],
-    [t('vrFloracion'), a.floracion[currentLang]||a.floracion.es, b.floracion[currentLang]||b.floracion.es],
-    [t('vrDificultad'), a.dificultad[currentLang]||a.dificultad.es, b.dificultad[currentLang]||b.dificultad.es],
-    [t('vrTerpenos'), a.terpenos[currentLang]||a.terpenos.es, b.terpenos[currentLang]||b.terpenos.es],
-    [t('vrLinaje'), a.linaje[currentLang]||a.linaje.es, b.linaje[currentLang]||b.linaje.es],
+    [t('vrFloracion'), a.floracion[currentLang]||a.floracion.en, b.floracion[currentLang]||b.floracion.en],
+    [t('vrDificultad'), a.dificultad[currentLang]||a.dificultad.en, b.dificultad[currentLang]||b.dificultad.en],
+    [t('vrTerpenos'), a.terpenos[currentLang]||a.terpenos.en, b.terpenos[currentLang]||b.terpenos.en],
+    [t('vrLinaje'), a.linaje[currentLang]||a.linaje.en, b.linaje[currentLang]||b.linaje.en],
   ];
   el.innerHTML = `<div class="cp-table">
     <div class="cp-row cp-header"><span>—</span><span>${a.name}</span><span>${b.name}</span></div>

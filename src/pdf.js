@@ -18,8 +18,8 @@ function formatDatos(e, L){
 
 window.exportBitacoraPDF = function(){
   const entries = (window.getBitEntries?.() || []).slice().sort((a,b)=> new Date(a.fecha) - new Date(b.fecha));
-  const lang = window.getCurrentLang?.() || 'es';
-  const L = LABELS[lang] || LABELS.es;
+  const lang = window.getCurrentLang?.() || 'en';
+  const L = LABELS[lang] || LABELS.en;
   const doc = new jsPDF({ unit: 'pt', format: 'a4' });
   const pageW = doc.internal.pageSize.getWidth();
   const marginX = 48;
