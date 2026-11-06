@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 20 de 31 · Plataforma: pending claims counter.
+-- PRODUCCIÓN · archivo 20 de 32 · Plataforma: pending claims counter.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261014130000_pending_claims_counter.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

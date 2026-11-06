@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 13 de 31 · Plataforma: gift codes and access.
+-- PRODUCCIÓN · archivo 13 de 32 · Plataforma: gift codes and access.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261011130000_gift_codes_and_access.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

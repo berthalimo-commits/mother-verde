@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 19 de 31 · Plataforma: late payment conflicts.
+-- PRODUCCIÓN · archivo 19 de 32 · Plataforma: late payment conflicts.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261014120000_late_payment_conflicts.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

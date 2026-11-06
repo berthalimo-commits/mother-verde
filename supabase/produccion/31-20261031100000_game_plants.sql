@@ -1,18 +1,19 @@
--- PRODUCCIÓN · archivo 29 de 31 · Juego: equipo de la carpa.
+-- PRODUCCIÓN · archivo 31 de 32 · Juego: varias plantas y machos.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
--- Copia exacta de supabase/migrations/20261029100000_game_setup.sql (generado por tools/build-produccion.mjs; no editar a mano).
+-- Copia exacta de supabase/migrations/20261031100000_game_plants.sql (generado por tools/build-produccion.mjs; no editar a mano).
 
 -- Runs as ONE transaction: if any statement fails, nothing is applied.
 begin;
 
--- GAME v2, phase 5: the saved game may carry the run's equipment and method
--- (key "setup"), the new germination stage ("germinacion") and two new
--- problems of phase 6 ("pudricion_raiz", "quemadura_luz"); the sub-phase 8b
--- (stage and post key "material", post-harvest up to 1500 bytes). Needs
--- 20261015100000_game_progress.sql first. Only game_state_valid() changes:
--- the table, game_save() and every other rule stay the same. Undo:
--- supabase/admin/rollback-20261029100000.sql (puts back the 20261015100000
--- version; games saved with "setup" would then be refused on their next save).
+-- GAME v2, several plants + seed types: with regular seeds some plants can be
+-- male; the player removes them in flowering and the saved equipment then
+-- carries "machos": "retirados" (or "tarde": removed after they pollinated).
+-- The seed type ("semilla") and the number of
+-- plants ("plantas", 1..6) were already accepted by 20261029100000. Needs
+-- 20261029100000_game_setup.sql first. Only game_state_valid() changes (one
+-- more known equipment key). Undo: supabase/admin/rollback-20261031100000.sql
+-- (puts back the 20261029100000 version; a game that removed its males would
+-- then be refused on its next save).
 
 create or replace function public.game_state_valid(s jsonb)
 returns boolean
@@ -29,7 +30,8 @@ declare
     "sistema": ["maceta", "dwc", "nft", "aeroponia", "acuaponia"], "sustrato": ["tierra", "coco", "lana_roca", "tierra_viva"],
     "maceta": ["plastico", "tela", "aire", "barro"], "maceta_tam": ["pequena", "grande"], "riego_tipo": ["mano", "goteo"],
     "medir": ["si", "no"], "semilla": ["feminizada", "regular", "autofloreciente"],
-    "germinacion": ["papel", "taco", "tierra", "coco", "vaso", "lana_roca"], "trasplante": ["no", "si"]}';
+    "germinacion": ["papel", "taco", "tierra", "coco", "vaso", "lana_roca"], "trasplante": ["no", "si"],
+    "machos": ["retirados", "tarde"]}';
   stages constant text[] := array['intro', 'germinacion', 'plantula', 'vegetativo', 'floracion', 'secado', 'curado', 'material', 'rosin', 'fin'];
   -- phase 6: root rot (hydroponics with warm water) and light burn (small tent)
   events constant text[] := array['oidio', 'botrytis', 'acaros', 'carencia_n', 'exceso_riego', 'pudricion_raiz', 'quemadura_luz'];

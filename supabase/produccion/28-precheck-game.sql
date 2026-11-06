@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 27 de 31 · Comprobación ANTES del juego (paso 12b): todas las filas «ok». Si sale FALTA o YA EXISTE, PARA.
+-- PRODUCCIÓN · archivo 28 de 32 · Comprobación ANTES del juego (paso 12b): todas las filas «ok». Si sale FALTA o YA EXISTE, PARA.
 -- SOLO LECTURA: no cambia nada.
 -- Copia exacta de supabase/admin/precheck-game.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

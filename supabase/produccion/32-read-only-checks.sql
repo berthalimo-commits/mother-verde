@@ -31,6 +31,7 @@ with t(orden, que, bien) as (values
   (21, 'juego: nadie escribe la tabla directamente', case when to_regclass('public.game_progress') is null then false else not has_table_privilege('authenticated', 'public.game_progress', 'insert') and not has_table_privilege('authenticated', 'public.game_progress', 'update') end),
   -- seguridad general
   (22, 'todas las tablas de public con RLS encendido', not exists (select 1 from pg_tables where schemaname = 'public' and not rowsecurity)),
+  (24, 'códigos de regalo creados desde SQL: 7 días para canjear por defecto', coalesce(pg_get_function_arguments(to_regprocedure('public.admin_create_gift_codes(integer, integer, integer)')) like '%p_valid_days integer DEFAULT 7%', false)),
   (23, 'tus dos cuentas con acceso completo (si ya existen)', not exists (select 1 from auth.users u join public.profiles p on p.id = u.id where u.email in ('berthalimo@gmail.com', 'berthalimo@proton.me') and not public.is_premium(u.id)))
 )
 select orden, que, case when bien then 'ok' when bien is null then 'REVISAR' else 'FALTA' end as resultado

@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 28 de 31 · Juego: partidas guardadas.
+-- PRODUCCIÓN · archivo 29 de 32 · Juego: partidas guardadas.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261015100000_game_progress.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 15 de 31 · Plataforma: mail failures panel.
+-- PRODUCCIÓN · archivo 15 de 32 · Plataforma: mail failures panel.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261013110000_mail_failures_panel.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

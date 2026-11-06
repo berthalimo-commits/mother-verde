@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 14 de 31 · Plataforma: mail delivery.
+-- PRODUCCIÓN · archivo 14 de 32 · Plataforma: mail delivery.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261013100000_mail_delivery.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

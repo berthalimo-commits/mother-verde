@@ -4,8 +4,8 @@ Generados por `node tools/build-produccion.mjs` a partir de `supabase/migrations
 `supabase/seed-blocked-email-domains/`. **No los edites a mano**: si cambia una migración, vuelve a generarlos.
 La prueba `tests/sim/prod-files.mjs` los aplica en este orden sobre un Postgres real y falla si están desactualizados.
 
-Pasos del plan (`docs/plan-migracion.md`): archivo 01 = paso 11 · archivos 02–26 = paso 12 ·
-archivos 27–30 = paso 12b (juego) · archivo 31 = paso 13.
+Pasos del plan (`docs/plan-migracion.md`): archivo 01 = paso 11 · archivos 02–27 = paso 12 ·
+archivos 28–31 = paso 12b (juego) · archivo 32 = paso 13.
 
 **Cómo pegarlos:** Supabase (producción) → SQL Editor → New query → copiar el archivo **entero** → Run. Uno a uno, en
 este orden. Los de «SOLO LECTURA» no cambian nada: si alguna fila no dice «ok», **para** y manda la captura.
@@ -35,9 +35,10 @@ este orden. Los de «SOLO LECTURA» no cambian nada: si alguna fila no dice «ok
 23. `23-20261103100000_manual_contributions.sql` — Aportes manuales (PayPal, Cash App…).
 24. `24-20261104100000_purpose_and_signup_message.sql` — Propósito del aporte (casilla) + «Ya tienes cuenta».
 25. `25-20261105100000_trial_once_per_person.sql` — Prueba de 24 h una sola vez por persona (huella del correo al borrar la cuenta).
-26. `26-supporters-betian-mother-verde.sql` — Acceso completo para tus dos cuentas. Ejecuta primero solo la PARTE 1 (lectura) y comprueba que salen exactamente esas dos cuentas; después la PARTE 2.
-27. `27-precheck-game.sql` — Comprobación ANTES del juego (paso 12b): todas las filas «ok». Si sale FALTA o YA EXISTE, PARA.
-28. `28-20261015100000_game_progress.sql` — Juego: partidas guardadas.
-29. `29-20261029100000_game_setup.sql` — Juego: equipo de la carpa.
-30. `30-20261031100000_game_plants.sql` — Juego: varias plantas y machos.
-31. `31-read-only-checks.sql` — Comprobación final (paso 13): todas las filas «ok».
+26. `26-20261106100000_gift_codes_7_days.sql` — Códigos de regalo creados desde SQL: 7 días para canjear por defecto.
+27. `27-supporters-betian-mother-verde.sql` — Acceso completo para tus dos cuentas. Ejecuta primero solo la PARTE 1 (lectura) y comprueba que salen exactamente esas dos cuentas; después la PARTE 2.
+28. `28-precheck-game.sql` — Comprobación ANTES del juego (paso 12b): todas las filas «ok». Si sale FALTA o YA EXISTE, PARA.
+29. `29-20261015100000_game_progress.sql` — Juego: partidas guardadas.
+30. `30-20261029100000_game_setup.sql` — Juego: equipo de la carpa.
+31. `31-20261031100000_game_plants.sql` — Juego: varias plantas y machos.
+32. `32-read-only-checks.sql` — Comprobación final (paso 13): todas las filas «ok».

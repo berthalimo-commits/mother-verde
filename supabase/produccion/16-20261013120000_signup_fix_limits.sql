@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 16 de 31 · Plataforma: signup fix limits.
+-- PRODUCCIÓN · archivo 16 de 32 · Plataforma: signup fix limits.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261013120000_signup_fix_limits.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

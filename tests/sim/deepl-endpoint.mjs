@@ -8,7 +8,9 @@ import fs from 'fs';
 const APP = new URL('../../', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 let pass = 0, fail = 0; const failures = [];
 const check = (n, c, d = '') => { if (c) { pass++; console.log('  ok   ', n); } else { fail++; failures.push(n); console.log('  FALLA', n, d); } };
-const FNS = ['community-translate', 'community-publish-post', 'community-publish-comment', 'community-retranslate'];
+// community-translate was deleted (2nd review, 2026-11-06): it called DeepL with no limit and the app no longer used it
+const FNS = ['community-publish-post', 'community-publish-comment', 'community-retranslate'];
+check('community-translate ya no existe en el repositorio ni la llama la app', !fs.existsSync(APP + '/supabase/functions/community-translate') && !/community-translate['"/]/.test(fs.readFileSync(APP + '/public/main.js', 'utf8') + fs.readdirSync(APP + '/src').filter((f) => f.endsWith('.js')).map((f) => fs.readFileSync(APP + '/src/' + f, 'utf8')).join('')));
 const FREE = 'abcdef12-3456-7890-abcd-ef1234567890:fx', PRO = 'abcdef12-3456-7890-abcd-ef1234567890';
 
 for (const name of FNS) {

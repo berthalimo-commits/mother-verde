@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 02 de 31 · Modelo de acceso: prueba de 24 h, aporte único, regla de registro.
+-- PRODUCCIÓN · archivo 02 de 32 · Modelo de acceso: prueba de 24 h, aporte único, regla de registro.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261010120000_access_support_model.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

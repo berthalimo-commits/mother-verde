@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 04 de 31 · Dominios de correo desechable bloqueados, parte 2 de 7.
+-- PRODUCCIÓN · archivo 04 de 32 · Dominios de correo desechable bloqueados, parte 2 de 7.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/seed-blocked-email-domains/part-02.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 26 de 31 · Acceso completo para tus dos cuentas. Ejecuta primero solo la PARTE 1 (lectura) y comprueba que salen exactamente esas dos cuentas; después la PARTE 2.
+-- PRODUCCIÓN · archivo 27 de 32 · Acceso completo para tus dos cuentas. Ejecuta primero solo la PARTE 1 (lectura) y comprueba que salen exactamente esas dos cuentas; después la PARTE 2.
 -- Dos partes: lee la explicación de abajo antes de ejecutar.
 -- Copia exacta de supabase/admin/supporters-betian-mother-verde.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

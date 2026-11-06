@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 12 de 31 · Plataforma: support claims.
+-- PRODUCCIÓN · archivo 12 de 32 · Plataforma: support claims.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261011120000_support_claims.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

@@ -49,7 +49,7 @@ for (const f of have.filter((f) => f.endsWith('.sql') && f !== finalName)) {
 }
 check(`los ${have.length - 2} archivos, en orden: los de lectura dicen «ok» y los de cambio se aplican sin error`, bad.length === 0, '\n      ' + bad.join('\n      '));
 const fin = (await db.query(finalSql)).rows;
-check(`${finalName}: las ${fin.length} filas dicen «ok» (plataforma, aportes manuales, propósito, prueba una vez, juego, RLS, tus cuentas)`, fin.length === 23 && fin.every((r) => r.resultado === 'ok'), JSON.stringify(fin.filter((r) => r.resultado !== 'ok')));
+check(`${finalName}: las ${fin.length} filas dicen «ok» (plataforma, aportes manuales, propósito, prueba una vez, juego, RLS, tus cuentas)`, fin.length === 24 && fin.every((r) => r.resultado === 'ok'), JSON.stringify(fin.filter((r) => r.resultado !== 'ok')));
 const acc = (await db.query(`select u.email, p.subscription_status s from auth.users u join public.profiles p on p.id = u.id order by 1`)).rows;
 check('tus dos cuentas quedan con acceso completo (supporter)', acc.length === 2 && acc.every((r) => r.s === 'supporter'), JSON.stringify(acc));
 check('cada archivo de cambio es una sola transacción (begin … commit)', have.filter((f) => /^\d\d-\d{14}_/.test(f) || /dominios-bloqueados/.test(f)).every((f) => { const s = fs.readFileSync(path.join(DIR, f), 'utf8'); return /^begin;$/m.test(s) && /^commit;$/m.test(s); }));

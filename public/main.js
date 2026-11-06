@@ -5997,6 +5997,10 @@ translations.es.recP = "Abriste el enlace para cambiar tu contraseña. Escríbel
 translations.en.recP = "You opened the link to reset your password. Type the new one twice.";
 translations.de.recP = "Du hast den Link zum Zurücksetzen geöffnet. Gib das neue Passwort zweimal ein.";
 translations.fr.recP = "Tu as ouvert le lien pour changer ton mot de passe. Saisis le nouveau deux fois.";
+translations.es.calcDoseInvalid = "Escribe números mayores que 0.";
+translations.en.calcDoseInvalid = "Enter numbers greater than 0.";
+translations.de.calcDoseInvalid = "Gib Zahlen größer als 0 ein.";
+translations.fr.calcDoseInvalid = "Saisis des nombres supérieurs à 0.";
 translations.es.recInvH = "Crea tu contraseña";
 translations.en.recInvH = "Create your password";
 translations.de.recInvH = "Erstelle dein Passwort";
@@ -9136,21 +9140,27 @@ function renderEdibleSafetyCards(){
     if(el) el.innerHTML = html;
   });
 }
+// Dose per serving: both numbers must be greater than 0 (2nd review, 2026-11-06).
+// Before, 0 servings silently counted as 1 and negative numbers gave negative doses.
+function doseText(mg, servings){
+  if(!(mg > 0) || !(servings > 0)) return { ok: false, text: t('calcDoseInvalid') };
+  return { ok: true, text: (mg / servings).toFixed(1) + ' mg / porción' };
+}
+function showDose(el, mg, servings){
+  const d = doseText(mg, servings);
+  el.textContent = d.text;
+  el.classList.toggle('calc-invalid', !d.ok);
+  el.setAttribute('role', 'status');
+}
 function updateDose(){
-  const mg = parseFloat(document.getElementById('doseMg').value) || 0;
-  const servings = parseFloat(document.getElementById('doseServings').value) || 1;
-  const dose = mg / servings;
-  document.getElementById('doseResult').textContent = dose.toFixed(1) + ' mg / porción';
+  showDose(document.getElementById('doseResult'), parseFloat(document.getElementById('doseMg').value), parseFloat(document.getElementById('doseServings').value));
 }
 function updateDoseComestibles(){
   const mgEl = document.getElementById('cmDoseMg');
   const servingsEl = document.getElementById('cmDoseServings');
   const resultEl = document.getElementById('cmDoseResult');
   if(!mgEl || !servingsEl || !resultEl) return;
-  const mg = parseFloat(mgEl.value) || 0;
-  const servings = parseFloat(servingsEl.value) || 1;
-  const dose = mg / servings;
-  resultEl.textContent = dose.toFixed(1) + ' mg / porción';
+  showDose(resultEl, parseFloat(mgEl.value), parseFloat(servingsEl.value));
 }
 function updateDecarbCalc(){
   const gramosEl = document.getElementById('cmDecarbGramos');

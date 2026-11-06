@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 01 de 31 · Comprobación ANTES de empezar (paso 11): todas las filas «ok». Si no, PARA.
+-- PRODUCCIÓN · archivo 01 de 32 · Comprobación ANTES de empezar (paso 11): todas las filas «ok». Si no, PARA.
 -- SOLO LECTURA: no cambia nada.
 -- Copia exacta de supabase/admin/precheck-before-20261010.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

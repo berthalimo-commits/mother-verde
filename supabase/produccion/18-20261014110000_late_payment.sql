@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 18 de 31 · Plataforma: late payment.
+-- PRODUCCIÓN · archivo 18 de 32 · Plataforma: late payment.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261014110000_late_payment.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

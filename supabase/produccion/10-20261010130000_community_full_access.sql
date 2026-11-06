@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 10 de 31 · Plataforma: community full access.
+-- PRODUCCIÓN · archivo 10 de 32 · Plataforma: community full access.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261010130000_community_full_access.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

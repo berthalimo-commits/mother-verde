@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 11 de 31 · Plataforma: admin and audit.
+-- PRODUCCIÓN · archivo 11 de 32 · Plataforma: admin and audit.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261011100000_admin_and_audit.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 25 de 31 · Prueba de 24 h una sola vez por persona (huella del correo al borrar la cuenta).
+-- PRODUCCIÓN · archivo 25 de 32 · Prueba de 24 h una sola vez por persona (huella del correo al borrar la cuenta).
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261105100000_trial_once_per_person.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

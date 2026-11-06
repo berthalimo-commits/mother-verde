@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 22 de 31 · Plataforma: bitacora read only without access.
+-- PRODUCCIÓN · archivo 22 de 32 · Plataforma: bitacora read only without access.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261020100000_bitacora_read_only_without_access.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

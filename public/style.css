@@ -653,3 +653,6 @@ html.story-open{overflow:hidden;}
   .story-skip{grid-column:1 / -1; justify-self:center; font-size:13px;}
 }
 @media (prefers-reduced-motion: reduce){ .story-track{scroll-behavior:auto;} }
+
+/* Dose calculators: message instead of a number when a value is 0 or negative (2nd review, 2026-11-06) */
+.calc-invalid { font-size: 15px !important; color: var(--clay); }

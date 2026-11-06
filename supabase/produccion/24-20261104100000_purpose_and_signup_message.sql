@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 24 de 31 · Propósito del aporte (casilla) + «Ya tienes cuenta».
+-- PRODUCCIÓN · archivo 24 de 32 · Propósito del aporte (casilla) + «Ya tienes cuenta».
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261104100000_purpose_and_signup_message.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

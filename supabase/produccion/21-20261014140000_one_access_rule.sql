@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 21 de 31 · Plataforma: one access rule.
+-- PRODUCCIÓN · archivo 21 de 32 · Plataforma: one access rule.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261014140000_one_access_rule.sql (generado por tools/build-produccion.mjs; no editar a mano).
 

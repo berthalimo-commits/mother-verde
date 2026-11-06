@@ -1,4 +1,4 @@
--- PRODUCCIÓN · archivo 17 de 31 · Plataforma: claims survive account deletion.
+-- PRODUCCIÓN · archivo 17 de 32 · Plataforma: claims survive account deletion.
 -- Pegar ENTERO y ejecutar una vez. Es una sola transacción: si falla, no se aplica nada de este archivo.
 -- Copia exacta de supabase/migrations/20261014100000_claims_survive_account_deletion.sql (generado por tools/build-produccion.mjs; no editar a mano).
 
