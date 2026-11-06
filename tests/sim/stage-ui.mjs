@@ -50,7 +50,7 @@ const b = await browser(null, null, 390);
 await b.send('Page.navigate', { url: 'http://localhost:5175/' }); await sleep(4500);
 const badge = () => b.ev(`(() => { const e = document.getElementById('mvStageBadge'); if (!e) return null; const r = e.getBoundingClientRect(); return { t: e.textContent, w: r.width > 0, title: document.title }; })()`);
 let x = await badge();
-check('web: aviso visible «STAGING · pruebas» y el título de la pestaña empieza por [STAGING]', x && x.t === 'STAGING · pruebas' && x.w && /^\[STAGING\] /.test(x.title), JSON.stringify(x));
+check('web: aviso visible (primera visita en inglés: «STAGING · testing») y el título de la pestaña empieza por [STAGING]', x && x.t === 'STAGING · testing' && x.w && /^\[STAGING\] /.test(x.title), JSON.stringify(x));
 const langs = {};
 for (const L of ['en', 'de', 'fr', 'es']) { await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(300); langs[L] = (await badge())?.t; }
 check('web: el aviso sigue el idioma (EN, DE, FR, ES)', langs.en === 'STAGING · testing' && langs.de === 'STAGING · Tests' && langs.fr === 'STAGING · tests' && langs.es === 'STAGING · pruebas', JSON.stringify(langs));
@@ -58,7 +58,7 @@ await b.close();
 const p = await browser(null, null, 1200);
 await p.send('Page.navigate', { url: 'http://localhost:5175/panel-mv.html' }); await sleep(3500);
 x = await p.ev(`document.getElementById('mvStageBadge')?.textContent`);
-check('panel: el mismo aviso', x === 'STAGING · pruebas', x);
+check('panel: el mismo aviso (en inglés por defecto)', x === 'STAGING · testing', x);
 await p.close();
 srv.kill();
 r = build({ VITE_SUPABASE_URL: 'http://localhost:54321', VITE_SUPABASE_ANON_KEY: 'anon' });

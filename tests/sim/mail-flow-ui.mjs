@@ -96,7 +96,7 @@ check('…el mismo enlace otra vez -> «Este enlace ya no sirve»', /Este enlace
 await b.close();
 
 // ---------------------------------------------------------------- 5. sign-up in the 4 languages
-for (const [L, re] of [['en', /Confirm your email to start your 24 hours/], ['de', /Bestätige deine E-Mail, um deine 24 Stunden zu starten/], ['fr', /Confirme ton e-mail pour commencer tes 24 heures/], ['es', /Confirma tu correo para empezar tus 24 horas/]]) {
+for (const [L, re] of [['en', /Confirm your email to get started/], ['de', /Bestätige deine E-Mail, um loszulegen/], ['fr', /Confirme ton e-mail pour commencer/], ['es', /Confirma tu correo para empezar/]]) {
   b = await browser(null, null, 390);
   await go(b, APP);
   await b.ev(`document.querySelector('#langSwitch button[data-lang=${L}]').click(); 1`); await sleep(300);

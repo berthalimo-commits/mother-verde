@@ -205,7 +205,7 @@ h2.title{font-family:'Manrope',sans-serif; font-weight:500; font-size:32px;}
 /* ---------- CIENCIA: PAPERS / CIENTIFICOS ---------- */
 .paper-card{border:1px solid var(--line); background:var(--paper-raised); padding:20px 22px; border-radius:4px; margin-bottom:12px;}
 .paper-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;}
-.paper-card h4{font-family:'Manrope',sans-serif; font-style:italic; font-size:16px; font-weight:500; max-width:74%; line-height:1.4;}
+.paper-card h4{font-family:'Manrope',sans-serif; font-style:normal; font-size:16px; font-weight:500; max-width:74%; line-height:1.4;}
 .evidence-tag{font-family:'IBM Plex Mono',monospace; font-size:9px; padding:4px 9px; border-radius:100px; text-transform:uppercase; white-space:nowrap; color:var(--paper); flex-shrink:0;}
 .paper-meta{font-size:11.5px; color:var(--ink-soft); margin-top:6px; font-family:'IBM Plex Mono',monospace;}
 .paper-card p{font-size:13px; color:var(--ink-soft); margin-top:10px; line-height:1.55;}
@@ -656,3 +656,7 @@ html.story-open{overflow:hidden;}
 
 /* Dose calculators: message instead of a number when a value is 0 or negative (2nd review, 2026-11-06) */
 .calc-invalid { font-size: 15px !important; color: var(--clay); }
+
+/* Investigación: published titles in italics, Mother Verde summaries upright */
+.paper-card h4[translate="no"]{font-style:italic;}
+.pp-head-note{font-size:13px; color:var(--ink-soft); margin:0 0 14px; text-align:center;}

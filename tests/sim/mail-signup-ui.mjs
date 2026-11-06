@@ -25,7 +25,7 @@ let b = await browser(null, null, 390);
 await open(b);
 let s = await signup(b, 'persona.nueva@gmail.com');
 const usersBefore = (await sql(`select count(*)::int c from auth.users`))[0].c;
-check('registro -> «Confirma tu correo» con la dirección escrita', /Confirma tu correo para empezar tus 24 horas/.test(s) && /persona\.nueva@gmail\.com/.test(s), s.slice(0, 300));
+check('registro -> «Confirma tu correo» con la dirección escrita', /Confirma tu correo para empezar/.test(s) && /persona\.nueva@gmail\.com/.test(s), s.slice(0, 300));
 check('…texto de spam pedido (no es spam)', /Si no lo ves en unos minutos, revisa la carpeta de spam o correo no deseado y marca el mensaje como «no es spam»/.test(s));
 check('…aviso discreto para Gmail', /Consejo para Gmail/.test(s) && !/Consejo para Outlook/.test(s));
 check('…línea de contacto con enlace a hello@motherverdeny.com', /¿Sigues sin recibirlo\? Escríbenos a hello@motherverdeny\.com/.test(s) && await b.ev(`!!document.querySelector('#accesoContent a[href="mailto:hello@motherverdeny.com"]')`));
