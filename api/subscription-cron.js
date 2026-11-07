@@ -101,7 +101,9 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'x-retranslate-secret': rSecret,
-        ...(anonKey ? { apikey: anonKey, Authorization: `Bearer ${anonKey}` } : {}),
+        // New publishable keys (sb_publishable_…) are not JWTs: only in «apikey», never as a Bearer token
+        // (Supabase answers «Invalid JWT»). The legacy anon key (eyJ…) keeps both headers, as before.
+        ...(anonKey ? { apikey: anonKey, ...(anonKey.startsWith('sb_') ? {} : { Authorization: `Bearer ${anonKey}` }) } : {}),
         'Content-Type': 'application/json',
       },
       body: '{}',

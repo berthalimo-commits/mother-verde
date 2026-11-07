@@ -32,6 +32,22 @@
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
+// Supabase API keys (Bertha, 2026-11-06): the NEW keys first — SUPABASE_SECRET_KEYS /
+// SUPABASE_PUBLISHABLE_KEYS, which Supabase injects as a JSON object by key name («default»
+// first) — then the legacy ones (SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY). So the function
+// keeps working before and after the legacy keys (eyJ…) are disabled.
+function supabaseKey(kind: "secret" | "publishable"): string {
+  const raw = Deno.env.get(kind === "secret" ? "SUPABASE_SECRET_KEYS" : "SUPABASE_PUBLISHABLE_KEYS");
+  if (raw) {
+    try {
+      const keys = JSON.parse(raw) as Record<string, unknown>;
+      const k = keys?.["default"] ?? Object.values(keys ?? {})[0];
+      if (typeof k === "string" && k) return k;
+    } catch { /* malformed: fall back to the legacy key */ }
+  }
+  return Deno.env.get(kind === "secret" ? "SUPABASE_SERVICE_ROLE_KEY" : "SUPABASE_ANON_KEY") ?? "";
+}
+
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -55,8 +71,8 @@ Deno.serve(async (req) => {
   if (oldEmail === newEmail) return json({ error: "same_email" }, 400);
   if (!password) return json({ error: "wrong_password" }, 403);
 
-  const url = Deno.env.get("SUPABASE_URL")!, anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-  const svc = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, { auth: { persistSession: false, autoRefreshToken: false } });
+  const url = Deno.env.get("SUPABASE_URL")!, anonKey = supabaseKey("publishable");
+  const svc = createClient(url, supabaseKey("secret"), { auth: { persistSession: false, autoRefreshToken: false } });
   // Every request that gets this far is counted (only fingerprints of the
   // addresses are stored), whatever the outcome.
   const log = (outcome: string, user: string | null = null) =>

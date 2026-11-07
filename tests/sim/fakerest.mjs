@@ -18,9 +18,12 @@ export async function makeDb() {
 
 const J = (d, st = 200, h = {}) => new Response(d === undefined ? null : JSON.stringify(d, (k, v) => (typeof v === 'bigint' ? Number(v) : v)), { status: st, headers: { 'content-type': 'application/json', ...h } });
 
+// New-format keys (MV_KEYS=new in fn-e2e): 'sb_secret_test' = service_role, 'sb_publishable_test' = anon.
+// 'legacy-disabled' imitates an old eyJ… key after the legacy keys were disabled: rejected.
 function who(token) {
-  if (token === 'svc') return { role: 'service_role' };
-  if (!token || token === 'anon') return { role: 'anon' };
+  if (token === 'svc' || token === 'sb_secret_test') return { role: 'service_role' };
+  if (!token || token === 'anon' || token === 'sb_publishable_test') return { role: 'anon' };
+  if (token === 'legacy-disabled') return null;
   const [k, uid, aal] = token.split(':');
   if (k !== 'u') return null;
   return { role: 'authenticated', uid, aal: aal || 'aal1' };
@@ -60,7 +63,8 @@ export function makeRest(db) {
   async function handle(url, init) {
     const u = new URL(url); const m = (init.method || 'GET').toUpperCase();
     const hdr = new Headers(init.headers || {});
-    const token = (hdr.get('authorization') || '').replace(/^Bearer\s+/i, '');
+    // Like the Supabase gateway: the caller is the Bearer token, or else the «apikey» header.
+    const token = (hdr.get('authorization') || '').replace(/^Bearer\s+/i, '') || hdr.get('apikey') || '';
     const w = who(token);
     if (u.pathname === '/auth/v1/user') {
       if (!w || !w.uid) return J({ msg: 'invalid JWT' }, 401);

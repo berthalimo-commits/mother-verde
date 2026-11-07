@@ -33,6 +33,22 @@
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import nodemailer from "npm:nodemailer@6.9.16";
 
+// Supabase API keys (Bertha, 2026-11-06): the NEW keys first — SUPABASE_SECRET_KEYS /
+// SUPABASE_PUBLISHABLE_KEYS, which Supabase injects as a JSON object by key name («default»
+// first) — then the legacy ones (SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY). So the function
+// keeps working before and after the legacy keys (eyJ…) are disabled.
+function supabaseKey(kind: "secret" | "publishable"): string {
+  const raw = Deno.env.get(kind === "secret" ? "SUPABASE_SECRET_KEYS" : "SUPABASE_PUBLISHABLE_KEYS");
+  if (raw) {
+    try {
+      const keys = JSON.parse(raw) as Record<string, unknown>;
+      const k = keys?.["default"] ?? Object.values(keys ?? {})[0];
+      if (typeof k === "string" && k) return k;
+    } catch { /* malformed: fall back to the legacy key */ }
+  }
+  return Deno.env.get(kind === "secret" ? "SUPABASE_SERVICE_ROLE_KEY" : "SUPABASE_ANON_KEY") ?? "";
+}
+
 const CODE_DAYS = 7;        // days of full access the code gives
 const CODE_VALID_DAYS = 7;  // days to redeem it
 
@@ -225,7 +241,7 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
 
   const token = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
-  const url = Deno.env.get("SUPABASE_URL")!, anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+  const url = Deno.env.get("SUPABASE_URL")!, anonKey = supabaseKey("publishable");
   const anon = createClient(url, anonKey);
   const { data: { user } } = await anon.auth.getUser(token);
   if (!user) return json({ error: "unauthorized" }, 401);
@@ -239,7 +255,7 @@ Deno.serve(async (req) => {
   let body: { action?: unknown; email?: unknown };
   try { body = await req.json(); } catch { return json({ error: "invalid_json" }, 400); }
 
-  const svc = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const svc = createClient(url, supabaseKey("secret"));
   const actorLabel = user.email ?? user.id;
 
   if (body.action === "test_email") {

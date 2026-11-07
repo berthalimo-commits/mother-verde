@@ -61,6 +61,22 @@
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import nodemailer from "npm:nodemailer@6.9.16";
 
+// Supabase API keys (Bertha, 2026-11-06): the NEW keys first — SUPABASE_SECRET_KEYS /
+// SUPABASE_PUBLISHABLE_KEYS, which Supabase injects as a JSON object by key name («default»
+// first) — then the legacy ones (SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY). So the function
+// keeps working before and after the legacy keys (eyJ…) are disabled.
+function supabaseKey(kind: "secret" | "publishable"): string {
+  const raw = Deno.env.get(kind === "secret" ? "SUPABASE_SECRET_KEYS" : "SUPABASE_PUBLISHABLE_KEYS");
+  if (raw) {
+    try {
+      const keys = JSON.parse(raw) as Record<string, unknown>;
+      const k = keys?.["default"] ?? Object.values(keys ?? {})[0];
+      if (typeof k === "string" && k) return k;
+    } catch { /* malformed: fall back to the legacy key */ }
+  }
+  return Deno.env.get(kind === "secret" ? "SUPABASE_SERVICE_ROLE_KEY" : "SUPABASE_ANON_KEY") ?? "";
+}
+
 // Circle's official USDC contract on Base mainnet (chain id 8453).
 const USDC_BASE = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913";
 const TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef";
@@ -454,7 +470,7 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
 
   const token = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
-  const url = Deno.env.get("SUPABASE_URL")!, anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+  const url = Deno.env.get("SUPABASE_URL")!, anonKey = supabaseKey("publishable");
   const { data: { user } } = await createClient(url, anonKey).auth.getUser(token);
   if (!user) return json({ error: "unauthorized" }, 401);
 
@@ -463,7 +479,7 @@ Deno.serve(async (req) => {
   const claimId = Number(body.claim_id);
   const reason = typeof body.reason === "string" ? body.reason.trim().slice(0, 500) : null;
 
-  const svc = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const svc = createClient(url, supabaseKey("secret"));
   const asCaller = createClient(url, anonKey, { global: { headers: { Authorization: `Bearer ${token}` } } });
   const loadCtx = async (): Promise<Ctx | null> => {
     if (!Number.isInteger(claimId) || claimId <= 0) return null;

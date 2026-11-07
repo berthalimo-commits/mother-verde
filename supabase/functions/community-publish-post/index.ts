@@ -29,6 +29,22 @@
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
+// Supabase API keys (Bertha, 2026-11-06): the NEW keys first — SUPABASE_SECRET_KEYS /
+// SUPABASE_PUBLISHABLE_KEYS, which Supabase injects as a JSON object by key name («default»
+// first) — then the legacy ones (SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY). So the function
+// keeps working before and after the legacy keys (eyJ…) are disabled.
+function supabaseKey(kind: "secret" | "publishable"): string {
+  const raw = Deno.env.get(kind === "secret" ? "SUPABASE_SECRET_KEYS" : "SUPABASE_PUBLISHABLE_KEYS");
+  if (raw) {
+    try {
+      const keys = JSON.parse(raw) as Record<string, unknown>;
+      const k = keys?.["default"] ?? Object.values(keys ?? {})[0];
+      if (typeof k === "string" && k) return k;
+    } catch { /* malformed: fall back to the legacy key */ }
+  }
+  return Deno.env.get(kind === "secret" ? "SUPABASE_SERVICE_ROLE_KEY" : "SUPABASE_ANON_KEY") ?? "";
+}
+
 const PLATFORM_LANGS = ["es", "en", "de", "fr"] as const;
 type Lang = (typeof PLATFORM_LANGS)[number];
 
@@ -272,7 +288,7 @@ Deno.serve(async (req) => {
   const token = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "");
   const anon = createClient(
     Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_ANON_KEY")!,
+    supabaseKey("publishable"),
   );
   const { data: { user } } = await anon.auth.getUser(token);
   if (!user) return json({ error: "unauthorized" }, 401);
@@ -295,7 +311,7 @@ Deno.serve(async (req) => {
   const sourceHint: Lang = isLang(payload.sourceHint) ? payload.sourceHint : "es";
   const admin = createClient(
     Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    supabaseKey("secret"),
   );
 
   // Community is part of full access (24 h trial or verified contribution).

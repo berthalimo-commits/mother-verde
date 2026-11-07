@@ -1,6 +1,9 @@
 # Puesta en producción de www.motherverdeny.com — preparación (13 de octubre de 2026; actualizado el 4 de noviembre de 2026)
 
-**Última actualización:** 4 de noviembre de 2026, sobre `dev` en `165180e` (revisión independiente).
+**Última actualización:** 6 de noviembre de 2026.
+- **Claves nuevas** de Supabase en Vercel Production. La clave secreta se cambia sin caída (9b); el 10c ya no hace falta.
+- Las claves antiguas se desactivan **después** del lanzamiento y del ensayo en staging (paso 23).
+- Antes: 4 de noviembre de 2026, sobre `dev` en `165180e` (revisión independiente).
 - hello@ se registra antes de cerrar los registros (paso 4b).
 - Archivos SQL numerados en `supabase/produccion/`.
 - Comprobación final `32-read-only-checks.sql` (24 filas; renumerado el 2026-11-06 por la migración `20261106100000`).
@@ -96,8 +99,9 @@ Comunidad rechaza a quien no tenga acceso completo. Por eso todo va **seguido, e
 
 **Orden seguro confirmado** (actualizado el 2026-11-06):
 registrar hello@ (4b, con los registros todavía abiertos) → cerrar registros → SQL → `grant-admin.sql` (6d) →
-secretos → funciones → variables de Vercel → plantillas y ajustes de correo → (rotar clave antigua, 10c) → merge →
-verificación en dos pasos del panel → abrir registros unos minutos para «Corrígelo» y el hook (15b) → hook al final → cerrar registros.
+secretos → funciones → variables de Vercel (claves nuevas) → clave secreta nueva (9b, sin caída) → plantillas y ajustes de
+correo → merge → verificación en dos pasos del panel → abrir registros unos minutos para «Corrígelo» y el hook (15b) →
+hook al final → cerrar registros. **Después del lanzamiento**, y tras ensayarlo en staging: desactivar las claves antiguas (paso 23).
 hello@ se registra **antes** de cerrar los registros y **antes del hook**, para que nada impida ese registro.
 
 ## 4. Plan de vuelta atrás
@@ -174,11 +178,10 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
    la dirección ya está en `src/supportConfig.js` y quedará pública con el merge.
 2. ☐ **Tú**: hacer una copia de la base (Supabase → Database → Backups, o exportar) justo antes de empezar.
 3. ☐ **Tú**: tener a mano la contraseña del buzón hello@ y, si usarás Resend, su clave.
-3b. ☐ **Tú**: decirme qué tipo de claves ves en Supabase → Project Settings → API Keys, **sin los valores**:
-   - las **antiguas**, JWT que empiezan por `eyJ…`;
-   - o las **nuevas**: `sb_publishable_…` / `sb_secret_…`.
-
-   Con eso preparo el paso 9b (rotar la clave de servicio).
+3b. ☑ **Hecho (2026-11-06)**: producción y staging tienen las **claves nuevas** (`sb_publishable_…` / `sb_secret_…`).
+   Las antiguas (`eyJ…`) siguen activas hasta el paso 23, después del lanzamiento. Se comprobó sin abrir ningún valor.
+   Código listo en `dev`: las 7 Edge Functions leen primero las claves nuevas, y la tarea diaria manda la publicable
+   solo en «apikey». Prueba `fn-e2e-newkeys`. Funciones publicadas en staging el 2026-11-06.
 4. ☐ **Yo** (si me lo pides): terminar los bloques «icono» y «velocidad y privacidad» y volver a pasar las pruebas.
 
 **El día, en una sola sesión.** Todos los archivos SQL están numerados en `supabase/produccion/` (`00-LEEME.md`).
@@ -246,18 +249,20 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
      llamada `VITE_MV_GAME` **no hace nada**; tiene que llamarse exactamente `MV_GAME`.
    - `RESEND_API_KEY` si toca (formulario de anuncios).
 
-   **Formato de claves:** usa el mismo tipo, antiguas (`eyJ…`) o nuevas (`sb_…`), en las dos variables de
-   Supabase. Si son las nuevas, avísame: compruebo la tarea diaria con ese formato en staging antes del día.
-9b. ☐ **Tú**: **rotar la clave de servicio de producción** y actualizarla en Vercel Production. Estuvo en un
-   `.env.local` del ordenador, ya borrada de allí.
-   - **Claves nuevas:** crear una `sb_secret_` nueva → ponerla en Vercel → Redeploy → borrar la vieja.
-     No afecta a nadie.
-   - **Claves antiguas:** cambiar el *JWT secret*. Cambian también la anon y la service_role, y se cierran todas
-     las sesiones. ⚠️ **Además tira la web publicada:** la web en línea lleva la anon antigua dentro de su código, así
-     que nadie podrá usarla hasta que se publique la nueva. **No lo hagas aquí:** hazlo en el paso **10c**, justo antes
-     del merge, y actualiza en Vercel las dos variables antes de fusionar.
-10c. ☐ **Tú, solo con claves antiguas (`eyJ…`)**: rotar ahora la clave (ver 9b), **justo antes del merge**, con todo lo
-   demás listo. Desde este momento la web publicada no funciona para nadie hasta el paso 11: sigue enseguida.
+   **Claves: las NUEVAS en las dos variables**:
+   - `VITE_SUPABASE_ANON_KEY` = la publicable (`sb_publishable_…`);
+   - `SUPABASE_SERVICE_ROLE_KEY` = la secreta nueva del 9b (`sb_secret_…`).
+
+   El nombre de las variables no cambia. No pongas las antiguas (`eyJ…`).
+9b. ☐ **Tú**: **cambiar la clave secreta de producción** y ponerla en Vercel Production. Una clave de servicio estuvo
+   en un `.env.local` del ordenador, ya borrada de allí. **No tira la web ni cierra sesiones:**
+   1. Supabase → Project Settings → API Keys → crear una clave secreta nueva.
+   2. Ponerla en Vercel Production como `SUPABASE_SERVICE_ROLE_KEY` («Sensitive»).
+   3. Redeploy.
+   4. Borrar la clave secreta vieja en Supabase.
+
+   Esto no anula la `service_role` antigua (`eyJ…`): se anula en el paso 23, después del lanzamiento.
+10c. ☐ (**Ya no hace falta**: con claves nuevas no se rota el *JWT secret* y la web no se cae.)
 10b. ☐ **BLOQUEO DEL MERGE — el juego verificado al 100 %.** No se hace el merge a `main` (paso 11) hasta que estén
    las cuatro cosas, por escrito en `docs/juego-validacion.md`:
    1. **Partidas completas** jugadas por Bertha en Preview (de germinación al final, varios sistemas y al menos
@@ -297,6 +302,18 @@ Se pegan uno a uno, en el orden de su número. La prueba `prod-files` los aplica
     Inicio, Cuenta, la Comunidad y el panel. Si aparece algún aviso que empieza por
     «[Report Only] Refused to…», mándamelo. Si en una semana no aparece ninguno: **Yo** cambio en `vercel.json`
     la clave `Content-Security-Policy-Report-Only` por `Content-Security-Policy` (la de producción) y lo publico.
+23. ☐ **Después del lanzamiento, nunca el mismo día — desactivar las claves antiguas (`eyJ…`) de producción**
+    (`docs/plan-migracion.md`, paso 19b). Primero, el **ensayo en staging**, con tu «APRUEBO»:
+    - claves nuevas en Vercel Preview;
+    - comprobar la web, la tarea diaria y las 7 funciones;
+    - desactivar las antiguas en staging y repetir.
+
+    Si sale bien, en producción:
+    1. Supabase → Project Settings → API Keys → «View legacy API keys» → **Disable**.
+    2. Comprobar la web, el panel y el correo de prueba.
+    3. Al día siguiente, `cron_runs` con `ok = true`.
+
+    Es **reversible** (se vuelven a activar en la misma pantalla). Así queda anulada también la `service_role` antigua.
 
 ## 7. Robustez y seguridad (A2, 20 de octubre de 2026, en `dev`)
 

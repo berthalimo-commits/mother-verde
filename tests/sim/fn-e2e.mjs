@@ -18,8 +18,16 @@ const check = (name, cond, detail = '') => { if (cond) { pass++; console.log('  
 const DEST = '0x' + '11'.repeat(20);
 const USDC = '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913';
 const TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
+// MV_KEYS=new (tests/sim/fn-e2e-newkeys.mjs): Supabase injects the NEW keys (JSON by name) and the legacy
+// ones are disabled (the fake server rejects 'legacy-disabled'), like production after step 19b.
+const NEW_KEYS = process.env.MV_KEYS === 'new';
+const KEYS = NEW_KEYS
+  ? { SUPABASE_SECRET_KEYS: JSON.stringify({ default: 'sb_secret_test' }), SUPABASE_PUBLISHABLE_KEYS: JSON.stringify({ default: 'sb_publishable_test' }),
+      SUPABASE_ANON_KEY: 'legacy-disabled', SUPABASE_SERVICE_ROLE_KEY: 'legacy-disabled' }
+  : { SUPABASE_ANON_KEY: 'anon', SUPABASE_SERVICE_ROLE_KEY: 'svc' };
+if (NEW_KEYS) console.log('(modo SOLO CLAVES NUEVAS: sb_publishable_ / sb_secret_; las antiguas, desactivadas)');
 const env = {
-  SUPABASE_URL: 'https://fake.supabase.co', SUPABASE_ANON_KEY: 'anon', SUPABASE_SERVICE_ROLE_KEY: 'svc',
+  SUPABASE_URL: 'https://fake.supabase.co', ...KEYS,
   DEEPL_API_KEY: 'k:fx', RETRANSLATE_SECRET: 'r'.repeat(40), SUPPORT_ADDRESS: DEST,
   MAIL_PROVIDER: 'smtp', SMTP_USER: 'hello@motherverdeny.com', SMTP_PASS: 'x', MAIL_FROM: 'Mother Verde <hello@motherverdeny.com>',
   RESEND_API_KEY: 're_test', APP_URL: 'https://example.test', MAIL_RETRY_MS: '0',
@@ -37,6 +45,10 @@ globalThis.fetch = async (url, init = {}) => {
   const u = new URL(typeof url === 'string' ? url : url.url);
   if (typeof url !== 'string' && !init.method) init = { method: url.method, headers: url.headers, body: await url.text() };
   if (u.hostname === 'fake.supabase.co' && u.pathname === '/functions/v1/community-retranslate') {
+    // Like the Supabase gateway: a new key (sb_…) sent as a Bearer token is not a JWT -> 401 «Invalid JWT»
+    const authz = new Headers(init.headers || {}).get('authorization') || '';
+    (globalThis.__fnCalls ||= []).push({ authz: authz.slice(0, 20), apikey: (new Headers(init.headers || {}).get('apikey') || '').slice(0, 20) });
+    if (/^Bearer\s+sb_/i.test(authz)) return new Response(JSON.stringify({ msg: 'Invalid JWT' }), { status: 401 });
     return handlers.retranslate(new Request(u, { method: 'POST', headers: init.headers, body: init.body }));
   }
   if (u.hostname === 'fake.supabase.co') return rest(u.toString(), init);
@@ -362,8 +374,10 @@ check('máximo 20 filas por pasada', r.body.done === 20, JSON.stringify(r.body))
 
 // ================================================================ cron
 console.log('E. api/subscription-cron.js (Vercel, 23:00 UTC):');
-process.env.CRON_SECRET = 'c'.repeat(32); process.env.SUPABASE_URL = env.SUPABASE_URL; process.env.SUPABASE_SERVICE_ROLE_KEY = 'svc';
-process.env.VITE_SUPABASE_ANON_KEY = 'anon'; process.env.RETRANSLATE_SECRET = env.RETRANSLATE_SECRET;
+process.env.CRON_SECRET = 'c'.repeat(32); process.env.SUPABASE_URL = env.SUPABASE_URL;
+// Vercel keeps the same variable names; with the new keys their VALUES are sb_secret_… / sb_publishable_…
+process.env.SUPABASE_SERVICE_ROLE_KEY = NEW_KEYS ? 'sb_secret_test' : 'svc';
+process.env.VITE_SUPABASE_ANON_KEY = NEW_KEYS ? 'sb_publishable_test' : 'anon'; process.env.RETRANSLATE_SECRET = env.RETRANSLATE_SECRET;
 const cronOut = new URL('./cron.mjs', OUT).pathname.replace(/^\/([A-Z]:)/, '$1');
 await build({ entryPoints: [`${APP}/api/subscription-cron.js`], bundle: true, format: 'esm', platform: 'node', outfile: cronOut, logLevel: 'error' });
 const cron = (await import('file:///' + cronOut)).default;
@@ -381,6 +395,18 @@ check('cron: reserva vencida -> expired', (await q(`select status from support_c
 check('cron: suscripción vieja vencida -> canceled (sin cobros)', (await q(`select subscription_status s from profiles where id = '${OLD}'`))[0].s === 'canceled');
 check('cron: no toca pruebas, supporters ni accesos', (await q(`select count(*)::int c from profiles where subscription_status = 'trialing'`))[0].c === trialBefore && (await q(`select count(*)::int c from profiles where subscription_status = 'blocked'`))[0].c === 0);
 check('cron: llamó al reintento de traducciones', cr.out.retranslate && typeof cr.out.retranslate.done === 'number');
+const lastFn = (globalThis.__fnCalls || []).at(-1) || {};
+check(NEW_KEYS ? 'cron con claves nuevas: la sb_publishable_ va solo en «apikey», nunca como Bearer'
+               : 'cron con claves antiguas: la clave va en «apikey» y como Bearer (como antes)',
+  NEW_KEYS ? (lastFn.apikey.startsWith('sb_publishable_') && !lastFn.authz) : (lastFn.apikey === 'anon' && lastFn.authz === 'Bearer anon'), JSON.stringify(lastFn));
+if (NEW_KEYS) {
+  // the 7 functions: the new keys are read first (the legacy env vars hold disabled keys here)
+  const fnSrc = ['admin-send-gift-code', 'community-publish-comment', 'community-publish-post', 'community-retranslate', 'delete-account', 'signup-fix-email', 'support-claims']
+    .map((f) => [f, fs.readFileSync(`${APP}/supabase/functions/${f}/index.ts`, 'utf8')]);
+  check('las 7 funciones leen primero SUPABASE_SECRET_KEYS / SUPABASE_PUBLISHABLE_KEYS y no leen las antiguas directamente',
+    fnSrc.every(([, s]) => /function supabaseKey\(/.test(s) && /SUPABASE_SECRET_KEYS/.test(s) && !/Deno\.env\.get\("SUPABASE_(SERVICE_ROLE|ANON)_KEY"\)!/.test(s)),
+    fnSrc.filter(([, s]) => !/function supabaseKey\(/.test(s)).map(([f]) => f).join(', '));
+}
 const cronSrc = fs.readFileSync(`${APP}/api/subscription-cron.js`, 'utf8');
 check('cron: sin precios ni cobros en el código', !/7\.10|7\.99|19\.99|charge|PRICE|payment-nerds|Payment Nerds|Stripe/i.test(cronSrc));
 check('vercel.json: 23:00 UTC', JSON.parse(fs.readFileSync(`${APP}/vercel.json`, 'utf8')).crons[0].schedule === '0 23 * * *');
