@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mother Verde — Codex Global</title>
+<meta name="description" content="An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
@@ -33,16 +34,27 @@
       <button type="button" class="ag-lang" aria-pressed="false" onclick="document.querySelector('#langSwitch button[data-lang=fr]').click(); this.parentElement.querySelectorAll('.ag-lang').forEach(b=>{b.classList.remove('on'); b.setAttribute('aria-pressed','false');}); this.classList.add('on'); this.setAttribute('aria-pressed','true');">FR</button>
     </div>
     <svg viewBox="0 0 60 70" width="44" height="52" style="margin:0 auto 18px; display:block;"><path d="M30,8 C36,16 40,26 37,36 C34,45 30,52 25,55 C20,51 17,44 19,35 C21,25 25,15 30,8 Z" fill="var(--moss)" stroke="var(--moss-deep)" stroke-width="1.5"/></svg>
-    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Verificación de edad</h2>
-    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:26px;" data-i18n="agBody">Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.</p>
-    <button class="btn btn-primary" style="width:100%; padding:13px; margin-bottom:10px;" onclick="ageGateConfirm(true)" data-i18n="agYes">Sí, tengo 18 años o más</button>
-    <button class="btn" style="width:100%; padding:13px; background:transparent; border:1px solid var(--line-strong); color:var(--ink-soft);" onclick="ageGateConfirm(false)" data-i18n="agNo">No, soy menor de 18</button>
+    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agTitle">Age verification</h2>
+    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6; margin-bottom:26px;" data-i18n="agBody">This content is intended for adults 18 and older, and includes information about cannabis for educational, medical, and informational purposes.</p>
+    <button class="btn btn-primary" style="width:100%; padding:13px; margin-bottom:10px;" onclick="ageGateConfirm(true)" data-i18n="agYes">Yes, I am 18 or older</button>
+    <button class="btn" style="width:100%; padding:13px; background:transparent; border:1px solid var(--line-strong); color:var(--ink-soft);" onclick="ageGateConfirm(false)" data-i18n="agNo">No, I am under 18</button>
   </div>
   <div class="premium-sheet" style="max-width:420px; text-align:center; display:none;" id="ageGateBlocked">
-    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agBlockedTitle">Acceso no disponible</h2>
-    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6;" data-i18n="agBlockedBody">Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.</p>
+    <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; margin-bottom:14px;" data-i18n="agBlockedTitle">Access not available</h2>
+    <p style="font-size:14px; color:var(--ink-soft); line-height:1.6;" data-i18n="agBlockedBody">This content is restricted to people 18 and older. We are unable to grant you access at this time.</p>
   </div>
 </div>
+<script>
+  /* Age gate in the visitor's language from the first paint (the big main.js
+     comes later). Saved language if any, otherwise English (the default since
+     2026-11-06). No browser-language detection. */
+  (function(){
+    var T = {"agTitle":{"es":"Verificación de edad","en":"Age verification","de":"Altersverifizierung","fr":"Vérification de l’âge"},"agBody":{"es":"Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.","en":"This content is intended for adults 18 and older, and includes information about cannabis for educational, medical, and informational purposes.","de":"Dieser Inhalt ist nur für Personen ab 18 Jahren bestimmt und enthält Informationen über Cannabis zu Bildungs-, medizinischen und Informationszwecken.","fr":"Ce contenu est destiné aux personnes de 18 ans et plus, et inclut des informations sur le cannabis à des fins éducatives, médicales et informatives."},"agYes":{"es":"Sí, tengo 18 años o más","en":"Yes, I am 18 or older","de":"Ja, ich bin 18 Jahre oder älter","fr":"Oui, j’ai 18 ans ou plus"},"agNo":{"es":"No, soy menor de 18","en":"No, I am under 18","de":"Nein, ich bin unter 18","fr":"Non, j’ai moins de 18 ans"},"agBlockedTitle":{"es":"Acceso no disponible","en":"Access not available","de":"Zugriff nicht verfügbar","fr":"Accès non disponible"},"agBlockedBody":{"es":"Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.","en":"This content is restricted to people 18 and older. We are unable to grant you access at this time.","de":"Dieser Inhalt ist auf Personen ab 18 Jahren beschränkt. Wir können dir derzeit keinen Zugang gewähren.","fr":"Ce contenu est réservé aux personnes de 18 ans et plus. Nous ne pouvons pas vous donner accès pour le moment."}};
+    var l = 'en'; try { var s = localStorage.getItem('mv-lang'); if (s === 'es' || s === 'en' || s === 'de' || s === 'fr') l = s; } catch (e) {}
+    document.documentElement.lang = l;
+    for (var k in T) { var el = document.querySelector('[data-i18n="' + k + '"]'); if (el && T[k][l]) el.innerHTML = T[k][l]; }
+  })();
+</script>
 <svg class="bg-pattern" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <pattern id="leafTile" width="110" height="110" patternUnits="userSpaceOnUse" patternTransform="rotate(12)">
@@ -76,9 +88,16 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
         <span id="searchBtnLabel" data-i18n="searchBtnLabel">Buscar</span>
       </button>
-      <button id="accountBtn" onclick="showProfile()" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
+      <div class="acct-wrap" id="acctWrap">
+      <button id="accountBtn" onclick="mvAccountBtn(event)" aria-haspopup="menu" aria-expanded="false" aria-controls="acctMenu" aria-label="Tu cuenta y tu perfil" style="background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--ink-soft); overflow:hidden;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>
       </button>
+      <div class="acct-menu" id="acctMenu" role="menu" hidden>
+        <button type="button" role="menuitem" id="acctMenuCuenta" onclick="mvAcctGo('cuenta')" data-i18n="acctMenuCuenta">Mi cuenta (correo, acceso, código de regalo)</button>
+        <button type="button" role="menuitem" id="acctMenuPerfil" onclick="mvAcctGo('perfil')" data-i18n="acctMenuPerfil">Mi perfil en la Comunidad</button>
+        <button type="button" role="menuitem" id="acctMenuSalir" onclick="mvAcctGo('salir')" data-i18n="acctMenuSalir">Cerrar sesión</button>
+      </div>
+      </div>
       <nav class="tabs">
         <button class="active" data-screen="home" data-i18n="navHome">Inicio</button>
         <button data-screen="cultivo" data-i18n="navCultivo">Cultivo</button>
@@ -89,6 +108,8 @@
           <button type="button" id="tabsMoreBtn" onclick="toggleMoreMenu(event)"><span data-i18n="navMas">Más</span> ▾</button>
           <div class="tabs-more-menu" id="tabsMoreMenu" hidden>
             <button type="button" onclick="goMore('comunidad')" data-i18n="modComunidadTitle">Comunidad</button>
+            <button type="button" id="moreCuenta" onclick="goMore('cuenta')" data-i18n="navCuenta">Mi cuenta</button>
+            <button type="button" id="moreHistoria" onclick="closeMoreMenu(); window.mvOpenStory && window.mvOpenStory()" data-i18n="navHistoria">Nuestra historia</button>
             <div class="tabs-more-sep"></div>
             <button type="button" onclick="goMore('seguridad')" data-i18n="modSegTitle">Seguridad</button>
             <button type="button" onclick="goMore('historia')" data-i18n="modHistTitle">Historia global</button>
@@ -110,35 +131,29 @@
            reachable by real visitors. main.js hides #tierPreviewWrap on any
            host that isn't localhost / 127.0.0.1. -->
       <div id="tierPreviewWrap" style="display:none; align-items:center;">
-        <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.">Vista previa:</span>
+        <span data-i18n="tierSwitchLabel" style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-right:6px; text-transform:uppercase; letter-spacing:.03em;" title="Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real." data-i18n-title="tierSwitchTitle">Vista previa:</span>
         <div class="tier-switch" id="tierSwitch">
           <button data-tier="free">Gratis</button>
-          <button data-tier="premium" class="tier-on">Premium</button>
+          <button data-tier="premium" class="tier-on">Acceso completo</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ TRIAL / SUBSCRIPTION BANNERS ============ -->
-  <style>
-    .mv-sub-banner{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:12px 18px; font-size:13px; line-height:1.5; border-bottom:1px solid var(--line-strong);}
-    .mv-sub-banner[hidden]{display:none;}
-    .mv-sub-banner .mv-sub-banner-txt{flex:1; min-width:200px;}
-    .mv-sub-banner b{font-weight:700;}
-    .mv-sub-banner .btn-pill{white-space:nowrap;}
-    #trialReminderBanner{background:#FBF3E2; color:#5a4a1e;}
-    #trialBlockedBanner{background:#F7E4DF; color:#7a2f1c;}
-    #trialReminderBanner .mv-sub-x{cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:15px; opacity:.6;}
-  </style>
-  <div class="mv-sub-banner" id="trialReminderBanner" hidden>
-    <span class="mv-sub-banner-txt" id="trialReminderText"></span>
-    <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBannerManageBtn">Ver mi suscripción</button>
-    <span class="mv-sub-x" onclick="dismissTrialReminder()" title="Ocultar">×</span>
+  <!-- Trial countdown strip (support model). Filled by mvApplyAccessState() in main.js. -->
+  <div class="mv-trial-strip" id="trialCountdown" hidden role="status">
+    <span id="trialCountdownText"></span>
+    <button type="button" class="mv-trial-go" onclick="showScreen('desbloquear')" data-i18n="accDesbloquearBtn">Desbloquear</button>
+    <button type="button" class="mv-trial-x" id="trialCountdownClose" aria-label="Cerrar" data-i18n-aria="closeLabel">×</button>
   </div>
-  <div class="mv-sub-banner" id="trialBlockedBanner" hidden>
-    <span class="mv-sub-banner-txt" id="trialBlockedText"></span>
-    <button type="button" class="btn-pill" onclick="showScreen('cuenta')" data-i18n="trialBlockedBtn">Actualizar tarjeta</button>
-  </div>
+
+  <!-- ============ ACCESO (support model) ============
+       What visitors without an account and accounts without active access see
+       instead of the app: entry, "confirm your e-mail", or the lock screen.
+       Rendered by mvRenderAcceso() in main.js. -->
+  <section class="screen" id="acceso">
+    <div id="accesoContent"></div>
+  </section>
 
   <!-- ============ HOME ============ -->
   <section class="screen active" id="home">
@@ -238,7 +253,7 @@
         <p data-i18n="modNegocioDesc">Licencias, trazabilidad semilla-a-venta, directorio de proveedores y carreras del rubro.</p>
       </div>
       <div class="module-card" onclick="showScreen('comunidad')">
-        <h3><span data-i18n="modComunidadTitle">Comunidad</span> <span style="font-size:11px; font-family:'IBM Plex Mono',monospace; color:var(--resin);" data-i18n="soon">próximamente</span></h3>
+        <h3><span data-i18n="modComunidadTitle">Comunidad</span></h3>
         <p data-i18n="modComunidadDesc">Reportes de campo de usuarios verificados, moderados contra la evidencia oficial.</p>
       </div>
       <div class="module-card" onclick="showScreen('variedades')">
@@ -436,11 +451,11 @@
           <div class="spec-row"><span data-i18n="ilFoto">Fotoperiodo</span><span>18/6 h</span></div></div>
         <div class="specimen"><h4 data-i18n="ilVegH4">Vegetativo</h4><div class="sci" data-i18n="ilVegSci">Crecimiento estructural</div>
           <div class="spec-row"><span>PPFD</span><span>300–600 μmol/m²/s</span></div>
-          <div class="spec-row"><span>DLI</span><span>20–40 mol/m²/día</span></div>
+          <div class="spec-row"><span>DLI</span><span data-i18n="ilDliVeg">20–40 mol/m²/día</span></div>
           <div class="spec-row"><span data-i18n="ilFoto2">Fotoperiodo</span><span>18/6 h</span></div></div>
         <div class="specimen"><h4 data-i18n="ilFloH4">Floración</h4><div class="sci" data-i18n="ilFloSci">Desarrollo de cogollos</div>
           <div class="spec-row"><span>PPFD</span><span>600–1,000 μmol/m²/s (<span data-i18n="ilHastaCO2">hasta 1,500 con CO2</span>)</span></div>
-          <div class="spec-row"><span>DLI</span><span>30–50 mol/m²/día</span></div>
+          <div class="spec-row"><span>DLI</span><span data-i18n="ilDliFlor">30–50 mol/m²/día</span></div>
           <div class="spec-row"><span data-i18n="ilFoto3">Fotoperiodo</span><span>12/12 h</span></div></div>
       </div>
       <div class="section-title" data-i18n="ilSecEspectro">Espectro y tipo de luz</div>
@@ -781,9 +796,9 @@
       </div>
       <div class="section-title" data-i18n="gnSecQuimio">Clasificación por quimiotipo</div>
       <div class="chemo-grid">
-        <div class="chemo-card"><div class="ratio">Tipo I</div><h4 data-i18n="gnT1h4">THC dominante</h4><p data-i18n="gnT1p">THC alto, CBD bajo. El perfil más común en cannabis de uso recreativo tradicional.</p></div>
-        <div class="chemo-card"><div class="ratio">Tipo II</div><h4 data-i18n="gnT2h4">Balanceado</h4><p data-i18n="gnT2p">Proporción THC:CBD cercana a 1:1. Frecuente en productos orientados a uso medicinal.</p></div>
-        <div class="chemo-card"><div class="ratio">Tipo III</div><h4 data-i18n="gnT3h4">CBD dominante</h4><p data-i18n="gnT3p">CBD alto, THC bajo o trazas. Perfil no psicoactivo, común en hemp medicinal.</p></div>
+        <div class="chemo-card"><div class="ratio" data-i18n="gnRatioI">Tipo I</div><h4 data-i18n="gnT1h4">THC dominante</h4><p data-i18n="gnT1p">THC alto, CBD bajo. El perfil más común en cannabis de uso recreativo tradicional.</p></div>
+        <div class="chemo-card"><div class="ratio" data-i18n="gnRatioII">Tipo II</div><h4 data-i18n="gnT2h4">Balanceado</h4><p data-i18n="gnT2p">Proporción THC:CBD cercana a 1:1. Frecuente en productos orientados a uso medicinal.</p></div>
+        <div class="chemo-card"><div class="ratio" data-i18n="gnRatioIII">Tipo III</div><h4 data-i18n="gnT3h4">CBD dominante</h4><p data-i18n="gnT3p">CBD alto, THC bajo o trazas. Perfil no psicoactivo, común en hemp medicinal.</p></div>
       </div>
 
       <div class="section-title" data-i18n="gnSecBreeder">Herramienta para breeders: predictor de cruces</div>
@@ -858,7 +873,7 @@
       <div class="card-block">
         <h3 data-i18n="inH3">India: el "tesoro" genético que la política todavía no libera</h3>
         <p data-i18n="inP1">Vikramm Mitra, cofundador de Delta Botanicals & Research, lidera un proyecto financiado por el gobierno indio para desarrollar genética estable de cannabis. Su argumento central: India es una "mina de oro" de diversidad genética de cannabis — el país tiene poblaciones silvestres y landrace que se remontan a miles de años, en regiones como el Himalaya — pero cuánto se puede desarrollar comercialmente todavía depende enteramente de la política, no de la biología disponible.</p>
-        <div class="spec-source"><a href="https://web.archive.org/web/20260515023444/https://hemptoday.net/india-is-treasure-trove-of-cannabis-genetics-but-policy-will-determine-development/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemptoday.net (archivado)</a></div>
+        <div class="spec-source"><a data-i18n="srcHemptodayArch" href="https://web.archive.org/web/20260515023444/https://hemptoday.net/india-is-treasure-trove-of-cannabis-genetics-but-policy-will-determine-development/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemptoday.net (archivado)</a></div>
       </div>
       <div class="section-title" data-i18n="gnSecCrispr">La próxima frontera: edición genética dirigida</div>
       <div class="card-block">
@@ -1165,11 +1180,11 @@
         <div class="specimen"><div class="tag-index">SOP—01</div><h4 data-i18n="ep01h4">Secado</h4><div class="sci" data-i18n="ep01sci">Espacio &amp; ambiente</div>
           <div class="spec-row"><span data-i18n="epTempSala">Temp. sala</span><span>15–18 °C</span></div>
           <div class="spec-row"><span data-i18n="epHrSala">HR sala</span><span>55–60 %</span></div>
-          <div class="spec-row"><span data-i18n="epDuracion">Duración típica</span><span>7–14 días</span></div>
+          <div class="spec-row"><span data-i18n="epDuracion">Duración típica</span><span data-i18n="epDuracionVal">7–14 días</span></div>
           <div class="spec-source" data-i18n="ep01src"><a href="https://www.canada.ca/content/dam/hc-sc/documents/services/cannabis-regulations-licensed-producers/good-production-practices-guide/guidance-document/good-production-practices-guide-for-cannabis-2019-10.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">canada.ca — Health Canada GPP Guide</a></div></div>
         <div class="specimen"><div class="tag-index">SOP—02</div><h4 data-i18n="ep02h4">Curado</h4><div class="sci" data-i18n="ep02sci">Contenedores &amp; tiempo</div>
           <div class="spec-row"><span data-i18n="epHrFrasco">HR objetivo en frasco</span><span>58–62 %</span></div>
-          <div class="spec-row"><span data-i18n="epDuracionMin">Duración mínima</span><span>2–4 semanas</span></div>
+          <div class="spec-row"><span data-i18n="epDuracionMin">Duración mínima</span><span data-i18n="epDuracionMinVal">2–4 semanas</span></div>
           <div class="spec-source" data-i18n="ep02src"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11821007/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">pmc.ncbi.nlm.nih.gov</a></div></div>
         <div class="specimen"><div class="tag-index">SOP—03</div><h4 data-i18n="ep03h4">Trimming</h4><div class="sci" data-i18n="ep03sci">Espacio de trabajo</div>
           <div class="spec-row"><span data-i18n="epTempSala2">Temp. sala</span><span>18–21 °C</span></div>
@@ -1436,7 +1451,7 @@
         <div class="specimen"><h4 data-i18n="ttG7h4">Decarboxilación en horno</h4><div class="sci" data-i18n="ttPasos3d">3 pasos</div>
           <p class="method-desc" data-i18n="ttG7desc">1) Desmenuza la flor en trozos parejos sobre una bandeja con papel para hornear. 2) Hornea a ~110–115 °C durante 45–60 min, revisando que no se dore de más. 3) Deja enfriar antes de usarla en cualquier infusión.</p></div>
       </div>
-      <div class="note-box" data-i18n="ttNoteFinal">Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el plan de suscripción.</div>
+      <div class="note-box" data-i18n="ttNoteFinal">Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el tipo de acceso.</div>
       <div class="card-block" style="text-align:center; background:var(--paper-raised);">
         <h3 data-i18n="ttCtaH3">¿Necesitas una fórmula de dosificación real para tu producto?</h3>
         <p data-i18n="ttCtaP">Tinturas, cápsulas o parches con dosis precisa y consistente por lote requieren cálculos específicos. Podemos ayudarte a pensarlo para tu operación.</p>
@@ -1586,25 +1601,25 @@
           <rect x="255" y="12" width="63" height="22" rx="3" fill="var(--moss)" opacity="0.25"/>
           <text x="286.5" y="21" text-anchor="middle" font-size="6" fill="var(--moss-deep)" font-family="'IBM Plex Mono',monospace" font-weight="600">ISO/IEC</text>
           <text x="286.5" y="29" text-anchor="middle" font-size="6" fill="var(--moss-deep)" font-family="'IBM Plex Mono',monospace" font-weight="600">17025</text>
-          <text x="22" y="55" font-size="7.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">LOTE #4471-A · 12/03/2026</text>
+          <text data-i18n="coaLote" x="22" y="55" font-size="7.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">LOTE #4471-A · 12/03/2026</text>
           <rect x="22" y="63" width="296" height="34" rx="3" fill="var(--paper-raised)"/>
-          <text x="30" y="76" font-size="7" fill="var(--ink)" font-family="'IBM Plex Mono',monospace" font-weight="600">CANNABINOIDES</text>
+          <text data-i18n="coaCannab" x="30" y="76" font-size="7" fill="var(--ink)" font-family="'IBM Plex Mono',monospace" font-weight="600">CANNABINOIDES</text>
           <text x="30" y="90" font-size="9" fill="var(--moss-deep)" font-family="'Manrope',sans-serif" font-weight="600">THC 22.4%</text>
           <text x="120" y="90" font-size="9" fill="var(--teal)" font-family="'Manrope',sans-serif" font-weight="600">CBD 0.8%</text>
           <g font-size="7.5" font-family="'IBM Plex Mono',monospace" fill="var(--ink-soft)">
-            <text x="22" y="112">PESTICIDAS (58 compuestos)</text><text x="308" y="112" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaPest" x="22" y="112">PESTICIDAS (58 compuestos)</text><text x="308" y="112" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="118" x2="318" y2="118" stroke="var(--line)" stroke-width="0.5"/>
-            <text x="22" y="132">METALES PESADOS</text><text x="308" y="132" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaMetal" x="22" y="132">METALES PESADOS</text><text x="308" y="132" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="138" x2="318" y2="138" stroke="var(--line)" stroke-width="0.5"/>
-            <text x="22" y="152">MICROBIANOS</text><text x="308" y="152" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaMicro" x="22" y="152">MICROBIANOS</text><text x="308" y="152" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
             <line x1="22" y1="158" x2="318" y2="158" stroke="var(--line)" stroke-width="0.5"/>
-            <text x="22" y="172">SOLVENTES RESIDUALES</text><text x="308" y="172" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
+            <text data-i18n="coaSolv" x="22" y="172">SOLVENTES RESIDUALES</text><text x="308" y="172" text-anchor="end" fill="var(--moss-deep)" font-weight="600">ND ✓</text>
           </g>
           <line x1="22" y1="188" x2="318" y2="188" stroke="var(--line-strong)" stroke-width="1"/>
-          <text x="22" y="202" font-size="6.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">Lab: [Nombre] · Contacto: [correo/tel]</text>
+          <text data-i18n="coaLab" x="22" y="202" font-size="6.5" fill="var(--ink-soft)" font-family="'IBM Plex Mono',monospace">Lab: [Nombre] · Contacto: [correo/tel]</text>
           <rect x="230" y="210" width="88" height="30" rx="3" fill="none" stroke="var(--clay)" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="274" y="222" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">FIRMA /</text>
-          <text x="274" y="230" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">SELLO LAB</text>
+          <text data-i18n="coaFirma" x="274" y="222" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">FIRMA /</text>
+          <text data-i18n="coaSello" x="274" y="230" text-anchor="middle" font-size="6" fill="var(--clay)" font-family="'IBM Plex Mono',monospace">SELLO LAB</text>
         </svg>
         <p style="font-size:11px; color:var(--ink-soft); text-align:center;" data-i18n="coaMockCaption">Ejemplo ilustrativo de cómo se ve un COA real — los valores y el diseño exacto varían por laboratorio, pero estas 5 secciones deberían estar siempre presentes.</p>
       </div>
@@ -1685,7 +1700,7 @@
       <p style="margin-top:14px;" data-i18n="tpComprarNote">Esta app no lista direcciones ni facilita compra dentro de la aplicación — solo te orienta sobre qué tipo de establecimiento buscar en cada país.</p>
     </div>
     <div class="travel-panel" id="tp-checklist">
-      <h4>Checklist pre-viaje</h4>
+      <h4 data-i18n="tcH4">Checklist pre-viaje</h4>
       <div id="travelChecklist"></div>
       <div id="travelChecklistProgress" style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--moss-deep);"></div>
     </div>
@@ -1767,137 +1782,128 @@
     <!-- PAPERS -->
     <div class="subview active" id="ciencia-papers">
       <svg viewBox="0 0 50 44" width="100%" style="max-width:90px; display:block; margin:0 auto 16px;"><rect x="10" y="4" width="26" height="34" rx="2" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/><line x1="15" y1="12" x2="31" y2="12" stroke="var(--line-strong)" stroke-width="1.3"/><line x1="15" y1="18" x2="31" y2="18" stroke="var(--line-strong)" stroke-width="1.3"/><line x1="15" y1="24" x2="26" y2="24" stroke="var(--line-strong)" stroke-width="1.3"/><circle cx="34" cy="34" r="7" fill="none" stroke="var(--teal)" stroke-width="1.6"/><line x1="39" y1="39" x2="44" y2="44" stroke="var(--teal)" stroke-width="1.8"/></svg>
+      <p class="pp-head-note" data-i18n="ppHeadNote">Los encabezados en inglés son el título original publicado; los demás son resúmenes de Mother Verde.</p>
       <div class="note-box" style="margin-bottom:20px;" data-i18n="ppNote">Selección ilustrativa para este prototipo — en producción, este feed se actualiza con publicaciones nuevas de PubMed, ClinicalTrials.gov y revistas especializadas.</div>
       <div class="note-box" style="border-color:var(--teal); margin-bottom:20px;" data-i18n="ppSlicNote"><b>El panorama real de 2025:</b> la Sociedad Latinoamericana e Ibérica de Cannabinología (SLIC) analizó los ensayos clínicos indexados en PubMed durante 2025 con "cannabis" o "cannabinoides" en el título — encontraron 85 estudios reales, cubriendo salud mental, salud pública, intervenciones clínicas, seguridad y políticas. Una parte considerable se enfoca en salud mental y consumo en adolescentes, examinando vínculos con depresión, ansiedad y consumo conjunto con nicotina o alcohol. <a href="https://www.slicannabinologia.org/blog/zzrru8bjf3d036jwwhz0ocxdid8l5n" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">slicannabinologia.org</a></div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Widely assumed phenotypic associations in Cannabis sativa lack a shared genetic basis</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag1">Estudio genético</span></div>
-        <div class="paper-meta">Vergara D. et al. · PeerJ · 2021</div>
-        <p data-i18n="pp1desc">Analiza 297 plantas híbridas y no encuentra relación significativa entre morfología de hoja y contenido de cannabinoides — base científica para reemplazar indica/sativa por clasificación de quimiotipo.</p>
+        <div class="paper-top"><h4 translate="no">Widely assumed phenotypic associations in Cannabis sativa lack a shared genetic basis</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag1">Estudio genético</span></div>
+        <div class="paper-meta" translate="no">Vergara D. et al. · PeerJ · 2021</div>
+        <p data-i18n="pp1desc">Midió 297 plantas híbridas de un cruce entre dos linajes distintos: rasgos que se suelen dar por relacionados no lo estaban. En los híbridos, la forma de la hoja no corresponde a la química de la planta, y los autores piden un nuevo sistema para clasificar la variación del cannabis.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Trial of cannabidiol for drug-resistant seizures in the Dravet syndrome</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag2">Ensayo clínico aleatorizado</span></div>
-        <div class="paper-meta">Devinsky O. et al. · New England Journal of Medicine · 2017</div>
-        <p data-i18n="pp2desc">Ensayo controlado que respalda el uso de CBD purificado en un síndrome de epilepsia infantil refractaria — base de la aprobación regulatoria de Epidiolex.</p>
+        <div class="paper-top"><h4 translate="no">Trial of cannabidiol for drug-resistant seizures in the Dravet syndrome</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag2">Ensayo clínico aleatorizado</span></div>
+        <div class="paper-meta" translate="no">Devinsky O. et al. · New England Journal of Medicine · 2017</div>
+        <p data-i18n="pp2desc">Ensayo doble ciego con 120 niños y jóvenes con síndrome de Dravet: con CBD, las crisis convulsivas bajaron de 12.4 a 5.9 al mes (con placebo, de 14.9 a 14.1). El CBD tuvo más efectos adversos, como diarrea, vómitos, cansancio y somnolencia.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Vapor pressure deficit and cannabis yield optimization</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag3">Estudio agronómico</span></div>
-        <div class="paper-meta" data-i18n="pp3meta">Extensión agrícola · Cornell University · 2022</div>
-        <p data-i18n="pp3desc">Establece rangos de VPD óptimos por fase de crecimiento para maximizar rendimiento y calidad de flor en cultivo indoor.</p>
+        <div class="paper-top"><h4 translate="no">Minor, Nonterpenoid Volatile Compounds Drive the Aroma Differences of Exotic Cannabis</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag4">Análisis químico de laboratorio</span></div>
+        <div class="paper-meta" translate="no">Oswald I. W. H. et al. · ACS Omega · 2023</div>
+        <p data-i18n="pp4desc">Compara variedades con aromas muy distintos y encuentra perfiles de terpenos muy parecidos. Los aromas concretos se relacionan con compuestos minoritarios que no son terpenos: una nueva clase de compuestos de azufre volátiles en aromas cítricos, y el escatol en el aroma «químico». Concluye que se ha sobrevalorado el papel de los terpenos en el aroma.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Beyond terpenes: novel sulfur- and fatty-acid-derived aroma compounds in cannabis ice hash rosin</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag4">Análisis químico de laboratorio</span></div>
-        <div class="paper-meta">Abstrax Tech · ACS Omega · 2023</div>
-        <p data-i18n="pp4desc">Analiza más de 30 muestras de rosin de hash con cromatografía de gases 2D y encuentra compuestos nunca antes vistos en cannabis — incluidos tioles (notas "a gas") y ácidos grasos (notas "a queso") que no son terpenos. Sugiere que el aroma distintivo de cada variedad depende de compuestos minoritarios, no solo del perfil de terpenos tradicional.</p>
-      </div>
-      <div class="paper-card">
-        <div class="paper-top"><h4>A haplotype-resolved pangenome of Cannabis sativa</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag5">Genómica de vanguardia</span></div>
+        <div class="paper-top"><h4 translate="no">Domesticated cannabinoid synthases amid a wild mosaic cannabis pangenome</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag5">Genómica de vanguardia</span></div>
         <div class="paper-meta" data-i18n="pp5meta">Nature · 2025</div>
-        <p data-i18n="pp5desc">Secuencia el genoma completo de múltiples variedades de cannabis, no solo una referencia única — revela cuánta diversidad genética real existe entre variedades comerciales, sentando las bases para futura mejora genética basada en datos duros.</p>
+        <p data-i18n="pp5desc">Construye un pangenoma del cannabis con 193 genomas (181 nuevos) de 144 muestras de plantas macho y hembra. Encuentra regiones con mucha variación genética, pero los genes de las sintasas de cannabinoides (THCA y CBDA) varían muy poco. Concluye que el acervo genético del cannabis sigue caracterizado solo en parte.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Interactions between cannabinoids and drugs metabolized by CYP450 enzymes</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag6">Revisión sistemática</span></div>
-        <div class="paper-meta">Nachnani R. et al. · Frontiers in Pharmacology · 2024</div>
-        <p data-i18n="pp6desc">Revisa 31 casos documentados de interacción entre cannabis y 16 medicamentos de índice terapéutico estrecho, en 889 personas — 58% mostró niveles inesperados del medicamento en sangre. La base de por qué las interacciones medicamentosas importan tanto como el propio cannabis.</p>
+        <div class="paper-top"><h4 translate="no">Systematic review of drug-drug interactions of delta-9-tetrahydrocannabinol, cannabidiol, and Cannabis</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag6">Revisión sistemática</span></div>
+        <div class="paper-meta" translate="no">Nachnani R. et al. · Frontiers in Pharmacology · 2024</div>
+        <p data-i18n="pp6desc">Revisión sistemática de casos reales: 31 informes de interacciones entre cannabinoides y 16 medicamentos de índice terapéutico estrecho, con 889 personas. En 18 de los informes (58%) se halló un nivel inesperado del medicamento en sangre. Warfarina, valproato, tacrolimus y sirolimus fueron los más citados.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Formation and inactivation of endogenous cannabinoid anandamide in central neurons</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag7">Estudio fundacional</span></div>
-        <div class="paper-meta">Di Marzo V. et al. · Nature · 1994</div>
-        <p data-i18n="pp7desc">El estudio que acuñó el término "endocannabinoide" y describió por primera vez cómo el cuerpo produce y descompone su propia anandamida — la base de todo lo que hoy sabemos sobre el sistema endocannabinoide humano.</p>
+        <div class="paper-top"><h4 translate="no">Formation and inactivation of endogenous cannabinoid anandamide in central neurons</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag7">Estudio fundacional</span></div>
+        <div class="paper-meta" translate="no">Di Marzo V. et al. · Nature · 1994</div>
+        <p data-i18n="pp7desc">Muestra que neuronas cerebrales en cultivo producen y liberan anandamida a partir de un precursor fosfolipídico nuevo, y que la anandamida se capta y degrada rápidamente. Apoya que la anandamida es un mensajero propio de las neuronas.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Labeling accuracy of cannabidiol extracts sold online</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag8">Estudio de mercado</span></div>
-        <div class="paper-meta">Bonn-Miller M. et al. · JAMA · 2017</div>
-        <p data-i18n="pp8desc">Analizó 84 productos de CBD comprados en línea: solo el 30.95% tenía un etiquetado preciso dentro de un margen razonable — 42.85% contenía más CBD del declarado, 26.19% menos. La evidencia detrás de por qué siempre recomendamos exigir un COA.</p>
+        <div class="paper-top"><h4 translate="no">Labeling accuracy of cannabidiol extracts sold online</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag8">Estudio de mercado</span></div>
+        <div class="paper-meta" translate="no">Bonn-Miller M. et al. · JAMA · 2017</div>
+        <p data-i18n="pp8desc">Analizó 84 productos de CBD comprados en línea: solo el 30.95% tenía la cantidad declarada (margen de ±10%); el 42.85% tenía más CBD del declarado y el 26.19%, menos. Por eso recomendamos pedir siempre el COA.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Cannabis use during pregnancy and lactation</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag9">Consenso clínico</span></div>
+        <div class="paper-top"><h4 translate="no">Cannabis use during pregnancy and lactation</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag9">Consenso clínico</span></div>
         <div class="paper-meta" data-i18n="pp9meta">Colegio Americano de Ginecología y Obstetricia (ACOG) · 2025</div>
-        <p data-i18n="pp9desc">Actualización del consenso clínico más reciente sobre cannabis en embarazo y lactancia — recomienda su cese durante ambos periodos, documentando riesgos de bajo peso al nacer y mayor ingreso a UCI neonatal.</p>
+        <p data-i18n="pp9desc">Documento de consenso clínico del ACOG (octubre de 2025) sobre el uso de cannabis durante el embarazo y la lactancia.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Cannabis y psicoterapia: acceso desigual y estigma</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag10">Estudio social</span></div>
-        <div class="paper-meta">Revista Brasileira de Cannabis (RBCann) · 2025</div>
-        <p data-i18n="pp10desc">Estudio real sobre el potencial terapéutico de la Cannabis sativa en psicoterapia, documentando cómo el racismo estructural y la guerra contra las drogas limitan el acceso — publicado en la primera revista científica de cannabis de Brasil y Latinoamérica.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle1">Cannabis y psicoterapia: acceso desigual y estigma</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag10">Estudio social</span></div>
+        <div class="paper-meta" translate="no">Revista Brasileira de Cannabis (RBCann) · 2025</div>
+        <p data-i18n="pp10desc">Revisión integradora de 10 artículos sobre el cannabis medicinal en psicoterapia: señala su potencial terapéutico, pero también que el acceso queda restringido a una parte de la población, influido por el racismo estructural y la guerra contra las drogas.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>CBD y extinción de memorias de miedo</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag11">Revisión científica</span></div>
-        <div class="paper-meta">Instituto Fiocruz · Revista Fitos · diciembre 2025</div>
-        <p data-i18n="pp11desc">Revisión publicada por Fiocruz (una de las instituciones de salud pública más prestigiosas de Latinoamérica) sobre cómo el CBD afecta la extinción y reconsolidación de memorias aversivas, y la expresión de miedo y ansiedad en modelos animales.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle2">CBD y extinción de memorias de miedo</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag11">Revisión científica</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX1">Portes et al. · Revista Fitos · 2025</div>
+        <p data-i18n="pp11desc">Revisión narrativa, publicada en la Revista Fitos (Fiocruz), de estudios en ratas y ratones: el CBD aceleraría la extinción y/o dificultaría la reconsolidación de memorias aversivas, y reduciría las conductas de miedo y ansiedad. Son resultados preclínicos, no en personas.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Cannabis medicinal para dolor crónico: expectativas calibradas con rigor científico</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag12">Revisión sistemática</span></div>
-        <div class="paper-meta">Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025</div>
-        <p data-i18n="pp12desc">Equipo multidisciplinario de la Universidad de Verona, liderado por el prof. Vittorio Schweiger — encuentra reducción real del dolor en varias revisiones sistemáticas, pero con llamado explícito a calibrar expectativas según evidencia real, no promesas.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle3">Cannabis medicinal para dolor crónico: expectativas calibradas con rigor científico</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag12">Revisión sistemática</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX2">Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025</div>
+        <p data-i18n="pp12desc">Equipo liderado por Vittorio Schweiger (Universidad de Verona). Según la literatura revisada, el cannabis medicinal reduce el dolor frente a placebo de forma estadísticamente significativa: en promedio, entre 0.43 y 0.70 puntos en una escala de 0 a 10. También repasa efectos adversos, contraindicaciones y aspectos legales.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Conducir bajo efecto tras la legalización</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag13">Estudio comparativo</span></div>
-        <div class="paper-meta">Universidades de Hamburgo y Leipzig · The Lancet Regional Health – Europe · 2026</div>
-        <p data-i18n="pp13desc">Compara Alemania (tras la legalización de 2024) contra Austria como control — encuentra el impacto real de la legalización en la conducción bajo efecto de cannabis.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle4">Conducir bajo efecto tras la legalización</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag13">Estudio comparativo</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX3">Universidades de Hamburgo y Leipzig · The Lancet Regional Health – Europe · 2026</div>
+        <p data-i18n="pp13desc">Compara Alemania (tras la legalización de abril de 2024) con Austria como control, con encuestas antes y después. Ocho meses después de la legalización no encontró efectos significativos a corto plazo ni en el consumo ni en la conducción bajo efecto de cannabis.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Proyección de efectos netos en salud de la legalización alemana</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag14">Modelo matemático</span></div>
-        <div class="paper-meta">Frankfurt School of Finance &amp; Management · PLOS ONE · 2026</div>
-        <p data-i18n="pp14desc">Modela matemáticamente si la legalización alemana reduce o aumenta el daño neto a la salud pública, comparando menos contaminantes en el producto legal contra un posible aumento del consumo.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle5">Proyección de efectos netos en salud de la legalización alemana</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag14">Modelo matemático</span></div>
+        <div class="paper-meta" translate="no">Frankfurt School of Finance &amp; Management · PLOS ONE · 2025</div>
+        <p data-i18n="pp14desc">Modelo cuantitativo que compara el beneficio de menos contaminantes en el producto legal con el riesgo de más consumo tras la legalización alemana. Estima que las pérdidas de salud por trastorno por consumo de cannabis serían unas 19 veces mayores que las ganancias por menos contaminación.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Oferta y demanda tras la legalización en Alemania</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag15">Estudio de mercado</span></div>
-        <div class="paper-meta">Universidad de Hamburgo · International Journal of Drug Policy · 2026</div>
-        <p data-i18n="pp15desc">Analiza 12 meses de datos reales de una farmacia online — Alemania ya es el mercado legal de cannabis más grande de Europa (~200 toneladas en 2025).</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle6">Oferta y demanda tras la legalización en Alemania</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag15">Estudio de mercado</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX4">Centro Médico Universitario Hamburgo-Eppendorf · International Journal of Drug Policy · 2026</div>
+        <p data-i18n="pp15desc">Estudio de caso con 12 meses de datos de una farmacia online alemana: los productos de flor disponibles pasaron de 266 a 401, el precio por 10 mg de THC bajó, y los productos con 20-29.9% de THC fueron más de dos tercios de la demanda.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Salud mental y potencia de THC en Europa</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag16">Revisión sistemática</span></div>
-        <div class="paper-meta">15 países europeos · Frontiers in Psychiatry · 2026</div>
-        <p data-i18n="pp16desc">Revisión que cubre Francia, Países Bajos, Bélgica, Alemania, República Checa, España, Italia, Portugal, Polonia, Hungría y más — encuentra que el THC de alta potencia (+15-20%) se asocia con 4 a 5 veces más riesgo de psicosis de primer episodio.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle7">Salud mental y potencia de THC en Europa</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag16">Revisión narrativa</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX5">Śniadach J. et al. · Frontiers in Psychiatry · 2026</div>
+        <p data-i18n="pp16desc">Revisión narrativa de literatura y datos publicados entre 2015 y 2025: el cannabis de alta potencia (más de 15-25% de THC) se asocia de forma constante con más riesgo de psicosis, ansiedad, pánico y trastorno por consumo. En Europa Central y del Este, muchos de estos problemas no se detectan ni se registran.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Experimento de cadena de suministro cerrada en los Países Bajos</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag17">Ensayo regulatorio</span></div>
-        <div class="paper-meta">Instituto Trimbos · desde 2025</div>
-        <p data-i18n="pp17desc">El Instituto Trimbos (agencia nacional holandesa) prueba cannabis regulado en 10 municipios desde 2025, con estudio base de contaminantes (pesticidas, metales pesados) comparando municipios de control e intervención.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle8">Experimento de cadena de suministro cerrada en los Países Bajos</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag17">Ensayo regulatorio</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX6">Knottnerus et al. · Health Policy · 2023</div>
+        <p data-i18n="pp17desc">Describe el diseño del experimento neerlandés con una cadena legal «cerrada» de cannabis recreativo: diez cultivadores contratados abastecen a los coffeeshops de los municipios de intervención, y en los municipios de control no cambia nada. Compara ambos grupos en salud pública, delincuencia, seguridad y molestias; el trabajo de campo estaba previsto desde inicios de 2024, durante cuatro años.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>De la granja a la cama del paciente: acceso global al cannabis medicinal</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag18">Panorama global</span></div>
-        <div class="paper-meta">Global Oncology University, Johannesburgo · Complementary Therapies in Medicine · 2025</div>
-        <p data-i18n="pp18desc">Panorama mundial de acceso al cannabis medicinal, con foco específico en cómo los países en desarrollo —incluyendo África— quedan rezagados en regulación.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle9">De la granja a la cama del paciente: acceso global al cannabis medicinal</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag18">Panorama global</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX7">Complementary Therapies in Medicine · 2025</div>
+        <p data-i18n="pp18desc">Revisión sobre el cannabis medicinal en la salud global, con casos de EE. UU. y África. Señala que persisten desigualdades: en África, los pacientes enfrentan barreras sistémicas para obtener la certificación de cannabis medicinal.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Reforma de la Ley de Control de Cannabis en Japón</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag19">Análisis regulatorio</span></div>
-        <div class="paper-meta">Cannabis and Cannabinoid Research · 2025</div>
-        <p data-i18n="pp19desc">Analiza la primera revisión importante desde 1948 de la ley japonesa (2023), que incluye un nuevo marco de "investigación clínica especial" para epilepsia refractaria.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle10">Reforma de la Ley de Control de Cannabis en Japón</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag19">Análisis regulatorio</span></div>
+        <div class="paper-meta" translate="no">Cannabis and Cannabinoid Research · 2025</div>
+        <p data-i18n="pp19desc">Analiza la reforma de 2023 de la ley japonesa, la primera gran revisión desde 1948: los medicamentos derivados del cannabis pasan al mismo marco que los analgésicos opioides, se amplía el uso industrial con un límite estricto de THC y se crean penas por consumo. Entró en vigor el 12 de diciembre de 2024.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Revisando la hipótesis de la "puerta de entrada" en Japón</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag20">Encuesta nacional</span></div>
-        <div class="paper-meta">Neuropsychopharmacology Reports · 2025</div>
-        <p data-i18n="pp20desc">Encuesta a 3,900 usuarios japoneses que examina si el cannabis realmente funciona como "puerta de entrada" a otras sustancias, encontrando evidencia causal limitada.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle11">Revisando la hipótesis de la "puerta de entrada" en Japón</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag20">Encuesta nacional</span></div>
+        <div class="paper-meta" translate="no">Neuropsychopharmacology Reports · 2025</div>
+        <p data-i18n="pp20desc">Encuesta en línea (enero de 2021) a 3,900 personas en Japón que habían consumido cannabis alguna vez: el cannabis solía llegar después del alcohol y el tabaco, y rara vez llevaba a otras drogas. Los resultados cuestionan la hipótesis de la «puerta de entrada» en Japón.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Normas sociales y severidad de consumo en Corea del Sur</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag21">Estudio comparativo</span></div>
-        <div class="paper-meta">Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2025</div>
-        <p data-i18n="pp21desc">Primer estudio en diferenciar patrones de uso entre personas que usan cannabis y quienes usan otras sustancias psicotrópicas en Corea del Sur.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle12">Normas sociales y severidad de consumo en Corea del Sur</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag21">Estudio comparativo</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX8">Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2024</div>
+        <p data-i18n="pp21desc">Encuesta (mayo-julio de 2024) a 109 personas que usan cannabis y narcóticos y a 191 que usan sustancias psicotrópicas en Corea del Sur. La relación entre normas sociales, creencias de salud y gravedad del consumo fue significativa solo en el grupo de psicotrópicos.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Modelos internacionales de suministro regulado</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag22">Revisión comparativa</span></div>
-        <div class="paper-meta">Estudio internacional · 2025</div>
-        <p data-i18n="pp22desc">Compara los distintos modelos de regulación —asociaciones sin fines de lucro, producción estatal, farmacias especializadas— entre Alemania, Suiza, Malta, Colombia, México y República Checa.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle13">Modelos internacionales de suministro regulado</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag22">Revisión comparativa</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX9">Belackova V. et al. · International Journal of Drug Policy · 2025</div>
+        <p data-i18n="pp22desc">Revisión sistemática de los resultados de regular el suministro de cannabis en cinco jurisdicciones: Países Bajos, España, estados de EE. UU. con legalización, Uruguay y Canadá. Resultados comunes: menos detenciones, más consumo en adultos (no en adolescentes) y más uso de servicios de salud.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Política y terapéutica del cannabis a nivel internacional (parte 1)</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag23">Panorama de políticas</span></div>
-        <div class="paper-meta">Clinical Therapeutics · diciembre 2025</div>
-        <p data-i18n="pp23desc">Panorama comparativo de políticas globales — solo Canadá y Uruguay tienen legalización federal completa para uso adulto; analiza el cambio de reclasificación en EE. UU. de finales de 2025.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle14">Política y terapéutica del cannabis a nivel internacional (parte 1)</h4><span class="evidence-tag" style="background:var(--resin);" data-i18n="ppTag23">Panorama de políticas</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX10">Clinical Therapeutics · 2026</div>
+        <p data-i18n="pp23desc">Artículo del Center for Cannabis Research and Policy de la Cannabis Control Commission de Massachusetts, que plantea la política del cannabis en distintos países como un «cuasi-experimento internacional». Es la primera parte.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Actitudes juveniles hacia la nueva legislación en Marruecos</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag24">Encuesta</span></div>
-        <div class="paper-meta">Journal of Youth Studies · 2025</div>
-        <p data-i18n="pp24desc">Encuesta real a 4,040 estudiantes de secundaria y universidad en el sur de Marruecos — encontró que las mujeres se oponen más al uso médico de cannabis que los hombres, y perciben más riesgo de que la ley "desaliente" dejar de consumir.</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle15">Actitudes juveniles hacia la legislación del cannabis en Marruecos</h4><span class="evidence-tag" style="background:var(--clay);" data-i18n="ppTag24">Encuesta</span></div>
+        <div class="paper-meta" translate="no">International Journal of Adolescence and Youth · 2025</div>
+        <p data-i18n="pp24desc">Estudio transversal sobre las creencias y actitudes de jóvenes de Marruecos hacia la legislación del cannabis y los factores asociados. Autores de la Universidad Ibn Zohr, entre otros.</p>
       </div>
       <div class="paper-card">
-        <div class="paper-top"><h4>Revisión sistemática en estudiantes del mundo árabe</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag25">Revisión sistemática</span></div>
-        <div class="paper-meta">Universidad Americana de Beirut · Frontiers in Psychiatry · 2025</div>
-        <p data-i18n="pp25desc">Cubre Irak, Marruecos, Túnez, Líbano y Egipto: la prevalencia de vida reportada va desde 0.7% (Irak, escolares) hasta 32% (Líbano y Egipto, universitarios).</p>
-      </div>
-      <div class="paper-card">
-        <div class="paper-top"><h4>El primer medicamento de CBD 100% marroquí</h4><span class="evidence-tag" style="background:var(--teal);" data-i18n="ppTag26">Desarrollo farmacéutico</span></div>
-        <div class="paper-meta">Pharma 5 · International Journal of Drug Policy · 2025</div>
-        <p data-i18n="pp26desc">En 2025, la farmacéutica marroquí Pharma 5 lanzó el primer medicamento local a base de CBD para epilepsia resistente en niños — producción completa desde cultivo hasta manufactura, bajo la Ley 13-21 (2021).</p>
+        <div class="paper-top"><h4 data-i18n="ppTitle16">Revisión sistemática en estudiantes del mundo árabe</h4><span class="evidence-tag" style="background:var(--moss-deep);" data-i18n="ppTag25">Revisión sistemática</span></div>
+        <div class="paper-meta" data-i18n="ppMetaX11">Universidad Americana de Beirut · Frontiers in Psychiatry · 2025</div>
+        <p data-i18n="pp25desc">Revisión sistemática de 48 estudios de 13 países árabes: el consumo alguna vez en la vida va del 0.7% (Irak) al 9.4% (Marruecos) en escolares, y del 4.7% (Túnez) al 32% (Líbano y Egipto) en universitarios.</p>
       </div>
     </div>
 
@@ -1985,49 +1991,49 @@
       <div class="card-block">
         <h3 data-i18n="mdPaisH3">Por país: lo que encontramos investigando a fondo</h3>
         <p data-i18n="mdPaisIntro">Cada país regula el acceso de forma distinta — así que "encontrar un médico" significa algo diferente según dónde estés. Esto es lo que verificamos con fuentes reales, no una lista completa ni definitiva.</p>
-        <div class="spec-row" style="margin-top:14px;"><span><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Perú</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:14px;"><span><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="pe">Perú</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdPeruP">Clínica Cannavital (Lima) — cofundada por el Dr. José Francisco Ramírez Méndez, médico cirujano con formación acreditada por la Society of Cannabis Clinicians. Su trabajo clínico fue documentado en un estudio revisado por pares publicado en 2024 (revista Heliyon). <a href="https://cannavital.com.pe/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannavital.com.pe</a></p>
         <div class="note-box" data-i18n="mdPeruPapersNote"><b>Investigación académica peruana real sobre el tema:</b> Chambergo-Michilot y Velit-Ríos (2019) catalogaron toda la producción científica peruana sobre cannabis indexada en PubMed, Scopus y SciELO — publicado por la Universidad Nacional Mayor de San Marcos. Mendoza-Chuctaya (2022) señaló vacíos regulatorios reales de la ley peruana en la <em>Revista Colombiana de Psiquiatría</em>. Y la Universidad Católica de Santa María (Arequipa) tiene una tesis de revisión sistemática sobre cannabis medicinal para epilepsia. <a href="https://doi.org/10.15381/anales.803.16311" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.15381/anales.803.16311</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Chile</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="cl">Chile</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdChileP">Fundación Ciencias para la Cannabis (Concepción) — dirigida por la Dra. Catalina Verdugo Droguett desde 2017. <a href="https://cienciascannabis.cl/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cienciascannabis.cl</a> — También Centro Médico Cannabimed (Viña del Mar), primer centro de su tipo con autorización oficial de la autoridad sanitaria regional desde 2018. <a href="https://cannabimed.cl/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabimed.cl</a></p>
         <div class="note-box" data-i18n="mdChilePapersNote"><b>Investigación académica chilena real sobre el tema:</b> la Universidad de Chile publicó en julio de 2026 un estudio proponiendo mejorar la solubilidad de cannabinoides sintéticos mediante nanotecnología (nanosponges de ciclodextrina), resolviendo un cuello de botella real de formulación. Y en un ejemplo honesto de ciencia rigurosa, no solo resultados favorables: investigadores de la Pontificia Universidad Católica (Fundación Epistemonikos, 2018) publicaron una revisión más amplia que encontró resultados menos favorables de lo esperado para varias condiciones, incluida la esclerosis múltiple. <a href="https://doi.org/10.1016/j.jddst.2026.108539" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1016/j.jddst.2026.108539</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>España</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="es">España</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdEspanaP">Marco nuevo desde 2025 (Real Decreto 903/2025): el acceso oficial es solo vía médico especialista hospitalario del Sistema Nacional de Salud. Para acompañamiento clínico existe la Sociedad Clínica de Endocannabinología, con código deontológico propio. <a href="https://www.endocannabinologia.es/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">endocannabinologia.es</a></p>
         <div class="note-box" data-i18n="mdEspanaPapersNote"><b>Investigación académica española real sobre el tema:</b> la Universidad Complutense de Madrid lanza en el curso 2025-2026 el primer Máster Universitario en Investigación sobre Cannabis Medicinal de España — título inter-facultativo real (Medicina, Farmacia, Química, Biología, Derecho), coordinado por José Javier Fernández Ruiz. Algunos de sus catedráticos figuran entre los científicos más citados del mundo según la "World's Top 2% Scientist List" de Stanford (2022) — posiblemente la mayor concentración de investigadores de cannabinoides de Europa. <a href="https://www.ucm.es/estudios/master-cannabismedicinal" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">ucm.es/estudios/master-cannabismedicinal</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/de.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Alemania</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/de.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="de">Alemania</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdAlemaniaP">Desde 2017, cualquier médico colegiado puede recetar cannabis medicinal — no existe una certificación de "especialista" formal. El reto real no es encontrar autorización, sino encontrar experiencia clínica específica con esta terapia.</p>
         <div class="note-box" data-i18n="mdAlemaniaPapersNote"><b>Investigación académica alemana real sobre el tema:</b> la Universität Bonn, junto a la Universidad Hebrea de Jerusalén, publicó en <em>Nature Medicine</em> (2017) un estudio donde dosis diarias de THC en ratones mayores revirtieron marcadores de envejecimiento cerebral, recuperando un rendimiento cognitivo similar al de ratones jóvenes. Más recientemente, la agencia federal alemana de agricultura (BLE) aprobó en julio de 2026 sus primeros 4 proyectos de investigación de cannabis, de casi 70 propuestas recibidas desde finales de 2024. <a href="https://doi.org/10.1038/nm.4311" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1038/nm.4311</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Estados Unidos</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="us">Estados Unidos</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdEeuuP">Dr. Dustin Sulak, D.O. — fundador de Integr8 Health (Falmouth, Maine), en práctica desde 2009. Miembro de la junta directiva de la propia Society of Cannabis Clinicians y de Patients Out of Time. Él y sus 7 colegas médicos han tratado a más de 8,000 pacientes con cannabis medicinal. Reconocido internacionalmente como experto en medicina integrativa y cannabinoide. <a href="https://integr8health.com/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">integr8health.com</a></p>
         <div class="note-box" data-i18n="mdEeuuPapersNote"><b>Investigación académica estadounidense real sobre el tema:</b> el Instituto Salk (California) creó en mayo de 2025 el pangenoma más completo de cannabis jamás construido, analizando 193 genomas distintos — el mismo estudio que ya citamos en <a onclick="showSub(&#39;ciencia&#39;,&#39;papers&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Ciencia → Papers</a>, publicado en <em>Nature</em>. Y el <em>Journal of Cannabis Research</em>, la primera revista científica internacional multidisciplinaria dedicada al tema, fue fundada por el Instituto de Investigación de Cannabis de Colorado State University-Pueblo, con junta editorial de más de 30 científicos en 9 países.</div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Canadá</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="ca">Canadá</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdCanadaP">Santé Cannabis (Quebec) — en funcionamiento desde 2014, expandida a 4 sedes, afiliada a McGill University. Su modelo de atención propio fue publicado en una revista revisada por pares en 2021. <a href="https://santecannabis.ca/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">santecannabis.ca</a> — Canadá tiene cobertura real en ambos idiomas oficiales: en Quebec existen clínicas específicamente francófonas como Solution Cannabis Médical (establecida en 2017), además de servicio en francés de las cadenas nacionales.</p>
         <div class="note-box" data-i18n="mdCanadaPapersNote"><b>Investigación académica canadiense real sobre el tema:</b> un estudio publicado en marzo de 2025 en el <em>Canadian Journal on Aging</em> encontró que, desde la legalización recreativa de 2018, el consumo de cannabis entre canadienses mayores de 60 años ha aumentado más que en cualquier otro grupo de edad — el mismo patrón que ya documentamos para EE. UU. en <a onclick="showSub(&#39;seguridad&#39;,&#39;mayores&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Seguridad → Personas mayores</a>. <a href="https://doi.org/10.1017/S0714980824000357" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1017/S0714980824000357</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Israel</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="il">Israel</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdIsraelP">El Dr. Adi Aran (Shaare Zedek, Jerusalén) ya lo mencionamos por su ensayo clínico pionero sobre autismo — pero Israel es también donde se descubrieron el THC (1964) y la anandamida (1992), y sigue siendo un centro real de investigación clínica de cannabinoides.</p>
         <div class="note-box" data-i18n="mdIsraelPapersNote"><b>Investigación académica israelí real sobre el tema:</b> la revisión retrospectiva más completa hasta ahora sobre política de cannabis medicinal en Israel (Aviram, Universidad Ariel, noviembre de 2025) analiza 2011-2025 completos — patrones de prescripción, tendencias de dosis, y transformación regulatoria desde la primera aprobación en 1992. <a href="https://doi.org/10.1186/s42238-025-00344-1" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1186/s42238-025-00344-1</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Australia</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="au">Australia</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdAustraliaP">El Lambert Initiative for Cannabinoid Therapeutics, de la Universidad de Sydney, es un centro real de investigación clínica dedicado exclusivamente a cannabinoides — con investigadores como Iain McGregor y Jonathon Arnold publicando activamente.</p>
         <div class="note-box" data-i18n="mdAustraliaPapersNote"><b>Investigación académica australiana real sobre el tema:</b> la encuesta CAMS-22 del propio Lambert Initiative, siete años después de la legalización, encontró que los usuarios con cannabis medicinal prescrito tenían 25 veces más certeza sobre la composición real de lo que consumían, comparado con usuarios de fuentes ilícitas — evidencia concreta de por qué el acceso regulado importa. <a href="https://doi.org/10.1186/s12954-024-00992-1" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1186/s12954-024-00992-1</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/fr.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Francia</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/fr.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="fr">Francia</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdFranciaP">Sistema centralizado a través de la ANSM (agencia nacional de medicamentos), en transición a marco permanente desde enero de 2025. El acceso es mediante estructuras de referencia designadas por la propia agencia, con médicos capacitados específicamente por ella — no por búsqueda libre. <a href="https://ansm.sante.fr/dossiers-thematiques/cannabis-a-usage-medical" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">ansm.sante.fr</a></p>
         <div class="note-box" data-i18n="mdFranciaPapersNote"><b>Investigación académica francesa real sobre el tema:</b> el estudio U.CANNABIS, de la Universidad de Burdeos (equipo AHeaD, Inserm), encargado por la propia ANSM, siguió a 1,971 pacientes antes y después del tratamiento — encontrando reducción real en el consumo de opioides y analgésicos en las 4 indicaciones estudiadas. Un dato honesto sobre gobernanza: el informe se completó en septiembre de 2025 pero permaneció sin publicar 9 meses, hasta que una solicitud de transparencia de la industria forzó su divulgación en 2026.</div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ec.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Ecuador</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ec.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="ec">Ecuador</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdEcuadorP">We Mayu Ecuador — primera instalación del país dedicada a tratamiento con cannabinoides, con certificación sanitaria oficial de ARCSA (la agencia regulatoria ecuatoriana). El CBD no requiere receta médica, pero se recomienda consulta profesional para la dosis correcta. <a href="https://mayuecuador.com/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">mayuecuador.com</a><br><b>Dr. Alonso Martínez-Aguirre, MD</b> — fundador y director de IndicaMed, con maestría en Terapia del Dolor; integra el manejo clínico del dolor crónico con cannabinoides, docencia universitaria e investigación aplicada. Coautor de un caso clínico publicado sobre cannabinoides y dolor crónico (Cannamerica). Referente en Ecuador en endocannabinología. <a href="https://www.instagram.com/dr.alonso_martinez/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">@dr.alonso_martinez</a></p>
         <div class="note-box" data-i18n="mdEcuadorPapersNote"><b>Investigación académica ecuatoriana real sobre el tema:</b> la Universidad Central del Ecuador publicó en julio de 2025 una caracterización química de semillas de cáñamo cultivadas a 2,450 metros de altitud en los Andes ecuatorianos — un ángulo geográfico genuinamente único, financiado por dos proyectos institucionales propios de la universidad sobre valor nutricional y extracción de cannabinoides de variedades no psicoactivas. <a href="https://doi.org/10.1080/19476337.2025.2520539" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.1080/19476337.2025.2520539</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Colombia</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="co">Colombia</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdColombiaP">Existen especialistas verificados en manejo del dolor con cannabis medicinal en Bogotá, listados en plataformas médicas como Top Doctors — con reseñas de pacientes reales y disponibilidad verificable. <a href="https://www.topdoctors.com.co/marihuana-medicinal/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">topdoctors.com.co</a></p>
         <div class="note-box" data-i18n="mdColombiaPapersNote"><b>Investigación académica colombiana real sobre el tema:</b> la Universidad Nacional de Colombia publicó en abril de 2025 una revisión narrativa sobre las barreras reales de acceso al cannabis medicinal en el país — un ángulo honesto sobre lo que aún no funciona, no solo lo que sí. Colombia tiene más de 57,000 hectáreas de cultivo legal según el Ministerio de Justicia, y un decreto en desarrollo (2025) que permitiría a universidades obtener licencias de investigación independientes, algo actualmente restringido. <a href="https://doi.org/10.15446/rcciquifa.v54n1.119551" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">doi.org/10.15446/rcciquifa.v54n1.119551</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Argentina</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="ar">Argentina</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdArgentinaP">Bajo la Ley Nacional 27.350, existen clínicas especializadas en varias ciudades — incluido el Instituto Argentino del Cannabis, fundado por un médico oftalmólogo tras el diagnóstico de glaucoma congénito de su hija, con más de 5,000 pacientes atendidos.</p>
         <div class="note-box" data-i18n="mdArgentinaPapersNote"><b>Investigación académica argentina real sobre el tema:</b> Argentina lanzó "Cannabis y Salud" — la primera revista científica indexada dedicada exclusivamente al tema en todo Latinoamérica, con aval del CONICET, nacida en el Centro de Investigaciones del Medioambiente (CONICET-UNLP). El Programa de Investigación y Desarrollo en Cannabis del CONICET ya aprobó 13 proyectos con financiamiento real, en instituciones como la Universidad de Buenos Aires, sobre temas que van desde cannabinoides y cáncer de mama hasta biofertilizantes para el cultivo mismo. <a href="https://www.cannabisysalud.org/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabisysalud.org</a></div>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Reino Unido</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="gb">Reino Unido</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdReinoUnidoP">Mamedica — la clínica líder de cannabis medicinal del país: más de 15,000 pacientes tratados, registrada ante la CQC (Care Quality Commission, el regulador de salud del Reino Unido), reconocida en el Sunday Times 100 (2026) como una de las empresas privadas de más rápido crecimiento del país. <a href="https://mamedica.co.uk/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">mamedica.co.uk</a></p>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/pt.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Portugal</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/pt.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="pt">Portugal</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdPortugalP">El regulador oficial es INFARMED. Un contraste real y medido: solo 757 recetas médicas emitidas hasta el tercer trimestre de 2024, mientras Portugal exportó 32,558 kg ese mismo año (+172% interanual) — mayormente a Alemania y España. Uno de los países que más produce, con menor acceso doméstico. <a href="https://www.infarmed.pt/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">infarmed.pt</a></p>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/nl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Países Bajos</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/nl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="nl">Países Bajos</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdPaisesBajosP">El acceso médico formal pasa por el Bureau voor Medicinale Cannabis (BMC), la oficina gubernamental —parte del Ministerio de Salud— que regula y provee cannabis medicinal desde el año 2000, con monopolio de suministro a farmacias, universidades y hospitales. Distinto del sistema de coffeeshops, que es para uso recreativo tolerado. <a href="https://www.cannabisbureau.nl/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabisbureau.nl</a></p>
-        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/uy.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b>Uruguay</b></span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><img src="https://flagcdn.com/16x12/uy.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <b data-cc="uy">Uruguay</b></span><span></span></div>
         <p class="method-desc" data-i18n="mdUruguayP">El Instituto de Regulación y Control del Cannabis (IRCCA), la agencia estatal que supervisa todo el sistema desde 2013 — Uruguay fue el primer país del mundo en legalizar completamente venta y cultivo. El acceso es exclusivo para residentes y ciudadanos registrados; los turistas no pueden comprar legalmente. <a href="https://www.ircca.gub.uy/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">ircca.gub.uy</a></p>
         <div class="note-box" data-i18n="mdPaisNote">Esta lista es un punto de partida verificado, no un directorio completo — sabemos que existen muchos más médicos y clínicas serias en estos países y en otros que todavía no investigamos a fondo. Si conoces alguno que deberíamos verificar y agregar, cuéntanos.</div>
       </div>
@@ -2040,11 +2046,11 @@
       <div class="card-block">
         <h3 data-i18n="mdPediatriaH3">Para familias que buscan ayuda pediátrica: autismo, convulsiones y más</h3>
         <p data-i18n="mdPediatriaIntro">Sabemos que esto es lo que más urge a muchas familias. Estos son los nombres que encontramos con la investigación más sólida y mejor documentada en el mundo, específicamente en niños.</p>
-        <div class="spec-row"><span><b>Dr. Adi Aran</b> — <img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Israel</span><span></span></div>
+        <div class="spec-row"><span><b>Dr. Adi Aran</b> — <img src="https://flagcdn.com/16x12/il.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-cc="il">Israel</span></span><span></span></div>
         <p class="method-desc" data-i18n="mdAranP">Director de Neurología Pediátrica del Centro Médico Shaare Zedek (Jerusalén). Dirigió el primer estudio clínico del mundo sobre cannabis en niños con autismo, publicado en <em>Journal of Autism and Developmental Disorders</em> (2019) — 80% de los niños mostraron mejoría. Presentado en un documental de CNN sobre cannabis y autismo.</p>
-        <div class="spec-row" style="margin-top:10px;"><span><b>Dra. Bonni Goldstein</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> EE. UU.</span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><b>Dra. Bonni Goldstein</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-cc="us">EE. UU.</span></span><span></span></div>
         <p class="method-desc" data-i18n="mdGoldsteinP">Pediatra, directora de Canna-Centers (red de médicos en California), autora del libro <em>Cannabis is Medicine</em>. Coautora de un estudio real sobre biomarcadores de respuesta al cannabis en niños con autismo, publicado en Cannabis and Cannabinoid Research.</p>
-        <div class="spec-row" style="margin-top:10px;"><span><b>Dr. Orrin Devinsky</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> EE. UU.</span><span></span></div>
+        <div class="spec-row" style="margin-top:10px;"><span><b>Dr. Orrin Devinsky</b> — <img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-cc="us">EE. UU.</span></span><span></span></div>
         <p class="method-desc" data-i18n="mdDevinskyP">Ya lo conoces de <a onclick="showSub(&#39;ciencia&#39;,&#39;papers&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Ciencia → Papers</a>: dirige el Centro Integral de Epilepsia en NYU Langone, y lideró el ensayo clínico que llevó a la aprobación del primer medicamento a base de CBD (Epidiolex) para el síndrome de Dravet en niños.</p>
         <div class="note-box" data-i18n="mdPediatriaNote">El tratamiento pediátrico con cannabis es un área donde la supervisión médica constante importa aún más — nunca es algo para experimentar en casa sin un especialista guiando cada paso.</div>
       </div>
@@ -2295,6 +2301,40 @@
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
     <div class="eyebrow-row"><svg class="zone-icon" viewBox="0 0 40 40" width="20" height="20"><g stroke="var(--moss)" stroke-width="2.4" stroke-linejoin="round" fill="none"><g transform="translate(20,35) rotate(-18) scale(0.26)"><path d="M0,0 L4,-10 L10,-18 L7,-28 L13,-36 L9,-45 L14,-53 L9,-61 L12,-69 L7,-77 L9,-85 L4,-92 L0,-100 L-4,-92 L-9,-85 L-7,-77 L-12,-69 L-9,-61 L-14,-53 L-9,-45 L-13,-36 L-7,-28 L-10,-18 L-4,-10 Z"/></g><g transform="translate(20,35) rotate(18) scale(0.26)"><path d="M0,0 L4,-10 L10,-18 L7,-28 L13,-36 L9,-45 L14,-53 L9,-61 L12,-69 L7,-77 L9,-85 L4,-92 L0,-100 L-4,-92 L-9,-85 L-7,-77 L-12,-69 L-9,-61 L-14,-53 L-9,-45 L-13,-36 L-7,-28 L-10,-18 L-4,-10 Z"/></g></g></svg><div class="eyebrow" data-i18n="eySeg">Seguridad</div></div>
     <h2 class="title" data-i18n="segTitle">Lo que puede salir mal, y cómo evitarlo</h2>
+    <!-- Emergency box: open to everyone (visitors and blocked accounts too).
+         Spanish approved by the owner 2026-10-11; EN/DE/FR in main.js (em* keys). Sources
+         verified 2026-10-10 (Health Canada x4, CDC). No phone numbers on purpose. -->
+    <div class="card-block mv-emergencia" id="segEmergencia">
+      <h3 data-i18n="emTitle">Emergencia: consumiste demasiado, o un niño o una mascota lo ingirió</h3>
+      <p class="mv-em-call" data-i18n="emCall"><b>Llama a tu número local de emergencias o a tu centro de toxicología.</b></p>
+      <h4 data-i18n="emAdultH">Si tú u otro adulto consumió demasiado</h4>
+      <ul>
+        <li data-i18n="emAdult1">Deja de consumir.</li>
+        <li data-i18n="emAdult2">Los comestibles tardan de 30 minutos a 2 horas en empezar a hacer efecto, y hasta 4 horas en llegar a su efecto completo. No tomes más mientras esperas.</li>
+        <li data-i18n="emAdult3">Puede haber dolor en el pecho, latidos rápidos, náuseas o vómitos, ansiedad intensa o ataque de pánico, un episodio psicótico o respiración lenta.</li>
+        <li data-i18n="emAdult4">Si los efectos son muy desagradables o te preocupan, busca atención médica de inmediato o llama a tu centro de toxicología. Puede ser peligroso y a veces requiere atención de urgencia u hospitalización.</li>
+      </ul>
+      <h4 data-i18n="emChildH">Si un niño o una niña lo ingirió</h4>
+      <ul>
+        <li data-i18n="emChild1">Llama de inmediato a tu centro de toxicología. Si pierde el conocimiento o le cuesta respirar, llama a tu número local de emergencias.</li>
+        <li data-i18n="emChild2">Di que los síntomas son o pueden ser por cannabis: ayuda a que lo atiendan antes.</li>
+        <li data-i18n="emChild3">Señales: vómitos, confusión, que no responda, habla arrastrada, inestabilidad al caminar, somnolencia, respiración lenta y, en casos raros, convulsiones. Los niños pueden enfermar gravemente.</li>
+      </ul>
+      <h4 data-i18n="emPetH">Si fue una mascota</h4>
+      <ul>
+        <li data-i18n="emPet1">Llama de inmediato a tu veterinario o a un centro de toxicología. Más detalles abajo, en <a onclick="showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Mascotas</a>.</li>
+      </ul>
+      <p class="mv-em-note" data-i18n="emNote">Esta información es educativa y no sustituye la atención médica.</p>
+      <p class="mv-em-src"><span data-i18n="emSrc">Fuentes:</span>
+        <a href="https://www.canada.ca/en/services/health/campaigns/cannabis/health-effects.html" target="_blank" rel="noopener noreferrer">Health Canada — Cannabis health effects</a> ·
+        <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/resources/what-you-need-to-know-if-you-choose-to-consume-cannabis.html" target="_blank" rel="noopener noreferrer">Health Canada — What you need to know if you choose to consume cannabis</a> ·
+        <a href="https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/health-effects/poisonings-children.html" target="_blank" rel="noopener noreferrer">Health Canada — Cannabis poisonings in children</a> ·
+        <a href="https://www.canada.ca/en/health-canada/services/publications/drugs-health-products/infosheet-store-cannabis-safely.html" target="_blank" rel="noopener noreferrer">Health Canada — Store your cannabis safely</a> ·
+        <a href="https://www.cdc.gov/cannabis/health-effects/poisoning.html" target="_blank" rel="noopener noreferrer">CDC — Cannabis and Poisoning</a>
+      </p>
+    </div>
+    <div class="card-block" id="edibleDoseSafetyCardSeg" data-gate-exempt></div>
+
     <p class="subhead" data-i18n="segSub">La misma evidencia rigurosa del resto de la app, aplicada a los riesgos reales — mascotas, medicamentos, manejo, embarazo y salud mental.</p>
 
     <div class="sub-tabs">
@@ -2702,53 +2742,54 @@
       </div>
       <div class="specimen-grid" id="eduGrid">
         <div class="specimen edu-card" data-pais="EEUU" data-esp="cultivo">
-          <h4>SUNY Morrisville</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Nueva York, EE. UU. — Cultivo &amp; horticultura</div>
-          <p class="method-desc" data-i18n="eduSunyP">Minor en Cannabis Industry, certificado en Specialty Crops &amp; Cannabis Production, con posibilidad de apilarlo hacia un A.A.S. o B.Tech en horticultura. Incluye una parcela de investigación de cannabis propia de la universidad.</p>
+          <h4>SUNY Morrisville</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc1">Nueva York, EE. UU. — Cultivo &amp; horticultura</span></div>
+          <p class="method-desc" data-i18n="eduSunyP">Minor en Cannabis Industry y certificado en Specialty Crops &amp; Cannabis Production. Incluye una parcela de investigación de cannabis propia de la universidad.</p>
+          <p class="method-desc edu-founder" data-i18n="eduSunyFundadora">La fundadora estudia en esta institución.</p>
           <div class="spec-source"><a href="https://www.morrisville.edu/cannabis" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">morrisville.edu/cannabis</a></div></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="ciencia">
-          <h4>Colorado State University – Pueblo</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Colorado, EE. UU. — Ciencia &amp; química</div>
+          <h4>Colorado State University – Pueblo</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc2">Colorado, EE. UU. — Ciencia &amp; química</span></div>
           <p class="method-desc" data-i18n="eduCsuP">Licenciatura completa (BS) en Cannabis Biology and Chemistry, acreditada por la Higher Learning Commission — uno de los grados universitarios de 4 años más completos que existen en el tema, con concentraciones en agricultura de cáñamo, análisis, productos naturales, y gestión industrial.</p>
           <div class="spec-source"><a href="https://www.csupueblo.edu/cannabis/index.html" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">csupueblo.edu/cannabis</a></div></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="medicina">
-          <h4>University of Colorado — Skaggs School of Pharmacy</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Colorado, EE. UU. — Medicina &amp; farmacia</div>
+          <h4>University of Colorado — Skaggs School of Pharmacy</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc3">Colorado, EE. UU. — Medicina &amp; farmacia</span></div>
           <p class="method-desc" data-i18n="eduCuP">Tres programas de Cannabis Science and Medicine, desde un curso introductorio de 8 semanas hasta una Maestría completa — todos en línea, impartidos por expertos internacionales en el campo, dentro de una escuela de farmacia real.</p>
           <div class="spec-source"><a href="https://pharmacy.cuanschutz.edu/academics/cannabis-science-and-medicine" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">pharmacy.cuanschutz.edu</a></div></div>
         <div class="specimen edu-card" data-pais="Canada" data-esp="cultivo">
-          <h4>University of Saskatchewan</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Saskatchewan, Canadá — Cultivo &amp; horticultura</div>
+          <h4>University of Saskatchewan</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc4">Saskatchewan, Canadá — Cultivo &amp; horticultura</span></div>
           <p class="method-desc" data-i18n="eduSaskP">Su certificado de Horticultura de las Praderas ahora incluye un curso específico de Producción de Cultivo de Cannabis — propagación, genética, y criterios de cosecha, todo en línea.</p></div>
         <div class="specimen edu-card" data-pais="Canada" data-esp="negocio">
-          <h4>Niagara College</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Ontario, Canadá — Cultivo &amp; negocio</div>
+          <h4>Niagara College</h4><div class="sci"><img src="https://flagcdn.com/16x12/ca.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc5">Ontario, Canadá — Cultivo &amp; negocio</span></div>
           <p class="method-desc" data-i18n="eduNiagaraP">Programa de Producción Comercial de Cannabis, creado en 2018 ante la demanda real de la industria de personal capacitado — más de 300 personas aplicaron en su primera convocatoria.</p></div>
         <div class="specimen edu-card" data-pais="Espana" data-esp="ciencia">
-          <h4>Universitat Politècnica de Catalunya</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Cataluña, España — Ciencia &amp; regulación</div>
+          <h4 translate="no">Universitat Politècnica de Catalunya</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc6">Cataluña, España — Ciencia &amp; regulación</span></div>
           <p class="method-desc" data-i18n="eduUpcP">Posgrado en Tecnologías de Producción y Transformación del Cannabis, impartido a través de UPC School (su escuela de posgrado) en colaboración con Cannabis Hub — el primer posgrado sobre cannabis del país, lanzado en noviembre de 2022. 20 créditos ECTS, 160 horas lectivas, título oficial emitido bajo la normativa universitaria española vigente.</p>
           <div class="spec-source"><a href="https://www.talent.upc.edu/esp/estudis/formacio/curs/319500/posgrado-tecnologias-produccion-transformacion-cannabis/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">talent.upc.edu</a></div></div>
         <div class="specimen edu-card" data-pais="Espana" data-esp="ciencia">
-          <h4>Universidad Miguel Hernández de Elche</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Comunidad Valenciana, España — Ciencia &amp; regulación</div>
+          <h4 translate="no">Universidad Miguel Hernández de Elche</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc7">Comunidad Valenciana, España — Ciencia &amp; regulación</span></div>
           <p class="method-desc" data-i18n="eduUmhP">Título propio de "Especialista universitario en el uso de cannabis y derivados cannabinoides", lanzado en 2021 — un año antes que el posgrado de la UPC. También coorganiza, junto a la Universidad de Alicante y el Tecnológico de Antioquia (Colombia), el curso "Experto en Industria y Agronomía Digital del Cannabis".</p></div>
         <div class="specimen edu-card" data-pais="Espana" data-esp="negocio">
-          <h4>Universidad de Alicante</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Alicante, España — Negocio &amp; industria digital</div>
+          <h4 translate="no">Universidad de Alicante</h4><div class="sci"><img src="https://flagcdn.com/16x12/es.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc8">Alicante, España — Negocio &amp; industria digital</span></div>
           <p class="method-desc" data-i18n="eduAlicanteP">"Experto en Industria y Agronomía Digital del Cannabis" — un curso real coorganizado entre tres universidades de dos países (Alicante y Miguel Hernández en España, Tecnológico de Antioquia en Colombia), enfocado en tecnología aplicada a la cadena de valor del cannabis.</p></div>
         <div class="specimen edu-card" data-pais="Colombia" data-esp="negocio">
-          <h4>Universidad de los Andes</h4><div class="sci"><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Bogotá, Colombia — Negocio &amp; regulación</div>
+          <h4 translate="no">Universidad de los Andes</h4><div class="sci"><img src="https://flagcdn.com/16x12/co.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc9">Bogotá, Colombia — Negocio &amp; regulación</span></div>
           <p class="method-desc" data-i18n="eduAndesP">Programas ejecutivos y de educación continua en regulación y negocios del cannabis, desde una de las universidades más prestigiosas de Latinoamérica, aprovechando la posición de Colombia como líder regional de la industria.</p></div>
         <div class="specimen edu-card" data-pais="EEUU" data-esp="medicina">
-          <h4>University of Rhode Island</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Rhode Island, EE. UU. — Ciencia &amp; medicina</div>
+          <h4>University of Rhode Island</h4><div class="sci"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc10">Rhode Island, EE. UU. — Ciencia &amp; medicina</span></div>
           <p class="method-desc" data-i18n="eduUriP">Certificate in Cannabis Studies, acreditado por la AACSB — 4 cursos de 3 créditos, 100% asíncrono, cubre potencial terapéutico, separación y análisis de productos naturales, y desarrollo de producto.</p></div>
         <div class="specimen edu-card" data-pais="Peru" data-esp="medicina">
-          <h4>Universidad Peruana Cayetano Heredia</h4><div class="sci"><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Lima, Perú — Medicina &amp; salud pública</div>
+          <h4 translate="no">Universidad Peruana Cayetano Heredia</h4><div class="sci"><img src="https://flagcdn.com/16x12/pe.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc11">Lima, Perú — Medicina &amp; salud pública</span></div>
           <p class="method-desc" data-i18n="eduUpchP">Curso Internacional "Uso Medicinal del Cannabis" de su Escuela de Posgrado, con el primer Diplomado del país en Uso de Cannabis y sus Derivados en Salud (2020–2021). Coordinado por un ex-Jefe del Instituto Nacional de Salud del Perú, con maestría de la Universidad de Heidelberg (Alemania).</p></div>
         <div class="specimen edu-card" data-pais="Chile" data-esp="ciencia">
-          <h4>Universidad de Santiago de Chile</h4><div class="sci"><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Santiago, Chile — Ciencia &amp; química</div>
+          <h4 translate="no">Universidad de Santiago de Chile</h4><div class="sci"><img src="https://flagcdn.com/16x12/cl.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc12">Santiago, Chile — Ciencia &amp; química</span></div>
           <p class="method-desc" data-i18n="eduUsachP">Diplomado en Uso Medicinal de Fitocannabinoides de la Facultad de Química y Biología — ya en su tercera versión. El primero de su tipo dictado por una institución de educación superior en Chile, con farmacólogos y neurocientistas de la propia universidad.</p></div>
         <div class="specimen edu-card" data-pais="Argentina" data-esp="medicina">
-          <h4>Universidad Nacional de Rosario</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Rosario, Argentina — Medicina &amp; salud</div>
+          <h4 translate="no">Universidad Nacional de Rosario</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc13">Rosario, Argentina — Medicina &amp; salud</span></div>
           <p class="method-desc" data-i18n="eduUnrP">Curso de posgrado virtual "Abordaje integral de la planta de cannabis para la salud", dirigido específicamente a integrantes de equipos de salud — universidad pública argentina.</p></div>
         <div class="specimen edu-card" data-pais="Argentina" data-esp="cultivo">
-          <h4>Universidad Nacional de Chilecito</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> La Rioja, Argentina — Cultivo &amp; industrialización</div>
+          <h4 translate="no">Universidad Nacional de Chilecito</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc14">La Rioja, Argentina — Cultivo &amp; industrialización</span></div>
           <p class="method-desc" data-i18n="eduUndecP">Diplomatura Superior en Producción e Industrialización del Cannabis para Usos Medicinales e Industriales, de su Escuela de Posgrado. 8 módulos (6 virtuales, 2 prácticos presenciales), un año de duración, ya en su segunda cohorte.</p></div>
         <div class="specimen edu-card" data-pais="Argentina" data-esp="medicina">
-          <h4>Universidad Nacional Arturo Jauretche</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> Buenos Aires, Argentina — Medicina &amp; salud</div>
+          <h4 translate="no">Universidad Nacional Arturo Jauretche</h4><div class="sci"><img src="https://flagcdn.com/16x12/ar.png" width="16" height="12" alt="" style="display:inline-block; vertical-align:middle; border-radius:1px;" loading="lazy"> <span data-i18n="eduLoc15">Buenos Aires, Argentina — Medicina &amp; salud</span></div>
           <p class="method-desc" data-i18n="eduUnajP">Diplomatura Superior en Cannabis y sus Usos Medicinales — con un cuerpo docente que incluye a la Dra. Gabriela Reyes Valenzuela, neuróloga infantil y epileptóloga del Hospital Garrahan, el hospital pediátrico de referencia nacional en Argentina.</p></div>
       </div>
       <div class="note-box" data-i18n="eduNota">Esta es una muestra verificada, no un directorio completo — sabemos que existen más programas académicos reales en otros países que todavía no investigamos a fondo.</div>
@@ -2800,10 +2841,10 @@
   <!-- ============ COMUNIDAD (spec / plan) ============ -->
   <section class="screen" id="comunidad">
     <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
-    <div class="eyebrow" data-i18n="cmyEyebrow">Comunidad — próximamente</div>
-    <h2 class="title" data-i18n="cmyTitle">Reportes de campo, verificados</h2>
+    <div class="eyebrow" data-i18n="cmyEyebrow">Comunidad</div>
+    <h2 class="title" data-i18n="cmyTitle">Reportes de campo de la comunidad</h2>
     <svg viewBox="0 0 70 40" width="100%" style="max-width:130px; display:block; margin:6px auto 16px;"><circle cx="20" cy="14" r="7" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><path d="M20,21 Q9,21 8,34" fill="none" stroke="var(--moss-deep)" stroke-width="1.5"/><circle cx="50" cy="14" r="7" fill="none" stroke="var(--teal)" stroke-width="1.5"/><path d="M50,21 Q61,21 62,34" fill="none" stroke="var(--teal)" stroke-width="1.5"/><circle cx="35" cy="8" r="6" fill="none" stroke="var(--resin)" stroke-width="1.5"/><path d="M35,14 Q24,15 23,28 M35,14 Q46,15 47,28" fill="none" stroke="var(--resin)" stroke-width="1.5"/></svg>
-    <p class="subhead" data-i18n="cmySub">Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.</p>
+    <p class="subhead" data-i18n="cmySub">Comparte reportes de cultivo, diagnósticos y preguntas, comenta y sigue a otras personas. La Comunidad y su directorio solo los ven las personas con acceso completo. Cada publicación se traduce automáticamente a los 4 idiomas.</p>
 
     <div class="section-title" data-i18n="cmySecDescubrir">Descubrir</div>
     <p class="subhead" data-i18n="cmyDescubrirIntro">Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.</p>
@@ -2837,6 +2878,7 @@
         <option>Oídio (mildiu polvoso)</option><option>Botrytis (bud rot)</option><option>Ácaros / araña roja</option><option>Deficiencia de nitrógeno</option><option>Exceso de riego</option><option>Deficiencia de magnesio</option><option>Viroide latente del lúpulo (HLVd)</option><option>Pulgones (áfidos)</option><option>Trips</option><option>Mosca blanca</option><option>Pythium (pudrición de raíz)</option>
       </select>
       <textarea id="cmyPostInput" data-i18n-ph="cmyPostPh" placeholder="¿Qué quieres compartir con la comunidad?" maxlength="2000" rows="3" oninput="updatePostCount()" style="width:100%; padding:10px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; resize:vertical; background:var(--paper);"></textarea>
+      <p class="cmy-privacy-note" data-i18n="cmyAvisoTraduccion">Tu texto se envía a un servicio de traducción. No incluyas datos personales ni de salud, tuyos o de otras personas.</p>
       <div id="cmyPostFotoPreview" style="margin-top:10px;"></div>
       <div class="cmy-post-tools">
         <label class="btn-pill ghost sm" style="cursor:pointer;">📷 <span data-i18n="cmyPostFoto">Foto</span><input type="file" id="cmyPostFotoInput" accept="image/*" onchange="handlePostFoto(this)" style="display:none;"></label>
@@ -2882,7 +2924,7 @@
 
     <div id="perfilEditCard" class="card-block" style="display:none; margin-top:18px;">
       <div class="section-title" style="margin-top:0;" data-i18n="perfilEditar">Tu perfil</div>
-      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.</div>
+      <div class="note-box" data-i18n="cmyPrivacidadNote">Tu nombre, país, tipo de perfil, foto y biografía los ven las personas con acceso completo a la plataforma. Las fotos se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla. Nunca compartas apellido completo, teléfono ni ubicación exacta de tu cultivo aquí.</div>
       <div style="display:flex; flex-direction:column; gap:12px; max-width:400px; margin-top:16px;">
         <div style="display:flex; align-items:center; gap:14px;">
           <div id="cmyAvatarPreview"></div>
@@ -2908,7 +2950,7 @@
         <div id="cmyJoinMsg" style="font-size:12px; color:var(--moss-deep); display:none;" data-i18n="cmyJoinExito">¡Listo! Ya apareces en el directorio de abajo.</div>
       </div>
       <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--line);">
-        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)</button>
+        <button type="button" class="btn btn-ghost" onclick="showScreen('cuenta')" style="text-align:left;" data-i18n="perfilConfigCuenta">⚙️ Configuración de cuenta (correo, acceso, cerrar sesión)</button>
       </div>
     </div>
 
@@ -2975,7 +3017,7 @@
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliPPFD">PPFD (μmol/m²/s)</label><input type="number" id="dliPPFD" value="600" style="width:120px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="calcDliHours">Horas de luz/día</label><input type="number" id="dliHours" value="18" style="width:100px; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
       </div>
-      <div id="dliResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mol/m²/día</div>
+      <div id="dliResult" style="font-family:'Manrope',sans-serif; font-size:26px; font-weight:500;">— mol/m²/day</div>
     </div>
 
     <div class="card-block" id="calc-dose-card">
@@ -3209,7 +3251,7 @@
     </div>
 
     <div id="bitLoggedInOnly">
-    <div class="card-block">
+    <div class="card-block" id="bitNewEntryCard">
       <h3 data-i18n="bitNewEntry">Nueva entrada</h3>
       <div style="display:flex; gap:14px; flex-wrap:wrap; margin:14px 0;">
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="bitFechaLabel">Fecha</label><input type="date" id="bitFecha" style="padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
@@ -3247,7 +3289,7 @@
     <div class="section-title" data-i18n="bitHistorial">Historial</div>
     <div style="margin-bottom:14px;">
       <button class="btn btn-primary" id="bitPdfBtn" onclick="exportBitacoraPDF()" style="display:none;" data-i18n="bitPdfBtn">Descargar PDF</button>
-      <span id="bitPdfLocked" style="display:none; font-size:12px; color:var(--ink-soft); cursor:pointer; align-items:center;" onclick="openPremium()"><svg class="lock-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="bitPdfLockedMsg" style="text-decoration:underline; margin-left:6px;">Descargar en PDF es una función Premium — desbloquéala</span></span>
+      <span id="bitPdfLocked" style="display:none; font-size:12px; color:var(--ink-soft); cursor:pointer; align-items:center;" onclick="openPremium()"><svg class="lock-ic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="bitPdfLockedMsg" style="text-decoration:underline; margin-left:6px;">Descargar en PDF es parte del acceso completo — desbloquéalo</span></span>
     </div>
     <div id="bitList"></div>
     </div>
@@ -3318,7 +3360,7 @@
         <p data-i18n="hiHachisP">El cannabis no se menciona en el Corán (siglo VII), a diferencia del alcohol, que sí está prohibido explícitamente como khamr —por eso no enfrentó la misma oposición religiosa inicial. Entró al mundo islámico desde Persia e India, popularizándose hacia finales del siglo XI, posiblemente a través del jeque sufí persa Haydar. Los sufíes, un movimiento místico islámico, fueron clave en su difusión como herramienta de búsqueda espiritual, llevándolo a Siria y Egipto durante el siglo XII. Varios eruditos lo documentaron con seriedad médica: Ibn Sina (Avicena) lo incluyó en su Canon de Medicina para dolores de cabeza severos y enfermedades óseas y articulares; Ibn Wahshiyya, a inicios del siglo X, advirtió en su tratado sobre venenos que mezclarlo con otras sustancias aromáticas podía ser letal. Dato de leyenda vs. hecho: la palabra inglesa "assassin" sí proviene etimológicamente de "hashshashin", pero el relato popular de "asesinos drogados con hachís" es considerado por la erudición académica moderna (Rosenthal, 1971) como en gran parte apócrifo, no un hecho histórico confirmado —algunos historiadores incluso cuestionan si la propia etimología refleja una práctica real o proviene de un relato posiblemente impreciso de Marco Polo.</p>
       </div>
       <div class="hist-item">
-        <div class="hist-year">Siglo XVI</div>
+        <div class="hist-year" data-i18n="histSiglo16">Siglo XVI</div>
         <h4 data-i18n="hi7H4">Un cambio poco conocido: de comestible a fumado</h4>
         <p data-i18n="hi7P">Un dato que casi nadie menciona: hasta que fumar se introdujo en Eurasia desde América en el siglo XVI, el cannabis se consumía principalmente como comestible, no fumado. El patrón de consumo que hoy parece "tradicional" es, en términos históricos, relativamente reciente.</p>
       </div>
@@ -3428,62 +3470,76 @@
     <div class="eyebrow" data-i18n="cuentaEyebrow">Ajustes</div>
     <h2 class="title" data-i18n="cuentaTitle">Tu cuenta</h2>
 
+    <!-- Result of opening an e-mail link (expired / already used / e-mail
+         change half done). Filled by src/auth.js. -->
+    <div class="card-block auth-link-card" id="authLinkCard" hidden></div>
+
+    <!-- Opened a "reset password" link: choose the new one. Logic in src/auth.js. -->
+    <div class="card-block" id="authRecoveryCard" hidden>
+      <h3 data-i18n="recH">Elige una contraseña nueva</h3>
+      <p class="acc-text" data-i18n="recP">Abriste el enlace para cambiar tu contraseña. Escríbela dos veces.</p>
+      <form id="authRecoveryForm" class="auth-mini-form">
+        <label for="recPass1" data-i18n="recNueva">Contraseña nueva</label>
+        <input type="password" id="recPass1" required minlength="8" autocomplete="new-password" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres">
+        <label for="recPass2" data-i18n="recRepite">Repítela</label>
+        <input type="password" id="recPass2" required minlength="8" autocomplete="new-password">
+        <button type="submit" class="btn btn-primary" id="recSaveBtn" data-i18n="recGuardar">Guardar contraseña</button>
+        <div id="recMsg" class="acc-note" role="status"></div>
+      </form>
+    </div>
+
     <div class="card-block" id="cuentaAuthCard">
       <div id="authTabs" style="display:flex; gap:8px; margin-bottom:18px;">
         <button type="button" class="sub-pill on" data-auth-tab="login" data-i18n="authTabLogin">Iniciar sesión</button>
         <button type="button" class="sub-pill" data-auth-tab="signup" data-i18n="authTabSignup">Crear cuenta</button>
       </div>
       <form id="authForm" style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authEmailLabel">Correo</label><input type="email" id="authEmailInput" required data-i18n-ph="emailPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
         <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="authPasswordLabel">Contraseña</label><input type="password" id="authPasswordInput" required minlength="8" data-i18n-ph="authPasswordPh" placeholder="Mínimo 8 caracteres" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div id="authCaptcha"></div>
         <button type="submit" class="btn btn-primary" id="authSubmitBtn" data-i18n="authLoginBtn">Entrar</button>
         <div id="authMsg" style="font-size:12.5px; min-height:16px;"></div>
         <span id="authSwitchLink" style="cursor:pointer; font-size:12.5px; color:var(--moss-deep); text-decoration:underline;" data-i18n="authSwitchToSignup">¿No tienes cuenta? Crear una</span>
+        <button type="button" id="authForgotLink" class="auth-link-btn" data-i18n="authOlvido">¿Olvidaste tu contraseña?</button>
       </form>
     </div>
 
     <div id="cuentaLoggedInOnly">
-      <div class="card-block" id="cuentaEstadoCard">
-        <h3 data-i18n="cuentaEstadoTitle">Suscripción</h3>
-        <p id="cuentaEstadoTexto" style="margin-bottom:6px;"></p>
-        <p id="cuentaSubDetalle" style="margin:0 0 14px; font-size:12.5px; color:var(--ink-soft); line-height:1.55;"></p>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary" id="cuentaBtnAccion" style="display:none;"></button>
-          <button class="btn btn-ghost" id="cuentaBtnSecundaria" style="display:none;"></button>
-        </div>
-        <!-- Inline cancel confirmation (no browser confirm() dialog). -->
-        <div id="cuentaCancelConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF;">
-          <p id="cuentaCancelConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn btn-primary" id="cuentaCancelConfirmYes" data-i18n="subCancelConfirmYes">Sí, cancelar</button>
-            <button class="btn btn-ghost" onclick="hideCancelConfirm()" data-i18n="subCancelConfirmNo">Volver</button>
-          </div>
-        </div>
-        <div id="cuentaSubMsg" style="font-size:12.5px; min-height:16px; margin-top:10px; color:var(--moss-deep);"></div>
-        <div style="display:flex; align-items:flex-start; gap:6px; margin-top:12px; font-size:11px; color:var(--ink-soft); line-height:1.5;">
-          <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--ink-soft)" stroke-width="1.3"/></svg>
-          <span data-i18n="cuentaPagoSeguroNote">Tus pagos se procesan de forma segura por un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
-        </div>
-        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
-          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
-        </div>
+      <div class="card-block" id="cuentaAccesoCard" hidden>
+        <h3 data-i18n="accCuentaTitle">Tu acceso</h3>
+        <p id="cuentaAccesoTexto" style="margin-bottom:12px;"></p>
+        <button type="button" class="btn btn-primary" id="cuentaAccesoBtn" onclick="showScreen('desbloquear')" data-i18n="accDesbloquearBtn" hidden>Desbloquear</button>
+        <div id="cuentaRegaloBox" class="gift-box" hidden></div>
       </div>
-
       <div class="card-block">
         <h3 data-i18n="cuentaDatosTitle">Datos de la cuenta</h3>
         <div style="display:flex; flex-direction:column; gap:12px; max-width:360px;">
-          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+          <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="cuentaCorreoLabel">Correo de contacto</label><input type="email" id="cuentaCorreoInput" data-i18n-ph="emailPh" placeholder="tu@correo.com" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
           <div><button type="button" class="btn btn-ghost" id="cuentaGuardarBtn" data-i18n="authGuardarBtn">Guardar</button> <span id="cuentaGuardarStatus" style="font-size:12px; color:var(--moss-deep);"></span></div>
+        </div>
+        <!-- Sign-in e-mail (auth), not the contact e-mail above. Logic in src/auth.js. -->
+        <div class="auth-email-box">
+          <label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="ceH">Correo para iniciar sesión</label>
+          <div><b id="ceActual"></b> <button type="button" class="auth-link-btn" id="ceOpenBtn" data-i18n="ceBtn">Cambiar</button></div>
+          <form id="ceForm" class="auth-mini-form" hidden>
+            <input type="email" id="ceInput" required autocomplete="email" data-i18n-ph="newEmailPh" placeholder="nuevo@correo.com" aria-labelledby="ceOpenBtn">
+            <button type="submit" class="btn btn-ghost" id="ceSendBtn" data-i18n="ceEnviar">Enviar enlace de confirmación</button>
+          </form>
+          <div id="ceMsg" class="acc-note" role="status"></div>
         </div>
         <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
           <span onclick="showProfile()" style="cursor:pointer; color:var(--teal); font-size:12.5px; text-decoration:underline;" data-i18n="cuentaPerfilLink">Tu nombre, país y foto públicos se editan en Tu Perfil →</span>
+        </div>
+        <!-- Sign out lives here so it is always reachable. -->
+        <div style="margin-top:16px; border-top:1px solid var(--line); padding-top:14px;">
+          <span id="authLogoutBtn" class="detail-back" style="margin-bottom:0;" data-i18n="authLogoutBtn">Cerrar sesión</span>
         </div>
       </div>
 
       <!-- Delete account: password + typed word, inline confirm (no browser confirm()). Logic in src/auth.js. -->
       <div class="card-block" id="cuentaBorrarCard">
         <h3 data-i18n="delAccTitle">Eliminar mi cuenta</h3>
-        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.</p>
+        <p style="font-size:13px; line-height:1.55; color:var(--ink-soft); margin:0 0 12px;" data-i18n="delAccDesc">Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. También pierdes el acceso completo, aunque lo hayas obtenido con un aporte. No se puede deshacer.</p>
         <button type="button" class="btn btn-ghost" id="delAccOpenBtn" data-i18n="delAccOpenBtn">Eliminar mi cuenta…</button>
         <div id="delAccConfirm" hidden style="margin-top:12px; border:1px solid var(--clay); border-radius:8px; padding:12px 14px; background:#F7E4DF; max-width:420px;">
           <p id="delAccConfirmText" style="margin:0 0 10px; font-size:13px; line-height:1.5; color:#7a2f1c;"></p>
@@ -3507,21 +3563,48 @@
 
     <div class="card-block">
       <h3 data-i18n="cuentaLegalTitle">Legal</h3>
-      <div class="spec-row" style="cursor:pointer;" onclick="showScreen('terminos')"><span data-i18n="cuentaTerminosLabel">Términos y Condiciones</span><span>→</span></div>
-      <div class="spec-row" style="cursor:pointer;" onclick="showScreen('privacidad')"><span data-i18n="cuentaPrivacidadLabel">Política de Privacidad</span><span>→</span></div>
+      <div class="spec-row" style="cursor:pointer;" onclick="mvOpenLegal('terminos', 'cuenta')"><span data-i18n="cuentaTerminosLabel">Términos y Condiciones</span><span>→</span></div>
+      <div class="spec-row" style="cursor:pointer;" onclick="mvOpenLegal('privacidad', 'cuenta')"><span data-i18n="cuentaPrivacidadLabel">Política de Privacidad</span><span>→</span></div>
     </div>
 
-    <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.</div>
+    <div class="note-box" data-i18n="cuentaNote">Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.</div>
+  </section>
+
+  <!-- ============ DESBLOQUEAR (aporte único de apoyo) ============ -->
+  <!-- Rendered by src/desbloquear.js. Payment data lives only in
+       src/supportConfig.js; while the address is empty or invalid this page
+       says "Próximamente" and shows no QR and no form. -->
+  <section class="screen" id="desbloquear">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <!-- Generated by design/icons/build-icons.mjs — Desbloquear flower (outline v2) -->
+      <symbol id="mvBud" viewBox="0 0 84 96" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(12 0)">
+      <path d="M30 95 C30 88 30.6 82 30 76" stroke="currentColor" fill="none" stroke-linecap="round" style="stroke-width:calc(2.2px * var(--mvk, 1))"/>
+      <g transform="translate(20 66) rotate(-118)"><path d="M0.00 0.00 L1.46 -2.62 L1.11 -5.22 L2.50 -7.98 L1.12 -10.51 L2.35 -13.39 L0.38 -15.78 L1.18 -18.70 L-1.02 -20.96 L-0.88 -23.82 L-3.03 -26.03 L-3.71 -28.69 L-5.65 -30.92 L-6.83 -33.43 L-7.92 -36.00 L-6.83 -33.43 L-6.12 -30.74 L-5.54 -28.06 L-5.88 -25.14 L-4.59 -22.77 L-5.43 -19.86 L-3.72 -17.62 L-4.80 -14.80 L-2.86 -12.57 L-3.86 -9.88 L-1.94 -7.57 L-2.47 -5.00 L-0.86 -2.55 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g><g transform="translate(40 64) rotate(116)"><path d="M0.00 0.00 L1.54 -2.52 L1.43 -5.06 L3.23 -7.44 L2.41 -10.06 L4.37 -12.33 L3.29 -15.08 L5.14 -17.30 L4.15 -20.18 L5.67 -22.47 L5.05 -25.40 L6.06 -27.88 L5.98 -30.80 L6.83 -33.43 L7.92 -36.00 L6.83 -33.43 L5.52 -30.97 L4.24 -28.51 L2.20 -26.29 L1.96 -23.52 L-0.25 -21.29 L0.24 -18.38 L-1.89 -16.06 L-0.84 -13.15 L-2.56 -10.69 L-1.21 -7.86 L-2.15 -5.29 L-0.78 -2.60 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g><g transform="translate(17.5 47) rotate(-97)"><path d="M0.00 0.00 L1.46 -2.20 L1.11 -4.38 L2.50 -6.75 L1.12 -8.83 L2.35 -11.34 L0.39 -13.26 L1.18 -15.81 L-1.00 -17.60 L-0.86 -20.07 L-2.99 -21.80 L-3.66 -24.04 L-5.57 -25.79 L-6.73 -27.86 L-7.80 -30.00 L-6.73 -27.86 L-6.02 -25.58 L-5.45 -23.31 L-5.79 -20.76 L-4.52 -18.85 L-5.35 -16.31 L-3.67 -14.55 L-4.75 -12.12 L-2.84 -10.37 L-3.84 -8.10 L-1.93 -6.25 L-2.47 -4.11 L-0.86 -2.11 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g><g transform="translate(42.5 45) rotate(99)"><path d="M0.00 0.00 L1.54 -1.94 L1.42 -3.91 L3.20 -5.68 L2.35 -7.74 L4.28 -9.38 L3.16 -11.59 L4.95 -13.19 L3.92 -15.54 L5.37 -17.21 L4.71 -19.63 L5.65 -21.53 L5.51 -23.93 L6.28 -26.00 L7.28 -28.00 L6.28 -26.00 L5.06 -24.13 L3.86 -22.26 L1.91 -20.67 L1.71 -18.43 L-0.43 -16.83 L0.10 -14.45 L-1.98 -12.74 L-0.91 -10.34 L-2.61 -8.48 L-1.24 -6.18 L-2.16 -4.17 L-0.79 -2.03 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(1.2px * var(--mvk, 1))"/></g>
+      <path d="M24.5 79 Q30 82 35.5 79 A3.2 3.2 0 0 0 36.5 75 A3.2 3.2 0 0 0 40.0 69 A3.2 3.2 0 0 0 42.4 63 A3.2 3.2 0 0 0 43.6 57 A3.2 3.2 0 0 0 44.0 51 A3.2 3.2 0 0 0 43.6 45 A3.2 3.2 0 0 0 42.6 39 A3.2 3.2 0 0 0 41.0 33 A3.2 3.2 0 0 0 39.0 27 A3.2 3.2 0 0 0 36.8 21 A3.2 3.2 0 0 0 34.6 15.5 A3.2 3.2 0 0 0 32.8 11 Q32.2 8 30 4 Q27.8 8 27.2 11 A3.2 3.2 0 0 0 25.4 15.5 A3.2 3.2 0 0 0 23.2 21 A3.2 3.2 0 0 0 21.0 27 A3.2 3.2 0 0 0 19.0 33 A3.2 3.2 0 0 0 17.4 39 A3.2 3.2 0 0 0 16.4 45 A3.2 3.2 0 0 0 16.0 51 A3.2 3.2 0 0 0 16.4 57 A3.2 3.2 0 0 0 17.6 63 A3.2 3.2 0 0 0 20.0 69 A3.2 3.2 0 0 0 23.5 75 Z" style="stroke-width:calc(2px * var(--mvk, 1))"/>
+      <g opacity="0.75" style="stroke-width:calc(1.3px * var(--mvk, 1))"><path d="M22 66 q3 3 6 0"/><path d="M31 64 q3 3 6 0"/><path d="M18 56 q3 3 6 0"/><path d="M27 57 q3 3 6 0"/><path d="M35 54 q3 3 6 0"/><path d="M21 46 q3 3 6 0"/><path d="M30 45 q3 3 6 0"/><path d="M24 36 q3 3 6 0"/><path d="M31 34 q3 3 6 0"/><path d="M27 26 q3 3 6 0"/><path d="M24 18 q3 3 6 0"/></g>
+      <g style="stroke-width:calc(1.3px * var(--mvk, 1));stroke:var(--mv-pistil, currentColor)"><path d="M24 41 C21.5 38.5 19 37.5 16.5 35"/><path d="M37 48 C39.5 45.5 42 44.5 45.5 43"/><path d="M27.5 28 C25.5 25.5 24 23.5 21.5 21"/><path d="M34.5 61 C37.5 60 40.5 60.5 43.5 59"/></g>
+      </g></symbol>
+      <symbol id="mvBudS" viewBox="0 0 84 96" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(12 0)">
+      <path d="M30 95 C30 88 30.6 82 30 76" stroke="currentColor" fill="none" stroke-linecap="round" style="stroke-width:calc(3.4px * var(--mvk, 1))"/>
+      <g transform="translate(20 66) rotate(-118)"><path d="M0.00 0.00 L1.46 -2.62 L1.11 -5.22 L2.50 -7.98 L1.12 -10.51 L2.35 -13.39 L0.38 -15.78 L1.18 -18.70 L-1.02 -20.96 L-0.88 -23.82 L-3.03 -26.03 L-3.71 -28.69 L-5.65 -30.92 L-6.83 -33.43 L-7.92 -36.00 L-6.83 -33.43 L-6.12 -30.74 L-5.54 -28.06 L-5.88 -25.14 L-4.59 -22.77 L-5.43 -19.86 L-3.72 -17.62 L-4.80 -14.80 L-2.86 -12.57 L-3.86 -9.88 L-1.94 -7.57 L-2.47 -5.00 L-0.86 -2.55 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(2.2px * var(--mvk, 1))"/></g><g transform="translate(40 64) rotate(116)"><path d="M0.00 0.00 L1.54 -2.52 L1.43 -5.06 L3.23 -7.44 L2.41 -10.06 L4.37 -12.33 L3.29 -15.08 L5.14 -17.30 L4.15 -20.18 L5.67 -22.47 L5.05 -25.40 L6.06 -27.88 L5.98 -30.80 L6.83 -33.43 L7.92 -36.00 L6.83 -33.43 L5.52 -30.97 L4.24 -28.51 L2.20 -26.29 L1.96 -23.52 L-0.25 -21.29 L0.24 -18.38 L-1.89 -16.06 L-0.84 -13.15 L-2.56 -10.69 L-1.21 -7.86 L-2.15 -5.29 L-0.78 -2.60 Z" fill="none" stroke="currentColor" stroke-linejoin="round" style="stroke-width:calc(2.2px * var(--mvk, 1))"/></g>
+      <path d="M24.5 79 Q30 82 35.5 79 A3.4 3.4 0 0 0 36.5 75 A3.4 3.4 0 0 0 40.0 69 A3.4 3.4 0 0 0 42.4 63 A3.4 3.4 0 0 0 43.6 57 A3.4 3.4 0 0 0 44.0 51 A3.4 3.4 0 0 0 43.6 45 A3.4 3.4 0 0 0 42.6 39 A3.4 3.4 0 0 0 41.0 33 A3.4 3.4 0 0 0 39.0 27 A3.4 3.4 0 0 0 36.8 21 A3.4 3.4 0 0 0 34.6 15.5 A3.4 3.4 0 0 0 32.8 11 Q32.2 8 30 4 Q27.8 8 27.2 11 A3.4 3.4 0 0 0 25.4 15.5 A3.4 3.4 0 0 0 23.2 21 A3.4 3.4 0 0 0 21.0 27 A3.4 3.4 0 0 0 19.0 33 A3.4 3.4 0 0 0 17.4 39 A3.4 3.4 0 0 0 16.4 45 A3.4 3.4 0 0 0 16.0 51 A3.4 3.4 0 0 0 16.4 57 A3.4 3.4 0 0 0 17.6 63 A3.4 3.4 0 0 0 20.0 69 A3.4 3.4 0 0 0 23.5 75 Z" style="stroke-width:calc(3.2px * var(--mvk, 1))"/>
+      <g opacity="0.75" style="stroke-width:calc(2.2px * var(--mvk, 1))"><path d="M21.5 66 q3.5 3.5 7 0"/><path d="M17.5 56 q3.5 3.5 7 0"/><path d="M34.5 54 q3.5 3.5 7 0"/><path d="M29.5 45 q3.5 3.5 7 0"/><path d="M30.5 34 q3.5 3.5 7 0"/><path d="M23.5 18 q3.5 3.5 7 0"/></g>
+      <g style="stroke-width:calc(2.6px * var(--mvk, 1));stroke:var(--mv-pistil, currentColor)"><path d="M23 42 C20.5 39.5 18 38.5 15 36"/><path d="M37 50 C40 47.5 42.5 46.5 46 45"/><path d="M29 24 C27.5 21 25.5 19 22.5 17"/></g>
+      </g></symbol>
+    </svg>
+    <span class="detail-back" onclick="showScreen('home')" data-i18n="backToHome">← Volver a Inicio</span>
+    <div class="eyebrow" data-i18n="dsEyebrow">Acceso completo</div>
+    <h2 class="title" data-i18n="dsTitle">Desbloquea Mother Verde</h2>
+    <div id="desbloquearContent"></div>
   </section>
 
   <!-- ============ TÉRMINOS Y CONDICIONES ============ -->
   <section class="screen" id="terminos">
-    <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
+    <span class="detail-back legal-back" onclick="mvLegalBack()" data-i18n="backToCuenta">← Volver a Cuenta</span>
     <div class="eyebrow" data-i18n="tcEyebrow">Legal</div>
     <h2 class="title" data-i18n="tcTitle">Términos y Condiciones</h2>
-    <p class="subhead" style="margin-bottom:24px;" data-i18n="tcUpdated">Última actualización: julio de 2026</p>
+    <p class="subhead" style="margin-bottom:24px;" data-i18n="tcUpdated">Última actualización: 5 de noviembre de 2026</p>
 
-    <div class="note-box" data-i18n="tcDraftNote"><b>Nota sobre este documento:</b> este texto es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en cannabis y comercio digital antes de un lanzamiento real. Las leyes de cannabis varían enormemente por país y estado; este documento necesita adaptación legal profesional según dónde opere Mother Verde LLC.</div>
 
     <div class="card-block">
       <h3 data-i18n="tc1H3">1. Aceptación de los términos</h3>
@@ -3540,8 +3623,8 @@
       <p data-i18n="tc4P">Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="tc5H3">5. Suscripción Premium</h3>
-      <p data-i18n="tc5P">La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.</p>
+      <h3 data-i18n="tc5H3">5. Acceso completo</h3>
+      <p data-i18n="tc5P">El aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir aprendiendo y creciendo en su vida profesional en SUNY Morrisville, que le abrió otra vez sus puertas. A cambio, la persona recibe acceso completo a la plataforma. Es voluntario y único; no es una donación ni es deducible de impuestos. El aporte llega a la billetera personal de cripto de Bertha Limo en la red Base. La prueba gratuita de 24 horas se ofrece una sola vez por persona. Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville. <b>Códigos de regalo:</b> la administración puede enviar un código que da 7 días de acceso completo; se usa una sola vez y hay que canjearlo en un plazo de 7 días. <b>Retiro del acceso:</b> si detectamos fraude o abuso (por ejemplo, un aporte que no corresponde a un pago real), podemos retirar el acceso; queda anotado con su motivo. <b>Aportes manuales:</b> un aporte hecho por otro medio acordado lo registra la administración; al registrarlo se activa el acceso completo, igual que con un aporte en USDC aprobado, y queda anotado en el registro.</p>
     </div>
     <div class="card-block">
       <h3 data-i18n="tc6H3">6. Propiedad intelectual</h3>
@@ -3567,51 +3650,53 @@
 
   <!-- ============ POLÍTICA DE PRIVACIDAD ============ -->
   <section class="screen" id="privacidad">
-    <span class="detail-back" onclick="showScreen('cuenta')" data-i18n="backToCuenta">← Volver a Cuenta</span>
+    <span class="detail-back legal-back" onclick="mvLegalBack()" data-i18n="backToCuenta">← Volver a Cuenta</span>
     <div class="eyebrow" data-i18n="ppEyebrow">Legal</div>
     <h2 class="title" data-i18n="ppTitle">Política de Privacidad</h2>
-    <p class="subhead" style="margin-bottom:24px;" data-i18n="ppUpdated">Última actualización: julio de 2026</p>
-
-    <div class="note-box" data-i18n="ppDraftNote"><b>Nota sobre este documento:</b> esta es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en privacidad de datos (incluidas normativas como GDPR o CCPA según dónde operes) antes de un lanzamiento real.</div>
-
+    <p class="subhead" style="margin-bottom:24px;" data-i18n="pvUpdated">Última actualización: 5 de noviembre de 2026</p>
+    <div class="note-box" data-i18n="pvIntro">Esta página describe lo que la plataforma hace hoy con tus datos, tal como funciona por dentro. <b>Por qué usamos tus datos:</b> para darte el servicio que pides (tu cuenta, la Bitácora, la Comunidad, tu acceso y los correos del servicio); por nuestro interés legítimo en la seguridad y en evitar abusos (límites de uso, bloqueo de correos desechables, la huella que permite una sola prueba gratuita por persona, el registro de acciones de la administradora y las constancias de pago); y con tu consentimiento cuando eliges darnos algo opcional (nombre y teléfono de contacto, correo de contacto, o el formulario «Anunciar en Mother Verde»). <b>Cuánto tiempo:</b> los datos de tu cuenta se guardan hasta que borras la cuenta; lo que se conserva después se explica en las secciones 4 y 7.</div>
     <div class="card-block">
-      <h3 data-i18n="ppv1H3">1. Qué información recopilamos</h3>
-      <p data-i18n="ppv1P">La App puede almacenar: tu confirmación de edad, tu idioma preferido, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.</p>
+      <h3 data-i18n="pv1H">1. Quién es responsable</h3>
+      <p data-i18n="pv1P">Mother Verde LLC, Hamilton, NY. Contacto para todo lo relacionado con tus datos: <b>hello@motherverdeny.com</b>.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv2H3">2. Dónde se almacena tu información</h3>
-      <p data-i18n="ppv2P">La mayoría de los datos mencionados se guardan localmente en tu propio dispositivo, no en nuestros servidores. Esto significa que, en su forma actual, gran parte de tu actividad en la App permanece en tu teléfono o navegador, y no la recopilamos de forma centralizada.</p>
-      <p data-i18n="ppv2AdminP">Dentro del directorio de comunidad, tu nombre, país y tipo de perfil son visibles para otras personas que usen la App. Datos como tu correo electrónico nunca se muestran públicamente — solo el equipo administrador de Mother Verde LLC tiene acceso a esa información, con controles de seguridad específicos para eso (verificación en dos pasos, registro de accesos).</p>
+      <h3 data-i18n="pv2H">2. Lo que se guarda solo en tu navegador</h3>
+      <p data-i18n="pv2P">Tu confirmación de mayoría de edad, el idioma elegido, las casillas marcadas en la lista de cosecha, cuántas veces pediste reenviar un correo (para limitar los reenvíos) y, si tienes cuenta, tu sesión. Además, si juegas, una copia de tu partida del juego, y una marca de que ya viste «Nuestra historia», para no volver a mostrarla. La web también guarda una copia de sus páginas para cargar más rápido. Puedes borrarlo todo desde los ajustes de tu navegador. <b>La plataforma no usa cookies propias ni herramientas de analítica o de publicidad.</b></p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv3H3">3. Cómo usamos tu información</h3>
-      <p data-i18n="ppv3P">Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.</p>
+      <h3 data-i18n="pv3H">3. Lo que se guarda en tu cuenta</h3>
+      <div data-i18n="pv3P">Si creas una cuenta, estos datos se guardan en los servidores de Supabase en la Unión Europea (región Central EU, Fráncfort, Alemania):<ul><li><b>Cuenta:</b> correo y contraseña (Supabase guarda la contraseña cifrada; nadie de Mother Verde puede verla), idioma, nombre visible, correo de contacto opcional y el estado de tu acceso (prueba de 24 horas, aporte o días de regalo) con sus fechas.</li><li><b>Bitácora:</b> fecha, etapa, notas, pH, EC, temperatura, humedad, porcentajes de tricomas y la foto si la añades. Solo tú puedes verla.</li><li><b>Juego</b> (si juegas): tu partida guardada (etapa, decisiones, equipo y resultados), para seguir en otro dispositivo. Solo tú puedes verla.</li><li><b>Comunidad</b> (si la usas): perfil (nombre visible, país, tipo de perfil, biografía y foto), publicaciones, comentarios, fotos, a quién sigues y los reportes que envías. Lo ven solo las personas con acceso completo. Las fotos de Comunidad se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla.</li><li><b>Aportes:</b> cantidad de flores, monto, código de la transacción (TXID), fechas, estado y revisión; nombre y teléfono de contacto solo si los escribes (solo los ve la administradora).</li><li><b>Aportes manuales</b> (los que registra la administradora cuando el aporte se hizo por otro medio acordado): correo de la cuenta, medio, monto, comisión, fecha del pago, referencia y flores.</li><li><b>Códigos de regalo:</b> el correo al que se envió un código. El código solo se guarda como huella cifrada.</li><li><b>Registros técnicos:</b> envíos de correo (sin direcciones), intentos de corregir el correo de registro (solo una huella, sin la dirección), cuántas publicaciones hiciste en el día (para los límites) y un registro de las acciones de la administradora, que incluye el correo de la cuenta afectada.</li></ul></div>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv4H3">4. Servicios de terceros y pagos</h3>
-      <p data-i18n="ppv4P">Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.</p>
+      <h3 data-i18n="pv4H">4. Aportes en USDC y la cadena de bloques</h3>
+      <p data-i18n="pv4P">Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. Si marcas la casilla de propósito antes de aportar, guardamos que la aceptaste y cuándo, junto a tu aviso de aporte. Guardamos estas constancias por nuestro interés legítimo en poder demostrar los pagos recibidos y resolver reclamaciones. La plataforma no las borra automáticamente: se conservan sin tus datos personales. Los aportes manuales conservan el correo de la cuenta, el medio, el monto y la referencia como constancia contable y de prevención de fraude, también si borras tu cuenta: no se borran, solo se pueden anular. Los códigos de regalo enviados conservan el correo al que se enviaron.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv5H3">5. Tus derechos</h3>
-      <p data-i18n="ppv5P">Puedes eliminar la información almacenada localmente borrando los datos de la App desde la configuración de tu dispositivo. Si en el futuro almacenamos datos en servidores, tendrás derecho a solicitar acceso, corrección o eliminación de tu información, según lo permita la ley de tu jurisdicción.</p>
+      <h3 data-i18n="pv5H">5. Quién procesa tus datos</h3>
+      <div data-i18n="pv5P"><ul><li><b>Supabase:</b> base de datos, cuentas, archivos y funciones del servidor.</li><li><b>Vercel:</b> aloja la web.</li><li><b>Hostinger:</b> envía los correos desde hello@motherverdeny.com.</li><li><b>Resend:</b> envío de correos de respaldo, solo si está activado.</li><li><b>DeepL:</b> traduce automáticamente el texto de publicaciones y comentarios de Comunidad a los 4 idiomas.</li><li><b>Red Base:</b> se consulta para comprobar las transferencias.</li><li><b>Google Fonts y flagcdn:</b> sirven las tipografías y las banderas, y reciben la dirección IP de cada visita.</li></ul>El formulario «Anunciar en Mother Verde» envía tu nombre, empresa, correo y mensaje por correo a hello@motherverdeny.com; no se guarda en la base de datos. Mother Verde LLC está en Estados Unidos. La base de datos está en la Unión Europea (Fráncfort), pero algunos de estos servicios funcionan fuera de la UE, sobre todo en Estados Unidos (por ejemplo Vercel, Google Fonts, Resend si está activado y el servicio que consulta la red Base), así que algunos datos —como tu dirección IP, el código de una transacción o el mensaje del formulario de anuncios— pueden tratarse fuera de la Unión Europea.</div>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv6H3">6. Privacidad de menores</h3>
-      <p data-i18n="ppv6P">La App está restringida a personas mayores de 18 años mediante verificación de edad al ingresar. No recopilamos intencionalmente información de menores de edad.</p>
+      <h3 data-i18n="pv6H">6. Quién ve tus datos</h3>
+      <p data-i18n="pv6P">Tus datos privados (Bitácora, aportes, correo, estado de acceso) solo los ves tú y la administradora, que entra al panel con verificación en dos pasos. Tu correo nunca se muestra a otras personas. Tu perfil y tus publicaciones de Comunidad los ven las personas con acceso completo.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv7H3">7. Cambios a esta política</h3>
-      <p data-i18n="ppv7P">Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos dentro de la App.</p>
+      <h3 data-i18n="pv7H">7. Lo que puedes hacer</h3>
+      <p data-i18n="pv7P">Cambiar tu idioma, tu nombre y tu perfil; descargar tu Bitácora en PDF; borrar tu cuenta desde Cuenta (borra la cuenta, el perfil, la Bitácora, tu partida del juego, tu actividad y tus fotos de Comunidad, salvo las constancias de pago en USDC sin datos personales, los aportes manuales con su correo, el correo al que se envió un código de regalo y el registro de acciones de la administradora); y escribir a hello@motherverdeny.com para cualquier otra solicitud. Si borras tu cuenta, guardamos solo una huella cifrada e irreversible de tu correo, sin ningún otro dato, para que la prueba gratuita de 24 horas se use una sola vez por persona. También puedes escribir a hello@motherverdeny.com para pedir una copia de tus datos, corregirlos, borrarlos u oponerte a algún uso. Te responderemos por correo en un máximo de 30 días. Si crees que tratamos mal tus datos, también puedes presentar una reclamación ante la autoridad de protección de datos de tu país.</p>
     </div>
     <div class="card-block">
-      <h3 data-i18n="ppv8H3">8. Contacto</h3>
-      <p data-i18n="ppv8P">Para preguntas sobre privacidad, contáctanos en el correo de soporte indicado dentro de la App.</p>
+      <h3 data-i18n="pv8H">8. Menores de edad</h3>
+      <p data-i18n="pv8P">La plataforma es solo para personas mayores de 18 años: lo pregunta al entrar.</p>
+    </div>
+    <div class="card-block">
+      <h3 data-i18n="pv9H">9. Cambios</h3>
+      <p data-i18n="pv9P">Si esta política cambia de forma importante, lo avisaremos dentro de la plataforma.</p>
     </div>
   </section>
 
   <!-- ============ ALERTAS DE CAMBIO LEGAL ============ -->
   
 </div>
+<div class="app-footer-links"><button type="button" class="link-btn" id="footerHistoria" onclick="window.mvOpenStory && window.mvOpenStory()" data-i18n="navHistoria">Nuestra historia</button></div>
 <div class="app-footer" data-i18n="footerCopy">© 2026 Mother Verde LLC. Todos los derechos reservados.</div>
 
   <!-- ============ SEARCH MODAL ============ -->
@@ -3624,10 +3709,10 @@
       <p style="font-size:12.5px; color:var(--ink-soft); margin-bottom:18px;" data-i18n="adInquiryIntro">Cuéntanos sobre tu marca o negocio — revisamos cada solicitud manualmente antes de aprobarla.</p>
       <form id="adInquiryForm" style="display:flex; flex-direction:column; gap:12px;">
         <input type="text" name="_hp" style="position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryNombreLabel">Nombre</label><input type="text" id="adInquiryNombre" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryEmpresaLabel">Empresa</label><input type="text" id="adInquiryEmpresa" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryCorreoLabel">Correo</label><input type="email" id="adInquiryCorreo" required style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
-        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryMensajeLabel">Mensaje</label><textarea id="adInquiryMensaje" required style="width:100%; min-height:80px; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></textarea></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryNombreLabel">Nombre</label><input type="text" id="adInquiryNombre" required maxlength="100" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryEmpresaLabel">Empresa</label><input type="text" id="adInquiryEmpresa" maxlength="150" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryCorreoLabel">Correo</label><input type="email" id="adInquiryCorreo" required maxlength="254" style="width:100%; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></div>
+        <div><label style="font-family:'IBM Plex Mono',monospace; font-size:11px; display:block; margin-bottom:6px;" data-i18n="adInquiryMensajeLabel">Mensaje</label><textarea id="adInquiryMensaje" required maxlength="3000" style="width:100%; min-height:80px; padding:9px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif;"></textarea></div>
         <button type="submit" class="btn btn-primary" id="adInquirySubmitBtn" data-i18n="adInquirySubmitBtn">Enviar</button>
         <div id="adInquiryMsg" style="font-size:12.5px; min-height:16px;"></div>
       </form>
@@ -3667,93 +3752,14 @@
     </div>
   </div>
 
-  <!-- ============ PREMIUM MODAL ============ -->
-  <div class="premium-modal" id="premiumModal">
-    <div class="premium-sheet">
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
-        <div class="eyebrow" style="margin-bottom:6px;">Mother Verde Premium</div>
-        <span onclick="closePremium()" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:18px; color:var(--ink-soft); line-height:1;">×</span>
-      </div>
-      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:26px; margin-bottom:6px;" data-i18n="pmH2">Todo el codex, sin límites.</h2>
-      <p style="font-size:13px; color:var(--ink-soft); margin-bottom:22px;" data-i18n="pmSubhead">Prueba 3 días gratis. Cancela cuando quieras, tú misma, desde Cuenta.</p>
-
-      <div style="display:flex; justify-content:flex-end; gap:18px; padding:0 0 8px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; color:var(--ink-soft);">
-        <span style="width:64px; text-align:center;">Gratis</span>
-        <span style="width:64px; text-align:center; color:var(--moss-deep); font-weight:700;">Premium</span>
-      </div>
-      <div class="pm-row"><span class="feat">Explorador legal (50 países)</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Diagnóstico de plagas</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Cultivo completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Elaboración completa</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Ciencia completa</span><div class="pm-cols"><span>Muestra</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Negocio e industria</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Modo viajero completo</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Descargas ilimitadas de PDFs</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-      <div class="pm-row"><span class="feat">Sin publicidad</span><div class="pm-cols"><span>—</span><span class="yes">✓</span></div></div>
-
-      <!-- TRIAL DISCLOSURE — legally required, shown BEFORE any card field,
-           normal size, no fine print. Price is visible right here. -->
-      <div style="margin-top:24px; border:1.5px solid var(--moss-deep); border-radius:10px; padding:16px 16px 18px;">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--moss-deep); margin-bottom:8px;" data-i18n="pmTrialTag">Prueba gratis de 3 días</div>
-        <p style="font-size:14px; line-height:1.6; margin:0 0 12px;" data-i18n="pmTrialDisclosure">Después de 3 días, se cobrará automáticamente <b>$7.10/mes</b> a la tarjeta que ingreses, salvo que canceles antes.</p>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmPriceRowLabel">Precio</span><span><b data-i18n="pmPriceRowValue">$7.10 / mes</b></span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmTrialEndsLabel">Fin de la prueba</span><span id="pmTrialEnds">—</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-top:1px solid var(--line);">
-          <span data-i18n="pmFirstChargeLabel">Primer cobro</span><span id="pmFirstCharge">—</span>
-        </div>
-        <p style="font-size:12.5px; color:var(--ink-soft); margin:12px 0 0; line-height:1.55;" data-i18n="pmTrialCancelInfo">Puedes cancelar en cualquier momento desde <b>Cuenta → Suscripción</b>, tú misma, sin escribir a nadie. Si cancelas durante la prueba, no se te cobra nada.</p>
-      </div>
-
-      <!-- Card fields — placeholder until Payment Nerds is connected.
-           TODO(payment-nerds): mount hosted card fields into #pmCardElement. -->
-      <div id="pmCardElement" style="margin-top:16px; border:1px dashed var(--line-strong); border-radius:8px; padding:14px; font-size:12.5px; color:var(--ink-soft); text-align:center; line-height:1.5;" data-i18n="pmCardPending">Los campos de tarjeta se activarán cuando se conecte el procesador de pagos (Payment Nerds). Por ahora, en pruebas, la prueba gratis se activa sin tarjeta.</div>
-
-      <!-- Separate express consent — unchecked by default, required to proceed. -->
-      <label style="display:flex; gap:10px; align-items:flex-start; margin-top:16px; font-size:13px; line-height:1.5; cursor:pointer;">
-        <input type="checkbox" id="pmConsent" style="margin-top:2px; flex-shrink:0; width:16px; height:16px;">
-        <span data-i18n="pmConsentLabel">Entiendo que, si no cancelo antes, al terminar la prueba de 3 días se me cobrará $7.10 cada mes de forma automática hasta que cancele.</span>
-      </label>
-
-      <button class="btn btn-primary" id="pmStartTrialBtn" style="width:100%; margin-top:16px; padding:14px;" onclick="startTrialFlow()" data-i18n="pmStartTrialBtn">Empezar prueba gratis</button>
-      <div id="pmMsg" style="font-size:12.5px; min-height:16px; margin-top:8px; text-align:center;"></div>
-
-      <div style="display:flex; align-items:flex-start; justify-content:center; gap:6px; margin-top:8px; font-size:11px; color:var(--ink-soft); line-height:1.5;">
-        <svg viewBox="0 0 14 16" width="11" height="13" style="flex-shrink:0; margin-top:1px;"><rect x="2" y="7" width="10" height="8" rx="1.5" fill="none" stroke="var(--moss-deep)" stroke-width="1.3"/><path d="M4,7 L4,4.5 Q4,1.5 7,1.5 Q10,1.5 10,4.5 L10,7" fill="none" stroke="var(--moss-deep)" stroke-width="1.3"/></svg>
-        <span data-i18n="pmPagoSeguroNote">El pago lo procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.</span>
-      </div>
-      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--ink-soft); margin-top:18px; text-align:center;">© 2026 Mother Verde LLC</div>
-    </div>
-  </div>
-
-  <!-- ============ TRIAL STARTED — CONFIRMATION ============ -->
-  <div class="premium-modal" id="trialStartedModal">
-    <div class="premium-sheet" style="max-width:440px;">
-      <div style="text-align:center; font-size:34px; line-height:1; margin-bottom:12px;">🌱</div>
-      <h2 style="font-family:'Manrope',sans-serif; font-weight:500; font-size:23px; text-align:center; margin-bottom:10px;" data-i18n="tsTitle">Tu prueba gratis empezó</h2>
-      <p style="font-size:14px; line-height:1.6; text-align:center; margin-bottom:8px;" id="tsAccessLine" data-i18n="tsAccessLine">Tienes acceso completo a todo Mother Verde.</p>
-      <div style="border:1px solid var(--line-strong); border-radius:10px; padding:14px 16px; margin:16px 0; font-size:13px; line-height:1.6;">
-        <div style="display:flex; justify-content:space-between; padding:4px 0;"><span data-i18n="tsEndsLabel">La prueba termina</span><span id="tsEndsValue">—</span></div>
-        <div style="display:flex; justify-content:space-between; padding:4px 0; border-top:1px solid var(--line);"><span data-i18n="tsChargeLabel">Primer cobro ($7.10)</span><span id="tsChargeValue">—</span></div>
-      </div>
-      <p style="font-size:12.5px; color:var(--ink-soft); line-height:1.6; text-align:center; margin-bottom:18px;" data-i18n="tsCancelNote">El día antes te enviaremos un aviso. Puedes cancelar cuando quieras desde Cuenta → Suscripción — sin escribir a nadie. Si cancelas antes del cobro, no pagas nada.</p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-ghost" style="flex:1;" onclick="closeTrialStarted()" data-i18n="tsGotIt">Entendido</button>
-        <button class="btn btn-primary" style="flex:1;" onclick="closeTrialStarted(); showScreen('cuenta');" data-i18n="tsSeeSub">Ver mi suscripción</button>
-      </div>
-    </div>
-  </div>
-
-
 <script src="/main.js"></script>
 <script type="module" src="/src/auth.js"></script>
-<script type="module" src="/src/subscription.js"></script>
 <script type="module" src="/src/mvCommunity.js"></script>
 <script type="module" src="/src/avatarCropper.js"></script>
 <script type="module" src="/src/pdf.js"></script>
+<script type="module" src="/src/desbloquear.js"></script>
+<script type="module" src="/src/story.js"></script>
+<script type="module" src="/src/gameFlag.js"></script>
 <script>
   if('serviceWorker' in navigator && location.hostname !== 'localhost'){
     // Discreet update notice: when a new deploy's worker is waiting, show a
@@ -3768,8 +3774,8 @@
     let reloading = false;
     function showUpdateNotice(worker){
       if(document.getElementById('swUpdateNotice')) return;
-      const lang = (window.getCurrentLang && window.getCurrentLang()) || 'es';
-      const [msg, action, close] = UPDATE_TEXT[lang] || UPDATE_TEXT.es;
+      const lang = (window.getCurrentLang && window.getCurrentLang()) || 'en';
+      const [msg, action, close] = UPDATE_TEXT[lang] || UPDATE_TEXT.en;
       const el = document.createElement('div');
       el.id = 'swUpdateNotice';
       el.className = 'sw-update';

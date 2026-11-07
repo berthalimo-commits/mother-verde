@@ -1,0 +1,664 @@
+# Juego v2 — notas de avance
+
+Diseño: `docs/juego-diseno-v2.md`. Rama: **`juego`** solamente (nada en `main`, `dev` ni producción).
+Método: una fase cada vez → pruebas → commit + push a `juego` → esta nota → resumen con capturas →
+**esperar «sigue» de Bertha** antes de la fase siguiente.
+
+---
+
+## Fase 1 — Botón «¡Juega ya!» · HECHA (2026-10-22)
+
+**Estado:** hecha, probada y aprobada («sigue» de Bertha, 2026-10-27). Commit `1ff8f93`.
+
+**Qué se ve**
+- Botón ámbar **«¡Juega ya!»** en la barra de arriba, antes de «Buscar» (fuera de «Más»).
+  En el celular (≤ 760 px) dice solo «Jugar / Play / Spielen / Jouer» con el brote.
+- Otro **«¡Juega ya!»** en la portada, junto a «Explorar cultivo» y «Ver estatus legal».
+- Con acceso completo → abre el juego. Sin acceso (prueba vencida, visitante, etc.) → **Desbloquear** con el
+  aviso «El juego es parte del acceso completo. Cuando lo tengas, «¡Juega ya!» te lleva directo a tu planta.»
+  El aviso se esconde al salir de Desbloquear y no aparece si se llega a Desbloquear por otro camino.
+- Textos: ES «¡Juega ya!», EN «Play now!», DE «Jetzt spielen!», FR «Joue maintenant !» (espacio fijo antes del «!»).
+
+**Archivos**
+- `src/game/entry.js` — textos nuevos (`jgPlay`, `jgPlayShort`, `jgLockNote`), los dos botones, el aviso en
+  Desbloquear y su CSS (inyectado solo cuando el juego está encendido).
+- `tests/sim/game-play-ui.mjs` — prueba nueva (35 comprobaciones); añadida a `tests/sim/run-all.mjs`.
+
+**Pruebas**
+- `game-play-ui.mjs`: 35 ok, 0 fallas (con y sin acceso, visitante, 4 idiomas en vivo, celular 360 px sin
+  desborde, computadora, teclado Tab + Enter con foco visible, ≥ 44 px, el juego no se descarga hasta entrar).
+- Batería completa `run-all.mjs`: **35 pruebas, 0 fallas** (las 5 del juego y `csp-ui` repetidas al final; el
+  primer intento lo cortó la falta de memoria de la computadora, no las pruebas). Una comprobación de seguridad
+  saltó por el comentario «top bar» en `entry.js` («bar» es unidad de presión): se cambió a «top menu».
+- Web sin el juego (`main`/`dev`): compilación **idéntica byte a byte** antes y después; ningún texto del juego.
+
+**Pesos**
+| Parte | Antes | Ahora |
+|---|---|---|
+| Entrada del juego (solo en `juego`) | 2,26 KB (1,14 comprimido) | 5,76 KB (2,55 comprimido) |
+| Juego / laboratorio / resto de la web | sin cambio | sin cambio |
+
+La entrada creció +1,4 KB comprimido (el diseño estimaba +1 KB): son los textos en 4 idiomas, el aviso y el CSS
+del botón. Si Bertha lo prefiere, el CSS puede pasar al archivo del juego… pero entonces el botón se vería sin
+estilo hasta abrir el juego, así que lo dejé aquí.
+
+**Decisiones de Bertha:** ninguna nueva necesaria para esta fase. Siguen pendientes las del punto 4 del diseño
+(necesarias para las fases 6 y 7).
+
+---
+
+## Fase 2 — La carpa se ve · HECHA (2026-10-27)
+
+**Estado:** hecha y probada. Esperando «sigue» para la fase 3.
+
+**Qué se ve**
+- Arriba de las decisiones, una **carpa de cultivo dibujada**: estructura, paredes plateadas, lámpara colgada,
+  ventilador, maceta con sustrato y la planta.
+- **Cada etapa tiene su dibujo:** semilla (portada), semilla germinada (semana 1), plántula con hojas dentadas,
+  vegetativo (la planta crece cada semana), floración (estira hasta 3 semanas; los cogollos engordan y se llenan
+  de tricomas que pasan de transparentes a blancos y ámbar), secado (ramas colgadas boca abajo de una cuerda,
+  carpa a oscuras), curado y rosin (frascos), resultado (frascos con luz suave) y planta muerta (marchita, marrón).
+- **La lámpara:** encendida mientras se cultiva; su brillo sigue la intensidad elegida (baja / media / alta).
+  Apagada en la portada, el secado, el curado y la planta muerta.
+- **El sustrato** se ve seco, húmedo o empapado (con agua en el suelo) según el riego elegido.
+- **Las hojas** se ven verdes (salud ≥ 70), pálidas (40–69) o amarillentas (< 40).
+- **Indicadores** (solo mientras se cultiva): reloj de luz (18/6 o 12/12 como círculo de día y noche),
+  termómetro, gotas de humedad y medidor de nutrientes. Cada uno marca el **nivel** elegido con su palabra
+  («Cálida», «Baja»…), nunca una cifra inventada.
+- **En vivo:** al tocar una opción la carpa y los indicadores cambian en el acto. No se guarda nada hasta pasar
+  la semana.
+- **Descripción en texto** debajo de la carpa (para quien no ve la imagen y para todos): etapa, lámpara, sustrato
+  y hojas, en los 4 idiomas.
+- Celular: carpa arriba, indicadores 2 × 2, descripción. Computadora (≥ 700 px): indicadores al lado de la carpa.
+
+**Una decisión mía para que Bertha la revise:** el diseño decía colores «bajo, bien, alto». Usé **bajo / medio /
+alto** (azul, verde, ámbar) sin decir «bien», porque lo ideal cambia según la etapa (p. ej. la humedad en
+floración) y marcar «bien» siempre el medio enseñaría algo falso o regalaría la respuesta. Si Bertha prefiere que
+el indicador diga si está bien, se puede hacer en la fase 4 usando solo los valores que ella aprobó.
+
+**Archivos**
+- `src/game/tent.js` (nuevo) — el dibujo, los indicadores, la descripción y su CSS. Va dentro del archivo del
+  juego (se descarga al entrar al juego, nunca al abrir la web).
+- `src/game/game.js` — pone la carpa sobre las decisiones (no en el laboratorio) y la redibuja al elegir.
+- `src/game/i18n.js` — 21 textos nuevos × 4 idiomas (`jgTent…`).
+- `tests/sim/game-tent-ui.mjs` (nuevo, 36 comprobaciones) añadido a `run-all.mjs`;
+  `tests/sim/game-engine.mjs` ahora revisa también `tent.js` (sin butano, CO2, unidades de presión…).
+
+**Pruebas**
+- `game-tent-ui.mjs`: 36 ok, 0 fallas — 9 escenas distintas, textos en 4 idiomas, cogollos y tricomas crecen,
+  luz encendida/apagada, brillo según intensidad, hojas amarillas con poca salud, sin imágenes de fuera ni estilos
+  en línea, sin cifras (solo 18/6 y 12/12); en la app: cambios en vivo sin guardar, reloj 18/6 → 12/12, la planta
+  crece, floración, secado, curado, resultado, 4 idiomas en vivo, contraste ≥ 4,5, 360 px sin desborde,
+  computadora con indicadores al lado, sin errores de JavaScript.
+- Batería completa `run-all.mjs`: **37 pruebas, 0 fallas**.
+- Web sin el juego (`main`/`dev`): la compilación no contiene nada del juego ni de la carpa.
+
+**Pesos**
+| Parte | Antes | Ahora |
+|---|---|---|
+| Juego (al entrar) | 86,5 KB (27,7 comprimido) | 105,9 KB (33,7 comprimido) |
+| Entrada / laboratorio / resto de la web | sin cambio | sin cambio |
+
+La carpa suma +19,4 KB (+6,0 comprimido), por debajo de lo estimado (+20 a 30 KB, 7 a 10 comprimido).
+
+**Capturas:** `tests/sim/out/jgt-*.png` (intro, germ, choices, veg, flor en ES/EN/DE/FR, secado, curado,
+veg en computadora).
+
+---
+
+## Fuera del juego: arreglo de Desbloquear traído de `dev` (2026-10-27)
+
+- Arreglo aprobado por Bertha («APRUEBO»), hecho en `dev` (commit `40afc41`, vista previa de staging lista) y
+  traído a `juego` con un merge (`086a8c1`). Al cambiar el número de flores después de «Ver mi monto» vuelve el
+  botón y se esconden las indicaciones viejas; la reserva vieja se anula solo al pedir el monto nuevo.
+  Prueba `tests/sim/flowers-change-ui.mjs` (16 ok).
+- En el merge solo chocó la lista de `tests/sim/run-all.mjs`: quedan las pruebas del juego y la nueva.
+- `tests/sim/fn-e2e.mjs` fallaba a veces (dos veces seguidas aquí): forzaba un monto fijo sin mirar si otra reserva
+  abierta ya lo tenía por azar. Ahora la aparta 1 unidad antes. Solo cambia la prueba, no la app. **Este arreglo
+  de la prueba está solo en `juego`;** `dev` tiene todavía la versión que falla a veces.
+- Batería completa en `juego`, en 7 grupos pequeños (para gastar menos memoria; servidor y navegador cerrados al
+  terminar cada grupo): **38 pruebas, 0 fallas**.
+
+---
+
+## Cambio de modo (2026-10-27, pedido de Bertha)
+
+- Las fases 3 y 4 se hacen seguidas, sin esperar «sigue». Se sube a `juego` al terminar cada una. En cada fase se
+  corren solo las pruebas relacionadas; la batería completa, al final.
+- **La fase 8 espera la aprobación de `docs/juego-decisiones.md`.**
+- **Regla de fuentes:** cada regla y cada efecto tienen su fuente o su nivel en `docs/juego-fuentes.md`. Cada
+  consecuencia lleva un botón «¿Por qué?».
+- Documentos nuevos:
+  - `docs/juego-fuentes.md`: 7 fuentes abiertas y citadas, y lo que no tiene fuente comprobada;
+  - `docs/juego-decisiones.md`: borrador del catálogo, con preguntas para Bertha (commit `fbf239f`).
+
+## Fase 3 — Dar órdenes tocando la carpa + «¿Por qué?» · HECHA (2026-10-27)
+
+**Qué se ve**
+- **Cinco objetos en la carpa, cada uno con su botón** (círculo punteado, ≥ 44 px):
+  - lámpara → horas de luz e intensidad;
+  - termómetro y calefactor → temperatura;
+  - humidificador → humedad;
+  - regadera → riego;
+  - botella de nutrientes → nutrientes.
+- **Al tocar un objeto** se abre su panel bajo la carpa, con las mismas opciones que la lista y el botón «Pasar a la
+  semana siguiente». Elegir en el panel marca la lista y al revés. La carpa cambia en el acto y no se guarda nada
+  hasta pasar la semana.
+- **Teclado:** Tab llega a cada objeto, Enter abre su panel (el foco va a la opción marcada) y Escape lo cierra (el
+  foco vuelve al objeto).
+- Con un problema sin responder, el panel no deja elegir, igual que la lista.
+- La lista de siempre se queda debajo, para teclado, lectores de pantalla o quien la prefiera.
+- **«¿Por qué?»:**
+  - Dónde está: bajo el guía (una por cada causa de la semana), dentro de cada problema y en el resultado
+    (tricomas, causas, secado, curado, rosin, planta marchita).
+  - Qué muestra: la razón, el respaldo (estudio / guía técnica / práctica / regla del juego), la fuente comprobada
+    cuando la hay (F1–F6 de `juego-fuentes.md`) y el botón de la lección.
+  - Sin fuente externa, lo dice así («práctica de cultivadores… sin fuente externa comprobada», «regla del juego»).
+
+**Archivos**
+- `src/game/tent.js`: objetos dibujados (`tools()`), botones encima del dibujo (posiciones en el CSS, sin estilos
+  en línea) y el panel.
+- `src/game/why.js` (nuevo): razones, fuentes, niveles y botones.
+- `src/game/game.js`: estado del panel, teclado, sincronía panel ↔ lista y grupos «¿Por qué?».
+- `src/game/i18n.js`: textos de objetos y de «¿Por qué?» en ES/EN/DE/FR.
+
+**Pruebas**
+- `tests/sim/game-touch-ui.mjs` (nueva): **37 ok**.
+  - Fuentes: cada enlace está en `juego-fuentes.md`; «estudio» o «guía» siempre con enlace; rosin sin cifras.
+  - Carpa: 5 objetos ≥ 44 px dentro de la carpa y sin taparse a 360 px; cada objeto abre lo suyo; panel ↔ lista;
+    Tab, Enter y Escape; el panel bloqueado con un problema.
+  - **Pasar la semana desde el panel da exactamente el resultado del motor del juego.**
+  - «¿Por qué?» con su texto, nivel, fuente y lección, en 4 idiomas; resultado en computadora; sin errores.
+- Relacionadas:
+  - `game-tent-ui` 36 ok: la comprobación de «la planta crece» ahora mira el tallo (`.jgt-stem`) y no el
+    primer trazo redondo, que ahora es la regadera.
+  - `game-ui` 54 ok: el Tab de prueba ahora pasa los objetos de la carpa antes de llegar a la lista.
+  - `game-play-ui` 35, `game-engine` 44 (ahora revisa también `why.js`), `game-db` 37.
+
+**Peso:** juego 105,9 → 132,0 KB (33,7 → 41,5 comprimido). El diseño estimaba +2 a 3 KB comprimido para los
+objetos; el resto (≈ +5 KB comprimido) son los textos de «¿Por qué?» en 4 idiomas, que no estaban en el diseño.
+
+## Fase 4 — Los problemas se ven y la semana se anima · HECHA (2026-10-27)
+
+**Qué se ve**
+- **Cada problema se dibuja en la planta como lo describe su fuente** (`docs/juego-fuentes.md`):
+
+  | Problema | Cómo se ve | Fuente |
+  |---|---|---|
+  | Oídio | manchas blancas como polvo sobre las hojas | F5, F7 |
+  | Botrytis | los cogollos de arriba se ponen grises y marrones | F4 y la plataforma |
+  | Ácaros | puntitos claros y una telaraña fina | F6 |
+  | Carencia de nitrógeno | se ponen amarillas las hojas de **abajo** (las más viejas) | F2 |
+  | Exceso de riego | hojas caídas y sustrato oscuro, empapado y brillante, aunque ya se elija otro riego | F3 y la plataforma |
+
+- **Recuperación:** la semana después de resolver bien el problema, sus señales se ven más débiles (la planta se
+  recupera poco a poco). Una semana más tarde, desaparecen.
+- **La descripción en texto** nombra el problema o la recuperación (ES/EN/DE/FR).
+- **La semana se anima una sola vez** al pasar: la planta crece un poco, caen tres gotas sobre la maceta y la luz se
+  apaga y vuelve. Dura menos de 2,5 s y nada se repite. Elegir opciones no anima nada.
+- **Con «reducir movimiento»** activado en el sistema no se mueve nada: el cambio se ve de golpe.
+
+**Archivos**
+- `src/game/tent.js`: `problemOf()`, los síntomas, las hojas caídas o amarillas, los cogollos podridos, el sustrato
+  empapado y el CSS de las animaciones.
+- `src/game/game.js`: `animNext` (solo el primer dibujo después de pasar la semana se anima).
+- `src/game/i18n.js`: `jgTentP_*` y `jgTentRec` en 4 idiomas.
+
+**Pruebas**
+- `tests/sim/game-problems-ui.mjs` (nueva): **25 ok**.
+  - Dibujos: cada problema y su fuente; hojas amarillas solo abajo; sin problema no se dibuja nada; la
+    recuperación; las descripciones en 4 idiomas.
+  - Animaciones: ninguna repetida ni de más de 5 s; en la app se anima una vez, no queda nada en marcha y no se
+    anima al elegir.
+  - En la app: exceso de riego visible tras 2 semanas, la recuperación al responder bien y que desaparece después.
+  - «Reducir movimiento»: cero animaciones.
+- Relacionadas: `game-tent-ui` 36, `game-touch-ui` 37, `game-play-ui` 35, `game-engine` 44 y `game-ui` 54. En
+  el primer intento, `game-ui` no pudo arrancar el Chrome de pruebas; repetida sola, pasó.
+
+**Peso:** juego 132,0 → 137,8 KB (41,5 → 43,3 comprimido). El diseño estimaba +3 a 4 KB comprimido; quedó en +1,8.
+
+**Guardado por partes** (la conexión se cortó una vez): A `a1ac216`, B `6638801`, C `bac27bf`, nota + subida en
+el commit siguiente.
+
+**Batería completa (2026-10-28), en 8 grupos pequeños:** **40 pruebas, 0 fallas**.
+- Hubo una falla intermitente en `panel-ui.mjs` («enviar código de regalo → Enviado a…»): falló 2 veces seguidas
+  y luego pasó 2 veces sin ningún cambio en el código (ni el panel ni `main.js` cambiaron desde que pasaba). Causa
+  todavía desconocida; no tiene que ver con el juego.
+- La prueba ahora imprime lo que mostraba el panel cuando falla, para poder ver la causa si vuelve a pasar.
+- Vercel publicó las fases 3 (`f6a2e20`) y 4 (`44aae05`) en la vista previa de `juego` (READY).
+
+## Fase 8 — Secado, curado + almacenamiento y rosin que se ven · HECHA (2026-10-29)
+
+Hecha con el catálogo que Bertha aprobó el 2026-10-28 (`docs/juego-decisiones.md`, especificación de la fase 8).
+
+**Qué se ve y qué se decide**
+- **Secado** (6 decisiones): método (planta entera / ramas / rejilla), temperatura, humedad, aire, luz y cuándo
+  terminar.
+- **Curado** (4) + **almacenamiento** (5, en la misma pantalla bajo «Cómo lo vas a guardar después»):
+  - curado: envase (vidrio, plástico, lata, bolsa de curado), control de humedad (sin control, higrómetro, sobre de
+    dos vías), abrir y tiempo;
+  - almacenamiento: luz, temperatura (fresco, cálido, nevera, congelador), aire en el envase, entero o molido, y
+    tiempo.
+- **Rosin** (11 decisiones): material de partida (flor curada, hachís, kief, fresco congelado, flor fresca sin
+  congelar), malla, calor, presión, tiempo, tipo de prensa, papel, enfriado, guardar, prioridad y protección.
+- **Cifras solo en el rosin y solo con fuente**, marcadas «orientativo» en su idioma:
+  - malla fina 5–25 µm y estándar 25–220 µm (patentes P1 y P2);
+  - calor de las placas 49–116 °C (P2).
+  - **Presión y tiempo, en niveles:** no hay fuente con cifras, y la prueba de seguridad prohíbe unidades de
+    presión.
+- **El dibujo cambia en el acto según lo elegido:**
+  - secado: planta colgada o rejilla, flechas del aire, luz;
+  - curado y almacenamiento: frasco, bolsa o lata, tapa, higrómetro o sobre, armario, estante, ventana al sol,
+    nevera o congelador con escarcha, entero o molido;
+  - rosin: prensa según su tipo, placas que brillan según el calor, papel, bolsa, material.
+- **Las consecuencias se ven en el dibujo y se cuentan en la descripción:** moho, cogollos resecos, restos de
+  planta, rosin oscuro por calor alto, rosin aguado con flor fresca.
+- **«¿Por qué?» en cada decisión que restó** (23), con su nivel y su fuente:
+  - almacenamiento: estudio F8;
+  - malla: patentes P1 y P2;
+  - el resto: práctica de la plataforma o «criterio de la autora».
+- Las decisiones que solo enseñan (tipo de prensa, prioridad) no restan. Presión y tiempo dicen «sin dato» hasta
+  que Bertha dé una cifra.
+- La cosecha final muestra dónde se guardó y el frasco de rosin si se hizo.
+- **Sin migración nueva:** el almacenamiento va dentro de la pantalla del curado, y el servidor ya aceptaba
+  «secado», «curado» y «rosin». El post-cosecha completo cabe en el límite de 1.000 bytes.
+
+**Archivos**
+- `src/game/rules.json` (bloque `post`): ideal = una opción, varias o ninguna; `escala:false`; `respaldo`; `grupo`.
+- `src/game/engine.js`: varios ideales, decisiones que no son escala y las que no puntúan.
+- `src/game/i18n-post.js` (nuevo): todos los textos del post-cosecha en 4 idiomas. Los viejos se quitaron de
+  `i18n.js`.
+- `src/game/tent.js`: escenas `dryScene`, `cureScene` y `rosinScene`, y `postLooks()` para las consecuencias.
+- `src/game/why.js`: 23 razones nuevas, fuentes F8, P1 y P2, niveles «autora» y «patente».
+- `src/game/game.js`: redibujo en vivo (`postLive`) y subtítulo del almacenamiento.
+- `docs/juego-fuentes.md`: F8, P1, P2 y los niveles nuevos.
+
+**Pruebas**
+- `tests/sim/game-post-ui.mjs` (nueva): **33 ok**.
+  - Dibujos: cada decisión cambia el dibujo; las consecuencias se ven y se cuentan en 4 idiomas.
+  - En la app: elegir no guarda; «¿Por qué?» con F8 y con las dos patentes; cifras del rosin «orientativo» en 4
+    idiomas; el servidor guarda todo; 360 px sin desborde.
+- Pruebas adaptadas a la fase 8:
+  - `game-engine` 49: la regla de cifras nueva y que el post-cosecha cabe en el límite;
+  - `game-ui` 54: las decisiones nuevas y la regla de cifras;
+  - `game-tent-ui` 36: el rosin tiene escena propia;
+  - `game-lab` 35: el ideal ahora puede ser una lista.
+- **Batería completa (2026-10-29), en grupos de 2 a 5 archivos: 41 pruebas, 0 fallas.**
+  - `game-ui` falló una vez en «escritorio oscuro»: el juego no cargó y se veía «Reintentar», con la máquina sin
+    memoria. Repetida, pasó, y también pasó dentro de la batería.
+
+**Peso:** juego 137,8 → 189,1 KB (43,3 → 58,9 comprimido). Casi todo son textos: 26 decisiones con sus opciones,
+explicaciones y «¿Por qué?» en 4 idiomas. Se descarga solo al entrar al juego.
+
+**Para validar por Bertha:** la lista de `docs/juego-decisiones.md` («Para validar por Bertha»).
+
+## Fases 5, 6 y 7 — Migración, equipo y sistemas, germinación · HECHAS (2026-10-29)
+
+**Fase 5 — migración nueva (solo staging, hay que pegarla)**
+- `supabase/migrations/20261029100000_game_setup.sql`: solo cambia `game_state_valid()`.
+  - La partida puede llevar la clave `setup` (equipo y método), cada opción solo con sus valores conocidos y
+    `plantas` de 1 a 6.
+  - Se suman la etapa `germinacion` y los problemas `pudricion_raiz` y `quemadura_luz`.
+  - Todo lo demás queda igual.
+- Vuelta atrás: `supabase/admin/rollback-20261029100000.sql`.
+- **Para pegar en staging:** `supabase/staging/paso4c-juego-setup.sql`, copia exacta comprobada byte a byte
+  (`docs/staging.md`, paso 4). Sin ella, la web de pruebas rechaza guardar una partida con equipo.
+- En `tests/sim/test.mjs` la migración y su vuelta atrás entran en la comprobación de «esquema después de las
+  reversas = esquema de antes».
+
+**Fase 6 — «Prepara tu carpa» (una vez por partida, antes de plantar)**
+- Decisiones:
+  - carpa (pequeña, mediana, grande);
+  - luz (LED, HPS, CMH);
+  - sistema (maceta, DWC, NFT, aeroponía, acuaponía);
+  - solo con maceta: sustrato (tierra, coco, lana de roca, tierra viva), maceta (plástico, tela, de aire, barro),
+    tamaño y riego (a mano o goteo);
+  - medir pH y EC.
+- No hay opción «correcta»: cada pieza cambia las reglas. Fuentes en `docs/juego-decisiones.md`:
+  - **hidroponía:** sin decisión de riego; con calor 2 semanas, **pudrición de raíz** (F9 + F3);
+  - **acuaponía:** sin decisión de nutrientes, porque los dan los peces;
+  - **HPS:** la temperatura cuenta un nivel más alta (glosario, simplificación);
+  - **tela, de aire y barro:** el exceso de riego tarda una semana más y «poco» riego resta el doble (F10);
+  - **goteo:** el oídio tarda una semana más (F5);
+  - **sustratos:** coco y lana de roca piden nutrientes desde la plántula; la tierra viva no; en tierra, la
+    carencia de N tarda una semana más;
+  - **carpa pequeña:** **quemadura de luz** con planta alta y luz fuerte;
+  - **carpa grande:** +1 por cada error de clima y +5 en la cosecha;
+  - **maceta pequeña sin trasplantar:** resta desde la 3.ª semana de vegetativo. Hay un botón «Trasplantar».
+  - **sin medidor:** «sin medir» y sin cifras de EC.
+- **El dibujo cambia con el equipo:** maceta y sustrato, los sistemas (raíces, burbujas, canal, niebla, peces),
+  lámpara LED, HPS o CMH, techo más bajo en la carpa pequeña, línea de goteo, medidor. Sin regadera en hidroponía y
+  sin botella de nutrientes en acuaponía.
+- Las partidas guardadas antes de la fase 6 siguen funcionando: sin equipo, empiezan directo en la plántula.
+
+**Fase 7 — Germinación (etapa nueva, una pantalla antes de la plántula)**
+- Decisiones:
+  - método: papel húmedo, taco de turba, directo en tierra, directo en coco, vaso de agua o cubo de lana de roca;
+  - temperatura: fría, templada (19–30 °C, **F11**) o calurosa;
+  - humedad;
+  - tiempo en el vaso (solo con el vaso).
+- Los errores restan salud al empezar la plántula y tienen su «¿Por qué?».
+- Se dibuja cada método.
+
+**«¿Por qué?» nuevos:** pudrición de raíz (F9 + F3), quemadura de luz, maceta pequeña, lámpara HPS, maceta porosa
+(F10) y la germinación (temperatura F11; humedad y tiempo, criterio de la autora).
+
+**Archivos**
+- `src/game/rules.json`: bloques `setup` (decisiones y efectos) y `germinacion`, y los eventos nuevos.
+- `src/game/engine.js`: `setSetup`, `setupDecisions`, `fixedDecisions`, `start` con germinación, `applyGerm`,
+  `transplant` y los efectos en `applyWeek` y `harvest`.
+- `src/game/i18n-setup.js` (nuevo): todos los textos en 4 idiomas.
+- `src/game/game.js`: las dos pantallas nuevas (las decisiones aparecen según lo elegido), el resumen del equipo,
+  el aviso de hidroponía y el botón de trasplante.
+- `src/game/tent.js`: maceta, `hydro()`, `lamp()`, `germScene()`, medidor, goteo, los dos problemas nuevos y
+  objetos ocultos.
+- `src/game/why.js`: 8 razones nuevas, fuentes F9, F10 y F11.
+- `docs/juego-fuentes.md`: F9, F10 y F11 comprobadas, y lo que no se pudo comprobar.
+
+**Pruebas**
+- Nuevas:
+  - `game-setup-db.mjs` **13 ok**: la migración, la vuelta atrás y las copias para staging;
+  - `game-setup-engine.mjs` **31 ok**: cada efecto del equipo uno por uno, y el servidor acepta todos los
+    estados;
+  - `game-setup-ui.mjs` **27 ok**: las pantallas, lo que aparece y desaparece, hidroponía, trasplante, sin
+    medidor, HPS, servidor, 4 idiomas, 360 px.
+- Las pruebas que empezaban con «Plantar la semilla» usan ahora `startGame()` (en `browser.mjs`): equipo neutro y
+  germinación ideal, así siguen en la semana 1 de la plántula con salud 100.
+- **Batería completa (2026-10-29), en grupos de 4 a 6: 44 pruebas, 0 fallas.**
+
+**Peso:** juego 189,1 → 237,9 KB (58,9 → 73,4 comprimido). Lo que más pesa son los textos de 4 idiomas. Se
+descarga solo al entrar al juego.
+
+**Para Bertha:**
+1. ~~Pegar en staging `supabase/staging/paso4c-juego-setup.sql`~~ **HECHO** por Bertha el 2026-10-29 en el
+   staging real («Success. No rows returned»); su partida se guardó y siguió bien después.
+2. Validar los «criterio de la autora» de las fases 6 y 7 (lista en `docs/juego-decisiones.md`).
+
+## Fuentes del rosin según la comunidad + sub-fase 8b · HECHAS (2026-10-29)
+
+**Fuentes de la comunidad** (`docs/juego-fuentes.md`, nivel nuevo «práctica de la comunidad»). Abiertas, leídas
+y explicadas con palabras propias:
+- **C1** blog de Lowtemp Industries;
+- **C2** manual de la NugSmasher Mini;
+- **C3** manual del Ice-O-Lator (Pollinator Company, de Mila Jansen);
+- **C4** manual del Pollinator.
+
+«Smash Nugs» = NugSmasher (confirmado por Bertha). No se usan vídeos ni redes sociales. Comparación con los rangos
+de Bertha:
+- coinciden la malla de flor seca (90 µm), el hachís fresco en 25 µm, los tres tramos de calor y el tiempo de
+  C2 (90–120 s);
+- **sin fuente:** el hachís seco (45–90 µm);
+- **fuera del rango:** el tiempo de C1 (3 min con hachís a baja temperatura).
+
+Las cifras del juego **no se cambiaron todavía**: esperan que Bertha valide sus rangos.
+
+**Sub-fase 8b — preparar el material de partida (sin solventes)**, etapa opcional entre el curado y la prensa
+(catálogo 8.2):
+- **Material:** flor curada, flor fresca congelada, flor liofilizada o recortes.
+- **Separación:** sin separar, tamizado en seco o agua y hielo, cada una con sus decisiones:
+  - tamizado: frío (C4), malla, cómo frotar y tiempo (C4);
+  - agua y hielo: temperatura (C3), agitación (C3), lavados, bolsa (C1) y secado del hachís (C3: húmedo = moho).
+- La pantalla muestra solo las decisiones del método elegido y se redibuja al cambiarlo.
+- **Pureza:** alta, media o baja según los errores. La prensa recibe el material (flor, kief, hachís o fresco
+  congelado) y su pureza; ya no pregunta el material. Los errores de la preparación cuentan en el veredicto del
+  rosin, no en la nota del cogollo.
+- **Dibujo en vivo:** bandeja, tamiz con kief cayendo o cubo con hielo y bolsas, y el hachís secándose. El color
+  muestra la pureza; aparecen los restos y el moho.
+- **«¿Por qué?»:** en las 8 decisiones que restan, citando C1/C3/C4 como «práctica de la comunidad… no es un
+  estudio ni un respaldo a Mother Verde».
+- «Terminar sin hacer rosin» funciona también desde aquí.
+- **Migración:** la de la fase 5 (aún sin pegar) ahora también acepta la etapa y el bloque `material`, y hasta
+  1.500 bytes de post-cosecha. La copia de staging está actualizada.
+
+**Pruebas:**
+- `game-material-ui.mjs` (nueva) **20 ok**;
+- `game-engine` 61 (sección 1c de la 8b);
+- `game-setup-db` 14;
+- `game-post-ui` y `game-ui` pasan por la preparación.
+- Arreglado durante la 8b: el botón «Terminar sin hacer rosin» dejaba de responder al redibujar el formulario.
+- **Batería completa (2026-10-29), en grupos de 2 a 6: 45 pruebas, 0 fallas.**
+
+**Peso:** juego 237,9 → 271 KB (73,4 → 81,7 comprimido).
+
+## Arreglo: «no puedo cambiar nada» con un problema abierto (2026-10-29)
+
+**Lo que vio Bertha** en `juego` (staging, cuenta hello@), justo después de pegar `paso4c-juego-setup.sql`: todas
+las decisiones y «Pasar la semana» con el cursor de «no permitido», y una carencia de nitrógeno en la planta.
+
+**Causa:** no es un fallo del guardado ni de la migración. Es la regla del juego: con un problema abierto hay que
+responder primero «¿Qué haces?» en la tarjeta del problema; hasta entonces la semana queda bloqueada. Abrir la
+lección no cuenta como respuesta. El juego **no lo explicaba**.
+- Reproducido en local con una partida guardada antes de las fases 6, 7 y 8b: carga sin errores de consola, la
+  tarjeta muestra las 4 respuestas y, al tocar una, todo se desbloquea y el servidor guarda la partida.
+
+**Arreglo:**
+- **Aviso encima de las decisiones bloqueadas:** «Tu planta tiene un problema: primero responde «¿Qué haces?»…»,
+  con el botón **«Ir a la pregunta»**, que lleva el foco a la primera respuesta.
+- **En la tarjeta:** «Elige una respuesta para seguir jugando. Leer la lección ayuda, pero no cuenta como
+  respuesta.»
+- **En el panel de la carpa:** el mismo aviso.
+- Todo en ES/EN/DE/FR.
+
+**Prueba nueva:** `game-oldsave-ui.mjs` **17 ok**.
+- El caso de Bertha: partida antigua con el problema abierto, aviso, «Ir a la pregunta», leer la lección y
+  volver sigue bloqueado, responder desbloquea, guarda.
+- Una partida guardada en la prensa antes de la 8b (pregunta el material, termina y guarda).
+- Una guardada en el curado (al terminar pasa a preparar el material).
+- Las demás pruebas del juego pasan.
+
+**Lo siguiente:**
+- **Varias plantas y autofloreciente** (semilla regular con macho posible, autofloreciente con calendario propio,
+  número de plantas que agranda la carpa).
+- Después, la **fase 9** (pulido final).
+- Fuera del juego, cerrado: Bertha comprobó que el arreglo de las flores funciona en la página publicada de `dev`.
+
+**Cómo retomar**
+- `git checkout juego`
+- Terminal 1: `node tests/sim/fakeserver.mjs` · Terminal 2:
+  `VITE_SUPABASE_URL=http://localhost:54321 VITE_SUPABASE_ANON_KEY=anon npx vite --port 5174`
+- Solo esta fase: `cd tests/sim && node game-play-ui.mjs` (fakeserver recién arrancado). Todo: `node run-all.mjs`
+  (arranca su propio fakeserver: apaga antes el tuyo; necesita Vite ya encendido en 5174).
+- Si la computadora anda corta de memoria, correr la batería en grupos de 5 o 6 archivos, cerrando Vite, el
+  fakeserver y el Chrome de pruebas después de cada grupo (`panel-ui.mjs` va en el mismo grupo que `app-ui.mjs`,
+  justo después, porque usa su base).
+- Aviso: si Windows reserva los puertos 54321/54322 (`netsh interface ipv4 show excludedportrange protocol=tcp`),
+  mover los puertos de las pruebas solo mientras se prueban y luego `git checkout` de esos archivos.
+- Aviso: `vite build --outDir <otra carpeta>` con el juego encendido termina con
+  «mv-dev-preview: preview code still present in dist/main.js» porque ese control mira siempre `dist/`.
+  Pasa igual sin los cambios del juego; no es un fallo de esta fase.
+
+## Repaso final: por qué murió la planta / qué bajó la nota (2026-10-30)
+
+Pedido tras la prueba de Bertha (planta muerta a propósito). Antes, la pantalla final decía «no sobrevivió»,
+una lista corta de causas («el riego, un problema sin resolver»), botones de lección y «¿Por qué?» sueltos.
+Ahora (`src/game/review.js`, textos `src/game/i18n-review.js`, ES/EN/DE/FR):
+- **Causa principal** (lo que más salud quitó) y la semana en que la salud llegó a 0.
+- **Cadena** de cada causa con las semanas: «Semanas 1–2: Riego «Mucho» → Semana 2: apareció «Exceso de riego»
+  → Respondiste «Esperar» → siguió sin resolver N semanas: −X de salud». Decisiones por etapa, plagas (lo que
+  las trajo aunque no restara, la respuesta equivocada y la buena), floración temprana, maceta sin trasplantar,
+  germinación, secado/curado (moho, resecos), preparación y prensa (hachís húmedo, rosin oscuro, aguado).
+- **Qué habría funcionado mejor**, siempre con «no es la única respuesta».
+- **«¿Por qué?»** de cada causa con su fuente (why.js) y **lecciones relacionadas**.
+- Botones **«Empezar de nuevo»** (mismo equipo, directo a germinar) y **«Probar otro sistema de cultivo»**.
+- El motor guarda ahora en cada semana lo que recibió la carpa (`log[].c`), el problema que restó (`e`) y las
+  respuestas equivocadas (`a`). Sin migración nueva: el servidor no mira dentro de `log`. Partidas viejas:
+  repaso más corto, sin semanas inventadas.
+- Tests: `game-review.mjs` 30 ok, `game-review-ui.mjs` 19 ok; juego completo en verde.
+
+## Revisión completa con recorridos automáticos (2026-10-30)
+
+Pruebas `tests/sim/game-full-1..5.mjs` (ayudante `game-full-lib.mjs`): juegan tocando la pantalla contra la copia
+local de staging (fakeserver: PGlite con las mismas migraciones) y revisan cada pantalla (nada bloqueado sin
+explicación, siempre un botón para seguir, consola sin errores, cada «¿Por qué?» con razón y respaldo, sin textos
+sin traducir, sin desborde en celular y escritorio). Capturas de cada final: `tests/sim/out/jgfull-final-*.png`.
+Resultados: 1 sistemas 90 ok · 2 problemas 120 ok · 3 finales 94 ok · 4 post-cosecha 67 ok · 5 guardar 58 ok.
+
+**Flor fresca congelada directo a la prensa (decisión de Bertha):** 8b «Flor fresca congelada» + «Sin separar»
+→ la prensa recibe `congelado` (live rosin de flor). Malla «para flor fresca» 160 µm (C2, orientativo, práctica
+de la comunidad); nueva decisión «Humedad de la flor congelada» (escarcha o descongelada al aire → rosin aguado;
+atemperar en bolsa cerrada = recomendado, criterio de la autora). Dibujo: escarcha o gotas de condensación en la
+bolsa. Sin migración (el servidor no mira las decisiones dentro de `post`).
+
+Pendientes al cerrar (se cortaron por falta de memoria): `game-post-ui` (expectativa de fuentes de la malla
+actualizada con C2) **34 ok**; con el código final `game-full-1` **90 ok** y `game-full-2` **120 ok**
+(2026-10-31, una a la vez, cerrando Vite y el navegador de pruebas entre cada una). No queda nada pendiente.
+Staging: `paso4c-juego-setup.sql` ya está pegado (Bertha, 2026-10-29); no hay nada que pegar por estos cambios.
+
+## Varias plantas y autofloreciente · HECHA (2026-11-02)
+
+Especificación y lista para validar: `docs/juego-decisiones.md` → «Varias plantas y autofloreciente».
+- **«Prepara tu carpa»** pregunta ahora el **tipo de semilla** (feminizada · regular · autofloreciente) y el
+  **número de plantas** (1–6: caben 2 en la carpa pequeña, 4 en la mediana, 6 en la grande; si achicas la carpa
+  se queda en las que caben). Vienen marcadas «feminizada» y «1 planta».
+- **La carpa** dibuja todas las plantas en fila, al fondo (los objetos quedan delante y se pueden tocar).
+- **Regular:** la mitad salen macho. En la 1.ª semana de floración se ven con **sacos de polen** (sin cogollos),
+  el guía lo avisa y aparece **«Retirar los machos (N)»**. Si siguen al pasar la 2.ª semana sueltan el polen:
+  los cogollos se dibujan con semillas y la cosecha pierde 15 puntos (se quitan después del tope de 100, para que
+  siempre se vean). El repaso final lo explica con su semana, qué funciona mejor y su «¿Por qué?» (Genética).
+- **Autofloreciente:** florece sola tras 2 semanas de vegetativo (el 12/12 no la adelanta: el guía lo explica);
+  en floración da igual 18/6 o 12/12; punto de cosecha a las 9 semanas desde la semilla; guía propio.
+- Partidas de antes: cargan como 1 planta feminizada; «Empezar de nuevo» funciona.
+- Textos ES/EN/DE/FR en `src/game/i18n-plants.js`.
+- Tests: `game-plants-engine.mjs` **31 ok**, `game-plants-ui.mjs` **40 ok** (celular y computadora, 4 idiomas, capturas
+  `tests/sim/out/jgplantas-*.png`); el resto del juego en verde.
+
+**Para Bertha:**
+1. ~~Pegar en staging `paso4d-juego-plantas.sql`~~ **HECHO** el 2026-11-02 (aprobado por el dueño; aplicado desde el
+   SQL Editor del proyecto `ciqdnrdtaxbmcjvxljvq`, «Success. No rows returned»). Comprobado: la regla conoce
+   «machos», acepta «retirados» y «tarde» y rechaza valores inventados; en la web de pruebas (`juego`) una partida
+   con 4 semillas regulares se guardó tras retirar los machos (seq 39) y otra tras soltar el polen (seq 55).
+   La partida terminada que había en esa cuenta quedó copiada en el navegador (`mvGameBackup-2026-11-02`).
+   Deshacer: `supabase/staging/paso4d-rollback.sql`.
+2. Validar los valores marcados «criterio de la autora / valor de juego» de esta etapa (lista en
+   `docs/juego-decisiones.md`).
+
+**Lo siguiente:** la **fase 9** (pulido final).
+
+### Validación de Bertha aplicada (2026-11-02)
+Respuestas 1–5 y 7–11 aplicadas (detalle en `docs/juego-decisiones.md`): −25 por polinización; el «¿Por qué?» de los
+machos explica que en la vida real cada semilla es azar; calor 49–80 / 80–95 / 95–116 °C, tiempo medio 90–120 s,
+malla 90 µm flor seca y 25 µm hachís de agua, bolsa fina de agua 25 µm: todo «orientativo», con su fuente.
+
+**Respuesta 6 (carpa llena), APLICADA:** la humedad cuenta un nivel más alta (como el HPS); en floración «Baja» se
+queda en «Baja». Siempre hay una opción sin pérdida («Baja» en plántula y vegetativo cuenta como «Media-alta»; en
+floración, «Baja»). Al retirar los machos la carpa deja de estar llena. Con su «¿Por qué? · Carpa llena» y el aviso
+del guía. Test `game-plants-engine` 37 ok.
+
+## Fase 9 — Pulido final · HECHA (2026-11-02)
+
+**Revisión automática nueva** `tests/sim/game-polish.mjs` (25 ok): cada tipo de pantalla (preparar la carpa,
+germinación, semana con un problema, panel de un objeto abierto, floración con machos, carpa llena, secado, prensa,
+final con repaso y un «¿Por qué?» abierto, laboratorio) en **celular de 320 px** y **pantalla de 1920 px**:
+- **Contraste** de cada texto visible contra su fondo real (AA: 4,5:1; 3:1 en texto grande): sin fallos.
+- **Lector de pantalla:** todo botón, campo y dibujo tiene nombre; cada grupo de opciones tiene título; encabezados
+  en orden. **Arreglado:** el título del panel de un objeto de la carpa era `h4` justo después de un `h2` (saltaba
+  un nivel); ahora es `h3`.
+- **Teclado:** Tab recorre el juego en orden y el foco se ve en cada parada (también en las opciones dibujadas como
+  tarjetas).
+- **Control del propio test:** un texto de bajo contraste y un botón sin foco visible puestos a propósito se
+  detectan (el test no da «todo bien» por error).
+- **Idioma de la página** (`lang`) sigue al selector (en, de, fr, es).
+- **«Reducir movimiento»:** ya lo cubre la corrida completa 1 (sin animaciones con la preferencia activada).
+- **Claro y oscuro:** la plataforma hoy solo tiene **tema oscuro** (`public/style.css`); es el revisado.
+- Capturas: `tests/sim/out/jgpulido-*-320.png` y `-1920.png`.
+
+**Pesos** (compilado con el juego encendido; lo que se descarga **solo al entrar al juego**):
+
+| Pieza | Diseño (estimado) | Hoy | Comprimido |
+|---|---|---|---|
+| Entrada (al abrir la web, solo en `juego`) | ~3 KB | 5,7 KB | 2,5 KB |
+| Juego + carpa | ~140–170 KB | 319,5 KB | 95,4 KB |
+| Laboratorio (al visitarlo) | 36,7 KB | 36,2 KB | 12,6 KB |
+| Resto de la web | sin cambio | sin cambio | — |
+
+El juego pesa el doble de lo estimado por todo lo añadido después del diseño (sistemas, germinación, poscosecha 8b,
+repaso final, varias plantas). Cerca del 60 % son los **textos en 4 idiomas**, que se descargan juntos.
+**Propuesta (no hecha, decide el dueño):** descargar solo el idioma activo y los demás al cambiar de idioma: unos
+45 KB comprimidos menos. Cambia cómo funciona el selector de idioma dentro del juego.
+
+**Lo que queda para Bertha:**
+1. Nada pendiente de pegar en staging (`paso4c` y `paso4d` aplicadas).
+2. Valores todavía «[POR VERIFICAR POR BERTHA]» en `src/game/rules.json` de las fases 1–8 (las cifras de la
+   plataforma: semanas, ideales, puntos de juego). Los de esta etapa y del rosin ya están validados.
+3. Presión del rosin: sigue sin cifras (ninguna fuente).
+4. Artículo de Jorge Cervantes: en espera de que Bertha pase el enlace.
+
+**Batería completa al cerrar la fase 9** (una a una, cerrando servidor y navegador de pruebas entre cada una):
+pulido 25 · plantas UI 40 · juego 54 · jugar 35 · carpa 36 · tocar 37 · problemas 25 · preparar 27 · prensa 34 ·
+preparación 20 · partidas viejas 17 · repaso UI 19 · corridas completas 90 / 120 / 94 / 67 / 58 · motor 61 ·
+plantas motor 37 · repaso 39 · laboratorio 35 · base de datos 37 y 14. **Todo en verde.**
+
+## Juego fusionado en `dev` (2026-11-03)
+`juego` → `dev` (491a2f6), a pedido del dueño. Comprobado: compilado de `dev` **sin** juego (ningún archivo del
+juego ni texto suyo); con `MV_GAME=1`, el juego y el laboratorio salen en archivos aparte que solo se descargan al
+entrar. Motor 61 · plantas motor 37 · repaso 39 · preparar motor 31: verde. `juego` quedó igual que `dev`.
+Para producción: pasos del juego añadidos en `docs/lanzamiento-produccion.md` (paso 6: 3 migraciones + `MV_GAME=1`).
+
+## Pendientes de la plataforma
+
+### Aportes manuales (pedido del dueño, 2026-11-03) — HECHO en dev y staging, probado en vivo
+Decisión de Bertha: el admin puede registrar aportes hechos por PayPal, CashApp, transferencia, efectivo u otro medio
+acordado por correo o celular. Se hace en `dev` y staging (nada en `main` ni producción):
+- botón «Registrar aporte manual» en `/panel-mv.html`, solo admin con segundo paso de seguridad (AAL2);
+- campos: correo, medio, monto y moneda, referencia o nota, fecha, número de flores (10 USDC por flor);
+- al guardar, acceso completo por el mismo camino que un aporte aprobado (una sola regla de acceso);
+- todo al Registro (quién, cuándo, por qué); se anula con otra entrada, sin borrar;
+- aviso si el usuario ya tiene un aporte registrado;
+- Desbloquear, en los 4 idiomas: «¿No usas USDC? Escríbenos a hello@motherverdeny.com».
+Reglas: migración nueva en `supabase/staging` con su reversión; plan en lenguaje simple y esperar «APRUEBO»;
+pruebas automáticas.
+**Estado (2026-11-03):** plan aprobado con 2 ajustes (monto = lo PAGADO, comisión opcional aparte; probar todo el camino
+USDC). Hecho en `dev`: migración 20261103100000 + reversión, panel (pestaña «Aportes manuales», ficha), Desbloquear en
+4 idiomas. Archivos de staging listos y **sin pegar**: `supabase/staging/paso5-aportes-manuales.sql`,
+`paso5-rollback.sql`, `paso5-comprobacion.sql`. Después de pegarlos: probar en staging el camino USDC con un código
+falso y un aporte manual.
+**Staging (2026-11-03, con «APRUEBO» de Bertha):** pegados `paso5-aportes-manuales.sql` (huella SHA-256 igual al archivo,
+«Success») y `paso5-comprobacion.sql` (9 de 9 filas «ok») en el proyecto `ciqdnrdtaxbmcjvxljvq`. La reversión NO se ejecutó.
+El staging publicado de `dev` (527c503) ya muestra la pestaña y la frase de Desbloquear. Pendiente: pruebas en vivo junto con
+Bertha (aporte manual, anulación, USDC con código falso) con la cuenta de pruebas.
+**Pruebas en vivo (2026-11-03, con Bertha, cuenta blimoc16):** (1) aporte manual PayPal 10 USD, comisión 0,59, 1 flor ->
+`trialing` pasa a `supporter` con acceso; (2) anulado con motivo -> vuelve a `trialing` sin acceso, el aporte sigue (anulado), 2
+entradas en el Registro; (3) reserva USDC + código falso -> aviso en el panel, «Comprobar en Base» = revisión manual
+(tx_no_encontrada), activación manual con motivo -> `supporter` con acceso, `claim_approved` + correo de activación en el
+Registro. Las 3 pasaron.
+
+### Temperaturas de las lecciones en °C y °F — DESPUÉS de los aportes manuales
+Las 64 temperaturas de las lecciones (`public/main.js`) a «N °C (N °F)» con la función del juego (`src/game/temp.js`),
+en una rama aparte de `dev`, sin mezclar con el juego. Solo añadir el °F; no tocar otra palabra, cifra ni
+traducción; los campos donde el usuario escribe una temperatura (calculadora, bitácora) quedan igual. Antes:
+contar rangos, cifras con °C que no son del cultivo y cómo se prueba; esperar «APRUEBO» antes de subir a `dev`.
+
+Juego: **no** añadir puntos por la temperatura de floración por ahora (decisión del dueño, 2026-11-03).
+
+### Pruebas finales de staging (2026-11-03) — todas pasaron
+Hechas en el staging publicado de `dev` y la base `ciqdnrdtaxbmcjvxljvq` (nada en `main` ni producción).
+| # | Prueba | Quién | Resultado |
+|---|---|---|---|
+| 1 | Borrar `berthalimo+staging1@gmail.com` | Bertha (Claude no borra datos); Claude comprobó | hecho |
+| 2 | Registro con correo «equivocado» → «Reenviar correo» → «Corrígelo» → confirmar | Bertha + Claude (base) | pasó: 2 correos en la principal; enlace viejo ya no sirve; confirmada y 24 h de prueba |
+| 3 | Correo repetido en variantes de Gmail | Claude (regla de registro en la base; hook activado) | pasó: 6 variantes rechazadas, otro Gmail permitido (sin probar el formulario: pide contraseña) |
+| 4 | Cambio de correo en Cuenta | Bertha + Claude (base) | pasó: 2 correos, cambio hecho, 1 sola cuenta |
+| 5 | Escribir en la Bitácora | Claude (hello@) | pasó |
+| 6 | Bloqueo al terminar la prueba + Bitácora de solo lectura | Claude (hello@ vencida un rato y devuelta a supporter) | pasó (el servidor rechaza guardar; PDF visible, no descargado) |
+| 7 | Código de regalo | Claude (panel) + Bertha (canje) | pasó: «enviado» al momento, canje hasta el 11/11, panel «usado» |
+| 8 | Límite de intentos | Claude (hello@) | pasó: al 6.º intento «Demasiados intentos» |
+| 9 | Pantalla que se queda cargando | Claude (simulado: el perfil no responde) | pasó: salida a los 12 s y «Reintentar» funciona |
+| — | Cambio de idioma; consola | Claude | pasó: 4 idiomas; sin errores ni bloqueos CSP |
+| — | Fallo intermitente «enviar código de regalo» | Claude | causa: la lista vieja pintaba encima de la nueva; arreglado (`0e81804`) |
+
+## Revisión de fuentes de los 90 valores (2026-11-03)
+Pedido del dueño: respaldar con estudios y guías universitarias, no con el criterio de Bertha (Bertha no valida nada
+hasta que juegue). Ya no queda ningún «[POR VERIFICAR POR BERTHA]» en `rules.json`: cada valor dice su nivel y sus
+códigos. Detalle, fuentes F12–F34 y 7 avisos al dueño en `docs/juego-fuentes.md` → «Revisión 2026-11».
+Recuento: estudio 40 · guía universitaria 2 · práctica de cultivadores 12 · práctica de la comunidad del rosin
+(orientativo) 24 · regla del juego 8 · sin fuente (criterio de la autora) 2 · etiquetas del archivo 2.
+Commits 7ef3336, 856d430 + fcf4c86, 6e41023.
+
+### Nuevo motivo de los aportes + historia de bienvenida (2026-11-03) — HECHO en dev y staging
+Con el «APRUEBO» de Bertha (decisiones 1–9): Canna Wasi quitada; los aportes apoyan su educación
+en SUNY Morrisville (desde 2026-11-04 sin nombrar grado ni título); casilla de propósito registrada (migración 20261104100000, staging paso 6: 7/7 «ok»);
+«Ya tienes cuenta…»; correos «aviso recibido» y «aporte manual confirmado» (función support-claims desplegada en
+staging); historia «Nuestra historia» (6 pantallas); menú del icono de persona; línea «La fundadora estudia en esta
+institución». Textos para abogado/a y contador: `docs/revision-legal-aportes.md` (Términos sigue con «PENDIENTE»).
+Pendiente: «APRUEBO» de Bertha a los textos alternativos de las fotos → copiar 01, 07, 05, 02, 03 y 08 comprimidas
+a `public/historia/` (la 09 espera al abogado/a; la 04 no se usa; la 06 de reserva).

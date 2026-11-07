@@ -1,0 +1,288 @@
+-- Runs as ONE transaction: if any statement fails, nothing is applied.
+begin;
+
+-- Community is part of full access: close it on the SERVER (RLS), not just
+-- in the UI. Requires migration 20261010120000 (has_full_access()).
+--
+-- After this migration:
+--   * Only signed-in people with full access (24 h trial or verified
+--     contribution) can read community profiles, posts, comments and photo
+--     listings, or follow / swipe / report / upload. Visitors without an
+--     account see nothing (the directory is no longer public).
+--   * Everyone always keeps: reading their OWN rows, deleting their own posts,
+--     comments, follows, photos and member profile, and deleting the account.
+--   * Publishing still goes only through the community-publish-* Edge
+--     Functions; their new version checks full access and daily limits
+--     (community_usage_log below).
+--   * community_can_view / community_is_mutual no longer answer about other
+--     people's relationships when called from the browser.
+--   * DeepL caps, global and per person, configured in app_config (section 8).
+--
+-- Honest limit: photos in the public bucket stay reachable by anyone who has
+-- the exact URL (public bucket URLs skip these rules). Closing that needs a
+-- private bucket + signed URLs — a separate change.
+--
+-- Undo: supabase/admin/rollback-20261010130000.sql.
+
+-- ---------------------------------------------------------------------------
+-- 1. community_members (directory / profiles)
+-- ---------------------------------------------------------------------------
+drop policy if exists "community_members_select_all" on public.community_members;
+drop policy if exists "community_members_select_access" on public.community_members;
+create policy "community_members_select_access" on public.community_members
+  for select to authenticated
+  using (auth.uid() = user_id or public.has_full_access());
+revoke select on public.community_members from anon;
+
+drop policy if exists "community_members_insert_own" on public.community_members;
+create policy "community_members_insert_own" on public.community_members
+  for insert to authenticated
+  with check (auth.uid() = user_id and public.has_full_access());
+
+drop policy if exists "community_members_update_own" on public.community_members;
+create policy "community_members_update_own" on public.community_members
+  for update to authenticated
+  using (auth.uid() = user_id and public.has_full_access())
+  with check (auth.uid() = user_id);
+-- community_members_delete_own stays as it is (always allowed).
+
+-- ---------------------------------------------------------------------------
+-- 2. community_posts (writes already go only through the Edge Function)
+-- ---------------------------------------------------------------------------
+drop policy if exists "community_posts_select_visible" on public.community_posts;
+create policy "community_posts_select_visible" on public.community_posts
+  for select to authenticated
+  using (
+    auth.uid() = user_id
+    or (public.has_full_access()
+        and (featured or public.community_can_view(auth.uid(), user_id)))
+  );
+-- community_posts_delete_own stays (always allowed).
+
+-- ---------------------------------------------------------------------------
+-- 3. community_comments
+-- ---------------------------------------------------------------------------
+drop policy if exists "community_comments_select_visible" on public.community_comments;
+create policy "community_comments_select_visible" on public.community_comments
+  for select to authenticated
+  using (
+    auth.uid() = user_id
+    or (public.has_full_access()
+        and exists (
+          select 1 from public.community_posts p
+          where p.id = post_id
+            and (p.featured or public.community_can_view(auth.uid(), p.user_id))
+        ))
+  );
+-- community_comments_delete_own stays (always allowed).
+
+-- ---------------------------------------------------------------------------
+-- 4. Follows, swipes, reports: creating them needs full access.
+--    Reading your own follows/swipes and unfollowing stay allowed.
+-- ---------------------------------------------------------------------------
+drop policy if exists "community_follows_insert_own" on public.community_follows;
+create policy "community_follows_insert_own" on public.community_follows
+  for insert to authenticated
+  with check (auth.uid() = follower_id and public.has_full_access());
+
+drop policy if exists "community_swipes_insert_own" on public.community_swipes;
+create policy "community_swipes_insert_own" on public.community_swipes
+  for insert to authenticated
+  with check (auth.uid() = swiper_id and public.has_full_access());
+
+drop policy if exists "community_reports_insert_own" on public.community_reports;
+create policy "community_reports_insert_own" on public.community_reports
+  for insert to authenticated
+  with check (auth.uid() = reporter_id and public.has_full_access());
+
+-- ---------------------------------------------------------------------------
+-- 5. community-photos bucket: listing / uploading / replacing need full
+--    access. Deleting your own files stays allowed. (Public URLs: see top.)
+-- ---------------------------------------------------------------------------
+drop policy if exists "community_photos_read_all" on storage.objects;
+drop policy if exists "community_photos_read_access" on storage.objects;
+create policy "community_photos_read_access" on storage.objects
+  for select to authenticated
+  using (bucket_id = 'community-photos' and public.has_full_access());
+
+drop policy if exists "community_photos_insert_own" on storage.objects;
+create policy "community_photos_insert_own" on storage.objects
+  for insert to authenticated
+  with check (bucket_id = 'community-photos'
+              and (storage.foldername(name))[1] = auth.uid()::text
+              and public.has_full_access());
+
+drop policy if exists "community_photos_update_own" on storage.objects;
+create policy "community_photos_update_own" on storage.objects
+  for update to authenticated
+  using (bucket_id = 'community-photos'
+         and (storage.foldername(name))[1] = auth.uid()::text
+         and public.has_full_access());
+-- community_photos_delete_own stays (always allowed).
+
+-- ---------------------------------------------------------------------------
+-- 6. Relationship helpers: from the browser, only about yourself.
+--    (Server code using the service role has no auth.uid() and keeps full
+--    use; the RLS policies above always pass auth.uid() as the first
+--    argument, so they are unaffected.)
+-- ---------------------------------------------------------------------------
+create or replace function public.community_is_mutual(a uuid, b uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select (auth.uid() is null or a = auth.uid())
+    and exists(select 1 from public.community_follows where follower_id = a and followed_id = b)
+    and exists(select 1 from public.community_follows where follower_id = b and followed_id = a);
+$$;
+
+create or replace function public.community_can_view(viewer uuid, owner uuid)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select (auth.uid() is null or viewer = auth.uid())
+    and (viewer = owner
+         or exists(select 1 from public.community_follows where follower_id = viewer and followed_id = owner));
+$$;
+
+revoke execute on function public.community_is_mutual(uuid, uuid) from public, anon;
+revoke execute on function public.community_can_view(uuid, uuid) from public, anon;
+grant execute on function public.community_is_mutual(uuid, uuid) to authenticated, service_role;
+grant execute on function public.community_can_view(uuid, uuid) to authenticated, service_role;
+
+-- ---------------------------------------------------------------------------
+-- 7. Daily limits for the publish functions (spam / DeepL quota).
+--    One row per publish, written only by the Edge Functions (service role).
+--    Kept even if the post is later deleted, so deleting doesn't reset the
+--    limit; removed with the account (cascade). No IP or device data.
+-- ---------------------------------------------------------------------------
+create table if not exists public.community_usage_log (
+  id         bigint generated always as identity primary key,
+  user_id    uuid not null references auth.users(id) on delete cascade,
+  kind       text not null check (kind in ('post', 'post_edit', 'comment')),
+  chars      integer not null check (chars >= 0),
+  created_at timestamptz not null default now()
+);
+create index if not exists community_usage_log_user_time_idx
+  on public.community_usage_log (user_id, created_at desc);
+alter table public.community_usage_log enable row level security;
+revoke all on public.community_usage_log from anon, authenticated;
+
+-- ---------------------------------------------------------------------------
+-- 8. DeepL caps — the numbers live in ONE place: public.app_config.
+--
+--    Global daily cap (all users together), in characters as DeepL counts
+--    them: the source text once per target language, so a publish of N
+--    characters into 3 languages uses 3 x N.
+--      14,000 per UTC day -> at most 434,000 a month, under the Free plan's
+--      500,000 (~13% margin).
+--    Per-person cap: always a third of the global cap, so no single person
+--    can use more than a third of a day's budget. In source characters:
+--      floor(14,000 / 3 / 3) = 1,555 per rolling 24 h.
+--
+--    Over either cap the publish functions still publish, with the original
+--    text only and translation_status = 'failed' (listed in
+--    community_translation_backlog to retry later). Cache hits don't call
+--    DeepL and don't count against the global cap.
+--
+--    To change the cap (e.g. after moving to DeepL Pro), one statement:
+--      update public.app_config set value = 100000 where key = 'deepl_daily_char_cap';
+-- ---------------------------------------------------------------------------
+create table if not exists public.app_config (
+  key   text primary key,
+  value integer not null check (value >= 0),
+  note  text
+);
+alter table public.app_config enable row level security;
+revoke all on public.app_config from anon, authenticated;
+insert into public.app_config (key, value, note) values
+  ('deepl_daily_char_cap', 14000,
+   'Characters sent to DeepL per UTC day, all users together (source x target languages).')
+on conflict (key) do nothing;
+
+create or replace function public.deepl_daily_cap()
+returns integer
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  -- No row -> 0 -> nothing gets translated (fails closed, posts still publish).
+  select coalesce((select value from public.app_config where key = 'deepl_daily_char_cap'), 0);
+$$;
+
+-- Per person, in SOURCE characters per rolling 24 h: a third of the global
+-- cap, divided by the 3 target languages.
+create or replace function public.community_user_char_limit()
+returns integer
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select public.deepl_daily_cap() / 9;
+$$;
+
+create table if not exists public.deepl_usage_daily (
+  day   date primary key,
+  chars integer not null default 0 check (chars >= 0)
+);
+alter table public.deepl_usage_daily enable row level security;
+revoke all on public.deepl_usage_daily from anon, authenticated;
+
+-- Atomically reserves p_chars for today; true = go ahead and call DeepL,
+-- false = cap reached (nothing reserved).
+create or replace function public.deepl_reserve_chars(p_chars integer)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_cap integer := public.deepl_daily_cap();
+  v_ok boolean;
+begin
+  if p_chars is null or p_chars <= 0 then return true; end if;
+  if p_chars > v_cap then return false; end if;
+  insert into public.deepl_usage_daily as d (day, chars)
+    values ((now() at time zone 'utc')::date, p_chars)
+    on conflict (day) do update
+      set chars = d.chars + excluded.chars
+      where d.chars + excluded.chars <= v_cap
+    returning true into v_ok;
+  return coalesce(v_ok, false);
+end;
+$$;
+
+revoke execute on function public.deepl_daily_cap() from public, anon, authenticated;
+revoke execute on function public.community_user_char_limit() from public, anon, authenticated;
+revoke execute on function public.deepl_reserve_chars(integer) from public, anon, authenticated;
+grant execute on function public.deepl_daily_cap() to service_role;
+grant execute on function public.community_user_char_limit() to service_role;
+grant execute on function public.deepl_reserve_chars(integer) to service_role;
+
+
+-- ---------------------------------------------------------------------------
+-- 9. Retrying untranslated posts/comments (Edge Function community-retranslate,
+--    once a day). Each row gets an attempt counter; after 5 failed attempts it
+--    becomes 'gave_up' and is no longer retried. A DeepL 456 (quota used up)
+--    doesn't count as an attempt. Retries reserve characters from the same
+--    global daily counter (deepl_reserve_chars), so they can never go over it.
+-- ---------------------------------------------------------------------------
+alter table public.community_posts add column if not exists translation_attempts integer not null default 0;
+alter table public.community_posts add column if not exists translation_last_attempt_at timestamptz;
+alter table public.community_comments add column if not exists translation_attempts integer not null default 0;
+alter table public.community_comments add column if not exists translation_last_attempt_at timestamptz;
+alter table public.community_posts drop constraint if exists community_posts_translation_status_check;
+alter table public.community_posts add constraint community_posts_translation_status_check
+  check (translation_status in ('pending', 'done', 'failed', 'skipped', 'gave_up'));
+alter table public.community_comments drop constraint if exists community_comments_translation_status_check;
+alter table public.community_comments add constraint community_comments_translation_status_check
+  check (translation_status in ('pending', 'done', 'failed', 'skipped', 'gave_up'));
+
+commit;

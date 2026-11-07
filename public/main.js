@@ -994,7 +994,7 @@ function ensureMapTooltipEl(){
 function getMapTooltipName(iso){
   const n = countryNamesI18n[iso];
   if(!n) return null;
-  return n[currentLang] || n.es;
+  return n[currentLang] || n.en;
 }
 function showMapTooltip(iso, x, y){
   const name = getMapTooltipName(iso);
@@ -1153,6 +1153,7 @@ const glossary = [
   {term:{es:'Aclimatación (Hardening off)', en:'Hardening off', de:'Abhärten', fr:'Acclimatation (Hardening off)'}, def:{es:'Exponer gradualmente una planta a condiciones ambientales más duras antes de un cambio de entorno definitivo.', en:'Gradually exposing a plant to harsher environmental conditions before a permanent change of environment.', de:'Eine Pflanze schrittweise raueren Umweltbedingungen aussetzen, bevor ein endgültiger Umgebungswechsel erfolgt.', fr:'Exposer progressivement une plante à des conditions environnementales plus rudes avant un changement d’environnement définitif.'}},
   {term:{es:'Activación de marca (Brand activation)', en:'Brand activation', de:'Markenaktivierung (Brand activation)', fr:'Activation de marque (Brand activation)'}, def:{es:'Evento diseñado para generar conexión directa y memorable entre consumidores y una marca.', en:'An event designed to create a direct, memorable connection between consumers and a brand.', de:'Eine Veranstaltung, die eine direkte, einprägsame Verbindung zwischen Verbrauchern und einer Marke schaffen soll.', fr:'Événement conçu pour créer une connexion directe et mémorable entre les consommateurs et une marque.'}},
   {term:{es:'Actividad de agua (aw)', en:'Water activity (aw)', de:'Wasseraktivität (aw)', fr:'Activité de l’eau (aw)'}, def:{es:'Medida de la disponibilidad de agua "libre" en un material, en escala 0-1 — el indicador más preciso del riesgo microbiológico. El estándar oficial ASTM D8197 establece 0.55-0.65 aw como rango ideal para cannabis — el mismo rango que el estudio de Riley Kirk (ver Elaboración → Procesos) identificó como óptimo también para sabor y calidad de fumado.', en:'A measure of the "free" water available in a material, on a 0-1 scale — the most precise indicator of microbiological risk. The official ASTM D8197 standard sets 0.55-0.65 aw as the ideal range for cannabis — the same range that Riley Kirk’s study (see Making → Processes) identified as optimal for flavor and smoke quality too.', de:'Ein Maß für das "freie" Wasser, das in einem Material verfügbar ist, auf einer Skala von 0-1 — der genaueste Indikator für das mikrobiologische Risiko. Der offizielle Standard ASTM D8197 legt 0,55-0,65 aw als idealen Bereich für Cannabis fest — denselben Bereich, den die Studie von Riley Kirk (siehe Verarbeitung → Prozesse) auch als optimal für Geschmack und Rauchqualität ermittelte.', fr:'Mesure de l’eau « libre » disponible dans un matériau, sur une échelle de 0 à 1 — l’indicateur le plus précis du risque microbiologique. La norme officielle ASTM D8197 fixe 0,55-0,65 aw comme plage idéale pour le cannabis — la même plage que l’étude de Riley Kirk (voir Élaboration → Procédés) a identifiée comme optimale également pour la saveur et la qualité de combustion.'}},
+  {term:{es:'Acumulación de gas (Gas buildup)', en:'Gas buildup', de:'Gasansammlung (Gas buildup)', fr:'Accumulation de gaz (Gas buildup)'}, def:{es:'Un gas como el butano se acumula en un espacio cerrado y puede explotar: una llama o una chispa basta para encenderlo. Por eso las extracciones con solventes solo se hacen en laboratorios con licencia.', en:'A gas such as butane builds up in a closed space and can explode: a flame or a spark is enough to ignite it. That is why solvent extractions are only done in licensed laboratories.', de:'Ein Gas wie Butan sammelt sich in einem geschlossenen Raum an und kann explodieren: Eine Flamme oder ein Funke reicht, um es zu entzünden. Deshalb werden Extraktionen mit Lösungsmitteln nur in lizenzierten Laboren gemacht.', fr:'Un gaz comme le butane s’accumule dans un espace fermé et peut exploser : une flamme ou une étincelle suffit à l’allumer. C’est pourquoi les extractions aux solvants se font uniquement dans des laboratoires agréés.'}},
   {term:{es:'Administración oral', en:'Oral administration', de:'Orale Verabreichung (Oral administration)', fr:'Administration orale (Oral administration)'}, def:{es:'El producto se ingiere y procesa vía digestiva — sujeta al metabolismo de primer paso, reduciendo su biodisponibilidad.', en:'The product is ingested and processed through the digestive system — subject to first-pass metabolism, reducing its bioavailability.', de:'Das Produkt wird eingenommen und über den Verdauungstrakt verarbeitet — unterliegt dem First-Pass-Metabolismus, was die Bioverfügbarkeit verringert.', fr:'Le produit est ingéré et traité par voie digestive — soumis au métabolisme de premier passage, ce qui réduit sa biodisponibilité.'}},
   {term:{es:'Adquisición (Acquisition)', en:'Acquisition', de:'Übernahme (Acquisition)', fr:'Acquisition (Acquisition)'}, def:{es:'La compra de una empresa por otra, que asume su control.', en:'The purchase of one company by another, which takes over its control.', de:'Der Kauf eines Unternehmens durch ein anderes, das dessen Kontrolle übernimmt.', fr:'L’achat d’une entreprise par une autre, qui en prend le contrôle.'}},
   {term:{es:'Adquisiciones (Procurement)', en:'Procurement', de:'Beschaffung (Procurement)', fr:'Approvisionnement (Procurement)'}, def:{es:'El proceso estratégico de identificar, evaluar y contratar proveedores para obtener insumos o materiales.', en:'The strategic process of identifying, evaluating, and contracting suppliers to obtain inputs or materials.', de:'Der strategische Prozess der Identifizierung, Bewertung und Beauftragung von Lieferanten zur Beschaffung von Vorleistungen oder Materialien.', fr:'Le processus stratégique consistant à identifier, évaluer et engager des fournisseurs pour obtenir des intrants ou des matériaux.'}},
@@ -1390,6 +1391,7 @@ const glossary = [
   {term:{es:'Destilado (Distillate)', en:'Distillate', de:'Destillat', fr:'Distillat'}, def:{es:'Extracto de muy alta pureza (90%+), típicamente transparente/dorado, sin terpenos a menos que se reincorporen.', en:'A very high-purity extract (90%+), typically clear/golden, with no terpenes unless reincorporated.', de:'Ein Extrakt sehr hoher Reinheit (90%+), typischerweise klar/golden, ohne Terpene, sofern diese nicht wieder zugesetzt werden.', fr:'Extrait de très haute pureté (90%+), typiquement transparent/doré, sans terpènes à moins qu’ils ne soient réincorporés.'}},
   {term:{es:'Desviación (Deviation)', en:'Deviation', de:'Abweichung (Deviation)', fr:'Écart (Deviation)'}, def:{es:'Cualquier apartamiento no planeado de un procedimiento o SOP — debe documentarse e investigarse siempre.', en:'Any unplanned departure from a procedure or SOP — it must always be documented and investigated.', de:'Jede ungeplante Abweichung von einem Verfahren oder SOP — muss stets dokumentiert und untersucht werden.', fr:'Tout écart non planifié par rapport à une procédure ou un SOP — doit toujours être documenté et investigué.'}},
   {term:{es:'Desvío de producto (Diversion)', en:'Diversion', de:'Umleitung von Produkten (Diversion)', fr:'Détournement de produit (Diversion)'}, def:{es:'Salida no autorizada de producto legal hacia el mercado ilícito — riesgo central que la trazabilidad seed-to-sale busca prevenir.', en:'The unauthorized movement of legal product into the illicit market — a central risk that seed-to-sale traceability seeks to prevent.', de:'Der unbefugte Abfluss legaler Produkte in den illegalen Markt — ein zentrales Risiko, das die Seed-to-Sale-Rückverfolgbarkeit verhindern soll.', fr:'Sortie non autorisée de produit légal vers le marché illicite — risque central que la traçabilité de la graine à la vente vise à prévenir.'}},
+  {term:{es:'Detección de gases (Gas detection)', en:'Gas detection', de:'Gaswarnanlage (Gas detection)', fr:'Détection de gaz (Gas detection)'}, def:{es:'Detectores que avisan si hay gas en el ambiente, junto con una ventilación que renueva el aire. Son parte de lo que hace seguro un laboratorio con licencia, donde además trabaja solo personal formado.', en:'Detectors that warn if there is gas in the air, together with ventilation that renews it. They are part of what makes a licensed laboratory safe, where only trained staff work.', de:'Melder, die warnen, wenn Gas in der Luft ist, zusammen mit einer Lüftung, die die Luft erneuert. Sie gehören zu dem, was ein lizenziertes Labor sicher macht, in dem außerdem nur geschultes Personal arbeitet.', fr:'Des détecteurs qui préviennent s’il y a du gaz dans l’air, avec une ventilation qui le renouvelle. Ils font partie de ce qui rend sûr un laboratoire agréé, où ne travaille qu’un personnel formé.'}},
   {term:{es:'Deuda (Debt)', en:'Debt', de:'Fremdkapital (Debt)', fr:'Dette (Debt)'}, def:{es:'Capital obtenido por préstamo, que debe repagarse con intereses, sin diluir la propiedad de la empresa.', en:'Capital obtained through borrowing, which must be repaid with interest, without diluting company ownership.', de:'Durch Kreditaufnahme erhaltenes Kapital, das mit Zinsen zurückgezahlt werden muss, ohne die Eigentumsverhältnisse des Unternehmens zu verwässern.', fr:'Capital obtenu par emprunt, devant être remboursé avec intérêts, sans diluer la propriété de l’entreprise.'}},
   {term:{es:'Diamond mining', en:'Diamond mining', de:'Diamond Mining', fr:'Diamond mining'}, def:{es:'Proceso de separar y purificar los diamonds del líquido terpénico que los rodea.', en:'The process of separating and purifying the diamonds from the surrounding terpene liquid.', de:'Der Prozess des Trennens und Reinigens der Diamonds von der sie umgebenden Terpenflüssigkeit.', fr:'Processus consistant à séparer et purifier les diamonds du liquide terpénique qui les entoure.'}},
   {term:{es:'Diamonds (Cristales de THCA)', en:'Diamonds (THCA crystals)', de:'Diamonds (THCA-Kristalle)', fr:'Diamonds (cristaux de THCA)'}, def:{es:'Estructuras cristalinas de THCA de alta pureza, pueden superar 99% de pureza.', en:'High-purity crystalline THCA structures, which can exceed 99% purity.', de:'Hochreine kristalline THCA-Strukturen, die eine Reinheit von über 99% erreichen können.', fr:'Structures cristallines de THCA de haute pureté, pouvant dépasser 99 % de pureté.'}},
@@ -1476,6 +1478,7 @@ const glossary = [
   {term:{es:'Exterior (Outdoor)', en:'Outdoor', de:'Outdoor', fr:'Extérieur (Outdoor)'}, def:{es:'Cultivo a cielo abierto, dependiente por completo de las condiciones climáticas y el fotoperiodo natural.', en:'Cultivation in the open air, entirely dependent on weather conditions and the natural photoperiod.', de:'Anbau unter freiem Himmel, vollständig abhängig von den Witterungsbedingungen und der natürlichen Photoperiode.', fr:'Culture en plein air, entièrement dépendante des conditions climatiques et de la photopériode naturelle.'}},
   {term:{es:'Extintor (Fire extinguisher)', en:'Fire extinguisher', de:'Feuerlöscher (Fire extinguisher)', fr:'Extincteur (Fire extinguisher)'}, def:{es:'Equipo de emergencia para control inicial de incendios — especificaciones particulares en extracción con hidrocarburos.', en:'Emergency equipment for initial fire control — subject to particular specifications in hydrocarbon extraction.', de:'Notfallausrüstung zur ersten Brandbekämpfung — bei der Kohlenwasserstoffextraktion gelten besondere Anforderungen.', fr:'Équipement d’urgence pour le contrôle initial des incendies — spécifications particulières dans l’extraction aux hydrocarbures.'}},
   {term:{es:'Extracción', en:'Extraction', de:'Extraktion', fr:'Extraction'}, def:{es:'El proceso de separar los compuestos deseados del resto del material vegetal, usando solvente o método mecánico/físico.', en:'The process of separating the desired compounds from the rest of the plant material, using a solvent or a mechanical/physical method.', de:'Der Prozess, bei dem die gewünschten Verbindungen mittels Lösungsmittel oder mechanischer/physikalischer Methode vom übrigen Pflanzenmaterial getrennt werden.', fr:'Le processus consistant à séparer les composés recherchés du reste du matériel végétal, à l’aide d’un solvant ou d’une méthode mécanique/physique.'}},
+  {term:{es:'Extracción casera (Home extraction)', en:'Home extraction', de:'Extraktion zu Hause (Home extraction)', fr:'Extraction maison (Home extraction)'}, def:{es:'Una extracción con solventes como butano o CO2 hecha en casa. Nunca es segura: arreglar un peligro no la hace segura, el problema es hacerla en casa. Si alguien lo está haciendo: detener todo, alejarse y llamar a emergencias o a un profesional.', en:'An extraction with solvents such as butane or CO2 done at home. It is never safe: fixing one hazard does not make it safe — the problem is doing it at home. If someone is doing it: stop everything, move away and call emergency services or a professional.', de:'Eine Extraktion mit Lösungsmitteln wie Butan oder CO2 zu Hause. Sie ist nie sicher: Eine Gefahr zu beheben macht sie nicht sicher — das Problem ist, sie zu Hause zu machen. Wenn jemand es tut: alles stoppen, weggehen und den Notruf oder eine Fachperson rufen.', fr:'Une extraction avec des solvants comme le butane ou le CO2 faite à la maison. Elle n’est jamais sûre : corriger un danger ne la rend pas sûre, le problème, c’est de la faire à la maison. Si quelqu’un le fait : tout arrêter, s’éloigner et appeler les secours ou un professionnel.'}},
   {term:{es:'Extracción con CO2', en:'CO2 extraction', de:'CO2-Extraktion', fr:'Extraction au CO2'}, def:{es:'Usa dióxido de carbono, generalmente supercrítico o subcrítico — de los métodos más "limpios", pero equipo de alta presión costoso.', en:'Uses carbon dioxide, generally supercritical or subcritical — one of the "cleanest" methods, but with costly high-pressure equipment.', de:'Verwendet Kohlendioxid, in der Regel überkritisch oder unterkritisch — eine der "saubersten" Methoden, jedoch mit kostspieliger Hochdruckausrüstung.', fr:'Utilise du dioxyde de carbone, généralement supercritique ou subcritique — l’une des méthodes les plus « propres », mais avec un équipement haute pression coûteux.'}},
   {term:{es:'Extracción con etanol', en:'Ethanol extraction', de:'Ethanolextraktion', fr:'Extraction à l’éthanol'}, def:{es:'Usa etanol como solvente — seguro y escalable, aunque puede coextraer clorofila si no se controla bien temperatura y tiempo.', en:'Uses ethanol as the solvent — safe and scalable, though it can co-extract chlorophyll if temperature and time aren’t well controlled.', de:'Verwendet Ethanol als Lösungsmittel — sicher und skalierbar, kann jedoch Chlorophyll mitextrahieren, wenn Temperatur und Zeit nicht gut kontrolliert werden.', fr:'Utilise l’éthanol comme solvant — sûr et évolutif, bien qu’il puisse co-extraire la chlorophylle si la température et la durée ne sont pas bien contrôlées.'}},
   {term:{es:'Extracción con hidrocarburos', en:'Hydrocarbon extraction', de:'Kohlenwasserstoffextraktion', fr:'Extraction aux hydrocarbures'}, def:{es:'Usa gases licuados como butano/propano — preserva bien terpenos volátiles, requiere equipo especializado y protocolos de seguridad estrictos.', en:'Uses liquefied gases like butane/propane — preserves volatile terpenes well, requires specialized equipment and strict safety protocols.', de:'Verwendet verflüssigte Gase wie Butan/Propan — bewahrt flüchtige Terpene gut, erfordert spezialisierte Ausrüstung und strenge Sicherheitsprotokolle.', fr:'Utilise des gaz liquéfiés comme le butane/propane — préserve bien les terpènes volatils, nécessite un équipement spécialisé et des protocoles de sécurité stricts.'}},
@@ -1614,6 +1617,7 @@ const glossary = [
   {term:{es:'KPI (Indicador clave)', en:'KPI (Key Performance Indicator)', de:'KPI (Wichtige Leistungskennzahl)', fr:'KPI (Indicateur clé de performance)'}, def:{es:'Una métrica específica y medible que refleja el desempeño de un aspecto crítico del negocio.', en:'A specific, measurable metric that reflects the performance of a critical aspect of the business.', de:'Eine spezifische, messbare Kennzahl, die die Leistung eines kritischen Aspekts des Unternehmens widerspiegelt.', fr:'Mesure spécifique et quantifiable reflétant la performance d’un aspect critique de l’entreprise.'}},
   {term:{es:'Kief', en:'Kief', de:'Kief', fr:'Kief'}, def:{es:'Los tricomas sueltos, tamizados en seco de la flor.', en:'Loose trichomes, dry-sifted from the flower.', de:'Lose Trichome, trocken aus der Blüte gesiebt.', fr:'Trichomes détachés, tamisés à sec depuis la fleur.'}},
   {term:{es:'Laboratorio de análisis (Testing laboratory)', en:'Testing laboratory', de:'Prüflabor (Testing laboratory)', fr:'Laboratoire d’analyse (Testing laboratory)'}, def:{es:'Instalación acreditada que analiza muestras de cannabis para verificar potencia, perfil de compuestos y ausencia de contaminantes — requisito regulatorio en el mercado legal.', en:'An accredited facility that analyzes cannabis samples to verify potency, compound profile, and absence of contaminants — a regulatory requirement in the legal market.', de:'Eine akkreditierte Einrichtung, die Cannabisproben analysiert, um Potenz, Verbindungsprofil und die Abwesenheit von Kontaminanten zu überprüfen — eine regulatorische Anforderung im legalen Markt.', fr:'Installation accréditée qui analyse des échantillons de cannabis pour vérifier la puissance, le profil des composés et l’absence de contaminants — exigence réglementaire sur le marché légal.'}},
+  {term:{es:'Laboratorio de extracción con licencia (Licensed extraction lab)', en:'Licensed extraction lab', de:'Lizenziertes Extraktionslabor (Licensed extraction lab)', fr:'Laboratoire d’extraction agréé (Licensed extraction lab)'}, def:{es:'El único lugar donde se hacen extracciones con butano o CO2. Tiene licencia y personal formado, sistema cerrado certificado, equipo a prueba de explosiones, ventilación y detección de gases, equipo de protección, y controles e inspecciones.', en:'The only place where butane or CO2 extractions are done. It has a licence and trained staff, a certified closed system, explosion-proof equipment, ventilation and gas detection, protective equipment, and checks and inspections.', de:'Der einzige Ort, an dem Extraktionen mit Butan oder CO2 gemacht werden. Es hat eine Lizenz und geschultes Personal, ein zertifiziertes geschlossenes System, explosionsgeschützte Ausrüstung, Lüftung und Gaswarnanlage, Schutzausrüstung sowie Kontrollen und Inspektionen.', fr:'Le seul endroit où se font les extractions au butane ou au CO2. Il a un agrément et un personnel formé, un système fermé certifié, un équipement antidéflagrant, une ventilation et une détection de gaz, un équipement de protection, ainsi que des contrôles et des inspections.'}},
   {term:{es:'Lana de roca (Rockwool)', en:'Rockwool', de:'Steinwolle', fr:'Laine de roche'}, def:{es:'Sustrato inerte de roca volcánica fundida e hilada — buena retención de agua y aireación; requiere pre-acondicionamiento de pH porque es naturalmente alcalina.', en:'An inert substrate made from melted and spun volcanic rock — good water retention and aeration; requires pH pre-conditioning because it is naturally alkaline.', de:'Ein inertes Substrat aus geschmolzenem und versponnenem vulkanischem Gestein — gute Wasserretention und Belüftung; erfordert eine pH-Vorkonditionierung, da es von Natur aus alkalisch ist.', fr:'Substrat inerte fabriqué à partir de roche volcanique fondue et filée — bonne rétention d’eau et aération ; nécessite un préconditionnement du pH car il est naturellement alcalin.'}},
   {term:{es:'Landrace', en:'Landrace', de:'Landrasse', fr:'Landrace'}, def:{es:'Una variedad tradicional, adaptada durante generaciones a una región específica, sin cruces modernos.', en:'A traditional variety, adapted over generations to a specific region, without modern crossbreeding.', de:'Eine traditionelle Sorte, die über Generationen an eine bestimmte Region angepasst wurde, ohne moderne Kreuzungen.', fr:'Une variété traditionnelle, adaptée au fil des générations à une région spécifique, sans croisements modernes.'}},
   {term:{es:'LEC (Cerámica de emisión luminosa)', en:'LEC (Light Emitting Ceramic)', de:'LEC (Lichtemittierende Keramik)', fr:'LEC (Céramique électroluminescente)'}, def:{es:'Nombre comercial (marca de Sun System) para la misma tecnología que el CMH; ambos términos se usan indistintamente en la industria.', en:'A commercial name (a Sun System brand) for the same technology as CMH; both terms are used interchangeably in the industry.', de:'Ein Markenname (von Sun System) für dieselbe Technologie wie CMH; beide Begriffe werden in der Branche synonym verwendet.', fr:'Nom commercial (marque de Sun System) pour la même technologie que le CMH ; les deux termes sont utilisés indifféremment dans l’industrie.'}},
@@ -1757,6 +1761,7 @@ const glossary = [
   {term:{es:'Pastilla/Lozenge', en:'Lozenge', de:'Lutschtablette (Lozenge)', fr:'Pastille (Lozenge)'}, def:{es:'Comestible que se disuelve lentamente en la boca, con absorción sublingual parcial.', en:'An edible that dissolves slowly in the mouth, with partial sublingual absorption.', de:'Ein Esswar, das sich langsam im Mund auflöst, mit teilweiser sublingualer Aufnahme.', fr:'Comestible qui se dissout lentement dans la bouche, avec une absorption sublinguale partielle.'}},
   {term:{es:'Patógeno', en:'Pathogen', de:'Pathogen (Krankheitserreger)', fr:'Pathogène'}, def:{es:'Cualquier organismo (hongo, bacteria, virus, viroide) capaz de causar enfermedad en la planta.', en:'Any organism (fungus, bacterium, virus, viroid) capable of causing disease in the plant.', de:'Jeder Organismus (Pilz, Bakterium, Virus, Viroid), der bei der Pflanze eine Krankheit verursachen kann.', fr:'Tout organisme (champignon, bactérie, virus, viroïde) capable de provoquer une maladie chez la plante.'}},
   {term:{es:'PE (Capital privado)', en:'PE (Private Equity)', de:'PE (Private Equity)', fr:'PE (Capital-investissement)'}, def:{es:'Fondos que adquieren participaciones significativas en empresas ya establecidas y maduras.', en:'Funds that acquire significant stakes in already established, mature companies.', de:'Fonds, die bedeutende Beteiligungen an bereits etablierten, reifen Unternehmen erwerben.', fr:'Fonds acquérant des participations significatives dans des entreprises déjà établies et matures.'}},
+  {term:{es:'Peligros del CO2 (CO2 hazards)', en:'CO2 hazards', de:'Gefahren von CO2 (CO2 hazards)', fr:'Dangers du CO2 (CO2 hazards)'}, def:{es:'El CO2 se usa como solvente dentro de equipos a alta presión. Un equipo a presión que falla puede soltar el gas de golpe, y mucho CO2 en un cuarto cerrado desplaza el aire que respiramos. Por eso solo lo maneja personal formado con equipo certificado.', en:'CO2 is used as a solvent inside high-pressure equipment. Pressurised equipment that fails can release the gas all at once, and a lot of CO2 in a closed room pushes out the air we breathe. That is why only trained staff with certified equipment handle it.', de:'CO2 wird als Lösungsmittel in Hochdruckanlagen verwendet. Eine Druckanlage, die versagt, kann das Gas auf einmal freisetzen, und viel CO2 in einem geschlossenen Raum verdrängt die Luft, die wir atmen. Deshalb arbeitet damit nur geschultes Personal mit zertifizierter Ausrüstung.', fr:'Le CO2 est utilisé comme solvant dans des équipements à haute pression. Un équipement sous pression qui lâche peut libérer le gaz d’un coup, et beaucoup de CO2 dans une pièce fermée chasse l’air que nous respirons. C’est pourquoi seul un personnel formé avec un équipement certifié le manipule.'}},
   {term:{es:'Pérdida (Loss)', en:'Loss', de:'Verlust (Loss)', fr:'Perte (Loss)'}, def:{es:'Término general para cualquier reducción no planeada de producto, material o valor.', en:'A general term for any unplanned reduction of product, material, or value.', de:'Ein allgemeiner Begriff für jede ungeplante Verringerung von Produkt, Material oder Wert.', fr:'Terme général désignant toute réduction non planifiée de produit, de matériel ou de valeur.'}},
   {term:{es:'Pérdida de cultivo (Crop loss)', en:'Crop loss', de:'Ernteverlust (Crop loss)', fr:'Perte de culture (Crop loss)'}, def:{es:'La reducción de rendimiento esperado por plagas, enfermedades, error humano o condiciones adversas.', en:'The reduction in expected yield due to pests, disease, human error, or adverse conditions.', de:'Die Verringerung des erwarteten Ertrags durch Schädlinge, Krankheiten, menschliches Versagen oder widrige Bedingungen.', fr:'La réduction du rendement attendu due aux nuisibles, aux maladies, à une erreur humaine ou à des conditions défavorables.'}},
   {term:{es:'Perfil de terpenos', en:'Terpene profile', de:'Terpenprofil', fr:'Profil terpénique'}, def:{es:'El conjunto y proporciones de terpenos presentes en una variedad — junto al perfil de cannabinoides, uno de los dos ejes de clasificación por quimiovar.', en:'The set and proportions of terpenes present in a variety — along with the cannabinoid profile, one of the two classification axes for chemovar.', de:'Die Zusammensetzung und die Anteile der in einer Sorte vorhandenen Terpene — neben dem Cannabinoidprofil eine der beiden Klassifizierungsachsen für den Chemovar.', fr:'L’ensemble et les proportions des terpènes présents dans une variété — avec le profil cannabinoïde, l’un des deux axes de classification du chimiovar.'}},
@@ -1826,6 +1831,7 @@ const glossary = [
   {term:{es:'Pull-and-snap', en:'Pull-and-snap', de:'Pull-and-Snap', fr:'Pull-and-snap'}, def:{es:'Consistencia de shatter flexible que se estira antes de romperse limpiamente — indicador de balance de humedad/temperatura.', en:'A flexible shatter consistency that stretches before snapping cleanly — an indicator of moisture/temperature balance.', de:'Eine flexible Shatter-Konsistenz, die sich dehnt, bevor sie sauber bricht — ein Hinweis auf ausgewogene Feuchtigkeit/Temperatur.', fr:'Consistance de shatter flexible qui s’étire avant de se casser proprement — indicateur d’un bon équilibre humidité/température.'}},
   {term:{es:'Punto de consigna (Setpoint)', en:'Setpoint', de:'Sollwert (Setpoint)', fr:'Point de consigne (Setpoint)'}, def:{es:'El valor objetivo programado en un controlador (ej. 24°C, 60% RH) que el sistema intenta mantener automáticamente.', en:'The target value programmed into a controller (e.g., 24°C, 60% RH) that the system automatically tries to maintain.', de:'Der in einem Controller programmierte Zielwert (z. B. 24°C, 60% RH), den das System automatisch aufrechtzuerhalten versucht.', fr:'La valeur cible programmée dans un contrôleur (par ex. 24°C, 60 % RH) que le système tente de maintenir automatiquement.'}},
   {term:{es:'Punto de rocío (Dew point)', en:'Dew point', de:'Taupunkt (Dew point)', fr:'Point de rosée (Dew point)'}, def:{es:'La temperatura a la que el aire alcanza 100% de humedad relativa y el vapor comienza a condensarse — importante para prevenir moho.', en:'The temperature at which air reaches 100% relative humidity and vapor begins to condense — important for preventing mold.', de:'Die Temperatur, bei der die Luft 100 % relative Luftfeuchtigkeit erreicht und der Dampf zu kondensieren beginnt — wichtig zur Schimmelvorbeugung.', fr:'La température à laquelle l’air atteint 100 % d’humidité relative et où la vapeur commence à se condenser — importante pour prévenir la moisissure.'}},
+  {term:{es:'Purga (Purging)', en:'Purging', de:'Purgen (Purging)', fr:'Purge (Purging)'}, def:{es:'Quitar el solvente que queda en un extracto. Si no se purga bien, quedan restos que no deben consumirse (ver «Solventes residuales»).', en:'Removing the solvent left in an extract. If it is not purged properly, residues remain that must not be consumed (see “Residual solvents”).', de:'Das Lösungsmittel entfernen, das in einem Extrakt bleibt. Wird nicht richtig gepurgt, bleiben Rückstände, die nicht konsumiert werden dürfen (siehe „Restlösungsmittel“).', fr:'Retirer le solvant qui reste dans un extrait. S’il n’est pas bien purgé, il reste des résidus qui ne doivent pas être consommés (voir « Solvants résiduels »).'}},
   {term:{es:'Pythium', en:'Pythium', de:'Pythium', fr:'Pythium'}, def:{es:'Oomiceto (no un hongo verdadero, aunque se trata como tal en la práctica) que prospera en exceso de humedad y baja oxigenación, causando pudrición de raíces.', en:'An oomycete (not a true fungus, though treated as one in practice) that thrives in excess moisture and low oxygenation, causing root rot.', de:'Ein Oomycet (kein echter Pilz, wird in der Praxis aber so behandelt), das bei übermäßiger Feuchtigkeit und geringer Sauerstoffversorgung gedeiht und Wurzelfäule verursacht.', fr:'Oomycète (pas un vrai champignon, bien que traité comme tel en pratique) qui prospère en cas d’excès d’humidité et de faible oxygénation, causant la pourriture des racines.'}},
   {term:{es:'QA (Aseguramiento de Calidad)', en:'QA (Quality Assurance)', de:'QA (Qualitätssicherung)', fr:'AQ (Assurance Qualité)'}, def:{es:'Sistemas para prevenir problemas de calidad proactivamente — QA se enfoca en el proceso, QC en el producto.', en:'Systems to proactively prevent quality issues — QA focuses on the process, QC on the product.', de:'Systeme zur proaktiven Vermeidung von Qualitätsproblemen — QA konzentriert sich auf den Prozess, QC auf das Produkt.', fr:'Systèmes visant à prévenir proactivement les problèmes de qualité — l’AQ se concentre sur le processus, le CQ sur le produit.'}},
   {term:{es:'QC (Control de Calidad)', en:'QC (Quality Control)', de:'QC (Qualitätskontrolle)', fr:'CQ (Contrôle Qualité)'}, def:{es:'Actividades de inspección y análisis para verificar que un producto cumple especificaciones antes de su liberación.', en:'Inspection and testing activities to verify that a product meets specifications before release.', de:'Inspektions- und Prüftätigkeiten zur Überprüfung, dass ein Produkt vor der Freigabe den Spezifikationen entspricht.', fr:'Activités d’inspection et d’analyse visant à vérifier qu’un produit respecte les spécifications avant sa libération.'}},
@@ -2217,14 +2223,14 @@ const searchIndexStatic = [
 
 const translations = {
   es:{brandSub:'Codex global · cannabis medicinal &amp; recreacional', navHome:'Inicio', navCultivo:'Cultivo', navElaboracion:'Elaboración', navLegal:'Legal', navCiencia:'Ciencia', navMas:'Más',
-    gateUnlockBtn:'Desbloquear con Premium',
-    gtDliTitle:'Calculadora de DLI', gtDliDesc:'La integral de luz diaria es una herramienta Premium.',
-    gtDoseTitle:'Dosis por porción', gtDoseDesc:'La calculadora de cumplimiento normativo es una herramienta Premium.',
-    gtTrazaTitle:'Trazabilidad', gtTrazaDesc:'Los sistemas semilla-a-venta que exige cada regulador son contenido Premium.',
-    gtDirTitle:'Directorio de proveedores', gtDirDesc:'El directorio completo por categoría es contenido Premium.',
-    gtCarrTitle:'Carreras', gtCarrDesc:'El detalle de cada rol profesional del rubro es contenido Premium.',
-    gtSistemasTitle:'Sistemas de cultivo', gtSistemasDesc:'Indoor, invernadero y outdoor, con parámetros técnicos completos, son contenido Premium.',
-    gtMetodosTitle:'Métodos de cultivo', gtMetodosDesc:'Los métodos de nutrición de raíz —suelo orgánico, hidropónico, aeropónico y acuaponía— son contenido Premium.',
+    gateUnlockBtn:'Desbloquear acceso completo',
+    gtDliTitle:'Calculadora de DLI', gtDliDesc:'La integral de luz diaria es una herramienta del acceso completo.',
+    gtDoseTitle:'Dosis por porción', gtDoseDesc:'La calculadora de cumplimiento normativo es una herramienta del acceso completo.',
+    gtTrazaTitle:'Trazabilidad', gtTrazaDesc:'Los sistemas semilla-a-venta que exige cada regulador requieren acceso completo.',
+    gtDirTitle:'Directorio de proveedores', gtDirDesc:'El directorio completo por categoría requiere acceso completo.',
+    gtCarrTitle:'Carreras', gtCarrDesc:'El detalle de cada rol profesional del rubro requiere acceso completo.',
+    gtSistemasTitle:'Sistemas de cultivo', gtSistemasDesc:'Indoor, invernadero y outdoor, con parámetros técnicos completos, requieren acceso completo.',
+    gtMetodosTitle:'Métodos de cultivo', gtMetodosDesc:'Los métodos de nutrición de raíz —suelo orgánico, hidropónico, aeropónico y acuaponía— requieren acceso completo.',
     cmMetodosIntro:'Elegido el sistema (dónde), lo siguiente es el método: cómo se nutre la raíz. Estas cuatro familias definen el resto de las decisiones de cultivo — desde el equipo hasta el calendario de nutrición.',
     cmSecSuelo:'Suelo orgánico',
     cmSuelo1h4:'Tierra tradicional', cmSuelo1sci:'El punto de partida más antiguo', cmSuelo1desc:'Cultivo directo en tierra de jardín o campo abierto. Es el método más antiguo y el más "forgiving" con errores de riego o nutrición — el propio suelo amortigua los desbalances.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
@@ -2266,57 +2272,47 @@ const translations = {
     eqF5H3:'5. Secado', eqF5i1:'Malla de secado por niveles', eqF5i2:'Filtro de carbón al mínimo', eqF5i3:'Ventilador apuntado a la pared — nunca directo a las flores', eqF5i4:'Espacio 100% oscuro',
     eqF6H3:'6. Curado', eqF6i1:'Frascos de vidrio herméticos', eqF6i2:'Sobres de humedad bidireccional', eqF6i3:'Mini-termohigrómetros para frascos',
     eqCuradoMarcas:'<b>Ejemplos ilustrativos:</b> Boveda e Integra son las marcas más citadas de sobres de humedad bidireccional para frascos de curado — regulan la humedad interna sin que tengas que abrir el frasco a adivinar.',
-    gtIlumTitle:'Iluminación', gtIlumDesc:'Los objetivos de PPFD y DLI por etapa, con base científica, son contenido Premium.',
-    gtSustratoTitle:'Sustrato y nutrición', gtSustratoDesc:'La guía completa de sustratos y macro/micronutrientes es contenido Premium.',
-    gtEntrenTitle:'Poda y entrenamiento', gtEntrenDesc:'Las 7 técnicas de entrenamiento con estimación de rendimiento son contenido Premium.',
-    gtGenTitle:'Genética y quimiotipos', gtGenDesc:'La clasificación científica por quimiotipo, con fuente citada, es contenido Premium.',
-    gtCicloTitle:'Ciclo de vida', gtCicloDesc:'El detalle completo del ciclo de vida de la planta es contenido Premium.',
-    gtCosechaTitle:'Cosecha', gtCosechaDesc:'La checklist de tricomas y las decisiones de corte y trim son contenido Premium.',
-    gtPropTitle:'Propagación avanzada', gtPropDesc:'Feminización, cruces autoflorecientes e injertos son contenido Premium.',
-    gtProcTitle:'Procesos y SOP', gtProcDesc:'Los procedimientos completos de post-cosecha son contenido Premium.',
-    gtConcTitle:'Concentrados', gtConcDesc:'El recorrido mundial de técnicas de extracción es contenido Premium.',
-    gtTintTitle:'Tinturas, cápsulas y parches', gtTintDesc:'Las 3 vías de absorción con dosis medida son contenido Premium.',
-    gtVapesTitle:'Vapes y cartuchos', gtVapesDesc:'La guía de hardware y la historia del EVALI son contenido Premium.',
-    gtComTitle:'Comestibles', gtComDesc:'Decarboxilación y cálculo de potencia son contenido Premium.',
-    gtSkinTitle:'Skincare y tópicos', gtSkinDesc:'La guía completa de tópicos es contenido Premium.',
-    gtEtiqTitle:'Etiquetado', gtEtiqDesc:'El estándar de etiquetado completo es contenido Premium.',
-    gtCientTitle:'Científicos', gtCientDesc:'El directorio completo de investigadores activos es contenido Premium.',
-    gtMedTitle:'Información médica', gtMedDesc:'Indicaciones clínicas e interacciones son contenido Premium.',
-    gtEcsTitle:'Sistema Endocannabinoide 101', gtEcsDesc:'La explicación narrativa del sistema endocannabinoide y la comparativa humanos vs. animales son contenido Premium.',
-    gtSeguridadDesc:'Profundización científica completa — estudios adicionales, mecanismos y contexto extendido — disponible con Premium.',
-    gtDiagTeaserTitle:'Viste 2 de 11', gtDiagTeaserDesc:'Desbloquea las 9 fichas restantes con Premium.',
-    gtPapersTeaserTitle:'Viste 1 de 26', gtPapersTeaserDesc:'Desbloquea la biblioteca completa de papers con Premium.',
-    legalTeaserVisto:'Viste', legalTeaserDe:'de', legalTeaserDesbloquea:'Desbloquea los 50 países con Premium.',
-    gtCannaTeaserTitle:'Viste 2 de 6', gtCannaTeaserDesc:'Desbloquea los 4 cannabinoides restantes con Premium.',
-    gtTerpTeaserTitle:'Viste 2 de 8', gtTerpTeaserDesc:'Desbloquea los 6 perfiles restantes con Premium.',
-    gtFlavTeaserTitle:'Viste 2 de 5', gtFlavTeaserDesc:'Desbloquea los 5 perfiles de flavonoides con Premium.',
-    gtMitosTeaserTitle:'Viste 2 de 6', gtMitosTeaserDesc:'Desbloquea la biblioteca completa de mitos con Premium.',
+    gtIlumTitle:'Iluminación', gtIlumDesc:'Los objetivos de PPFD y DLI por etapa, con base científica, requieren acceso completo.',
+    gtSustratoTitle:'Sustrato y nutrición', gtSustratoDesc:'La guía completa de sustratos y macro/micronutrientes requiere acceso completo.',
+    gtEntrenTitle:'Poda y entrenamiento', gtEntrenDesc:'Las 7 técnicas de entrenamiento con estimación de rendimiento requieren acceso completo.',
+    gtGenTitle:'Genética y quimiotipos', gtGenDesc:'La clasificación científica por quimiotipo, con fuente citada, requiere acceso completo.',
+    gtCicloTitle:'Ciclo de vida', gtCicloDesc:'El detalle completo del ciclo de vida de la planta requiere acceso completo.',
+    gtCosechaTitle:'Cosecha', gtCosechaDesc:'La checklist de tricomas y las decisiones de corte y trim requieren acceso completo.',
+    gtPropTitle:'Propagación avanzada', gtPropDesc:'Feminización, cruces autoflorecientes e injertos requieren acceso completo.',
+    gtProcTitle:'Procesos y SOP', gtProcDesc:'Los procedimientos completos de post-cosecha requieren acceso completo.',
+    gtConcTitle:'Concentrados', gtConcDesc:'El recorrido mundial de técnicas de extracción requiere acceso completo.',
+    gtTintTitle:'Tinturas, cápsulas y parches', gtTintDesc:'Las 3 vías de absorción con dosis medida requieren acceso completo.',
+    gtVapesTitle:'Vapes y cartuchos', gtVapesDesc:'La guía de hardware y la historia del EVALI requieren acceso completo.',
+    gtComTitle:'Comestibles', gtComDesc:'Decarboxilación y cálculo de potencia requieren acceso completo.',
+    gtSkinTitle:'Skincare y tópicos', gtSkinDesc:'La guía completa de tópicos requiere acceso completo.',
+    gtEtiqTitle:'Etiquetado', gtEtiqDesc:'El estándar de etiquetado completo requiere acceso completo.',
+    gtCientTitle:'Científicos', gtCientDesc:'El directorio completo de investigadores activos requiere acceso completo.',
+    gtMedTitle:'Información médica', gtMedDesc:'Indicaciones clínicas e interacciones requieren acceso completo.',
+    gtEcsTitle:'Sistema Endocannabinoide 101', gtEcsDesc:'La explicación narrativa del sistema endocannabinoide y la comparativa humanos vs. animales requieren acceso completo.',
+    gtSeguridadDesc:'Profundización científica completa — estudios adicionales, mecanismos y contexto extendido — disponible con el acceso completo.',
+    gtDiagTeaserTitle:'Viste 2 de 11', gtDiagTeaserDesc:'Desbloquea las 9 fichas restantes con el acceso completo.',
+    gtPapersTeaserTitle:'Viste 1 de 26', gtPapersTeaserDesc:'Desbloquea la biblioteca completa de papers con el acceso completo.',
+    legalTeaserVisto:'Viste', legalTeaserDe:'de', legalTeaserDesbloquea:'Desbloquea los 50 países con el acceso completo.',
+    gtCannaTeaserTitle:'Viste 2 de 6', gtCannaTeaserDesc:'Desbloquea los 4 cannabinoides restantes con el acceso completo.',
+    gtTerpTeaserTitle:'Viste 2 de 8', gtTerpTeaserDesc:'Desbloquea los 6 perfiles restantes con el acceso completo.',
+    gtFlavTeaserTitle:'Viste 2 de 5', gtFlavTeaserDesc:'Desbloquea los 5 perfiles de flavonoides con el acceso completo.',
+    gtMitosTeaserTitle:'Viste 2 de 6', gtMitosTeaserDesc:'Desbloquea la biblioteca completa de mitos con el acceso completo.',
   tierSwitchLabel:'Vista previa:',
     agTitle:'Verificación de edad', agBody:'Este contenido es solo para mayores de 18 años, e incluye información sobre cannabis con fines educativos, médicos e informativos.', agYes:'Sí, tengo 18 años o más', agNo:'No, soy menor de 18', agBlockedTitle:'Acceso no disponible', agBlockedBody:'Este contenido está restringido a personas mayores de 18 años. No podemos darte acceso en este momento.',
     cuentaLegalTitle:'Legal', cuentaTerminosLabel:'Términos y Condiciones', cuentaPrivacidadLabel:'Política de Privacidad',
-    tcEyebrow:'Legal', tcTitle:'Términos y Condiciones', tcUpdated:'Última actualización: julio de 2026',
+    tcEyebrow:'Legal', tcTitle:'Términos y Condiciones', tcUpdated:'Última actualización: 5 de noviembre de 2026',
     tcDraftNote:'<b>Nota sobre este documento:</b> este texto es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en cannabis y comercio digital antes de un lanzamiento real. Las leyes de cannabis varían enormemente por país y estado; este documento necesita adaptación legal profesional según dónde opere Mother Verde LLC.',
     tc1H3:'1. Aceptación de los términos', tc1P:'Al acceder o usar la aplicación Mother Verde ("la App"), operada por Mother Verde LLC ("nosotros", "la empresa"), aceptas quedar sujeto a estos Términos y Condiciones. Si no estás de acuerdo, no debes usar la App.',
     tc2H3:'2. Elegibilidad y edad mínima', tc2P:'La App está destinada exclusivamente a personas de 18 años o más. Al confirmar tu edad en el acceso inicial, declaras y garantizas que cumples este requisito. Nos reservamos el derecho de suspender el acceso a cualquier cuenta si tenemos motivos razonables para creer que esta declaración es falsa.',
     tc3H3:'3. Naturaleza del contenido — esto no es asesoría médica ni legal', tc3P:'Todo el contenido de la App —incluyendo información sobre cultivo, elaboración, ciencia, dosificación, seguridad, y estatus legal por país— se ofrece <b>únicamente con fines educativos e informativos</b>. No constituye asesoría médica, diagnóstico, tratamiento, ni asesoría legal de ningún tipo. El estatus legal del cannabis cambia con frecuencia y varía por jurisdicción; es tu responsabilidad verificar la ley vigente en tu ubicación antes de actuar. Consulta siempre a un profesional de salud calificado antes de usar cannabis con fines medicinales, y a un abogado local para cualquier duda legal.',
     tc4H3:'4. Uso permitido', tc4P:'Te comprometes a usar la App únicamente de forma lícita, conforme a las leyes de tu jurisdicción. No debes usar la App para facilitar actividades ilegales, ni intentar acceder a partes restringidas del servicio sin autorización.',
-    tc5H3:'5. Suscripción Premium', tc5P:'La App ofrece un nivel gratuito y un nivel Premium de pago, con contenido adicional. Los detalles de precio, facturación y cancelación se especifican al momento de la suscripción. Nos reservamos el derecho de modificar los precios y beneficios de cada nivel, con aviso previo razonable.',
+    tc5H3:'5. Acceso completo', tc5P:'El aporte único de apoyo ayuda a Bertha Limo, fundadora de Mother Verde, a seguir aprendiendo y creciendo en su vida profesional en SUNY Morrisville, que le abrió otra vez sus puertas. A cambio, la persona recibe acceso completo a la plataforma. Es voluntario y único; no es una donación ni es deducible de impuestos. El aporte llega a la billetera personal de cripto de Bertha Limo en la red Base. La prueba gratuita de 24 horas se ofrece una sola vez por persona. Mother Verde es un proyecto independiente, no afiliado ni respaldado por SUNY Morrisville. <b>Códigos de regalo:</b> la administración puede enviar un código que da 7 días de acceso completo; se usa una sola vez y hay que canjearlo en un plazo de 7 días. <b>Retiro del acceso:</b> si detectamos fraude o abuso (por ejemplo, un aporte que no corresponde a un pago real), podemos retirar el acceso; queda anotado con su motivo. <b>Aportes manuales:</b> un aporte hecho por otro medio acordado lo registra la administración; al registrarlo se activa el acceso completo, igual que con un aporte en USDC aprobado, y queda anotado en el registro.',
     tc6H3:'6. Propiedad intelectual', tc6P:'Todo el contenido original de la App —textos, ilustraciones, marca, diseño— es propiedad de Mother Verde LLC o de sus licenciantes, y está protegido por las leyes de propiedad intelectual aplicables. No está permitida su reproducción comercial sin autorización previa por escrito.',
     tc7H3:'7. Contenido generado por el usuario', tc7P:'Herramientas como la Bitácora de cultivo almacenan la información que ingreses. Eres responsable del contenido que registras. No debes ingresar información sensible de terceros sin su consentimiento.',
     tc8H3:'8. Limitación de responsabilidad', tc8P:'En la medida permitida por la ley, Mother Verde LLC no será responsable por daños derivados del uso o la imposibilidad de uso de la App, incluyendo decisiones tomadas con base en la información proporcionada. La App se ofrece "tal cual", sin garantías de ningún tipo.',
     tc9H3:'9. Cambios a estos términos', tc9P:'Podemos actualizar estos Términos periódicamente. Te notificaremos de cambios significativos dentro de la App. El uso continuado tras la publicación de cambios constituye aceptación de los nuevos términos.',
     tc10H3:'10. Contacto', tc10P:'Para preguntas sobre estos Términos, contáctanos en el correo de soporte indicado dentro de la App.',
-    ppEyebrow:'Legal', ppTitle:'Política de Privacidad', ppUpdated:'Última actualización: julio de 2026',
-    ppDraftNote:'<b>Nota sobre este documento:</b> esta es una base completa y de buena fe, redactada como punto de partida — no reemplaza la revisión de un abogado especializado en privacidad de datos (incluidas normativas como GDPR o CCPA según dónde operes) antes de un lanzamiento real.',
-    ppv1H3:'1. Qué información recopilamos', ppv1P:'La App puede almacenar: tu confirmación de edad, tu idioma preferido, entradas que registres en tu Bitácora de cultivo, y países que sigas en Alertas. En la pantalla de Cuenta puedes ingresar opcionalmente nombre, correo y país — estos campos son parte de la maqueta del prototipo y hoy no se envían a ningún servidor.',
-    ppv2H3:'2. Dónde se almacena tu información', ppv2P:'La mayoría de los datos mencionados se guardan localmente en tu propio dispositivo, no en nuestros servidores. Esto significa que, en su forma actual, gran parte de tu actividad en la App permanece en tu teléfono o navegador, y no la recopilamos de forma centralizada.',
-    ppv2AdminP:'Dentro del directorio de comunidad, tu nombre, país y tipo de perfil son visibles para otras personas que usen la App. Datos como tu correo electrónico nunca se muestran públicamente — solo el equipo administrador de Mother Verde LLC tiene acceso a esa información, con controles de seguridad específicos para eso (verificación en dos pasos, registro de accesos).',
-    ppv3H3:'3. Cómo usamos tu información', ppv3P:'Usamos la información almacenada únicamente para que la App funcione como esperas: recordar tu idioma, tu verificación de edad, y el contenido que tú mismo ingresas en herramientas como la Bitácora. No vendemos tu información a terceros.',
-    ppv4H3:'4. Servicios de terceros y pagos', ppv4P:'Los pagos de la suscripción Premium se procesan a través de App Store, Google Play, o Stripe — nunca directamente por Mother Verde. <b>Mother Verde LLC nunca recibe, procesa, ni almacena tu número de tarjeta, CVV, ni fecha de vencimiento.</b> Solo recibimos una confirmación de que el pago se realizó y el estado de tu suscripción. Esos procesadores de pago tienen sus propias políticas de privacidad, independientes de esta.',
-    ppv5H3:'5. Tus derechos', ppv5P:'Puedes eliminar la información almacenada localmente borrando los datos de la App desde la configuración de tu dispositivo. Si en el futuro almacenamos datos en servidores, tendrás derecho a solicitar acceso, corrección o eliminación de tu información, según lo permita la ley de tu jurisdicción.',
-    ppv6H3:'6. Privacidad de menores', ppv6P:'La App está restringida a personas mayores de 18 años mediante verificación de edad al ingresar. No recopilamos intencionalmente información de menores de edad.',
-    ppv7H3:'7. Cambios a esta política', ppv7P:'Podemos actualizar esta Política de Privacidad periódicamente. Te notificaremos de cambios significativos dentro de la App.',
-    ppv8H3:'8. Contacto', ppv8P:'Para preguntas sobre privacidad, contáctanos en el correo de soporte indicado dentro de la App.',
+    ppEyebrow:'Legal', ppTitle:'Política de Privacidad',
     heroTitle:'El codex global del cannabis, <em>organizado de verdad</em>.', heroSub:'Cultivo con evidencia, elaboración de productos, marco legal por país y ciencia curada — todo en un solo lugar, para cultivadores, fabricantes, pacientes y viajeros.',
     heroBtn1:'Explorar cultivo', heroBtn2:'Ver estatus legal',
     statCountries:'Países mapeados', statMetodos:'Métodos de cultivo', statSources:'Fuentes oficiales', statHistory:'Cobertura histórica',
@@ -2354,7 +2350,7 @@ const translations = {
     eyCiencia:'Ciencia del cannabis', cienciaTitle:'La biblioteca de evidencia', cienciaSub:'Papers, investigadores activos e información clínica — con nivel de evidencia explícito en cada dato.',
     subPapers:'Papers', subCientificos:'Científicos', subMedico:'Médico', subMenores:'Cannabinoides menores', subTerpenos:'Terpenos y flavonoides', subMitos:'Mitos', subEcs:'SEC 101',
     detailEstado:'Estado actual', detailNote:'Dato ilustrativo para este prototipo — en producción cada campo se conecta a la fuente oficial y se actualiza automáticamente.', detailTimeline:'Línea de tiempo', detailTraveler:'Para el viajero', detailSources:'Fuentes oficiales', footerCopy:'© 2026 Mother Verde LLC. Todos los derechos reservados.',
-    backToHome:'← Volver a Inicio', backToCuenta:'← Volver a Cuenta',
+    backToHome:'← Volver a Inicio', backToCuenta:'← Volver a Cuenta', backToDesbloquear:'← Volver a Desbloquear', legalBack:'← Volver',
     calcEyebrow:'Herramientas interactivas', calcTitle:'Calculadoras', calcSub:'Las mismas fórmulas que ya viste en Cultivo e Elaboración, ahora interactivas.',
     calcVpdTitle:'Calculadora de VPD', calcVpdDesc:'Déficit de presión de vapor — la métrica real detrás de "¿está muy húmedo o muy seco?".', calcVpdTemp:'Temp. aire (°C)', calcVpdRH:'Humedad rel. (%)', calcVpdStage:'Etapa', calcVpdVeg:'Vegetativo (0.8–1.0 kPa)', calcVpdFlo:'Floración (1.0–1.5 kPa)',
     calcDliTitle:'Calculadora de DLI', calcDliDesc:'Integral de luz diaria — cuánta luz acumula tu cultivo en 24 h, no solo la intensidad de un instante.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Horas de luz/día',
@@ -2375,15 +2371,13 @@ const translations = {
     bitPhLabel:'pH sustrato', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humedad (%)', bitAtajosLabel:'Atajos mientras registras:', bitAtajoVpd:'Calcular VPD →', bitAtajoDosis:'Calcular mezcla de nutrientes →',
     bitStatDias:'Días de ciclo', bitStatEntradas:'Entradas totales', bitStatEtapa:'Etapa actual', bitGraficoTitle:'pH y EC a lo largo del tiempo', bitGraficoVacio:'Registra pH o EC en al menos 2 entradas para ver el gráfico de tendencia aquí.',
     bitAuthGateH3:'Inicia sesión para llevar tu bitácora', bitAuthGateP:'Tus entradas quedan guardadas en tu cuenta, privadas — solo tú puedes verlas. Necesitas iniciar sesión o crear una cuenta primero.', bitAuthGateBtn:'Ir a Cuenta',
-    bitPdfBtn:'Descargar PDF', bitPdfLockedMsg:'Descargar en PDF es una función Premium — desbloquéala',
+    bitPdfBtn:'Descargar PDF', bitPdfLockedMsg:'Descargar en PDF es parte del acceso completo — desbloquéalo',
     bitErrSinNota:'Escribe una nota antes de guardar.', bitGuardadoOk:'✓ Guardado', bitErrGuardar:'No se pudo guardar — intenta de nuevo.',
     bitSinFecha:'sin fecha', bitEliminar:'Eliminar', bitSinNotas:'(sin notas)', bitVacio:'Todavía no hay entradas — agrega la primera arriba.',
     bitFotoLabel:'Foto (opcional)', bitFotoNota:'Se comprime automáticamente para ahorrar espacio. Con muchas entradas con foto, el espacio de almacenamiento del prototipo puede llenarse — en producción esto viviría en un servidor real, sin ese límite.',
-    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaEstadoTitle:'Estado de suscripción', cuentaPagoSeguroNote:'Tus pagos se procesan de forma segura por un proveedor externo. Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan de forma real y segura. El estado de suscripción de arriba viene directo de tu cuenta.',
-    cuentaPremiumActivo:'✓ Premium activo — acceso completo a las 10 zonas, sin publicidad, descargas ilimitadas.', cuentaGestionarBtn:'Gestionar suscripción', cuentaGestionarAlert:'En la app real, esto abriría la gestión de suscripción de Apple/Google.', cuentaPlanGratis:'Plan Gratis — probadita en cada zona, con publicidad.', cuentaSuscribirBtn:'Obtener Premium — $7.10/mes',
-    pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses', pmComprarBtn:'Comprar Premium — $7.10/mes',
-    pmPagoSeguroNote:'Pago procesado de forma segura por App Store / Google Play / Stripe — Mother Verde nunca ve ni guarda tu número de tarjeta.',
-    alertasEyebrow:'Beneficio Premium', alertasTitle:'Alertas de cambio legal', alertasSub:'Sigue países específicos — te avisamos apenas cambie su estatus, sin que tengas que revisar manualmente.', alertasSigues:'Países que sigues', alertasSeguirBtn:'Seguir', alertasEjemploTitle:'Así se vería una alerta real', alertasEjemploH4:'Alemania actualizó su límite de posesión personal', alertasEjemploTag:'Cambio confirmado', alertasEjemploMeta:'Hace 2 días · Fuente: BfArM', alertasEjemploBody:'Ejemplo ilustrativo de cómo llegaría una notificación real cuando un país que sigues actualiza su marco legal.',
+    cuentaEyebrow:'Ajustes', cuentaTitle:'Tu cuenta', cuentaPerfilLink:'Tu nombre, país y foto públicos se editan en Tu Perfil →', cuentaDatosTitle:'Datos de la cuenta', cuentaNombreLabel:'Nombre', cuentaNombrePh:'Tu nombre', cuentaCorreoLabel:'Correo', cuentaPaisLabel:'País', cuentaPaisPh:'Para ajustar precios y ofrecerte tu estatus legal más rápido', cuentaPrefTitle:'Preferencias', cuentaIdiomaLabel:'Idioma de la interfaz', cuentaAlertasLabel:'Alertas de cambio legal', cuentaNote:'Tu cuenta y tus datos se guardan en nuestro servidor, no solo en este dispositivo.',
+    cuentaPremiumActivo:'✓ Acceso completo activo.', 
+    pmPagoAnual:' · por mes', pmActualizaciones:'Incluye actualizaciones de contenido cada seis meses',
     alertaSemillasH4:'EE. UU.: prohibición federal al comercio interestatal de semillas con 0.3%+ THC', alertaSemillasTag:'Alerta real — no ilustrativa', alertaSemillasMeta:'21 de julio de 2026 · Fuente: MJBizDaily',
     alertaSemillasBody:'La redefinición federal del cáñamo hace ilegal enviar semillas de cultivares con 0.3% THC o más entre estados, a partir del <b>12 de noviembre de 2026</b>. Bancos de semillas ya están diversificando operaciones a distintos estados para poder seguir operando después de esa fecha.',
     alertaSemillasLink:'Leer más en mjbizdaily.com →',
@@ -2582,7 +2576,7 @@ const translations = {
     ttG5h4:'Rosin (calor + presión mecánica)', ttPasos3b:'3 pasos', ttG5desc:'1) Envuelve flor curada, hash o kief en papel pergamino doblado. 2) Presiona con una plancha de pelo o prensa de rosin a temperatura media (~90–120 °C) por 5–10 segundos. 3) Despega el papel de inmediato y recolecta el aceite antes de que se enfríe.',
     ttG6h4:'Dry sift (tamizado)', ttPasos3c:'3 pasos', ttG6desc:'1) Coloca flor seca sobre una malla de micra fina, sobre una superficie lisa debajo. 2) Frota suavemente con una tarjeta o rodillo para desprender los tricomas. 3) Recolecta el polvo que cae — eso es el kief.',
     ttG7h4:'Decarboxilación en horno', ttPasos3d:'3 pasos', ttG7desc:'1) Desmenuza la flor en trozos parejos sobre una bandeja con papel para hornear. 2) Hornea a ~110–115 °C durante 45–60 min, revisando que no se dore de más. 3) Deja enfriar antes de usarla en cualquier infusión.',
-    ttNoteFinal:'Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el plan de suscripción.',
+    ttNoteFinal:'Estas 6 técnicas usan solo calor de cocina, presión mecánica simple o tamizado — nada de sistemas de gas presurizado ni solventes inflamables. Ese es el límite real de lo que esta app enseña paso a paso. Todo lo que requiere equipo especializado o manejo de sustancias inflamables (BHO, CO2, formulación de líquido de vape) se queda en el nivel de ciencia y características que ya viste en Concentrados y Vapes — nunca en instrucciones operativas, sin importar el tipo de acceso.',
     ttCtaH3:'¿Necesitas una fórmula de dosificación real para tu producto?', ttCtaP:'Tinturas, cápsulas o parches con dosis precisa y consistente por lote requieren cálculos específicos. Podemos ayudarte a pensarlo para tu operación.',
     vpTiposH3:'Qué hay realmente dentro del cartucho: 3 formas legítimas de hacerlo', vpTiposIntro:'Antes de hablar de riesgos, vale la pena reconocer que existen empresas que siguen estándares reales y producen aceite de calidad genuina — de formas bastante distintas entre sí. Estas son las 3 categorías principales que vas a encontrar en un mercado legal y regulado.',
     vpDestH4:'Destilado', vpDestSci:'Con solventes + destilación', vpDestDesc:'Se extrae con CO2, etanol, o hidrocarburos, luego se "winteriza" (congela y filtra para quitar grasas y ceras), y se refina mediante destilación de trayecto corto — un proceso de purificación real y bien documentado. El resultado es un aceite muy limpio, con THC frecuentemente entre 85-99%, pero prácticamente sin terpenos propios — por eso casi siempre se le re-agregan terpenos (de cannabis o botánicos) después.',
@@ -2623,15 +2617,14 @@ const translations = {
     etSimboloNote:'Un detalle que varía mucho por país: varios mercados regulados (como Canadá y varios estados de EE. UU.) exigen un símbolo de advertencia THC estandarizado y visualmente reconocible en el empaque — no alcanza con el número en el texto. El diseño exacto del símbolo lo define cada regulador, así que no es universal entre países, solo dentro de cada uno.',
     ppNote:'Selección ilustrativa para este prototipo — en producción, este feed se actualiza con publicaciones nuevas de PubMed, ClinicalTrials.gov y revistas especializadas.',
     ppSlicNote:'<b>El panorama real de 2025:</b> la Sociedad Latinoamericana e Ibérica de Cannabinología (SLIC) analizó los ensayos clínicos indexados en PubMed durante 2025 con "cannabis" o "cannabinoides" en el título — encontraron 85 estudios reales, cubriendo salud mental, salud pública, intervenciones clínicas, seguridad y políticas. Una parte considerable se enfoca en salud mental y consumo en adolescentes, examinando vínculos con depresión, ansiedad y consumo conjunto con nicotina o alcohol.',
-    ppTag1:'Estudio genético', pp1desc:'Analiza 297 plantas híbridas y no encuentra relación significativa entre morfología de hoja y contenido de cannabinoides — base científica para reemplazar indica/sativa por clasificación de quimiotipo.',
-    ppTag2:'Ensayo clínico aleatorizado', pp2desc:'Ensayo controlado que respalda el uso de CBD purificado en un síndrome de epilepsia infantil refractaria — base de la aprobación regulatoria de Epidiolex.',
-    ppTag3:'Estudio agronómico', pp3meta:'Extensión agrícola · Cornell University · 2022', pp3desc:'Establece rangos de VPD óptimos por fase de crecimiento para maximizar rendimiento y calidad de flor en cultivo indoor.',
-    ppTag4:'Análisis químico de laboratorio', pp4desc:'Analiza más de 30 muestras de rosin de hash con cromatografía de gases 2D y encuentra compuestos nunca antes vistos en cannabis — incluidos tioles (notas "a gas") y ácidos grasos (notas "a queso") que no son terpenos. Sugiere que el aroma distintivo de cada variedad depende de compuestos minoritarios, no solo del perfil de terpenos tradicional.',
-    ppTag5:'Genómica de vanguardia', pp5meta:'Nature · 2025', pp5desc:'Secuencia el genoma completo de múltiples variedades de cannabis, no solo una referencia única — revela cuánta diversidad genética real existe entre variedades comerciales, sentando las bases para futura mejora genética basada en datos duros.',
-    ppTag6:'Revisión sistemática', pp6desc:'Revisa 31 casos documentados de interacción entre cannabis y 16 medicamentos de índice terapéutico estrecho, en 889 personas — 58% mostró niveles inesperados del medicamento en sangre. La base de por qué las interacciones medicamentosas importan tanto como el propio cannabis.',
-    ppTag7:'Estudio fundacional', pp7desc:'El estudio que acuñó el término "endocannabinoide" y describió por primera vez cómo el cuerpo produce y descompone su propia anandamida — la base de todo lo que hoy sabemos sobre el sistema endocannabinoide humano.',
-    ppTag8:'Estudio de mercado', pp8desc:'Analizó 84 productos de CBD comprados en línea: solo el 30.95% tenía un etiquetado preciso dentro de un margen razonable — 42.85% contenía más CBD del declarado, 26.19% menos. La evidencia detrás de por qué siempre recomendamos exigir un COA.',
-    ppTag9:'Consenso clínico', pp9meta:'Colegio Americano de Ginecología y Obstetricia (ACOG) · 2025', pp9desc:'Actualización del consenso clínico más reciente sobre cannabis en embarazo y lactancia — recomienda su cese durante ambos periodos, documentando riesgos de bajo peso al nacer y mayor ingreso a UCI neonatal.',
+    ppTag1:'Estudio genético', pp1desc:'Midió 297 plantas híbridas de un cruce entre dos linajes distintos: rasgos que se suelen dar por relacionados no lo estaban. En los híbridos, la forma de la hoja no corresponde a la química de la planta, y los autores piden un nuevo sistema para clasificar la variación del cannabis.',
+    ppTag2:'Ensayo clínico aleatorizado', pp2desc:'Ensayo doble ciego con 120 niños y jóvenes con síndrome de Dravet: con CBD, las crisis convulsivas bajaron de 12.4 a 5.9 al mes (con placebo, de 14.9 a 14.1). El CBD tuvo más efectos adversos, como diarrea, vómitos, cansancio y somnolencia.',
+    ppTag4:'Análisis químico de laboratorio', pp4desc:'Compara variedades con aromas muy distintos y encuentra perfiles de terpenos muy parecidos. Los aromas concretos se relacionan con compuestos minoritarios que no son terpenos: una nueva clase de compuestos de azufre volátiles en aromas cítricos, y el escatol en el aroma «químico». Concluye que se ha sobrevalorado el papel de los terpenos en el aroma.',
+    ppTag5:'Genómica de vanguardia', pp5meta:'Nature · 2025', pp5desc:'Construye un pangenoma del cannabis con 193 genomas (181 nuevos) de 144 muestras de plantas macho y hembra. Encuentra regiones con mucha variación genética, pero los genes de las sintasas de cannabinoides (THCA y CBDA) varían muy poco. Concluye que el acervo genético del cannabis sigue caracterizado solo en parte.',
+    ppTag6:'Revisión sistemática', pp6desc:'Revisión sistemática de casos reales: 31 informes de interacciones entre cannabinoides y 16 medicamentos de índice terapéutico estrecho, con 889 personas. En 18 de los informes (58%) se halló un nivel inesperado del medicamento en sangre. Warfarina, valproato, tacrolimus y sirolimus fueron los más citados.',
+    ppTag7:'Estudio fundacional', pp7desc:'Muestra que neuronas cerebrales en cultivo producen y liberan anandamida a partir de un precursor fosfolipídico nuevo, y que la anandamida se capta y degrada rápidamente. Apoya que la anandamida es un mensajero propio de las neuronas.',
+    ppTag8:'Estudio de mercado', pp8desc:'Analizó 84 productos de CBD comprados en línea: solo el 30.95% tenía la cantidad declarada (margen de ±10%); el 42.85% tenía más CBD del declarado y el 26.19%, menos. Por eso recomendamos pedir siempre el COA.',
+    ppTag9:'Consenso clínico', pp9meta:'Colegio Americano de Ginecología y Obstetricia (ACOG) · 2025', pp9desc:'Documento de consenso clínico del ACOG (octubre de 2025) sobre el uso de cannabis durante el embarazo y la lactancia.',
     verEstudioOriginal:'Ver estudio original',
     scNote:'Una muestra pequeña entre muchos investigadores activos en el campo — en producción, este directorio se ampliaría con perfiles verificados (LinkedIn, ORCID, afiliación institucional).',
     scRole1:'Genómica &amp; taxonomía', sc1desc:'Universidad de Colorado Boulder · fundadora de Agricultural Genomics Foundation. Lidera la investigación que cuestiona la clasificación indica/sativa.',
@@ -2650,23 +2643,22 @@ const translations = {
     scRole14:'Psicología \u0026 salud pública', sc14desc:'Universidad Chrisland, Nigeria — autora principal de una revisión sistemática de noviembre de 2025 sobre patrones de uso de cannabis en Nigeria, uno de los pocos estudios rigurosos sobre el tema en África subsahariana, una región históricamente subrepresentada en la investigación científica de cannabis.',
     scRole15:'Neurocirugía', sc15desc:'Presidente de la Asociación Clínica Japonesa de Cannabinoides. Profesor de Neurocirugía en la Universidad St. Marianna (Japón), Investigador Principal designado por el Ministerio de Salud japonés en 2020 y 2024. Testificó ante la Dieta japonesa en 2023 sobre la reforma legal. Dirige el primer ensayo clínico de Japón sobre cannabinoides para epilepsia refractaria, iniciado en diciembre de 2024.',
     scRole16:'Epidemiología', sc16desc:'Universidad Médica de Hamburgo-Eppendorf y Universidad de Leipzig, Alemania. Más de 9,300 citas académicas. Autor principal de los estudios más recientes sobre los efectos reales de la legalización alemana de 2024, en conducción bajo efecto y mercado médico.',
-    ppTag10:'Estudio social', pp10desc:'Estudio real sobre el potencial terapéutico de la Cannabis sativa en psicoterapia, documentando cómo el racismo estructural y la guerra contra las drogas limitan el acceso — publicado en la primera revista científica de cannabis de Brasil y Latinoamérica.',
-    ppTag11:'Revisión científica', pp11desc:'Revisión publicada por Fiocruz (una de las instituciones de salud pública más prestigiosas de Latinoamérica) sobre cómo el CBD afecta la extinción y reconsolidación de memorias aversivas, y la expresión de miedo y ansiedad en modelos animales.',
-    ppTag12:'Revisión sistemática', pp12desc:'Equipo multidisciplinario de la Universidad de Verona, liderado por el prof. Vittorio Schweiger — encuentra reducción real del dolor en varias revisiones sistemáticas, pero con llamado explícito a calibrar expectativas según evidencia real, no promesas.',
-    ppTag13:'Estudio comparativo', pp13desc:'Compara Alemania (tras la legalización de 2024) contra Austria como control — encuentra el impacto real de la legalización en la conducción bajo efecto de cannabis.',
-    ppTag14:'Modelo matemático', pp14desc:'Modela matemáticamente si la legalización alemana reduce o aumenta el daño neto a la salud pública, comparando menos contaminantes en el producto legal contra un posible aumento del consumo.',
-    ppTag15:'Estudio de mercado', pp15desc:'Analiza 12 meses de datos reales de una farmacia online — Alemania ya es el mercado legal de cannabis más grande de Europa (~200 toneladas en 2025).',
-    ppTag16:'Revisión sistemática', pp16desc:'Revisión que cubre Francia, Países Bajos, Bélgica, Alemania, República Checa, España, Italia, Portugal, Polonia, Hungría y más — encuentra que el THC de alta potencia (+15-20%) se asocia con 4 a 5 veces más riesgo de psicosis de primer episodio.',
-    ppTag17:'Ensayo regulatorio', pp17desc:'El Instituto Trimbos (agencia nacional holandesa) prueba cannabis regulado en 10 municipios desde 2025, con estudio base de contaminantes (pesticidas, metales pesados) comparando municipios de control e intervención.',
-    ppTag18:'Panorama global', pp18desc:'Panorama mundial de acceso al cannabis medicinal, con foco específico en cómo los países en desarrollo —incluyendo África— quedan rezagados en regulación.',
-    ppTag19:'Análisis regulatorio', pp19desc:'Analiza la primera revisión importante desde 1948 de la ley japonesa (2023), que incluye un nuevo marco de "investigación clínica especial" para epilepsia refractaria.',
-    ppTag20:'Encuesta nacional', pp20desc:'Encuesta a 3,900 usuarios japoneses que examina si el cannabis realmente funciona como "puerta de entrada" a otras sustancias, encontrando evidencia causal limitada.',
-    ppTag21:'Estudio comparativo', pp21desc:'Primer estudio en diferenciar patrones de uso entre personas que usan cannabis y quienes usan otras sustancias psicotrópicas en Corea del Sur.',
-    ppTag22:'Revisión comparativa', pp22desc:'Compara los distintos modelos de regulación —asociaciones sin fines de lucro, producción estatal, farmacias especializadas— entre Alemania, Suiza, Malta, Colombia, México y República Checa.',
-    ppTag23:'Panorama de políticas', pp23desc:'Panorama comparativo de políticas globales — solo Canadá y Uruguay tienen legalización federal completa para uso adulto; analiza el cambio de reclasificación en EE. UU. de finales de 2025.',
-    ppTag24:'Encuesta', pp24desc:'Encuesta real a 4,040 estudiantes de secundaria y universidad en el sur de Marruecos — encontró que las mujeres se oponen más al uso médico de cannabis que los hombres, y perciben más riesgo de que la ley "desaliente" dejar de consumir.',
-    ppTag25:'Revisión sistemática', pp25desc:'Cubre Irak, Marruecos, Túnez, Líbano y Egipto: la prevalencia de vida reportada va desde 0.7% (Irak, escolares) hasta 32% (Líbano y Egipto, universitarios).',
-    ppTag26:'Desarrollo farmacéutico', pp26desc:'En 2025, la farmacéutica marroquí Pharma 5 lanzó el primer medicamento local a base de CBD para epilepsia resistente en niños — producción completa desde cultivo hasta manufactura, bajo la Ley 13-21 (2021).',
+    ppTag10:'Estudio social', pp10desc:'Revisión integradora de 10 artículos sobre el cannabis medicinal en psicoterapia: señala su potencial terapéutico, pero también que el acceso queda restringido a una parte de la población, influido por el racismo estructural y la guerra contra las drogas.',
+    ppTag11:'Revisión científica', pp11desc:'Revisión narrativa, publicada en la Revista Fitos (Fiocruz), de estudios en ratas y ratones: el CBD aceleraría la extinción y/o dificultaría la reconsolidación de memorias aversivas, y reduciría las conductas de miedo y ansiedad. Son resultados preclínicos, no en personas.',
+    ppTag12:'Revisión sistemática', pp12desc:'Equipo liderado por Vittorio Schweiger (Universidad de Verona). Según la literatura revisada, el cannabis medicinal reduce el dolor frente a placebo de forma estadísticamente significativa: en promedio, entre 0.43 y 0.70 puntos en una escala de 0 a 10. También repasa efectos adversos, contraindicaciones y aspectos legales.',
+    ppTag13:'Estudio comparativo', pp13desc:'Compara Alemania (tras la legalización de abril de 2024) con Austria como control, con encuestas antes y después. Ocho meses después de la legalización no encontró efectos significativos a corto plazo ni en el consumo ni en la conducción bajo efecto de cannabis.',
+    ppTag14:'Modelo matemático', pp14desc:'Modelo cuantitativo que compara el beneficio de menos contaminantes en el producto legal con el riesgo de más consumo tras la legalización alemana. Estima que las pérdidas de salud por trastorno por consumo de cannabis serían unas 19 veces mayores que las ganancias por menos contaminación.',
+    ppTag15:'Estudio de mercado', pp15desc:'Estudio de caso con 12 meses de datos de una farmacia online alemana: los productos de flor disponibles pasaron de 266 a 401, el precio por 10 mg de THC bajó, y los productos con 20-29.9% de THC fueron más de dos tercios de la demanda.',
+    ppTag16:'Revisión narrativa', pp16desc:'Revisión narrativa de literatura y datos publicados entre 2015 y 2025: el cannabis de alta potencia (más de 15-25% de THC) se asocia de forma constante con más riesgo de psicosis, ansiedad, pánico y trastorno por consumo. En Europa Central y del Este, muchos de estos problemas no se detectan ni se registran.',
+    ppTag17:'Ensayo regulatorio', pp17desc:'Describe el diseño del experimento neerlandés con una cadena legal «cerrada» de cannabis recreativo: diez cultivadores contratados abastecen a los coffeeshops de los municipios de intervención, y en los municipios de control no cambia nada. Compara ambos grupos en salud pública, delincuencia, seguridad y molestias; el trabajo de campo estaba previsto desde inicios de 2024, durante cuatro años.',
+    ppTag18:'Panorama global', pp18desc:'Revisión sobre el cannabis medicinal en la salud global, con casos de EE. UU. y África. Señala que persisten desigualdades: en África, los pacientes enfrentan barreras sistémicas para obtener la certificación de cannabis medicinal.',
+    ppTag19:'Análisis regulatorio', pp19desc:'Analiza la reforma de 2023 de la ley japonesa, la primera gran revisión desde 1948: los medicamentos derivados del cannabis pasan al mismo marco que los analgésicos opioides, se amplía el uso industrial con un límite estricto de THC y se crean penas por consumo. Entró en vigor el 12 de diciembre de 2024.',
+    ppTag20:'Encuesta nacional', pp20desc:'Encuesta en línea (enero de 2021) a 3,900 personas en Japón que habían consumido cannabis alguna vez: el cannabis solía llegar después del alcohol y el tabaco, y rara vez llevaba a otras drogas. Los resultados cuestionan la hipótesis de la «puerta de entrada» en Japón.',
+    ppTag21:'Estudio comparativo', pp21desc:'Encuesta (mayo-julio de 2024) a 109 personas que usan cannabis y narcóticos y a 191 que usan sustancias psicotrópicas en Corea del Sur. La relación entre normas sociales, creencias de salud y gravedad del consumo fue significativa solo en el grupo de psicotrópicos.',
+    ppTag22:'Revisión comparativa', pp22desc:'Revisión sistemática de los resultados de regular el suministro de cannabis en cinco jurisdicciones: Países Bajos, España, estados de EE. UU. con legalización, Uruguay y Canadá. Resultados comunes: menos detenciones, más consumo en adultos (no en adolescentes) y más uso de servicios de salud.',
+    ppTag23:'Panorama de políticas', pp23desc:'Artículo del Center for Cannabis Research and Policy de la Cannabis Control Commission de Massachusetts, que plantea la política del cannabis en distintos países como un «cuasi-experimento internacional». Es la primera parte.',
+    ppTag24:'Encuesta', pp24desc:'Estudio transversal sobre las creencias y actitudes de jóvenes de Marruecos hacia la legislación del cannabis y los factores asociados. Autores de la Universidad Ibn Zohr, entre otros.',
+    ppTag25:'Revisión sistemática', pp25desc:'Revisión sistemática de 48 estudios de 13 países árabes: el consumo alguna vez en la vida va del 0.7% (Irak) al 9.4% (Marruecos) en escolares, y del 4.7% (Túnez) al 32% (Líbano y Egipto) en universitarios.',
     mdIndicH3:'Indicaciones con evidencia clínica', mdIndicP:'Dolor crónico, náuseas asociadas a quimioterapia, y ciertos síndromes de epilepsia refractaria (con CBD purificado) cuentan con evidencia de ensayos clínicos. Otras indicaciones tienen evidencia preliminar o preclínica — el nivel de evidencia importa tanto como la indicación misma.',
     mdInteracH3:'Interacciones a tener en cuenta', mdInteracP:'El cannabis puede interactuar con anticoagulantes y sedantes, entre otros medicamentos. Cualquier paciente bajo tratamiento debe consultarlo con su médico antes de iniciar uso medicinal.',
     mdInteracMecP:'El mecanismo real: el CBD, más que el THC, inhibe varias enzimas del sistema CYP450 — la misma familia de enzimas que metaboliza la mayoría de los medicamentos recetados. Por eso las interacciones no son casos raros aislados, sino un patrón estructural: cualquier medicamento que dependa de esas mismas enzimas para metabolizarse puede verse afectado, en cualquier dirección (subiendo o bajando su nivel real en sangre).',
@@ -2818,35 +2810,34 @@ const translations = {
     ngCar4h4:'Compliance officer', ngCar4role:'Cumplimiento normativo · $70K–$120K', ngCar4p:'Garantiza que la operación cumpla trazabilidad, etiquetado y requisitos de licencia. Uno de los roles con mejor proyección de crecimiento de toda la industria, según múltiples reportes salariales.',
     ngCar5h4:'Técnico de extracción', ngCar5role:'Procesamiento · $55K–$75K', ngCar5p:'Opera sistemas cerrados de extracción por hidrocarburo o CO2, convirtiendo flor en los aceites que ya viste en Elaboración → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> y <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrados</a>. Requiere formación en química o ingeniería, además de capacitación específica en seguridad de laboratorio.',
     ngCar6h4:'Chef de comestibles', ngCar6role:'Elaboración · $45K–$90K', ngCar6p:'Diseña y produce comestibles, con dominio real de decarboxilación y cálculo de dosis precisa por porción — la misma matemática que viste en <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Elaboración → Comestibles</a>, aplicada a escala comercial.',
-    cmyEyebrow:'Comunidad — próximamente', cmyTitle:'Reportes de campo, verificados', cmySub:'Lo que sigue abajo (reportes, diagnósticos confirmados, preguntas moderadas) necesita cuentas de usuario y moderación real (backend) — es el plan de construcción, no una simulación. Pero el directorio básico de aquí abajo sí es real: se guarda de verdad y lo puede ver cualquier persona que use la app.',
-    cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país, tipo de perfil, foto y biografía son públicos — los ve cualquier persona que use la app. Nunca compartas apellido completo, teléfono, ni ubicación exacta de cultivo aquí.',
-    cmyCorreoLabel:'Correo', cmyCorreoPrivado:'(privado, no se muestra)', cmyCorreoPh:'tu@correo.com',
-    cmyEnDesarrollo:'🚧 Esta función está en desarrollo — todavía no puedes enviar ni ver reportes aquí. Está en la lista de construcción, no es una simulación.', cmySecViajeroReal:'Reportes de viajero', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
+    cmyEyebrow:'Comunidad', cmyTitle:'Reportes de campo de la comunidad', cmySub:'Comparte reportes de cultivo, diagnósticos y preguntas, comenta y sigue a otras personas. La Comunidad y su directorio solo los ven las personas con acceso completo. Cada publicación se traduce automáticamente a los 4 idiomas.',
+    cmySecUnirse:'Únete a la comunidad más grande del mundo', cmyPrivacidadNote:'Tu nombre, país, tipo de perfil, foto y biografía los ven las personas con acceso completo a la plataforma. Las fotos se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla. Nunca compartas apellido completo, teléfono ni ubicación exacta de tu cultivo aquí.',
+    cmyCorreoLabel:'Correo', cmyCorreoPrivado:'(privado, no se muestra)', cmyCorreoPh:'tu@correo.com', cmySecViajeroReal:'Reportes de viajero', cmyViajeroIntro:'Experiencias reales en fronteras y aduanas por país. Las leyes cambian más rápido de lo que cualquier app actualiza sola — esto es información de otras personas viajando, no un reemplazo de la información oficial en Legal &amp; Viajero.',
     cmyViajeroPaisLabel:'País donde viajaste', cmyViajeroTextoLabel:'Tu experiencia', cmyViajeroTextoPh:'Qué pasó en la frontera o aduana, sin datos personales', cmyViajeroBtn:'Compartir experiencia', cmyViajeroExito:'¡Gracias! Tu experiencia ya está en la lista de abajo.', cmyViajeroVacio:'Todavía no hay experiencias compartidas — sé la primera persona.',
     cmySecCultivoReal:'Reportes de cultivo', cmyCultivoIntro:'Bitácoras cortas ligadas a un método específico, para cruzar experiencia real contra la ficha oficial de Cultivo.', cmyCultivoMetodoLabel:'Método que usaste', cmyCultivoTextoLabel:'Tu experiencia', cmyCultivoTextoPh:'Qué te funcionó o qué no, con ese método', cmyCultivoBtn:'Compartir reporte', cmyCultivoExito:'¡Gracias! Tu reporte ya está en la lista de abajo.', cmyCultivoVacio:'Todavía no hay reportes — sé la primera persona.',
     cmySecDiagReal:'Confirmaciones de diagnóstico', cmyDiagIntro:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>.', cmyDiagProblemaLabel:'Qué tuviste', cmyDiagTextoLabel:'Qué te funcionó', cmyDiagTextoPh:'Qué hiciste y cómo te fue', cmyDiagBtn:'Compartir confirmación', cmyDiagExito:'¡Gracias! Tu confirmación ya está en la lista de abajo.', cmyDiagVacio:'Todavía no hay confirmaciones — sé la primera persona.',
-    cmySecPreguntasReal:'Preguntas abiertas', cmyPreguntasNota:'Aquí solo se publican preguntas, no respuestas — responder de forma segura necesita moderación real, que todavía no existe. Por ahora, esto es un lugar para ver qué se pregunta la comunidad.', cmyPreguntaPh:'Tu pregunta para la comunidad', cmyPreguntaBtn:'Publicar pregunta', cmyPreguntaExito:'¡Listo! Tu pregunta ya está en la lista de abajo.', cmyPreguntaVacio:'Todavía no hay preguntas — sé la primera persona.',
+    cmySecPreguntasReal:'Preguntas abiertas', cmyPreguntasNota:'Publica tu pregunta: pueden responderte en los comentarios las personas con las que se siguen mutuamente. Nadie revisa las respuestas antes de publicarse, así que compáralas siempre con las lecciones de la plataforma.', cmyPreguntaPh:'Tu pregunta para la comunidad', cmyPreguntaBtn:'Publicar pregunta', cmyPreguntaExito:'¡Listo! Tu pregunta ya está en la lista de abajo.', cmyPreguntaVacio:'Todavía no hay preguntas — sé la primera persona.',
     cmy5porque:'Por qué este necesita más cuidado que el resto: sin moderación real, alguien podría escribir algo que suene a consejo médico específico sin que nadie lo revise antes de publicarse — es justo el que más necesita supervisión antes de abrirse.',
     cmyNombreLabel:'Nombre o apodo', cmyNombrePh:'Cómo quieres que te vean', cmyPaisLabel:'País', cmyTipoLabel:'¿Qué te describe mejor?',
     cmyTipoCultivador:'Cultivador/a', cmyTipoNegocio:'Dueño/a de negocio', cmyTipoEntusiasta:'Consumidor/a — entusiasta', cmyTipoSalud:'Profesional de salud', cmyTipoAprendiendo:'Solo aprendiendo', cmyTipoOtro:'Otro',
     cmyAvatarBtn:'Foto de perfil', cmyAvatarNeedsName:'Escribe primero tu nombre o apodo.', cmyAvatarSubiendo:'Subiendo foto…', cmyAvatarListo:'¡Listo! Ya tienes foto de perfil.',
     cmyCropTitle:'Ajusta tu foto', cmyCropHelp:'Arrastra la imagen y usa la rueda del mouse (o pellizca en el celular) para hacer zoom. Elige qué parte quieres que se vea dentro del círculo.', cmyCropPreviewLabel:'Así se verá', cmyCropCancelar:'Cancelar', cmyCropConfirmar:'Usar esta foto',
-    perfilBack:'← Volver a Comunidad', perfilGateMsg:'Inicia sesión para ver tu perfil.', perfilNoDisponible:'Este perfil no está disponible.', perfilEditar:'Tu perfil', perfilBioLabel:'Biografía', perfilBioPh:'Cuéntale a la comunidad quién eres (opcional)', perfilConfigCuenta:'⚙️ Configuración de cuenta (correo, suscripción, cerrar sesión)', perfilMisPublicaciones:'Publicaciones', perfilSeguir:'Seguir', perfilDejarSeguir:'Dejar de seguir', perfilMutuo:'Se siguen mutuamente', perfilCompleta:'Completa tu perfil para aparecer en el directorio y publicar.', perfilSinPostsPropio:'Todavía no has publicado nada.', perfilSinPostsOtro:'Todavía no ha publicado nada.', perfilVerCompleto:'Ver perfil completo', cmyDirectorioIntro:'Toca a cualquier persona para ver su perfil. ¿Quieres aparecer aquí? Completa el tuyo desde <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Tu Perfil</a>.',
+    perfilBack:'← Volver a Comunidad', perfilGateMsg:'Inicia sesión para ver tu perfil.', perfilNoDisponible:'Este perfil no está disponible.', perfilEditar:'Tu perfil', perfilBioLabel:'Biografía', perfilBioPh:'Cuéntale a la comunidad quién eres (opcional)', perfilConfigCuenta:'⚙️ Configuración de cuenta (correo, acceso, cerrar sesión)', perfilMisPublicaciones:'Publicaciones', perfilSeguir:'Seguir', perfilDejarSeguir:'Dejar de seguir', perfilMutuo:'Se siguen mutuamente', perfilCompleta:'Completa tu perfil para aparecer en el directorio y publicar.', perfilSinPostsPropio:'Todavía no has publicado nada.', perfilSinPostsOtro:'Todavía no ha publicado nada.', perfilVerCompleto:'Ver perfil completo', cmyDirectorioIntro:'Toca a cualquier persona para ver su perfil. ¿Quieres aparecer aquí? Completa el tuyo desde <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Tu Perfil</a>.',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Viajero', cmyTipoPostCultivo:'Cultivo', cmyTipoPostDiagnostico:'Diagnóstico', cmyTipoPostPregunta:'Pregunta',
     cmySecDescubrir:'Descubrir', cmyDescubrirIntro:'Perfiles reales del directorio. Desliza a la derecha para seguir a alguien y ver sus publicaciones; a la izquierda para pasar. Si ambos se siguen, se desbloquean los comentarios.', cmyDescubrirGate:'Inicia sesión para usar Descubrir.', cmyDescubrirEmpty:'No hay más perfiles por ahora. Vuelve más tarde.', cmyDescubrirPasar:'✕ Pasar', cmyDescubrirSeguir:'Seguir ✓', cmyDescubrirSinBio:'Sin biografía todavía.',
     cmySecFeed:'Publicaciones', cmyFeedIntro:'El feed de las personas que sigues, y las tuyas. Cada publicación se traduce automáticamente a tu idioma. Los comentarios se desbloquean cuando ambas personas se siguen.', cmyFeedGate:'Inicia sesión para publicar y ver el feed.', cmyFeedVacio:'Todavía no hay publicaciones. Sigue a alguien en Descubrir o publica tú primero.', cmyPostPh:'¿Qué quieres compartir con la comunidad?', cmyPostFoto:'Foto', cmyPostBtn:'Publicar', cmyPostEnviando:'Publicando…', cmyPostExito:'¡Publicado!', cmyComentarios:'Comentarios', cmyComentariosVacio:'Sin comentarios todavía.', cmyComentarioPh:'Escribe un comentario…', cmyComentarBtn:'Comentar', cmyComentarioBloqueado:'Los comentarios se desbloquean cuando tú y esta persona se siguen mutuamente.', cmyVerOriginal:'Ver original', cmyVerTraduccion:'Ver traducción', cmyEliminar:'Eliminar', cmyConfirmar:'¿Seguro?', cmyMiembroDesconocido:'Miembro',
     cmyUnirmeBtn:'Unirme al directorio', cmyActualizarBtn:'Actualizar mi entrada', cmyJoinNeedsAccount:'Necesitas una cuenta para aparecer en el directorio. Crea una en Cuenta.', cmyJoinExito:'¡Listo! Ya apareces en el directorio de abajo.', cmySecMiembros:'Miembros de la comunidad', cmyVacioMsg:'Todavía nadie se ha unido — sé la primera persona.',
     cmySecTipos:'La función que más supervisión necesita antes de abrirse',
-    cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', cmy1p:'Bitácoras tipo diario, ligadas a un método específico, para cruzar experiencia real contra la ficha oficial.',
-    cmy2h4:'Confirmaciones de diagnóstico', cmy2sci:'Se conecta con <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>', cmy2p:'El más valioso de todos: "tuve exactamente esto y esto me funcionó", enlazado a una ficha real de plaga o enfermedad.',
+    cmy1h4:'Reportes de cultivo', cmy1sci:'Se conecta con Cultivo', 
+    cmy2h4:'Confirmaciones de diagnóstico', cmy2sci:'Se conecta con <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Diagnóstico</a>', 
     cmy3h4:'Reportes de viajero', cmy3sci:'Se conecta con Legal &amp; Viajero', cmy3p:'Experiencias reales en fronteras y aduanas por país — las leyes cambian más rápido de lo que cualquier app actualiza sola.',
     cmy4h4:'Preguntas y respuestas', cmy4sci:'Moderadas', cmy4p:'Un perfil verificado puede responder con más peso visible que uno anónimo.',
     cmy5h4:'Testimonios médicos', cmy5sci:'Con disclaimer obligatorio', cmy5p:'Siempre visible: experiencia personal, no consejo médico. Nunca se muestra sin esa etiqueta.',
     cmySecVerif:'Verificación', cmyVerifP:'Un perfil profesional registrado en Negocio (master grower, compliance officer, etc.) puede pedir una insignia verificada — sus respuestas se distinguen visualmente. Cada publicación lleva una etiqueta permanente: <b>"Verificado por la app"</b> (dato oficial) o <b>"Reporte de comunidad, no verificado"</b> — nunca se mezclan sin distinción clara.',
-    cmySecLineas:'Líneas rojas', cmyLineasP:'<b>Cero marketplace</b> — nada de compra-venta ni intercambio de contacto para vender; es lo que permite seguir cumpliendo las políticas de las tiendas de apps. <b>Cero ubicaciones específicas de cultivo</b>, por seguridad. Ningún testimonio médico se publica sin el disclaimer visible.',
+    cmySecLineas:'Líneas rojas', cmyLineasP:'<b>Cero marketplace</b> — nada de compra-venta ni intercambio de contacto para vender; es lo que permite seguir cumpliendo las políticas de las plataformas donde funciona. <b>Cero ubicaciones específicas de cultivo</b>, por seguridad. Ningún testimonio médico se publica sin el disclaimer visible.',
     vrEyebrow:'Variedades &amp; cultivares', vrTitle:'Base de datos buscable', vrSub:'Nunca decimos "strain" — es un término de microbiología (bacterias, virus, hongos), no de botánica. Usamos <b>variedad</b> (adaptación natural, como una landrace) o <b>cultivar</b> (cruce desarrollado intencionalmente por un breeder).',
     vrTodos:'Todos', vrTipoI:'Tipo I (THC)', vrTipoII:'Tipo II (balanceado)', vrTipoIII:'Tipo III (CBD)',
-    vrTipoPrefix:'Tipo', vrLinaje:'Linaje', vrTerpenos:'Terpenos', vrDificultad:'Dificultad', vrVisteTeaser:'Viste', vrDe:'de', vrDesbloquea:'Desbloquea la base de datos completa con Premium.',
+    vrTipoPrefix:'Tipo', vrLinaje:'Linaje', vrTerpenos:'Terpenos', vrDificultad:'Dificultad', vrVisteTeaser:'Viste', vrDe:'de', vrDesbloquea:'Desbloquea la base de datos completa con el acceso completo.',
     modSegTitle:'Seguridad', modSegDesc:'Mascotas, interacciones con medicamentos, manejo, embarazo y lactancia, y salud mental — con evidencia real.',
     eySeg:'Seguridad', segTitle:'Lo que puede salir mal, y cómo evitarlo', segSub:'La misma evidencia rigurosa del resto de la app, aplicada a los riesgos reales — mascotas, medicamentos, manejo, embarazo y salud mental.',
     subMascotas:'Mascotas', subInteracciones:'Medicamentos', subManejo:'Manejo', subEmbarazo:'Embarazo &amp; lactancia', subSaludFem:'Salud femenina', subMental:'Salud mental', subOcupacional:'Trabajo &amp; producción', subDeporte:'Deporte', subMayores:'Personas mayores', subCorazon:'Corazón &amp; presión',
@@ -2948,7 +2939,7 @@ const translations = {
     flH3:'Más allá del consumo: fibra de cáñamo en manufactura 3D', flP1:'Investigadores franceses y libaneses están estudiando cómo combinar fibras de cáñamo con subproductos agrícolas para crear materiales compuestos ecológicos, con aplicaciones reales en vehículos de transporte y otras industrias — una colaboración internacional real (julio 2026), fuera del circuito habitual de consumo.',
     vrFloracion:'Floración',
     cpToggleH3:'⚖️ Comparar dos cultivares lado a lado', cpToggleP:'Elige dos y ve las diferencias reales de un vistazo — potencia, terpenos, floración y más.',
-    cpLockedMsg:'Comparar cultivares completos es una herramienta Premium — desbloquéala para elegir cualquier par de los 19 cultivares.',
+    cpLockedMsg:'Comparar cultivares completos es parte del acceso completo — desbloquéalo para elegir cualquier par de los 19 cultivares.',
     fsSecTitle:'Full spectrum, broad spectrum y aislado: la etiqueta que casi nadie explica',
     fsIntroP:'Estos tres términos aparecen en casi cualquier producto comercial, y se conectan directo con el "efecto séquito" del Dr. Russo que ya viste en <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Ciencia → Terpenos y flavonoides</a> — describen cuánto del perfil químico original de la planta queda en el extracto final.',
     fsFullLabel:'Full spectrum (espectro completo)', fsFullVal:'Conserva todos los cannabinoides, terpenos y flavonoides originales, incluidas trazas de THC — busca el efecto séquito más fuerte posible',
@@ -2996,7 +2987,7 @@ const translations = {
     eduIntroH3:'Universidades reales que enseñan esto — no todas son iguales', eduIntroP:'Existe una diferencia real entre una universidad acreditada que ofrece un título en cannabis, y una plataforma privada de "certificación" sin acreditación académica tradicional. Aquí solo incluimos instituciones académicas verificadas — con su acreditación real, no solo su propia palabra.',
     eduFiltroPaisLabel:'País', eduCualquiera:'Cualquiera', eduPaisEEUU:'Estados Unidos', eduPaisCanada:'Canadá',
     eduFiltroEspLabel:'Especialidad', eduEspCultivo:'Cultivo &amp; horticultura', eduEspCiencia:'Ciencia &amp; química', eduEspMedicina:'Medicina &amp; farmacia', eduEspNegocio:'Negocio &amp; industria', eduResultados:'resultado(s)',
-    eduSunyP:'Minor en Cannabis Industry, certificado en Specialty Crops &amp; Cannabis Production, con posibilidad de apilarlo hacia un A.A.S. o B.Tech en horticultura. Incluye una parcela de investigación de cannabis propia de la universidad.',
+    eduSunyP:'Minor en Cannabis Industry y certificado en Specialty Crops &amp; Cannabis Production. Incluye una parcela de investigación de cannabis propia de la universidad.',
     eduCsuP:'Licenciatura completa (BS) en Cannabis Biology and Chemistry, acreditada por la Higher Learning Commission — uno de los grados universitarios de 4 años más completos que existen en el tema, con concentraciones en agricultura de cáñamo, análisis, productos naturales, y gestión industrial.',
     eduCuP:'Tres programas de Cannabis Science and Medicine, desde un curso introductorio de 8 semanas hasta una Maestría completa — todos en línea, impartidos por expertos internacionales en el campo, dentro de una escuela de farmacia real.',
     eduSaskP:'Su certificado de Horticultura de las Praderas ahora incluye un curso específico de Producción de Cultivo de Cannabis — propagación, genética, y criterios de cosecha, todo en línea.',
@@ -3057,20 +3048,20 @@ const translations = {
     adInquiryNombreLabel:'Nombre', adInquiryEmpresaLabel:'Empresa', adInquiryCorreoLabel:'Correo', adInquiryMensajeLabel:'Mensaje', adInquirySubmitBtn:'Enviar',
     adInquiryEnviando:'Enviando…', adInquiryOk:'✓ Recibido — te contactaremos pronto.', adInquiryError:'No se pudo enviar. Intenta de nuevo.'},
   en:{brandSub:'Global codex · medical &amp; recreational cannabis', navHome:'Home', navCultivo:'Growing', navElaboracion:'Making', navLegal:'Legal', navCiencia:'Science', navMas:'More',
-    gateUnlockBtn:'Unlock with Premium',
-    gtDliTitle:'DLI Calculator', gtDliDesc:'The daily light integral is a Premium tool.',
-    gtDoseTitle:'Dose per serving', gtDoseDesc:'The regulatory compliance calculator is a Premium tool.',
-    gtTrazaTitle:'Traceability', gtTrazaDesc:'The seed-to-sale systems every regulator requires are Premium content.',
-    gtDirTitle:'Supplier directory', gtDirDesc:'The full directory by category is Premium content.',
-    gtCarrTitle:'Careers', gtCarrDesc:'The detail on each professional role in the industry is Premium content.',
-    gtSistemasTitle:'Growing systems', gtSistemasDesc:'Indoor, greenhouse, and outdoor, with full technical parameters, are Premium content.',
-    gtMetodosTitle:'Growing methods', gtMetodosDesc:'The root-feeding methods — organic soil, hydroponic, aeroponic, and aquaponic — are Premium content.',
+    gateUnlockBtn:'Unlock full access',
+    gtDliTitle:'DLI Calculator', gtDliDesc:'The daily light integral is part of full access.',
+    gtDoseTitle:'Dose per serving', gtDoseDesc:'The regulatory compliance calculator is part of full access.',
+    gtTrazaTitle:'Traceability', gtTrazaDesc:'The seed-to-sale systems every regulator requires require full access.',
+    gtDirTitle:'Supplier directory', gtDirDesc:'The full directory by category requires full access.',
+    gtCarrTitle:'Careers', gtCarrDesc:'The detail on each professional role in the industry requires full access.',
+    gtSistemasTitle:'Growing systems', gtSistemasDesc:'Indoor, greenhouse, and outdoor, with full technical parameters, require full access.',
+    gtMetodosTitle:'Growing methods', gtMetodosDesc:'The root-feeding methods — organic soil, hydroponic, aeroponic, and aquaponic — require full access.',
     cmMetodosIntro:'Once you’ve chosen the system (where), the next decision is the method: how the root is fed. These four families shape every other growing decision — from equipment to nutrient schedule.',
     cmSecSuelo:'Organic soil',
     cmSuelo1h4:'Traditional soil', cmSuelo1sci:'The oldest starting point', cmSuelo1desc:'Direct growing in garden soil or open field. It’s the oldest method and the most forgiving of watering or nutrient mistakes — the soil itself buffers imbalances.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSuelo2h4:'Potted substrate', cmSuelo2sci:'Pre-mixed blends', cmSuelo2desc:'Commercial blends of peat, compost, and perlite in containers — the middle ground between hydroponic control and traditional soil simplicity.', cmSuelo2src:'<a href="https://hemp.cals.cornell.edu/resources/reports-factsheets/2022-cornell-hemp-field-day-handouts/high-tunnel-soil-management-for-cannabis-sativa/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSecHidro:'Hydroponic',
-    cmHidroIntro:'Combines an inert substrate (coco coir, rockwool, perlite — see <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Substrate &amp; nutrition</a>) with an open-water system that delivers the nutrient solution directly to the root.',
+    cmHidroIntro:'Combines an inert substrate (coco coir, rockwool, perlite — see <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Substrate &amp; nutrition</a>) with an open-water system that delivers the nutrient solution directly to the root.',
     cmHidro1h4:'DWC (deep water culture)', cmHidro1sci:'Deep Water Culture', cmHidro1desc:'Roots hang directly in a reservoir of oxygenated nutrient solution. Simple and cheap to set up; requires constant monitoring of dissolved oxygen and water temperature.', cmHidro1src:'<a href="https://cannabis.ucdavis.edu/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabis.ucdavis.edu</a>',
     cmHidro2h4:'NFT', cmHidro2sci:'Nutrient Film Technique', cmHidro2desc:'A thin film of nutrient solution flows continuously over the roots in sloped channels. Very water-efficient; vulnerable to power outages since there’s no solution reserve at the root.', cmHidro2src:'<a href="https://extension.oregonstate.edu/catalog/pub/em-9457-hydro-hints-nutrient-film-technique" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">extension.oregonstate.edu</a>',
     cmHidro3h4:'Ebb &amp; Flow', cmHidro3sci:'Flood and drain', cmHidro3desc:'A tray floods with nutrient solution on a timed cycle, then drains completely — roots alternate between feeding and oxygenation. A flexible system that works with different inert substrates.', cmHidro3src:'<a href="https://cpb-us-e1.wpmucdn.com/blogs.cornell.edu/dist/8/8824/files/2019/06/Cornell-CEA-Lettuce-Handbook-.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">blogs.cornell.edu — Cornell CEA Handbook</a>',
@@ -3106,56 +3097,46 @@ const translations = {
     eqF5H3:'5. Drying', eqF5i1:'Tiered drying rack', eqF5i2:'Carbon filter on low', eqF5i3:'Fan pointed at the wall — never directly at the flowers', eqF5i4:'100% dark space',
     eqF6H3:'6. Curing', eqF6i1:'Airtight glass jars', eqF6i2:'Two-way humidity control packs', eqF6i3:'Mini thermo-hygrometers for jars',
     eqCuradoMarcas:'<b>Illustrative examples:</b> Boveda and Integra are the most commonly cited brands of two-way humidity packs for curing jars — they regulate internal humidity without you having to open the jar to guess.',
-    gtIlumTitle:'Lighting', gtIlumDesc:'PPFD and DLI targets by stage, with scientific backing, are Premium content.',
-    gtSustratoTitle:'Substrate and nutrition', gtSustratoDesc:'The full guide to substrates and macro/micronutrients is Premium content.',
-    gtEntrenTitle:'Pruning and training', gtEntrenDesc:'The 7 training techniques with yield estimates are Premium content.',
-    gtGenTitle:'Genetics and chemotypes', gtGenDesc:'The scientific classification by chemotype, with cited source, is Premium content.',
-    gtCicloTitle:'Life cycle', gtCicloDesc:'The full detail of the plant\u2019s life cycle is Premium content.',
-    gtCosechaTitle:'Harvest', gtCosechaDesc:'The trichome checklist and cutting/trimming decisions are Premium content.',
-    gtPropTitle:'Advanced propagation', gtPropDesc:'Feminization, autoflower crosses, and grafting are Premium content.',
-    gtProcTitle:'Processes & SOP', gtProcDesc:'The complete post-harvest procedures are Premium content.',
-    gtConcTitle:'Concentrates', gtConcDesc:'The global tour of extraction techniques is Premium content.',
-    gtTintTitle:'Tinctures, capsules & patches', gtTintDesc:'The 3 absorption routes with measured dosing are Premium content.',
-    gtVapesTitle:'Vapes & cartridges', gtVapesDesc:'The hardware guide and the EVALI history are Premium content.',
-    gtComTitle:'Edibles', gtComDesc:'Decarboxylation and potency calculation are Premium content.',
-    gtSkinTitle:'Skincare & topicals', gtSkinDesc:'The full guide to topicals is Premium content.',
-    gtEtiqTitle:'Labeling', gtEtiqDesc:'The full labeling standard is Premium content.',
-    gtCientTitle:'Scientists', gtCientDesc:'The full directory of active researchers is Premium content.',
-    gtMedTitle:'Medical information', gtMedDesc:'Clinical indications and interactions are Premium content.',
-    gtEcsTitle:'Endocannabinoid System 101', gtEcsDesc:'The narrative explanation of the endocannabinoid system and the humans vs. animals comparison are Premium content.',
-    gtSeguridadDesc:'Full scientific deep dive — additional studies, mechanisms, and extended context — available with Premium.',
-    gtDiagTeaserTitle:'Saw 2 of 11', gtDiagTeaserDesc:'Unlock the remaining 9 entries with Premium.',
-    gtPapersTeaserTitle:'Saw 1 of 26', gtPapersTeaserDesc:'Unlock the full papers library with Premium.',
-    gtCannaTeaserTitle:'Saw 2 of 6', gtCannaTeaserDesc:'Unlock the remaining 4 cannabinoids with Premium.',
-    gtTerpTeaserTitle:'Saw 2 of 8', gtTerpTeaserDesc:'Unlock the remaining 6 profiles with Premium.',
-    gtFlavTeaserTitle:'Saw 2 of 5', gtFlavTeaserDesc:'Unlock the 5 flavonoid profiles with Premium.',
-    gtMitosTeaserTitle:'Saw 2 of 6', gtMitosTeaserDesc:'Unlock the full myths library with Premium.',
+    gtIlumTitle:'Lighting', gtIlumDesc:'PPFD and DLI targets by stage, with scientific backing, require full access.',
+    gtSustratoTitle:'Substrate and nutrition', gtSustratoDesc:'The full guide to substrates and macro/micronutrients requires full access.',
+    gtEntrenTitle:'Pruning and training', gtEntrenDesc:'The 7 training techniques with yield estimates require full access.',
+    gtGenTitle:'Genetics and chemotypes', gtGenDesc:'The scientific classification by chemotype, with cited source, requires full access.',
+    gtCicloTitle:'Life cycle', gtCicloDesc:'The full detail of the plant\\u2019s life cycle requires full access.',
+    gtCosechaTitle:'Harvest', gtCosechaDesc:'The trichome checklist and cutting/trimming decisions require full access.',
+    gtPropTitle:'Advanced propagation', gtPropDesc:'Feminization, autoflower crosses, and grafting require full access.',
+    gtProcTitle:'Processes & SOP', gtProcDesc:'The complete post-harvest procedures require full access.',
+    gtConcTitle:'Concentrates', gtConcDesc:'The global tour of extraction techniques requires full access.',
+    gtTintTitle:'Tinctures, capsules & patches', gtTintDesc:'The 3 absorption routes with measured dosing require full access.',
+    gtVapesTitle:'Vapes & cartridges', gtVapesDesc:'The hardware guide and the EVALI history require full access.',
+    gtComTitle:'Edibles', gtComDesc:'Decarboxylation and potency calculation require full access.',
+    gtSkinTitle:'Skincare & topicals', gtSkinDesc:'The full guide to topicals requires full access.',
+    gtEtiqTitle:'Labeling', gtEtiqDesc:'The full labeling standard requires full access.',
+    gtCientTitle:'Scientists', gtCientDesc:'The full directory of active researchers requires full access.',
+    gtMedTitle:'Medical information', gtMedDesc:'Clinical indications and interactions require full access.',
+    gtEcsTitle:'Endocannabinoid System 101', gtEcsDesc:'The narrative explanation of the endocannabinoid system and the humans vs. animals comparison require full access.',
+    gtSeguridadDesc:'Full scientific deep dive — additional studies, mechanisms, and extended context — available with full access.',
+    gtDiagTeaserTitle:'Saw 2 of 11', gtDiagTeaserDesc:'Unlock the remaining 9 entries with full access.',
+    gtPapersTeaserTitle:'Saw 1 of 26', gtPapersTeaserDesc:'Unlock the full papers library with full access.',
+    gtCannaTeaserTitle:'Saw 2 of 6', gtCannaTeaserDesc:'Unlock the remaining 4 cannabinoids with full access.',
+    gtTerpTeaserTitle:'Saw 2 of 8', gtTerpTeaserDesc:'Unlock the remaining 6 profiles with full access.',
+    gtFlavTeaserTitle:'Saw 2 of 5', gtFlavTeaserDesc:'Unlock the 5 flavonoid profiles with full access.',
+    gtMitosTeaserTitle:'Saw 2 of 6', gtMitosTeaserDesc:'Unlock the full myths library with full access.',
   tierSwitchLabel:'Preview:',
     agTitle:'Age verification', agBody:'This content is intended for adults 18 and older, and includes information about cannabis for educational, medical, and informational purposes.', agYes:'Yes, I am 18 or older', agNo:'No, I am under 18', agBlockedTitle:'Access not available', agBlockedBody:'This content is restricted to people 18 and older. We are unable to grant you access at this time.',
     cuentaLegalTitle:'Legal', cuentaTerminosLabel:'Terms and Conditions', cuentaPrivacidadLabel:'Privacy Policy',
-    tcEyebrow:'Legal', tcTitle:'Terms and Conditions', tcUpdated:'Last updated: July 2026',
+    tcEyebrow:'Legal', tcTitle:'Terms and Conditions', tcUpdated:'Last updated: 5 November 2026',
     tcDraftNote:'<b>Note about this document:</b> this text is a complete, good-faith starting point — it does not replace review by a lawyer specialized in cannabis and digital commerce before a real launch. Cannabis laws vary enormously by country and state; this document needs professional legal adaptation depending on where Mother Verde LLC operates.',
     tc1H3:'1. Acceptance of terms', tc1P:'By accessing or using the Mother Verde application ("the App"), operated by Mother Verde LLC ("we", "the company"), you agree to be bound by these Terms and Conditions. If you do not agree, you must not use the App.',
     tc2H3:'2. Eligibility and minimum age', tc2P:'The App is intended exclusively for people 18 years of age or older. By confirming your age on initial access, you represent and warrant that you meet this requirement. We reserve the right to suspend access to any account if we have reasonable grounds to believe this statement is false.',
     tc3H3:'3. Nature of the content — this is not medical or legal advice', tc3P:'All content in the App — including information on growing, making, science, dosing, safety, and legal status by country — is provided <b>solely for educational and informational purposes</b>. It does not constitute medical advice, diagnosis, treatment, or legal advice of any kind. The legal status of cannabis changes frequently and varies by jurisdiction; it is your responsibility to verify the law in effect in your location before acting. Always consult a qualified health professional before using cannabis for medicinal purposes, and a local lawyer for any legal questions.',
     tc4H3:'4. Permitted use', tc4P:'You agree to use the App only in a lawful manner, in accordance with the laws of your jurisdiction. You must not use the App to facilitate illegal activities, nor attempt to access restricted parts of the service without authorization.',
-    tc5H3:'5. Premium subscription', tc5P:'The App offers a free tier and a paid Premium tier with additional content. Pricing, billing, and cancellation details are specified at the time of subscription. We reserve the right to modify the pricing and benefits of each tier, with reasonable prior notice.',
+    tc5H3:'5. Full access', tc5P:'The one-time support contribution helps Bertha Limo, founder of Mother Verde, keep learning and growing in her professional life at SUNY Morrisville, which opened its doors to her once again. In return, the person receives full access to the platform. It is voluntary and one-time; it is not a donation and is not tax-deductible. The contribution goes to Bertha Limo’s personal crypto wallet on the Base network. The 24-hour free trial is offered only once per person. Mother Verde is an independent project, not affiliated with or endorsed by SUNY Morrisville. <b>Gift codes:</b> the administration may send a code that gives 7 days of full access; it can be used once and must be redeemed within 7 days. <b>Withdrawal of access:</b> if we detect fraud or abuse (for example, a contribution that does not match a real payment), we may withdraw access; this is recorded with its reason. <b>Manual contributions:</b> a contribution made through another agreed means is recorded by the administration; recording it activates full access, just like an approved USDC contribution, and it is kept in the log.',
     tc6H3:'6. Intellectual property', tc6P:'All original content in the App — text, illustrations, brand, design — is the property of Mother Verde LLC or its licensors, and is protected by applicable intellectual property laws. Commercial reproduction is not permitted without prior written authorization.',
     tc7H3:'7. User-generated content', tc7P:'Tools such as the Grow Log store the information you enter. You are responsible for the content you record. You must not enter sensitive information about third parties without their consent.',
     tc8H3:'8. Limitation of liability', tc8P:'To the extent permitted by law, Mother Verde LLC will not be liable for damages arising from the use or inability to use the App, including decisions made based on the information provided. The App is offered "as is", without warranties of any kind.',
     tc9H3:'9. Changes to these terms', tc9P:'We may update these Terms periodically. We will notify you of significant changes within the App. Continued use after changes are posted constitutes acceptance of the new terms.',
     tc10H3:'10. Contact', tc10P:'For questions about these Terms, contact us at the support email listed within the App.',
-    ppEyebrow:'Legal', ppTitle:'Privacy Policy', ppUpdated:'Last updated: July 2026',
-    ppDraftNote:'<b>Note about this document:</b> this is a complete, good-faith starting point — it does not replace review by a lawyer specialized in data privacy (including regulations like GDPR or CCPA depending on where you operate) before a real launch.',
-    ppv1H3:'1. What information we collect', ppv1P:'The App may store: your age confirmation, your preferred language, entries you record in your Grow Log, and countries you follow in Alerts. On the Account screen you may optionally enter a name, email, and country — these fields are part of the prototype mockup and are not currently sent to any server.',
-    ppv2H3:'2. Where your information is stored', ppv2P:'Most of the data mentioned is stored locally on your own device, not on our servers. This means that, in its current form, most of your activity in the App stays on your phone or browser, and we do not collect it centrally.',
-    ppv2AdminP:'Within the community directory, your name, country, and profile type are visible to other people using the App. Data such as your email address is never shown publicly — only the Mother Verde LLC admin team has access to that information, with specific security controls for it (two-factor verification, access logging).',
-    ppv3H3:'3. How we use your information', ppv3P:'We use the stored information only so the App works as you expect: remembering your language, your age verification, and the content you yourself enter into tools like the Grow Log. We do not sell your information to third parties.',
-    ppv4H3:'4. Third-party services and payments', ppv4P:'Premium subscription payments are processed through the App Store, Google Play, or Stripe — never directly by Mother Verde. <b>Mother Verde LLC never receives, processes, or stores your card number, CVV, or expiration date.</b> We only receive confirmation that payment was made and your subscription status. Those payment processors have their own privacy policies, independent of this one.',
-    ppv5H3:'5. Your rights', ppv5P:'You can delete locally stored information by clearing the App\u2019s data from your device settings. If in the future we store data on servers, you will have the right to request access, correction, or deletion of your information, as permitted by the law of your jurisdiction.',
-    ppv6H3:'6. Children\u2019s privacy', ppv6P:'The App is restricted to people 18 and older through age verification on entry. We do not knowingly collect information from minors.',
-    ppv7H3:'7. Changes to this policy', ppv7P:'We may update this Privacy Policy periodically. We will notify you of significant changes within the App.',
-    ppv8H3:'8. Contact', ppv8P:'For privacy questions, contact us at the support email listed within the App.',
+    ppEyebrow:'Legal', ppTitle:'Privacy Policy',
     heroTitle:'The global cannabis codex, <em>actually organized</em>.', heroSub:'Evidence-based growing, product-making, legal status by country and curated science — all in one place, for growers, makers, patients and travelers.',
     heroBtn1:'Explore growing', heroBtn2:'View legal status',
     statCountries:'Countries mapped', statMetodos:'Growing methods', statSources:'Official sources', statHistory:'Historical coverage',
@@ -3193,7 +3174,7 @@ const translations = {
     eyCiencia:'Cannabis science', cienciaTitle:'The evidence library', cienciaSub:'Papers, active researchers and clinical information — with an explicit evidence level on every data point.',
     subPapers:'Papers', subCientificos:'Scientists', subMedico:'Medical', subMenores:'Minor cannabinoids', subTerpenos:'Terpenes &amp; flavonoids', subMitos:'Myths', subEcs:'ECS 101',
     detailEstado:'Current status', detailNote:'Illustrative data for this prototype — in production each field connects to the official source and updates automatically.', detailTimeline:'Timeline', detailTraveler:'For travelers', detailSources:'Official sources', footerCopy:'© 2026 Mother Verde LLC. All rights reserved.',
-    backToHome:'← Back to Home', backToCuenta:'← Back to Account',
+    backToHome:'← Back to Home', backToCuenta:'← Back to Account', backToDesbloquear:'← Back to Unlock', legalBack:'← Back',
     calcEyebrow:'Interactive tools', calcTitle:'Calculators', calcSub:'The same formulas you already saw in Growing and Making, now interactive.',
     calcVpdTitle:'VPD Calculator', calcVpdDesc:'Vapor pressure deficit — the real metric behind "is it too humid or too dry?".', calcVpdTemp:'Air temp. (°C)', calcVpdRH:'Relative humidity (%)', calcVpdStage:'Stage', calcVpdVeg:'Vegetative (0.8–1.0 kPa)', calcVpdFlo:'Flowering (1.0–1.5 kPa)',
     calcDliTitle:'DLI Calculator', calcDliDesc:'Daily light integral — how much light your grow accumulates in 24 h, not just the intensity of one instant.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Hours of light/day',
@@ -3214,15 +3195,13 @@ const translations = {
     bitPhLabel:'Substrate pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidity (%)', bitAtajosLabel:'Shortcuts while logging:', bitAtajoVpd:'Calculate VPD →', bitAtajoDosis:'Calculate nutrient mix →',
     bitStatDias:'Days into cycle', bitStatEntradas:'Total entries', bitStatEtapa:'Current stage', bitGraficoTitle:'pH and EC over time', bitGraficoVacio:'Log pH or EC in at least 2 entries to see the trend chart here.',
     bitAuthGateH3:'Log in to keep your grow journal', bitAuthGateP:'Your entries are saved to your account, private — only you can see them. You need to log in or create an account first.', bitAuthGateBtn:'Go to Account',
-    bitPdfBtn:'Download PDF', bitPdfLockedMsg:'PDF download is a Premium feature — unlock it',
+    bitPdfBtn:'Download PDF', bitPdfLockedMsg:'PDF download is part of full access — unlock it',
     bitErrSinNota:'Write a note before saving.', bitGuardadoOk:'✓ Saved', bitErrGuardar:'Could not save — try again.',
     bitSinFecha:'no date', bitEliminar:'Delete', bitSinNotas:'(no notes)', bitVacio:'No entries yet — add the first one above.',
     bitFotoLabel:'Photo (optional)', bitFotoNota:'Automatically compressed to save space. With many photo entries, the prototype\u2019s storage space may fill up — in production this would live on a real server, without that limit.',
-    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaEstadoTitle:'Subscription status', cuentaPagoSeguroNote:'Your payments are processed securely by an external provider. Mother Verde never sees or stores your card number — only your subscription status.', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and data are saved for real and securely. The subscription status above comes straight from your account.',
-    cuentaPremiumActivo:'✓ Premium active — full access to all 10 zones, no ads, unlimited downloads.', cuentaGestionarBtn:'Manage subscription', cuentaGestionarAlert:'In the real app, this would open Apple/Google subscription management.', cuentaPlanGratis:'Free plan — a taste of each zone, with ads.', cuentaSuscribirBtn:'Get Premium — $7.10/month',
-    pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months', pmComprarBtn:'Buy Premium — $7.10/month',
-    pmPagoSeguroNote:'Payment securely processed by the App Store / Google Play / Stripe — Mother Verde never sees or stores your card number.',
-    alertasEyebrow:'Premium benefit', alertasTitle:'Legal change alerts', alertasSub:'Follow specific countries — we notify you as soon as their status changes, no need to check manually.', alertasSigues:'Countries you follow', alertasSeguirBtn:'Follow', alertasEjemploTitle:'This is what a real alert would look like', alertasEjemploH4:'Germany updated its personal possession limit', alertasEjemploTag:'Confirmed change', alertasEjemploMeta:'2 days ago · Source: BfArM', alertasEjemploBody:'Illustrative example of how a real notification would arrive when a country you follow updates its legal framework.',
+    cuentaEyebrow:'Settings', cuentaTitle:'Your account', cuentaPerfilLink:'Your public name, country and photo are edited in Your Profile →', cuentaDatosTitle:'Account details', cuentaNombreLabel:'Name', cuentaNombrePh:'Your name', cuentaCorreoLabel:'Email', cuentaPaisLabel:'Country', cuentaPaisPh:'To adjust pricing and show your legal status faster', cuentaPrefTitle:'Preferences', cuentaIdiomaLabel:'Interface language', cuentaAlertasLabel:'Legal change alerts', cuentaNote:'Your account and your data are stored on our server, not only on this device.',
+    cuentaPremiumActivo:'✓ Full access active.', 
+    pmPagoAnual:' · per month', pmActualizaciones:'Includes content updates every six months',
     alertaSemillasH4:'U.S.: federal ban on interstate trade of seeds with 0.3%+ THC', alertaSemillasTag:'Real alert — not illustrative', alertaSemillasMeta:'July 21, 2026 · Source: MJBizDaily',
     alertaSemillasBody:'The federal redefinition of hemp makes it illegal to ship seeds from cultivars with 0.3% THC or more across state lines, starting <b>November 12, 2026</b>. Seed banks are already diversifying operations to different states in order to keep operating after that date.',
     alertaSemillasLink:'Read more at mjbizdaily.com →',
@@ -3421,7 +3400,7 @@ const translations = {
     ttG5h4:'Rosin (heat + mechanical pressure)', ttPasos3b:'3 steps', ttG5desc:'1) Wrap cured flower, hash or kief in folded parchment paper. 2) Press with a hair straightener or rosin press at medium temperature (~90-120°C) for 5-10 seconds. 3) Peel off the paper immediately and collect the oil before it cools.',
     ttG6h4:'Dry sift (sieving)', ttPasos3c:'3 steps', ttG6desc:'1) Place dry flower on a fine-micron screen, over a smooth surface underneath. 2) Rub gently with a card or roller to knock the trichomes loose. 3) Collect the powder that falls through — that is the kief.',
     ttG7h4:'Oven decarboxylation', ttPasos3d:'3 steps', ttG7desc:'1) Break the flower into even pieces on a tray lined with baking paper. 2) Bake at about 110-115°C for 45-60 min, checking that it does not over-brown. 3) Let it cool before using it in any infusion.',
-    ttNoteFinal:'These 6 techniques use only kitchen heat, simple mechanical pressure, or sieving — no pressurized gas systems or flammable solvents. That is the real limit of what this app teaches step by step. Anything requiring specialized equipment or handling flammable substances (BHO, CO2, vape liquid formulation) stays at the science and characteristics level you already saw in Concentrates and Vapes — never operational instructions, regardless of subscription plan.',
+    ttNoteFinal:'These 6 techniques use only kitchen heat, simple mechanical pressure, or sieving — no pressurized gas systems or flammable solvents. That is the real limit of what this app teaches step by step. Anything requiring specialized equipment or handling flammable substances (BHO, CO2, vape liquid formulation) stays at the science and characteristics level you already saw in Concentrates and Vapes — never operational instructions, regardless of the type of access.',
     ttCtaH3:'Need a real dosing formula for your product?', ttCtaP:'Tinctures, capsules, or patches with precise, batch-consistent dosing require specific calculations. We can help you think it through for your operation.',
     vpTiposH3:'What\u2019s actually inside the cartridge: 3 legitimate ways to make it', vpTiposIntro:'Before talking about risks, it\u2019s worth recognizing that real companies follow real standards and produce genuinely quality oil — in quite different ways from one another. These are the 3 main categories you\u2019ll find in a legal, regulated market.',
     vpDestH4:'Distillate', vpDestSci:'Solvent-based + distilled', vpDestDesc:'Extracted with CO2, ethanol, or hydrocarbons, then "winterized" (frozen and filtered to remove fats and waxes), and refined through short-path distillation — a real, well-documented purification process. The result is a very clean oil, with THC often between 85-99%, but with almost no terpenes of its own — which is why terpenes (cannabis-derived or botanical) are nearly always added back afterward.',
@@ -3462,15 +3441,14 @@ const translations = {
     etSimboloNote:'A detail that varies a lot by country: several regulated markets (like Canada and several US states) require a standardized, visually recognizable THC warning symbol on the packaging — the number in the text alone is not enough. The exact design of the symbol is set by each regulator, so it is not universal across countries, only within each one.',
     ppNote:'Illustrative selection for this prototype — in production, this feed updates with new publications from PubMed, ClinicalTrials.gov, and specialized journals.',
     ppSlicNote:'<b>The real picture for 2025:</b> the Latin American and Iberian Society of Cannabinology (SLIC) analyzed clinical trials indexed in PubMed during 2025 with "cannabis" or "cannabinoids" in the title — finding 85 real studies, covering mental health, public health, clinical interventions, safety, and policy. A considerable share focuses on mental health and use among adolescents, examining links to depression, anxiety, and co-use with nicotine or alcohol.',
-    ppTag1:'Genetic study', pp1desc:'Analyzes 297 hybrid plants and finds no significant relationship between leaf morphology and cannabinoid content — the scientific basis for replacing indica/sativa with chemotype classification.',
-    ppTag2:'Randomized clinical trial', pp2desc:'A controlled trial supporting the use of purified CBD in a refractory childhood epilepsy syndrome — the basis for Epidiolex\u2019s regulatory approval.',
-    ppTag3:'Agronomic study', pp3meta:'Agricultural extension · Cornell University · 2022', pp3desc:'Establishes optimal VPD ranges by growth stage to maximize yield and flower quality in indoor cultivation.',
-    ppTag4:'Laboratory chemical analysis', pp4desc:'Analyzes over 30 hash rosin samples with 2D gas chromatography and finds compounds never before seen in cannabis — including thiols ("gassy" notes) and fatty acids ("cheesy" notes) that are not terpenes. Suggests each variety\u2019s distinctive aroma depends on minor compounds, not just the traditional terpene profile.',
-    ppTag5:'Cutting-edge genomics', pp5meta:'Nature · 2025', pp5desc:'Sequences the complete genome of multiple cannabis varieties, not just a single reference — reveals how much real genetic diversity exists among commercial varieties, laying the groundwork for future data-driven genetic improvement.',
-    ppTag6:'Systematic review', pp6desc:'Reviews 31 documented cases of interaction between cannabis and 16 narrow-therapeutic-index medications, in 889 people — 58% showed unexpected blood levels of the medication. The basis for why drug interactions matter as much as cannabis itself.',
-    ppTag7:'Foundational study', pp7desc:'The study that coined the term "endocannabinoid" and first described how the body produces and breaks down its own anandamide — the foundation of everything we know today about the human endocannabinoid system.',
-    ppTag8:'Market study', pp8desc:'Analyzed 84 CBD products purchased online: only 30.95% had accurate labeling within a reasonable margin — 42.85% contained more CBD than declared, 26.19% less. The evidence behind why we always recommend requiring a COA.',
-    ppTag9:'Clinical consensus', pp9meta:'American College of Obstetricians and Gynecologists (ACOG) · 2025', pp9desc:'The most recent update to the clinical consensus on cannabis in pregnancy and breastfeeding — recommends stopping use during both periods, documenting risks of low birth weight and higher neonatal ICU admission.',
+    ppTag1:'Genetic study', pp1desc:'Measured 297 hybrid plants from a cross between two distinct lineages: traits widely assumed to go together did not. In hybrids, leaf shape does not match the plant’s chemistry, and the authors call for a new system to classify variation in cannabis.',
+    ppTag2:'Randomized clinical trial', pp2desc:'Double-blind trial in 120 children and young adults with Dravet syndrome: with CBD, convulsive seizures fell from 12.4 to 5.9 per month (with placebo, from 14.9 to 14.1). CBD caused more side effects, such as diarrhea, vomiting, fatigue and drowsiness.',
+    ppTag4:'Laboratory chemical analysis', pp4desc:'Compares varieties with very different aromas and finds very similar terpene profiles. Specific aromas are linked to minor compounds that are not terpenes: a new class of volatile sulfur compounds in citrus aromas, and skatole in the “chemical” aroma. It concludes that the role of terpenes in aroma has been overemphasized.',
+    ppTag5:'Cutting-edge genomics', pp5meta:'Nature · 2025', pp5desc:'Builds a cannabis pangenome from 193 genomes (181 new) from 144 samples of male and female plants. It finds regions with high genetic variation, but the cannabinoid synthase genes (THCA and CBDA) vary very little. It concludes that the cannabis gene pool is still only partly characterized.',
+    ppTag6:'Systematic review', pp6desc:'Systematic review of real-world cases: 31 reports of interactions between cannabinoids and 16 narrow-therapeutic-index medicines, involving 889 people. In 18 of the reports (58%), clinicians found an unexpected blood level of the medicine. Warfarin, valproate, tacrolimus and sirolimus were the most reported.',
+    ppTag7:'Foundational study', pp7desc:'Shows that cultured brain neurons produce and release anandamide from a new phospholipid precursor, and that anandamide is rapidly taken up and broken down. It supports anandamide’s role as one of the neurons’ own messengers.',
+    ppTag8:'Market study', pp8desc:'Analyzed 84 CBD products bought online: only 30.95% contained the labeled amount (±10% margin); 42.85% had more CBD than labeled and 26.19% had less. That is why we always recommend asking for the COA.',
+    ppTag9:'Clinical consensus', pp9meta:'American College of Obstetricians and Gynecologists (ACOG) · 2025', pp9desc:'ACOG clinical consensus document (October 2025) on cannabis use during pregnancy and lactation.',
     verEstudioOriginal:'View original study',
     scNote:'A small sample among many active researchers in the field — in production, this directory would expand with verified profiles (LinkedIn, ORCID, institutional affiliation).',
     scRole1:'Genomics &amp; taxonomy', sc1desc:'University of Colorado Boulder · founder of the Agricultural Genomics Foundation. Leads the research questioning the indica/sativa classification.',
@@ -3489,23 +3467,22 @@ const translations = {
     scRole14:'Psychology \u0026 public health', sc14desc:'Chrisland University, Nigeria — lead author of a November 2025 systematic review on cannabis use patterns in Nigeria, one of the few rigorous studies on the topic in Sub-Saharan Africa, a region historically underrepresented in cannabis science research.',
     scRole15:'Neurosurgery', sc15desc:'President of the Japanese Clinical Cannabinoid Association. Professor of Neurosurgery at St. Marianna University (Japan), designated Principal Investigator by the Japanese Ministry of Health in 2020 and 2024. Testified before the Japanese Diet in 2023 on the legal reform. Leads Japan’s first clinical trial on cannabinoids for treatment-resistant epilepsy, launched in December 2024.',
     scRole16:'Epidemiology', sc16desc:'Hamburg-Eppendorf University Medical Center and University of Leipzig, Germany. Over 9,300 academic citations. Lead author of the most recent studies on the real effects of Germany’s 2024 legalization, on driving under the influence and the medical market.',
-    ppTag10:'Social study', pp10desc:'A real study on the therapeutic potential of Cannabis sativa in psychotherapy, documenting how structural racism and the war on drugs limit access — published in the first cannabis science journal in Brazil and Latin America.',
-    ppTag11:'Scientific review', pp11desc:'A review published by Fiocruz (one of Latin America’s most prestigious public health institutions) on how CBD affects the extinction and reconsolidation of aversive memories, and the expression of fear and anxiety in animal models.',
-    ppTag12:'Systematic review', pp12desc:'A multidisciplinary team from the University of Verona, led by Prof. Vittorio Schweiger — finds real pain reduction across several systematic reviews, with an explicit call to calibrate expectations against real evidence, not promises.',
-    ppTag13:'Comparative study', pp13desc:'Compares Germany (after 2024 legalization) against Austria as a control — finds the real impact of legalization on driving under the influence of cannabis.',
-    ppTag14:'Mathematical model', pp14desc:'Mathematically models whether German legalization reduces or increases net harm to public health, weighing fewer contaminants in the legal product against a possible rise in use.',
-    ppTag15:'Market study', pp15desc:'Analyzes 12 months of real data from an online pharmacy — Germany is already Europe’s largest legal cannabis market (~200 tonnes in 2025).',
-    ppTag16:'Systematic review', pp16desc:'A review covering France, the Netherlands, Belgium, Germany, Czechia, Spain, Italy, Portugal, Poland, Hungary and more — finds that high-potency THC (+15-20%) is associated with 4 to 5 times more risk of first-episode psychosis.',
-    ppTag17:'Regulatory trial', pp17desc:'The Trimbos Institute (the Dutch national agency) is testing regulated cannabis in 10 municipalities since 2025, with a baseline contaminant study (pesticides, heavy metals) comparing control and intervention municipalities.',
-    ppTag18:'Global overview', pp18desc:'A worldwide overview of access to medical cannabis, with a specific focus on how developing countries — including Africa — lag behind in regulation.',
-    ppTag19:'Regulatory analysis', pp19desc:'Analyzes the first major revision since 1948 of Japan’s cannabis law (2023), which includes a new "special clinical research" framework for treatment-resistant epilepsy.',
-    ppTag20:'National survey', pp20desc:'A survey of 3,900 Japanese users examining whether cannabis really works as a "gateway" to other substances, finding limited causal evidence.',
-    ppTag21:'Comparative study', pp21desc:'The first study to differentiate use patterns between people who use cannabis and those who use other psychotropic substances in South Korea.',
-    ppTag22:'Comparative review', pp22desc:'Compares different regulated-supply models — nonprofit associations, state production, specialized pharmacies — across Germany, Switzerland, Malta, Colombia, Mexico, and Czechia.',
-    ppTag23:'Policy overview', pp23desc:'A comparative overview of global policy — only Canada and Uruguay have full federal legalization for adult use; analyzes the U.S. rescheduling change from late 2025.',
-    ppTag24:'Survey', pp24desc:'A real survey of 4,040 high school and university students in southern Morocco — found that women oppose medical cannabis use more than men, and perceive more risk that the law will "discourage" quitting.',
-    ppTag25:'Systematic review', pp25desc:'Covers Iraq, Morocco, Tunisia, Lebanon, and Egypt: reported lifetime prevalence ranges from 0.7% (Iraq, schoolchildren) to 32% (Lebanon and Egypt, university students).',
-    ppTag26:'Pharmaceutical development', pp26desc:'In 2025, Moroccan pharmaceutical company Pharma 5 launched the country’s first fully domestic CBD-based medicine for treatment-resistant epilepsy in children — full production from cultivation to manufacturing, under Law 13-21 (2021).',
+    ppTag10:'Social study', pp10desc:'Integrative review of 10 articles on medical cannabis in psychotherapy: it points to its therapeutic potential, but also finds access restricted to part of the population, shaped by structural racism and the war on drugs.',
+    ppTag11:'Scientific review', pp11desc:'Narrative review, published in Revista Fitos (Fiocruz), of studies in rats and mice: CBD appears to speed up the extinction and/or impair the reconsolidation of aversive memories, and to reduce fear- and anxiety-related behavior. These are preclinical results, not in humans.',
+    ppTag12:'Systematic review', pp12desc:'Team led by Vittorio Schweiger (University of Verona). According to the literature reviewed, medical cannabis reduces pain versus placebo by a statistically significant amount: on average 0.43 to 0.70 points on a 0–10 scale. It also covers side effects, contraindications and legal issues.',
+    ppTag13:'Comparative study', pp13desc:'Compares Germany (after the April 2024 legalisation) with Austria as a control, using surveys before and after. Eight months after legalisation it found no significant short-term effects on cannabis use or on driving under the influence of cannabis.',
+    ppTag14:'Mathematical model', pp14desc:'Quantitative model weighing the benefit of fewer contaminants in legal products against the risk of more use after Germany’s legalisation. It estimates that health losses from cannabis use disorder would be about 19 times greater than the gains from less contamination.',
+    ppTag15:'Market study', pp15desc:'Case study using 12 months of data from one German online dispensary: available flower products rose from 266 to 401, the price per 10 mg of THC fell, and products with 20–29.9% THC made up more than two-thirds of demand.',
+    ppTag16:'Narrative review', pp16desc:'Narrative review of literature and data published from 2015 to 2025: high-potency cannabis (over 15–25% THC) is consistently linked to higher risks of psychosis, anxiety, panic and cannabis use disorder. In Central and Eastern Europe, many of these problems go undetected or unreported.',
+    ppTag17:'Regulatory trial', pp17desc:'Describes the design of the Dutch experiment with a legal “closed” chain for recreational cannabis: ten contracted growers supply the coffeeshops in intervention municipalities, while nothing changes in control municipalities. It compares both groups on public health, crime, safety and nuisance; fieldwork was expected to start in early 2024 and last four years.',
+    ppTag18:'Global overview', pp18desc:'Review of medical cannabis in global health, with cases from the USA and Africa. It notes that inequalities persist: in Africa, patients face systemic barriers to medical cannabis certification.',
+    ppTag19:'Regulatory analysis', pp19desc:'Analyzes the 2023 amendment of Japan’s law, its first major revision since 1948: cannabis-derived medicines move into the same framework as opioid painkillers, industrial use is widened under a strict THC limit, and new penalties for use are introduced. It took effect on December 12, 2024.',
+    ppTag20:'National survey', pp20desc:'Online survey (January 2021) of 3,900 people in Japan who had ever used cannabis: cannabis usually came after alcohol and tobacco and rarely led to other drugs. The results challenge the “gateway” hypothesis in Japan.',
+    ppTag21:'Comparative study', pp21desc:'Survey (May–July 2024) of 109 people who use cannabis and narcotics and 191 who use psychotropic substances in South Korea. The link between social norms, health beliefs and severity of use was significant only in the psychotropic group.',
+    ppTag22:'Comparative review', pp22desc:'Systematic review of the outcomes of regulating cannabis supply in five jurisdictions: the Netherlands, Spain, U.S. states that legalized, Uruguay and Canada. Common outcomes: fewer arrests, more use among adults (not adolescents) and more healthcare use.',
+    ppTag23:'Policy overview', pp23desc:'Article from the Center for Cannabis Research and Policy of the Massachusetts Cannabis Control Commission, presenting cannabis policy across countries as an “international quasi-experiment”. This is part 1.',
+    ppTag24:'Survey', pp24desc:'Cross-sectional study of the beliefs and attitudes of young people in Morocco towards cannabis legislation, and associated factors. Authors from Ibn Zohr University, among others.',
+    ppTag25:'Systematic review', pp25desc:'Systematic review of 48 studies from 13 Arab countries: lifetime cannabis use ranges from 0.7% (Iraq) to 9.4% (Morocco) among school students, and from 4.7% (Tunisia) to 32% (Lebanon and Egypt) among university students.',
     mdIndicH3:'Indications with clinical evidence', mdIndicP:'Chronic pain, chemotherapy-associated nausea, and certain refractory epilepsy syndromes (with purified CBD) have evidence from clinical trials. Other indications have preliminary or preclinical evidence — the level of evidence matters as much as the indication itself.',
     mdInteracH3:'Interactions to keep in mind', mdInteracP:'Cannabis can interact with anticoagulants and sedatives, among other medications. Any patient under treatment should check with their doctor before starting medicinal use.',
     mdInteracMecP:'The real mechanism: CBD, more so than THC, inhibits several CYP450 system enzymes — the same family of enzymes that metabolizes most prescription medications. This is why interactions are not isolated rare cases, but a structural pattern: any medication that depends on those same enzymes to be metabolized can be affected, in either direction (raising or lowering its actual blood level).',
@@ -3657,35 +3634,34 @@ const translations = {
     ngCar4h4:'Compliance officer', ngCar4role:'Regulatory compliance · $70K\u2013$120K', ngCar4p:'Ensures the operation meets traceability, labeling, and licensing requirements. One of the roles with the best growth outlook in the entire industry, according to multiple salary reports.',
     ngCar5h4:'Extraction technician', ngCar5role:'Processing · $55K\u2013$75K', ngCar5p:'Operates closed-loop hydrocarbon or CO2 extraction systems, turning flower into the oils you already saw in Making → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> and <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrates</a>. Requires training in chemistry or engineering, plus specific lab safety training.',
     ngCar6h4:'Edibles chef', ngCar6role:'Manufacturing · $45K\u2013$90K', ngCar6p:'Designs and produces edibles, with real command of decarboxylation and precise per-serving dosing calculation — the same math you saw in <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Making → Edibles</a>, applied at commercial scale.',
-    cmyEyebrow:'Community — coming soon', cmyTitle:'Field reports, verified', cmySub:'What follows below (reports, confirmed diagnoses, moderated questions) needs user accounts and real moderation (backend) — it is the build plan, not a simulation. But the basic directory right below is real: it actually saves, and anyone using the app can see it.',
-    cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, profile type, photo and bio are public — anyone using the app can see them. Never share a full last name, phone number, or exact grow location here.',
-    cmyCorreoLabel:'Email', cmyCorreoPrivado:'(private, not shown)', cmyCorreoPh:'you@email.com',
-    cmyEnDesarrollo:'🚧 This feature is in development — you can\'t submit or see reports here yet. It\'s on the build list, not a simulation.', cmySecViajeroReal:'Traveler reports', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
+    cmyEyebrow:'Community', cmyTitle:'Field reports from the community', cmySub:'Share grow reports, diagnoses and questions, comment and follow other people. The Community and its directory are only visible to people with full access. Every post is translated automatically into the 4 languages.',
+    cmySecUnirse:'Join the biggest community in the world', cmyPrivacidadNote:'Your name, country, profile type, photo and bio are seen by people with full access to the platform. Photos are kept in public storage: anyone with the direct link to an image can open it. Never share your full surname, phone number or the exact location of your grow here.',
+    cmyCorreoLabel:'Email', cmyCorreoPrivado:'(private, not shown)', cmyCorreoPh:'you@email.com', cmySecViajeroReal:'Traveler reports', cmyViajeroIntro:'Real experiences at borders and customs by country. Laws change faster than any app can update on its own — this is information from other travelers, not a replacement for the official information in Legal & Travel.',
     cmyViajeroPaisLabel:'Country you traveled to', cmyViajeroTextoLabel:'Your experience', cmyViajeroTextoPh:'What happened at the border or customs, no personal details', cmyViajeroBtn:'Share experience', cmyViajeroExito:'Thanks! Your experience is now in the list below.', cmyViajeroVacio:'No experiences shared yet — be the first.',
     cmySecCultivoReal:'Grow reports', cmyCultivoIntro:'Short logs tied to a specific method, to cross-check real experience against the official Growing card.', cmyCultivoMetodoLabel:'Method you used', cmyCultivoTextoLabel:'Your experience', cmyCultivoTextoPh:'What worked or did not, with that method', cmyCultivoBtn:'Share report', cmyCultivoExito:'Thanks! Your report is now in the list below.', cmyCultivoVacio:'No reports yet — be the first.',
     cmySecDiagReal:'Diagnosis confirmations', cmyDiagIntro:'The most valuable of all: "I had exactly this and this worked for me," linked to a real <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis card</a>.', cmyDiagProblemaLabel:'What you had', cmyDiagTextoLabel:'What worked for you', cmyDiagTextoPh:'What you did and how it went', cmyDiagBtn:'Share confirmation', cmyDiagExito:'Thanks! Your confirmation is now in the list below.', cmyDiagVacio:'No confirmations yet — be the first.',
-    cmySecPreguntasReal:'Open questions', cmyPreguntasNota:'Only questions are posted here, not answers — answering safely needs real moderation, which does not exist yet. For now, this is a place to see what the community is asking.', cmyPreguntaPh:'Your question for the community', cmyPreguntaBtn:'Post question', cmyPreguntaExito:'Done! Your question is now in the list below.', cmyPreguntaVacio:'No questions yet — be the first.',
+    cmySecPreguntasReal:'Open questions', cmyPreguntasNota:'Post your question: people you follow each other with can answer in the comments. Nobody reviews answers before they are published, so always compare them with the platform’s lessons.', cmyPreguntaPh:'Your question for the community', cmyPreguntaBtn:'Post question', cmyPreguntaExito:'Done! Your question is now in the list below.', cmyPreguntaVacio:'No questions yet — be the first.',
     cmy5porque:'Why this one needs more care than the rest: without real moderation, someone could write something that sounds like specific medical advice without anyone reviewing it before it is published — it is exactly the one that most needs oversight before opening up.',
     cmyNombreLabel:'Name or nickname', cmyNombrePh:'How you want to be seen', cmyPaisLabel:'Country', cmyTipoLabel:'What describes you best?',
     cmyTipoCultivador:'Grower', cmyTipoNegocio:'Business owner', cmyTipoEntusiasta:'Consumer — enthusiast', cmyTipoSalud:'Health professional', cmyTipoAprendiendo:'Just learning', cmyTipoOtro:'Other',
     cmyAvatarBtn:'Profile photo', cmyAvatarNeedsName:'Enter your name or nickname first.', cmyAvatarSubiendo:'Uploading photo…', cmyAvatarListo:'Done! Your profile photo is set.',
     cmyCropTitle:'Adjust your photo', cmyCropHelp:'Drag the image and use your mouse wheel (or pinch on mobile) to zoom. Choose what you want to show inside the circle.', cmyCropPreviewLabel:'Preview', cmyCropCancelar:'Cancel', cmyCropConfirmar:'Use this photo',
-    perfilBack:'← Back to Community', perfilGateMsg:'Sign in to see your profile.', perfilNoDisponible:'This profile is not available.', perfilEditar:'Your profile', perfilBioLabel:'Bio', perfilBioPh:'Tell the community who you are (optional)', perfilConfigCuenta:'⚙️ Account settings (email, subscription, sign out)', perfilMisPublicaciones:'Posts', perfilSeguir:'Follow', perfilDejarSeguir:'Unfollow', perfilMutuo:'You follow each other', perfilCompleta:'Complete your profile to appear in the directory and post.', perfilSinPostsPropio:'You haven\'t posted anything yet.', perfilSinPostsOtro:'Hasn\'t posted anything yet.', perfilVerCompleto:'See full profile', cmyDirectorioIntro:'Tap anyone to see their profile. Want to appear here? Complete yours from <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Your Profile</a>.',
+    perfilBack:'← Back to Community', perfilGateMsg:'Sign in to see your profile.', perfilNoDisponible:'This profile is not available.', perfilEditar:'Your profile', perfilBioLabel:'Bio', perfilBioPh:'Tell the community who you are (optional)', perfilConfigCuenta:'⚙️ Account settings (email, access, sign out)', perfilMisPublicaciones:'Posts', perfilSeguir:'Follow', perfilDejarSeguir:'Unfollow', perfilMutuo:'You follow each other', perfilCompleta:'Complete your profile to appear in the directory and post.', perfilSinPostsPropio:'You haven\'t posted anything yet.', perfilSinPostsOtro:'Hasn\'t posted anything yet.', perfilVerCompleto:'See full profile', cmyDirectorioIntro:'Tap anyone to see their profile. Want to appear here? Complete yours from <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Your Profile</a>.',
     cmyTipoPostGeneral:'General', cmyTipoPostViajero:'Traveler', cmyTipoPostCultivo:'Grow', cmyTipoPostDiagnostico:'Diagnosis', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'Discover', cmyDescubrirIntro:'Real profiles from the directory. Swipe right to follow someone and see their posts; left to pass. If you both follow each other, comments unlock.', cmyDescubrirGate:'Sign in to use Discover.', cmyDescubrirEmpty:'No more profiles for now. Check back later.', cmyDescubrirPasar:'✕ Pass', cmyDescubrirSeguir:'Follow ✓', cmyDescubrirSinBio:'No bio yet.',
     cmySecFeed:'Posts', cmyFeedIntro:'The feed from people you follow, plus your own. Every post is auto-translated into your language. Comments unlock once both people follow each other.', cmyFeedGate:'Sign in to post and see the feed.', cmyFeedVacio:'No posts yet. Follow someone in Discover, or post first.', cmyPostPh:'What do you want to share with the community?', cmyPostFoto:'Photo', cmyPostBtn:'Post', cmyPostEnviando:'Posting…', cmyPostExito:'Posted!', cmyComentarios:'Comments', cmyComentariosVacio:'No comments yet.', cmyComentarioPh:'Write a comment…', cmyComentarBtn:'Comment', cmyComentarioBloqueado:'Comments unlock once you and this person follow each other.', cmyVerOriginal:'See original', cmyVerTraduccion:'See translation', cmyEliminar:'Delete', cmyConfirmar:'Sure?', cmyMiembroDesconocido:'Member',
     cmyUnirmeBtn:'Join the directory', cmyActualizarBtn:'Update my entry', cmyJoinNeedsAccount:'You need an account to appear in the directory. Create one under Account.', cmyJoinExito:'Done! You now appear in the directory below.', cmySecMiembros:'Community members', cmyVacioMsg:'No one has joined yet — be the first.',
     cmySecTipos:'The feature that needs the most oversight before opening',
-    cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', cmy1p:'Diary-style logs, tied to a specific method, to cross-check real experience against the official card.',
-    cmy2h4:'Diagnosis confirmations', cmy2sci:'Connects with <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis</a>', cmy2p:'The most valuable of all: "I had exactly this and this worked for me," linked to a real pest or disease card.',
+    cmy1h4:'Grow reports', cmy1sci:'Connects with Growing', 
+    cmy2h4:'Diagnosis confirmations', cmy2sci:'Connects with <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Growing → Diagnosis</a>', 
     cmy3h4:'Traveler reports', cmy3sci:'Connects with Legal &amp; Travel', cmy3p:'Real border and customs experiences by country — laws change faster than any app can update alone.',
     cmy4h4:'Questions and answers', cmy4sci:'Moderated', cmy4p:'A verified profile can answer with more visible weight than an anonymous one.',
     cmy5h4:'Medical testimonials', cmy5sci:'With mandatory disclaimer', cmy5p:'Always visible: personal experience, not medical advice. Never shown without that label.',
     cmySecVerif:'Verification', cmyVerifP:'A professional profile registered in Business (master grower, compliance officer, etc.) can request a verified badge — their answers are visually distinguished. Every post carries a permanent label: <b>"Verified by the app"</b> (official data) or <b>"Community report, unverified"</b> — never mixed without a clear distinction.',
-    cmySecLineas:'Red lines', cmyLineasP:'<b>Zero marketplace</b> — no buying, selling, or exchanging contact info to sell; that is what keeps this app compliant with app store policies. <b>Zero specific grow locations</b>, for safety. No medical testimonial is published without the visible disclaimer.',
+    cmySecLineas:'Red lines', cmyLineasP:'<b>Zero marketplace</b> — no buying, selling, or exchanging contact info to sell; that is what keeps this app compliant with the policies of the platforms it runs on. <b>Zero specific grow locations</b>, for safety. No medical testimonial is published without the visible disclaimer.',
     vrEyebrow:'Varieties &amp; cultivars', vrTitle:'Searchable database', vrSub:'We never say "strain" — that is a microbiology term (bacteria, viruses, fungi), not a botanical one. We use <b>variety</b> (natural adaptation, like a landrace) or <b>cultivar</b> (a cross intentionally developed by a breeder).',
     vrTodos:'All', vrTipoI:'Type I (THC)', vrTipoII:'Type II (balanced)', vrTipoIII:'Type III (CBD)',
-    vrTipoPrefix:'Type', vrLinaje:'Lineage', vrTerpenos:'Terpenes', vrDificultad:'Difficulty', vrVisteTeaser:'You saw', vrDe:'of', vrDesbloquea:'Unlock the full database with Premium.',
+    vrTipoPrefix:'Type', vrLinaje:'Lineage', vrTerpenos:'Terpenes', vrDificultad:'Difficulty', vrVisteTeaser:'You saw', vrDe:'of', vrDesbloquea:'Unlock the full database with full access.',
     modSegTitle:'Safety', modSegDesc:'Pets, medication interactions, driving, pregnancy and breastfeeding, and mental health — with real evidence.',
     eySeg:'Safety', segTitle:'What can go wrong, and how to avoid it', segSub:'The same rigorous evidence as the rest of the app, applied to real risks — pets, medications, driving, pregnancy, and mental health.',
     subMascotas:'Pets', subInteracciones:'Medications', subManejo:'Driving', subEmbarazo:'Pregnancy &amp; breastfeeding', subSaludFem:'Women’s health', subMental:'Mental health', subOcupacional:'Work &amp; production', subDeporte:'Sports', subMayores:'Older adults', subCorazon:'Heart &amp; blood pressure',
@@ -3786,7 +3762,7 @@ const translations = {
     flH3:'Beyond consumption: hemp fiber in 3D manufacturing', flP1:'French and Lebanese researchers are studying how to combine hemp fibers with agricultural byproducts to create eco-friendly composite materials, with real applications in transport vehicles and other industries — a real international collaboration (July 2026), outside the usual consumption circuit.',
     vrFloracion:'Flowering time',
     cpToggleH3:'⚖️ Compare two cultivars side by side', cpToggleP:'Pick two and see the real differences at a glance — potency, terpenes, flowering time, and more.',
-    cpLockedMsg:'Comparing full cultivars is a Premium tool — unlock it to pick any pair from all 19 cultivars.',
+    cpLockedMsg:'Comparing full cultivars is part of full access — unlock it to pick any pair from all 19 cultivars.',
     fsSecTitle:'Full spectrum, broad spectrum, and isolate: the label almost nobody explains',
     fsIntroP:'These three terms appear on almost every commercial product, and connect directly to Dr. Russo\u2019s "entourage effect" you already saw in <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Science → Terpenes and flavonoids</a> — they describe how much of the plant\u2019s original chemical profile remains in the final extract.',
     fsFullLabel:'Full spectrum', fsFullVal:'Keeps all the original cannabinoids, terpenes, and flavonoids, including trace THC — aims for the strongest possible entourage effect',
@@ -3834,7 +3810,7 @@ const translations = {
     eduIntroH3:'Real universities that teach this — not all the same', eduIntroP:'There is a real difference between an accredited university offering a cannabis degree, and a private "certification" platform without traditional academic accreditation. Here we only include verified academic institutions — with real accreditation, not just their own word.',
     eduFiltroPaisLabel:'Country', eduCualquiera:'Any', eduPaisEEUU:'United States', eduPaisCanada:'Canada',
     eduFiltroEspLabel:'Specialty', eduEspCultivo:'Growing &amp; horticulture', eduEspCiencia:'Science &amp; chemistry', eduEspMedicina:'Medicine &amp; pharmacy', eduEspNegocio:'Business &amp; industry', eduResultados:'result(s)',
-    eduSunyP:'Cannabis Industry minor, Specialty Crops &amp; Cannabis Production certificate, stackable into an A.A.S. or B.Tech in horticulture. Includes the university\u2019s own cannabis research plot.',
+    eduSunyP:'Cannabis Industry minor and Specialty Crops &amp; Cannabis Production certificate. Includes the university\u2019s own cannabis research plot.',
     eduCsuP:'A full Bachelor of Science (BS) in Cannabis Biology and Chemistry, accredited by the Higher Learning Commission — one of the most complete 4-year university degrees on the subject, with concentrations in hemp agriculture, analytics, natural products, and industry management.',
     eduCuP:'Three Cannabis Science and Medicine programs, from an 8-week introductory course to a full Master\u2019s degree — all online, taught by international experts in the field, within a real pharmacy school.',
     eduSaskP:'Its Prairie Horticulture Certificate now includes a specific Cannabis Crop Production course — propagation, genetics, and harvest criteria, all online.',
@@ -3895,20 +3871,20 @@ const translations = {
     adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Company', adInquiryCorreoLabel:'Email', adInquiryMensajeLabel:'Message', adInquirySubmitBtn:'Send',
     adInquiryEnviando:'Sending…', adInquiryOk:'✓ Received — we’ll be in touch soon.', adInquiryError:'Could not send. Please try again.'},
   de:{brandSub:'Globaler Codex · medizinisches &amp; Freizeit-Cannabis', navHome:'Start', navCultivo:'Anbau', navElaboracion:'Verarbeitung', navLegal:'Recht', navCiencia:'Wissenschaft', navMas:'Mehr',
-    gateUnlockBtn:'Mit Premium freischalten',
-    gtDliTitle:'DLI-Rechner', gtDliDesc:'Das tägliche Lichtintegral ist ein Premium-Werkzeug.',
-    gtDoseTitle:'Dosis pro Portion', gtDoseDesc:'Der Rechner für regulatorische Konformität ist ein Premium-Werkzeug.',
-    gtTrazaTitle:'Rückverfolgbarkeit', gtTrazaDesc:'Die von jedem Regulierer geforderten Seed-to-Sale-Systeme sind Premium-Inhalt.',
-    gtDirTitle:'Lieferantenverzeichnis', gtDirDesc:'Das vollständige Verzeichnis nach Kategorie ist Premium-Inhalt.',
-    gtCarrTitle:'Karrieren', gtCarrDesc:'Die Details zu jeder Berufsrolle der Branche sind Premium-Inhalt.',
-    gtSistemasTitle:'Anbausysteme', gtSistemasDesc:'Indoor, Gewächshaus und Outdoor, mit vollständigen technischen Parametern, sind Premium-Inhalt.',
-    gtMetodosTitle:'Anbaumethoden', gtMetodosDesc:'Die Wurzelernährungsmethoden — Bio-Erde, Hydroponik, Aeroponik und Aquaponik — sind Premium-Inhalt.',
+    gateUnlockBtn:'Vollzugriff freischalten',
+    gtDliTitle:'DLI-Rechner', gtDliDesc:'Das tägliche Lichtintegral gehört zum Vollzugriff.',
+    gtDoseTitle:'Dosis pro Portion', gtDoseDesc:'Der Rechner für regulatorische Konformität gehört zum Vollzugriff.',
+    gtTrazaTitle:'Rückverfolgbarkeit', gtTrazaDesc:'Die von jedem Regulierer geforderten Seed-to-Sale-Systeme erfordern Vollzugriff.',
+    gtDirTitle:'Lieferantenverzeichnis', gtDirDesc:'Das vollständige Verzeichnis nach Kategorie erfordert Vollzugriff.',
+    gtCarrTitle:'Karrieren', gtCarrDesc:'Die Details zu jeder Berufsrolle der Branche erfordern Vollzugriff.',
+    gtSistemasTitle:'Anbausysteme', gtSistemasDesc:'Indoor, Gewächshaus und Outdoor, mit vollständigen technischen Parametern, erfordern Vollzugriff.',
+    gtMetodosTitle:'Anbaumethoden', gtMetodosDesc:'Die Wurzelernährungsmethoden — Bio-Erde, Hydroponik, Aeroponik und Aquaponik — erfordern Vollzugriff.',
     cmMetodosIntro:'Nach der Wahl des Systems (wo) folgt die Methode: wie die Wurzel ernährt wird. Diese vier Familien bestimmen alle weiteren Anbauentscheidungen — von der Ausrüstung bis zum Nährstoffplan.',
     cmSecSuelo:'Bio-Erde',
     cmSuelo1h4:'Traditionelle Erde', cmSuelo1sci:'Der älteste Ausgangspunkt', cmSuelo1desc:'Direkter Anbau in Gartenerde oder im Freiland. Die älteste Methode und am verzeihendsten bei Gieß- oder Nährstofffehlern — die Erde selbst puffert Ungleichgewichte ab.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSuelo2h4:'Substrat im Topf', cmSuelo2sci:'Vorgemischte Erden', cmSuelo2desc:'Kommerzielle Mischungen aus Torf, Kompost und Perlit in Containern — der Mittelweg zwischen der Kontrolle der Hydroponik und der Einfachheit traditioneller Erde.', cmSuelo2src:'<a href="https://hemp.cals.cornell.edu/resources/reports-factsheets/2022-cornell-hemp-field-day-handouts/high-tunnel-soil-management-for-cannabis-sativa/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSecHidro:'Hydroponik',
-    cmHidroIntro:'Kombiniert ein inertes Substrat (Kokosfaser, Steinwolle, Perlit — siehe <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Substrat &amp; Nährstoffe</a>) mit einem offenen Wassersystem, das die Nährlösung direkt an die Wurzel liefert.',
+    cmHidroIntro:'Kombiniert ein inertes Substrat (Kokosfaser, Steinwolle, Perlit — siehe <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Substrat &amp; Nährstoffe</a>) mit einem offenen Wassersystem, das die Nährlösung direkt an die Wurzel liefert.',
     cmHidro1h4:'DWC (schwimmende Wurzel)', cmHidro1sci:'Deep Water Culture', cmHidro1desc:'Die Wurzeln hängen direkt in einem Reservoir mit sauerstoffangereicherter Nährlösung. Einfach und günstig aufzubauen; erfordert ständige Überwachung von gelöstem Sauerstoff und Wassertemperatur.', cmHidro1src:'<a href="https://cannabis.ucdavis.edu/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabis.ucdavis.edu</a>',
     cmHidro2h4:'NFT', cmHidro2sci:'Nutrient Film Technique', cmHidro2desc:'Ein dünner Film Nährlösung fließt kontinuierlich über die Wurzeln in geneigten Kanälen. Sehr wassereffizient; anfällig bei Stromausfällen, da kein Nährstoffreservoir an der Wurzel besteht.', cmHidro2src:'<a href="https://extension.oregonstate.edu/catalog/pub/em-9457-hydro-hints-nutrient-film-technique" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">extension.oregonstate.edu</a>',
     cmHidro3h4:'Ebb &amp; Flow', cmHidro3sci:'Flut- und Drainagesystem', cmHidro3desc:'Eine Wanne wird zeitgesteuert mit Nährlösung geflutet und läuft dann vollständig ab — die Wurzeln wechseln zwischen Ernährung und Sauerstoffversorgung. Ein flexibles System, das mit verschiedenen inerten Substraten funktioniert.', cmHidro3src:'<a href="https://cpb-us-e1.wpmucdn.com/blogs.cornell.edu/dist/8/8824/files/2019/06/Cornell-CEA-Lettuce-Handbook-.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">blogs.cornell.edu — Cornell CEA Handbook</a>',
@@ -3944,56 +3920,46 @@ const translations = {
     eqF5H3:'5. Trocknung', eqF5i1:'Etagen-Trockengestell', eqF5i2:'Kohlefilter auf niedrigster Stufe', eqF5i3:'Ventilator auf die Wand gerichtet — nie direkt auf die Blüten', eqF5i4:'100% dunkler Raum',
     eqF6H3:'6. Aushärtung (Curing)', eqF6i1:'Luftdichte Glasgefäße', eqF6i2:'Zweiwege-Feuchtigkeitsregler-Beutel', eqF6i3:'Mini-Thermo-Hygrometer für Gläser',
     eqCuradoMarcas:'<b>Veranschaulichende Beispiele:</b> Boveda und Integra sind die meistgenannten Marken für Zweiwege-Feuchtigkeitsbeutel für Curing-Gläser — sie regulieren die Innenfeuchtigkeit, ohne dass man das Glas zum Nachschauen öffnen muss.',
-    gtIlumTitle:'Beleuchtung', gtIlumDesc:'PPFD- und DLI-Zielwerte je Phase, wissenschaftlich fundiert, sind Premium-Inhalt.',
-    gtSustratoTitle:'Substrat und Ernährung', gtSustratoDesc:'Der vollständige Leitfaden zu Substraten und Makro-/Mikronährstoffen ist Premium-Inhalt.',
-    gtEntrenTitle:'Beschneiden und Training', gtEntrenDesc:'Die 7 Trainingstechniken mit Ertragsschätzung sind Premium-Inhalt.',
-    gtGenTitle:'Genetik und Chemotypen', gtGenDesc:'Die wissenschaftliche Klassifikation nach Chemotyp, mit zitierter Quelle, ist Premium-Inhalt.',
-    gtCicloTitle:'Lebenszyklus', gtCicloDesc:'Das vollständige Detail des Lebenszyklus der Pflanze ist Premium-Inhalt.',
-    gtCosechaTitle:'Ernte', gtCosechaDesc:'Die Trichom-Checkliste und die Schnitt-/Trimm-Entscheidungen sind Premium-Inhalt.',
-    gtPropTitle:'Fortgeschrittene Vermehrung', gtPropDesc:'Feminisierung, Autoflower-Kreuzungen und Pfropfen sind Premium-Inhalt.',
-    gtProcTitle:'Prozesse & SOP', gtProcDesc:'Die vollständigen Nachernte-Verfahren sind Premium-Inhalt.',
-    gtConcTitle:'Konzentrate', gtConcDesc:'Die weltweite Tour durch Extraktionstechniken ist Premium-Inhalt.',
-    gtTintTitle:'Tinkturen, Kapseln & Pflaster', gtTintDesc:'Die 3 Aufnahmewege mit dosierter Menge sind Premium-Inhalt.',
-    gtVapesTitle:'Vapes & Kartuschen', gtVapesDesc:'Der Hardware-Leitfaden und die EVALI-Geschichte sind Premium-Inhalt.',
-    gtComTitle:'Esswaren', gtComDesc:'Decarboxylierung und Potenzberechnung sind Premium-Inhalt.',
-    gtSkinTitle:'Hautpflege & Topika', gtSkinDesc:'Der vollständige Leitfaden zu Topika ist Premium-Inhalt.',
-    gtEtiqTitle:'Kennzeichnung', gtEtiqDesc:'Der vollständige Kennzeichnungsstandard ist Premium-Inhalt.',
-    gtCientTitle:'Wissenschaftler', gtCientDesc:'Das vollständige Verzeichnis aktiver Forscher ist Premium-Inhalt.',
-    gtMedTitle:'Medizinische Informationen', gtMedDesc:'Klinische Indikationen und Wechselwirkungen sind Premium-Inhalt.',
-    gtEcsTitle:'Endocannabinoid-System 101', gtEcsDesc:'Die narrative Erklärung des Endocannabinoid-Systems und der Vergleich Mensch vs. Tier sind Premium-Inhalt.',
-    gtSeguridadDesc:'Vollständige wissenschaftliche Vertiefung — zusätzliche Studien, Mechanismen und erweiterter Kontext — verfügbar mit Premium.',
-    gtDiagTeaserTitle:'2 von 11 gesehen', gtDiagTeaserDesc:'Schalte die restlichen 9 Einträge mit Premium frei.',
-    gtPapersTeaserTitle:'1 von 26 gesehen', gtPapersTeaserDesc:'Schalte die vollständige Papers-Bibliothek mit Premium frei.',
-    gtCannaTeaserTitle:'2 von 6 gesehen', gtCannaTeaserDesc:'Schalte die restlichen 4 Cannabinoide mit Premium frei.',
-    gtTerpTeaserTitle:'2 von 8 gesehen', gtTerpTeaserDesc:'Schalte die restlichen 6 Profile mit Premium frei.',
-    gtFlavTeaserTitle:'2 von 5 gesehen', gtFlavTeaserDesc:'Schalte die 5 Flavonoid-Profile mit Premium frei.',
-    gtMitosTeaserTitle:'2 von 6 gesehen', gtMitosTeaserDesc:'Schalte die vollständige Mythen-Bibliothek mit Premium frei.',
+    gtIlumTitle:'Beleuchtung', gtIlumDesc:'PPFD- und DLI-Zielwerte je Phase, wissenschaftlich fundiert, erfordern Vollzugriff.',
+    gtSustratoTitle:'Substrat und Ernährung', gtSustratoDesc:'Der vollständige Leitfaden zu Substraten und Makro-/Mikronährstoffen erfordert Vollzugriff.',
+    gtEntrenTitle:'Beschneiden und Training', gtEntrenDesc:'Die 7 Trainingstechniken mit Ertragsschätzung erfordern Vollzugriff.',
+    gtGenTitle:'Genetik und Chemotypen', gtGenDesc:'Die wissenschaftliche Klassifikation nach Chemotyp, mit zitierter Quelle, erfordert Vollzugriff.',
+    gtCicloTitle:'Lebenszyklus', gtCicloDesc:'Das vollständige Detail des Lebenszyklus der Pflanze erfordert Vollzugriff.',
+    gtCosechaTitle:'Ernte', gtCosechaDesc:'Die Trichom-Checkliste und die Schnitt-/Trimm-Entscheidungen erfordern Vollzugriff.',
+    gtPropTitle:'Fortgeschrittene Vermehrung', gtPropDesc:'Feminisierung, Autoflower-Kreuzungen und Pfropfen erfordern Vollzugriff.',
+    gtProcTitle:'Prozesse & SOP', gtProcDesc:'Die vollständigen Nachernte-Verfahren erfordern Vollzugriff.',
+    gtConcTitle:'Konzentrate', gtConcDesc:'Die weltweite Tour durch Extraktionstechniken erfordert Vollzugriff.',
+    gtTintTitle:'Tinkturen, Kapseln & Pflaster', gtTintDesc:'Die 3 Aufnahmewege mit dosierter Menge erfordern Vollzugriff.',
+    gtVapesTitle:'Vapes & Kartuschen', gtVapesDesc:'Der Hardware-Leitfaden und die EVALI-Geschichte erfordern Vollzugriff.',
+    gtComTitle:'Esswaren', gtComDesc:'Decarboxylierung und Potenzberechnung erfordern Vollzugriff.',
+    gtSkinTitle:'Hautpflege & Topika', gtSkinDesc:'Der vollständige Leitfaden zu Topika erfordert Vollzugriff.',
+    gtEtiqTitle:'Kennzeichnung', gtEtiqDesc:'Der vollständige Kennzeichnungsstandard erfordert Vollzugriff.',
+    gtCientTitle:'Wissenschaftler', gtCientDesc:'Das vollständige Verzeichnis aktiver Forscher erfordert Vollzugriff.',
+    gtMedTitle:'Medizinische Informationen', gtMedDesc:'Klinische Indikationen und Wechselwirkungen erfordern Vollzugriff.',
+    gtEcsTitle:'Endocannabinoid-System 101', gtEcsDesc:'Die narrative Erklärung des Endocannabinoid-Systems und der Vergleich Mensch vs. Tier erfordern Vollzugriff.',
+    gtSeguridadDesc:'Vollständige wissenschaftliche Vertiefung — zusätzliche Studien, Mechanismen und erweiterter Kontext — verfügbar mit Vollzugriff.',
+    gtDiagTeaserTitle:'2 von 11 gesehen', gtDiagTeaserDesc:'Schalte die restlichen 9 Einträge mit Vollzugriff frei.',
+    gtPapersTeaserTitle:'1 von 26 gesehen', gtPapersTeaserDesc:'Schalte die vollständige Papers-Bibliothek mit Vollzugriff frei.',
+    gtCannaTeaserTitle:'2 von 6 gesehen', gtCannaTeaserDesc:'Schalte die restlichen 4 Cannabinoide mit Vollzugriff frei.',
+    gtTerpTeaserTitle:'2 von 8 gesehen', gtTerpTeaserDesc:'Schalte die restlichen 6 Profile mit Vollzugriff frei.',
+    gtFlavTeaserTitle:'2 von 5 gesehen', gtFlavTeaserDesc:'Schalte die 5 Flavonoid-Profile mit Vollzugriff frei.',
+    gtMitosTeaserTitle:'2 von 6 gesehen', gtMitosTeaserDesc:'Schalte die vollständige Mythen-Bibliothek mit Vollzugriff frei.',
   tierSwitchLabel:'Vorschau:',
     agTitle:'Altersverifizierung', agBody:'Dieser Inhalt ist nur für Personen ab 18 Jahren bestimmt und enthält Informationen über Cannabis zu Bildungs-, medizinischen und Informationszwecken.', agYes:'Ja, ich bin 18 Jahre oder älter', agNo:'Nein, ich bin unter 18', agBlockedTitle:'Zugriff nicht verfügbar', agBlockedBody:'Dieser Inhalt ist auf Personen ab 18 Jahren beschränkt. Wir können dir derzeit keinen Zugang gewähren.',
     cuentaLegalTitle:'Rechtliches', cuentaTerminosLabel:'Nutzungsbedingungen', cuentaPrivacidadLabel:'Datenschutzrichtlinie',
-    tcEyebrow:'Rechtliches', tcTitle:'Nutzungsbedingungen', tcUpdated:'Zuletzt aktualisiert: Juli 2026',
+    tcEyebrow:'Rechtliches', tcTitle:'Nutzungsbedingungen', tcUpdated:'Zuletzt aktualisiert: 5. November 2026',
     tcDraftNote:'<b>Hinweis zu diesem Dokument:</b> dieser Text ist eine vollständige, nach bestem Wissen erstellte Ausgangsbasis — er ersetzt nicht die Prüfung durch einen auf Cannabis und digitalen Handel spezialisierten Anwalt vor einem echten Launch. Cannabisgesetze variieren enorm nach Land und Bundesstaat; dieses Dokument benötigt professionelle rechtliche Anpassung je nachdem, wo Mother Verde LLC tätig ist.',
     tc1H3:'1. Annahme der Bedingungen', tc1P:'Durch den Zugriff auf oder die Nutzung der Mother-Verde-Anwendung ("die App"), betrieben von Mother Verde LLC ("wir", "das Unternehmen"), stimmst du zu, an diese Nutzungsbedingungen gebunden zu sein. Wenn du nicht einverstanden bist, darfst du die App nicht nutzen.',
     tc2H3:'2. Berechtigung und Mindestalter', tc2P:'Die App ist ausschließlich für Personen ab 18 Jahren bestimmt. Durch die Bestätigung deines Alters beim ersten Zugriff versicherst du, dass du diese Anforderung erfüllst. Wir behalten uns das Recht vor, den Zugang zu jedem Konto zu sperren, wenn wir begründeten Anlass zu der Annahme haben, dass diese Angabe falsch ist.',
     tc3H3:'3. Art des Inhalts — dies ist keine medizinische oder rechtliche Beratung', tc3P:'Alle Inhalte der App — einschließlich Informationen zu Anbau, Verarbeitung, Wissenschaft, Dosierung, Sicherheit und rechtlichem Status nach Land — werden <b>ausschließlich zu Bildungs- und Informationszwecken</b> bereitgestellt. Sie stellen keine medizinische Beratung, Diagnose, Behandlung oder Rechtsberatung jeglicher Art dar. Der rechtliche Status von Cannabis ändert sich häufig und variiert je nach Rechtsprechung; es liegt in deiner Verantwortung, das an deinem Standort geltende Recht vor dem Handeln zu überprüfen. Konsultiere vor der medizinischen Nutzung von Cannabis stets eine qualifizierte Gesundheitsfachkraft und bei rechtlichen Fragen einen örtlichen Anwalt.',
     tc4H3:'4. Erlaubte Nutzung', tc4P:'Du verpflichtest dich, die App nur auf rechtmäßige Weise gemäß den Gesetzen deiner Rechtsprechung zu nutzen. Du darfst die App nicht zur Erleichterung illegaler Aktivitäten nutzen und nicht versuchen, ohne Berechtigung auf eingeschränkte Teile des Dienstes zuzugreifen.',
-    tc5H3:'5. Premium-Abonnement', tc5P:'Die App bietet eine kostenlose Stufe und eine kostenpflichtige Premium-Stufe mit zusätzlichen Inhalten. Details zu Preis, Abrechnung und Kündigung werden zum Zeitpunkt des Abonnements angegeben. Wir behalten uns das Recht vor, die Preise und Vorteile jeder Stufe mit angemessener vorheriger Ankündigung zu ändern.',
+    tc5H3:'5. Vollzugriff', tc5P:'Der einmalige Unterstützungsbeitrag hilft Bertha Limo, Gründerin von Mother Verde, an der SUNY Morrisville, die ihr noch einmal ihre Türen geöffnet hat, weiter zu lernen und in ihrem Berufsleben zu wachsen. Dafür erhält die Person vollen Zugang zur Plattform. Er ist freiwillig und einmalig; er ist keine Spende und nicht steuerlich absetzbar. Der Beitrag geht an die persönliche Krypto-Wallet von Bertha Limo im Base-Netzwerk. Die 24-stündige Gratis-Testphase wird nur einmal pro Person angeboten. Mother Verde ist ein unabhängiges Projekt, nicht mit der SUNY Morrisville verbunden und nicht von ihr unterstützt. <b>Geschenkcodes:</b> Die Administration kann einen Code senden, der 7 Tage Vollzugriff gewährt; er kann einmal verwendet werden und muss innerhalb von 7 Tagen eingelöst werden. <b>Entzug des Zugangs:</b> Wenn wir Betrug oder Missbrauch feststellen (zum Beispiel einen Beitrag, dem keine echte Zahlung entspricht), können wir den Zugang entziehen; das wird mit dem Grund protokolliert. <b>Manuelle Beiträge:</b> Ein Beitrag über einen anderen vereinbarten Weg wird von der Administration erfasst; mit der Erfassung wird der Vollzugriff freigeschaltet, genau wie bei einem bestätigten USDC-Beitrag, und er bleibt im Protokoll.',
     tc6H3:'6. Geistiges Eigentum', tc6P:'Alle Originalinhalte der App — Texte, Illustrationen, Marke, Design — sind Eigentum von Mother Verde LLC oder ihrer Lizenzgeber und durch geltendes Recht zum Schutz geistigen Eigentums geschützt. Eine kommerzielle Vervielfältigung ist ohne vorherige schriftliche Genehmigung nicht gestattet.',
     tc7H3:'7. Von Nutzern erstellte Inhalte', tc7P:'Werkzeuge wie das Anbautagebuch speichern die von dir eingegebenen Informationen. Du bist für die von dir erfassten Inhalte verantwortlich. Du darfst keine sensiblen Informationen Dritter ohne deren Zustimmung eingeben.',
     tc8H3:'8. Haftungsbeschränkung', tc8P:'Soweit gesetzlich zulässig, haftet Mother Verde LLC nicht für Schäden, die aus der Nutzung oder der Unmöglichkeit der Nutzung der App entstehen, einschließlich Entscheidungen, die auf Basis der bereitgestellten Informationen getroffen wurden. Die App wird "wie besehen" ohne jegliche Gewährleistung angeboten.',
     tc9H3:'9. Änderungen dieser Bedingungen', tc9P:'Wir können diese Bedingungen regelmäßig aktualisieren. Wir werden dich über wesentliche Änderungen innerhalb der App informieren. Die fortgesetzte Nutzung nach Veröffentlichung von Änderungen stellt die Annahme der neuen Bedingungen dar.',
     tc10H3:'10. Kontakt', tc10P:'Für Fragen zu diesen Bedingungen kontaktiere uns über die in der App angegebene Support-E-Mail.',
-    ppEyebrow:'Rechtliches', ppTitle:'Datenschutzrichtlinie', ppUpdated:'Zuletzt aktualisiert: Juli 2026',
-    ppDraftNote:'<b>Hinweis zu diesem Dokument:</b> dies ist eine vollständige, nach bestem Wissen erstellte Ausgangsbasis — sie ersetzt nicht die Prüfung durch einen auf Datenschutz spezialisierten Anwalt (einschließlich Vorschriften wie DSGVO oder CCPA, je nachdem wo du tätig bist) vor einem echten Launch.',
-    ppv1H3:'1. Welche Informationen wir sammeln', ppv1P:'Die App kann Folgendes speichern: deine Altersbestätigung, deine bevorzugte Sprache, Einträge, die du in deinem Anbautagebuch erfasst, und Länder, die du in Benachrichtigungen verfolgst. Auf dem Konto-Bildschirm kannst du optional Name, E-Mail und Land eingeben — diese Felder sind Teil des Prototyp-Mockups und werden derzeit an keinen Server gesendet.',
-    ppv2H3:'2. Wo deine Informationen gespeichert werden', ppv2P:'Die meisten der genannten Daten werden lokal auf deinem eigenen Gerät gespeichert, nicht auf unseren Servern. Das bedeutet, dass in der aktuellen Form der Großteil deiner Aktivität in der App auf deinem Telefon oder Browser verbleibt und wir sie nicht zentral erfassen.',
-    ppv2AdminP:'Im Community-Verzeichnis sind dein Name, dein Land und dein Profiltyp für andere Personen sichtbar, die die App nutzen. Daten wie deine E-Mail-Adresse werden niemals öffentlich angezeigt — nur das Admin-Team von Mother Verde LLC hat Zugriff auf diese Informationen, mit spezifischen Sicherheitskontrollen dafür (Zwei-Faktor-Verifizierung, Zugriffsprotokollierung).',
-    ppv3H3:'3. Wie wir deine Informationen verwenden', ppv3P:'Wir verwenden die gespeicherten Informationen nur, damit die App wie erwartet funktioniert: um deine Sprache, deine Altersverifizierung und die Inhalte zu merken, die du selbst in Werkzeuge wie das Anbautagebuch eingibst. Wir verkaufen deine Informationen nicht an Dritte.',
-    ppv4H3:'4. Dienste Dritter und Zahlungen', ppv4P:'Zahlungen für das Premium-Abonnement werden über den App Store, Google Play oder Stripe abgewickelt — niemals direkt durch Mother Verde. <b>Mother Verde LLC erhält, verarbeitet oder speichert niemals deine Kartennummer, CVV oder das Ablaufdatum.</b> Wir erhalten lediglich eine Bestätigung, dass die Zahlung erfolgt ist, und deinen Abonnementstatus. Diese Zahlungsabwickler haben ihre eigenen, von dieser unabhängigen Datenschutzrichtlinien.',
-    ppv5H3:'5. Deine Rechte', ppv5P:'Du kannst lokal gespeicherte Informationen löschen, indem du die App-Daten über die Geräteeinstellungen entfernst. Sollten wir in Zukunft Daten auf Servern speichern, hast du das Recht, Zugang, Berichtigung oder Löschung deiner Informationen zu verlangen, soweit das Recht deiner Rechtsprechung dies zulässt.',
-    ppv6H3:'6. Datenschutz für Kinder', ppv6P:'Die App ist durch Altersverifizierung beim Zugriff auf Personen ab 18 Jahren beschränkt. Wir sammeln nicht wissentlich Informationen von Minderjährigen.',
-    ppv7H3:'7. Änderungen dieser Richtlinie', ppv7P:'Wir können diese Datenschutzrichtlinie regelmäßig aktualisieren. Wir werden dich über wesentliche Änderungen innerhalb der App informieren.',
-    ppv8H3:'8. Kontakt', ppv8P:'Für Datenschutzfragen kontaktiere uns über die in der App angegebene Support-E-Mail.',
+    ppEyebrow:'Rechtliches', ppTitle:'Datenschutzrichtlinie',
     heroTitle:'Der globale Cannabis-Codex, <em>endlich geordnet</em>.', heroSub:'Wissenschaftlich fundierter Anbau, Produktverarbeitung, Rechtsstatus je Land und kuratierte Wissenschaft — alles an einem Ort, für Anbauer, Hersteller, Patienten und Reisende.',
     heroBtn1:'Anbau erkunden', heroBtn2:'Rechtsstatus ansehen',
     statCountries:'Erfasste Länder', statMetodos:'Anbaumethoden', statSources:'Offizielle Quellen', statHistory:'Historische Abdeckung',
@@ -4031,7 +3997,7 @@ const translations = {
     eyCiencia:'Cannabis-Wissenschaft', cienciaTitle:'Die Evidenzbibliothek', cienciaSub:'Studien, aktive Forscher und klinische Informationen — mit explizitem Evidenzgrad bei jedem Datenpunkt.',
     subPapers:'Studien', subCientificos:'Wissenschaftler', subMedico:'Medizinisch', subMenores:'Nebencannabinoide', subTerpenos:'Terpene &amp; Flavonoide', subMitos:'Mythen', subEcs:'ECS 101',
     detailEstado:'Aktueller Status', detailNote:'Illustrative Daten für diesen Prototyp — in der Produktion verbindet sich jedes Feld mit der offiziellen Quelle und aktualisiert sich automatisch.', detailTimeline:'Zeitleiste', detailTraveler:'Für Reisende', detailSources:'Offizielle Quellen', footerCopy:'© 2026 Mother Verde LLC. Alle Rechte vorbehalten.',
-    backToHome:'← Zurück zu Start', backToCuenta:'← Zurück zum Konto',
+    backToHome:'← Zurück zu Start', backToCuenta:'← Zurück zum Konto', backToDesbloquear:'← Zurück zu Freischalten', legalBack:'← Zurück',
     calcEyebrow:'Interaktive Werkzeuge', calcTitle:'Rechner', calcSub:'Dieselben Formeln, die du schon in Anbau und Verarbeitung gesehen hast, jetzt interaktiv.',
     calcVpdTitle:'VPD-Rechner', calcVpdDesc:'Dampfdruckdefizit — die echte Kennzahl hinter "ist es zu feucht oder zu trocken?".', calcVpdTemp:'Lufttemp. (°C)', calcVpdRH:'Relative Luftfeuchtigkeit (%)', calcVpdStage:'Phase', calcVpdVeg:'Vegetativ (0,8–1,0 kPa)', calcVpdFlo:'Blüte (1,0–1,5 kPa)',
     calcDliTitle:'DLI-Rechner', calcDliDesc:'Tägliches Lichtintegral — wie viel Licht dein Anbau in 24 Std. sammelt, nicht nur die Intensität eines Moments.', calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Lichtstunden/Tag',
@@ -4052,14 +4018,13 @@ const translations = {
     bitPhLabel:'Substrat-pH', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Luftfeuchtigkeit (%)', bitAtajosLabel:'Abkürzungen beim Protokollieren:', bitAtajoVpd:'VPD berechnen →', bitAtajoDosis:'Nährstoffmischung berechnen →',
     bitStatDias:'Tage im Zyklus', bitStatEntradas:'Einträge insgesamt', bitStatEtapa:'Aktuelle Phase', bitGraficoTitle:'pH und EC im Zeitverlauf', bitGraficoVacio:'Erfasse pH oder EC in mindestens 2 Einträgen, um hier das Trenddiagramm zu sehen.',
     bitAuthGateH3:'Melde dich an, um dein Anbau-Tagebuch zu führen', bitAuthGateP:'Deine Einträge werden privat in deinem Konto gespeichert — nur du kannst sie sehen. Du musst dich zuerst anmelden oder ein Konto erstellen.', bitAuthGateBtn:'Zum Konto',
-    bitPdfBtn:'PDF herunterladen', bitPdfLockedMsg:'PDF-Download ist eine Premium-Funktion — jetzt freischalten',
+    bitPdfBtn:'PDF herunterladen', bitPdfLockedMsg:'PDF-Download gehört zum Vollzugriff — jetzt freischalten',
     bitErrSinNota:'Schreibe eine Notiz, bevor du speicherst.', bitGuardadoOk:'✓ Gespeichert', bitErrGuardar:'Konnte nicht gespeichert werden — versuch es erneut.',
     bitSinFecha:'kein Datum', bitEliminar:'Löschen', bitSinNotas:'(keine Notizen)', bitVacio:'Noch keine Einträge — füge oben den ersten hinzu.',
     bitFotoLabel:'Foto (optional)', bitFotoNota:'Wird automatisch komprimiert, um Speicherplatz zu sparen. Bei vielen Einträgen mit Foto kann der Speicherplatz des Prototyps voll werden — in der Produktion würde dies auf einem echten Server ohne dieses Limit liegen.',
-    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaEstadoTitle:'Abo-Status', cuentaPagoSeguroNote:'Deine Zahlungen werden sicher über einen externen Anbieter abgewickelt. Mother Verde sieht oder speichert deine Kartennummer nie — nur den Status deines Abos.', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden echt und sicher gespeichert. Der Abo-Status oben kommt direkt aus deinem Konto.',
-    cuentaPremiumActivo:'✓ Premium aktiv — voller Zugriff auf alle 10 Bereiche, werbefrei, unbegrenzte Downloads.', cuentaGestionarBtn:'Abo verwalten', cuentaGestionarAlert:'In der echten App würde dies die Abo-Verwaltung von Apple/Google öffnen.', cuentaPlanGratis:'Gratis-Plan — eine Kostprobe jedes Bereichs, mit Werbung.', cuentaSuscribirBtn:'Premium holen — 7,10 $/Monat',
-    pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', pmComprarBtn:'Premium kaufen — 7,10 $/Monat',
-    pmPagoSeguroNote:'Zahlung sicher abgewickelt über App Store / Google Play / Stripe — Mother Verde sieht oder speichert deine Kartennummer niemals.',
+    cuentaEyebrow:'Einstellungen', cuentaTitle:'Dein Konto', cuentaPerfilLink:'Dein öffentlicher Name, Land und Foto werden in Deinem Profil bearbeitet →', cuentaDatosTitle:'Kontodaten', cuentaNombreLabel:'Name', cuentaNombrePh:'Dein Name', cuentaCorreoLabel:'E-Mail', cuentaPaisLabel:'Land', cuentaPaisPh:'Um Preise anzupassen und deinen Rechtsstatus schneller anzuzeigen', cuentaPrefTitle:'Einstellungen', cuentaIdiomaLabel:'Sprache der Oberfläche', cuentaAlertasLabel:'Benachrichtigungen zu Rechtsänderungen', cuentaNote:'Dein Konto und deine Daten werden auf unserem Server gespeichert, nicht nur auf diesem Gerät.',
+    cuentaPremiumActivo:'✓ Vollzugriff aktiv.', 
+    pmPagoAnual:' · pro Monat', pmActualizaciones:'Beinhaltet alle sechs Monate Inhaltsaktualisierungen', 
     alertaSemillasH4:'USA: Bundesweites Verbot des zwischenstaatlichen Handels mit Samen mit 0,3 %+ THC', alertaSemillasTag:'Echte Benachrichtigung — nicht illustrativ', alertaSemillasMeta:'21. Juli 2026 · Quelle: MJBizDaily',
     alertaSemillasBody:'Die bundesweite Neudefinition von Hanf macht es ab dem <b>12. November 2026</b> illegal, Samen von Sorten mit 0,3 % THC oder mehr über Bundesstaatsgrenzen zu versenden. Samenbanken diversifizieren ihre Aktivitäten bereits auf verschiedene Bundesstaaten, um nach diesem Datum weiter operieren zu können.',
     alertaSemillasLink:'Mehr lesen auf mjbizdaily.com →',
@@ -4258,7 +4223,7 @@ const translations = {
     ttG5h4:'Rosin (Hitze + mechanischer Druck)', ttPasos3b:'3 Schritte', ttG5desc:'1) Wickle gereifte Blüte, Hash oder Kief in gefaltetes Backpapier. 2) Presse mit einem Haarglätteisen oder einer Rosin-Presse bei mittlerer Temperatur (~90–120 °C) für 5–10 Sekunden. 3) Löse das Papier sofort ab und sammle das Öl, bevor es abkühlt.',
     ttG6h4:'Dry Sift (Sieben)', ttPasos3c:'3 Schritte', ttG6desc:'1) Lege trockene Blüte auf ein feines Mikron-Sieb, mit einer glatten Oberfläche darunter. 2) Reibe sanft mit einer Karte oder Rolle, um die Trichome zu lösen. 3) Sammle das durchfallende Pulver — das ist das Kief.',
     ttG7h4:'Decarboxylierung im Ofen', ttPasos3d:'3 Schritte', ttG7desc:'1) Zerkleinere die Blüte in gleichmäßige Stücke auf einem mit Backpapier ausgelegten Blech. 2) Backe bei ~110–115 °C für 45–60 Min und achte darauf, dass sie nicht zu stark bräunt. 3) Vor der Verwendung in jeglicher Infusion abkühlen lassen.',
-    ttNoteFinal:'Diese 6 Techniken verwenden nur Küchenhitze, einfachen mechanischen Druck oder Sieben — keine Druckgassysteme oder entzündlichen Lösungsmittel. Das ist die echte Grenze dessen, was diese App Schritt für Schritt lehrt. Alles, was Spezialausrüstung oder den Umgang mit entzündlichen Substanzen erfordert (BHO, CO2, Vape-Flüssigkeits-Formulierung), bleibt auf der Ebene von Wissenschaft und Eigenschaften, die du bereits in Konzentrate und Vapes gesehen hast — nie in operativen Anweisungen, unabhängig vom Abo-Plan.',
+    ttNoteFinal:'Diese 6 Techniken verwenden nur Küchenhitze, einfachen mechanischen Druck oder Sieben — keine Druckgassysteme oder entzündlichen Lösungsmittel. Das ist die echte Grenze dessen, was diese App Schritt für Schritt lehrt. Alles, was Spezialausrüstung oder den Umgang mit entzündlichen Substanzen erfordert (BHO, CO2, Vape-Flüssigkeits-Formulierung), bleibt auf der Ebene von Wissenschaft und Eigenschaften, die du bereits in Konzentrate und Vapes gesehen hast — nie in operativen Anweisungen, unabhängig von der Art des Zugangs.',
     ttCtaH3:'Brauchst du eine echte Dosierungsformel für dein Produkt?', ttCtaP:'Tinkturen, Kapseln oder Pflaster mit präziser, chargenkonsistenter Dosierung erfordern spezifische Berechnungen. Wir können dir helfen, es für deinen Betrieb durchzudenken.',
     vpTiposH3:'Was wirklich in der Cartridge steckt: 3 legitime Herstellungswege', vpTiposIntro:'Bevor wir über Risiken sprechen, lohnt es sich anzuerkennen, dass es Unternehmen gibt, die echte Standards einhalten und Öl von echter Qualität herstellen — auf recht unterschiedliche Weise. Dies sind die 3 Hauptkategorien, die du auf einem legalen, regulierten Markt findest.',
     vpDestH4:'Destillat', vpDestSci:'Mit Lösungsmitteln + destilliert', vpDestDesc:'Extrahiert mit CO2, Ethanol oder Kohlenwasserstoffen, dann "winterisiert" (gefroren und gefiltert, um Fette und Wachse zu entfernen), und durch Kurzwegdestillation raffiniert — ein realer, gut dokumentierter Reinigungsprozess. Das Ergebnis ist ein sehr sauberes Öl mit THC häufig zwischen 85-99 %, aber praktisch ohne eigene Terpene — deshalb werden fast immer Terpene (aus Cannabis oder botanisch) nachträglich wieder zugesetzt.',
@@ -4299,15 +4264,14 @@ const translations = {
     etSimboloNote:'Ein Detail, das stark je nach Land variiert: mehrere regulierte Märkte (wie Kanada und mehrere US-Bundesstaaten) verlangen ein standardisiertes, visuell erkennbares THC-Warnsymbol auf der Verpackung — die Zahl im Text allein reicht nicht aus. Das genaue Design des Symbols legt jede Regulierungsbehörde selbst fest, es ist also nicht länderübergreifend einheitlich, nur innerhalb jedes einzelnen Landes.',
     ppNote:'Illustrative Auswahl für diesen Prototyp — in der Produktion aktualisiert sich dieser Feed mit neuen Veröffentlichungen aus PubMed, ClinicalTrials.gov und Fachzeitschriften.',
     ppSlicNote:'<b>Das reale Bild von 2025:</b> die Lateinamerikanische und Iberische Gesellschaft für Cannabinologie (SLIC) analysierte die 2025 in PubMed indexierten klinischen Studien mit "Cannabis" oder "Cannabinoide" im Titel — und fand 85 echte Studien, die psychische Gesundheit, öffentliche Gesundheit, klinische Interventionen, Sicherheit und Politik abdecken. Ein erheblicher Teil konzentriert sich auf psychische Gesundheit und Konsum bei Jugendlichen, mit Untersuchungen zu Zusammenhängen mit Depression, Angst und gleichzeitigem Nikotin- oder Alkoholkonsum.',
-    ppTag1:'Genetische Studie', pp1desc:'Analysiert 297 Hybridpflanzen und findet keinen signifikanten Zusammenhang zwischen Blattmorphologie und Cannabinoidgehalt — die wissenschaftliche Grundlage dafür, Indica/Sativa durch die Chemotyp-Klassifizierung zu ersetzen.',
-    ppTag2:'Randomisierte klinische Studie', pp2desc:'Eine kontrollierte Studie, die den Einsatz von gereinigtem CBD bei einem therapieresistenten kindlichen Epilepsiesyndrom stützt — Grundlage für die behördliche Zulassung von Epidiolex.',
-    ppTag3:'Agronomische Studie', pp3meta:'Landwirtschaftliche Beratung · Cornell University · 2022', pp3desc:'Legt optimale VPD-Bereiche je Wachstumsphase fest, um Ertrag und Blütenqualität im Indoor-Anbau zu maximieren.',
-    ppTag4:'Chemische Laboranalyse', pp4desc:'Analysiert über 30 Hash-Rosin-Proben mit 2D-Gaschromatographie und findet Verbindungen, die noch nie zuvor in Cannabis gesehen wurden — darunter Thiole ("gasige" Noten) und Fettsäuren ("käsige" Noten), die keine Terpene sind. Legt nahe, dass das charakteristische Aroma jeder Sorte von untergeordneten Verbindungen abhängt, nicht nur vom traditionellen Terpenprofil.',
-    ppTag5:'Spitzengenomik', pp5meta:'Nature · 2025', pp5desc:'Sequenziert das vollständige Genom mehrerer Cannabissorten, nicht nur einer einzigen Referenz — zeigt, wie viel echte genetische Vielfalt zwischen kommerziellen Sorten besteht, und legt den Grundstein für zukünftige datenbasierte genetische Verbesserung.',
-    ppTag6:'Systematische Übersichtsarbeit', pp6desc:'Überprüft 31 dokumentierte Fälle von Wechselwirkungen zwischen Cannabis und 16 Medikamenten mit engem therapeutischem Index bei 889 Personen — 58 % zeigten unerwartete Blutspiegel des Medikaments. Die Grundlage dafür, warum Arzneimittelwechselwirkungen genauso wichtig sind wie Cannabis selbst.',
-    ppTag7:'Grundlegende Studie', pp7desc:'Die Studie, die den Begriff "Endocannabinoid" prägte und erstmals beschrieb, wie der Körper sein eigenes Anandamid produziert und abbaut — die Grundlage für alles, was wir heute über das menschliche Endocannabinoid-System wissen.',
-    ppTag8:'Marktstudie', pp8desc:'Analysierte 84 online gekaufte CBD-Produkte: nur 30,95 % hatten eine genaue Kennzeichnung innerhalb einer vertretbaren Spanne — 42,85 % enthielten mehr CBD als angegeben, 26,19 % weniger. Der Beweis dafür, warum wir immer empfehlen, ein COA zu verlangen.',
-    ppTag9:'Klinischer Konsens', pp9meta:'American College of Obstetricians and Gynecologists (ACOG) · 2025', pp9desc:'Die neueste Aktualisierung des klinischen Konsenses zu Cannabis in Schwangerschaft und Stillzeit — empfiehlt die Beendigung des Konsums während beider Phasen und dokumentiert Risiken wie niedriges Geburtsgewicht und höhere Aufnahme auf die neonatale Intensivstation.',
+    ppTag1:'Genetische Studie', pp1desc:'Untersuchte 297 Hybridpflanzen aus einer Kreuzung zweier unterschiedlicher Linien: Merkmale, die oft als zusammenhängend gelten, hingen nicht zusammen. Bei Hybriden passt die Blattform nicht zur Chemie der Pflanze; die Autoren fordern ein neues System zur Einordnung der Vielfalt von Cannabis.',
+    ppTag2:'Randomisierte klinische Studie', pp2desc:'Doppelblinde Studie mit 120 Kindern und jungen Erwachsenen mit Dravet-Syndrom: Mit CBD sanken die Krampfanfälle von 12,4 auf 5,9 pro Monat (mit Placebo von 14,9 auf 14,1). CBD verursachte mehr Nebenwirkungen wie Durchfall, Erbrechen, Müdigkeit und Schläfrigkeit.',
+    ppTag4:'Chemische Laboranalyse', pp4desc:'Vergleicht Sorten mit sehr unterschiedlichem Aroma und findet sehr ähnliche Terpenprofile. Bestimmte Aromen hängen mit Nebenbestandteilen zusammen, die keine Terpene sind: eine neue Klasse flüchtiger Schwefelverbindungen bei Zitrusaromen und Skatol beim „chemischen“ Aroma. Fazit: Die Rolle der Terpene beim Aroma wurde überbewertet.',
+    ppTag5:'Spitzengenomik', pp5meta:'Nature · 2025', pp5desc:'Erstellt ein Cannabis-Pangenom aus 193 Genomen (181 neue) von 144 Proben männlicher und weiblicher Pflanzen. Es findet Regionen mit hoher genetischer Variation, doch die Gene der Cannabinoid-Synthasen (THCA und CBDA) variieren sehr wenig. Fazit: Der Genpool von Cannabis ist erst teilweise erfasst.',
+    ppTag6:'Systematische Übersichtsarbeit', pp6desc:'Systematische Übersicht realer Fälle: 31 Berichte über Wechselwirkungen zwischen Cannabinoiden und 16 Arzneimitteln mit enger therapeutischer Breite, mit 889 Personen. In 18 Berichten (58 %) wurde ein unerwarteter Blutspiegel des Arzneimittels festgestellt. Warfarin, Valproat, Tacrolimus und Sirolimus wurden am häufigsten genannt.',
+    ppTag7:'Grundlegende Studie', pp7desc:'Zeigt, dass kultivierte Nervenzellen des Gehirns Anandamid aus einer neuen Phospholipid-Vorstufe bilden und freisetzen und dass Anandamid rasch aufgenommen und abgebaut wird. Stützt die Rolle von Anandamid als körpereigener Botenstoff der Nervenzellen.',
+    ppTag8:'Marktstudie', pp8desc:'Untersuchte 84 online gekaufte CBD-Produkte: Nur 30,95 % enthielten die angegebene Menge (±10 % Toleranz); 42,85 % enthielten mehr CBD als angegeben, 26,19 % weniger. Deshalb empfehlen wir, immer das COA anzufordern.',
+    ppTag9:'Klinischer Konsens', pp9meta:'American College of Obstetricians and Gynecologists (ACOG) · 2025', pp9desc:'Klinisches Konsensdokument des ACOG (Oktober 2025) zum Cannabiskonsum in Schwangerschaft und Stillzeit.',
     verEstudioOriginal:'Originalstudie ansehen',
     scNote:'Eine kleine Auswahl unter vielen aktiven Forschern auf diesem Gebiet — in der Produktion würde sich dieses Verzeichnis um verifizierte Profile erweitern (LinkedIn, ORCID, institutionelle Zugehörigkeit).',
     scRole1:'Genomik &amp; Taxonomie', sc1desc:'University of Colorado Boulder · Gründerin der Agricultural Genomics Foundation. Leitet die Forschung, die die Indica/Sativa-Klassifizierung infrage stellt.',
@@ -4326,23 +4290,22 @@ const translations = {
     scRole14:'Psychologie \u0026 öffentliche Gesundheit', sc14desc:'Chrisland-Universität, Nigeria — Erstautorin einer systematischen Übersichtsarbeit von November 2025 zu Cannabiskonsummustern in Nigeria, eine der wenigen rigorosen Studien zu diesem Thema in Subsahara-Afrika, einer Region, die in der Cannabis-Forschung historisch unterrepräsentiert ist.',
     scRole15:'Neurochirurgie', sc15desc:'Präsident der Japanischen Klinischen Cannabinoid-Gesellschaft. Professor für Neurochirurgie an der St.-Marianna-Universität (Japan), vom japanischen Gesundheitsministerium 2020 und 2024 zum Hauptforscher ernannt. Sagte 2023 vor dem japanischen Parlament (der Diet) zur Rechtsreform aus. Leitet Japans erste klinische Studie zu Cannabinoiden bei therapieresistenter Epilepsie, gestartet im Dezember 2024.',
     scRole16:'Epidemiologie', sc16desc:'Universitätsklinikum Hamburg-Eppendorf und Universität Leipzig, Deutschland. Über 9.300 akademische Zitierungen. Hauptautor der aktuellsten Studien zu den realen Auswirkungen der deutschen Legalisierung von 2024, zu Fahren unter Einfluss und zum medizinischen Markt.',
-    ppTag10:'Sozialstudie', pp10desc:'Eine reale Studie über das therapeutische Potenzial von Cannabis sativa in der Psychotherapie, die dokumentiert, wie struktureller Rassismus und der Krieg gegen Drogen den Zugang einschränken — veröffentlicht in der ersten wissenschaftlichen Cannabis-Fachzeitschrift Brasiliens und Lateinamerikas.',
-    ppTag11:'Wissenschaftliche Übersichtsarbeit', pp11desc:'Eine von Fiocruz (einer der angesehensten Institutionen für öffentliche Gesundheit Lateinamerikas) veröffentlichte Übersichtsarbeit darüber, wie CBD die Löschung und Rekonsolidierung aversiver Erinnerungen sowie den Ausdruck von Angst und Furcht in Tiermodellen beeinflusst.',
-    ppTag12:'Systematische Übersichtsarbeit', pp12desc:'Ein multidisziplinäres Team der Universität Verona unter Leitung von Prof. Vittorio Schweiger — findet in mehreren systematischen Übersichtsarbeiten eine reale Schmerzreduktion, mit dem ausdrücklichen Aufruf, Erwartungen an realer Evidenz statt an Versprechen auszurichten.',
-    ppTag13:'Vergleichsstudie', pp13desc:'Vergleicht Deutschland (nach der Legalisierung 2024) mit Österreich als Kontrolle — untersucht die reale Auswirkung der Legalisierung auf das Fahren unter Cannabiseinfluss.',
-    ppTag14:'Mathematisches Modell', pp14desc:'Modelliert mathematisch, ob die deutsche Legalisierung den Nettoschaden für die öffentliche Gesundheit verringert oder erhöht, indem weniger Schadstoffe im legalen Produkt gegen einen möglichen Konsumanstieg abgewogen werden.',
-    ppTag15:'Marktstudie', pp15desc:'Analysiert 12 Monate realer Daten einer Online-Apotheke — Deutschland ist bereits Europas größter legaler Cannabismarkt (~200 Tonnen im Jahr 2025).',
-    ppTag16:'Systematische Übersichtsarbeit', pp16desc:'Eine Übersichtsarbeit zu Frankreich, den Niederlanden, Belgien, Deutschland, Tschechien, Spanien, Italien, Portugal, Polen, Ungarn und weiteren Ländern — findet, dass hochpotentes THC (+15–20 %) mit einem 4- bis 5-fach höheren Risiko für eine Erstepisode-Psychose verbunden ist.',
-    ppTag17:'Regulierungsversuch', pp17desc:'Das Trimbos-Institut (die niederländische nationale Behörde) testet seit 2025 reguliertes Cannabis in 10 Gemeinden, mit einer Ausgangsstudie zu Schadstoffen (Pestizide, Schwermetalle) im Vergleich zwischen Kontroll- und Interventionsgemeinden.',
-    ppTag18:'Globaler Überblick', pp18desc:'Ein weltweiter Überblick über den Zugang zu medizinischem Cannabis, mit besonderem Fokus darauf, wie Entwicklungsländer — einschließlich Afrika — bei der Regulierung zurückbleiben.',
-    ppTag19:'Regulierungsanalyse', pp19desc:'Analysiert die erste größere Revision des japanischen Cannabisgesetzes seit 1948 (2023), die einen neuen Rahmen für "besondere klinische Forschung" bei therapieresistenter Epilepsie einführt.',
-    ppTag20:'Landesweite Umfrage', pp20desc:'Eine Umfrage unter 3.900 japanischen Konsumierenden untersucht, ob Cannabis wirklich als "Einstiegsdroge" zu anderen Substanzen wirkt — mit begrenzter kausaler Evidenz.',
-    ppTag21:'Vergleichsstudie', pp21desc:'Die erste Studie, die Konsummuster zwischen Menschen, die Cannabis konsumieren, und solchen, die andere psychotrope Substanzen konsumieren, in Südkorea unterscheidet.',
-    ppTag22:'Vergleichende Übersichtsarbeit', pp22desc:'Vergleicht unterschiedliche Modelle regulierter Versorgung — gemeinnützige Vereinigungen, staatliche Produktion, spezialisierte Apotheken — zwischen Deutschland, der Schweiz, Malta, Kolumbien, Mexiko und Tschechien.',
-    ppTag23:'Politischer Überblick', pp23desc:'Ein vergleichender Überblick über globale Politik — nur Kanada und Uruguay haben eine vollständige föderale Legalisierung für den Erwachsenenkonsum; analysiert die Neueinstufung in den USA von Ende 2025.',
-    ppTag24:'Umfrage', pp24desc:'Eine reale Umfrage unter 4.040 Schüler:innen und Studierenden im Süden Marokkos — ergab, dass Frauen medizinischem Cannabiskonsum stärker ablehnend gegenüberstehen als Männer und ein höheres Risiko wahrnehmen, dass das Gesetz vom Aufhören "abschrecken" könnte.',
-    ppTag25:'Systematische Übersichtsarbeit', pp25desc:'Deckt Irak, Marokko, Tunesien, Libanon und Ägypten ab: die berichtete Lebenszeitprävalenz reicht von 0,7 % (Irak, Schüler:innen) bis 32 % (Libanon und Ägypten, Studierende).',
-    ppTag26:'Pharmazeutische Entwicklung', pp26desc:'2025 brachte das marokkanische Pharmaunternehmen Pharma 5 das erste vollständig marokkanische CBD-Medikament gegen therapieresistente Epilepsie bei Kindern auf den Markt — vollständige Produktion vom Anbau bis zur Herstellung, gemäß Gesetz 13-21 (2021).',
+    ppTag10:'Sozialstudie', pp10desc:'Integrative Übersicht über 10 Artikel zu medizinischem Cannabis in der Psychotherapie: Sie verweist auf das therapeutische Potenzial, aber auch darauf, dass der Zugang auf einen Teil der Bevölkerung beschränkt ist – geprägt von strukturellem Rassismus und dem Krieg gegen Drogen.',
+    ppTag11:'Wissenschaftliche Übersichtsarbeit', pp11desc:'Narrative Übersicht, erschienen in der Revista Fitos (Fiocruz), über Studien an Ratten und Mäusen: CBD scheint die Löschung aversiver Erinnerungen zu beschleunigen und/oder ihre Rekonsolidierung zu stören sowie Angst- und Furchtverhalten zu verringern. Es sind präklinische Ergebnisse, nicht am Menschen.',
+    ppTag12:'Systematische Übersichtsarbeit', pp12desc:'Team unter Leitung von Vittorio Schweiger (Universität Verona). Laut der ausgewerteten Literatur senkt medizinisches Cannabis den Schmerz gegenüber Placebo statistisch signifikant: im Mittel um 0,43 bis 0,70 Punkte auf einer Skala von 0 bis 10. Behandelt auch Nebenwirkungen, Gegenanzeigen und rechtliche Fragen.',
+    ppTag13:'Vergleichsstudie', pp13desc:'Vergleicht Deutschland (nach der Legalisierung im April 2024) mit Österreich als Kontrolle, anhand von Befragungen vorher und nachher. Acht Monate nach der Legalisierung fand sie keine signifikanten kurzfristigen Effekte auf den Konsum oder auf das Fahren unter Cannabiseinfluss.',
+    ppTag14:'Mathematisches Modell', pp14desc:'Quantitatives Modell, das den Nutzen weniger Verunreinigungen im legalen Produkt gegen das Risiko von mehr Konsum nach der deutschen Legalisierung abwägt. Es schätzt, dass die Gesundheitsverluste durch Cannabiskonsumstörungen etwa 19-mal größer wären als die Gewinne durch weniger Verunreinigung.',
+    ppTag15:'Marktstudie', pp15desc:'Fallstudie mit Daten aus 12 Monaten einer deutschen Online-Apotheke: Die verfügbaren Blütenprodukte stiegen von 266 auf 401, der Preis pro 10 mg THC sank, und Produkte mit 20–29,9 % THC machten mehr als zwei Drittel der Nachfrage aus.',
+    ppTag16:'Narrative Übersichtsarbeit', pp16desc:'Narrative Übersicht über Literatur und Daten von 2015 bis 2025: Hochpotentes Cannabis (über 15–25 % THC) ist durchgehend mit höheren Risiken für Psychosen, Angst, Panik und Cannabiskonsumstörung verbunden. In Mittel- und Osteuropa werden viele dieser Probleme nicht erkannt oder nicht gemeldet.',
+    ppTag17:'Regulierungsversuch', pp17desc:'Beschreibt das Design des niederländischen Experiments mit einer legalen „geschlossenen“ Kette für Freizeitcannabis: Zehn beauftragte Anbauer beliefern die Coffeeshops in den Interventionsgemeinden, in den Kontrollgemeinden ändert sich nichts. Verglichen werden öffentliche Gesundheit, Kriminalität, Sicherheit und Belästigung; die Feldphase sollte Anfang 2024 beginnen und vier Jahre dauern.',
+    ppTag18:'Globaler Überblick', pp18desc:'Übersicht über medizinisches Cannabis in der globalen Gesundheit, mit Fällen aus den USA und Afrika. Sie stellt fest, dass Ungleichheiten fortbestehen: In Afrika stoßen Patienten auf systemische Hürden bei der Zertifizierung für medizinisches Cannabis.',
+    ppTag19:'Regulierungsanalyse', pp19desc:'Analysiert die Reform des japanischen Gesetzes von 2023, die erste große Überarbeitung seit 1948: Arzneimittel aus Cannabis fallen unter denselben Rahmen wie Opioid-Schmerzmittel, die industrielle Nutzung wird mit einem strengen THC-Grenzwert erweitert, und es gibt neue Strafen für den Konsum. In Kraft seit dem 12. Dezember 2024.',
+    ppTag20:'Landesweite Umfrage', pp20desc:'Online-Befragung (Januar 2021) von 3.900 Personen in Japan, die jemals Cannabis konsumiert hatten: Cannabis kam meist nach Alkohol und Tabak und führte selten zu anderen Drogen. Die Ergebnisse stellen die „Einstiegsdrogen“-Hypothese für Japan infrage.',
+    ppTag21:'Vergleichsstudie', pp21desc:'Befragung (Mai–Juli 2024) von 109 Personen, die Cannabis und Betäubungsmittel konsumieren, und 191, die psychotrope Substanzen konsumieren, in Südkorea. Der Zusammenhang zwischen sozialen Normen, Gesundheitsüberzeugungen und Konsumschwere war nur in der Gruppe mit psychotropen Substanzen signifikant.',
+    ppTag22:'Vergleichende Übersichtsarbeit', pp22desc:'Systematische Übersicht über die Folgen einer regulierten Cannabisversorgung in fünf Rechtsräumen: Niederlande, Spanien, US-Bundesstaaten mit Legalisierung, Uruguay und Kanada. Gemeinsame Ergebnisse: weniger Festnahmen, mehr Konsum bei Erwachsenen (nicht bei Jugendlichen) und mehr Inanspruchnahme des Gesundheitswesens.',
+    ppTag23:'Politischer Überblick', pp23desc:'Artikel des Center for Cannabis Research and Policy der Cannabis Control Commission von Massachusetts, der die Cannabispolitik verschiedener Länder als „internationales Quasi-Experiment“ betrachtet. Dies ist Teil 1.',
+    ppTag24:'Umfrage', pp24desc:'Querschnittsstudie zu Überzeugungen und Einstellungen junger Menschen in Marokko gegenüber der Cannabisgesetzgebung und den damit verbundenen Faktoren. Autorinnen und Autoren u. a. von der Universität Ibn Zohr.',
+    ppTag25:'Systematische Übersichtsarbeit', pp25desc:'Systematische Übersicht über 48 Studien aus 13 arabischen Ländern: Die Lebenszeitprävalenz reicht bei Schülern von 0,7 % (Irak) bis 9,4 % (Marokko) und bei Studierenden von 4,7 % (Tunesien) bis 32 % (Libanon und Ägypten).',
     mdIndicH3:'Indikationen mit klinischer Evidenz', mdIndicP:'Chronische Schmerzen, chemotherapiebedingte Übelkeit und bestimmte therapieresistente Epilepsiesyndrome (mit gereinigtem CBD) verfügen über Evidenz aus klinischen Studien. Andere Indikationen haben vorläufige oder präklinische Evidenz — das Evidenzniveau zählt genauso wie die Indikation selbst.',
     mdInteracH3:'Zu beachtende Wechselwirkungen', mdInteracP:'Cannabis kann unter anderem mit Blutverdünnern und Beruhigungsmitteln interagieren. Jeder Patient in Behandlung sollte dies vor Beginn der medizinischen Anwendung mit seinem Arzt besprechen.',
     mdInteracMecP:'Der eigentliche Mechanismus: CBD hemmt, mehr als THC, mehrere Enzyme des CYP450-Systems — dieselbe Enzymfamilie, die die meisten verschreibungspflichtigen Medikamente verstoffwechselt. Deshalb sind Wechselwirkungen keine isolierten Einzelfälle, sondern ein strukturelles Muster: jedes Medikament, das für seine Verstoffwechslung auf dieselben Enzyme angewiesen ist, kann betroffen sein — in beide Richtungen (steigender oder sinkender tatsächlicher Blutspiegel).',
@@ -4494,35 +4457,34 @@ const translations = {
     ngCar4h4:'Compliance Officer', ngCar4role:'Regulatorische Compliance · 70–120 Tsd. $', ngCar4p:'Stellt sicher, dass der Betrieb Rückverfolgbarkeit, Kennzeichnung und Lizenzanforderungen erfüllt. Einer der Berufe mit der besten Wachstumsaussicht der gesamten Branche, laut mehreren Gehaltsberichten.',
     ngCar5h4:'Extraktionstechniker', ngCar5role:'Verarbeitung · 55–75 Tsd. $', ngCar5p:'Betreibt geschlossene Kohlenwasserstoff- oder CO2-Extraktionssysteme und verwandelt Blüte in die Öle, die du bereits in Verarbeitung → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> und <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Konzentrate</a> gesehen hast. Erfordert Ausbildung in Chemie oder Ingenieurwesen, plus spezifische Laborsicherheitsschulung.',
     ngCar6h4:'Esswaren-Koch', ngCar6role:'Herstellung · 45–90 Tsd. $', ngCar6p:'Entwirft und produziert Esswaren, mit echter Beherrschung von Decarboxylierung und präziser Dosisberechnung pro Portion — dieselbe Mathematik, die du in <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Verarbeitung → Esswaren</a> gesehen hast, angewandt im kommerziellen Maßstab.',
-    cmyEyebrow:'Community — demnächst', cmyTitle:'Felderfahrungen, verifiziert', cmySub:'Was unten folgt (Berichte, bestätigte Diagnosen, moderierte Fragen) benötigt Nutzerkonten und echte Moderation (Backend) — das ist der Bauplan, keine Simulation. Aber das grundlegende Verzeichnis direkt unten ist echt: es wird tatsächlich gespeichert, und jeder, der die App nutzt, kann es sehen.',
-    cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Dein Name, Land, Profiltyp, Foto und Biografie sind öffentlich — alle, die die App nutzen, können sie sehen. Teile hier niemals einen vollständigen Nachnamen, Telefonnummer oder genaue Anbauadresse.',
-    cmyCorreoLabel:'E-Mail', cmyCorreoPrivado:'(privat, nicht angezeigt)', cmyCorreoPh:'du@email.com',
-    cmyEnDesarrollo:'🚧 Diese Funktion ist in Entwicklung — du kannst hier noch keine Berichte senden oder sehen. Sie steht auf der To-do-Liste, ist keine Simulation.', cmySecViajeroReal:'Reiseberichte', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
+    cmyEyebrow:'Community', cmyTitle:'Feldberichte aus der Community', cmySub:'Teile Anbauberichte, Diagnosen und Fragen, kommentiere und folge anderen. Die Community und ihr Verzeichnis sehen nur Personen mit Vollzugriff. Jeder Beitrag wird automatisch in die 4 Sprachen übersetzt.',
+    cmySecUnirse:'Tritt der größten Community der Welt bei', cmyPrivacidadNote:'Deinen Namen, dein Land, deinen Profiltyp, dein Foto und deine Bio sehen Personen mit Vollzugriff auf die Plattform. Fotos liegen in einem öffentlichen Speicher: Wer den direkten Link zu einem Bild hat, kann es öffnen. Teile hier nie deinen vollständigen Nachnamen, deine Telefonnummer oder den genauen Ort deines Anbaus.',
+    cmyCorreoLabel:'E-Mail', cmyCorreoPrivado:'(privat, nicht angezeigt)', cmyCorreoPh:'du@email.com', cmySecViajeroReal:'Reiseberichte', cmyViajeroIntro:'Echte Erfahrungen an Grenzen und beim Zoll nach Land. Gesetze ändern sich schneller, als jede App allein aktualisieren kann — das sind Informationen von anderen Reisenden, kein Ersatz für die offiziellen Informationen unter Recht &amp; Reisen.',
     cmyViajeroPaisLabel:'Land, in das du gereist bist', cmyViajeroTextoLabel:'Deine Erfahrung', cmyViajeroTextoPh:'Was an der Grenze oder beim Zoll passiert ist, ohne persönliche Daten', cmyViajeroBtn:'Erfahrung teilen', cmyViajeroExito:'Danke! Deine Erfahrung steht jetzt in der Liste unten.', cmyViajeroVacio:'Noch keine Erfahrungen geteilt — sei die erste Person.',
     cmySecCultivoReal:'Anbauberichte', cmyCultivoIntro:'Kurze Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Anbau-Karte abzugleichen.', cmyCultivoMetodoLabel:'Verwendete Methode', cmyCultivoTextoLabel:'Deine Erfahrung', cmyCultivoTextoPh:'Was mit dieser Methode funktioniert hat oder nicht', cmyCultivoBtn:'Bericht teilen', cmyCultivoExito:'Danke! Dein Bericht steht jetzt in der Liste unten.', cmyCultivoVacio:'Noch keine Berichte — sei die erste Person.',
     cmySecDiagReal:'Diagnosebestätigungen', cmyDiagIntro:'Das Wertvollste von allem: "Ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>-Karte.', cmyDiagProblemaLabel:'Was du hattest', cmyDiagTextoLabel:'Was bei dir funktioniert hat', cmyDiagTextoPh:'Was du getan hast und wie es lief', cmyDiagBtn:'Bestätigung teilen', cmyDiagExito:'Danke! Deine Bestätigung steht jetzt in der Liste unten.', cmyDiagVacio:'Noch keine Bestätigungen — sei die erste Person.',
-    cmySecPreguntasReal:'Offene Fragen', cmyPreguntasNota:'Hier werden nur Fragen veröffentlicht, keine Antworten — sicheres Antworten braucht echte Moderation, die es noch nicht gibt. Vorerst ist dies ein Ort, um zu sehen, was die Community fragt.', cmyPreguntaPh:'Deine Frage an die Community', cmyPreguntaBtn:'Frage veröffentlichen', cmyPreguntaExito:'Fertig! Deine Frage steht jetzt in der Liste unten.', cmyPreguntaVacio:'Noch keine Fragen — sei die erste Person.',
+    cmySecPreguntasReal:'Offene Fragen', cmyPreguntasNota:'Stell deine Frage: Personen, denen du gegenseitig folgst, können in den Kommentaren antworten. Niemand prüft die Antworten vor der Veröffentlichung, vergleiche sie also immer mit den Lektionen der Plattform.', cmyPreguntaPh:'Deine Frage an die Community', cmyPreguntaBtn:'Frage veröffentlichen', cmyPreguntaExito:'Fertig! Deine Frage steht jetzt in der Liste unten.', cmyPreguntaVacio:'Noch keine Fragen — sei die erste Person.',
     cmy5porque:'Warum das mehr Sorgfalt braucht als der Rest: ohne echte Moderation könnte jemand etwas schreiben, das wie ein spezifischer medizinischer Rat klingt, ohne dass es jemand vor der Veröffentlichung prüft — genau das braucht am meisten Aufsicht, bevor es geöffnet wird.',
     cmyNombreLabel:'Name oder Spitzname', cmyNombrePh:'Wie du gesehen werden möchtest', cmyPaisLabel:'Land', cmyTipoLabel:'Was beschreibt dich am besten?',
     cmyTipoCultivador:'Anbauer/in', cmyTipoNegocio:'Geschäftsinhaber/in', cmyTipoEntusiasta:'Konsument/in — Enthusiast', cmyTipoSalud:'Gesundheitsfachkraft', cmyTipoAprendiendo:'Lerne gerade erst', cmyTipoOtro:'Andere',
     cmyAvatarBtn:'Profilfoto', cmyAvatarNeedsName:'Gib zuerst deinen Namen oder Spitznamen ein.', cmyAvatarSubiendo:'Foto wird hochgeladen…', cmyAvatarListo:'Fertig! Dein Profilfoto ist eingerichtet.',
     cmyCropTitle:'Foto anpassen', cmyCropHelp:'Ziehe das Bild und nutze das Mausrad (oder kneife auf dem Handy), um zu zoomen. Wähle, was im Kreis zu sehen sein soll.', cmyCropPreviewLabel:'So wird es aussehen', cmyCropCancelar:'Abbrechen', cmyCropConfirmar:'Dieses Foto verwenden',
-    perfilBack:'← Zurück zur Community', perfilGateMsg:'Melde dich an, um dein Profil zu sehen.', perfilNoDisponible:'Dieses Profil ist nicht verfügbar.', perfilEditar:'Dein Profil', perfilBioLabel:'Biografie', perfilBioPh:'Erzähl der Community, wer du bist (optional)', perfilConfigCuenta:'⚙️ Kontoeinstellungen (E-Mail, Abo, Abmelden)', perfilMisPublicaciones:'Beiträge', perfilSeguir:'Folgen', perfilDejarSeguir:'Entfolgen', perfilMutuo:'Ihr folgt euch gegenseitig', perfilCompleta:'Vervollständige dein Profil, um im Verzeichnis zu erscheinen und zu posten.', perfilSinPostsPropio:'Du hast noch nichts gepostet.', perfilSinPostsOtro:'Hat noch nichts gepostet.', perfilVerCompleto:'Vollständiges Profil ansehen', cmyDirectorioIntro:'Tippe auf jemanden, um sein Profil zu sehen. Willst du hier erscheinen? Vervollständige deins über <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Dein Profil</a>.',
+    perfilBack:'← Zurück zur Community', perfilGateMsg:'Melde dich an, um dein Profil zu sehen.', perfilNoDisponible:'Dieses Profil ist nicht verfügbar.', perfilEditar:'Dein Profil', perfilBioLabel:'Biografie', perfilBioPh:'Erzähl der Community, wer du bist (optional)', perfilConfigCuenta:'⚙️ Kontoeinstellungen (E-Mail, Zugriff, Abmelden)', perfilMisPublicaciones:'Beiträge', perfilSeguir:'Folgen', perfilDejarSeguir:'Entfolgen', perfilMutuo:'Ihr folgt euch gegenseitig', perfilCompleta:'Vervollständige dein Profil, um im Verzeichnis zu erscheinen und zu posten.', perfilSinPostsPropio:'Du hast noch nichts gepostet.', perfilSinPostsOtro:'Hat noch nichts gepostet.', perfilVerCompleto:'Vollständiges Profil ansehen', cmyDirectorioIntro:'Tippe auf jemanden, um sein Profil zu sehen. Willst du hier erscheinen? Vervollständige deins über <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Dein Profil</a>.',
     cmyTipoPostGeneral:'Allgemein', cmyTipoPostViajero:'Reise', cmyTipoPostCultivo:'Anbau', cmyTipoPostDiagnostico:'Diagnose', cmyTipoPostPregunta:'Frage',
     cmySecDescubrir:'Entdecken', cmyDescubrirIntro:'Echte Profile aus dem Verzeichnis. Nach rechts wischen, um jemandem zu folgen und seine Beiträge zu sehen; nach links, um zu überspringen. Wenn ihr euch gegenseitig folgt, werden Kommentare freigeschaltet.', cmyDescubrirGate:'Melde dich an, um Entdecken zu nutzen.', cmyDescubrirEmpty:'Vorerst keine weiteren Profile. Schau später wieder vorbei.', cmyDescubrirPasar:'✕ Überspringen', cmyDescubrirSeguir:'Folgen ✓', cmyDescubrirSinBio:'Noch keine Biografie.',
     cmySecFeed:'Beiträge', cmyFeedIntro:'Der Feed von Leuten, denen du folgst, plus deine eigenen. Jeder Beitrag wird automatisch in deine Sprache übersetzt. Kommentare werden freigeschaltet, sobald ihr euch gegenseitig folgt.', cmyFeedGate:'Melde dich an, um zu posten und den Feed zu sehen.', cmyFeedVacio:'Noch keine Beiträge. Folge jemandem in Entdecken oder poste selbst zuerst.', cmyPostPh:'Was möchtest du mit der Community teilen?', cmyPostFoto:'Foto', cmyPostBtn:'Posten', cmyPostEnviando:'Wird gepostet…', cmyPostExito:'Gepostet!', cmyComentarios:'Kommentare', cmyComentariosVacio:'Noch keine Kommentare.', cmyComentarioPh:'Schreib einen Kommentar…', cmyComentarBtn:'Kommentieren', cmyComentarioBloqueado:'Kommentare werden freigeschaltet, sobald du und diese Person euch gegenseitig folgt.', cmyVerOriginal:'Original ansehen', cmyVerTraduccion:'Übersetzung ansehen', cmyEliminar:'Löschen', cmyConfirmar:'Sicher?', cmyMiembroDesconocido:'Mitglied',
     cmyUnirmeBtn:'Dem Verzeichnis beitreten', cmyActualizarBtn:'Meinen Eintrag aktualisieren', cmyJoinNeedsAccount:'Du brauchst ein Konto, um im Verzeichnis zu erscheinen. Erstelle eines unter Konto.', cmyJoinExito:'Fertig! Du erscheinst jetzt im Verzeichnis unten.', cmySecMiembros:'Community-Mitglieder', cmyVacioMsg:'Noch niemand ist beigetreten — sei die erste Person.',
     cmySecTipos:'Die Funktion, die vor der Öffnung am meisten Aufsicht braucht',
-    cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', cmy1p:'Tagebuchartige Protokolle, verknüpft mit einer bestimmten Methode, um echte Erfahrung mit der offiziellen Karte abzugleichen.',
-    cmy2h4:'Diagnosebestätigungen', cmy2sci:'Verbindet sich mit <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>', cmy2p:'Der wertvollste von allen: "ich hatte genau das, und das hat bei mir funktioniert", verknüpft mit einer echten Schädlings- oder Krankheitskarte.',
+    cmy1h4:'Anbauberichte', cmy1sci:'Verbindet sich mit Anbau', 
+    cmy2h4:'Diagnosebestätigungen', cmy2sci:'Verbindet sich mit <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Anbau → Diagnose</a>', 
     cmy3h4:'Reiseberichte', cmy3sci:'Verbindet sich mit Recht &amp; Reisen', cmy3p:'Echte Erfahrungen an Grenzen und im Zoll nach Land — Gesetze ändern sich schneller, als jede App allein aktualisieren kann.',
     cmy4h4:'Fragen und Antworten', cmy4sci:'Moderiert', cmy4p:'Ein verifiziertes Profil kann mit sichtbar mehr Gewicht antworten als ein anonymes.',
     cmy5h4:'Medizinische Erfahrungsberichte', cmy5sci:'Mit obligatorischem Haftungsausschluss', cmy5p:'Immer sichtbar: persönliche Erfahrung, kein medizinischer Rat. Wird nie ohne dieses Label angezeigt.',
     cmySecVerif:'Verifizierung', cmyVerifP:'Ein bei Geschäft registriertes berufliches Profil (Master Grower, Compliance Officer usw.) kann ein verifiziertes Abzeichen beantragen — seine Antworten werden visuell hervorgehoben. Jeder Beitrag trägt ein dauerhaftes Label: <b>"Von der App verifiziert"</b> (offizielle Daten) oder <b>"Community-Bericht, nicht verifiziert"</b> — niemals ohne klare Unterscheidung vermischt.',
-    cmySecLineas:'Rote Linien', cmyLineasP:'<b>Kein Marktplatz</b> — kein Kaufen, Verkaufen oder Austausch von Kontaktdaten zum Verkauf; das hält diese App konform mit den Richtlinien der App-Stores. <b>Keine spezifischen Anbauorte</b>, aus Sicherheitsgründen. Kein medizinischer Erfahrungsbericht wird ohne sichtbaren Haftungsausschluss veröffentlicht.',
+    cmySecLineas:'Rote Linien', cmyLineasP:'<b>Kein Marktplatz</b> — kein Kaufen, Verkaufen oder Austausch von Kontaktdaten zum Verkauf; das hält diese App konform mit den Richtlinien der Plattformen, auf denen sie läuft. <b>Keine spezifischen Anbauorte</b>, aus Sicherheitsgründen. Kein medizinischer Erfahrungsbericht wird ohne sichtbaren Haftungsausschluss veröffentlicht.',
     vrEyebrow:'Sorten &amp; Kultivare', vrTitle:'Durchsuchbare Datenbank', vrSub:'Wir sagen nie "Strain" — das ist ein Begriff aus der Mikrobiologie (Bakterien, Viren, Pilze), kein botanischer. Wir verwenden <b>Sorte</b> (natürliche Anpassung, wie eine Landrasse) oder <b>Kultivar</b> (eine absichtlich von einem Züchter entwickelte Kreuzung).',
     vrTodos:'Alle', vrTipoI:'Typ I (THC)', vrTipoII:'Typ II (ausgewogen)', vrTipoIII:'Typ III (CBD)',
-    vrTipoPrefix:'Typ', vrLinaje:'Abstammung', vrTerpenos:'Terpene', vrDificultad:'Schwierigkeit', vrVisteTeaser:'Du hast', vrDe:'von', vrDesbloquea:'Schalte die vollständige Datenbank mit Premium frei.',
+    vrTipoPrefix:'Typ', vrLinaje:'Abstammung', vrTerpenos:'Terpene', vrDificultad:'Schwierigkeit', vrVisteTeaser:'Du hast', vrDe:'von', vrDesbloquea:'Schalte die vollständige Datenbank mit Vollzugriff frei.',
     modSegTitle:'Sicherheit', modSegDesc:'Haustiere, Wechselwirkungen mit Medikamenten, Fahren, Schwangerschaft und Stillzeit sowie psychische Gesundheit — mit echter Evidenz.',
     eySeg:'Sicherheit', segTitle:'Was schiefgehen kann, und wie man es vermeidet', segSub:'Dieselbe rigorose Evidenz wie im Rest der App, angewendet auf reale Risiken — Haustiere, Medikamente, Fahren, Schwangerschaft und psychische Gesundheit.',
     subMascotas:'Haustiere', subInteracciones:'Medikamente', subManejo:'Fahren', subEmbarazo:'Schwangerschaft &amp; Stillzeit', subSaludFem:'Frauengesundheit', subMental:'Psychische Gesundheit', subOcupacional:'Arbeit &amp; Produktion', subDeporte:'Sport', subMayores:'Ältere Menschen', subCorazon:'Herz &amp; Blutdruck',
@@ -4623,7 +4585,7 @@ const translations = {
     flH3:'Jenseits des Konsums: Hanffaser in der 3D-Fertigung', flP1:'Französische und libanesische Forscher untersuchen, wie sich Hanffasern mit landwirtschaftlichen Nebenprodukten kombinieren lassen, um umweltfreundliche Verbundwerkstoffe herzustellen, mit realen Anwendungen in Transportfahrzeugen und anderen Branchen — eine echte internationale Zusammenarbeit (Juli 2026), außerhalb des üblichen Konsumkreislaufs.',
     vrFloracion:'Blütezeit',
     cpToggleH3:'⚖️ Zwei Kultivare nebeneinander vergleichen', cpToggleP:'Wähle zwei aus und sieh die echten Unterschiede auf einen Blick — Potenz, Terpene, Blütezeit und mehr.',
-    cpLockedMsg:'Der vollständige Kultivar-Vergleich ist ein Premium-Tool — schalte es frei, um jedes beliebige Paar aus allen 19 Kultivaren zu wählen.',
+    cpLockedMsg:'Der vollständige Kultivar-Vergleich gehört zum Vollzugriff — schalte ihn frei, um jedes beliebige Paar aus allen 19 Kultivaren zu wählen.',
     fsSecTitle:'Full Spectrum, Broad Spectrum und Isolate: das Etikett, das fast niemand erklärt',
     fsIntroP:'Diese drei Begriffe stehen auf fast jedem kommerziellen Produkt und hängen direkt mit Dr. Russos "Entourage-Effekt" zusammen, den du bereits in <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Wissenschaft → Terpene und Flavonoide</a> gesehen hast — sie beschreiben, wie viel vom ursprünglichen chemischen Profil der Pflanze im finalen Extrakt verbleibt.',
     fsFullLabel:'Full Spectrum (Vollspektrum)', fsFullVal:'Bewahrt alle ursprünglichen Cannabinoide, Terpene und Flavonoide, einschließlich Spuren von THC — zielt auf den stärkstmöglichen Entourage-Effekt ab',
@@ -4671,7 +4633,7 @@ const translations = {
     eduIntroH3:'Echte Universitäten, die das lehren — nicht alle sind gleich', eduIntroP:'Es gibt einen echten Unterschied zwischen einer akkreditierten Universität, die einen Cannabis-Abschluss anbietet, und einer privaten "Zertifizierungs"-Plattform ohne traditionelle akademische Akkreditierung. Hier sind nur verifizierte akademische Institutionen aufgeführt — mit echter Akkreditierung, nicht nur ihrem eigenen Wort.',
     eduFiltroPaisLabel:'Land', eduCualquiera:'Beliebig', eduPaisEEUU:'USA', eduPaisCanada:'Kanada',
     eduFiltroEspLabel:'Fachgebiet', eduEspCultivo:'Anbau &amp; Gartenbau', eduEspCiencia:'Wissenschaft &amp; Chemie', eduEspMedicina:'Medizin &amp; Pharmazie', eduEspNegocio:'Wirtschaft &amp; Industrie', eduResultados:'Ergebnis(se)',
-    eduSunyP:'Cannabis-Industry-Minor, Zertifikat in Specialty Crops &amp; Cannabis Production, anrechenbar auf ein A.A.S. oder B.Tech in Gartenbau. Beinhaltet die eigene Cannabis-Forschungsparzelle der Universität.',
+    eduSunyP:'Cannabis-Industry-Minor und Zertifikat in Specialty Crops &amp; Cannabis Production. Beinhaltet die eigene Cannabis-Forschungsparzelle der Universität.',
     eduCsuP:'Ein vollständiger Bachelor of Science (BS) in Cannabis Biology and Chemistry, akkreditiert durch die Higher Learning Commission — einer der umfassendsten vierjährigen Universitätsabschlüsse zu diesem Thema, mit Schwerpunkten in Hanfanbau, Analytik, Naturprodukten und Industriemanagement.',
     eduCuP:'Drei Cannabis-Science-and-Medicine-Programme, von einem 8-wöchigen Einführungskurs bis zu einem vollständigen Masterabschluss — alle online, unterrichtet von internationalen Experten auf diesem Gebiet, innerhalb einer echten Pharmazieschule.',
     eduSaskP:'Ihr Prairie-Horticulture-Zertifikat umfasst jetzt einen speziellen Kurs zur Cannabis-Anbauproduktion — Vermehrung, Genetik und Erntekriterien, alles online.',
@@ -4732,20 +4694,20 @@ const translations = {
     adInquiryNombreLabel:'Name', adInquiryEmpresaLabel:'Unternehmen', adInquiryCorreoLabel:'E-Mail', adInquiryMensajeLabel:'Nachricht', adInquirySubmitBtn:'Senden',
     adInquiryEnviando:'Wird gesendet…', adInquiryOk:'✓ Erhalten — wir melden uns bald.', adInquiryError:'Konnte nicht gesendet werden. Versuch es erneut.'},
   fr:{brandSub:'Codex mondial · cannabis médical &amp; récréatif', navHome:'Accueil', navCultivo:'Culture', navElaboracion:'Élaboration', navLegal:'Légal', navCiencia:'Science', navMas:'Plus',
-    gateUnlockBtn:'Débloquer avec Premium',
-    gtDliTitle:'Calculateur de DLI', gtDliDesc:"L'intégrale de lumière quotidienne est un outil Premium.",
-    gtDoseTitle:'Dose par portion', gtDoseDesc:'Le calculateur de conformité réglementaire est un outil Premium.',
-    gtTrazaTitle:'Traçabilité', gtTrazaDesc:'Les systèmes de la graine à la vente exigés par chaque régulateur sont du contenu Premium.',
-    gtDirTitle:'Répertoire de fournisseurs', gtDirDesc:'Le répertoire complet par catégorie est du contenu Premium.',
-    gtCarrTitle:'Carrières', gtCarrDesc:"Le détail de chaque rôle professionnel du secteur est du contenu Premium.",
-    gtSistemasTitle:'Systèmes de culture', gtSistemasDesc:'Indoor, serre et outdoor, avec paramètres techniques complets, sont du contenu Premium.',
-    gtMetodosTitle:'Méthodes de culture', gtMetodosDesc:'Les méthodes de nutrition racinaire — sol organique, hydroponique, aéroponique et aquaponique — sont du contenu Premium.',
+    gateUnlockBtn:'Débloquer l’accès complet',
+    gtDliTitle:'Calculateur de DLI', gtDliDesc:"L'intégrale de lumière quotidienne fait partie de l’accès complet.",
+    gtDoseTitle:'Dose par portion', gtDoseDesc:'Le calculateur de conformité réglementaire fait partie de l’accès complet.',
+    gtTrazaTitle:'Traçabilité', gtTrazaDesc:'Les systèmes de la graine à la vente exigés par chaque régulateur nécessitent l’accès complet.',
+    gtDirTitle:'Répertoire de fournisseurs', gtDirDesc:'Le répertoire complet par catégorie nécessite l’accès complet.',
+    gtCarrTitle:'Carrières', gtCarrDesc:"Le détail de chaque rôle professionnel du secteur nécessite l’accès complet.",
+    gtSistemasTitle:'Systèmes de culture', gtSistemasDesc:'Indoor, serre et outdoor, avec paramètres techniques complets, nécessitent l’accès complet.',
+    gtMetodosTitle:'Méthodes de culture', gtMetodosDesc:'Les méthodes de nutrition racinaire — sol organique, hydroponique, aéroponique et aquaponique — nécessitent l’accès complet.',
     cmMetodosIntro:'Une fois le système choisi (où), vient la méthode : comment la racine est nourrie. Ces quatre familles déterminent toutes les autres décisions de culture — de l’équipement au calendrier de nutrition.',
     cmSecSuelo:'Sol organique',
     cmSuelo1h4:'Terre traditionnelle', cmSuelo1sci:'Le point de départ le plus ancien', cmSuelo1desc:'Culture directe en terre de jardin ou en plein champ. La méthode la plus ancienne et la plus tolérante aux erreurs d’arrosage ou de nutrition — le sol lui-même amortit les déséquilibres.', cmSuelo1src:'<a href="https://hemp.cals.cornell.edu/resources/hemp-growing-info/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSuelo2h4:'Substrat en pot', cmSuelo2sci:'Mélanges prêts à l’emploi', cmSuelo2desc:'Mélanges commerciaux de tourbe, compost et perlite en contenants — le juste milieu entre le contrôle de l’hydroponie et la simplicité de la terre traditionnelle.', cmSuelo2src:'<a href="https://hemp.cals.cornell.edu/resources/reports-factsheets/2022-cornell-hemp-field-day-handouts/high-tunnel-soil-management-for-cannabis-sativa/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">hemp.cals.cornell.edu</a>',
     cmSecHidro:'Hydroponique',
-    cmHidroIntro:'Combine un substrat inerte (fibre de coco, laine de roche, perlite — voir <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Cultivo → Substrat &amp; nutrition</a>) avec un système à eau ouverte qui délivre la solution nutritive directement à la racine.',
+    cmHidroIntro:'Combine un substrat inerte (fibre de coco, laine de roche, perlite — voir <a onclick="showSub(&#39;cultivo&#39;,&#39;sustrato&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Substrat &amp; nutrition</a>) avec un système à eau ouverte qui délivre la solution nutritive directement à la racine.',
     cmHidro1h4:'DWC (racines flottantes)', cmHidro1sci:'Deep Water Culture', cmHidro1desc:'Les racines pendent directement dans un réservoir de solution nutritive oxygénée. Simple et économique à installer ; exige une surveillance constante de l’oxygène dissous et de la température de l’eau.', cmHidro1src:'<a href="https://cannabis.ucdavis.edu/" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">cannabis.ucdavis.edu</a>',
     cmHidro2h4:'NFT', cmHidro2sci:'Technique du film nutritif', cmHidro2desc:'Un film fin de solution nutritive circule en continu sur les racines, dans des canaux inclinés. Très économe en eau ; vulnérable aux coupures de courant car il n’y a pas de réserve de solution au niveau de la racine.', cmHidro2src:'<a href="https://extension.oregonstate.edu/catalog/pub/em-9457-hydro-hints-nutrient-film-technique" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">extension.oregonstate.edu</a>',
     cmHidro3h4:'Flux et reflux', cmHidro3sci:'Ebb &amp; Flow', cmHidro3desc:'Un bac est inondé de solution nutritive par cycles minutés puis se draine complètement — les racines alternent entre nutrition et oxygénation. Système flexible, fonctionne avec différents substrats inertes.', cmHidro3src:'<a href="https://cpb-us-e1.wpmucdn.com/blogs.cornell.edu/dist/8/8824/files/2019/06/Cornell-CEA-Lettuce-Handbook-.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">blogs.cornell.edu — Cornell CEA Handbook</a>',
@@ -4781,56 +4743,46 @@ const translations = {
     eqF5H3:'5. Séchage', eqF5i1:'Grille de séchage à étages', eqF5i2:'Filtre à charbon au minimum', eqF5i3:'Ventilateur dirigé vers le mur — jamais directement sur les fleurs', eqF5i4:'Espace 100% obscur',
     eqF6H3:'6. Affinage', eqF6i1:'Bocaux en verre hermétiques', eqF6i2:'Sachets d’humidité bidirectionnelle', eqF6i3:'Mini thermo-hygromètres pour bocaux',
     eqCuradoMarcas:'<b>Exemples illustratifs :</b> Boveda et Integra sont les marques les plus citées de sachets d’humidité bidirectionnelle pour bocaux d’affinage — elles régulent l’humidité interne sans avoir à ouvrir le bocal pour deviner.',
-    gtIlumTitle:'Éclairage', gtIlumDesc:'Les cibles de PPFD et DLI par stade, avec base scientifique, sont du contenu Premium.',
-    gtSustratoTitle:'Substrat et nutrition', gtSustratoDesc:'Le guide complet des substrats et macro/micronutriments est du contenu Premium.',
-    gtEntrenTitle:'Taille et palissage', gtEntrenDesc:'Les 7 techniques de palissage avec estimation de rendement sont du contenu Premium.',
-    gtGenTitle:'Génétique et chémotypes', gtGenDesc:'La classification scientifique par chémotype, avec source citée, est du contenu Premium.',
-    gtCicloTitle:'Cycle de vie', gtCicloDesc:'Le détail complet du cycle de vie de la plante est du contenu Premium.',
-    gtCosechaTitle:'Récolte', gtCosechaDesc:'La checklist des trichomes et les décisions de coupe/effeuillage sont du contenu Premium.',
-    gtPropTitle:'Propagation avancée', gtPropDesc:'Féminisation, croisements autofloraison et greffage sont du contenu Premium.',
-    gtProcTitle:'Processus et SOP', gtProcDesc:'Les procédures complètes post-récolte sont du contenu Premium.',
-    gtConcTitle:'Concentrés', gtConcDesc:"Le tour du monde des techniques d'extraction est du contenu Premium.",
-    gtTintTitle:'Teintures, capsules et patchs', gtTintDesc:'Les 3 voies d\u2019absorption avec dosage mesuré sont du contenu Premium.',
-    gtVapesTitle:'Vapes et cartouches', gtVapesDesc:"Le guide du matériel et l'histoire de l'EVALI sont du contenu Premium.",
-    gtComTitle:'Comestibles', gtComDesc:'La décarboxylation et le calcul de puissance sont du contenu Premium.',
-    gtSkinTitle:'Soins de la peau et topiques', gtSkinDesc:'Le guide complet des topiques est du contenu Premium.',
-    gtEtiqTitle:'Étiquetage', gtEtiqDesc:"La norme complète d'étiquetage est du contenu Premium.",
-    gtCientTitle:'Scientifiques', gtCientDesc:'Le répertoire complet des chercheurs actifs est du contenu Premium.',
-    gtMedTitle:'Informations médicales', gtMedDesc:'Les indications cliniques et interactions sont du contenu Premium.',
-    gtEcsTitle:'Système Endocannabinoïde 101', gtEcsDesc:'L’explication narrative du système endocannabinoïde et la comparaison humains vs. animaux sont du contenu Premium.',
-    gtSeguridadDesc:'Approfondissement scientifique complet — études supplémentaires, mécanismes et contexte étendu — disponible avec Premium.',
-    gtDiagTeaserTitle:'2 sur 11 vues', gtDiagTeaserDesc:'Débloque les 9 fiches restantes avec Premium.',
-    gtPapersTeaserTitle:'1 sur 26 vue', gtPapersTeaserDesc:'Débloque la bibliothèque complète des études avec Premium.',
-    gtCannaTeaserTitle:'2 sur 6 vus', gtCannaTeaserDesc:'Débloque les 4 cannabinoïdes restants avec Premium.',
-    gtTerpTeaserTitle:'2 sur 8 vus', gtTerpTeaserDesc:'Débloque les 6 profils restants avec Premium.',
-    gtFlavTeaserTitle:'2 sur 5 vus', gtFlavTeaserDesc:'Débloque les 5 profils de flavonoïdes avec Premium.',
-    gtMitosTeaserTitle:'2 sur 6 vus', gtMitosTeaserDesc:'Débloque la bibliothèque complète des mythes avec Premium.',
+    gtIlumTitle:'Éclairage', gtIlumDesc:'Les cibles de PPFD et DLI par stade, avec base scientifique, nécessitent l’accès complet.',
+    gtSustratoTitle:'Substrat et nutrition', gtSustratoDesc:'Le guide complet des substrats et macro/micronutriments nécessite l’accès complet.',
+    gtEntrenTitle:'Taille et palissage', gtEntrenDesc:'Les 7 techniques de palissage avec estimation de rendement nécessitent l’accès complet.',
+    gtGenTitle:'Génétique et chémotypes', gtGenDesc:'La classification scientifique par chémotype, avec source citée, nécessite l’accès complet.',
+    gtCicloTitle:'Cycle de vie', gtCicloDesc:'Le détail complet du cycle de vie de la plante nécessite l’accès complet.',
+    gtCosechaTitle:'Récolte', gtCosechaDesc:'La checklist des trichomes et les décisions de coupe/effeuillage nécessitent l’accès complet.',
+    gtPropTitle:'Propagation avancée', gtPropDesc:'Féminisation, croisements autofloraison et greffage nécessitent l’accès complet.',
+    gtProcTitle:'Processus et SOP', gtProcDesc:'Les procédures complètes post-récolte nécessitent l’accès complet.',
+    gtConcTitle:'Concentrés', gtConcDesc:"Le tour du monde des techniques d'extraction nécessite l’accès complet.",
+    gtTintTitle:'Teintures, capsules et patchs', gtTintDesc:'Les 3 voies d\\u2019absorption avec dosage mesuré nécessitent l’accès complet.',
+    gtVapesTitle:'Vapes et cartouches', gtVapesDesc:"Le guide du matériel et l'histoire de l'EVALI nécessitent l’accès complet.",
+    gtComTitle:'Comestibles', gtComDesc:'La décarboxylation et le calcul de puissance nécessitent l’accès complet.',
+    gtSkinTitle:'Soins de la peau et topiques', gtSkinDesc:'Le guide complet des topiques nécessite l’accès complet.',
+    gtEtiqTitle:'Étiquetage', gtEtiqDesc:"La norme complète d'étiquetage nécessite l’accès complet.",
+    gtCientTitle:'Scientifiques', gtCientDesc:'Le répertoire complet des chercheurs actifs nécessite l’accès complet.',
+    gtMedTitle:'Informations médicales', gtMedDesc:'Les indications cliniques et interactions nécessitent l’accès complet.',
+    gtEcsTitle:'Système Endocannabinoïde 101', gtEcsDesc:'L’explication narrative du système endocannabinoïde et la comparaison humains vs. animaux nécessitent l’accès complet.',
+    gtSeguridadDesc:'Approfondissement scientifique complet — études supplémentaires, mécanismes et contexte étendu — disponible avec l’accès complet.',
+    gtDiagTeaserTitle:'2 sur 11 vues', gtDiagTeaserDesc:'Débloque les 9 fiches restantes avec l’accès complet.',
+    gtPapersTeaserTitle:'1 sur 26 vue', gtPapersTeaserDesc:'Débloque la bibliothèque complète des études avec l’accès complet.',
+    gtCannaTeaserTitle:'2 sur 6 vus', gtCannaTeaserDesc:'Débloque les 4 cannabinoïdes restants avec l’accès complet.',
+    gtTerpTeaserTitle:'2 sur 8 vus', gtTerpTeaserDesc:'Débloque les 6 profils restants avec l’accès complet.',
+    gtFlavTeaserTitle:'2 sur 5 vus', gtFlavTeaserDesc:'Débloque les 5 profils de flavonoïdes avec l’accès complet.',
+    gtMitosTeaserTitle:'2 sur 6 vus', gtMitosTeaserDesc:'Débloque la bibliothèque complète des mythes avec l’accès complet.',
   tierSwitchLabel:'Aperçu :',
     agTitle:'Vérification de l\u2019âge', agBody:'Ce contenu est destiné aux personnes de 18 ans et plus, et inclut des informations sur le cannabis à des fins éducatives, médicales et informatives.', agYes:'Oui, j\u2019ai 18 ans ou plus', agNo:'Non, j\u2019ai moins de 18 ans', agBlockedTitle:'Accès non disponible', agBlockedBody:'Ce contenu est réservé aux personnes de 18 ans et plus. Nous ne pouvons pas vous donner accès pour le moment.',
     cuentaLegalTitle:'Mentions légales', cuentaTerminosLabel:'Conditions générales', cuentaPrivacidadLabel:'Politique de confidentialité',
-    tcEyebrow:'Mentions légales', tcTitle:'Conditions générales', tcUpdated:'Dernière mise à jour : juillet 2026',
+    tcEyebrow:'Mentions légales', tcTitle:'Conditions générales', tcUpdated:'Dernière mise à jour : 5 novembre 2026',
     tcDraftNote:'<b>Remarque sur ce document :</b> ce texte est une base complète, rédigée de bonne foi comme point de départ — il ne remplace pas la révision par un avocat spécialisé en cannabis et commerce numérique avant un lancement réel. Les lois sur le cannabis varient énormément selon le pays et l\u2019État ; ce document nécessite une adaptation juridique professionnelle selon les lieux d\u2019exploitation de Mother Verde LLC.',
     tc1H3:'1. Acceptation des conditions', tc1P:'En accédant à l\u2019application Mother Verde (« l\u2019App ») ou en l\u2019utilisant, exploitée par Mother Verde LLC (« nous », « l\u2019entreprise »), tu acceptes d\u2019être lié par ces Conditions générales. Si tu n\u2019es pas d\u2019accord, tu ne dois pas utiliser l\u2019App.',
     tc2H3:'2. Éligibilité et âge minimum', tc2P:'L\u2019App est destinée exclusivement aux personnes de 18 ans ou plus. En confirmant ton âge lors de l\u2019accès initial, tu déclares et garantis que tu remplis cette condition. Nous nous réservons le droit de suspendre l\u2019accès à tout compte si nous avons des motifs raisonnables de croire que cette déclaration est fausse.',
     tc3H3:'3. Nature du contenu — ceci n\u2019est pas un avis médical ou juridique', tc3P:'Tout le contenu de l\u2019App — y compris les informations sur la culture, l\u2019élaboration, la science, le dosage, la sécurité et le statut légal par pays — est fourni <b>uniquement à des fins éducatives et informatives</b>. Il ne constitue ni avis médical, diagnostic, traitement, ni avis juridique d\u2019aucune sorte. Le statut légal du cannabis change fréquemment et varie selon la juridiction ; il est de ta responsabilité de vérifier la loi en vigueur à ton emplacement avant d\u2019agir. Consulte toujours un professionnel de santé qualifié avant d\u2019utiliser le cannabis à des fins médicinales, et un avocat local pour toute question juridique.',
     tc4H3:'4. Utilisation autorisée', tc4P:'Tu t\u2019engages à utiliser l\u2019App uniquement de manière licite, conformément aux lois de ta juridiction. Tu ne dois pas utiliser l\u2019App pour faciliter des activités illégales, ni tenter d\u2019accéder à des parties restreintes du service sans autorisation.',
-    tc5H3:'5. Abonnement Premium', tc5P:'L\u2019App propose un niveau gratuit et un niveau Premium payant, avec du contenu supplémentaire. Les détails de prix, facturation et annulation sont précisés au moment de l\u2019abonnement. Nous nous réservons le droit de modifier les prix et avantages de chaque niveau, avec un préavis raisonnable.',
+    tc5H3:'5. Accès complet', tc5P:'La contribution unique de soutien aide Bertha Limo, fondatrice de Mother Verde, à continuer d’apprendre et de grandir dans sa vie professionnelle à SUNY Morrisville, qui lui a de nouveau ouvert ses portes. En échange, la personne reçoit un accès complet à la plateforme. Elle est volontaire et unique ; ce n’est pas un don et elle n’est pas déductible des impôts. La contribution arrive dans le portefeuille crypto personnel de Bertha Limo sur le réseau Base. L’essai gratuit de 24 heures n’est proposé qu’une seule fois par personne. Mother Verde est un projet indépendant, non affilié ni approuvé par SUNY Morrisville. <b>Codes cadeaux :</b> l’administration peut envoyer un code qui donne 7 jours d’accès complet ; il ne s’utilise qu’une fois et doit être échangé dans un délai de 7 jours. <b>Retrait de l’accès :</b> si nous détectons une fraude ou un abus (par exemple une contribution qui ne correspond à aucun paiement réel), nous pouvons retirer l’accès ; c’est noté avec son motif. <b>Contributions manuelles :</b> une contribution faite par un autre moyen convenu est enregistrée par l’administration ; son enregistrement active l’accès complet, comme une contribution en USDC approuvée, et elle reste dans le journal.',
     tc6H3:'6. Propriété intellectuelle', tc6P:'Tout le contenu original de l\u2019App — textes, illustrations, marque, design — est la propriété de Mother Verde LLC ou de ses concédants, et est protégé par les lois applicables en matière de propriété intellectuelle. Sa reproduction commerciale n\u2019est pas autorisée sans autorisation écrite préalable.',
     tc7H3:'7. Contenu généré par l\u2019utilisateur', tc7P:'Des outils comme le Journal de culture stockent les informations que tu saisis. Tu es responsable du contenu que tu enregistres. Tu ne dois pas saisir d\u2019informations sensibles concernant des tiers sans leur consentement.',
     tc8H3:'8. Limitation de responsabilité', tc8P:'Dans la mesure permise par la loi, Mother Verde LLC ne sera pas responsable des dommages découlant de l\u2019utilisation ou de l\u2019impossibilité d\u2019utiliser l\u2019App, y compris les décisions prises sur la base des informations fournies. L\u2019App est proposée « telle quelle », sans garantie d\u2019aucune sorte.',
     tc9H3:'9. Modifications de ces conditions', tc9P:'Nous pouvons mettre à jour ces Conditions périodiquement. Nous te notifierons des changements significatifs au sein de l\u2019App. L\u2019utilisation continue après la publication des changements constitue une acceptation des nouvelles conditions.',
     tc10H3:'10. Contact', tc10P:'Pour toute question concernant ces Conditions, contacte-nous à l\u2019adresse e-mail de support indiquée dans l\u2019App.',
-    ppEyebrow:'Mentions légales', ppTitle:'Politique de confidentialité', ppUpdated:'Dernière mise à jour : juillet 2026',
-    ppDraftNote:'<b>Remarque sur ce document :</b> ceci est une base complète, rédigée de bonne foi comme point de départ — elle ne remplace pas la révision par un avocat spécialisé en confidentialité des données (y compris des réglementations comme le RGPD ou le CCPA selon ton lieu d\u2019exploitation) avant un lancement réel.',
-    ppv1H3:'1. Quelles informations nous collectons', ppv1P:'L\u2019App peut stocker : ta confirmation d\u2019âge, ta langue préférée, les entrées que tu enregistres dans ton Journal de culture, et les pays que tu suis dans Alertes. Sur l\u2019écran Compte, tu peux saisir facultativement un nom, un e-mail et un pays — ces champs font partie de la maquette du prototype et ne sont actuellement envoyés à aucun serveur.',
-    ppv2H3:'2. Où tes informations sont stockées', ppv2P:'La plupart des données mentionnées sont stockées localement sur ton propre appareil, pas sur nos serveurs. Cela signifie que, sous sa forme actuelle, la majeure partie de ton activité dans l\u2019App reste sur ton téléphone ou navigateur, et nous ne la collectons pas de manière centralisée.',
-    ppv2AdminP:'Au sein de l\u2019annuaire de la communauté, ton nom, ton pays et ton type de profil sont visibles par les autres personnes utilisant l\u2019App. Des données comme ton adresse e-mail ne sont jamais affichées publiquement — seule l\u2019équipe d\u2019administration de Mother Verde LLC a accès à cette information, avec des contrôles de sécurité spécifiques pour cela (vérification à deux facteurs, journalisation des accès).',
-    ppv3H3:'3. Comment nous utilisons tes informations', ppv3P:'Nous utilisons les informations stockées uniquement pour que l\u2019App fonctionne comme tu l\u2019attends : mémoriser ta langue, ta vérification d\u2019âge, et le contenu que tu saisis toi-même dans des outils comme le Journal de culture. Nous ne vendons pas tes informations à des tiers.',
-    ppv4H3:'4. Services tiers et paiements', ppv4P:'Les paiements de l\u2019abonnement Premium sont traités via l\u2019App Store, Google Play, ou Stripe — jamais directement par Mother Verde. <b>Mother Verde LLC ne reçoit, ne traite, ni ne stocke jamais ton numéro de carte, ton CVV, ni sa date d\u2019expiration.</b> Nous recevons seulement une confirmation que le paiement a été effectué et ton statut d\u2019abonnement. Ces processeurs de paiement ont leurs propres politiques de confidentialité, indépendantes de celle-ci.',
-    ppv5H3:'5. Tes droits', ppv5P:'Tu peux supprimer les informations stockées localement en effaçant les données de l\u2019App depuis les paramètres de ton appareil. Si à l\u2019avenir nous stockons des données sur des serveurs, tu auras le droit de demander l\u2019accès, la correction ou la suppression de tes informations, selon ce que permet la loi de ta juridiction.',
-    ppv6H3:'6. Confidentialité des mineurs', ppv6P:'L\u2019App est réservée aux personnes de 18 ans et plus grâce à une vérification d\u2019âge à l\u2019entrée. Nous ne collectons pas sciemment d\u2019informations auprès de mineurs.',
-    ppv7H3:'7. Modifications de cette politique', ppv7P:'Nous pouvons mettre à jour cette Politique de confidentialité périodiquement. Nous te notifierons des changements significatifs au sein de l\u2019App.',
-    ppv8H3:'8. Contact', ppv8P:'Pour toute question sur la confidentialité, contacte-nous à l\u2019adresse e-mail de support indiquée dans l\u2019App.',
+    ppEyebrow:'Mentions légales', ppTitle:'Politique de confidentialité',
     heroTitle:'Le codex mondial du cannabis, <em>enfin organisé</em>.', heroSub:'Culture fondée sur des preuves, élaboration de produits, statut légal par pays et science organisée — le tout en un seul endroit, pour cultivateurs, fabricants, patients et voyageurs.',
     heroBtn1:'Explorer la culture', heroBtn2:'Voir le statut légal',
     statCountries:'Pays cartographiés', statMetodos:'Méthodes de culture', statSources:'Sources officielles', statHistory:'Couverture historique',
@@ -4868,7 +4820,7 @@ const translations = {
     eyCiencia:'Science du cannabis', cienciaTitle:'La bibliothèque de preuves', cienciaSub:'Études, chercheurs actifs et informations cliniques — avec un niveau de preuve explicite pour chaque donnée.',
     subPapers:'Études', subCientificos:'Scientifiques', subMedico:'Médical', subMenores:'Cannabinoïdes mineurs', subTerpenos:'Terpènes et flavonoïdes', subMitos:'Mythes', subEcs:'SEC 101',
     detailEstado:'Statut actuel', detailNote:'Donnée illustrative pour ce prototype — en production, chaque champ se connecte à la source officielle et se met à jour automatiquement.', detailTimeline:'Chronologie', detailTraveler:'Pour les voyageurs', detailSources:'Sources officielles', footerCopy:'© 2026 Mother Verde LLC. Tous droits réservés.',
-    backToHome:"← Retour à l'accueil", backToCuenta:'← Retour au compte',
+    backToHome:"← Retour à l'accueil", backToCuenta:'← Retour au compte', backToDesbloquear:'← Retour à Débloquer', legalBack:'← Retour',
     calcEyebrow:'Outils interactifs', calcTitle:'Calculateurs', calcSub:'Les mêmes formules que tu as déjà vues dans Culture et Élaboration, maintenant interactives.',
     calcVpdTitle:'Calculateur de VPD', calcVpdDesc:'Déficit de pression de vapeur — la métrique réelle derrière « est-ce trop humide ou trop sec ? ».', calcVpdTemp:'Temp. air (°C)', calcVpdRH:'Humidité rel. (%)', calcVpdStage:'Stade', calcVpdVeg:'Végétatif (0,8–1,0 kPa)', calcVpdFlo:'Floraison (1,0–1,5 kPa)',
     calcDliTitle:'Calculateur de DLI', calcDliDesc:"Intégrale de lumière journalière — combien de lumière ta culture accumule en 24 h, pas seulement l'intensité d'un instant.", calcDliPPFD:'PPFD (μmol/m²/s)', calcDliHours:'Heures de lumière/jour',
@@ -4889,14 +4841,13 @@ const translations = {
     bitPhLabel:'pH du substrat', bitEcLabel:'EC (mS/cm)', bitTempLabel:'Temp. (°C)', bitHumLabel:'Humidité (%)', bitAtajosLabel:"Raccourcis pendant l'enregistrement :", bitAtajoVpd:'Calculer le VPD →', bitAtajoDosis:'Calculer le mélange de nutriments →',
     bitStatDias:'Jours de cycle', bitStatEntradas:'Entrées totales', bitStatEtapa:'Stade actuel', bitGraficoTitle:'pH et EC dans le temps',
     bitAuthGateH3:'Connecte-toi pour tenir ton journal de culture', bitAuthGateP:'Tes entrées sont enregistrées dans ton compte, en privé — toi seul(e) peux les voir. Tu dois d’abord te connecter ou créer un compte.', bitAuthGateBtn:'Aller à Compte',
-    bitPdfBtn:'Télécharger le PDF', bitPdfLockedMsg:'Le téléchargement PDF est une fonctionnalité Premium — débloque-la',
+    bitPdfBtn:'Télécharger le PDF', bitPdfLockedMsg:'Le téléchargement PDF fait partie de l’accès complet — débloque-le',
     bitErrSinNota:'Écris une note avant d’enregistrer.', bitGuardadoOk:'✓ Enregistré', bitErrGuardar:'Impossible d’enregistrer — réessaie.',
     bitSinFecha:'sans date', bitEliminar:'Supprimer', bitSinNotas:'(sans notes)', bitVacio:'Pas encore d’entrées — ajoute la première ci-dessus.', bitGraficoVacio:'Enregistre le pH ou l\u2019EC dans au moins 2 entrées pour voir le graphique de tendance ici.',
     bitFotoLabel:'Photo (facultatif)', bitFotoNota:'Automatiquement compressée pour économiser de l\u2019espace. Avec de nombreuses entrées avec photo, l\u2019espace de stockage du prototype peut se remplir — en production, cela vivrait sur un vrai serveur, sans cette limite.',
-    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaEstadoTitle:"État de l'abonnement", cuentaPagoSeguroNote:'Tes paiements sont traités de façon sécurisée par un prestataire externe. Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement le statut de ton abonnement.', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés pour de vrai, en toute sécurité. Le statut d’abonnement ci-dessus vient directement de ton compte.',
-    cuentaPremiumActivo:'✓ Premium actif — accès complet aux 10 zones, sans publicité, téléchargements illimités.', cuentaGestionarBtn:"Gérer l'abonnement", cuentaGestionarAlert:"Dans l'app réelle, ceci ouvrirait la gestion d'abonnement d'Apple/Google.", cuentaPlanGratis:'Plan Gratuit — un aperçu de chaque zone, avec publicité.', cuentaSuscribirBtn:'Obtenir Premium — 7,10 $/mois',
-    pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', pmComprarBtn:'Acheter Premium — 7,10 $/mois',
-    pmPagoSeguroNote:'Paiement traité en toute sécurité par l\u2019App Store / Google Play / Stripe — Mother Verde ne voit ni ne stocke jamais ton numéro de carte.',
+    cuentaEyebrow:'Paramètres', cuentaTitle:'Ton compte', cuentaPerfilLink:'Ton nom, ton pays et ta photo publics se modifient dans Ton profil →', cuentaDatosTitle:'Données du compte', cuentaNombreLabel:'Nom', cuentaNombrePh:'Ton nom', cuentaCorreoLabel:'E-mail', cuentaPaisLabel:'Pays', cuentaPaisPh:'Pour ajuster les prix et afficher ton statut légal plus rapidement', cuentaPrefTitle:'Préférences', cuentaIdiomaLabel:"Langue de l'interface", cuentaAlertasLabel:'Alertes de changement légal', cuentaNote:'Ton compte et tes données sont enregistrés sur notre serveur, pas seulement sur cet appareil.',
+    cuentaPremiumActivo:'✓ Accès complet actif.', 
+    pmPagoAnual:' · par mois', pmActualizaciones:'Inclut des mises à jour de contenu tous les six mois', 
     alertaSemillasH4:'États-Unis : interdiction fédérale du commerce interétatique de graines à 0,3 %+ de THC', alertaSemillasTag:'Alerte réelle — non illustrative', alertaSemillasMeta:'21 juillet 2026 · Source : MJBizDaily',
     alertaSemillasBody:'La redéfinition fédérale du chanvre rend illégal l\u2019envoi de graines de cultivars à 0,3 % de THC ou plus entre États, à partir du <b>12 novembre 2026</b>. Les banques de graines diversifient déjà leurs opérations vers différents États pour pouvoir continuer à fonctionner après cette date.',
     alertaSemillasLink:'Lire la suite sur mjbizdaily.com →',
@@ -5095,7 +5046,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     ttG5h4:'Rosin (chaleur + pression mécanique)', ttPasos3b:'3 étapes', ttG5desc:'1) Enveloppe la fleur affinée, le hash ou le kief dans du papier sulfurisé plié. 2) Presse avec un lisseur à cheveux ou une presse à rosin à température moyenne (~90–120 °C) pendant 5 à 10 secondes. 3) Décolle immédiatement le papier et récolte l’huile avant qu’elle ne refroidisse.',
     ttG6h4:'Dry sift (tamisage)', ttPasos3c:'3 étapes', ttG6desc:'1) Place la fleur sèche sur un tamis à micron fin, au-dessus d’une surface lisse en dessous. 2) Frotte doucement avec une carte ou un rouleau pour détacher les trichomes. 3) Récolte la poudre qui tombe — c’est le kief.',
     ttG7h4:'Décarboxylation au four', ttPasos3d:'3 étapes', ttG7desc:'1) Émiette la fleur en morceaux réguliers sur une plaque avec du papier cuisson. 2) Fais cuire à ~110–115 °C pendant 45 à 60 min, en vérifiant qu’elle ne brunisse pas trop. 3) Laisse refroidir avant de l’utiliser dans toute infusion.',
-    ttNoteFinal:'Ces 6 techniques n’utilisent que de la chaleur de cuisine, une pression mécanique simple ou du tamisage — aucun système de gaz sous pression ni solvant inflammable. C’est la vraie limite de ce que cette app enseigne pas à pas. Tout ce qui nécessite un équipement spécialisé ou la manipulation de substances inflammables (BHO, CO2, formulation de liquide de vape) reste au niveau de la science et des caractéristiques déjà vu dans Concentrés et Vapes — jamais en instructions opérationnelles, quel que soit le plan d’abonnement.',
+    ttNoteFinal:'Ces 6 techniques n’utilisent que de la chaleur de cuisine, une pression mécanique simple ou du tamisage — aucun système de gaz sous pression ni solvant inflammable. C’est la vraie limite de ce que cette app enseigne pas à pas. Tout ce qui nécessite un équipement spécialisé ou la manipulation de substances inflammables (BHO, CO2, formulation de liquide de vape) reste au niveau de la science et des caractéristiques déjà vu dans Concentrés et Vapes — jamais en instructions opérationnelles, quel que soit le type d’accès.',
     ttCtaH3:'As-tu besoin d\u2019une véritable formule de dosage pour ton produit ?', ttCtaP:'Teintures, capsules ou patchs avec un dosage précis et constant par lot nécessitent des calculs spécifiques. Nous pouvons t\u2019aider à y réfléchir pour ton exploitation.',
     vpTiposH3:'Ce qui se trouve vraiment dans la cartouche : 3 façons légitimes de la fabriquer', vpTiposIntro:'Avant de parler des risques, il vaut la peine de reconnaître qu\u2019il existe de vraies entreprises qui suivent de vraies normes et produisent une huile de qualité authentique — de façons assez différentes les unes des autres. Voici les 3 catégories principales que tu trouveras sur un marché légal et réglementé.',
     vpDestH4:'Distillat', vpDestSci:'Avec solvants + distillation', vpDestDesc:'Extrait au CO2, à l\u2019éthanol, ou aux hydrocarbures, puis « winterisé » (congelé et filtré pour retirer graisses et cires), et raffiné par distillation à trajet court — un véritable processus de purification, bien documenté. Le résultat est une huile très pure, avec un THC souvent entre 85 et 99 %, mais pratiquement sans terpènes propres — c\u2019est pourquoi des terpènes (issus du cannabis ou botaniques) y sont presque toujours réintroduits ensuite.',
@@ -5136,15 +5087,14 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     etSimboloNote:'Un détail qui varie beaucoup selon le pays : plusieurs marchés réglementés (comme le Canada et plusieurs États américains) exigent un symbole d’avertissement THC standardisé et visuellement reconnaissable sur l’emballage — le chiffre dans le texte seul ne suffit pas. Le design exact du symbole est défini par chaque régulateur, il n’est donc pas universel entre pays, seulement à l’intérieur de chacun.',
     ppNote:'Sélection illustrative pour ce prototype — en production, ce flux se met à jour avec de nouvelles publications de PubMed, ClinicalTrials.gov et des revues spécialisées.',
     ppSlicNote:'<b>Le portrait réel de 2025 :</b> la Société latino-américaine et ibérique de cannabinologie (SLIC) a analysé les essais cliniques indexés dans PubMed durant 2025 avec « cannabis » ou « cannabinoïdes » dans le titre — trouvant 85 études réelles, couvrant la santé mentale, la santé publique, les interventions cliniques, la sécurité et les politiques. Une part considérable se concentre sur la santé mentale et l\u2019usage chez les adolescents, examinant les liens avec la dépression, l\u2019anxiété et la coconsommation avec la nicotine ou l\u2019alcool.',
-    ppTag1:'Étude génétique', pp1desc:'Analyse 297 plantes hybrides et ne trouve aucune relation significative entre la morphologie des feuilles et la teneur en cannabinoïdes — base scientifique pour remplacer indica/sativa par la classification par chimiotype.',
-    ppTag2:'Essai clinique randomisé', pp2desc:'Essai contrôlé qui appuie l’usage du CBD purifié dans un syndrome d’épilepsie infantile réfractaire — base de l’approbation réglementaire de l’Epidiolex.',
-    ppTag3:'Étude agronomique', pp3meta:'Vulgarisation agricole · Cornell University · 2022', pp3desc:'Établit des plages de VPD optimales par phase de croissance pour maximiser le rendement et la qualité de la fleur en culture intérieure.',
-    ppTag4:'Analyse chimique de laboratoire', pp4desc:'Analyse plus de 30 échantillons de rosin de hash par chromatographie en phase gazeuse 2D et trouve des composés jamais vus auparavant dans le cannabis — dont des thiols (notes « gazeuses ») et des acides gras (notes « fromagères ») qui ne sont pas des terpènes. Suggère que l\u2019arôme distinctif de chaque variété dépend de composés mineurs, pas seulement du profil terpénique traditionnel.',
-    ppTag5:'Génomique de pointe', pp5meta:'Nature · 2025', pp5desc:'Séquence le génome complet de plusieurs variétés de cannabis, pas seulement une référence unique — révèle l\u2019ampleur de la diversité génétique réelle entre variétés commerciales, posant les bases d\u2019une future amélioration génétique fondée sur des données solides.',
-    ppTag6:'Revue systématique', pp6desc:'Passe en revue 31 cas documentés d\u2019interaction entre le cannabis et 16 médicaments à index thérapeutique étroit, chez 889 personnes — 58 % ont montré des taux sanguins inattendus du médicament. La base de pourquoi les interactions médicamenteuses comptent autant que le cannabis lui-même.',
-    ppTag7:'Étude fondatrice', pp7desc:'L\u2019étude qui a inventé le terme « endocannabinoïde » et décrit pour la première fois comment le corps produit et décompose sa propre anandamide — le fondement de tout ce que nous savons aujourd\u2019hui sur le système endocannabinoïde humain.',
-    ppTag8:'Étude de marché', pp8desc:'A analysé 84 produits de CBD achetés en ligne : seulement 30,95 % avaient un étiquetage précis dans une marge raisonnable — 42,85 % contenaient plus de CBD que déclaré, 26,19 % moins. La preuve derrière notre recommandation d\u2019exiger toujours un COA.',
-    ppTag9:'Consensus clinique', pp9meta:'Collège américain des obstétriciens et gynécologues (ACOG) · 2025', pp9desc:'La mise à jour la plus récente du consensus clinique sur le cannabis pendant la grossesse et l\u2019allaitement — recommande son arrêt pendant les deux périodes, documentant des risques de faible poids à la naissance et d\u2019admission accrue en soins intensifs néonatals.',
+    ppTag1:'Étude génétique', pp1desc:'A mesuré 297 plantes hybrides issues du croisement de deux lignées différentes : des traits que l’on croit souvent liés ne l’étaient pas. Chez les hybrides, la forme des feuilles ne correspond pas à la chimie de la plante, et les auteurs demandent un nouveau système pour classer la variation du cannabis.',
+    ppTag2:'Essai clinique randomisé', pp2desc:'Essai en double aveugle chez 120 enfants et jeunes adultes atteints du syndrome de Dravet : avec le CBD, les crises convulsives sont passées de 12,4 à 5,9 par mois (avec placebo, de 14,9 à 14,1). Le CBD a causé plus d’effets indésirables, comme diarrhée, vomissements, fatigue et somnolence.',
+    ppTag4:'Analyse chimique de laboratoire', pp4desc:'Compare des variétés aux arômes très différents et trouve des profils de terpènes très proches. Les arômes précis sont liés à des composés minoritaires qui ne sont pas des terpènes : une nouvelle classe de composés soufrés volatils dans les arômes d’agrumes, et le scatole dans l’arôme « chimique ». Conclusion : le rôle des terpènes dans l’arôme a été surestimé.',
+    ppTag5:'Génomique de pointe', pp5meta:'Nature · 2025', pp5desc:'Construit un pangénome du cannabis à partir de 193 génomes (dont 181 nouveaux) issus de 144 échantillons de plantes mâles et femelles. Il trouve des régions très variables, mais les gènes des synthases de cannabinoïdes (THCA et CBDA) varient très peu. Conclusion : le patrimoine génétique du cannabis n’est encore que partiellement caractérisé.',
+    ppTag6:'Revue systématique', pp6desc:'Revue systématique de cas réels : 31 rapports d’interactions entre cannabinoïdes et 16 médicaments à marge thérapeutique étroite, portant sur 889 personnes. Dans 18 rapports (58 %), un taux sanguin inattendu du médicament a été constaté. Warfarine, valproate, tacrolimus et sirolimus sont les plus cités.',
+    ppTag7:'Étude fondatrice', pp7desc:'Montre que des neurones cérébraux en culture produisent et libèrent l’anandamide à partir d’un nouveau précurseur phospholipidique, et que l’anandamide est rapidement captée et dégradée. Appuie le rôle de l’anandamide comme messager propre aux neurones.',
+    ppTag8:'Étude de marché', pp8desc:'A analysé 84 produits au CBD achetés en ligne : seuls 30,95 % contenaient la quantité indiquée (marge de ±10 %) ; 42,85 % contenaient plus de CBD qu’indiqué et 26,19 % moins. C’est pourquoi nous recommandons de toujours demander le COA.',
+    ppTag9:'Consensus clinique', pp9meta:'Collège américain des obstétriciens et gynécologues (ACOG) · 2025', pp9desc:'Document de consensus clinique de l’ACOG (octobre 2025) sur l’usage du cannabis pendant la grossesse et l’allaitement.',
     verEstudioOriginal:'Voir l\u2019étude originale',
     scNote:'Un petit échantillon parmi de nombreux chercheurs actifs dans ce domaine — en production, cet annuaire s’enrichirait de profils vérifiés (LinkedIn, ORCID, affiliation institutionnelle).',
     scRole1:'Génomique &amp; taxonomie', sc1desc:'Université du Colorado à Boulder · fondatrice de l’Agricultural Genomics Foundation. Dirige la recherche qui remet en question la classification indica/sativa.',
@@ -5163,23 +5113,22 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     scRole14:'Psychologie \u0026 santé publique', sc14desc:'Université Chrisland, Nigeria — autrice principale d’une revue systématique de novembre 2025 sur les habitudes de consommation de cannabis au Nigeria, l’une des rares études rigoureuses sur le sujet en Afrique subsaharienne, une région historiquement sous-représentée dans la recherche scientifique sur le cannabis.',
     scRole15:'Neurochirurgie', sc15desc:'Président de l’Association Clinique Japonaise des Cannabinoïdes. Professeur de neurochirurgie à l’Université St. Marianna (Japon), désigné chercheur principal par le ministère japonais de la Santé en 2020 et 2024. A témoigné devant la Diète japonaise en 2023 sur la réforme légale. Dirige le premier essai clinique du Japon sur les cannabinoïdes pour l’épilepsie pharmacorésistante, lancé en décembre 2024.',
     scRole16:'Épidémiologie', sc16desc:'Centre médical universitaire de Hambourg-Eppendorf et Université de Leipzig, Allemagne. Plus de 9 300 citations académiques. Auteur principal des études les plus récentes sur les effets réels de la légalisation allemande de 2024, sur la conduite sous influence et le marché médical.',
-    ppTag10:'Étude sociale', pp10desc:'Une étude réelle sur le potentiel thérapeutique du Cannabis sativa en psychothérapie, documentant comment le racisme structurel et la guerre contre la drogue limitent l’accès — publiée dans la première revue scientifique de cannabis du Brésil et d’Amérique latine.',
-    ppTag11:'Revue scientifique', pp11desc:'Une revue publiée par la Fiocruz (l’une des institutions de santé publique les plus prestigieuses d’Amérique latine) sur la façon dont le CBD affecte l’extinction et la reconsolidation des souvenirs aversifs, ainsi que l’expression de la peur et de l’anxiété chez les modèles animaux.',
-    ppTag12:'Revue systématique', pp12desc:'Une équipe multidisciplinaire de l’Université de Vérone, dirigée par le Pr Vittorio Schweiger — constate une réduction réelle de la douleur dans plusieurs revues systématiques, avec un appel explicite à calibrer les attentes selon des preuves réelles, et non des promesses.',
-    ppTag13:'Étude comparative', pp13desc:'Compare l’Allemagne (après la légalisation de 2024) à l’Autriche comme témoin — établit l’impact réel de la légalisation sur la conduite sous l’effet du cannabis.',
-    ppTag14:'Modèle mathématique', pp14desc:'Modélise mathématiquement si la légalisation allemande réduit ou augmente le dommage net pour la santé publique, en comparant moins de contaminants dans le produit légal à une possible hausse de la consommation.',
-    ppTag15:'Étude de marché', pp15desc:'Analyse 12 mois de données réelles issues d’une pharmacie en ligne — l’Allemagne est déjà le plus grand marché légal du cannabis en Europe (~200 tonnes en 2025).',
-    ppTag16:'Revue systématique', pp16desc:'Une revue couvrant la France, les Pays-Bas, la Belgique, l’Allemagne, la Tchéquie, l’Espagne, l’Italie, le Portugal, la Pologne, la Hongrie et plus encore — constate que le THC à haute puissance (+15-20 %) est associé à un risque 4 à 5 fois plus élevé de psychose de premier épisode.',
-    ppTag17:'Essai réglementaire', pp17desc:'L’institut Trimbos (l’agence nationale néerlandaise) teste du cannabis régulé dans 10 municipalités depuis 2025, avec une étude de référence sur les contaminants (pesticides, métaux lourds) comparant municipalités témoins et d’intervention.',
-    ppTag18:'Panorama mondial', pp18desc:'Un panorama mondial de l’accès au cannabis médical, avec un focus particulier sur la façon dont les pays en développement — Afrique comprise — accusent un retard réglementaire.',
-    ppTag19:'Analyse réglementaire', pp19desc:'Analyse la première révision majeure depuis 1948 de la loi japonaise sur le cannabis (2023), qui inclut un nouveau cadre de « recherche clinique spéciale » pour l’épilepsie pharmacorésistante.',
-    ppTag20:'Enquête nationale', pp20desc:'Une enquête auprès de 3 900 usagers japonais examine si le cannabis fonctionne réellement comme une « porte d’entrée » vers d’autres substances, avec des preuves causales limitées.',
-    ppTag21:'Étude comparative', pp21desc:'La première étude à différencier les profils de consommation entre les personnes consommant du cannabis et celles consommant d’autres substances psychotropes en Corée du Sud.',
-    ppTag22:'Revue comparative', pp22desc:'Compare différents modèles d’approvisionnement régulé — associations à but non lucratif, production étatique, pharmacies spécialisées — entre l’Allemagne, la Suisse, Malte, la Colombie, le Mexique et la Tchéquie.',
-    ppTag23:'Panorama des politiques', pp23desc:'Un panorama comparatif des politiques mondiales — seuls le Canada et l’Uruguay disposent d’une légalisation fédérale complète pour l’usage adulte ; analyse le changement de classification aux États-Unis fin 2025.',
-    ppTag24:'Enquête', pp24desc:'Une enquête réelle auprès de 4 040 lycéens et étudiants du sud du Maroc — a constaté que les femmes s’opposent davantage à l’usage médical du cannabis que les hommes, et perçoivent un risque plus élevé que la loi « décourage » l’arrêt de la consommation.',
-    ppTag25:'Revue systématique', pp25desc:'Couvre l’Irak, le Maroc, la Tunisie, le Liban et l’Égypte : la prévalence sur la vie entière rapportée varie de 0,7 % (Irak, écoliers) à 32 % (Liban et Égypte, étudiants universitaires).',
-    ppTag26:'Développement pharmaceutique', pp26desc:'En 2025, le laboratoire pharmaceutique marocain Pharma 5 a lancé le premier médicament 100 % marocain à base de CBD pour l’épilepsie résistante chez l’enfant — production complète, de la culture à la fabrication, sous la loi 13-21 (2021).',
+    ppTag10:'Étude sociale', pp10desc:'Revue intégrative de 10 articles sur le cannabis médical en psychothérapie : elle souligne son potentiel thérapeutique, mais aussi un accès limité à une partie de la population, marqué par le racisme structurel et la guerre contre la drogue.',
+    ppTag11:'Revue scientifique', pp11desc:'Revue narrative, publiée dans la Revista Fitos (Fiocruz), d’études chez le rat et la souris : le CBD semble accélérer l’extinction et/ou perturber la reconsolidation des souvenirs aversifs, et réduire les comportements de peur et d’anxiété. Ce sont des résultats précliniques, pas chez l’humain.',
+    ppTag12:'Revue systématique', pp12desc:'Équipe dirigée par Vittorio Schweiger (Université de Vérone). Selon la littérature examinée, le cannabis médical réduit la douleur par rapport au placebo de façon statistiquement significative : en moyenne de 0,43 à 0,70 point sur une échelle de 0 à 10. Aborde aussi les effets indésirables, les contre-indications et les aspects juridiques.',
+    ppTag13:'Étude comparative', pp13desc:'Compare l’Allemagne (après la légalisation d’avril 2024) à l’Autriche comme témoin, à l’aide d’enquêtes avant et après. Huit mois après la légalisation, elle ne trouve pas d’effet significatif à court terme sur la consommation ni sur la conduite sous l’effet du cannabis.',
+    ppTag14:'Modèle mathématique', pp14desc:'Modèle quantitatif qui compare le bénéfice de moins de contaminants dans le produit légal au risque d’une consommation accrue après la légalisation allemande. Il estime que les pertes de santé liées au trouble de l’usage du cannabis seraient environ 19 fois supérieures aux gains dus à la baisse de la contamination.',
+    ppTag15:'Étude de marché', pp15desc:'Étude de cas sur 12 mois de données d’une pharmacie en ligne allemande : les produits de fleurs disponibles sont passés de 266 à 401, le prix pour 10 mg de THC a baissé, et les produits à 20–29,9 % de THC représentaient plus des deux tiers de la demande.',
+    ppTag16:'Revue narrative', pp16desc:'Revue narrative de la littérature et des données publiées de 2015 à 2025 : le cannabis à forte puissance (plus de 15–25 % de THC) est constamment associé à des risques accrus de psychose, d’anxiété, de panique et de trouble de l’usage. En Europe centrale et orientale, beaucoup de ces problèmes ne sont ni détectés ni signalés.',
+    ppTag17:'Essai réglementaire', pp17desc:'Décrit le plan de l’expérience néerlandaise d’une filière légale « fermée » de cannabis récréatif : dix cultivateurs sous contrat approvisionnent les coffeeshops des communes d’intervention, tandis que rien ne change dans les communes témoins. Elle compare les deux groupes en santé publique, criminalité, sécurité et nuisances ; le terrain devait commencer début 2024 et durer quatre ans.',
+    ppTag18:'Panorama mondial', pp18desc:'Revue du cannabis médical en santé mondiale, avec des cas des États-Unis et d’Afrique. Elle note que les inégalités persistent : en Afrique, les patients font face à des obstacles systémiques pour obtenir une certification de cannabis médical.',
+    ppTag19:'Analyse réglementaire', pp19desc:'Analyse la réforme de 2023 de la loi japonaise, sa première grande révision depuis 1948 : les médicaments dérivés du cannabis relèvent du même cadre que les antalgiques opioïdes, l’usage industriel est élargi avec un seuil de THC strict, et de nouvelles sanctions pour la consommation sont créées. Entrée en vigueur le 12 décembre 2024.',
+    ppTag20:'Enquête nationale', pp20desc:'Enquête en ligne (janvier 2021) auprès de 3 900 personnes au Japon ayant déjà consommé du cannabis : le cannabis venait le plus souvent après l’alcool et le tabac, et menait rarement à d’autres drogues. Les résultats remettent en cause l’hypothèse de la « porte d’entrée » au Japon.',
+    ppTag21:'Étude comparative', pp21desc:'Enquête (mai–juillet 2024) auprès de 109 personnes consommant du cannabis et des stupéfiants et de 191 consommant des substances psychotropes en Corée du Sud. Le lien entre normes sociales, croyances de santé et sévérité de la consommation n’était significatif que dans le groupe des psychotropes.',
+    ppTag22:'Revue comparative', pp22desc:'Revue systématique des effets de la régulation de l’offre de cannabis dans cinq juridictions : Pays-Bas, Espagne, États américains ayant légalisé, Uruguay et Canada. Résultats communs : moins d’arrestations, plus de consommation chez les adultes (pas chez les adolescents) et plus de recours aux soins.',
+    ppTag23:'Panorama des politiques', pp23desc:'Article du Center for Cannabis Research and Policy de la Cannabis Control Commission du Massachusetts, qui présente la politique du cannabis dans différents pays comme une « quasi-expérience internationale ». Il s’agit de la partie 1.',
+    ppTag24:'Enquête', pp24desc:'Étude transversale sur les croyances et attitudes des jeunes au Maroc envers la législation sur le cannabis, et les facteurs associés. Auteurs notamment de l’Université Ibn Zohr.',
+    ppTag25:'Revue systématique', pp25desc:'Revue systématique de 48 études dans 13 pays arabes : la prévalence de l’usage au cours de la vie va de 0,7 % (Irak) à 9,4 % (Maroc) chez les élèves, et de 4,7 % (Tunisie) à 32 % (Liban et Égypte) chez les étudiants.',
     mdIndicH3:'Indications avec preuves cliniques', mdIndicP:'La douleur chronique, les nausées associées à la chimiothérapie et certains syndromes d’épilepsie réfractaire (avec du CBD purifié) disposent de preuves issues d’essais cliniques. D’autres indications ont des preuves préliminaires ou précliniques — le niveau de preuve compte autant que l’indication elle-même.',
     mdInteracH3:'Interactions à surveiller', mdInteracP:'Le cannabis peut interagir avec des anticoagulants et des sédatifs, entre autres médicaments. Tout patient sous traitement doit en parler à son médecin avant de débuter un usage médicinal.',
     mdInteracMecP:'Le mécanisme réel : le CBD, plus que le THC, inhibe plusieurs enzymes du système CYP450 — la même famille d\u2019enzymes qui métabolise la plupart des médicaments sur ordonnance. C\u2019est pourquoi les interactions ne sont pas des cas isolés rares, mais un schéma structurel : tout médicament dépendant de ces mêmes enzymes pour être métabolisé peut être affecté, dans un sens ou dans l\u2019autre (augmentation ou diminution de son taux réel dans le sang).',
@@ -5331,35 +5280,34 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     ngCar4h4:'Compliance officer', ngCar4role:'Conformité réglementaire · 70-120 k $', ngCar4p:'Garantit que l\u2019exploitation respecte la traçabilité, l\u2019étiquetage et les exigences de licence. L\u2019un des rôles avec les meilleures perspectives de croissance de toute l\u2019industrie, selon plusieurs rapports salariaux.',
     ngCar5h4:'Technicien d\u2019extraction', ngCar5role:'Transformation · 55-75 k $', ngCar5p:'Exploite des systèmes d\u2019extraction en circuit fermé à l\u2019hydrocarbure ou au CO2, transformant la fleur en huiles que tu as déjà vues dans Élaboration → <a onclick="showSub(&#39;elaboracion&#39;,&#39;vapes&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Vapes</a> et <a onclick="showSub(&#39;elaboracion&#39;,&#39;concentrados&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Concentrés</a>. Nécessite une formation en chimie ou en ingénierie, plus une formation spécifique en sécurité de laboratoire.',
     ngCar6h4:'Chef comestibles', ngCar6role:'Élaboration · 45-90 k $', ngCar6p:'Conçoit et produit des comestibles, avec une véritable maîtrise de la décarboxylation et du calcul précis de dosage par portion — les mêmes mathématiques que tu as vues dans <a onclick="showSub(&#39;elaboracion&#39;,&#39;comestibles&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Élaboration → Comestibles</a>, appliquées à l\u2019échelle commerciale.',
-    cmyEyebrow:'Communauté — bientôt', cmyTitle:'Rapports de terrain, vérifiés', cmySub:'Ce qui suit ci-dessous (rapports, diagnostics confirmés, questions modérées) nécessite des comptes utilisateurs et une modération réelle (backend) — c\u2019est le plan de construction, pas une simulation. Mais l\u2019annuaire de base juste en dessous est réel : il est vraiment enregistré, et toute personne utilisant l\u2019app peut le voir.',
-    cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays, ton type de profil, ta photo et ta bio sont publics — toute personne utilisant l’app peut les voir. Ne partage jamais ici de nom de famille complet, de téléphone, ni d’emplacement exact de culture.',
-    cmyCorreoLabel:'E-mail', cmyCorreoPrivado:'(privé, non affiché)', cmyCorreoPh:'toi@email.com',
-    cmyEnDesarrollo:'🚧 Cette fonctionnalité est en cours de développement — tu ne peux pas encore envoyer ni voir de rapports ici. C’est prévu, ce n’est pas une simulation.', cmySecViajeroReal:'Rapports de voyageurs', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
+    cmyEyebrow:'Communauté', cmyTitle:'Rapports de terrain de la communauté', cmySub:'Partage des rapports de culture, des diagnostics et des questions, commente et suis d’autres personnes. La Communauté et son annuaire ne sont visibles que par les personnes avec l’accès complet. Chaque publication est traduite automatiquement dans les 4 langues.',
+    cmySecUnirse:'Rejoins la plus grande communauté au monde', cmyPrivacidadNote:'Ton nom, ton pays, ton type de profil, ta photo et ta bio sont vus par les personnes avec l’accès complet à la plateforme. Les photos sont dans un stockage public : quiconque a le lien direct d’une image peut l’ouvrir. Ne partage jamais ici ton nom de famille complet, ton téléphone ni l’emplacement exact de ta culture.',
+    cmyCorreoLabel:'E-mail', cmyCorreoPrivado:'(privé, non affiché)', cmyCorreoPh:'toi@email.com', cmySecViajeroReal:'Rapports de voyageurs', cmyViajeroIntro:'Expériences réelles aux frontières et à la douane, par pays. Les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule — ce sont des informations d\u2019autres voyageurs, pas un remplacement des informations officielles dans Légal &amp; Voyage.',
     cmyViajeroPaisLabel:'Pays où tu as voyagé', cmyViajeroTextoLabel:'Ton expérience', cmyViajeroTextoPh:'Ce qui s\u2019est passé à la frontière ou à la douane, sans données personnelles', cmyViajeroBtn:'Partager l\u2019expérience', cmyViajeroExito:'Merci ! Ton expérience est maintenant dans la liste ci-dessous.', cmyViajeroVacio:'Aucune expérience partagée pour l\u2019instant — sois la première personne.',
     cmySecCultivoReal:'Rapports de culture', cmyCultivoIntro:'De courts journaux liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle de Culture.', cmyCultivoMetodoLabel:'Méthode utilisée', cmyCultivoTextoLabel:'Ton expérience', cmyCultivoTextoPh:'Ce qui a fonctionné ou non avec cette méthode', cmyCultivoBtn:'Partager le rapport', cmyCultivoExito:'Merci ! Ton rapport est maintenant dans la liste ci-dessous.', cmyCultivoVacio:'Aucun rapport pour l\u2019instant — sois la première personne.',
     cmySecDiagReal:'Confirmations de diagnostic', cmyDiagIntro:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a fonctionné pour moi », lié à une véritable fiche <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>.', cmyDiagProblemaLabel:'Ce que tu as eu', cmyDiagTextoLabel:'Ce qui a fonctionné pour toi', cmyDiagTextoPh:'Ce que tu as fait et comment ça s\u2019est passé', cmyDiagBtn:'Partager la confirmation', cmyDiagExito:'Merci ! Ta confirmation est maintenant dans la liste ci-dessous.', cmyDiagVacio:'Aucune confirmation pour l\u2019instant — sois la première personne.',
-    cmySecPreguntasReal:'Questions ouvertes', cmyPreguntasNota:'Seules les questions sont publiées ici, pas les réponses — répondre en toute sécurité nécessite une vraie modération, qui n\u2019existe pas encore. Pour l\u2019instant, c\u2019est un endroit pour voir ce que la communauté se demande.', cmyPreguntaPh:'Ta question pour la communauté', cmyPreguntaBtn:'Publier la question', cmyPreguntaExito:'C\u2019est fait ! Ta question est maintenant dans la liste ci-dessous.', cmyPreguntaVacio:'Aucune question pour l\u2019instant — sois la première personne.',
+    cmySecPreguntasReal:'Questions ouvertes', cmyPreguntasNota:'Publie ta question : les personnes avec qui vous vous suivez mutuellement peuvent répondre dans les commentaires. Personne ne vérifie les réponses avant leur publication, compare-les donc toujours avec les leçons de la plateforme.', cmyPreguntaPh:'Ta question pour la communauté', cmyPreguntaBtn:'Publier la question', cmyPreguntaExito:'C\u2019est fait ! Ta question est maintenant dans la liste ci-dessous.', cmyPreguntaVacio:'Aucune question pour l\u2019instant — sois la première personne.',
     cmy5porque:'Pourquoi celle-ci demande plus de soin que les autres : sans modération réelle, quelqu\u2019un pourrait écrire quelque chose qui ressemble à un conseil médical précis sans que personne ne le révise avant publication — c\u2019est justement celui qui a le plus besoin de supervision avant d\u2019être ouvert.',
     cmyNombreLabel:'Nom ou surnom', cmyNombrePh:'Comment tu veux être vu(e)', cmyPaisLabel:'Pays', cmyTipoLabel:'Qu\u2019est-ce qui te décrit le mieux ?',
     cmyTipoCultivador:'Cultivateur/trice', cmyTipoNegocio:'Propriétaire d\u2019entreprise', cmyTipoEntusiasta:'Consommateur/trice — passionné(e)', cmyTipoSalud:'Professionnel(le) de santé', cmyTipoAprendiendo:'Juste en train d\u2019apprendre', cmyTipoOtro:'Autre',
     cmyAvatarBtn:'Photo de profil', cmyAvatarNeedsName:'\u00c9cris d\u2019abord ton nom ou pseudo.', cmyAvatarSubiendo:'Envoi de la photo\u2026', cmyAvatarListo:'C\u2019est fait ! Ta photo de profil est en place.',
     cmyCropTitle:'Ajuste ta photo', cmyCropHelp:'Fais glisser l\u2019image et utilise la molette de la souris (ou pince sur mobile) pour zoomer. Choisis ce que tu veux voir dans le cercle.', cmyCropPreviewLabel:'Aper\u00e7u', cmyCropCancelar:'Annuler', cmyCropConfirmar:'Utiliser cette photo',
-    perfilBack:'\u2190 Retour \u00e0 la communaut\u00e9', perfilGateMsg:'Connecte-toi pour voir ton profil.', perfilNoDisponible:'Ce profil n\u2019est pas disponible.', perfilEditar:'Ton profil', perfilBioLabel:'Bio', perfilBioPh:'Dis \u00e0 la communaut\u00e9 qui tu es (facultatif)', perfilConfigCuenta:'\u2699\ufe0f Param\u00e8tres du compte (e-mail, abonnement, d\u00e9connexion)', perfilMisPublicaciones:'Publications', perfilSeguir:'Suivre', perfilDejarSeguir:'Ne plus suivre', perfilMutuo:'Vous vous suivez mutuellement', perfilCompleta:'Compl\u00e8te ton profil pour appara\u00eetre dans l\u2019annuaire et publier.', perfilSinPostsPropio:'Tu n\u2019as encore rien publi\u00e9.', perfilSinPostsOtro:'N\u2019a encore rien publi\u00e9.', perfilVerCompleto:'Voir le profil complet', cmyDirectorioIntro:'Touche n\u2019importe qui pour voir son profil. Tu veux appara\u00eetre ici ? Compl\u00e8te le tien depuis <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ton profil</a>.',
+    perfilBack:'\u2190 Retour \u00e0 la communaut\u00e9', perfilGateMsg:'Connecte-toi pour voir ton profil.', perfilNoDisponible:'Ce profil n\u2019est pas disponible.', perfilEditar:'Ton profil', perfilBioLabel:'Bio', perfilBioPh:'Dis \u00e0 la communaut\u00e9 qui tu es (facultatif)', perfilConfigCuenta:'⚙️ Paramètres du compte (e-mail, accès, déconnexion)', perfilMisPublicaciones:'Publications', perfilSeguir:'Suivre', perfilDejarSeguir:'Ne plus suivre', perfilMutuo:'Vous vous suivez mutuellement', perfilCompleta:'Compl\u00e8te ton profil pour appara\u00eetre dans l\u2019annuaire et publier.', perfilSinPostsPropio:'Tu n\u2019as encore rien publi\u00e9.', perfilSinPostsOtro:'N\u2019a encore rien publi\u00e9.', perfilVerCompleto:'Voir le profil complet', cmyDirectorioIntro:'Touche n\u2019importe qui pour voir son profil. Tu veux appara\u00eetre ici ? Compl\u00e8te le tien depuis <a onclick="showProfile()" style="color:var(--teal); cursor:pointer; text-decoration:underline;">Ton profil</a>.',
     cmyTipoPostGeneral:'G\u00e9n\u00e9ral', cmyTipoPostViajero:'Voyage', cmyTipoPostCultivo:'Culture', cmyTipoPostDiagnostico:'Diagnostic', cmyTipoPostPregunta:'Question',
     cmySecDescubrir:'D\u00e9couvrir', cmyDescubrirIntro:'Des profils r\u00e9els de l\u2019annuaire. Glisse vers la droite pour suivre quelqu\u2019un et voir ses publications ; vers la gauche pour passer. Si vous vous suivez mutuellement, les commentaires se d\u00e9bloquent.', cmyDescubrirGate:'Connecte-toi pour utiliser D\u00e9couvrir.', cmyDescubrirEmpty:'Plus de profils pour l\u2019instant. Reviens plus tard.', cmyDescubrirPasar:'\u2715 Passer', cmyDescubrirSeguir:'Suivre \u2713', cmyDescubrirSinBio:'Pas encore de bio.',
     cmySecFeed:'Publications', cmyFeedIntro:'Le fil des personnes que tu suis, plus les tiennes. Chaque publication est traduite automatiquement dans ta langue. Les commentaires se d\u00e9bloquent quand vous vous suivez mutuellement.', cmyFeedGate:'Connecte-toi pour publier et voir le fil.', cmyFeedVacio:'Pas encore de publications. Suis quelqu\u2019un dans D\u00e9couvrir, ou publie en premier.', cmyPostPh:'Que veux-tu partager avec la communaut\u00e9 ?', cmyPostFoto:'Photo', cmyPostBtn:'Publier', cmyPostEnviando:'Publication\u2026', cmyPostExito:'Publi\u00e9 !', cmyComentarios:'Commentaires', cmyComentariosVacio:'Pas encore de commentaires.', cmyComentarioPh:'\u00c9cris un commentaire\u2026', cmyComentarBtn:'Commenter', cmyComentarioBloqueado:'Les commentaires se d\u00e9bloquent quand toi et cette personne vous suivez mutuellement.', cmyVerOriginal:'Voir l\u2019original', cmyVerTraduccion:'Voir la traduction', cmyEliminar:'Supprimer', cmyConfirmar:'S\u00fbr ?', cmyMiembroDesconocido:'Membre',
     cmyUnirmeBtn:'Rejoindre l\u2019annuaire', cmyActualizarBtn:'Mettre \u00e0 jour ma fiche', cmyJoinNeedsAccount:'Il te faut un compte pour appara\u00eetre dans l\u2019annuaire. Cr\u00e9es-en un dans Compte.', cmyJoinExito:'C\u2019est fait ! Tu apparais maintenant dans l\u2019annuaire ci-dessous.', cmySecMiembros:'Membres de la communauté', cmyVacioMsg:'Personne n\u2019a encore rejoint — sois la première personne.',
     cmySecTipos:'La fonctionnalité qui demande le plus de supervision avant ouverture',
-    cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', cmy1p:'Journaux type carnet, liés à une méthode spécifique, pour croiser l\u2019expérience réelle avec la fiche officielle.',
-    cmy2h4:'Confirmations de diagnostic', cmy2sci:'Se connecte à <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>', cmy2p:'Le plus précieux de tous : « j\u2019ai eu exactement ça et ça a marché pour moi », lié à une vraie fiche de nuisible ou de maladie.',
+    cmy1h4:'Rapports de culture', cmy1sci:'Se connecte à Culture', 
+    cmy2h4:'Confirmations de diagnostic', cmy2sci:'Se connecte à <a onclick="showSub(&#39;cultivo&#39;,&#39;diagnostico&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Culture → Diagnostic</a>', 
     cmy3h4:'Rapports de voyageurs', cmy3sci:'Se connecte à Légal &amp; Voyage', cmy3p:'Expériences réelles aux frontières et à la douane par pays — les lois changent plus vite que n\u2019importe quelle app ne peut se mettre à jour seule.',
     cmy4h4:'Questions et réponses', cmy4sci:'Modérées', cmy4p:'Un profil vérifié peut répondre avec un poids visuellement plus important qu\u2019un profil anonyme.',
     cmy5h4:'Témoignages médicaux', cmy5sci:'Avec avertissement obligatoire', cmy5p:'Toujours visible : expérience personnelle, pas un conseil médical. Jamais affiché sans cette étiquette.',
     cmySecVerif:'Vérification', cmyVerifP:'Un profil professionnel enregistré dans Affaires (master grower, compliance officer, etc.) peut demander un badge vérifié — ses réponses se distinguent visuellement. Chaque publication porte une étiquette permanente : <b>« Vérifié par l\u2019app »</b> (donnée officielle) ou <b>« Rapport communautaire, non vérifié »</b> — jamais mélangés sans distinction claire.',
-    cmySecLineas:'Lignes rouges', cmyLineasP:'<b>Zéro marketplace</b> — aucun achat-vente ni échange de coordonnées pour vendre ; c\u2019est ce qui permet de rester conforme aux politiques des boutiques d\u2019applications. <b>Zéro emplacement de culture précis</b>, pour la sécurité. Aucun témoignage médical n\u2019est publié sans l\u2019avertissement visible.',
+    cmySecLineas:'Lignes rouges', cmyLineasP:'<b>Zéro marketplace</b> — aucun achat-vente ni échange de coordonnées pour vendre ; c\u2019est ce qui permet de rester conforme aux politiques des plateformes où elle fonctionne. <b>Zéro emplacement de culture précis</b>, pour la sécurité. Aucun témoignage médical n\u2019est publié sans l\u2019avertissement visible.',
     vrEyebrow:'Variétés &amp; cultivars', vrTitle:'Base de données consultable', vrSub:'On ne dit jamais « strain » — c\u2019est un terme de microbiologie (bactéries, virus, champignons), pas de botanique. On utilise <b>variété</b> (adaptation naturelle, comme une landrace) ou <b>cultivar</b> (croisement développé intentionnellement par un breeder).',
     vrTodos:'Tous', vrTipoI:'Type I (THC)', vrTipoII:'Type II (équilibré)', vrTipoIII:'Type III (CBD)',
-    vrTipoPrefix:'Type', vrLinaje:'Lignée', vrTerpenos:'Terpènes', vrDificultad:'Difficulté', vrVisteTeaser:'Tu as vu', vrDe:'sur', vrDesbloquea:'Débloque la base de données complète avec Premium.',
+    vrTipoPrefix:'Type', vrLinaje:'Lignée', vrTerpenos:'Terpènes', vrDificultad:'Difficulté', vrVisteTeaser:'Tu as vu', vrDe:'sur', vrDesbloquea:'Débloque la base de données complète avec l’accès complet.',
     modSegTitle:'Sécurité', modSegDesc:'Animaux de compagnie, interactions médicamenteuses, conduite, grossesse et allaitement, et santé mentale — avec des preuves réelles.',
     eySeg:'Sécurité', segTitle:'Ce qui peut mal tourner, et comment l\u2019éviter', segSub:'Les mêmes preuves rigoureuses que le reste de l\u2019app, appliquées aux risques réels — animaux, médicaments, conduite, grossesse et santé mentale.',
     subMascotas:'Animaux', subInteracciones:'Médicaments', subManejo:'Conduite', subEmbarazo:'Grossesse &amp; allaitement', subSaludFem:'Santé féminine', subMental:'Santé mentale', subOcupacional:'Travail &amp; production', subDeporte:'Sport', subMayores:'Personnes âgées', subCorazon:'Cœur &amp; tension artérielle',
@@ -5460,7 +5408,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     flH3:'Au-delà de la consommation : la fibre de chanvre dans la fabrication 3D', flP1:'Des chercheurs français et libanais étudient comment combiner des fibres de chanvre avec des sous-produits agricoles pour créer des matériaux composites écologiques, avec des applications réelles dans les véhicules de transport et d\u2019autres industries — une véritable collaboration internationale (juillet 2026), hors du circuit habituel de consommation.',
     vrFloracion:'Floraison',
     cpToggleH3:'⚖️ Comparer deux cultivars côte à côte', cpToggleP:'Choisis-en deux et vois les vraies différences en un coup d\u2019œil — puissance, terpènes, floraison et plus.',
-    cpLockedMsg:'Comparer les cultivars complets est un outil Premium — débloque-le pour choisir n\u2019importe quelle paire parmi les 19 cultivars.',
+    cpLockedMsg:'Comparer les cultivars complets fait partie de l’accès complet — débloque-le pour choisir n’importe quelle paire parmi les 19 cultivars.',
     fsSecTitle:'Full spectrum, broad spectrum et isolat : l\u2019étiquette que presque personne n\u2019explique',
     fsIntroP:'Ces trois termes apparaissent sur presque tous les produits commerciaux, et se rattachent directement à l\u2019« effet d\u2019entourage » du Dr Russo déjà vu dans <a onclick="showSub(&#39;ciencia&#39;,&#39;terpenos&#39;)" style="color:var(--teal); cursor:pointer; font-weight:600; text-decoration:underline;">Science → Terpènes et flavonoïdes</a> — ils décrivent la part du profil chimique d\u2019origine de la plante qui subsiste dans l\u2019extrait final.',
     fsFullLabel:'Full spectrum (spectre complet)', fsFullVal:'Conserve tous les cannabinoïdes, terpènes et flavonoïdes d\u2019origine, y compris des traces de THC — vise l\u2019effet d\u2019entourage le plus fort possible',
@@ -5508,7 +5456,7 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     eduIntroH3:'De vraies universités qui enseignent cela — pas toutes égales', eduIntroP:'Il existe une vraie différence entre une université accréditée offrant un diplôme en cannabis, et une plateforme privée de « certification » sans accréditation académique traditionnelle. Ici, nous n\u2019incluons que des institutions académiques vérifiées — avec une véritable accréditation, pas seulement leur propre parole.',
     eduFiltroPaisLabel:'Pays', eduCualquiera:'N\u2019importe lequel', eduPaisEEUU:'États-Unis', eduPaisCanada:'Canada',
     eduFiltroEspLabel:'Spécialité', eduEspCultivo:'Culture &amp; horticulture', eduEspCiencia:'Science &amp; chimie', eduEspMedicina:'Médecine &amp; pharmacie', eduEspNegocio:'Commerce &amp; industrie', eduResultados:'résultat(s)',
-    eduSunyP:'Mineure en Cannabis Industry, certificat Specialty Crops &amp; Cannabis Production, cumulable vers un A.A.S. ou B.Tech en horticulture. Inclut la propre parcelle de recherche sur le cannabis de l\u2019université.',
+    eduSunyP:'Mineure en Cannabis Industry et certificat Specialty Crops &amp; Cannabis Production. Inclut la propre parcelle de recherche sur le cannabis de l\u2019université.',
     eduCsuP:'Une licence complète (BS) en Cannabis Biology and Chemistry, accréditée par la Higher Learning Commission — l\u2019un des diplômes universitaires de 4 ans les plus complets sur le sujet, avec des concentrations en agriculture du chanvre, analytique, produits naturels et gestion industrielle.',
     eduCuP:'Trois programmes de Cannabis Science and Medicine, d\u2019un cours d\u2019introduction de 8 semaines à un master complet — tous en ligne, enseignés par des experts internationaux du domaine, au sein d\u2019une véritable école de pharmacie.',
     eduSaskP:'Son certificat Prairie Horticulture inclut désormais un cours spécifique de Production de Culture de Cannabis — propagation, génétique et critères de récolte, tout en ligne.',
@@ -5570,298 +5518,47 @@ coSecCorte:'La coupe : deux façons de procéder', coC1h4:'Plante entière suspe
     adInquiryEnviando:'Envoi…', adInquiryOk:'✓ Reçu — on te recontacte bientôt.', adInquiryError:'Échec de l’envoi. Réessaie.'}
 };
 
-/* Subscription / free-trial strings (appended so overrides win). */
+/* Account status strings (appended so overrides win). */
 translations.es = Object.assign(translations.es, {
-  "cuentaEstadoTitle": "Suscripción",
-  "cuentaPagoSeguroNote": "Tus pagos los procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.",
-  "pmPagoSeguroNote": "El pago lo procesa de forma segura un proveedor externo (Payment Nerds). Mother Verde nunca ve ni guarda tu número de tarjeta — solo el estado de tu suscripción.",
-  "pmH2": "Todo el codex, sin límites.",
-  "pmSubhead": "Prueba 3 días gratis. Cancela cuando quieras, tú misma, desde Cuenta.",
-  "pmTrialTag": "Prueba gratis de 3 días",
-  "pmTrialDisclosure": "Después de 3 días, se cobrará automáticamente <b>$7.10/mes</b> a la tarjeta que ingreses, salvo que canceles antes.",
-  "pmPriceRowLabel": "Precio",
-  "pmPriceRowValue": "$7.10 / mes",
-  "pmTrialEndsLabel": "Fin de la prueba",
-  "pmFirstChargeLabel": "Primer cobro",
-  "pmTrialCancelInfo": "Puedes cancelar en cualquier momento desde Cuenta → Suscripción, tú misma, sin escribir a nadie. Si cancelas durante la prueba, no se te cobra nada.",
-  "pmCardPending": "Los campos de tarjeta se activarán cuando se conecte el procesador de pagos (Payment Nerds). Por ahora, en pruebas, la prueba gratis se activa sin tarjeta.",
-  "pmConsentLabel": "Entiendo que, si no cancelo antes, al terminar la prueba de 3 días se me cobrará $7.10 cada mes de forma automática hasta que cancele.",
-  "pmStartTrialBtn": "Empezar prueba gratis",
-  "pmConsentRequired": "Marca la casilla de confirmación para continuar.",
-  "pmStarting": "Activando tu prueba…",
-  "pmNotLiveMsg": "El cobro automático todavía no está disponible. Vuelve pronto.",
-  "pmComingSoonBtn": "Disponible muy pronto",
-  "pmComingSoonMsg": "La activación de pagos (Payment Nerds) estará disponible en los próximos días. El precio y las condiciones que ves ya son los definitivos.",
-  "pmSignInFirst": "Inicia sesión para empezar",
-  "pmManageBtn": "Gestionar mi suscripción",
-  "subNoneDetail": "Con Premium desbloqueas las 10 zonas completas, sin anuncios, por {price}/mes — después de 3 días gratis.",
-  "subStartTrialBtn": "Empezar prueba gratis de 3 días",
-  "subTrialActiveHead": "Prueba gratis activa — día {n} de 3",
-  "subTrialActiveDetail": "Tienes acceso completo hasta el {date}. El {charge} se cobrará {price}/mes automáticamente, salvo que canceles antes.",
-  "subCancelTrialBtn": "Cancelar prueba",
-  "subTrialCanceledHead": "Prueba cancelada",
-  "subTrialCanceledDetail": "Tienes acceso hasta el {date}. No se te cobrará nada.",
-  "subReactivateTrialBtn": "Reactivar la prueba",
-  "subActiveHead": "Premium activo",
-  "subActiveDetail": "Tu suscripción se renueva el {date} por {price}/mes.",
-  "subCancelBtn": "Cancelar suscripción",
-  "subActiveCanceledHead": "Suscripción cancelada",
-  "subActiveCanceledDetail": "Mantienes el acceso Premium hasta el {date}. No se renovará y no se te cobrará de nuevo.",
-  "subReactivateBtn": "Reactivar suscripción",
-  "subPastDueHead": "Problema con el cobro",
-  "subPastDueDetail": "No pudimos procesar el último pago. Actualiza tu tarjeta para no perder el acceso Premium.",
-  "subUpdateCardBtn": "Actualizar tarjeta",
-  "subBlockedHead": "Acceso Premium pausado",
-  "subBlockedDetail": "Tu prueba terminó y no pudimos completar el cobro. El acceso Premium está pausado hasta que actualices tu tarjeta.",
-  "subCanceledHead": "Sin suscripción activa",
-  "subCanceledDetail": "Ya usaste tu prueba gratis. Puedes volver a Premium cuando quieras.",
-  "subResubscribeBtn": "Volver a Premium ({price}/mes)",
   "subLoading": "Cargando el estado de tu cuenta…",
-  "subCancelConfirmTrial": "Si cancelas ahora, conservas el acceso hasta que termine la prueba y no se te cobrará nada. ¿Cancelar la prueba?",
-  "subCancelConfirmSub": "Si cancelas, mantienes Premium hasta el final del período ya pagado y no se renovará. ¿Cancelar la suscripción?",
-  "subCancelConfirmYes": "Sí, cancelar",
-  "subCancelConfirmNo": "Volver",
-  "subCancelDone": "Listo. Tu cancelación quedó registrada.",
-  "subWorking": "Un momento…",
-  "subReactivateDone": "Listo. Tu suscripción sigue activa.",
-  "subUpdateCardPending": "La actualización de tarjeta estará disponible cuando se conecte Payment Nerds.",
-  "subResubscribePending": "La re-suscripción estará disponible cuando se conecte Payment Nerds.",
-  "subErrTrialUsed": "Ya usaste tu prueba gratis en esta cuenta.",
-  "subErrAlready": "Ya tienes una suscripción activa.",
-  "subErrNotLive": "El cobro automático todavía no está disponible.",
-  "subErrAuth": "Inicia sesión para continuar.",
-  "subErrGeneric": "Algo falló. Intenta de nuevo en un momento.",
-  "trialReminderBannerText": "Tu prueba gratis termina mañana. El {charge} se cobrará {price} a tu tarjeta, salvo que canceles antes.",
-  "trialBlockedBannerText": "Tu acceso Premium está pausado: no pudimos completar el cobro de {price}. Actualiza tu tarjeta para reactivarlo.",
-  "trialBannerManageBtn": "Ver mi suscripción",
-  "trialBlockedBtn": "Actualizar tarjeta",
-  "tsTitle": "Tu prueba gratis empezó",
-  "tsAccessLine": "Tienes acceso completo a todo Mother Verde.",
-  "tsEndsLabel": "La prueba termina",
-  "tsChargeLabel": "Primer cobro ($7.10)",
-  "tsCancelNote": "El día antes te enviaremos un aviso. Puedes cancelar cuando quieras desde Cuenta → Suscripción, sin escribir a nadie. Si cancelas antes del cobro, no pagas nada.",
-  "tsGotIt": "Entendido",
-  "tsSeeSub": "Ver mi suscripción"
+  "stuckH": "No pudimos cargar tu cuenta",
+  "stuckP": "La conexión está tardando más de lo normal o algo falló. Tus datos están a salvo.",
+  "stuckRetry": "Reintentar", "stuckSignOut": "Cerrar sesión",
+  "stuckMail": "Si sigue pasando, escríbenos a {mail}.",
 });
 translations.en = Object.assign(translations.en, {
-  "cuentaEstadoTitle": "Subscription",
-  "cuentaPagoSeguroNote": "Your payments are securely processed by an external provider (Payment Nerds). Mother Verde never sees or stores your card number — only your subscription status.",
-  "pmPagoSeguroNote": "Payment is securely processed by an external provider (Payment Nerds). Mother Verde never sees or stores your card number — only your subscription status.",
-  "pmH2": "The whole codex, no limits.",
-  "pmSubhead": "Try 3 days free. Cancel anytime, yourself, from Account.",
-  "pmTrialTag": "3-day free trial",
-  "pmTrialDisclosure": "After 3 days, <b>$7.10/month</b> will automatically be charged to the card you enter, unless you cancel first.",
-  "pmPriceRowLabel": "Price",
-  "pmPriceRowValue": "$7.10 / month",
-  "pmTrialEndsLabel": "Trial ends",
-  "pmFirstChargeLabel": "First charge",
-  "pmTrialCancelInfo": "You can cancel anytime from Account → Subscription, by yourself, without contacting anyone. If you cancel during the trial, you are not charged.",
-  "pmCardPending": "Card fields will turn on once the payment processor (Payment Nerds) is connected. For now, in testing, the free trial starts without a card.",
-  "pmConsentLabel": "I understand that unless I cancel first, when the 3-day trial ends I will be charged $7.10 every month automatically until I cancel.",
-  "pmStartTrialBtn": "Start free trial",
-  "pmConsentRequired": "Tick the confirmation box to continue.",
-  "pmStarting": "Starting your trial…",
-  "pmNotLiveMsg": "Automatic billing isn't available yet. Check back soon.",
-  "pmComingSoonBtn": "Available very soon",
-  "pmComingSoonMsg": "Payment activation (Payment Nerds) will be available in the next few days. The price and terms shown are final.",
-  "pmSignInFirst": "Sign in to start",
-  "pmManageBtn": "Manage my subscription",
-  "subNoneDetail": "Premium unlocks all 10 full zones, no ads, for {price}/month — after 3 days free.",
-  "subStartTrialBtn": "Start 3-day free trial",
-  "subTrialActiveHead": "Free trial active — day {n} of 3",
-  "subTrialActiveDetail": "You have full access until {date}. On {charge} you'll be charged {price}/month automatically, unless you cancel first.",
-  "subCancelTrialBtn": "Cancel trial",
-  "subTrialCanceledHead": "Trial canceled",
-  "subTrialCanceledDetail": "You keep access until {date}. You won't be charged.",
-  "subReactivateTrialBtn": "Reactivate trial",
-  "subActiveHead": "Premium active",
-  "subActiveDetail": "Your subscription renews on {date} for {price}/month.",
-  "subCancelBtn": "Cancel subscription",
-  "subActiveCanceledHead": "Subscription canceled",
-  "subActiveCanceledDetail": "You keep Premium access until {date}. It won't renew and you won't be charged again.",
-  "subReactivateBtn": "Reactivate subscription",
-  "subPastDueHead": "Payment problem",
-  "subPastDueDetail": "We couldn't process your last payment. Update your card so you don't lose Premium access.",
-  "subUpdateCardBtn": "Update card",
-  "subBlockedHead": "Premium access paused",
-  "subBlockedDetail": "Your trial ended and we couldn't complete the charge. Premium access is paused until you update your card.",
-  "subCanceledHead": "No active subscription",
-  "subCanceledDetail": "You've already used your free trial. You can go Premium again anytime.",
-  "subResubscribeBtn": "Back to Premium ({price}/month)",
   "subLoading": "Loading your account status…",
-  "subCancelConfirmTrial": "If you cancel now, you keep access until the trial ends and you won't be charged. Cancel the trial?",
-  "subCancelConfirmSub": "If you cancel, you keep Premium until the end of the period you've paid for, and it won't renew. Cancel the subscription?",
-  "subCancelConfirmYes": "Yes, cancel",
-  "subCancelConfirmNo": "Go back",
-  "subCancelDone": "Done. Your cancellation is recorded.",
-  "subWorking": "One moment…",
-  "subReactivateDone": "Done. Your subscription stays active.",
-  "subUpdateCardPending": "Card updates will be available once Payment Nerds is connected.",
-  "subResubscribePending": "Re-subscribing will be available once Payment Nerds is connected.",
-  "subErrTrialUsed": "You've already used your free trial on this account.",
-  "subErrAlready": "You already have an active subscription.",
-  "subErrNotLive": "Automatic billing isn't available yet.",
-  "subErrAuth": "Sign in to continue.",
-  "subErrGeneric": "Something went wrong. Try again in a moment.",
-  "trialReminderBannerText": "Your free trial ends tomorrow. On {charge}, {price} will be charged to your card unless you cancel first.",
-  "trialBlockedBannerText": "Your Premium access is paused: we couldn't complete the {price} charge. Update your card to reactivate it.",
-  "trialBannerManageBtn": "View my subscription",
-  "trialBlockedBtn": "Update card",
-  "tsTitle": "Your free trial has started",
-  "tsAccessLine": "You have full access to all of Mother Verde.",
-  "tsEndsLabel": "Trial ends",
-  "tsChargeLabel": "First charge ($7.10)",
-  "tsCancelNote": "We'll send a reminder the day before. Cancel anytime from Account → Subscription — without contacting anyone. Cancel before the charge and you pay nothing.",
-  "tsGotIt": "Got it",
-  "tsSeeSub": "View my subscription"
+  "stuckH": "We couldn’t load your account",
+  "stuckP": "The connection is taking longer than usual or something went wrong. Your data is safe.",
+  "stuckRetry": "Try again", "stuckSignOut": "Sign out",
+  "stuckMail": "If it keeps happening, write to us at {mail}.",
 });
 translations.de = Object.assign(translations.de, {
-  "cuentaEstadoTitle": "Abo",
-  "cuentaPagoSeguroNote": "Deine Zahlungen werden sicher von einem externen Anbieter (Payment Nerds) verarbeitet. Mother Verde sieht oder speichert deine Kartennummer niemals — nur deinen Abo-Status.",
-  "pmPagoSeguroNote": "Die Zahlung wird sicher von einem externen Anbieter (Payment Nerds) verarbeitet. Mother Verde sieht oder speichert deine Kartennummer niemals — nur deinen Abo-Status.",
-  "pmH2": "Der ganze Codex, ohne Grenzen.",
-  "pmSubhead": "3 Tage kostenlos testen. Jederzeit selbst kündbar über Konto.",
-  "pmTrialTag": "3 Tage kostenlos testen",
-  "pmTrialDisclosure": "Nach 3 Tagen werden automatisch <b>7,10 $/Monat</b> von der eingegebenen Karte abgebucht, sofern du nicht vorher kündigst.",
-  "pmPriceRowLabel": "Preis",
-  "pmPriceRowValue": "7,10 $ / Monat",
-  "pmTrialEndsLabel": "Testphase endet",
-  "pmFirstChargeLabel": "Erste Abbuchung",
-  "pmTrialCancelInfo": "Du kannst jederzeit selbst über Konto → Abo kündigen, ohne jemanden zu kontaktieren. Wenn du während der Testphase kündigst, wird nichts berechnet.",
-  "pmCardPending": "Die Kartenfelder werden aktiviert, sobald der Zahlungsanbieter (Payment Nerds) angebunden ist. Vorerst startet die Testphase im Test ohne Karte.",
-  "pmConsentLabel": "Mir ist bewusst, dass mir nach Ablauf der 3-tägigen Testphase automatisch 7,10 $ pro Monat berechnet werden, bis ich kündige, sofern ich nicht vorher kündige.",
-  "pmStartTrialBtn": "Kostenlose Testphase starten",
-  "pmConsentRequired": "Bestätige das Kästchen, um fortzufahren.",
-  "pmStarting": "Testphase wird gestartet…",
-  "pmNotLiveMsg": "Die automatische Abrechnung ist noch nicht verfügbar. Schau bald wieder vorbei.",
-  "pmComingSoonBtn": "Sehr bald verfügbar",
-  "pmComingSoonMsg": "Die Zahlungsfreischaltung (Payment Nerds) ist in den nächsten Tagen verfügbar. Preis und Bedingungen sind bereits endgültig.",
-  "pmSignInFirst": "Zum Starten anmelden",
-  "pmManageBtn": "Mein Abo verwalten",
-  "subNoneDetail": "Premium schaltet alle 10 vollständigen Bereiche frei, werbefrei, für {price}/Monat — nach 3 kostenlosen Tagen.",
-  "subStartTrialBtn": "3 Tage kostenlos testen",
-  "subTrialActiveHead": "Testphase aktiv — Tag {n} von 3",
-  "subTrialActiveDetail": "Du hast vollen Zugriff bis zum {date}. Am {charge} werden automatisch {price}/Monat abgebucht, sofern du nicht vorher kündigst.",
-  "subCancelTrialBtn": "Testphase kündigen",
-  "subTrialCanceledHead": "Testphase gekündigt",
-  "subTrialCanceledDetail": "Du behältst den Zugriff bis zum {date}. Es wird nichts berechnet.",
-  "subReactivateTrialBtn": "Testphase reaktivieren",
-  "subActiveHead": "Premium aktiv",
-  "subActiveDetail": "Dein Abo verlängert sich am {date} für {price}/Monat.",
-  "subCancelBtn": "Abo kündigen",
-  "subActiveCanceledHead": "Abo gekündigt",
-  "subActiveCanceledDetail": "Du behältst den Premium-Zugriff bis zum {date}. Es verlängert sich nicht und es wird nichts mehr berechnet.",
-  "subReactivateBtn": "Abo reaktivieren",
-  "subPastDueHead": "Zahlungsproblem",
-  "subPastDueDetail": "Wir konnten deine letzte Zahlung nicht verarbeiten. Aktualisiere deine Karte, um den Premium-Zugriff nicht zu verlieren.",
-  "subUpdateCardBtn": "Karte aktualisieren",
-  "subBlockedHead": "Premium-Zugriff pausiert",
-  "subBlockedDetail": "Deine Testphase ist beendet und die Abbuchung war nicht möglich. Der Premium-Zugriff ist pausiert, bis du deine Karte aktualisierst.",
-  "subCanceledHead": "Kein aktives Abo",
-  "subCanceledDetail": "Du hast deine kostenlose Testphase bereits genutzt. Du kannst jederzeit wieder zu Premium wechseln.",
-  "subResubscribeBtn": "Zurück zu Premium ({price}/Monat)",
   "subLoading": "Kontostatus wird geladen…",
-  "subCancelConfirmTrial": "Wenn du jetzt kündigst, behältst du den Zugriff bis zum Ende der Testphase und es wird nichts berechnet. Testphase kündigen?",
-  "subCancelConfirmSub": "Wenn du kündigst, behältst du Premium bis zum Ende des bezahlten Zeitraums, und es verlängert sich nicht. Abo kündigen?",
-  "subCancelConfirmYes": "Ja, kündigen",
-  "subCancelConfirmNo": "Zurück",
-  "subCancelDone": "Erledigt. Deine Kündigung ist erfasst.",
-  "subWorking": "Einen Moment…",
-  "subReactivateDone": "Erledigt. Dein Abo bleibt aktiv.",
-  "subUpdateCardPending": "Das Aktualisieren der Karte ist verfügbar, sobald Payment Nerds angebunden ist.",
-  "subResubscribePending": "Das erneute Abonnieren ist verfügbar, sobald Payment Nerds angebunden ist.",
-  "subErrTrialUsed": "Du hast deine kostenlose Testphase mit diesem Konto bereits genutzt.",
-  "subErrAlready": "Du hast bereits ein aktives Abo.",
-  "subErrNotLive": "Die automatische Abrechnung ist noch nicht verfügbar.",
-  "subErrAuth": "Zum Fortfahren anmelden.",
-  "subErrGeneric": "Etwas ist schiefgelaufen. Versuche es gleich noch einmal.",
-  "trialReminderBannerText": "Deine kostenlose Testphase endet morgen. Am {charge} werden {price} von deiner Karte abgebucht, sofern du nicht vorher kündigst.",
-  "trialBlockedBannerText": "Dein Premium-Zugriff ist pausiert: Die Abbuchung von {price} war nicht möglich. Aktualisiere deine Karte, um ihn zu reaktivieren.",
-  "trialBannerManageBtn": "Mein Abo ansehen",
-  "trialBlockedBtn": "Karte aktualisieren",
-  "tsTitle": "Deine kostenlose Testphase hat begonnen",
-  "tsAccessLine": "Du hast vollen Zugriff auf ganz Mother Verde.",
-  "tsEndsLabel": "Testphase endet",
-  "tsChargeLabel": "Erste Abbuchung (7,10 $)",
-  "tsCancelNote": "Am Tag davor senden wir dir eine Erinnerung. Kündige jederzeit über Konto → Abo — ohne jemanden zu kontaktieren. Kündige vor der Abbuchung und du zahlst nichts.",
-  "tsGotIt": "Verstanden",
-  "tsSeeSub": "Mein Abo ansehen"
+  "stuckH": "Wir konnten dein Konto nicht laden",
+  "stuckP": "Die Verbindung dauert länger als üblich oder etwas ist schiefgelaufen. Deine Daten sind sicher.",
+  "stuckRetry": "Erneut versuchen", "stuckSignOut": "Abmelden",
+  "stuckMail": "Wenn es weiter passiert, schreib uns an {mail}.",
 });
 translations.fr = Object.assign(translations.fr, {
-  "cuentaEstadoTitle": "Abonnement",
-  "cuentaPagoSeguroNote": "Tes paiements sont traités en toute sécurité par un prestataire externe (Payment Nerds). Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement l'état de ton abonnement.",
-  "pmPagoSeguroNote": "Le paiement est traité en toute sécurité par un prestataire externe (Payment Nerds). Mother Verde ne voit ni ne stocke jamais ton numéro de carte — seulement l'état de ton abonnement.",
-  "pmH2": "Tout le codex, sans limites.",
-  "pmSubhead": "Essaie 3 jours gratuitement. Annule quand tu veux, toi-même, depuis Compte.",
-  "pmTrialTag": "Essai gratuit de 3 jours",
-  "pmTrialDisclosure": "Après 3 jours, <b>7,10 $/mois</b> seront automatiquement débités de la carte que tu saisis, sauf si tu annules avant.",
-  "pmPriceRowLabel": "Prix",
-  "pmPriceRowValue": "7,10 $ / mois",
-  "pmTrialEndsLabel": "Fin de l'essai",
-  "pmFirstChargeLabel": "Premier débit",
-  "pmTrialCancelInfo": "Tu peux annuler à tout moment depuis Compte → Abonnement, toi-même, sans contacter personne. Si tu annules pendant l'essai, rien ne t'est facturé.",
-  "pmCardPending": "Les champs de carte seront activés une fois le processeur de paiement (Payment Nerds) connecté. Pour l'instant, en test, l'essai gratuit démarre sans carte.",
-  "pmConsentLabel": "Je comprends que, sauf annulation de ma part avant, à la fin de l'essai de 3 jours 7,10 $ me seront facturés chaque mois automatiquement jusqu'à ce que j'annule.",
-  "pmStartTrialBtn": "Démarrer l'essai gratuit",
-  "pmConsentRequired": "Coche la case de confirmation pour continuer.",
-  "pmStarting": "Démarrage de ton essai…",
-  "pmNotLiveMsg": "La facturation automatique n'est pas encore disponible. Reviens bientôt.",
-  "pmComingSoonBtn": "Disponible très bientôt",
-  "pmComingSoonMsg": "L'activation des paiements (Payment Nerds) sera disponible dans les prochains jours. Le prix et les conditions affichés sont définitifs.",
-  "pmSignInFirst": "Connecte-toi pour commencer",
-  "pmManageBtn": "Gérer mon abonnement",
-  "subNoneDetail": "Premium débloque les 10 zones complètes, sans publicité, pour {price}/mois — après 3 jours gratuits.",
-  "subStartTrialBtn": "Démarrer l'essai gratuit de 3 jours",
-  "subTrialActiveHead": "Essai gratuit actif — jour {n} sur 3",
-  "subTrialActiveDetail": "Tu as un accès complet jusqu'au {date}. Le {charge}, {price}/mois seront débités automatiquement, sauf si tu annules avant.",
-  "subCancelTrialBtn": "Annuler l'essai",
-  "subTrialCanceledHead": "Essai annulé",
-  "subTrialCanceledDetail": "Tu gardes l'accès jusqu'au {date}. Rien ne te sera facturé.",
-  "subReactivateTrialBtn": "Réactiver l'essai",
-  "subActiveHead": "Premium actif",
-  "subActiveDetail": "Ton abonnement se renouvelle le {date} pour {price}/mois.",
-  "subCancelBtn": "Annuler l'abonnement",
-  "subActiveCanceledHead": "Abonnement annulé",
-  "subActiveCanceledDetail": "Tu gardes l'accès Premium jusqu'au {date}. Il ne se renouvellera pas et tu ne seras plus facturé.",
-  "subReactivateBtn": "Réactiver l'abonnement",
-  "subPastDueHead": "Problème de paiement",
-  "subPastDueDetail": "Nous n'avons pas pu traiter ton dernier paiement. Mets à jour ta carte pour ne pas perdre l'accès Premium.",
-  "subUpdateCardBtn": "Mettre à jour la carte",
-  "subBlockedHead": "Accès Premium en pause",
-  "subBlockedDetail": "Ton essai est terminé et le débit n'a pas pu aboutir. L'accès Premium est en pause jusqu'à la mise à jour de ta carte.",
-  "subCanceledHead": "Aucun abonnement actif",
-  "subCanceledDetail": "Tu as déjà utilisé ton essai gratuit. Tu peux repasser à Premium quand tu veux.",
-  "subResubscribeBtn": "Revenir à Premium ({price}/mois)",
   "subLoading": "Chargement de l'état de ton compte…",
-  "subCancelConfirmTrial": "Si tu annules maintenant, tu gardes l'accès jusqu'à la fin de l'essai et rien ne te sera facturé. Annuler l'essai ?",
-  "subCancelConfirmSub": "Si tu annules, tu gardes Premium jusqu'à la fin de la période déjà payée, et il ne se renouvellera pas. Annuler l'abonnement ?",
-  "subCancelConfirmYes": "Oui, annuler",
-  "subCancelConfirmNo": "Retour",
-  "subCancelDone": "C'est fait. Ton annulation est enregistrée.",
-  "subWorking": "Un instant…",
-  "subReactivateDone": "C'est fait. Ton abonnement reste actif.",
-  "subUpdateCardPending": "La mise à jour de la carte sera disponible une fois Payment Nerds connecté.",
-  "subResubscribePending": "Le réabonnement sera disponible une fois Payment Nerds connecté.",
-  "subErrTrialUsed": "Tu as déjà utilisé ton essai gratuit sur ce compte.",
-  "subErrAlready": "Tu as déjà un abonnement actif.",
-  "subErrNotLive": "La facturation automatique n'est pas encore disponible.",
-  "subErrAuth": "Connecte-toi pour continuer.",
-  "subErrGeneric": "Une erreur s'est produite. Réessaie dans un instant.",
-  "trialReminderBannerText": "Ton essai gratuit se termine demain. Le {charge}, {price} seront débités de ta carte sauf si tu annules avant.",
-  "trialBlockedBannerText": "Ton accès Premium est en pause : le débit de {price} n'a pas abouti. Mets à jour ta carte pour le réactiver.",
-  "trialBannerManageBtn": "Voir mon abonnement",
-  "trialBlockedBtn": "Mettre à jour la carte",
-  "tsTitle": "Ton essai gratuit a commencé",
-  "tsAccessLine": "Tu as un accès complet à tout Mother Verde.",
-  "tsEndsLabel": "Fin de l'essai",
-  "tsChargeLabel": "Premier débit (7,10 $)",
-  "tsCancelNote": "Nous t'enverrons un rappel la veille. Annule quand tu veux depuis Compte → Abonnement — sans contacter personne. Annule avant le débit et tu ne paies rien.",
-  "tsGotIt": "Compris",
-  "tsSeeSub": "Voir mon abonnement"
+  "stuckH": "Nous n’avons pas pu charger ton compte",
+  "stuckP": "La connexion prend plus de temps que d’habitude ou quelque chose a échoué. Tes données sont en sécurité.",
+  "stuckRetry": "Réessayer", "stuckSignOut": "Se déconnecter",
+  "stuckMail": "Si ça continue, écris-nous à {mail}.",
 });
 
-let currentLang = 'es';
+// Language chosen last time in this browser (kept across reloads); Spanish otherwise.
+const MV_LANGS = ['es', 'en', 'de', 'fr'];
+let currentLang = (function(){
+  // Default: ENGLISH for a first visit with no saved language (Bertha, 2026-11-06).
+  // A language already chosen (saved here, or in the profile: see mvApplyProfileLang) is kept.
+  // No detection of the browser language: only a choice saved here or in the profile counts.
+  try { const l = localStorage.getItem('mv-lang'); return MV_LANGS.includes(l) ? l : 'en'; } catch(e){ return 'en'; }
+})();
 window.getCurrentLang = function(){ return currentLang; };
+// Modules loaded later (the game) add their texts to the same translations.
+window.mvAddTexts = function(pack){ for(const l in pack) if(translations[l]) Object.assign(translations[l], pack[l]); };
 /* Edibles safety reference title (free content). */
 translations.es.cmDoseRefTitle = "Qué significa cada rango de mg por porción";
 translations.en.cmDoseRefTitle = "What each mg-per-serving range means";
@@ -5951,10 +5648,10 @@ translations.es.delAccTitle = "Eliminar mi cuenta";
 translations.en.delAccTitle = "Delete my account";
 translations.de.delAccTitle = "Mein Konto löschen";
 translations.fr.delAccTitle = "Supprimer mon compte";
-translations.es.delAccDesc = "Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. No se puede deshacer.";
-translations.en.delAccDesc = "Permanently deletes your account and everything tied to it: your profile, your grow journal, your posts, comments and photos, and who you follow. This can’t be undone.";
-translations.de.delAccDesc = "Löscht dein Konto und alles, was dazugehört, endgültig: dein Profil, dein Anbau-Tagebuch, deine Beiträge, Kommentare und Fotos sowie wem du folgst. Das kann nicht rückgängig gemacht werden.";
-translations.fr.delAccDesc = "Supprime définitivement ton compte et tout ce qui y est lié : ton profil, ton journal de culture, tes publications, commentaires et photos, et les personnes que tu suis. C’est irréversible.";
+translations.es.delAccDesc = "Borra para siempre tu cuenta y todo lo asociado a ella: tu perfil, tu Bitácora, tus publicaciones, comentarios y fotos, y a quién sigues. También pierdes el acceso completo, aunque lo hayas obtenido con un aporte. No se puede deshacer.";
+translations.en.delAccDesc = "Permanently deletes your account and everything tied to it: your profile, your grow journal, your posts, comments and photos, and who you follow. You also lose full access, even if you got it through a contribution. This can’t be undone.";
+translations.de.delAccDesc = "Löscht dein Konto und alles, was dazugehört, endgültig: dein Profil, dein Anbau-Tagebuch, deine Beiträge, Kommentare und Fotos sowie wem du folgst. Du verlierst auch den Vollzugriff, selbst wenn du ihn mit einem Beitrag erhalten hast. Das kann nicht rückgängig gemacht werden.";
+translations.fr.delAccDesc = "Supprime définitivement ton compte et tout ce qui y est lié : ton profil, ton journal de culture, tes publications, commentaires et photos, et les personnes que tu suis. Tu perds aussi l’accès complet, même si tu l’as obtenu grâce à une contribution. C’est irréversible.";
 translations.es.delAccOpenBtn = "Eliminar mi cuenta…";
 translations.en.delAccOpenBtn = "Delete my account…";
 translations.de.delAccOpenBtn = "Mein Konto löschen…";
@@ -5963,10 +5660,10 @@ translations.es.delAccWord = "ELIMINAR";
 translations.en.delAccWord = "DELETE";
 translations.de.delAccWord = "LÖSCHEN";
 translations.fr.delAccWord = "SUPPRIMER";
-translations.es.delAccConfirmText = "Para confirmar, escribe tu contraseña y la palabra {word}. Si tienes publicaciones, también se borrarán los comentarios que otras personas dejaron en ellas.";
-translations.en.delAccConfirmText = "To confirm, enter your password and type {word}. If you have posts, the comments other people left on them will be deleted too.";
-translations.de.delAccConfirmText = "Zur Bestätigung gib dein Passwort ein und tippe {word}. Wenn du Beiträge hast, werden auch die Kommentare anderer Personen darunter gelöscht.";
-translations.fr.delAccConfirmText = "Pour confirmer, saisis ton mot de passe et tape {word}. Si tu as des publications, les commentaires que d’autres personnes y ont laissés seront aussi supprimés.";
+translations.es.delAccConfirmText = "Para confirmar, escribe tu contraseña y la palabra {word}. Perderás el acceso completo, aunque lo hayas obtenido con un aporte. Si tienes publicaciones, también se borrarán los comentarios que otras personas dejaron en ellas.";
+translations.en.delAccConfirmText = "To confirm, enter your password and type {word}. You will lose full access, even if you got it through a contribution. If you have posts, the comments other people left on them will be deleted too.";
+translations.de.delAccConfirmText = "Zur Bestätigung gib dein Passwort ein und tippe {word}. Du verlierst den Vollzugriff, selbst wenn du ihn mit einem Beitrag erhalten hast. Wenn du Beiträge hast, werden auch die Kommentare anderer Personen darunter gelöscht.";
+translations.fr.delAccConfirmText = "Pour confirmer, saisis ton mot de passe et tape {word}. Tu perdras l’accès complet, même si tu l’as obtenu grâce à une contribution. Si tu as des publications, les commentaires que d’autres personnes y ont laissés seront aussi supprimés.";
 translations.es.delAccPasswordPh = "Tu contraseña";
 translations.en.delAccPasswordPh = "Your password";
 translations.de.delAccPasswordPh = "Dein Passwort";
@@ -6004,13 +5701,1449 @@ translations.en.delAccDone = "Your account and all its data have been deleted. T
 translations.de.delAccDone = "Dein Konto und alle zugehörigen Daten wurden gelöscht. Danke, dass du Teil von Mother Verde warst.";
 translations.fr.delAccDone = "Ton compte et toutes ses données ont été supprimés. Merci d’avoir fait partie de Mother Verde.";
 
+// Under the post and comment boxes: their text goes to DeepL for translation
+translations.es.cmyAvisoTraduccion = "Tu texto se envía a un servicio de traducción. No incluyas datos personales ni de salud, tuyos o de otras personas.";
+translations.en.cmyAvisoTraduccion = "Your text is sent to a translation service. Don’t include personal or health information, yours or anyone else’s.";
+translations.de.cmyAvisoTraduccion = "Dein Text wird an einen Übersetzungsdienst gesendet. Gib keine persönlichen oder Gesundheitsdaten an – weder deine noch die anderer Personen.";
+translations.fr.cmyAvisoTraduccion = "Ton texte est envoyé à un service de traduction. N’y mets pas de données personnelles ou de santé, ni les tiennes ni celles d’autres personnes.";
+
 // Ad inquiry fallback when sending fails (e.g. no email provider configured yet)
 translations.es.adInquiryErrorMail = "No pudimos enviarlo desde aquí. Escríbenos directamente:";
 translations.en.adInquiryErrorMail = "We couldn’t send it from here. Write to us directly:";
 translations.de.adInquiryErrorMail = "Wir konnten es von hier aus nicht senden. Schreib uns direkt:";
 translations.fr.adInquiryErrorMail = "Nous n’avons pas pu l’envoyer d’ici. Écris-nous directement :";
 
-function t(key){ return translations[currentLang][key] || translations['es'][key] || ''; }
+// Access model "support" (ACCESS_MODEL in this file): Desbloquear screen + keys that were Spanish-only
+translations.es.dsEyebrow = "Acceso completo";
+translations.en.dsEyebrow = "Full access";
+translations.de.dsEyebrow = "Vollzugriff";
+translations.fr.dsEyebrow = "Accès complet";
+translations.es.dsTitle = "Desbloquea Mother Verde";
+translations.en.dsTitle = "Unlock Mother Verde";
+translations.de.dsTitle = "Schalte Mother Verde frei";
+translations.fr.dsTitle = "Débloque Mother Verde";
+translations.es.dsProximamente = "Próximamente.";
+translations.en.dsProximamente = "Coming soon.";
+translations.de.dsProximamente = "Demnächst.";
+translations.fr.dsProximamente = "Bientôt disponible.";
+translations.en.legalTeaserDesbloquea = "Unlock all 50 countries with full access.";
+translations.de.legalTeaserDesbloquea = "Schalte alle 50 Länder mit Vollzugriff frei.";
+translations.fr.legalTeaserDesbloquea = "Débloque les 50 pays avec l’accès complet.";
+translations.en.legalTeaserVisto = "You’ve seen";
+translations.de.legalTeaserVisto = "Gesehen:";
+translations.fr.legalTeaserVisto = "Tu as vu";
+translations.en.legalTeaserDe = "of";
+translations.de.legalTeaserDe = "von";
+translations.fr.legalTeaserDe = "sur";
+translations.en.pmOsteoartritisNote = "<b>CBD for canine osteoarthritis: what the foundational study shows.</b> That first Cornell trial mentioned above (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University and Colorado State University) found that 2 mg/kg of CBD twice a day reduced pain and increased activity in dogs with osteoarthritis, measured with validated veterinary scales, with no side effects reported by the owners. The honest caveat: blood tests did detect a rise in alkaline phosphatase during treatment — something only a veterinarian can detect, and the reason any therapeutic use of CBD in pets needs veterinary supervision rather than self-administration.";
+translations.de.pmOsteoartritisNote = "<b>CBD bei Arthrose beim Hund: Was die grundlegende Studie zeigt.</b> Die oben erwähnte erste Cornell-Studie (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University und Colorado State University) fand, dass 2 mg/kg CBD zweimal täglich bei Hunden mit Arthrose die Schmerzen verringerte und die Aktivität steigerte, gemessen mit validierten tierärztlichen Skalen, ohne von den Haltern berichtete Nebenwirkungen. Der ehrliche Hinweis: In den Blutuntersuchungen wurde während der Behandlung ein Anstieg der alkalischen Phosphatase festgestellt — etwas, das nur eine Tierärztin oder ein Tierarzt erkennen kann, und der Grund, warum jede therapeutische Anwendung von CBD bei Haustieren tierärztliche Begleitung braucht und nicht auf eigene Faust erfolgen sollte.";
+translations.fr.pmOsteoartritisNote = "<b>Le CBD contre l’arthrose du chien : ce que montre l’étude fondatrice.</b> Ce premier essai de Cornell mentionné plus haut (Gamble et al., <em>Frontiers in Veterinary Science</em>, 2018 — Cornell University et Colorado State University) a montré que 2 mg/kg de CBD deux fois par jour réduisaient la douleur et augmentaient l’activité chez des chiens arthrosiques, mesurées avec des échelles vétérinaires validées, sans effets secondaires signalés par les propriétaires. Le point honnête : une hausse des phosphatases alcalines a bien été détectée dans les analyses de sang pendant le traitement — ce que seul un vétérinaire peut repérer, et la raison pour laquelle tout usage thérapeutique du CBD chez l’animal doit se faire sous suivi vétérinaire, pas en automédication.";
+
+// Desbloquear page (src/desbloquear.js). Payment data + recipient text live in src/supportConfig.js.
+translations.es.dsIntro = "Creemos que aprender sobre cannabis debería estar al alcance del bolsillo de cada persona. Por eso aquí no hay pagos mensuales ni cobros automáticos: con un <b>aporte único de apoyo</b> tienes acceso completo a todo el contenido y a la Comunidad, mientras la plataforma esté activa.";
+translations.en.dsIntro = "We believe learning about cannabis should be within reach of everyone’s pocket. That’s why there are no monthly payments and no automatic charges here: a <b>one-time support contribution</b> gives you full access to all the content and the Community, for as long as the platform is running.";
+translations.de.dsIntro = "Wir finden, dass Wissen über Cannabis für jeden Geldbeutel erreichbar sein sollte. Deshalb gibt es hier keine monatlichen Zahlungen und keine automatischen Abbuchungen: Mit einem <b>einmaligen Unterstützungsbeitrag</b> bekommst du vollen Zugriff auf alle Inhalte und die Community, solange die Plattform läuft.";
+translations.fr.dsIntro = "Nous pensons qu’apprendre sur le cannabis devrait être à la portée de toutes les bourses. C’est pourquoi il n’y a ici ni paiement mensuel ni prélèvement automatique : une <b>contribution unique de soutien</b> te donne un accès complet à tout le contenu et à la Communauté, tant que la plateforme est active.";
+translations.es.dsImportante = "Tu aporte es importante para continuar.";
+translations.en.dsImportante = "Your contribution matters for us to keep going.";
+translations.de.dsImportante = "Dein Beitrag ist wichtig, damit es weitergeht.";
+translations.fr.dsImportante = "Ta contribution est importante pour continuer.";
+translations.es.dsFloresH3 = "Elige tus flores";
+translations.en.dsFloresH3 = "Pick your flowers";
+translations.de.dsFloresH3 = "Wähle deine Blüten";
+translations.fr.dsFloresH3 = "Choisis tes fleurs";
+translations.es.dsFloresP = "Cada flor vale {usdc} {cur}. Con <b>una flor</b> desbloqueas todo. Si quieres y puedes, suma más flores: es apoyo extra, totalmente voluntario, y no cambia lo que recibes.";
+translations.en.dsFloresP = "Each flower is worth {usdc} {cur}. <b>One flower</b> unlocks everything. If you want to and can, add more flowers: it’s extra support, entirely voluntary, and it doesn’t change what you get.";
+translations.de.dsFloresP = "Jede Blüte ist {usdc} {cur} wert. Mit <b>einer Blüte</b> schaltest du alles frei. Wenn du möchtest und kannst, nimm mehr Blüten dazu: Das ist zusätzliche, völlig freiwillige Unterstützung und ändert nichts daran, was du bekommst.";
+translations.fr.dsFloresP = "Chaque fleur vaut {usdc} {cur}. Avec <b>une fleur</b>, tu débloques tout. Si tu le veux et le peux, ajoute des fleurs : c’est un soutien en plus, entièrement volontaire, et cela ne change rien à ce que tu reçois.";
+translations.es.dsMenos = "Quitar una flor";
+translations.en.dsMenos = "Remove a flower";
+translations.de.dsMenos = "Eine Blüte entfernen";
+translations.fr.dsMenos = "Retirer une fleur";
+translations.es.dsMas = "Añadir una flor";
+translations.en.dsMas = "Add a flower";
+translations.de.dsMas = "Eine Blüte hinzufügen";
+translations.fr.dsMas = "Ajouter une fleur";
+translations.es.dsRamoUna = "1 flor · {usdc} {cur}";
+translations.en.dsRamoUna = "1 flower · {usdc} {cur}";
+translations.de.dsRamoUna = "1 Blüte · {usdc} {cur}";
+translations.fr.dsRamoUna = "1 fleur · {usdc} {cur}";
+translations.es.dsRamoVarias = "{n} flores · {usdc} {cur}";
+translations.en.dsRamoVarias = "{n} flowers · {usdc} {cur}";
+translations.de.dsRamoVarias = "{n} Blüten · {usdc} {cur}";
+translations.fr.dsRamoVarias = "{n} fleurs · {usdc} {cur}";
+translations.es.dsExtraNota = "Una flor es suficiente. De verdad.";
+translations.en.dsExtraNota = "One flower is enough. Really.";
+translations.de.dsExtraNota = "Eine Blüte reicht. Wirklich.";
+translations.fr.dsExtraNota = "Une fleur suffit. Vraiment.";
+translations.es.dsComoH3 = "Cómo enviar tu aporte";
+translations.en.dsComoH3 = "How to send your contribution";
+translations.de.dsComoH3 = "So sendest du deinen Beitrag";
+translations.fr.dsComoH3 = "Comment envoyer ta contribution";
+translations.es.dsSoloRed = "Envía solo {cur} en la red {net}";
+translations.en.dsSoloRed = "Send only {cur} on the {net} network";
+translations.de.dsSoloRed = "Sende nur {cur} im {net}-Netzwerk";
+translations.fr.dsSoloRed = "Envoie uniquement des {cur} sur le réseau {net}";
+translations.es.dsSoloRedDetalle = "Si envías otra moneda o usas otra red, tu aporte puede perderse y es posible que no podamos recuperarlo.";
+translations.en.dsSoloRedDetalle = "If you send another currency or use another network, your contribution may be lost and we may not be able to recover it.";
+translations.de.dsSoloRedDetalle = "Wenn du eine andere Währung sendest oder ein anderes Netzwerk nutzt, kann dein Beitrag verloren gehen, und wir können ihn möglicherweise nicht zurückholen.";
+translations.fr.dsSoloRedDetalle = "Si tu envoies une autre devise ou utilises un autre réseau, ta contribution peut être perdue et il se peut que nous ne puissions pas la récupérer.";
+translations.es.dsQrAlt = "Código QR de la dirección de depósito en la red {net}";
+translations.en.dsQrAlt = "QR code of the deposit address on the {net} network";
+translations.de.dsQrAlt = "QR-Code der Einzahlungsadresse im {net}-Netzwerk";
+translations.fr.dsQrAlt = "QR code de l’adresse de dépôt sur le réseau {net}";
+translations.es.dsDireccionLabel = "Dirección {cur} · red {net}";
+translations.en.dsDireccionLabel = "{cur} address · {net} network";
+translations.de.dsDireccionLabel = "{cur}-Adresse · {net}-Netzwerk";
+translations.fr.dsDireccionLabel = "Adresse {cur} · réseau {net}";
+translations.es.dsCopiar = "Copiar dirección";
+translations.en.dsCopiar = "Copy address";
+translations.de.dsCopiar = "Adresse kopieren";
+translations.fr.dsCopiar = "Copier l’adresse";
+translations.es.dsCopiada = "¡Copiada!";
+translations.en.dsCopiada = "Copied!";
+translations.de.dsCopiada = "Kopiert!";
+translations.fr.dsCopiada = "Copiée !";
+translations.es.dsCopiaManual = "No pudimos copiarla automáticamente: la dejamos seleccionada para que la copies.";
+translations.en.dsCopiaManual = "We couldn’t copy it automatically: it’s selected so you can copy it.";
+translations.de.dsCopiaManual = "Automatisches Kopieren ging nicht: Die Adresse ist markiert, damit du sie kopieren kannst.";
+translations.fr.dsCopiaManual = "Impossible de la copier automatiquement : elle est sélectionnée pour que tu la copies.";
+translations.es.dsPaso1 = "En tu exchange o billetera, elige <b>{cur}</b> y la red <b>{net}</b>.";
+translations.en.dsPaso1 = "In your exchange or wallet, choose <b>{cur}</b> and the <b>{net}</b> network.";
+translations.de.dsPaso1 = "Wähle in deiner Börse oder Wallet <b>{cur}</b> und das <b>{net}</b>-Netzwerk.";
+translations.fr.dsPaso1 = "Dans ton exchange ou ton portefeuille, choisis <b>{cur}</b> et le réseau <b>{net}</b>.";
+translations.es.dsPaso2 = "Envía <b>exactamente</b> el monto que te damos abajo, con todos sus decimales. Si tu exchange cobra una comisión de retiro, súmala para que llegue ese monto exacto.";
+translations.en.dsPaso2 = "Send <b>exactly</b> the amount we give you below, with all its decimals. If your exchange charges a withdrawal fee, add it so that exact amount arrives.";
+translations.de.dsPaso2 = "Sende <b>genau</b> den Betrag, den wir dir unten nennen, mit allen Nachkommastellen. Wenn deine Börse eine Auszahlungsgebühr berechnet, rechne sie dazu, damit genau dieser Betrag ankommt.";
+translations.fr.dsPaso2 = "Envoie <b>exactement</b> le montant indiqué ci-dessous, avec toutes ses décimales. Si ton exchange prend des frais de retrait, ajoute-les pour que ce montant exact arrive.";
+translations.es.dsPaso3 = "Guarda el código de la transacción (también llamado «hash» o «ID de transacción»).";
+translations.en.dsPaso3 = "Keep the transaction code (also called “hash” or “transaction ID”).";
+translations.de.dsPaso3 = "Bewahre den Transaktionscode auf (auch „Hash“ oder „Transaktions-ID“ genannt).";
+translations.fr.dsPaso3 = "Garde le code de la transaction (aussi appelé « hash » ou « ID de transaction »).";
+translations.es.dsPaso4 = "Pega aquí ese código. Revisamos cada aporte y activamos tu acceso completo en hasta {h} horas.";
+translations.en.dsPaso4 = "Paste that code here. We check every contribution and turn on your full access within up to {h} hours.";
+translations.de.dsPaso4 = "Füge diesen Code hier ein. Wir prüfen jeden Beitrag und schalten deinen Vollzugriff in bis zu {h} Stunden frei.";
+translations.fr.dsPaso4 = "Colle ce code ici. Nous vérifions chaque contribution et activons ton accès complet en jusqu’à {h} heures.";
+
+// Signup rejected by the Before User Created hook (src/auth.js mapAuthError)
+translations.es.authErrSignupNotAllowed = "No pudimos crear la cuenta con ese correo. Si ya tienes una cuenta, inicia sesión; si no, prueba con otro correo (no aceptamos correos temporales).";
+translations.en.authErrSignupNotAllowed = "We couldn’t create an account with that email. If you already have an account, sign in; if not, try another email (temporary inboxes aren’t accepted).";
+translations.de.authErrSignupNotAllowed = "Mit dieser E-Mail-Adresse konnten wir kein Konto erstellen. Wenn du schon ein Konto hast, melde dich an; sonst versuch es mit einer anderen Adresse (Wegwerf-Adressen werden nicht akzeptiert).";
+translations.fr.authErrSignupNotAllowed = "Nous n’avons pas pu créer de compte avec cet e-mail. Si tu as déjà un compte, connecte-toi ; sinon, essaie une autre adresse (les adresses temporaires ne sont pas acceptées).";
+
+// Community publish errors (cmyPublishErrorKey)
+translations.es.cmyErrNoAccess = "Para publicar en la Comunidad necesitas acceso completo.";
+translations.en.cmyErrNoAccess = "You need full access to post in the Community.";
+translations.de.cmyErrNoAccess = "Um in der Community zu posten, brauchst du Vollzugriff.";
+translations.fr.cmyErrNoAccess = "Pour publier dans la Communauté, il te faut l’accès complet.";
+translations.es.cmyErrLimitPosts = "Llegaste al máximo de 5 publicaciones en 24 horas. Podrás publicar de nuevo más tarde.";
+translations.en.cmyErrLimitPosts = "You reached the limit of 5 posts in 24 hours. You can post again later.";
+translations.de.cmyErrLimitPosts = "Du hast das Maximum von 5 Beiträgen in 24 Stunden erreicht. Später kannst du wieder posten.";
+translations.fr.cmyErrLimitPosts = "Tu as atteint la limite de 5 publications en 24 heures. Tu pourras republier plus tard.";
+translations.es.cmyErrLimitComments = "Llegaste al máximo de 20 comentarios en 24 horas. Podrás comentar de nuevo más tarde.";
+translations.en.cmyErrLimitComments = "You reached the limit of 20 comments in 24 hours. You can comment again later.";
+translations.de.cmyErrLimitComments = "Du hast das Maximum von 20 Kommentaren in 24 Stunden erreicht. Später kannst du wieder kommentieren.";
+translations.fr.cmyErrLimitComments = "Tu as atteint la limite de 20 commentaires en 24 heures. Tu pourras commenter de nouveau plus tard.";
+translations.es.cmyErrLimitChars = "Llegaste al máximo de texto traducido por hoy. Prueba con un texto más corto o vuelve más tarde.";
+translations.en.cmyErrLimitChars = "You reached today’s limit of translated text. Try a shorter text or come back later.";
+translations.de.cmyErrLimitChars = "Du hast das heutige Limit für übersetzten Text erreicht. Versuch einen kürzeren Text oder komm später wieder.";
+translations.fr.cmyErrLimitChars = "Tu as atteint la limite de texte traduit pour aujourd’hui. Essaie un texte plus court ou reviens plus tard.";
+
+// Access screens, countdown strip and Cuenta access card (support model)
+translations.es.accDesbloquearBtn = "Desbloquear";
+translations.en.accDesbloquearBtn = "Unlock";
+translations.de.accDesbloquearBtn = "Freischalten";
+translations.fr.accDesbloquearBtn = "Débloquer";
+translations.es.accCuentaTitle = "Tu acceso";
+translations.en.accCuentaTitle = "Your access";
+translations.de.accCuentaTitle = "Dein Zugriff";
+translations.fr.accCuentaTitle = "Ton accès";
+translations.es.accLinkSeguridad = "Seguridad y emergencias";
+translations.en.accLinkSeguridad = "Safety and emergencies";
+translations.de.accLinkSeguridad = "Sicherheit und Notfälle";
+translations.fr.accLinkSeguridad = "Sécurité et urgences";
+translations.es.accLinkDesbloquear = "Cómo desbloquear";
+translations.en.accLinkDesbloquear = "How to unlock";
+translations.de.accLinkDesbloquear = "So schaltest du frei";
+translations.fr.accLinkDesbloquear = "Comment débloquer";
+translations.es.accEntradaH = "Mother Verde";
+translations.en.accEntradaH = "Mother Verde";
+translations.de.accEntradaH = "Mother Verde";
+translations.fr.accEntradaH = "Mother Verde";
+translations.es.accEntradaP = "Una enciclopedia de cannabis medicinal y recreacional basada en evidencia, en cuatro idiomas, con una comunidad para aprender juntos. Crea tu cuenta y, la primera vez que confirmes tu correo, tendrás 24 horas de acceso completo, gratis y sin tarjeta.";
+translations.en.accEntradaP = "An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together. Create your account and, the first time you confirm your email, you’ll get 24 hours of full access, free and with no card.";
+translations.de.accEntradaP = "Eine evidenzbasierte Enzyklopädie über medizinisches und Freizeit-Cannabis, in vier Sprachen, mit einer Community, um gemeinsam zu lernen. Erstelle dein Konto: Wenn du deine E-Mail zum ersten Mal bestätigst, hast du 24 Stunden Vollzugriff, kostenlos und ohne Karte.";
+translations.fr.accEntradaP = "Une encyclopédie du cannabis médical et récréatif fondée sur les preuves, en quatre langues, avec une communauté pour apprendre ensemble. Crée ton compte : la première fois que tu confirmes ton e-mail, tu auras 24 heures d’accès complet, gratuitement et sans carte.";
+translations.es.accCrearCuenta = "Crear cuenta";
+translations.en.accCrearCuenta = "Create account";
+translations.de.accCrearCuenta = "Konto erstellen";
+translations.fr.accCrearCuenta = "Créer un compte";
+translations.es.accEntrar = "Entrar";
+translations.en.accEntrar = "Sign in";
+translations.de.accEntrar = "Anmelden";
+translations.fr.accEntrar = "Se connecter";
+translations.es.accConfirmaH = "Confirma tu correo para empezar";
+translations.en.accConfirmaH = "Confirm your email to get started";
+translations.de.accConfirmaH = "Bestätige deine E-Mail, um loszulegen";
+translations.fr.accConfirmaH = "Confirme ton e-mail pour commencer";
+translations.es.accConfirmaP = "Te enviamos un enlace a {email}. Ábrelo para confirmar tu cuenta. Si es la primera vez que usas este correo en Mother Verde, tus 24 horas de acceso completo empiezan en ese momento.";
+translations.en.accConfirmaP = "We sent a link to {email}. Open it to confirm your account. If it is the first time you use this email on Mother Verde, your 24 hours of full access start at that moment.";
+translations.de.accConfirmaP = "Wir haben einen Link an {email} geschickt. Öffne ihn, um dein Konto zu bestätigen. Wenn du diese E-Mail zum ersten Mal bei Mother Verde verwendest, beginnen deine 24 Stunden Vollzugriff in diesem Moment.";
+translations.fr.accConfirmaP = "Nous avons envoyé un lien à {email}. Ouvre-le pour confirmer ton compte. Si c’est la première fois que tu utilises cet e-mail sur Mother Verde, tes 24 heures d’accès complet commencent à ce moment-là.";
+translations.es.accReenviar = "Reenviar correo";
+translations.en.accReenviar = "Resend email";
+translations.de.accReenviar = "E-Mail erneut senden";
+translations.fr.accReenviar = "Renvoyer l’e-mail";
+translations.es.accOtroCorreo = "Usar otro correo";
+translations.en.accOtroCorreo = "Use another email";
+translations.de.accOtroCorreo = "Andere E-Mail verwenden";
+translations.fr.accOtroCorreo = "Utiliser un autre e-mail";
+translations.es.accReenviarEspera = "Podrás reenviarlo en {s} s.";
+translations.en.accReenviarEspera = "You can resend it in {s} s.";
+translations.de.accReenviarEspera = "Du kannst sie in {s} s erneut senden.";
+translations.fr.accReenviarEspera = "Tu pourras le renvoyer dans {s} s.";
+translations.es.accReenviarOk = "Listo: te enviamos el correo de nuevo.";
+translations.en.accReenviarOk = "Done: we sent the email again.";
+translations.de.accReenviarOk = "Erledigt: Wir haben die E-Mail erneut gesendet.";
+translations.fr.accReenviarOk = "C’est fait : nous t’avons renvoyé l’e-mail.";
+translations.es.accReenviarError = "No pudimos reenviarlo ahora. Inténtalo de nuevo en unos minutos.";
+translations.en.accReenviarError = "We couldn’t resend it right now. Please try again in a few minutes.";
+translations.de.accReenviarError = "Wir konnten sie gerade nicht erneut senden. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.accReenviarError = "Impossible de le renvoyer pour l’instant. Réessaie dans quelques minutes.";
+// E-mail links (expired / used / e-mail change), forgot password, new password, sign-in e-mail change (src/auth.js).
+translations.es.lnkExpH = "Este enlace ya no sirve";
+translations.en.lnkExpH = "This link no longer works";
+translations.de.lnkExpH = "Dieser Link funktioniert nicht mehr";
+translations.fr.lnkExpH = "Ce lien ne fonctionne plus";
+translations.es.lnkExpP = "Caducó o ya se usó: cada enlace sirve una sola vez. Si ya confirmaste tu correo, solo tienes que iniciar sesión. Si no, escribe tu correo abajo y te mandamos uno nuevo.";
+translations.en.lnkExpP = "It expired or was already used: each link works only once. If you already confirmed your email, just sign in. If not, enter your email below and we’ll send you a new one.";
+translations.de.lnkExpP = "Er ist abgelaufen oder wurde schon benutzt: Jeder Link funktioniert nur einmal. Wenn du deine E-Mail schon bestätigt hast, melde dich einfach an. Wenn nicht, gib unten deine E-Mail ein und wir schicken dir einen neuen.";
+translations.fr.lnkExpP = "Il a expiré ou a déjà été utilisé : chaque lien ne sert qu’une fois. Si tu as déjà confirmé ton e-mail, connecte-toi simplement. Sinon, saisis ton e-mail ci-dessous et nous t’en enverrons un nouveau.";
+translations.es.lnkErrH = "No pudimos abrir este enlace";
+translations.en.lnkErrH = "We couldn’t open this link";
+translations.de.lnkErrH = "Wir konnten diesen Link nicht öffnen";
+translations.fr.lnkErrH = "Impossible d’ouvrir ce lien";
+translations.es.lnkErrP = "Escribe tu correo abajo y pide un enlace nuevo. Si sigue fallando, escríbenos a hello@motherverdeny.com.";
+translations.en.lnkErrP = "Enter your email below and ask for a new link. If it keeps failing, write to us at hello@motherverdeny.com.";
+translations.de.lnkErrP = "Gib unten deine E-Mail ein und fordere einen neuen Link an. Wenn es weiter nicht klappt, schreib uns an hello@motherverdeny.com.";
+translations.fr.lnkErrP = "Saisis ton e-mail ci-dessous et demande un nouveau lien. Si ça ne marche toujours pas, écris-nous à hello@motherverdeny.com.";
+translations.es.lnkNuevaConf = "Enviar un nuevo enlace de confirmación";
+translations.en.lnkNuevaConf = "Send a new confirmation link";
+translations.de.lnkNuevaConf = "Neuen Bestätigungslink senden";
+translations.fr.lnkNuevaConf = "Envoyer un nouveau lien de confirmation";
+translations.es.lnkNuevaClave = "Enviar enlace para cambiar la contraseña";
+translations.en.lnkNuevaClave = "Send a link to reset my password";
+translations.de.lnkNuevaClave = "Link zum Zurücksetzen des Passworts senden";
+translations.fr.lnkNuevaClave = "Envoyer un lien pour changer le mot de passe";
+translations.es.lnkEnviado = "Si hay una cuenta con ese correo, te enviamos un enlace nuevo. Si no lo ves en unos minutos, revisa la carpeta de spam.";
+translations.en.lnkEnviado = "If there is an account with that email, we sent you a new link. If you don’t see it in a few minutes, check your spam folder.";
+translations.de.lnkEnviado = "Wenn es ein Konto mit dieser E-Mail gibt, haben wir dir einen neuen Link geschickt. Wenn du ihn in ein paar Minuten nicht siehst, schau im Spam-Ordner nach.";
+translations.fr.lnkEnviado = "S’il existe un compte avec cet e-mail, nous t’avons envoyé un nouveau lien. Si tu ne le vois pas d’ici quelques minutes, regarde dans tes spams.";
+translations.es.lnkPideCorreo = "Escribe primero tu correo.";
+translations.en.lnkPideCorreo = "Enter your email first.";
+translations.de.lnkPideCorreo = "Gib zuerst deine E-Mail ein.";
+translations.fr.lnkPideCorreo = "Saisis d’abord ton e-mail.";
+translations.es.lnkMitad = "Confirmaste uno de los dos enlaces. Para terminar el cambio de correo, abre también el que enviamos a la otra dirección.";
+translations.en.lnkMitad = "You confirmed one of the two links. To finish the email change, also open the one we sent to the other address.";
+translations.de.lnkMitad = "Du hast einen der beiden Links bestätigt. Um die Änderung abzuschließen, öffne auch den Link, den wir an die andere Adresse geschickt haben.";
+translations.fr.lnkMitad = "Tu as confirmé l’un des deux liens. Pour terminer le changement d’e-mail, ouvre aussi celui que nous avons envoyé à l’autre adresse.";
+translations.es.lnkCambiado = "Listo: tu correo para iniciar sesión cambió.";
+translations.en.lnkCambiado = "Done: your sign-in email changed.";
+translations.de.lnkCambiado = "Erledigt: Deine Anmelde-E-Mail wurde geändert.";
+translations.fr.lnkCambiado = "C’est fait : ton e-mail de connexion a changé.";
+translations.es.lnkCerrar = "Cerrar";
+translations.en.lnkCerrar = "Close";
+translations.de.lnkCerrar = "Schließen";
+translations.fr.lnkCerrar = "Fermer";
+translations.es.authOlvido = "¿Olvidaste tu contraseña?";
+translations.en.authOlvido = "Forgot your password?";
+translations.de.authOlvido = "Passwort vergessen?";
+translations.fr.authOlvido = "Mot de passe oublié ?";
+translations.es.authOlvidoEnviado = "Si hay una cuenta con ese correo, te enviamos un enlace para elegir una contraseña nueva. Caduca pronto y sirve una sola vez. Si no lo ves en unos minutos, revisa la carpeta de spam.";
+translations.en.authOlvidoEnviado = "If there is an account with that email, we sent you a link to choose a new password. It expires soon and works only once. If you don’t see it in a few minutes, check your spam folder.";
+translations.de.authOlvidoEnviado = "Wenn es ein Konto mit dieser E-Mail gibt, haben wir dir einen Link geschickt, um ein neues Passwort zu wählen. Er läuft bald ab und funktioniert nur einmal. Wenn du ihn in ein paar Minuten nicht siehst, schau im Spam-Ordner nach.";
+translations.fr.authOlvidoEnviado = "S’il existe un compte avec cet e-mail, nous t’avons envoyé un lien pour choisir un nouveau mot de passe. Il expire bientôt et ne sert qu’une fois. Si tu ne le vois pas d’ici quelques minutes, regarde dans tes spams.";
+translations.es.authErrRate = "Ahora mismo no podemos enviar más correos. Espera unos minutos e inténtalo de nuevo.";
+translations.en.authErrRate = "We can’t send more emails right now. Please wait a few minutes and try again.";
+translations.de.authErrRate = "Wir können gerade keine weiteren E-Mails senden. Warte ein paar Minuten und versuch es noch einmal.";
+translations.fr.authErrRate = "Nous ne pouvons pas envoyer plus d’e-mails pour l’instant. Attends quelques minutes et réessaie.";
+// At sign-up (Supabase's e-mails-per-hour limit): the account was not created.
+translations.es.authErrRateSignup = "Estamos recibiendo muchos registros. Inténtalo de nuevo en unos minutos.";
+translations.en.authErrRateSignup = "We’re receiving a lot of sign-ups. Please try again in a few minutes.";
+translations.de.authErrRateSignup = "Wir bekommen gerade sehr viele Registrierungen. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.authErrRateSignup = "Nous recevons beaucoup d’inscriptions. Réessaie dans quelques minutes.";
+translations.es.authErrSend = "No pudimos enviar el correo. Inténtalo en unos minutos; si sigue fallando, escríbenos a hello@motherverdeny.com.";
+translations.en.authErrSend = "We couldn’t send the email. Try again in a few minutes; if it keeps failing, write to us at hello@motherverdeny.com.";
+translations.de.authErrSend = "Wir konnten die E-Mail nicht senden. Versuch es in ein paar Minuten noch einmal; wenn es weiter nicht klappt, schreib uns an hello@motherverdeny.com.";
+translations.fr.authErrSend = "Impossible d’envoyer l’e-mail. Réessaie dans quelques minutes ; si ça ne marche toujours pas, écris-nous à hello@motherverdeny.com.";
+translations.es.authErrWait = "Espera {s} s antes de pedir otro correo.";
+translations.en.authErrWait = "Wait {s} s before asking for another email.";
+translations.de.authErrWait = "Warte {s} s, bevor du eine weitere E-Mail anforderst.";
+translations.fr.authErrWait = "Attends {s} s avant de demander un autre e-mail.";
+translations.es.recH = "Elige una contraseña nueva";
+translations.en.recH = "Choose a new password";
+translations.de.recH = "Wähle ein neues Passwort";
+translations.fr.recH = "Choisis un nouveau mot de passe";
+translations.es.recP = "Abriste el enlace para cambiar tu contraseña. Escríbela dos veces.";
+translations.en.recP = "You opened the link to reset your password. Type the new one twice.";
+translations.de.recP = "Du hast den Link zum Zurücksetzen geöffnet. Gib das neue Passwort zweimal ein.";
+translations.fr.recP = "Tu as ouvert le lien pour changer ton mot de passe. Saisis le nouveau deux fois.";
+// UI texts that were fixed Spanish (2026-11-06, translation batch)
+translations.es.eduLoc1 = "Nueva York, EE. UU. — Cultivo &amp; horticultura";
+translations.en.eduLoc1 = "New York, USA — Growing &amp; horticulture";
+translations.de.eduLoc1 = "New York, USA — Anbau &amp; Gartenbau";
+translations.fr.eduLoc1 = "New York, États-Unis — Culture &amp; horticulture";
+translations.es.eduLoc2 = "Colorado, EE. UU. — Ciencia &amp; química";
+translations.en.eduLoc2 = "Colorado, USA — Science &amp; chemistry";
+translations.de.eduLoc2 = "Colorado, USA — Wissenschaft &amp; Chemie";
+translations.fr.eduLoc2 = "Colorado, États-Unis — Sciences &amp; chimie";
+translations.es.eduLoc3 = "Colorado, EE. UU. — Medicina &amp; farmacia";
+translations.en.eduLoc3 = "Colorado, USA — Medicine &amp; pharmacy";
+translations.de.eduLoc3 = "Colorado, USA — Medizin &amp; Pharmazie";
+translations.fr.eduLoc3 = "Colorado, États-Unis — Médecine &amp; pharmacie";
+translations.es.eduLoc4 = "Saskatchewan, Canadá — Cultivo &amp; horticultura";
+translations.en.eduLoc4 = "Saskatchewan, Canada — Growing &amp; horticulture";
+translations.de.eduLoc4 = "Saskatchewan, Kanada — Anbau &amp; Gartenbau";
+translations.fr.eduLoc4 = "Saskatchewan, Canada — Culture &amp; horticulture";
+translations.es.eduLoc5 = "Ontario, Canadá — Cultivo &amp; negocio";
+translations.en.eduLoc5 = "Ontario, Canada — Growing &amp; business";
+translations.de.eduLoc5 = "Ontario, Kanada — Anbau &amp; Wirtschaft";
+translations.fr.eduLoc5 = "Ontario, Canada — Culture &amp; commerce";
+translations.es.eduLoc6 = "Cataluña, España — Ciencia &amp; regulación";
+translations.en.eduLoc6 = "Catalonia, Spain — Science &amp; regulation";
+translations.de.eduLoc6 = "Katalonien, Spanien — Wissenschaft &amp; Regulierung";
+translations.fr.eduLoc6 = "Catalogne, Espagne — Sciences &amp; réglementation";
+translations.es.eduLoc7 = "Comunidad Valenciana, España — Ciencia &amp; regulación";
+translations.en.eduLoc7 = "Valencian Community, Spain — Science &amp; regulation";
+translations.de.eduLoc7 = "Valencianische Gemeinschaft, Spanien — Wissenschaft &amp; Regulierung";
+translations.fr.eduLoc7 = "Communauté valencienne, Espagne — Sciences &amp; réglementation";
+translations.es.eduLoc8 = "Alicante, España — Negocio &amp; industria digital";
+translations.en.eduLoc8 = "Alicante, Spain — Business &amp; digital industry";
+translations.de.eduLoc8 = "Alicante, Spanien — Wirtschaft &amp; digitale Industrie";
+translations.fr.eduLoc8 = "Alicante, Espagne — Commerce &amp; industrie numérique";
+translations.es.eduLoc9 = "Bogotá, Colombia — Negocio &amp; regulación";
+translations.en.eduLoc9 = "Bogotá, Colombia — Business &amp; regulation";
+translations.de.eduLoc9 = "Bogotá, Kolumbien — Wirtschaft &amp; Regulierung";
+translations.fr.eduLoc9 = "Bogotá, Colombie — Commerce &amp; réglementation";
+translations.es.eduLoc10 = "Rhode Island, EE. UU. — Ciencia &amp; medicina";
+translations.en.eduLoc10 = "Rhode Island, USA — Science &amp; medicine";
+translations.de.eduLoc10 = "Rhode Island, USA — Wissenschaft &amp; Medizin";
+translations.fr.eduLoc10 = "Rhode Island, États-Unis — Sciences &amp; médecine";
+translations.es.eduLoc11 = "Lima, Perú — Medicina &amp; salud pública";
+translations.en.eduLoc11 = "Lima, Peru — Medicine &amp; public health";
+translations.de.eduLoc11 = "Lima, Peru — Medizin &amp; öffentliche Gesundheit";
+translations.fr.eduLoc11 = "Lima, Pérou — Médecine &amp; santé publique";
+translations.es.eduLoc12 = "Santiago, Chile — Ciencia &amp; química";
+translations.en.eduLoc12 = "Santiago, Chile — Science &amp; chemistry";
+translations.de.eduLoc12 = "Santiago, Chile — Wissenschaft &amp; Chemie";
+translations.fr.eduLoc12 = "Santiago, Chili — Sciences &amp; chimie";
+translations.es.eduLoc13 = "Rosario, Argentina — Medicina &amp; salud";
+translations.en.eduLoc13 = "Rosario, Argentina — Medicine &amp; health";
+translations.de.eduLoc13 = "Rosario, Argentinien — Medizin &amp; Gesundheit";
+translations.fr.eduLoc13 = "Rosario, Argentine — Médecine &amp; santé";
+translations.es.eduLoc14 = "La Rioja, Argentina — Cultivo &amp; industrialización";
+translations.en.eduLoc14 = "La Rioja, Argentina — Growing &amp; industrialisation";
+translations.de.eduLoc14 = "La Rioja, Argentinien — Anbau &amp; Industrialisierung";
+translations.fr.eduLoc14 = "La Rioja, Argentine — Culture &amp; industrialisation";
+translations.es.eduLoc15 = "Buenos Aires, Argentina — Medicina &amp; salud";
+translations.en.eduLoc15 = "Buenos Aires, Argentina — Medicine &amp; health";
+translations.de.eduLoc15 = "Buenos Aires, Argentinien — Medizin &amp; Gesundheit";
+translations.fr.eduLoc15 = "Buenos Aires, Argentine — Médecine &amp; santé";
+translations.es.ppTitle1 = "Cannabis y psicoterapia: acceso desigual y estigma";
+translations.en.ppTitle1 = "Cannabis and psychotherapy: unequal access and stigma";
+translations.de.ppTitle1 = "Cannabis und Psychotherapie: ungleicher Zugang und Stigma";
+translations.fr.ppTitle1 = "Cannabis et psychothérapie : accès inégal et stigmatisation";
+translations.es.ppTitle2 = "CBD y extinción de memorias de miedo";
+translations.en.ppTitle2 = "CBD and the extinction of fear memories";
+translations.de.ppTitle2 = "CBD und die Löschung von Angsterinnerungen";
+translations.fr.ppTitle2 = "Le CBD et l’extinction des souvenirs de peur";
+translations.es.ppTitle3 = "Cannabis medicinal para dolor crónico: expectativas calibradas con rigor científico";
+translations.en.ppTitle3 = "Medical cannabis for chronic pain: expectations calibrated with scientific rigour";
+translations.de.ppTitle3 = "Medizinisches Cannabis bei chronischen Schmerzen: mit wissenschaftlicher Strenge abgestimmte Erwartungen";
+translations.fr.ppTitle3 = "Cannabis médical contre la douleur chronique : des attentes calibrées avec rigueur scientifique";
+translations.es.ppTitle4 = "Conducir bajo efecto tras la legalización";
+translations.en.ppTitle4 = "Driving under the influence after legalisation";
+translations.de.ppTitle4 = "Fahren unter Cannabiseinfluss nach der Legalisierung";
+translations.fr.ppTitle4 = "Conduite sous influence après la légalisation";
+translations.es.ppTitle5 = "Proyección de efectos netos en salud de la legalización alemana";
+translations.en.ppTitle5 = "Projected net health effects of the German legalisation";
+translations.de.ppTitle5 = "Prognose der gesundheitlichen Nettoeffekte der deutschen Legalisierung";
+translations.fr.ppTitle5 = "Projection des effets nets sur la santé de la légalisation allemande";
+translations.es.ppTitle6 = "Oferta y demanda tras la legalización en Alemania";
+translations.en.ppTitle6 = "Supply and demand after legalisation in Germany";
+translations.de.ppTitle6 = "Angebot und Nachfrage nach der Legalisierung in Deutschland";
+translations.fr.ppTitle6 = "L’offre et la demande après la légalisation en Allemagne";
+translations.es.ppTitle7 = "Salud mental y potencia de THC en Europa";
+translations.en.ppTitle7 = "Mental health and THC potency in Europe";
+translations.de.ppTitle7 = "Psychische Gesundheit und THC-Gehalt in Europa";
+translations.fr.ppTitle7 = "Santé mentale et puissance du THC en Europe";
+translations.es.ppTitle8 = "Experimento de cadena de suministro cerrada en los Países Bajos";
+translations.en.ppTitle8 = "Closed supply chain experiment in the Netherlands";
+translations.de.ppTitle8 = "Experiment mit geschlossener Lieferkette in den Niederlanden";
+translations.fr.ppTitle8 = "Expérience de chaîne d’approvisionnement fermée aux Pays-Bas";
+translations.es.ppTitle9 = "De la granja a la cama del paciente: acceso global al cannabis medicinal";
+translations.en.ppTitle9 = "From farm to bedside: global access to medical cannabis";
+translations.de.ppTitle9 = "Vom Feld ans Krankenbett: weltweiter Zugang zu medizinischem Cannabis";
+translations.fr.ppTitle9 = "De la ferme au chevet du patient : l’accès mondial au cannabis médical";
+translations.es.ppTitle10 = "Reforma de la Ley de Control de Cannabis en Japón";
+translations.en.ppTitle10 = "Reform of Japan’s Cannabis Control Law";
+translations.de.ppTitle10 = "Reform des Cannabiskontrollgesetzes in Japan";
+translations.fr.ppTitle10 = "Réforme de la loi japonaise sur le contrôle du cannabis";
+translations.es.ppTitle11 = "Revisando la hipótesis de la \"puerta de entrada\" en Japón";
+translations.en.ppTitle11 = "Revisiting the “gateway” hypothesis in Japan";
+translations.de.ppTitle11 = "Die „Einstiegsdrogen“-Hypothese in Japan neu betrachtet";
+translations.fr.ppTitle11 = "Réexamen de l’hypothèse de la « porte d’entrée » au Japon";
+translations.es.ppTitle12 = "Normas sociales y severidad de consumo en Corea del Sur";
+translations.en.ppTitle12 = "Social norms and severity of use in South Korea";
+translations.de.ppTitle12 = "Soziale Normen und Schwere des Konsums in Südkorea";
+translations.fr.ppTitle12 = "Normes sociales et gravité de la consommation en Corée du Sud";
+translations.es.ppTitle13 = "Modelos internacionales de suministro regulado";
+translations.en.ppTitle13 = "International models of regulated supply";
+translations.de.ppTitle13 = "Internationale Modelle regulierter Versorgung";
+translations.fr.ppTitle13 = "Modèles internationaux d’approvisionnement réglementé";
+translations.es.ppTitle14 = "Política y terapéutica del cannabis a nivel internacional (parte 1)";
+translations.en.ppTitle14 = "International cannabis policy and therapeutics (part 1)";
+translations.de.ppTitle14 = "Internationale Cannabispolitik und -therapie (Teil 1)";
+translations.fr.ppTitle14 = "Politique et thérapeutique du cannabis à l’échelle internationale (partie 1)";
+translations.es.ppTitle15 = "Actitudes juveniles hacia la legislación del cannabis en Marruecos";
+translations.en.ppTitle15 = "Young people’s attitudes towards cannabis legislation in Morocco";
+translations.de.ppTitle15 = "Einstellungen junger Menschen zur Cannabisgesetzgebung in Marokko";
+translations.fr.ppTitle15 = "Attitudes des jeunes face à la législation sur le cannabis au Maroc";
+translations.es.ppTitle16 = "Revisión sistemática en estudiantes del mundo árabe";
+translations.en.ppTitle16 = "Systematic review among students in the Arab world";
+translations.de.ppTitle16 = "Systematische Übersichtsarbeit zu Studierenden in der arabischen Welt";
+translations.fr.ppTitle16 = "Revue systématique chez les étudiants du monde arabe";
+translations.es.ppHeadNote = "Los encabezados en inglés son el título original publicado; los demás son resúmenes de Mother Verde.";
+translations.en.ppHeadNote = "Headings in italics are the original published title; the others are Mother Verde summaries.";
+translations.de.ppHeadNote = "Die Überschriften auf Englisch sind der veröffentlichte Originaltitel; die übrigen sind Zusammenfassungen von Mother Verde.";
+translations.fr.ppHeadNote = "Les titres en anglais sont le titre original publié ; les autres sont des résumés de Mother Verde.";
+translations.es.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.en.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.de.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.fr.ppMetaX1 = "Portes et al. · Revista Fitos · 2025";
+translations.es.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · junio 2025";
+translations.en.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · June 2025";
+translations.de.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · Juni 2025";
+translations.fr.ppMetaX2 = "Schweiger V. et al. · Clinical and Experimental Rheumatology · juin 2025";
+translations.es.ppMetaX3 = "Universidades de Hamburgo y Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.en.ppMetaX3 = "Universities of Hamburg and Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.de.ppMetaX3 = "Universitäten Hamburg und Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.fr.ppMetaX3 = "Universités de Hambourg et de Leipzig · The Lancet Regional Health – Europe · 2026";
+translations.es.ppMetaX4 = "Centro Médico Universitario Hamburgo-Eppendorf · International Journal of Drug Policy · 2026";
+translations.en.ppMetaX4 = "University Medical Center Hamburg-Eppendorf · International Journal of Drug Policy · 2026";
+translations.de.ppMetaX4 = "Universitätsklinikum Hamburg-Eppendorf · International Journal of Drug Policy · 2026";
+translations.fr.ppMetaX4 = "Centre médical universitaire de Hambourg-Eppendorf · International Journal of Drug Policy · 2026";
+translations.es.ppMetaX5 = "Śniadach J. et al. · Frontiers in Psychiatry · 2026";
+translations.en.ppMetaX5 = "Śniadach J. et al. · Frontiers in Psychiatry · 2026";
+translations.de.ppMetaX5 = "Śniadach J. et al. · Frontiers in Psychiatry · 2026";
+translations.fr.ppMetaX5 = "Śniadach J. et al. · Frontiers in Psychiatry · 2026";
+translations.es.ppMetaX6 = "Knottnerus et al. · Health Policy · 2023";
+translations.en.ppMetaX6 = "Knottnerus et al. · Health Policy · 2023";
+translations.de.ppMetaX6 = "Knottnerus et al. · Health Policy · 2023";
+translations.fr.ppMetaX6 = "Knottnerus et al. · Health Policy · 2023";
+translations.es.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.en.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.de.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.fr.ppMetaX7 = "Complementary Therapies in Medicine · 2025";
+translations.es.ppMetaX8 = "Fundación de Bienestar de Seúl · International Journal of Environmental Research and Public Health · 2024";
+translations.en.ppMetaX8 = "Seoul Welfare Foundation · International Journal of Environmental Research and Public Health · 2024";
+translations.de.ppMetaX8 = "Seouler Wohlfahrtsstiftung · International Journal of Environmental Research and Public Health · 2024";
+translations.fr.ppMetaX8 = "Fondation pour le bien-être de Séoul · International Journal of Environmental Research and Public Health · 2024";
+translations.es.ppMetaX9 = "Belackova V. et al. · International Journal of Drug Policy · 2025";
+translations.en.ppMetaX9 = "Belackova V. et al. · International Journal of Drug Policy · 2025";
+translations.de.ppMetaX9 = "Belackova V. et al. · International Journal of Drug Policy · 2025";
+translations.fr.ppMetaX9 = "Belackova V. et al. · International Journal of Drug Policy · 2025";
+translations.es.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.en.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.de.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.fr.ppMetaX10 = "Clinical Therapeutics · 2026";
+translations.es.ppMetaX11 = "Universidad Americana de Beirut · Frontiers in Psychiatry · 2025";
+translations.en.ppMetaX11 = "American University of Beirut · Frontiers in Psychiatry · 2025";
+translations.de.ppMetaX11 = "Amerikanische Universität Beirut · Frontiers in Psychiatry · 2025";
+translations.fr.ppMetaX11 = "Université américaine de Beyrouth · Frontiers in Psychiatry · 2025";
+translations.es.gnRatioI = "Tipo I";
+translations.en.gnRatioI = "Type I";
+translations.de.gnRatioI = "Typ I";
+translations.fr.gnRatioI = "Type I";
+translations.es.gnRatioII = "Tipo II";
+translations.en.gnRatioII = "Type II";
+translations.de.gnRatioII = "Typ II";
+translations.fr.gnRatioII = "Type II";
+translations.es.gnRatioIII = "Tipo III";
+translations.en.gnRatioIII = "Type III";
+translations.de.gnRatioIII = "Typ III";
+translations.fr.gnRatioIII = "Type III";
+translations.es.epDuracionVal = "7–14 días";
+translations.en.epDuracionVal = "7–14 days";
+translations.de.epDuracionVal = "7–14 Tage";
+translations.fr.epDuracionVal = "7–14 jours";
+translations.es.epDuracionMinVal = "2–4 semanas";
+translations.en.epDuracionMinVal = "2–4 weeks";
+translations.de.epDuracionMinVal = "2–4 Wochen";
+translations.fr.epDuracionMinVal = "2–4 semaines";
+translations.es.ilDliVeg = "20–40 mol/m²/día";
+translations.en.ilDliVeg = "20–40 mol/m²/day";
+translations.de.ilDliVeg = "20–40 mol/m²/Tag";
+translations.fr.ilDliVeg = "20–40 mol/m²/jour";
+translations.es.ilDliFlor = "30–50 mol/m²/día";
+translations.en.ilDliFlor = "30–50 mol/m²/day";
+translations.de.ilDliFlor = "30–50 mol/m²/Tag";
+translations.fr.ilDliFlor = "30–50 mol/m²/jour";
+translations.es.histSiglo16 = "Siglo XVI";
+translations.en.histSiglo16 = "16th century";
+translations.de.histSiglo16 = "16. Jahrhundert";
+translations.fr.histSiglo16 = "XVIe siècle";
+translations.es.srcHemptodayArch = "hemptoday.net (archivado)";
+translations.en.srcHemptodayArch = "hemptoday.net (archived)";
+translations.de.srcHemptodayArch = "hemptoday.net (archiviert)";
+translations.fr.srcHemptodayArch = "hemptoday.net (archivé)";
+translations.es.tcH4 = "Checklist pre-viaje";
+translations.en.tcH4 = "Pre-trip checklist";
+translations.de.tcH4 = "Checkliste vor der Reise";
+translations.fr.tcH4 = "Liste de contrôle avant le voyage";
+translations.es.coaLote = "LOTE #4471-A · 12/03/2026";
+translations.en.coaLote = "BATCH #4471-A · 12/03/2026";
+translations.de.coaLote = "CHARGE #4471-A · 12/03/2026";
+translations.fr.coaLote = "LOT #4471-A · 12/03/2026";
+translations.es.coaCannab = "CANNABINOIDES";
+translations.en.coaCannab = "CANNABINOIDS";
+translations.de.coaCannab = "CANNABINOIDE";
+translations.fr.coaCannab = "CANNABINOÏDES";
+translations.es.coaPest = "PESTICIDAS (58 compuestos)";
+translations.en.coaPest = "PESTICIDES (58 compounds)";
+translations.de.coaPest = "PESTIZIDE (58 Verbindungen)";
+translations.fr.coaPest = "PESTICIDES (58 composés)";
+translations.es.coaMetal = "METALES PESADOS";
+translations.en.coaMetal = "HEAVY METALS";
+translations.de.coaMetal = "SCHWERMETALLE";
+translations.fr.coaMetal = "MÉTAUX LOURDS";
+translations.es.coaMicro = "MICROBIANOS";
+translations.en.coaMicro = "MICROBIALS";
+translations.de.coaMicro = "MIKROBIOLOGIE";
+translations.fr.coaMicro = "MICROBIOLOGIE";
+translations.es.coaSolv = "SOLVENTES RESIDUALES";
+translations.en.coaSolv = "RESIDUAL SOLVENTS";
+translations.de.coaSolv = "LÖSUNGSMITTELRÜCKSTÄNDE";
+translations.fr.coaSolv = "SOLVANTS RÉSIDUELS";
+translations.es.coaLab = "Lab: [Nombre] · Contacto: [correo/tel]";
+translations.en.coaLab = "Lab: [Name] · Contact: [e-mail/phone]";
+translations.de.coaLab = "Labor: [Name] · Kontakt: [E-Mail/Tel.]";
+translations.fr.coaLab = "Labo : [Nom] · Contact : [e-mail/tél.]";
+translations.es.coaFirma = "FIRMA /";
+translations.en.coaFirma = "SIGNATURE /";
+translations.de.coaFirma = "UNTERSCHRIFT /";
+translations.fr.coaFirma = "SIGNATURE /";
+translations.es.coaSello = "SELLO LAB";
+translations.en.coaSello = "LAB STAMP";
+translations.de.coaSello = "LABORSTEMPEL";
+translations.fr.coaSello = "CACHET DU LABO";
+translations.es.emailPh = "tu@correo.com";
+translations.en.emailPh = "you@example.com";
+translations.de.emailPh = "du@beispiel.de";
+translations.fr.emailPh = "toi@exemple.fr";
+translations.es.newEmailPh = "nuevo@correo.com";
+translations.en.newEmailPh = "new@example.com";
+translations.de.newEmailPh = "neu@beispiel.de";
+translations.fr.newEmailPh = "nouveau@exemple.fr";
+translations.es.closeLabel = "Cerrar";
+translations.en.closeLabel = "Close";
+translations.de.closeLabel = "Schließen";
+translations.fr.closeLabel = "Fermer";
+translations.es.tierSwitchTitle = "Este selector es solo para probar cómo se ve la app en cada plan — no es una compra real.";
+translations.en.tierSwitchTitle = "This selector is only to try how the app looks in each plan — it is not a real purchase.";
+translations.de.tierSwitchTitle = "Dieser Schalter dient nur dazu, zu sehen, wie die App in jedem Plan aussieht — es ist kein echter Kauf.";
+translations.fr.tierSwitchTitle = "Ce sélecteur sert seulement à voir à quoi ressemble l’app dans chaque formule — ce n’est pas un vrai achat.";
+translations.es.calcVpdOk = "✓ Dentro del rango objetivo";
+translations.en.calcVpdOk = "✓ Within the target range";
+translations.de.calcVpdOk = "✓ Im Zielbereich";
+translations.fr.calcVpdOk = "✓ Dans la plage cible";
+translations.es.calcVpdHigh = "⚠ Más alto que el objetivo — ambiente muy seco";
+translations.en.calcVpdHigh = "⚠ Higher than the target — air too dry";
+translations.de.calcVpdHigh = "⚠ Höher als das Ziel — Luft zu trocken";
+translations.fr.calcVpdHigh = "⚠ Plus élevé que la cible — air trop sec";
+translations.es.calcVpdLow = "⚠ Más bajo que el objetivo — ambiente muy húmedo";
+translations.en.calcVpdLow = "⚠ Lower than the target — air too humid";
+translations.de.calcVpdLow = "⚠ Niedriger als das Ziel — Luft zu feucht";
+translations.fr.calcVpdLow = "⚠ Plus bas que la cible — air trop humide";
+translations.es.calcDliUnit = "mol/m²/día";
+translations.en.calcDliUnit = "mol/m²/day";
+translations.de.calcDliUnit = "mol/m²/Tag";
+translations.fr.calcDliUnit = "mol/m²/jour";
+translations.es.calcPerServing = "mg / porción";
+translations.en.calcPerServing = "mg / serving";
+translations.de.calcPerServing = "mg / Portion";
+translations.fr.calcPerServing = "mg / portion";
+translations.es.calcMgThc = "mg de THC";
+translations.en.calcMgThc = "mg of THC";
+translations.de.calcMgThc = "mg THC";
+translations.fr.calcMgThc = "mg de THC";
+translations.es.gnRatioIV = "Tipo IV";
+translations.en.gnRatioIV = "Type IV";
+translations.de.gnRatioIV = "Typ IV";
+translations.fr.gnRatioIV = "Type IV";
+translations.es.tcItem1 = "Verifiqué el estatus legal de mi destino en el explorador";
+translations.en.tcItem1 = "I checked the legal status of my destination in the explorer";
+translations.de.tcItem1 = "Ich habe den rechtlichen Status meines Reiseziels im Explorer geprüft";
+translations.fr.tcItem1 = "J’ai vérifié le statut légal de ma destination dans l’explorateur";
+translations.es.tcItem2 = "Verifiqué el estatus del CBD por separado — no asumo que va incluido";
+translations.en.tcItem2 = "I checked the status of CBD separately — I don’t assume it is included";
+translations.de.tcItem2 = "Ich habe den Status von CBD separat geprüft — ich gehe nicht davon aus, dass es inbegriffen ist";
+translations.fr.tcItem2 = "J’ai vérifié séparément le statut du CBD — je ne suppose pas qu’il est inclus";
+translations.es.tcItem3 = "Revisé si mi vuelo tiene escala en un país con ley distinta";
+translations.en.tcItem3 = "I checked whether my flight stops over in a country with a different law";
+translations.de.tcItem3 = "Ich habe geprüft, ob mein Flug in einem Land mit anderem Gesetz zwischenlandet";
+translations.fr.tcItem3 = "J’ai vérifié si mon vol fait escale dans un pays où la loi est différente";
+translations.es.tcItem4 = "No llevo ningún producto conmigo, ni de ida ni de vuelta";
+translations.en.tcItem4 = "I am not carrying any product with me, on the way out or back";
+translations.de.tcItem4 = "Ich habe keine Produkte dabei, weder auf dem Hin- noch auf dem Rückweg";
+translations.fr.tcItem4 = "Je ne transporte aucun produit, ni à l’aller ni au retour";
+translations.es.tcItem5 = "Guardé copia de mi documentación médica, si mi viaje es por uso medicinal";
+translations.en.tcItem5 = "I kept a copy of my medical documents, if my trip involves medical use";
+translations.de.tcItem5 = "Ich habe eine Kopie meiner medizinischen Unterlagen dabei, falls meine Reise mit medizinischer Nutzung zu tun hat";
+translations.fr.tcItem5 = "J’ai gardé une copie de mes documents médicaux, si mon voyage concerne un usage médical";
+translations.es.tcItem6 = "Verifiqué también el estatus del país al que regreso";
+translations.en.tcItem6 = "I also checked the status of the country I am returning to";
+translations.de.tcItem6 = "Ich habe auch den Status des Landes geprüft, in das ich zurückkehre";
+translations.fr.tcItem6 = "J’ai aussi vérifié le statut du pays où je rentre";
+translations.es.tcProgress = "{n} de {total} verificados";
+translations.en.tcProgress = "{n} of {total} checked";
+translations.de.tcProgress = "{n} von {total} geprüft";
+translations.fr.tcProgress = "{n} sur {total} vérifiés";
+translations.es.tcReady = " — ✓ listo para viajar";
+translations.en.tcReady = " — ✓ ready to travel";
+translations.de.tcReady = " — ✓ bereit für die Reise";
+translations.fr.tcReady = " — ✓ prêt·e à voyager";
+translations.es.searchNone = "Sin resultados para «{q}»";
+translations.en.searchNone = "No results for “{q}”";
+translations.de.searchNone = "Keine Ergebnisse für „{q}“";
+translations.fr.searchNone = "Aucun résultat pour « {q} »";
+translations.es.metaDescription = "Una enciclopedia de cannabis medicinal y recreacional basada en evidencia, en cuatro idiomas, con una comunidad para aprender juntos.";
+translations.en.metaDescription = "An evidence-based encyclopedia of medical and recreational cannabis, in four languages, with a community to learn together.";
+translations.de.metaDescription = "Eine evidenzbasierte Enzyklopädie über medizinisches und Freizeit-Cannabis, in vier Sprachen, mit einer Community, um gemeinsam zu lernen.";
+translations.fr.metaDescription = "Une encyclopédie du cannabis médical et récréatif fondée sur les preuves, en quatre langues, avec une communauté pour apprendre ensemble.";
+translations.es.calcDoseInvalid = "Escribe números mayores que 0.";
+translations.en.calcDoseInvalid = "Enter numbers greater than 0.";
+translations.de.calcDoseInvalid = "Gib Zahlen größer als 0 ein.";
+translations.fr.calcDoseInvalid = "Saisis des nombres supérieurs à 0.";
+translations.es.recInvH = "Crea tu contraseña";
+translations.en.recInvH = "Create your password";
+translations.de.recInvH = "Erstelle dein Passwort";
+translations.fr.recInvH = "Crée ton mot de passe";
+translations.es.recInvP = "Te invitaron a Mother Verde. Escribe tu contraseña dos veces; con ella entrarás la próxima vez.";
+translations.en.recInvP = "You were invited to Mother Verde. Type your password twice; you will use it to sign in next time.";
+translations.de.recInvP = "Du wurdest zu Mother Verde eingeladen. Gib dein Passwort zweimal ein; damit meldest du dich beim nächsten Mal an.";
+translations.fr.recInvP = "Tu as été invité·e sur Mother Verde. Saisis ton mot de passe deux fois ; tu l’utiliseras pour te connecter la prochaine fois.";
+translations.es.recNueva = "Contraseña nueva";
+translations.en.recNueva = "New password";
+translations.de.recNueva = "Neues Passwort";
+translations.fr.recNueva = "Nouveau mot de passe";
+translations.es.recRepite = "Repítela";
+translations.en.recRepite = "Repeat it";
+translations.de.recRepite = "Wiederhole es";
+translations.fr.recRepite = "Répète-le";
+translations.es.recGuardar = "Guardar contraseña";
+translations.en.recGuardar = "Save password";
+translations.de.recGuardar = "Passwort speichern";
+translations.fr.recGuardar = "Enregistrer le mot de passe";
+translations.es.recNoCoinciden = "Las dos contraseñas no coinciden.";
+translations.en.recNoCoinciden = "The two passwords don’t match.";
+translations.de.recNoCoinciden = "Die beiden Passwörter stimmen nicht überein.";
+translations.fr.recNoCoinciden = "Les deux mots de passe ne correspondent pas.";
+translations.es.recOk = "Listo: tu contraseña cambió y ya estás dentro.";
+translations.en.recOk = "Done: your password changed and you’re signed in.";
+translations.de.recOk = "Erledigt: Dein Passwort wurde geändert und du bist angemeldet.";
+translations.fr.recOk = "C’est fait : ton mot de passe a changé et tu es connecté·e.";
+translations.es.recError = "No pudimos guardar la contraseña. Pide un enlace nuevo con «¿Olvidaste tu contraseña?».";
+translations.en.recError = "We couldn’t save the password. Ask for a new link with “Forgot your password?”.";
+translations.de.recError = "Wir konnten das Passwort nicht speichern. Fordere über „Passwort vergessen?“ einen neuen Link an.";
+translations.fr.recError = "Impossible d’enregistrer le mot de passe. Demande un nouveau lien avec « Mot de passe oublié ? ».";
+translations.es.ceH = "Correo para iniciar sesión";
+translations.en.ceH = "Sign-in email";
+translations.de.ceH = "Anmelde-E-Mail";
+translations.fr.ceH = "E-mail de connexion";
+translations.es.ceBtn = "Cambiar";
+translations.en.ceBtn = "Change";
+translations.de.ceBtn = "Ändern";
+translations.fr.ceBtn = "Modifier";
+translations.es.ceEnviar = "Enviar enlace de confirmación";
+translations.en.ceEnviar = "Send confirmation link";
+translations.de.ceEnviar = "Bestätigungslink senden";
+translations.fr.ceEnviar = "Envoyer le lien de confirmation";
+translations.es.ceEnviado = "Te enviamos un enlace a {email}. El cambio se hace cuando lo abras. Por seguridad también puede llegar un enlace a tu correo actual: ábrelo también. Si no lo ves en unos minutos, revisa la carpeta de spam.";
+translations.en.ceEnviado = "We sent a link to {email}. The change happens when you open it. For security, a link may also arrive at your current email: open that one too. If you don’t see it in a few minutes, check your spam folder.";
+translations.de.ceEnviado = "Wir haben einen Link an {email} geschickt. Die Änderung erfolgt, sobald du ihn öffnest. Aus Sicherheitsgründen kann auch an deine aktuelle E-Mail ein Link kommen: Öffne auch diesen. Wenn du ihn in ein paar Minuten nicht siehst, schau im Spam-Ordner nach.";
+translations.fr.ceEnviado = "Nous avons envoyé un lien à {email}. Le changement se fait quand tu l’ouvres. Par sécurité, un lien peut aussi arriver sur ton e-mail actuel : ouvre-le aussi. Si tu ne le vois pas d’ici quelques minutes, regarde dans tes spams.";
+translations.es.ceIgual = "Ese ya es tu correo.";
+translations.en.ceIgual = "That is already your email.";
+translations.de.ceIgual = "Das ist bereits deine E-Mail.";
+translations.fr.ceIgual = "C’est déjà ton e-mail.";
+// "Check your e-mail" screen: spam help, resend limits, contact, fix a mistyped e-mail.
+translations.es.accSpamTip = "Si no lo ves en unos minutos, revisa la carpeta de spam o correo no deseado y marca el mensaje como «no es spam».";
+translations.en.accSpamTip = "If you don’t see it in a few minutes, check your spam or junk folder and mark the message as “not spam”.";
+translations.de.accSpamTip = "Wenn du sie in ein paar Minuten nicht siehst, schau im Spam- oder Junk-Ordner nach und markiere die Nachricht als „kein Spam“.";
+translations.fr.accSpamTip = "Si tu ne le vois pas d’ici quelques minutes, regarde dans le dossier spam ou courrier indésirable et marque le message comme « non spam ».";
+translations.es.accGmailTip = "Consejo para Gmail: mira también en «Spam» y en la pestaña «Promociones».";
+translations.en.accGmailTip = "Gmail tip: also look in Spam and in the Promotions tab.";
+translations.de.accGmailTip = "Tipp für Gmail: Schau auch im Spam und im Tab „Werbung“ nach.";
+translations.fr.accGmailTip = "Astuce Gmail : regarde aussi dans Spam et dans l’onglet « Promotions ».";
+translations.es.accOutlookTip = "Consejo para Outlook y Hotmail: mira también en «Correo no deseado» y en la pestaña «Otros».";
+translations.en.accOutlookTip = "Outlook and Hotmail tip: also look in Junk Email and in the Other tab.";
+translations.de.accOutlookTip = "Tipp für Outlook und Hotmail: Schau auch in „Junk-E-Mail“ und im Tab „Sonstige“ nach.";
+translations.fr.accOutlookTip = "Astuce Outlook et Hotmail : regarde aussi dans « Courrier indésirable » et dans l’onglet « Autres ».";
+translations.es.accContacto = "¿Sigues sin recibirlo? Escríbenos a {mail}";
+translations.en.accContacto = "Still haven’t received it? Write to us at {mail}";
+translations.de.accContacto = "Immer noch nichts angekommen? Schreib uns an {mail}";
+translations.fr.accContacto = "Toujours rien reçu ? Écris-nous à {mail}";
+translations.es.accReenviarMax = "Ya pediste 3 reenvíos en la última hora. Podrás pedir otro en {m} min.";
+translations.en.accReenviarMax = "You already asked for 3 resends in the last hour. You can ask again in {m} min.";
+translations.de.accReenviarMax = "Du hast in der letzten Stunde schon 3 Mal erneut senden lassen. In {m} Min. kannst du es wieder anfordern.";
+translations.fr.accReenviarMax = "Tu as déjà demandé 3 renvois au cours de la dernière heure. Tu pourras en redemander un dans {m} min.";
+translations.es.accYaConfirme = "Ya lo confirmé: iniciar sesión";
+translations.en.accYaConfirme = "I already confirmed: sign in";
+translations.de.accYaConfirme = "Schon bestätigt: anmelden";
+translations.fr.accYaConfirme = "Déjà confirmé : me connecter";
+translations.es.accCorregirBtn = "¿Escribiste mal tu correo? Corrígelo";
+translations.en.accCorregirBtn = "Typed your email wrong? Fix it";
+translations.de.accCorregirBtn = "E-Mail falsch eingegeben? Korrigiere sie";
+translations.fr.accCorregirBtn = "Erreur dans ton e-mail ? Corrige-la";
+translations.es.accCorregirP = "Escribe el correo correcto y la contraseña que elegiste al crear la cuenta. Corregimos esta misma cuenta (no se crea otra) y te enviamos el enlace a la dirección nueva.";
+translations.en.accCorregirP = "Enter the correct email and the password you chose when you created the account. We fix this same account (no new one is created) and send the link to the new address.";
+translations.de.accCorregirP = "Gib die richtige E-Mail ein und das Passwort, das du beim Erstellen des Kontos gewählt hast. Wir korrigieren genau dieses Konto (es wird kein neues erstellt) und schicken den Link an die neue Adresse.";
+translations.fr.accCorregirP = "Saisis le bon e-mail et le mot de passe choisi à la création du compte. Nous corrigeons ce même compte (aucun autre n’est créé) et envoyons le lien à la nouvelle adresse.";
+translations.es.accCorregirNuevo = "Correo correcto";
+translations.en.accCorregirNuevo = "Correct email";
+translations.de.accCorregirNuevo = "Richtige E-Mail";
+translations.fr.accCorregirNuevo = "Bon e-mail";
+translations.es.accCorregirGuardar = "Corregir y reenviar";
+translations.en.accCorregirGuardar = "Fix and resend";
+translations.de.accCorregirGuardar = "Korrigieren und erneut senden";
+translations.fr.accCorregirGuardar = "Corriger et renvoyer";
+translations.es.accCorregirOk = "Listo: corregimos tu correo y te enviamos el enlace a {email}.";
+translations.en.accCorregirOk = "Done: we fixed your email and sent the link to {email}.";
+translations.de.accCorregirOk = "Erledigt: Wir haben deine E-Mail korrigiert und den Link an {email} geschickt.";
+translations.fr.accCorregirOk = "C’est fait : nous avons corrigé ton e-mail et envoyé le lien à {email}.";
+translations.es.accCorregirClave = "La contraseña no coincide con la de esta cuenta.";
+translations.en.accCorregirClave = "The password doesn’t match this account.";
+translations.de.accCorregirClave = "Das Passwort passt nicht zu diesem Konto.";
+translations.fr.accCorregirClave = "Le mot de passe ne correspond pas à ce compte.";
+translations.es.accCorregirYa = "Esta cuenta ya está confirmada: inicia sesión y, si quieres, cambia el correo en Tu cuenta.";
+translations.en.accCorregirYa = "This account is already confirmed: sign in and, if you like, change the email in Your account.";
+translations.de.accCorregirYa = "Dieses Konto ist bereits bestätigt: Melde dich an und ändere die E-Mail bei Bedarf unter Dein Konto.";
+translations.fr.accCorregirYa = "Ce compte est déjà confirmé : connecte-toi et, si tu veux, change l’e-mail dans Ton compte.";
+translations.es.accCorregirNo = "No podemos usar ese correo. Prueba con otro.";
+translations.en.accCorregirNo = "We can’t use that email. Please try another one.";
+translations.de.accCorregirNo = "Diese E-Mail können wir nicht verwenden. Versuch eine andere.";
+translations.fr.accCorregirNo = "Nous ne pouvons pas utiliser cet e-mail. Essaie-en un autre.";
+translations.es.accCorregirIgual = "Es el mismo correo de antes.";
+translations.en.accCorregirIgual = "That is the same email as before.";
+translations.de.accCorregirIgual = "Das ist dieselbe E-Mail wie vorher.";
+translations.fr.accCorregirIgual = "C’est le même e-mail qu’avant.";
+translations.es.accCorregirMuchos = "Demasiados intentos. Espera una hora y vuelve a probar, o escríbenos a hello@motherverdeny.com.";
+translations.en.accCorregirMuchos = "Too many attempts. Wait an hour and try again, or write to us at hello@motherverdeny.com.";
+translations.de.accCorregirMuchos = "Zu viele Versuche. Warte eine Stunde und versuch es noch einmal, oder schreib uns an hello@motherverdeny.com.";
+translations.fr.accCorregirMuchos = "Trop de tentatives. Attends une heure et réessaie, ou écris-nous à hello@motherverdeny.com.";
+translations.es.accCorregirViejo = "Esta cuenta lleva más de 7 días sin confirmar y ya no se puede corregir aquí. Escríbenos a hello@motherverdeny.com y te ayudamos.";
+translations.en.accCorregirViejo = "This account has been unconfirmed for more than 7 days and can’t be fixed here any more. Write to us at hello@motherverdeny.com and we’ll help you.";
+translations.de.accCorregirViejo = "Dieses Konto ist seit mehr als 7 Tagen unbestätigt und kann hier nicht mehr korrigiert werden. Schreib uns an hello@motherverdeny.com, wir helfen dir.";
+translations.fr.accCorregirViejo = "Ce compte n’est pas confirmé depuis plus de 7 jours et ne peut plus être corrigé ici. Écris-nous à hello@motherverdeny.com et nous t’aiderons.";
+translations.es.accCorregirLimite = "El correo de esta cuenta ya se corrigió 3 veces. Escríbenos a hello@motherverdeny.com y te ayudamos.";
+translations.en.accCorregirLimite = "This account’s email has already been fixed 3 times. Write to us at hello@motherverdeny.com and we’ll help you.";
+translations.de.accCorregirLimite = "Die E-Mail dieses Kontos wurde schon 3 Mal korrigiert. Schreib uns an hello@motherverdeny.com, wir helfen dir.";
+translations.fr.accCorregirLimite = "L’e-mail de ce compte a déjà été corrigé 3 fois. Écris-nous à hello@motherverdeny.com et nous t’aiderons.";
+translations.es.accTerminoH = "Tu prueba gratis terminó";
+translations.en.accTerminoH = "Your free trial has ended";
+translations.de.accTerminoH = "Deine kostenlose Testphase ist vorbei";
+translations.fr.accTerminoH = "Ton essai gratuit est terminé";
+translations.es.accTerminoP = "Gracias por probar Mother Verde. Si quieres seguir con el acceso completo a todo el contenido y a la Comunidad, puedes desbloquearlo con un aporte único de apoyo.";
+translations.en.accTerminoP = "Thank you for trying Mother Verde. If you’d like to keep full access to all the content and the Community, you can unlock it with a one-time support contribution.";
+translations.de.accTerminoP = "Danke, dass du Mother Verde ausprobiert hast. Wenn du weiterhin Vollzugriff auf alle Inhalte und die Community haben möchtest, kannst du ihn mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accTerminoP = "Merci d’avoir essayé Mother Verde. Si tu veux garder l’accès complet à tout le contenu et à la Communauté, tu peux le débloquer avec une contribution unique de soutien.";
+translations.es.accSinAccesoH = "Esta cuenta no tiene acceso activo";
+translations.en.accSinAccesoH = "This account has no active access";
+translations.de.accSinAccesoH = "Dieses Konto hat keinen aktiven Zugriff";
+translations.fr.accSinAccesoH = "Ce compte n’a pas d’accès actif";
+translations.es.accSinAccesoP = "Puedes desbloquear el acceso completo a todo el contenido y a la Comunidad con un aporte único de apoyo.";
+translations.en.accSinAccesoP = "You can unlock full access to all the content and the Community with a one-time support contribution.";
+translations.de.accSinAccesoP = "Du kannst den Vollzugriff auf alle Inhalte und die Community mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accSinAccesoP = "Tu peux débloquer l’accès complet à tout le contenu et à la Communauté avec une contribution unique de soutien.";
+translations.es.accKeepP = "Tu cuenta y tu Bitácora siguen aquí: puedes {bit}descargarla{/bit} o {del}eliminar tu cuenta{/del} cuando quieras.";
+translations.en.accKeepP = "Your account and your grow journal are still here: you can {bit}download it{/bit} or {del}delete your account{/del} whenever you want.";
+translations.de.accKeepP = "Dein Konto und dein Anbau-Tagebuch sind weiterhin da: Du kannst {bit}es herunterladen{/bit} oder {del}dein Konto löschen{/del}, wann immer du willst.";
+translations.fr.accKeepP = "Ton compte et ton journal de culture sont toujours là : tu peux {bit}le télécharger{/bit} ou {del}supprimer ton compte{/del} quand tu veux.";
+translations.es.accStripText = "Prueba gratis: te quedan {t} de acceso completo.";
+translations.en.accStripText = "Free trial: {t} of full access left.";
+translations.de.accStripText = "Kostenlose Testphase: noch {t} Vollzugriff.";
+translations.fr.accStripText = "Essai gratuit : il te reste {t} d’accès complet.";
+translations.es.accFmtHM = "{h} h {m} min";
+translations.en.accFmtHM = "{h} h {m} min";
+translations.de.accFmtHM = "{h} Std. {m} Min.";
+translations.fr.accFmtHM = "{h} h {m} min";
+translations.es.accFmtM = "{m} min";
+translations.en.accFmtM = "{m} min";
+translations.de.accFmtM = "{m} Min.";
+translations.fr.accFmtM = "{m} min";
+translations.es.accFmtLess1 = "menos de 1 min";
+translations.en.accFmtLess1 = "less than 1 min";
+translations.de.accFmtLess1 = "weniger als 1 Min.";
+translations.fr.accFmtLess1 = "moins d’1 min";
+translations.es.accCuentaTrial = "Prueba gratis activa: te quedan {t} de acceso completo.";
+translations.en.accCuentaTrial = "Free trial active: {t} of full access left.";
+translations.de.accCuentaTrial = "Kostenlose Testphase aktiv: noch {t} Vollzugriff.";
+translations.fr.accCuentaTrial = "Essai gratuit actif : il te reste {t} d’accès complet.";
+translations.es.accCuentaSupporter = "Acceso completo activo.";
+translations.en.accCuentaSupporter = "Full access active.";
+translations.de.accCuentaSupporter = "Vollzugriff aktiv.";
+translations.fr.accCuentaSupporter = "Accès complet actif.";
+translations.es.accCuentaExpired = "Tu prueba gratis terminó. Puedes desbloquear el acceso completo con un aporte único de apoyo.";
+translations.en.accCuentaExpired = "Your free trial has ended. You can unlock full access with a one-time support contribution.";
+translations.de.accCuentaExpired = "Deine kostenlose Testphase ist vorbei. Du kannst den Vollzugriff mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accCuentaExpired = "Ton essai gratuit est terminé. Tu peux débloquer l’accès complet avec une contribution unique de soutien.";
+translations.es.accCuentaNoTrial = "Esta cuenta no tiene acceso activo. Puedes desbloquearlo con un aporte único de apoyo.";
+translations.en.accCuentaNoTrial = "This account has no active access. You can unlock it with a one-time support contribution.";
+translations.de.accCuentaNoTrial = "Dieses Konto hat keinen aktiven Zugriff. Du kannst ihn mit einem einmaligen Unterstützungsbeitrag freischalten.";
+translations.fr.accCuentaNoTrial = "Ce compte n’a pas d’accès actif. Tu peux le débloquer avec une contribution unique de soutien.";
+translations.es.dsVisitorNote = "Primero crea tu cuenta, para que podamos verificar tu aporte.";
+translations.en.dsVisitorNote = "First create your account, so we can verify your contribution.";
+translations.de.dsVisitorNote = "Erstelle zuerst dein Konto, damit wir deinen Beitrag prüfen können.";
+translations.fr.dsVisitorNote = "Crée d’abord ton compte, pour que nous puissions vérifier ta contribution.";
+
+// Seguridad -> Emergencia. Spanish approved by the owner 2026-10-11; EN/DE/FR translate it, nothing added.
+// Sources (verified 2026-10-10): Health Canada — Cannabis health effects; What you need to know if you
+// choose to consume cannabis; Cannabis poisonings in children; Infosheet: Store your cannabis safely;
+// CDC — Cannabis and Poisoning. Links are in index.html (#segEmergencia).
+translations.es.emTitle = "Emergencia: consumiste demasiado, o un niño o una mascota lo ingirió";
+translations.en.emTitle = "Emergency: you took too much, or a child or a pet ingested it";
+translations.de.emTitle = "Notfall: Du hast zu viel konsumiert, oder ein Kind oder ein Haustier hat es verschluckt";
+translations.fr.emTitle = "Urgence : tu as trop consommé, ou un enfant ou un animal l’a ingéré";
+translations.es.emCall = "<b>Llama a tu número local de emergencias o a tu centro de toxicología.</b>";
+translations.en.emCall = "<b>Call your local emergency number or your poison control center.</b>";
+translations.de.emCall = "<b>Ruf deine örtliche Notrufnummer oder deinen Giftnotruf an.</b>";
+translations.fr.emCall = "<b>Appelle ton numéro d’urgence local ou ton centre antipoison.</b>";
+translations.es.emAdultH = "Si tú u otro adulto consumió demasiado";
+translations.en.emAdultH = "If you or another adult took too much";
+translations.de.emAdultH = "Wenn du oder eine andere erwachsene Person zu viel konsumiert hat";
+translations.fr.emAdultH = "Si toi ou un autre adulte avez trop consommé";
+translations.es.emAdult1 = "Deja de consumir.";
+translations.en.emAdult1 = "Stop using it.";
+translations.de.emAdult1 = "Hör auf zu konsumieren.";
+translations.fr.emAdult1 = "Arrête de consommer.";
+translations.es.emAdult2 = "Los comestibles tardan de 30 minutos a 2 horas en empezar a hacer efecto, y hasta 4 horas en llegar a su efecto completo. No tomes más mientras esperas.";
+translations.en.emAdult2 = "Edibles take 30 minutes to 2 hours to start working, and up to 4 hours to reach their full effect. Don’t take more while you wait.";
+translations.de.emAdult2 = "Essbare Produkte brauchen 30 Minuten bis 2 Stunden, bis sie zu wirken beginnen, und bis zu 4 Stunden bis zur vollen Wirkung. Nimm nicht mehr, während du wartest.";
+translations.fr.emAdult2 = "Les comestibles mettent de 30 minutes à 2 heures à commencer à agir, et jusqu’à 4 heures pour atteindre leur plein effet. N’en reprends pas pendant que tu attends.";
+translations.es.emAdult3 = "Puede haber dolor en el pecho, latidos rápidos, náuseas o vómitos, ansiedad intensa o ataque de pánico, un episodio psicótico o respiración lenta.";
+translations.en.emAdult3 = "There may be chest pain, a fast heartbeat, nausea or vomiting, severe anxiety or a panic attack, a psychotic episode, or slowed breathing.";
+translations.de.emAdult3 = "Möglich sind Brustschmerzen, schneller Herzschlag, Übelkeit oder Erbrechen, starke Angst oder eine Panikattacke, eine psychotische Episode oder verlangsamte Atmung.";
+translations.fr.emAdult3 = "Il peut y avoir une douleur à la poitrine, un rythme cardiaque rapide, des nausées ou des vomissements, une anxiété intense ou une crise de panique, un épisode psychotique ou une respiration ralentie.";
+translations.es.emAdult4 = "Si los efectos son muy desagradables o te preocupan, busca atención médica de inmediato o llama a tu centro de toxicología. Puede ser peligroso y a veces requiere atención de urgencia u hospitalización.";
+translations.en.emAdult4 = "If the effects are very unpleasant or worry you, get medical help right away or call your poison control center. It can be dangerous and sometimes requires emergency care or hospitalization.";
+translations.de.emAdult4 = "Wenn die Wirkung sehr unangenehm ist oder dir Sorgen macht, hol sofort ärztliche Hilfe oder ruf deinen Giftnotruf an. Es kann gefährlich sein und erfordert manchmal eine Notfallbehandlung oder einen Krankenhausaufenthalt.";
+translations.fr.emAdult4 = "Si les effets sont très désagréables ou t’inquiètent, consulte immédiatement un médecin ou appelle ton centre antipoison. Cela peut être dangereux et nécessite parfois des soins d’urgence ou une hospitalisation.";
+translations.es.emChildH = "Si un niño o una niña lo ingirió";
+translations.en.emChildH = "If a child ingested it";
+translations.de.emChildH = "Wenn ein Kind es verschluckt hat";
+translations.fr.emChildH = "Si un enfant l’a ingéré";
+translations.es.emChild1 = "Llama de inmediato a tu centro de toxicología. Si pierde el conocimiento o le cuesta respirar, llama a tu número local de emergencias.";
+translations.en.emChild1 = "Call your poison control center right away. If the child loses consciousness or has trouble breathing, call your local emergency number.";
+translations.de.emChild1 = "Ruf sofort deinen Giftnotruf an. Wenn das Kind das Bewusstsein verliert oder schwer atmet, ruf deine örtliche Notrufnummer an.";
+translations.fr.emChild1 = "Appelle immédiatement ton centre antipoison. Si l’enfant perd connaissance ou a du mal à respirer, appelle ton numéro d’urgence local.";
+translations.es.emChild2 = "Di que los síntomas son o pueden ser por cannabis: ayuda a que lo atiendan antes.";
+translations.en.emChild2 = "Say that the symptoms are or may be from cannabis: it helps them get treated sooner.";
+translations.de.emChild2 = "Sag, dass die Symptome von Cannabis kommen oder kommen könnten: Das hilft, dass es schneller behandelt wird.";
+translations.fr.emChild2 = "Dis que les symptômes sont ou pourraient être dus au cannabis : cela aide à ce qu’il soit soigné plus vite.";
+translations.es.emChild3 = "Señales: vómitos, confusión, que no responda, habla arrastrada, inestabilidad al caminar, somnolencia, respiración lenta y, en casos raros, convulsiones. Los niños pueden enfermar gravemente.";
+translations.en.emChild3 = "Signs: vomiting, confusion, not responding, slurred speech, unsteadiness when walking, drowsiness, slowed breathing and, in rare cases, seizures. Children can become seriously ill.";
+translations.de.emChild3 = "Anzeichen: Erbrechen, Verwirrtheit, keine Reaktion, verwaschene Sprache, Unsicherheit beim Gehen, Schläfrigkeit, verlangsamte Atmung und in seltenen Fällen Krampfanfälle. Kinder können schwer krank werden.";
+translations.fr.emChild3 = "Signes : vomissements, confusion, absence de réaction, élocution pâteuse, démarche instable, somnolence, respiration ralentie et, dans de rares cas, convulsions. Les enfants peuvent tomber gravement malades.";
+translations.es.emPetH = "Si fue una mascota";
+translations.en.emPetH = "If it was a pet";
+translations.de.emPetH = "Wenn es ein Haustier war";
+translations.fr.emPetH = "Si c’était un animal";
+translations.es.emPet1 = "Llama de inmediato a tu veterinario o a un centro de toxicología. Más detalles abajo, en <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Mascotas</a>.";
+translations.en.emPet1 = "Call your vet or a poison control center right away. More details below, in <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Pets</a>.";
+translations.de.emPet1 = "Ruf sofort deinen Tierarzt oder einen Giftnotruf an. Mehr Details weiter unten unter <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Haustiere</a>.";
+translations.fr.emPet1 = "Appelle immédiatement ton vétérinaire ou un centre antipoison. Plus de détails plus bas, dans <a onclick=\"showSub('seguridad','mascotas'); document.getElementById('seguridad-mascotas').scrollIntoView({behavior:'smooth'});\" style=\"color:var(--teal); cursor:pointer; text-decoration:underline;\">Animaux</a>.";
+translations.es.emNote = "Esta información es educativa y no sustituye la atención médica.";
+translations.en.emNote = "This information is educational and does not replace medical care.";
+translations.de.emNote = "Diese Information dient der Aufklärung und ersetzt keine ärztliche Behandlung.";
+translations.fr.emNote = "Ces informations sont éducatives et ne remplacent pas des soins médicaux.";
+translations.es.emSrc = "Fuentes:";
+translations.en.emSrc = "Sources:";
+translations.de.emSrc = "Quellen:";
+translations.fr.emSrc = "Sources :";
+
+// Desbloquear -> claim form and "pending verification" (support_claims)
+translations.es.dsFormH3 = "¿Ya lo enviaste? Pega el código de la transacción";
+translations.en.dsFormH3 = "Sent it? Paste the transaction code";
+translations.de.dsFormH3 = "Schon gesendet? Füge den Transaktionscode ein";
+translations.fr.dsFormH3 = "Déjà envoyé ? Colle le code de la transaction";
+translations.es.dsFormEmail = "Tu correo";
+translations.en.dsFormEmail = "Your email";
+translations.de.dsFormEmail = "Deine E-Mail";
+translations.fr.dsFormEmail = "Ton e-mail";
+translations.es.dsFormTx = "Código de la transacción (hash)";
+translations.en.dsFormTx = "Transaction code (hash)";
+translations.de.dsFormTx = "Transaktionscode (Hash)";
+translations.fr.dsFormTx = "Code de la transaction (hash)";
+translations.es.dsFormAyuda = "Lo encuentras en el detalle del envío, en tu exchange o billetera: empieza por 0x y tiene 66 caracteres. Si no aparece, escríbenos a hello@motherverdeny.com.";
+translations.en.dsFormAyuda = "You’ll find it in the transfer details in your exchange or wallet: it starts with 0x and has 66 characters. If it doesn’t show up, write to hello@motherverdeny.com.";
+translations.de.dsFormAyuda = "Du findest ihn in den Details der Überweisung in deiner Börse oder Wallet: Er beginnt mit 0x und hat 66 Zeichen. Wenn er nicht angezeigt wird, schreib an hello@motherverdeny.com.";
+translations.fr.dsFormAyuda = "Tu le trouves dans le détail de l’envoi, dans ton exchange ou ton portefeuille : il commence par 0x et compte 66 caractères. S’il n’apparaît pas, écris à hello@motherverdeny.com.";
+translations.es.dsFormFlores = "Tu aporte: {n} flor(es) · {usdc} {cur}";
+translations.en.dsFormFlores = "Your contribution: {n} flower(s) · {usdc} {cur}";
+translations.de.dsFormFlores = "Dein Beitrag: {n} Blüte(n) · {usdc} {cur}";
+translations.fr.dsFormFlores = "Ta contribution : {n} fleur(s) · {usdc} {cur}";
+translations.es.dsFormBtn = "Enviar código";
+translations.en.dsFormBtn = "Send code";
+translations.de.dsFormBtn = "Code senden";
+translations.fr.dsFormBtn = "Envoyer le code";
+translations.es.dsFormSending = "Enviando…";
+translations.en.dsFormSending = "Sending…";
+translations.de.dsFormSending = "Wird gesendet…";
+translations.fr.dsFormSending = "Envoi…";
+translations.es.dsFormErrEmail = "Revisa tu correo: no parece válido.";
+translations.en.dsFormErrEmail = "Please check your email: it doesn’t look valid.";
+translations.de.dsFormErrEmail = "Bitte prüfe deine E-Mail: Sie scheint ungültig zu sein.";
+translations.fr.dsFormErrEmail = "Vérifie ton e-mail : il ne semble pas valide.";
+translations.es.dsFormErrTx = "El código debe empezar por 0x y tener 66 caracteres en total.";
+translations.en.dsFormErrTx = "The code must start with 0x and have 66 characters in total.";
+translations.de.dsFormErrTx = "Der Code muss mit 0x beginnen und insgesamt 66 Zeichen haben.";
+translations.fr.dsFormErrTx = "Le code doit commencer par 0x et compter 66 caractères au total.";
+translations.es.dsFormErrPending = "Ya tienes un aporte pendiente de verificar.";
+translations.en.dsFormErrPending = "You already have a contribution waiting to be verified.";
+translations.de.dsFormErrPending = "Du hast bereits einen Beitrag, der noch geprüft wird.";
+translations.fr.dsFormErrPending = "Tu as déjà une contribution en attente de vérification.";
+translations.es.dsFormErrDup = "Ese código de transacción ya fue enviado.";
+translations.en.dsFormErrDup = "That transaction code has already been sent.";
+translations.de.dsFormErrDup = "Dieser Transaktionscode wurde bereits gesendet.";
+translations.fr.dsFormErrDup = "Ce code de transaction a déjà été envoyé.";
+translations.es.dsFormErrGeneric = "No pudimos enviar el aviso. Inténtalo de nuevo o escríbenos a hello@motherverdeny.com.";
+translations.en.dsFormErrGeneric = "We couldn’t send it. Please try again or write to hello@motherverdeny.com.";
+translations.de.dsFormErrGeneric = "Wir konnten es nicht senden. Versuch es noch einmal oder schreib an hello@motherverdeny.com.";
+translations.fr.dsFormErrGeneric = "Nous n’avons pas pu l’envoyer. Réessaie ou écris à hello@motherverdeny.com.";
+translations.es.dsPendingH = "Recibimos tu aporte, lo estamos verificando";
+translations.en.dsPendingH = "We received your contribution and are verifying it";
+translations.de.dsPendingH = "Wir haben deinen Beitrag erhalten und prüfen ihn";
+translations.fr.dsPendingH = "Nous avons reçu ta contribution et nous la vérifions";
+translations.es.dsPendingP = "Lo revisamos en hasta {h} horas. Te avisaremos por correo cuando tu acceso esté activo.";
+translations.en.dsPendingP = "We check it within up to {h} hours. We’ll e-mail you when your access is active.";
+translations.de.dsPendingP = "Wir prüfen ihn in bis zu {h} Stunden. Wir schreiben dir eine E-Mail, sobald dein Zugang aktiv ist.";
+translations.fr.dsPendingP = "Nous la vérifions en jusqu’à {h} heures. Nous t’écrirons par e-mail quand ton accès sera actif.";
+translations.es.dsRejectedP = "No pudimos verificar tu último aporte. Si crees que es un error, escríbenos a hello@motherverdeny.com con el código de la transacción.";
+translations.en.dsRejectedP = "We couldn’t verify your last contribution. If you think this is a mistake, write to hello@motherverdeny.com with the transaction code.";
+translations.de.dsRejectedP = "Wir konnten deinen letzten Beitrag nicht bestätigen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com mit dem Transaktionscode.";
+translations.fr.dsRejectedP = "Nous n’avons pas pu vérifier ta dernière contribution. Si tu penses que c’est une erreur, écris à hello@motherverdeny.com avec le code de la transaction.";
+translations.es.dsYaTienes = "Ya tienes acceso completo.";
+translations.en.dsYaTienes = "You already have full access.";
+translations.de.dsYaTienes = "Du hast bereits Vollzugriff.";
+translations.fr.dsYaTienes = "Tu as déjà l’accès complet.";
+
+// Community: note under untranslated posts/comments (translation_status failed)
+translations.es.cmyTraduccionPendiente = "Traducción pendiente: se muestra el texto original.";
+translations.en.cmyTraduccionPendiente = "Translation pending: showing the original text.";
+translations.de.cmyTraduccionPendiente = "Übersetzung ausstehend: Der Originaltext wird angezeigt.";
+translations.fr.cmyTraduccionPendiente = "Traduction en attente : le texte original est affiché.";
+// Points 6-7: unique amount, gift codes, granted/revoked access.
+translations.es.dsReservarH = "Tu monto para enviar";
+translations.en.dsReservarH = "Your amount to send";
+translations.de.dsReservarH = "Dein Betrag zum Senden";
+translations.fr.dsReservarH = "Ton montant à envoyer";
+translations.es.dsReservarP = "Para reconocer tu aporte sin pedirte datos, te damos un monto único: {usdc} {cur} más unos decimales que solo son tuyos.";
+translations.en.dsReservarP = "To recognise your contribution without asking for any data, we give you a unique amount: {usdc} {cur} plus a few decimals that are yours alone.";
+translations.de.dsReservarP = "Damit wir deinen Beitrag ohne weitere Daten erkennen, bekommst du einen eindeutigen Betrag: {usdc} {cur} plus ein paar Nachkommastellen, die nur dir gehören.";
+translations.fr.dsReservarP = "Pour reconnaître ta contribution sans te demander de données, nous te donnons un montant unique : {usdc} {cur} plus quelques décimales qui ne sont qu’à toi.";
+translations.es.dsReservarBtn = "Ver mi monto";
+translations.en.dsReservarBtn = "Show my amount";
+translations.de.dsReservarBtn = "Meinen Betrag anzeigen";
+translations.fr.dsReservarBtn = "Voir mon montant";
+translations.es.dsCambioNota = "Tenías reservado <b>{a} USDC</b> para {f}. Si ya lo enviaste, vuelve a {f} para registrar el código de la transacción. Si pides un monto nuevo, el anterior se anula.";
+translations.en.dsCambioNota = "You had <b>{a} USDC</b> reserved for {f}. If you already sent it, go back to {f} to register the transaction code. If you ask for a new amount, the previous one is cancelled.";
+translations.de.dsCambioNota = "Du hattest <b>{a} USDC</b> für {f} reserviert. Wenn du ihn schon gesendet hast, wähle wieder {f}, um den Transaktionscode einzutragen. Wenn du einen neuen Betrag anforderst, wird der vorherige storniert.";
+translations.fr.dsCambioNota = "Tu avais réservé <b>{a} USDC</b> pour {f}. Si tu l’as déjà envoyé, reviens à {f} pour enregistrer le code de la transaction. Si tu demandes un nouveau montant, le précédent est annulé.";
+translations.es.dsEnviaExacto = "Envía exactamente";
+translations.en.dsEnviaExacto = "Send exactly";
+translations.de.dsEnviaExacto = "Sende genau";
+translations.fr.dsEnviaExacto = "Envoie exactement";
+translations.es.dsEnRed = "en la red {net}";
+translations.en.dsEnRed = "on the {net} network";
+translations.de.dsEnRed = "im {net}-Netzwerk";
+translations.fr.dsEnRed = "sur le réseau {net}";
+translations.es.dsDecimalesP = "Los últimos decimales identifican tu aporte: no los redondees. Si tu billetera usa coma en lugar de punto, escribe los mismos dígitos.";
+translations.en.dsDecimalesP = "The last decimals identify your contribution: don’t round them. If your wallet uses a comma instead of a dot, type the same digits.";
+translations.de.dsDecimalesP = "Die letzten Nachkommastellen identifizieren deinen Beitrag: nicht runden. Wenn deine Wallet ein Komma statt eines Punktes verwendet, gib dieselben Ziffern ein.";
+translations.fr.dsDecimalesP = "Les dernières décimales identifient ta contribution : ne les arrondis pas. Si ton portefeuille utilise une virgule au lieu d’un point, tape les mêmes chiffres.";
+translations.es.dsExactoAviso = "Envía exactamente este monto, con todos sus decimales; si envías otro monto, tu aporte pasa a revisión manual y tarda más.";
+translations.en.dsExactoAviso = "Send exactly this amount, with all its decimals; if you send a different amount, your contribution goes to manual review and takes longer.";
+translations.de.dsExactoAviso = "Sende genau diesen Betrag, mit allen Nachkommastellen; wenn du einen anderen Betrag sendest, wird dein Beitrag manuell geprüft und es dauert länger.";
+translations.fr.dsExactoAviso = "Envoie exactement ce montant, avec toutes ses décimales ; si tu envoies un autre montant, ta contribution passe en vérification manuelle et cela prend plus de temps.";
+translations.es.dsProblemasH = "¿Tienes problemas?";
+translations.en.dsProblemasH = "Having problems?";
+translations.de.dsProblemasH = "Probleme?";
+translations.fr.dsProblemasH = "Des problèmes ?";
+translations.es.dsCriptoAyuda = "¿Tienes dificultades con el pago en cripto? Escríbenos a {mail}";
+translations.en.dsCriptoAyuda = "Having trouble paying with crypto? Write to us at {mail}";
+translations.de.dsCriptoAyuda = "Schwierigkeiten bei der Zahlung mit Krypto? Schreibe uns an {mail}";
+translations.fr.dsCriptoAyuda = "Des difficultés pour payer en crypto ? Écris-nous à {mail}";
+// Manual contributions (2026-11-03): another means agreed by e-mail
+translations.es.dsNoUsdc = "¿No usas USDC? Escríbenos a {mail}";
+translations.en.dsNoUsdc = "Don’t use USDC? Write to us at {mail}";
+translations.de.dsNoUsdc = "Du nutzt kein USDC? Schreib uns an {mail}";
+translations.fr.dsNoUsdc = "Tu n’utilises pas l’USDC ? Écris-nous à {mail}";
+// @purpose-texts-start — copied from src/purposeTexts.js (Bertha, 2026-11-03); purpose-texts test keeps them identical
+translations.es.storyDialog = "Nuestra historia";
+translations.en.storyDialog = "Our story";
+translations.de.storyDialog = "Unsere Geschichte";
+translations.fr.storyDialog = "Notre histoire";
+translations.es.storyNext = "Continuar";
+translations.en.storyNext = "Continue";
+translations.de.storyNext = "Weiter";
+translations.fr.storyNext = "Continuer";
+translations.es.storySkip = "Saltar e ir a la plataforma";
+translations.en.storySkip = "Skip and go to the platform";
+translations.de.storySkip = "Überspringen und zur Plattform";
+translations.fr.storySkip = "Passer et aller à la plateforme";
+translations.es.storyEnter = "Entrar a la plataforma";
+translations.en.storyEnter = "Enter the platform";
+translations.de.storyEnter = "Zur Plattform";
+translations.fr.storyEnter = "Entrer sur la plateforme";
+translations.es.storyBack = "Atrás";
+translations.en.storyBack = "Back";
+translations.de.storyBack = "Zurück";
+translations.fr.storyBack = "Retour";
+translations.es.storyStep = "Pantalla {n} de {total}";
+translations.en.storyStep = "Screen {n} of {total}";
+translations.de.storyStep = "Bildschirm {n} von {total}";
+translations.fr.storyStep = "Écran {n} sur {total}";
+translations.es.storyPhotoSoon = "Foto próximamente";
+translations.en.storyPhotoSoon = "Photo coming soon";
+translations.de.storyPhotoSoon = "Foto folgt";
+translations.fr.storyPhotoSoon = "Photo à venir";
+translations.es.story1H = "Bienvenida";
+translations.en.story1H = "Welcome";
+translations.de.story1H = "Willkommen";
+translations.fr.story1H = "Bienvenue";
+translations.es.story1P = "<p>Gracias por entrar a Mother Verde.</p><p>Esta es una plataforma única: aprendes sobre el cannabis con ciencia, con ética y en tu idioma. Encontrarás lecciones respaldadas por fuentes reales, herramientas prácticas, información para que te informes antes de viajar y una comunidad donde todos se entienden, aunque hablen idiomas distintos.</p><p><b>Solo para mayores de edad.</b></p><p>Antes de empezar, quiero contarte quién está detrás y por qué nació.</p>";
+translations.en.story1P = "<p>Thank you for coming to Mother Verde.</p><p>This is a one-of-a-kind platform where you learn about cannabis with science, with ethics and in your own language. You’ll find lessons backed by real sources, practical tools, information to help you prepare before you travel, and a community where everyone understands each other, even when they speak different languages.</p><p><b>For adults only.</b></p><p>Before you start, I’d like to tell you who is behind it and why it was born.</p>";
+translations.de.story1P = "<p>Danke, dass du bei Mother Verde bist.</p><p>Dies ist eine einzigartige Plattform: Du lernst über Cannabis mit Wissenschaft, mit Ethik und in deiner Sprache. Du findest Lektionen mit echten Quellen, praktische Werkzeuge, Informationen, damit du dich vor einer Reise informieren kannst, und eine Community, in der sich alle verstehen, auch wenn sie unterschiedliche Sprachen sprechen.</p><p><b>Nur für Erwachsene.</b></p><p>Bevor es losgeht, möchte ich dir erzählen, wer dahintersteckt und warum es entstanden ist.</p>";
+translations.fr.story1P = "<p>Merci d’être sur Mother Verde.</p><p>Cette plateforme est unique : tu apprends le cannabis avec la science, avec éthique et dans ta langue. Tu y trouveras des leçons appuyées sur de vraies sources, des outils pratiques, des informations pour te renseigner avant de voyager et une communauté où tout le monde se comprend, même en parlant des langues différentes.</p><p><b>Réservé aux adultes.</b></p><p>Avant de commencer, je veux te raconter qui est derrière et pourquoi elle est née.</p>";
+translations.es.story2H = "Quién está detrás";
+translations.en.story2H = "Who is behind it";
+translations.de.story2H = "Wer dahintersteckt";
+translations.fr.story2H = "Qui est derrière";
+translations.es.storyAlt1 = "Bertha sonríe junto a las hojas de una planta de cannabis.";
+translations.en.storyAlt1 = "Bertha smiles next to the leaves of a cannabis plant.";
+translations.de.storyAlt1 = "Bertha lächelt neben den Blättern einer Cannabispflanze.";
+translations.fr.storyAlt1 = "Bertha sourit à côté des feuilles d’une plante de cannabis.";
+translations.es.storyAlt2 = "Bertha, con una capucha tejida andina, mira de cerca las flores de una planta de cannabis.";
+translations.en.storyAlt2 = "Bertha, wearing an Andean woven hood, looks closely at the flowers of a cannabis plant.";
+translations.de.storyAlt2 = "Bertha, mit einer gewebten Kapuze im Andenstil, betrachtet die Blüten einer Cannabispflanze aus der Nähe.";
+translations.fr.storyAlt2 = "Bertha, coiffée d’une capuche tissée andine, observe de près les fleurs d’une plante de cannabis.";
+translations.es.storyAlt3 = "Bertha, con una camiseta del Perú y una manguera en la mano, en un campo de cáñamo.";
+translations.en.storyAlt3 = "Bertha, wearing a Peru T-shirt and holding a hose, in a hemp field.";
+translations.de.storyAlt3 = "Bertha, in einem Peru-T-Shirt und mit einem Schlauch in der Hand, auf einem Hanffeld.";
+translations.fr.storyAlt3 = "Bertha, en t-shirt du Pérou et un tuyau à la main, dans un champ de chanvre.";
+translations.es.storyAlt4 = "Bertha, con toga y birrete verdes, sonríe con su diploma de SUNY Morrisville.";
+translations.en.storyAlt4 = "Bertha, in a green gown and cap, smiles with her SUNY Morrisville diploma.";
+translations.de.storyAlt4 = "Bertha, in grünem Talar und Absolventenhut, lächelt mit ihrem Diplom der SUNY Morrisville.";
+translations.fr.storyAlt4 = "Bertha, en toge et toque vertes, sourit avec son diplôme de SUNY Morrisville.";
+translations.es.storyAlt5 = "Plantas de cannabis creciendo en un sistema hidropónico dentro de una carpa de cultivo.";
+translations.en.storyAlt5 = "Cannabis plants growing in a hydroponic system inside a grow tent.";
+translations.de.storyAlt5 = "Cannabispflanzen wachsen in einem Hydrokultursystem in einem Growzelt.";
+translations.fr.storyAlt5 = "Des plants de cannabis poussent dans un système hydroponique à l’intérieur d’une tente de culture.";
+translations.es.storyAlt6 = "Bertha abraza una planta de cáñamo muy alta en un campo.";
+translations.en.storyAlt6 = "Bertha hugs a very tall hemp plant in a field.";
+translations.de.storyAlt6 = "Bertha umarmt auf einem Feld eine sehr hohe Hanfpflanze.";
+translations.fr.storyAlt6 = "Bertha enlace un très grand plant de chanvre dans un champ.";
+translations.es.story2P = "<p>Soy Bertha Limo, peruana, de una familia de agrónomos y químicos farmacéuticos.</p><p>Desde muy pequeña quise unir esos dos mundos: la planta y la ciencia que la entiende. Siento que es un regalo que recibí de mi linaje.</p>";
+translations.en.story2P = "<p>I’m Bertha Limo, Peruvian, from a family of agronomists and pharmaceutical chemists.</p><p>Ever since I was very young I wanted to combine those two worlds: the plant and the science that understands it. I feel it’s a gift I received from my lineage.</p>";
+translations.de.story2P = "<p>Ich bin Bertha Limo, Peruanerin, aus einer Familie von Agronomen und pharmazeutischen Chemikern.</p><p>Schon als kleines Kind wollte ich diese beiden Welten verbinden: die Pflanze und die Wissenschaft, die sie versteht. Ich sehe es als Geschenk meiner Herkunft.</p>";
+translations.fr.story2P = "<p>Je suis Bertha Limo, péruvienne, issue d’une famille d’agronomes et de chimistes pharmaciens.</p><p>Toute petite, je voulais réunir ces deux mondes : la plante et la science qui la comprend. Je le vois comme un cadeau reçu de ma lignée.</p>";
+translations.es.story3H = "Un sueño hecho realidad";
+translations.en.story3H = "A dream come true";
+translations.de.story3H = "Ein wahr gewordener Traum";
+translations.fr.story3H = "Un rêve devenu réalité";
+translations.es.story3P = "<p>A los 40 años cumplí uno de mis sueños: viajar a Estados Unidos para estudiar plantas, en especial el cannabis. No fue fácil. Pasé por el choque de cultura, el idioma, la comida y una inversión enorme. Y valió la pena.</p><p>No solo recibí una educación de mucha calidad. También me nutrí de su gente y de su cultura, que al final me hicieron sentir como en casa.</p>";
+translations.en.story3P = "<p>At 40, I fulfilled one of my dreams: traveling to the United States to study plants, especially cannabis. It wasn’t easy. I went through culture shock, a new language, different food and a huge investment. And it was worth it.</p><p>I didn’t only receive a high-quality education. I was also nourished by its people and its culture, which in the end made me feel at home.</p>";
+translations.de.story3P = "<p>Mit 40 habe ich mir einen Traum erfüllt: in die USA zu reisen, um Pflanzen zu studieren, vor allem Cannabis. Es war nicht leicht. Ich erlebte den Kulturschock, eine neue Sprache, fremdes Essen und eine enorme Investition. Und es hat sich gelohnt.</p><p>Ich habe nicht nur eine hochwertige Ausbildung erhalten. Ich habe auch viel von den Menschen und ihrer Kultur mitgenommen, die mir am Ende das Gefühl gaben, zu Hause zu sein.</p>";
+translations.fr.story3P = "<p>À 40 ans, j’ai réalisé l’un de mes rêves : voyager aux États-Unis pour étudier les plantes, en particulier le cannabis. Ce n’était pas facile. J’ai traversé le choc culturel, une nouvelle langue, une nourriture différente et un investissement énorme. Et cela en valait la peine.</p><p>Je n’ai pas seulement reçu une éducation de grande qualité. Je me suis aussi nourrie de ses gens et de sa culture, qui, au final, m’ont fait me sentir chez moi.</p>";
+translations.es.story4H = "Mi reto de hoy";
+translations.en.story4H = "My challenge today";
+translations.de.story4H = "Meine Herausforderung heute";
+translations.fr.story4H = "Mon défi d’aujourd’hui";
+translations.es.story4P = "<p>Hoy estoy ante un gran reto. SUNY Morrisville me abrió otra vez sus puertas para seguir aprendiendo y creciendo en mi vida profesional. Volver a esa casa de estudios me emociona muchísimo.</p><p>Esta vez necesito tu ayuda. Por eso nació esta plataforma: para darte algo valioso a cambio de tu colaboración.</p><p>La primera vez, puedes explorar gratis durante 24 horas. Si te sirve y quieres apoyarme, ahí estará la opción.</p>";
+translations.en.story4P = "<p>Today I face a big challenge. SUNY Morrisville opened its doors to me once again so I can keep learning and growing in my professional life. Going back to that home of learning moves me deeply.</p><p>This time I need your help. That is why this platform was born: to give you something valuable in return for your collaboration.</p><p>The first time, you can explore for free for 24 hours. If it helps you and you’d like to support me, the option will be there.</p>";
+translations.de.story4P = "<p>Heute stehe ich vor einer großen Herausforderung. Die SUNY Morrisville hat mir ihre Türen noch einmal geöffnet, damit ich weiter lernen und in meinem Berufsleben wachsen kann. Die Rückkehr an diese Hochschule bewegt mich sehr.</p><p>Diesmal brauche ich deine Hilfe. Deshalb ist diese Plattform entstanden: um dir als Dank für deine Unterstützung etwas Wertvolles zu geben.</p><p>Beim ersten Mal kannst du 24 Stunden lang kostenlos erkunden. Wenn es dir nützt und du mich unterstützen möchtest, ist die Möglichkeit da.</p>";
+translations.fr.story4P = "<p>Aujourd’hui, je fais face à un grand défi. SUNY Morrisville m’a de nouveau ouvert ses portes pour que je continue d’apprendre et de grandir dans ma vie professionnelle. Retourner dans cette maison d’études m’émeut profondément.</p><p>Cette fois, j’ai besoin de ton aide. C’est pour cela que cette plateforme est née : pour te donner quelque chose de précieux en retour de ta collaboration.</p><p>La première fois, tu peux explorer gratuitement pendant 24 heures. Si cela t’est utile et que tu veux me soutenir, l’option sera là.</p>";
+translations.es.story5H = "Lo que encontrarás aquí";
+translations.en.story5H = "What you’ll find here";
+translations.de.story5H = "Das findest du hier";
+translations.fr.story5H = "Ce que tu trouveras ici";
+translations.es.story5Calc = "Calculadoras para VPD, DLI, dosis, EC ↔ PPM, luz y más (17 en total).";
+translations.en.story5Calc = "Calculators for VPD, DLI, dosing, EC ↔ PPM, light and more (17 in total).";
+translations.de.story5Calc = "Rechner für VPD, DLI, Dosierung, EC ↔ PPM, Licht und mehr (17 insgesamt).";
+translations.fr.story5Calc = "Des calculateurs pour le VPD, le DLI, le dosage, EC ↔ PPM, la lumière et plus (17 au total).";
+translations.es.story5Viaje = "Información para viajar: ¿es legal donde viajas?, ¿a dónde acudir si necesitas ayuda? y qué países son estrictamente ilegales. Información orientativa; las leyes cambian. No es asesoría legal.";
+translations.en.story5Viaje = "Travel information: is it legal where you’re going? Where to turn if you need help? And which countries are strictly illegal. Guidance only; laws change. This is not legal advice.";
+translations.de.story5Viaje = "Reiseinformationen: Ist es dort legal, wohin du reist? Wohin kannst du dich wenden, wenn du Hilfe brauchst? Und welche Länder sind strikt illegal. Orientierende Information; Gesetze ändern sich. Keine Rechtsberatung.";
+translations.fr.story5Viaje = "Informations pour voyager : est-ce légal là où tu voyages ? Où t’adresser si tu as besoin d’aide ? Et quels pays sont strictement illégaux. Information indicative ; les lois changent. Ce n’est pas un conseil juridique.";
+translations.es.story5Juego = "Un juego que te enseña a cultivar paso a paso, con lecciones basadas en ciencia.";
+translations.en.story5Juego = "A game that teaches you to grow step by step, with science-based lessons.";
+translations.de.story5Juego = "Ein Spiel, das dir Schritt für Schritt den Anbau beibringt, mit wissenschaftlich fundierten Lektionen.";
+translations.fr.story5Juego = "Un jeu qui t’apprend à cultiver pas à pas, avec des leçons fondées sur la science.";
+translations.es.story5Comunidad = "Una comunidad sin barreras de idioma: escribes en el tuyo y quien habla otro idioma te lee en el suyo, automáticamente.";
+translations.en.story5Comunidad = "A community without language barriers: you write in yours, and someone who speaks another language reads you in theirs, automatically.";
+translations.de.story5Comunidad = "Eine Community ohne Sprachbarrieren: Du schreibst in deiner Sprache, und wer eine andere spricht, liest dich automatisch in seiner.";
+translations.fr.story5Comunidad = "Une communauté sans barrière de langue : tu écris dans la tienne, et la personne qui en parle une autre te lit automatiquement dans la sienne.";
+translations.es.story6H = "Gracias";
+translations.en.story6H = "Thank you";
+translations.de.story6H = "Danke";
+translations.fr.story6H = "Merci";
+translations.es.story6P = "<p>Tu aporte único de apoyo me ayuda a estudiar, y lo que aprendo lo comparto contigo y con mi comunidad, porque una de mis pasiones es enseñar con ética y responsabilidad.</p><p>Desde el Perú, y ahora con el mundo, quiero compartir lo que aprendo. Lo que estudie lo traeré aquí, en lecciones más sólidas y mejor conocimiento compartido.</p><p>Gracias por ser parte de esto desde el principio.</p>";
+translations.en.story6P = "<p>Your one-time support contribution helps me study, and what I learn I share with you and my community, because one of my passions is teaching with ethics and responsibility.</p><p>From Peru, and now with the world, I want to share what I learn. What I study I will bring here, in stronger lessons and better shared knowledge.</p><p>Thank you for being part of this from the beginning.</p>";
+translations.de.story6P = "<p>Dein einmaliger Unterstützungsbeitrag hilft mir beim Studieren, und was ich lerne, teile ich mit dir und meiner Gemeinschaft, denn eine meiner Leidenschaften ist es, mit Ethik und Verantwortung zu lehren.</p><p>Von Peru aus, und jetzt mit der Welt, möchte ich teilen, was ich lerne. Was ich studiere, bringe ich hierher: in solidere Lektionen und besser geteiltes Wissen.</p><p>Danke, dass du von Anfang an dabei bist.</p>";
+translations.fr.story6P = "<p>Ta contribution unique de soutien m’aide à étudier, et ce que j’apprends, je le partage avec toi et ma communauté, car l’une de mes passions est d’enseigner avec éthique et responsabilité.</p><p>Depuis le Pérou, et maintenant avec le monde, je veux partager ce que j’apprends. Ce que j’étudierai, je le rapporterai ici : des leçons plus solides et un savoir mieux partagé.</p><p>Merci de faire partie de cela dès le début.</p>";
+translations.es.storyIndependent = "Mother Verde es un proyecto independiente. No está afiliado ni respaldado por SUNY Morrisville.";
+translations.en.storyIndependent = "Mother Verde is an independent project. It is not affiliated with or endorsed by SUNY Morrisville.";
+translations.de.storyIndependent = "Mother Verde ist ein unabhängiges Projekt. Es ist nicht mit der SUNY Morrisville verbunden und wird nicht von ihr unterstützt.";
+translations.fr.storyIndependent = "Mother Verde est un projet indépendant. Il n’est ni affilié ni approuvé par SUNY Morrisville.";
+translations.es.navHistoria = "Nuestra historia";
+translations.en.navHistoria = "Our story";
+translations.de.navHistoria = "Unsere Geschichte";
+translations.fr.navHistoria = "Notre histoire";
+translations.es.dsAvisoCorto = "Tu aporte único de apoyo me ayuda a estudiar. SUNY Morrisville me abrió otra vez sus puertas para seguir aprendiendo y creciendo en mi vida profesional. Lo que aprenda lo compartiré contigo y con mi comunidad. A cambio tienes acceso completo a la plataforma. Mother Verde no está afiliado ni respaldado por SUNY Morrisville.";
+translations.en.dsAvisoCorto = "Your one-time support contribution helps me study. SUNY Morrisville opened its doors to me once again so I can keep learning and growing in my professional life. What I learn I will share with you and my community. In return you get full access to the platform. Mother Verde is not affiliated with or endorsed by SUNY Morrisville.";
+translations.de.dsAvisoCorto = "Dein einmaliger Unterstützungsbeitrag hilft mir beim Studieren. Die SUNY Morrisville hat mir ihre Türen noch einmal geöffnet, damit ich weiter lernen und in meinem Berufsleben wachsen kann. Was ich lerne, teile ich mit dir und meiner Gemeinschaft. Dafür erhältst du vollen Zugang zur Plattform. Mother Verde ist nicht mit der SUNY Morrisville verbunden und wird nicht von ihr unterstützt.";
+translations.fr.dsAvisoCorto = "Ta contribution unique de soutien m’aide à étudier. SUNY Morrisville m’a de nouveau ouvert ses portes pour que je continue d’apprendre et de grandir dans ma vie professionnelle. Ce que j’apprends, je le partage avec toi et ma communauté. En échange, tu as un accès complet à la plateforme. Mother Verde n’est ni affilié ni approuvé par SUNY Morrisville.";
+translations.es.dsPropH3 = "Antes de aportar: para qué es tu aporte";
+translations.en.dsPropH3 = "Before you contribute: what your contribution is for";
+translations.de.dsPropH3 = "Bevor du beiträgst: wofür dein Beitrag gedacht ist";
+translations.fr.dsPropH3 = "Avant de contribuer : à quoi sert ta contribution";
+translations.es.dsProp1 = "Soy Bertha Limo, fundadora de Mother Verde. Tu aporte único de apoyo me ayuda a seguir estudiando. SUNY Morrisville me abrió otra vez sus puertas para seguir aprendiendo y creciendo en mi vida profesional.";
+translations.en.dsProp1 = "I am Bertha Limo, founder of Mother Verde. Your one-time support contribution helps me keep studying. SUNY Morrisville opened its doors to me once again so I can keep learning and growing in my professional life.";
+translations.de.dsProp1 = "Ich bin Bertha Limo, Gründerin von Mother Verde. Dein einmaliger Unterstützungsbeitrag hilft mir, weiter zu studieren. Die SUNY Morrisville hat mir ihre Türen noch einmal geöffnet, damit ich weiter lernen und in meinem Berufsleben wachsen kann.";
+translations.fr.dsProp1 = "Je suis Bertha Limo, fondatrice de Mother Verde. Ta contribution unique de soutien m’aide à continuer d’étudier. SUNY Morrisville m’a de nouveau ouvert ses portes pour que je continue d’apprendre et de grandir dans ma vie professionnelle.";
+translations.es.dsProp2 = "A cambio, te doy acceso completo a la plataforma.";
+translations.en.dsProp2 = "In return, I give you full access to the platform.";
+translations.de.dsProp2 = "Dafür gebe ich dir vollen Zugang zur Plattform.";
+translations.fr.dsProp2 = "En échange, je te donne un accès complet à la plateforme.";
+translations.es.dsProp3 = "Es un aporte voluntario y único. No es una donación ni es deducible de impuestos.";
+translations.en.dsProp3 = "It is a voluntary, one-time contribution. It is not a donation and is not tax-deductible.";
+translations.de.dsProp3 = "Es ist ein freiwilliger, einmaliger Beitrag. Er ist keine Spende und nicht steuerlich absetzbar.";
+translations.fr.dsProp3 = "C’est une contribution volontaire et unique. Ce n’est pas un don et elle n’est pas déductible des impôts.";
+translations.es.dsProp4 = "Lo que aprendo lo comparto con mi comunidad y con quienes aprenden aquí.";
+translations.en.dsProp4 = "What I learn I share with my community and with those who learn here.";
+translations.de.dsProp4 = "Was ich lerne, teile ich mit meiner Gemeinschaft und mit allen, die hier lernen.";
+translations.fr.dsProp4 = "Ce que j’apprends, je le partage avec ma communauté et avec celles et ceux qui apprennent ici.";
+translations.es.dsProp5 = "Mother Verde es mi proyecto independiente: no está afiliado ni respaldado por SUNY Morrisville.";
+translations.en.dsProp5 = "Mother Verde is my independent project: it is not affiliated with or endorsed by SUNY Morrisville.";
+translations.de.dsProp5 = "Mother Verde ist mein unabhängiges Projekt: Es ist nicht mit der SUNY Morrisville verbunden und wird nicht von ihr unterstützt.";
+translations.fr.dsProp5 = "Mother Verde est mon projet indépendant : il n’est ni affilié ni approuvé par SUNY Morrisville.";
+translations.es.dsProp6 = "Te explico las condiciones completas en los {terms}.";
+translations.en.dsProp6 = "I explain the full conditions in the {terms}.";
+translations.de.dsProp6 = "Alle Bedingungen erkläre ich dir in den {terms}.";
+translations.fr.dsProp6 = "Je t’explique les conditions complètes dans les {terms}.";
+translations.es.dsPropWallet = "Tu aporte llega a mi billetera personal de cripto, en la red Base.";
+translations.en.dsPropWallet = "Your contribution goes to my personal crypto wallet, on the Base network.";
+translations.de.dsPropWallet = "Dein Beitrag geht an meine persönliche Krypto-Wallet, im Base-Netzwerk.";
+translations.fr.dsPropWallet = "Ta contribution arrive dans mon portefeuille crypto personnel, sur le réseau Base.";
+translations.es.dsPropTerms = "Términos y Condiciones";
+translations.en.dsPropTerms = "Terms and Conditions";
+translations.de.dsPropTerms = "Nutzungsbedingungen";
+translations.fr.dsPropTerms = "Conditions générales";
+translations.es.dsPropCheck = "Entiendo el propósito de mi aporte y estoy de acuerdo.";
+translations.en.dsPropCheck = "I understand the purpose of my contribution and I agree.";
+translations.de.dsPropCheck = "Ich verstehe den Zweck meines Beitrags und bin einverstanden.";
+translations.fr.dsPropCheck = "Je comprends l’objet de ma contribution et je suis d’accord.";
+translations.es.dsPropFalta = "Marca la casilla para continuar.";
+translations.en.dsPropFalta = "Tick the box to continue.";
+translations.de.dsPropFalta = "Kreuze das Kästchen an, um fortzufahren.";
+translations.fr.dsPropFalta = "Coche la case pour continuer.";
+translations.es.eduSunyFundadora = "La fundadora estudia en esta institución.";
+translations.en.eduSunyFundadora = "The founder studies at this institution.";
+translations.de.eduSunyFundadora = "Die Gründerin studiert an dieser Hochschule.";
+translations.fr.eduSunyFundadora = "La fondatrice étudie dans cet établissement.";
+translations.es.pvPurposeAdd = "Si marcas la casilla de propósito antes de aportar, guardamos que la aceptaste y cuándo, junto a tu aviso de aporte.";
+translations.en.pvPurposeAdd = "If you tick the purpose box before contributing, we store that you accepted it and when, together with your contribution notice.";
+translations.de.pvPurposeAdd = "Wenn du vor deinem Beitrag das Kästchen zum Zweck ankreuzt, speichern wir, dass du zugestimmt hast und wann, zusammen mit deiner Beitragsmeldung.";
+translations.fr.pvPurposeAdd = "Si tu coches la case sur l’objet avant de contribuer, nous enregistrons que tu l’as acceptée et quand, avec ton avis de contribution.";
+translations.es.authErrAccountExists = "Ya tienes cuenta: entra o recupera tu contraseña.";
+translations.en.authErrAccountExists = "You already have an account: sign in or recover your password.";
+translations.de.authErrAccountExists = "Du hast schon ein Konto: Melde dich an oder stelle dein Passwort wieder her.";
+translations.fr.authErrAccountExists = "Tu as déjà un compte : connecte-toi ou récupère ton mot de passe.";
+translations.es.authExistsLogin = "Entrar";
+translations.en.authExistsLogin = "Sign in";
+translations.de.authExistsLogin = "Anmelden";
+translations.fr.authExistsLogin = "Se connecter";
+translations.es.authExistsForgot = "Olvidé mi contraseña";
+translations.en.authExistsForgot = "I forgot my password";
+translations.de.authExistsForgot = "Passwort vergessen";
+translations.fr.authExistsForgot = "Mot de passe oublié";
+translations.es.acctBtnIn = "Tu cuenta y tu perfil";
+translations.en.acctBtnIn = "Your account and profile";
+translations.de.acctBtnIn = "Dein Konto und Profil";
+translations.fr.acctBtnIn = "Ton compte et ton profil";
+translations.es.acctBtnOut = "Entrar o crear cuenta";
+translations.en.acctBtnOut = "Sign in or create an account";
+translations.de.acctBtnOut = "Anmelden oder Konto erstellen";
+translations.fr.acctBtnOut = "Se connecter ou créer un compte";
+translations.es.acctMenuCuenta = "Mi cuenta (correo, acceso, código de regalo)";
+translations.en.acctMenuCuenta = "My account (e-mail, access, gift code)";
+translations.de.acctMenuCuenta = "Mein Konto (E-Mail, Zugang, Geschenkcode)";
+translations.fr.acctMenuCuenta = "Mon compte (e-mail, accès, code cadeau)";
+translations.es.acctMenuPerfil = "Mi perfil en la Comunidad";
+translations.en.acctMenuPerfil = "My Community profile";
+translations.de.acctMenuPerfil = "Mein Community-Profil";
+translations.fr.acctMenuPerfil = "Mon profil dans la Communauté";
+translations.es.acctMenuSalir = "Cerrar sesión";
+translations.en.acctMenuSalir = "Sign out";
+translations.de.acctMenuSalir = "Abmelden";
+translations.fr.acctMenuSalir = "Se déconnecter";
+translations.es.navCuenta = "Mi cuenta";
+translations.en.navCuenta = "My account";
+translations.de.navCuenta = "Mein Konto";
+translations.fr.navCuenta = "Mon compte";
+// @purpose-texts-end
+translations.es.dsContactoNombre = "Nombre (opcional)";
+translations.en.dsContactoNombre = "Name (optional)";
+translations.de.dsContactoNombre = "Name (optional)";
+translations.fr.dsContactoNombre = "Nom (facultatif)";
+translations.es.dsContactoTel = "WhatsApp o teléfono (opcional)";
+translations.en.dsContactoTel = "WhatsApp or phone (optional)";
+translations.de.dsContactoTel = "WhatsApp oder Telefon (optional)";
+translations.fr.dsContactoTel = "WhatsApp ou téléphone (facultatif)";
+translations.es.dsContactoNota = "Solo para ayudarte con tu aporte si hace falta. Únicamente lo verá quien administra Mother Verde.";
+translations.en.dsContactoNota = "Only to help you with your contribution if needed. Only the person who runs Mother Verde will see it.";
+translations.de.dsContactoNota = "Nur, um dir bei deinem Beitrag zu helfen, falls nötig. Nur die Person, die Mother Verde verwaltet, sieht es.";
+translations.fr.dsContactoNota = "Uniquement pour t'aider avec ta contribution si besoin. Seule la personne qui administre Mother Verde le verra.";
+translations.es.dsErrContactoNombre = "Revisa el nombre: como máximo 80 caracteres y sin < ni >.";
+translations.en.dsErrContactoNombre = "Check the name: at most 80 characters and no < or >.";
+translations.de.dsErrContactoNombre = "Prüfe den Namen: höchstens 80 Zeichen und ohne < oder >.";
+translations.fr.dsErrContactoNombre = "Vérifie le nom : 80 caractères maximum, sans < ni >.";
+translations.es.dsErrContactoTel = "Revisa el teléfono: solo números, espacios y los signos + ( ) - . (entre 6 y 24 caracteres).";
+translations.en.dsErrContactoTel = "Check the phone number: only digits, spaces and + ( ) - . (6 to 24 characters).";
+translations.de.dsErrContactoTel = "Prüfe die Telefonnummer: nur Ziffern, Leerzeichen und + ( ) - . (6 bis 24 Zeichen).";
+translations.fr.dsErrContactoTel = "Vérifie le numéro : seulement des chiffres, des espaces et + ( ) - . (6 à 24 caractères).";
+translations.es.dsPorFlorNota = "{usdc} {cur} por flor, más un código decimal único que verás al reservar.";
+translations.en.dsPorFlorNota = "{usdc} {cur} per flower, plus a unique decimal code you’ll see when you reserve.";
+translations.de.dsPorFlorNota = "{usdc} {cur} pro Blüte, plus ein einmaliger Dezimalcode, den du beim Reservieren siehst.";
+translations.fr.dsPorFlorNota = "{usdc} {cur} par fleur, plus un code décimal unique que tu verras en réservant.";
+translations.es.dsPorQueDecimales = "<b>¿Por qué el monto lleva decimales?</b> Esos decimales son tu código personal: nos permiten reconocer que el pago es tuyo. Se suman una sola vez al total. Si no los envías exactos, tu aporte pasa a revisión manual y tarda más.";
+translations.en.dsPorQueDecimales = "<b>Why does the amount have decimals?</b> Those decimals are your personal code: they let us recognize that the payment is yours. They are added only once to the total. If you don't send them exactly, your contribution goes to manual review and takes longer.";
+translations.de.dsPorQueDecimales = "<b>Warum hat der Betrag Dezimalstellen?</b> Diese Dezimalstellen sind dein persönlicher Code: Sie zeigen uns, dass die Zahlung von dir ist. Sie werden nur einmal zum Gesamtbetrag addiert. Wenn du sie nicht genau sendest, wird dein Beitrag manuell geprüft und dauert länger.";
+translations.fr.dsPorQueDecimales = "<b>Pourquoi le montant comporte-t-il des décimales ?</b> Ces décimales sont ton code personnel : elles nous permettent de reconnaître que le paiement est le tien. Elles s'ajoutent une seule fois au total. Si tu ne les envoies pas exactement, ta contribution passe en vérification manuelle et prend plus de temps.";
+translations.es.dsMontoPendiente = "Monto reservado: {a} USDC";
+translations.en.dsMontoPendiente = "Reserved amount: {a} USDC";
+translations.de.dsMontoPendiente = "Reservierter Betrag: {a} USDC";
+translations.fr.dsMontoPendiente = "Montant réservé : {a} USDC";
+translations.es.dsFlorN1 = "1 flor";
+translations.en.dsFlorN1 = "1 flower";
+translations.de.dsFlorN1 = "1 Blüte";
+translations.fr.dsFlorN1 = "1 fleur";
+translations.es.dsFlorN = "{n} flores";
+translations.en.dsFlorN = "{n} flowers";
+translations.de.dsFlorN = "{n} Blüten";
+translations.fr.dsFlorN = "{n} fleurs";
+translations.es.dsCopiarMonto = "Copiar monto exacto";
+translations.en.dsCopiarMonto = "Copy exact amount";
+translations.de.dsCopiarMonto = "Genauen Betrag kopieren";
+translations.fr.dsCopiarMonto = "Copier le montant exact";
+translations.es.dsMontoCopiado = "¡Monto copiado!";
+translations.en.dsMontoCopiado = "Amount copied!";
+translations.de.dsMontoCopiado = "Betrag kopiert!";
+translations.fr.dsMontoCopiado = "Montant copié !";
+translations.es.dsValidoHasta = "Este monto está reservado para ti hasta el {d}.";
+translations.en.dsValidoHasta = "This amount is reserved for you until {d}.";
+translations.de.dsValidoHasta = "Dieser Betrag ist bis {d} für dich reserviert.";
+translations.fr.dsValidoHasta = "Ce montant t’est réservé jusqu’au {d}.";
+translations.es.dsCancelar = "Ya no quiero enviarlo";
+translations.en.dsCancelar = "I don’t want to send it anymore";
+translations.de.dsCancelar = "Ich möchte nicht mehr senden";
+translations.fr.dsCancelar = "Je ne veux plus l’envoyer";
+translations.es.dsVencidoP = "Tu monto reservado venció. Si todavía no enviaste nada, pide uno nuevo. Si ya lo enviaste, registra abajo el código de la transacción.";
+translations.en.dsVencidoP = "Your reserved amount expired. If you haven’t sent anything yet, ask for a new one. If you already sent it, register the transaction code below.";
+translations.de.dsVencidoP = "Dein reservierter Betrag ist abgelaufen. Wenn du noch nichts gesendet hast, fordere einen neuen an. Wenn du schon gesendet hast, trag unten den Transaktionscode ein.";
+translations.fr.dsVencidoP = "Ton montant réservé a expiré. Si tu n’as encore rien envoyé, demandes-en un nouveau. Si tu l’as déjà envoyé, enregistre ci-dessous le code de la transaction.";
+translations.es.dsErrBusy = "Ahora mismo no queda ningún monto libre para {n} flor(es): hay demasiados aportes de esa cantidad esperando pago. Elige otra cantidad de flores o vuelve a intentarlo en unas horas.";
+translations.en.dsErrBusy = "Right now there’s no free amount left for {n} flower(s): too many contributions of that size are waiting for payment. Choose a different number of flowers or try again in a few hours.";
+translations.de.dsErrBusy = "Gerade ist für {n} Blüte(n) kein freier Betrag mehr übrig: Zu viele Beiträge dieser Höhe warten auf Zahlung. Wähle eine andere Anzahl Blüten oder versuch es in ein paar Stunden noch einmal.";
+translations.fr.dsErrBusy = "Il ne reste pour l’instant aucun montant libre pour {n} fleur(s) : trop de contributions de ce montant attendent un paiement. Choisis un autre nombre de fleurs ou réessaie dans quelques heures.";
+translations.es.dsErrConfirm = "Primero confirma tu correo.";
+translations.en.dsErrConfirm = "Confirm your e-mail first.";
+translations.de.dsErrConfirm = "Bestätige zuerst deine E-Mail-Adresse.";
+translations.fr.dsErrConfirm = "Confirme d’abord ton adresse e-mail.";
+translations.es.dsErrExpired = "Tu monto reservado venció: pide uno nuevo antes de enviar.";
+translations.en.dsErrExpired = "Your reserved amount expired: ask for a new one before sending.";
+translations.de.dsErrExpired = "Dein reservierter Betrag ist abgelaufen: Fordere einen neuen an, bevor du sendest.";
+translations.fr.dsErrExpired = "Ton montant réservé a expiré : demandes-en un nouveau avant d’envoyer.";
+// Late payment (reservation expired, TXID given anyway -> manual review).
+translations.es.dsTardeH = "¿Ya enviaste el pago?";
+translations.en.dsTardeH = "Already sent the payment?";
+translations.de.dsTardeH = "Schon bezahlt?";
+translations.fr.dsTardeH = "Tu as déjà envoyé le paiement ?";
+translations.es.dsTardeP = "Si ya enviaste {a} USDC, escribe aquí el código de la transacción (TXID). Como la reserva venció, lo revisaremos a mano antes de activar nada.";
+translations.en.dsTardeP = "If you already sent {a} USDC, enter the transaction code (TXID) here. Since the reservation expired, we’ll check it by hand before activating anything.";
+translations.de.dsTardeP = "Wenn du {a} USDC schon gesendet hast, gib hier den Transaktionscode (TXID) ein. Da die Reservierung abgelaufen ist, prüfen wir ihn von Hand, bevor etwas freigeschaltet wird.";
+translations.fr.dsTardeP = "Si tu as déjà envoyé {a} USDC, saisis ici le code de la transaction (TXID). Comme la réservation a expiré, nous le vérifierons à la main avant d’activer quoi que ce soit.";
+translations.es.dsTardeBtn = "Registrar mi TXID";
+translations.en.dsTardeBtn = "Register my TXID";
+translations.de.dsTardeBtn = "Meine TXID eintragen";
+translations.fr.dsTardeBtn = "Enregistrer mon TXID";
+translations.es.dsTardeOk = "Recibido. Como la reserva había vencido, tu aviso queda en revisión manual. Te escribiremos cuando lo revisemos.";
+translations.en.dsTardeOk = "Received. Since the reservation had expired, your notice goes to manual review. We’ll write to you once we’ve checked it.";
+translations.de.dsTardeOk = "Erhalten. Da die Reservierung abgelaufen war, wird deine Meldung von Hand geprüft. Wir schreiben dir, sobald wir sie geprüft haben.";
+translations.fr.dsTardeOk = "Reçu. Comme la réservation avait expiré, ton avis passe en vérification manuelle. Nous t’écrirons dès que nous l’aurons vérifié.";
+translations.es.dsErrEnRevision = "Ya tienes otro aviso en revisión. Espera a que lo revisemos o escríbenos a hello@motherverdeny.com.";
+translations.en.dsErrEnRevision = "You already have another notice under review. Wait until we check it or write to us at hello@motherverdeny.com.";
+translations.de.dsErrEnRevision = "Du hast schon eine andere Meldung in Prüfung. Warte, bis wir sie geprüft haben, oder schreib uns an hello@motherverdeny.com.";
+translations.fr.dsErrEnRevision = "Tu as déjà un autre avis en cours de vérification. Attends que nous le vérifiions ou écris-nous à hello@motherverdeny.com.";
+// Late payment checked on Base (20261014120000) + neutral manual-review line.
+// Privacy screen rewritten 14-10-2026: only what the code really does (audit N7).
+translations.es.pvUpdated = "Última actualización: 5 de noviembre de 2026";
+translations.en.pvUpdated = "Last updated: 5 November 2026";
+translations.de.pvUpdated = "Letzte Aktualisierung: 5. November 2026";
+translations.fr.pvUpdated = "Dernière mise à jour : 5 novembre 2026";
+translations.es.pvIntro = "Esta página describe lo que la plataforma hace hoy con tus datos, tal como funciona por dentro. <b>Por qué usamos tus datos:</b> para darte el servicio que pides (tu cuenta, la Bitácora, la Comunidad, tu acceso y los correos del servicio); por nuestro interés legítimo en la seguridad y en evitar abusos (límites de uso, bloqueo de correos desechables, la huella que permite una sola prueba gratuita por persona, el registro de acciones de la administradora y las constancias de pago); y con tu consentimiento cuando eliges darnos algo opcional (nombre y teléfono de contacto, correo de contacto, o el formulario «Anunciar en Mother Verde»). <b>Cuánto tiempo:</b> los datos de tu cuenta se guardan hasta que borras la cuenta; lo que se conserva después se explica en las secciones 4 y 7.";
+translations.en.pvIntro = "This page describes what the platform does with your data today, exactly as it works inside. <b>Why we use your data:</b> to provide the service you ask for (your account, grow log, Community, your access and the service e-mails); for our legitimate interest in security and in preventing abuse (usage limits, blocking disposable e-mail addresses, the fingerprint that allows only one free trial per person, the log of the administrator’s actions and payment records); and with your consent when you choose to give us something optional (contact name and phone, contact e-mail, or the “Advertise on Mother Verde” form). <b>How long:</b> your account data is kept until you delete your account; what is kept after that is explained in sections 4 and 7.";
+translations.de.pvIntro = "Diese Seite beschreibt, was die Plattform heute mit deinen Daten macht, so wie sie intern funktioniert. <b>Warum wir deine Daten verwenden:</b> um dir den Dienst zu erbringen, den du anforderst (dein Konto, das Logbuch, die Community, dein Zugang und die E-Mails des Dienstes); aufgrund unseres berechtigten Interesses an Sicherheit und an der Verhinderung von Missbrauch (Nutzungslimits, Sperre von Wegwerf-E-Mail-Adressen, der Fingerabdruck, der nur eine Gratis-Testphase pro Person erlaubt, das Protokoll der Aktionen der Administratorin und die Zahlungsnachweise); und mit deiner Einwilligung, wenn du uns freiwillig etwas angibst (Kontaktname und Telefon, Kontakt-E-Mail oder das Formular „Auf Mother Verde werben“). <b>Wie lange:</b> Deine Kontodaten werden gespeichert, bis du dein Konto löschst; was danach erhalten bleibt, steht in den Abschnitten 4 und 7.";
+translations.fr.pvIntro = "Cette page décrit ce que la plateforme fait aujourd’hui de tes données, tel qu’elle fonctionne en interne. <b>Pourquoi nous utilisons tes données :</b> pour te fournir le service que tu demandes (ton compte, ton journal, la Communauté, ton accès et les e-mails du service) ; pour notre intérêt légitime en matière de sécurité et de prévention des abus (limites d’utilisation, blocage des adresses e-mail jetables, l’empreinte qui permet un seul essai gratuit par personne, le journal des actions de l’administratrice et les preuves de paiement) ; et avec ton consentement lorsque tu choisis de nous donner quelque chose de facultatif (nom et téléphone de contact, e-mail de contact ou le formulaire « Annoncer sur Mother Verde »). <b>Combien de temps :</b> les données de ton compte sont conservées jusqu’à ce que tu supprimes ton compte ; ce qui est gardé ensuite est expliqué aux sections 4 et 7.";
+translations.es.pv1H = "1. Quién es responsable";
+translations.en.pv1H = "1. Who is responsible";
+translations.de.pv1H = "1. Wer verantwortlich ist";
+translations.fr.pv1H = "1. Qui est responsable";
+translations.es.pv1P = "Mother Verde LLC, Hamilton, NY. Contacto para todo lo relacionado con tus datos: <b>hello@motherverdeny.com</b>.";
+translations.en.pv1P = "Mother Verde LLC, Hamilton, NY. Contact for anything about your data: <b>hello@motherverdeny.com</b>.";
+translations.de.pv1P = "Mother Verde LLC, Hamilton, NY. Kontakt für alles rund um deine Daten: <b>hello@motherverdeny.com</b>.";
+translations.fr.pv1P = "Mother Verde LLC, Hamilton, NY. Contact pour tout ce qui concerne tes données : <b>hello@motherverdeny.com</b>.";
+translations.es.pv2H = "2. Lo que se guarda solo en tu navegador";
+translations.en.pv2H = "2. What is kept only in your browser";
+translations.de.pv2H = "2. Was nur in deinem Browser gespeichert wird";
+translations.fr.pv2H = "2. Ce qui reste uniquement dans ton navigateur";
+translations.es.pv2P = "Tu confirmación de mayoría de edad, el idioma elegido, las casillas marcadas en la lista de cosecha, cuántas veces pediste reenviar un correo (para limitar los reenvíos) y, si tienes cuenta, tu sesión. Además, si juegas, una copia de tu partida del juego, y una marca de que ya viste «Nuestra historia», para no volver a mostrarla. La web también guarda una copia de sus páginas para cargar más rápido. Puedes borrarlo todo desde los ajustes de tu navegador. <b>La plataforma no usa cookies propias ni herramientas de analítica o de publicidad.</b>";
+translations.en.pv2P = "Your confirmation that you are of age, your chosen language, the boxes ticked in the harvest checklist, how many times you asked to resend an e-mail (to limit resends) and, if you have an account, your session. Also, if you play, a copy of your game, and a mark that you have already seen “Our story”, so it is not shown again. The site also keeps a copy of its pages so it loads faster. You can delete all of this in your browser settings. <b>The platform uses no cookies of its own and no analytics or advertising tools.</b>";
+translations.de.pv2P = "Deine Bestätigung, volljährig zu sein, die gewählte Sprache, die angehakten Kästchen der Ernte-Checkliste, wie oft du eine E-Mail erneut angefordert hast (um das zu begrenzen) und, wenn du ein Konto hast, deine Sitzung. Außerdem, wenn du spielst, eine Kopie deines Spielstands und eine Markierung, dass du „Unsere Geschichte“ schon gesehen hast, damit sie nicht erneut erscheint. Die Website speichert außerdem eine Kopie ihrer Seiten, damit sie schneller lädt. Du kannst das alles in deinen Browser-Einstellungen löschen. <b>Die Plattform verwendet keine eigenen Cookies und keine Analyse- oder Werbewerkzeuge.</b>";
+translations.fr.pv2P = "Ta confirmation d’être majeur·e, la langue choisie, les cases cochées de la liste de récolte, le nombre de fois où tu as demandé à renvoyer un e-mail (pour limiter les renvois) et, si tu as un compte, ta session. De plus, si tu joues, une copie de ta partie, et une marque indiquant que tu as déjà vu « Notre histoire », pour ne pas la remontrer. Le site garde aussi une copie de ses pages pour charger plus vite. Tu peux tout effacer dans les réglages de ton navigateur. <b>La plateforme n’utilise ni cookies propres ni outils d’analyse ou de publicité.</b>";
+translations.es.pv3H = "3. Lo que se guarda en tu cuenta";
+translations.en.pv3H = "3. What is stored in your account";
+translations.de.pv3H = "3. Was in deinem Konto gespeichert wird";
+translations.fr.pv3H = "3. Ce qui est enregistré dans ton compte";
+translations.es.pv3P = "Si creas una cuenta, estos datos se guardan en los servidores de Supabase en la Unión Europea (región Central EU, Fráncfort, Alemania):<ul><li><b>Cuenta:</b> correo y contraseña (Supabase guarda la contraseña cifrada; nadie de Mother Verde puede verla), idioma, nombre visible, correo de contacto opcional y el estado de tu acceso (prueba de 24 horas, aporte o días de regalo) con sus fechas.</li><li><b>Bitácora:</b> fecha, etapa, notas, pH, EC, temperatura, humedad, porcentajes de tricomas y la foto si la añades. Solo tú puedes verla.</li><li><b>Juego</b> (si juegas): tu partida guardada (etapa, decisiones, equipo y resultados), para seguir en otro dispositivo. Solo tú puedes verla.</li><li><b>Comunidad</b> (si la usas): perfil (nombre visible, país, tipo de perfil, biografía y foto), publicaciones, comentarios, fotos, a quién sigues y los reportes que envías. Lo ven solo las personas con acceso completo. Las fotos de Comunidad se guardan en un almacenamiento público: quien tenga el enlace directo de una imagen puede abrirla.</li><li><b>Aportes:</b> cantidad de flores, monto, código de la transacción (TXID), fechas, estado y revisión; nombre y teléfono de contacto solo si los escribes (solo los ve la administradora).</li><li><b>Aportes manuales</b> (los que registra la administradora cuando el aporte se hizo por otro medio acordado): correo de la cuenta, medio, monto, comisión, fecha del pago, referencia y flores.</li><li><b>Códigos de regalo:</b> el correo al que se envió un código. El código solo se guarda como huella cifrada.</li><li><b>Registros técnicos:</b> envíos de correo (sin direcciones), intentos de corregir el correo de registro (solo una huella, sin la dirección), cuántas publicaciones hiciste en el día (para los límites) y un registro de las acciones de la administradora, que incluye el correo de la cuenta afectada.</li></ul>";
+translations.en.pv3P = "If you create an account, this data is stored on Supabase servers in the European Union (Central EU region, Frankfurt, Germany):<ul><li><b>Account:</b> e-mail and password (Supabase stores the password encrypted; nobody at Mother Verde can see it), language, display name, optional contact e-mail and the state of your access (24-hour trial, contribution or gift days) with its dates.</li><li><b>Grow log:</b> date, stage, notes, pH, EC, temperature, humidity, trichome percentages and the photo if you add one. Only you can see it.</li><li><b>Game</b> (if you play): your saved game (stage, decisions, equipment and results), so you can continue on another device. Only you can see it.</li><li><b>Community</b> (if you use it): profile (display name, country, profile type, bio and photo), posts, comments, photos, who you follow and the reports you send. Only people with full access can see it. Community photos are kept in public storage: anyone with the direct link to an image can open it.</li><li><b>Contributions:</b> number of flowers, amount, transaction code (TXID), dates, status and review; contact name and phone only if you write them (only the administrator sees them).</li><li><b>Manual contributions</b> (recorded by the administrator when the contribution was made through another agreed means): account e-mail, means, amount, fee, payment date, reference and flowers.</li><li><b>Gift codes:</b> the e-mail a code was sent to. The code itself is only stored as an encrypted fingerprint.</li><li><b>Technical logs:</b> e-mails sent (without addresses), attempts to correct the sign-up e-mail (only a fingerprint, not the address), how many posts you made that day (for the limits) and a log of the administrator’s actions, which includes the e-mail of the account concerned.</li></ul>";
+translations.de.pv3P = "Wenn du ein Konto erstellst, werden diese Daten auf Servern von Supabase in der Europäischen Union gespeichert (Region Central EU, Frankfurt, Deutschland):<ul><li><b>Konto:</b> E-Mail und Passwort (Supabase speichert das Passwort verschlüsselt; niemand bei Mother Verde kann es sehen), Sprache, Anzeigename, optionale Kontakt-E-Mail und der Stand deines Zugangs (24-Stunden-Test, Beitrag oder Geschenktage) mit den Daten.</li><li><b>Anbau-Logbuch:</b> Datum, Phase, Notizen, pH, EC, Temperatur, Luftfeuchtigkeit, Trichom-Anteile und das Foto, wenn du eines hinzufügst. Nur du kannst es sehen.</li><li><b>Spiel</b> (wenn du spielst): dein gespeicherter Spielstand (Phase, Entscheidungen, Ausrüstung und Ergebnisse), damit du auf einem anderen Gerät weitermachen kannst. Nur du kannst ihn sehen.</li><li><b>Community</b> (wenn du sie nutzt): Profil (Anzeigename, Land, Profiltyp, Bio und Foto), Beiträge, Kommentare, Fotos, wem du folgst und die Meldungen, die du sendest. Nur Personen mit Vollzugriff sehen das. Community-Fotos liegen in einem öffentlichen Speicher: Wer den direkten Link zu einem Bild hat, kann es öffnen.</li><li><b>Beiträge (Unterstützung):</b> Anzahl der Blüten, Betrag, Transaktionscode (TXID), Daten, Status und Prüfung; Kontaktname und Telefon nur, wenn du sie angibst (nur die Administratorin sieht sie).</li><li><b>Manuelle Beiträge</b> (von der Administratorin erfasst, wenn der Beitrag über einen anderen vereinbarten Weg kam): E-Mail des Kontos, Zahlungsweg, Betrag, Gebühr, Zahlungsdatum, Referenz und Blüten.</li><li><b>Geschenkcodes:</b> die E-Mail-Adresse, an die ein Code ging. Der Code selbst wird nur als verschlüsselter Fingerabdruck gespeichert.</li><li><b>Technische Protokolle:</b> gesendete E-Mails (ohne Adressen), Versuche, die Anmelde-E-Mail zu korrigieren (nur ein Fingerabdruck, nicht die Adresse), wie viele Beiträge du am Tag geschrieben hast (für die Limits) und ein Protokoll der Aktionen der Administratorin, das die E-Mail des betroffenen Kontos enthält.</li></ul>";
+translations.fr.pv3P = "Si tu crées un compte, ces données sont enregistrées sur les serveurs de Supabase dans l’Union européenne (région Central EU, Francfort, Allemagne) :<ul><li><b>Compte :</b> e-mail et mot de passe (Supabase garde le mot de passe chiffré ; personne chez Mother Verde ne peut le voir), langue, nom affiché, e-mail de contact facultatif et l’état de ton accès (essai de 24 heures, contribution ou jours offerts) avec ses dates.</li><li><b>Journal de culture :</b> date, étape, notes, pH, EC, température, humidité, pourcentages de trichomes et la photo si tu en ajoutes une. Toi seul·e peux le voir.</li><li><b>Jeu</b> (si tu joues) : ta partie enregistrée (étape, décisions, équipement et résultats), pour continuer sur un autre appareil. Toi seul·e peux la voir.</li><li><b>Communauté</b> (si tu l’utilises) : profil (nom affiché, pays, type de profil, bio et photo), publications, commentaires, photos, les personnes que tu suis et les signalements que tu envoies. Seules les personnes avec l’accès complet le voient. Les photos de la Communauté sont dans un stockage public : quiconque a le lien direct d’une image peut l’ouvrir.</li><li><b>Contributions :</b> nombre de fleurs, montant, code de transaction (TXID), dates, statut et vérification ; nom et téléphone de contact seulement si tu les écris (seule l’administratrice les voit).</li><li><b>Contributions manuelles</b> (enregistrées par l’administratrice quand la contribution a été faite par un autre moyen convenu) : e-mail du compte, moyen, montant, commission, date du paiement, référence et fleurs.</li><li><b>Codes cadeaux :</b> l’e-mail auquel un code a été envoyé. Le code lui-même n’est gardé que sous forme d’empreinte chiffrée.</li><li><b>Journaux techniques :</b> e-mails envoyés (sans adresses), tentatives de corriger l’e-mail d’inscription (seulement une empreinte, pas l’adresse), le nombre de publications du jour (pour les limites) et un journal des actions de l’administratrice, qui inclut l’e-mail du compte concerné.</li></ul>";
+translations.es.pv4H = "4. Aportes en USDC y la cadena de bloques";
+translations.en.pv4H = "4. USDC contributions and the blockchain";
+translations.de.pv4H = "4. Beiträge in USDC und die Blockchain";
+translations.fr.pv4H = "4. Contributions en USDC et la blockchain";
+translations.es.pv4P = "Las transferencias en la red Base son <b>públicas y permanentes</b>: cualquiera puede ver en un explorador la dirección que envía, la que recibe, el monto y la fecha. Mother Verde no puede borrarlas ni cambiarlas. Nuestro registro une el código de la transacción con tu cuenta, y eso solo lo ve la administradora. Si borras tu cuenta, los avisos sin código de transacción se borran; los que tienen código se conservan sin tu nombre, teléfono ni cuenta, como constancia del pago. Si marcas la casilla de propósito antes de aportar, guardamos que la aceptaste y cuándo, junto a tu aviso de aporte. Guardamos estas constancias por nuestro interés legítimo en poder demostrar los pagos recibidos y resolver reclamaciones. La plataforma no las borra automáticamente: se conservan sin tus datos personales. Los aportes manuales conservan el correo de la cuenta, el medio, el monto y la referencia como constancia contable y de prevención de fraude, también si borras tu cuenta: no se borran, solo se pueden anular. Los códigos de regalo enviados conservan el correo al que se enviaron.";
+translations.en.pv4P = "Transfers on the Base network are <b>public and permanent</b>: anyone can see in an explorer the sending address, the receiving address, the amount and the date. Mother Verde cannot delete or change them. Our records link the transaction code to your account, and only the administrator sees that. If you delete your account, notices without a transaction code are deleted; those with a code are kept without your name, phone or account, as proof of the payment. If you tick the purpose box before contributing, we store that you accepted it and when, together with your contribution notice. We keep these records for our legitimate interest in being able to prove the payments received and resolve claims. The platform does not delete them automatically: they are kept without your personal data. Manual contributions keep the account e-mail, the means, the amount and the reference as accounting and fraud-prevention records, also if you delete your account: they are never deleted, only voided. Gift codes that were sent keep the e-mail they were sent to.";
+translations.de.pv4P = "Überweisungen im Base-Netzwerk sind <b>öffentlich und dauerhaft</b>: Jeder kann in einem Explorer die sendende und die empfangende Adresse, den Betrag und das Datum sehen. Mother Verde kann sie weder löschen noch ändern. Unsere Aufzeichnung verbindet den Transaktionscode mit deinem Konto, und das sieht nur die Administratorin. Wenn du dein Konto löschst, werden Meldungen ohne Transaktionscode gelöscht; die mit Code bleiben ohne deinen Namen, dein Telefon und dein Konto als Nachweis der Zahlung erhalten. Wenn du vor deinem Beitrag das Kästchen zum Zweck ankreuzt, speichern wir, dass du zugestimmt hast und wann, zusammen mit deiner Beitragsmeldung. Wir bewahren diese Nachweise aufgrund unseres berechtigten Interesses auf, erhaltene Zahlungen belegen und Reklamationen klären zu können. Die Plattform löscht sie nicht automatisch: Sie bleiben ohne deine persönlichen Daten erhalten. Manuelle Beiträge behalten die E-Mail des Kontos, den Zahlungsweg, den Betrag und die Referenz als Buchhaltungs- und Betrugsschutznachweis, auch wenn du dein Konto löschst: Sie werden nie gelöscht, nur storniert. Versendete Geschenkcodes behalten die E-Mail-Adresse, an die sie gingen.";
+translations.fr.pv4P = "Les transferts sur le réseau Base sont <b>publics et permanents</b> : n’importe qui peut voir dans un explorateur l’adresse d’envoi, celle de réception, le montant et la date. Mother Verde ne peut ni les effacer ni les modifier. Notre registre relie le code de transaction à ton compte, et seule l’administratrice le voit. Si tu supprimes ton compte, les avis sans code de transaction sont supprimés ; ceux avec un code sont conservés sans ton nom, ton téléphone ni ton compte, comme preuve du paiement. Si tu coches la case sur l’objet avant de contribuer, nous enregistrons que tu l’as acceptée et quand, avec ton avis de contribution. Nous conservons ces preuves pour notre intérêt légitime à pouvoir démontrer les paiements reçus et à traiter les réclamations. La plateforme ne les supprime pas automatiquement : elles sont conservées sans tes données personnelles. Les contributions manuelles conservent l’e-mail du compte, le moyen, le montant et la référence comme preuve comptable et de prévention de la fraude, même si tu supprimes ton compte : elles ne sont jamais supprimées, seulement annulées. Les codes cadeaux envoyés conservent l’e-mail auquel ils ont été envoyés.";
+translations.es.pv5H = "5. Quién procesa tus datos";
+translations.en.pv5H = "5. Who processes your data";
+translations.de.pv5H = "5. Wer deine Daten verarbeitet";
+translations.fr.pv5H = "5. Qui traite tes données";
+translations.es.pv5P = "<ul><li><b>Supabase:</b> base de datos, cuentas, archivos y funciones del servidor.</li><li><b>Vercel:</b> aloja la web.</li><li><b>Hostinger:</b> envía los correos desde hello@motherverdeny.com.</li><li><b>Resend:</b> envío de correos de respaldo, solo si está activado.</li><li><b>DeepL:</b> traduce automáticamente el texto de publicaciones y comentarios de Comunidad a los 4 idiomas.</li><li><b>Red Base:</b> se consulta para comprobar las transferencias.</li><li><b>Google Fonts y flagcdn:</b> sirven las tipografías y las banderas, y reciben la dirección IP de cada visita.</li></ul>El formulario «Anunciar en Mother Verde» envía tu nombre, empresa, correo y mensaje por correo a hello@motherverdeny.com; no se guarda en la base de datos. Mother Verde LLC está en Estados Unidos. La base de datos está en la Unión Europea (Fráncfort), pero algunos de estos servicios funcionan fuera de la UE, sobre todo en Estados Unidos (por ejemplo Vercel, Google Fonts, Resend si está activado y el servicio que consulta la red Base), así que algunos datos —como tu dirección IP, el código de una transacción o el mensaje del formulario de anuncios— pueden tratarse fuera de la Unión Europea.";
+translations.en.pv5P = "<ul><li><b>Supabase:</b> database, accounts, files and server functions.</li><li><b>Vercel:</b> hosts the website.</li><li><b>Hostinger:</b> sends the e-mails from hello@motherverdeny.com.</li><li><b>Resend:</b> backup e-mail sending, only if switched on.</li><li><b>DeepL:</b> automatically translates the text of Community posts and comments into the 4 languages.</li><li><b>Base network:</b> queried to check transfers.</li><li><b>Google Fonts and flagcdn:</b> serve the fonts and flags, and receive the IP address of every visit.</li></ul>The “Advertise on Mother Verde” form sends your name, company, e-mail and message by e-mail to hello@motherverdeny.com; it is not stored in the database. Mother Verde LLC is based in the United States. The database is in the European Union (Frankfurt), but some of these services operate outside the EU, mainly in the United States (for example Vercel, Google Fonts, Resend if switched on, and the service used to query the Base network), so some data — such as your IP address, a transaction code or the message of the advertising form — may be processed outside the European Union.";
+translations.de.pv5P = "<ul><li><b>Supabase:</b> Datenbank, Konten, Dateien und Serverfunktionen.</li><li><b>Vercel:</b> hostet die Website.</li><li><b>Hostinger:</b> versendet die E-Mails von hello@motherverdeny.com.</li><li><b>Resend:</b> Ersatzversand von E-Mails, nur wenn eingeschaltet.</li><li><b>DeepL:</b> übersetzt den Text von Community-Beiträgen und -Kommentaren automatisch in die 4 Sprachen.</li><li><b>Base-Netzwerk:</b> wird abgefragt, um Überweisungen zu prüfen.</li><li><b>Google Fonts und flagcdn:</b> liefern Schriften und Flaggen und erhalten die IP-Adresse jedes Besuchs.</li></ul>Das Formular „Auf Mother Verde werben“ schickt deinen Namen, deine Firma, E-Mail und Nachricht per E-Mail an hello@motherverdeny.com; es wird nicht in der Datenbank gespeichert. Mother Verde LLC hat ihren Sitz in den Vereinigten Staaten. Die Datenbank liegt in der Europäischen Union (Frankfurt), aber einige dieser Dienste arbeiten außerhalb der EU, vor allem in den USA (zum Beispiel Vercel, Google Fonts, Resend, falls eingeschaltet, und der Dienst, über den das Base-Netzwerk abgefragt wird). Daher können einige Daten – etwa deine IP-Adresse, ein Transaktionscode oder die Nachricht des Werbeformulars – außerhalb der Europäischen Union verarbeitet werden.";
+translations.fr.pv5P = "<ul><li><b>Supabase :</b> base de données, comptes, fichiers et fonctions serveur.</li><li><b>Vercel :</b> héberge le site.</li><li><b>Hostinger :</b> envoie les e-mails depuis hello@motherverdeny.com.</li><li><b>Resend :</b> envoi d’e-mails de secours, seulement s’il est activé.</li><li><b>DeepL :</b> traduit automatiquement le texte des publications et commentaires de la Communauté dans les 4 langues.</li><li><b>Réseau Base :</b> consulté pour vérifier les transferts.</li><li><b>Google Fonts et flagcdn :</b> fournissent les polices et les drapeaux, et reçoivent l’adresse IP de chaque visite.</li></ul>Le formulaire « Annoncer sur Mother Verde » envoie ton nom, ton entreprise, ton e-mail et ton message par e-mail à hello@motherverdeny.com ; il n’est pas enregistré dans la base de données. Mother Verde LLC est établie aux États-Unis. La base de données se trouve dans l’Union européenne (Francfort), mais certains de ces services fonctionnent hors de l’UE, surtout aux États-Unis (par exemple Vercel, Google Fonts, Resend s’il est activé et le service qui interroge le réseau Base) : certaines données — comme ton adresse IP, un code de transaction ou le message du formulaire d’annonce — peuvent donc être traitées hors de l’Union européenne.";
+translations.es.pv6H = "6. Quién ve tus datos";
+translations.en.pv6H = "6. Who sees your data";
+translations.de.pv6H = "6. Wer deine Daten sieht";
+translations.fr.pv6H = "6. Qui voit tes données";
+translations.es.pv6P = "Tus datos privados (Bitácora, aportes, correo, estado de acceso) solo los ves tú y la administradora, que entra al panel con verificación en dos pasos. Tu correo nunca se muestra a otras personas. Tu perfil y tus publicaciones de Comunidad los ven las personas con acceso completo.";
+translations.en.pv6P = "Your private data (grow log, contributions, e-mail, access state) is seen only by you and the administrator, who signs in to the panel with two-step verification. Your e-mail is never shown to other people. Your Community profile and posts are seen by people with full access.";
+translations.de.pv6P = "Deine privaten Daten (Logbuch, Beiträge, E-Mail, Zugangsstand) siehst nur du und die Administratorin, die sich mit Zwei-Faktor-Bestätigung im Panel anmeldet. Deine E-Mail wird anderen Personen nie angezeigt. Dein Community-Profil und deine Beiträge sehen Personen mit Vollzugriff.";
+translations.fr.pv6P = "Tes données privées (journal, contributions, e-mail, état d’accès) ne sont vues que par toi et par l’administratrice, qui se connecte au panneau avec une vérification en deux étapes. Ton e-mail n’est jamais montré à d’autres personnes. Ton profil et tes publications de la Communauté sont vus par les personnes avec l’accès complet.";
+translations.es.pv7H = "7. Lo que puedes hacer";
+translations.en.pv7H = "7. What you can do";
+translations.de.pv7H = "7. Was du tun kannst";
+translations.fr.pv7H = "7. Ce que tu peux faire";
+translations.es.pv7P = "Cambiar tu idioma, tu nombre y tu perfil; descargar tu Bitácora en PDF; borrar tu cuenta desde Cuenta (borra la cuenta, el perfil, la Bitácora, tu partida del juego, tu actividad y tus fotos de Comunidad, salvo las constancias de pago en USDC sin datos personales, los aportes manuales con su correo, el correo al que se envió un código de regalo y el registro de acciones de la administradora); y escribir a hello@motherverdeny.com para cualquier otra solicitud. Si borras tu cuenta, guardamos solo una huella cifrada e irreversible de tu correo, sin ningún otro dato, para que la prueba gratuita de 24 horas se use una sola vez por persona. También puedes escribir a hello@motherverdeny.com para pedir una copia de tus datos, corregirlos, borrarlos u oponerte a algún uso. Te responderemos por correo en un máximo de 30 días. Si crees que tratamos mal tus datos, también puedes presentar una reclamación ante la autoridad de protección de datos de tu país.";
+translations.en.pv7P = "Change your language, name and profile; download your grow log as a PDF; delete your account from Account (it deletes the account, profile, grow log, your saved game, your Community activity and photos, except the USDC payment records without personal data, manual contributions with their e-mail, the e-mail a gift code was sent to and the log of the administrator’s actions); and write to hello@motherverdeny.com for any other request. If you delete your account, we keep only an encrypted, irreversible fingerprint of your e-mail, with no other data, so that the 24-hour free trial is used only once per person. You can also write to hello@motherverdeny.com to ask for a copy of your data, to correct or delete it, or to object to a use of it. We will reply by e-mail within 30 days at most. If you believe we are mishandling your data, you can also file a complaint with the data protection authority in your country.";
+translations.de.pv7P = "Deine Sprache, deinen Namen und dein Profil ändern; dein Logbuch als PDF herunterladen; dein Konto unter Konto löschen (das löscht Konto, Profil, Logbuch, deinen Spielstand, deine Community-Aktivität und -Fotos, außer den USDC-Zahlungsnachweisen ohne persönliche Daten, manuellen Beiträgen mit ihrer E-Mail, der E-Mail-Adresse, an die ein Geschenkcode ging, und dem Protokoll der Aktionen der Administratorin); und für jede andere Anfrage an hello@motherverdeny.com schreiben. Wenn du dein Konto löschst, speichern wir nur einen verschlüsselten, nicht umkehrbaren Fingerabdruck deiner E-Mail-Adresse, ohne weitere Daten, damit die 24-stündige Gratis-Testphase nur einmal pro Person genutzt wird. Du kannst auch an hello@motherverdeny.com schreiben, um eine Kopie deiner Daten zu verlangen, sie berichtigen oder löschen zu lassen oder einer Nutzung zu widersprechen. Wir antworten dir per E-Mail innerhalb von höchstens 30 Tagen. Wenn du der Meinung bist, dass wir deine Daten nicht richtig behandeln, kannst du dich auch bei der Datenschutzbehörde deines Landes beschweren.";
+translations.fr.pv7P = "Changer ta langue, ton nom et ton profil ; télécharger ton journal en PDF ; supprimer ton compte depuis Compte (cela supprime le compte, le profil, le journal, ta partie du jeu, ton activité et tes photos de la Communauté, sauf les preuves de paiement en USDC sans données personnelles, les contributions manuelles avec leur e-mail, l’e-mail auquel un code cadeau a été envoyé et le journal des actions de l’administratrice) ; et écrire à hello@motherverdeny.com pour toute autre demande. Si tu supprimes ton compte, nous gardons seulement une empreinte chiffrée et irréversible de ton e-mail, sans aucune autre donnée, pour que l’essai gratuit de 24 heures ne soit utilisé qu’une seule fois par personne. Tu peux aussi écrire à hello@motherverdeny.com pour demander une copie de tes données, les faire corriger ou supprimer, ou t’opposer à une utilisation. Nous te répondrons par e-mail dans un délai maximal de 30 jours. Si tu penses que nous traitons mal tes données, tu peux aussi déposer une réclamation auprès de l’autorité de protection des données de ton pays.";
+translations.es.pv8H = "8. Menores de edad";
+translations.en.pv8H = "8. Minors";
+translations.de.pv8H = "8. Minderjährige";
+translations.fr.pv8H = "8. Mineurs";
+translations.es.pv8P = "La plataforma es solo para personas mayores de 18 años: lo pregunta al entrar.";
+translations.en.pv8P = "The platform is for adults (18+) only: it asks when you arrive.";
+translations.de.pv8P = "Die Plattform ist nur für Erwachsene ab 18 Jahren: Sie fragt beim Betreten danach.";
+translations.fr.pv8P = "La plateforme est réservée aux personnes majeures (18 ans et plus) : elle le demande à l’arrivée.";
+translations.es.pv9H = "9. Cambios";
+translations.en.pv9H = "9. Changes";
+translations.de.pv9H = "9. Änderungen";
+translations.fr.pv9H = "9. Modifications";
+translations.es.pv9P = "Si esta política cambia de forma importante, lo avisaremos dentro de la plataforma.";
+translations.en.pv9P = "If this policy changes in an important way, we will say so inside the platform.";
+translations.de.pv9P = "Wenn sich diese Richtlinie wesentlich ändert, sagen wir es innerhalb der Plattform.";
+translations.fr.pv9P = "Si cette politique change de façon importante, nous le dirons dans la plateforme.";
+translations.es.dsErrTardeMonto = "Esa transacción no coincide exactamente con el monto de tu reserva. Revisa que el código sea el de tu envío y vuelve a intentarlo, o escríbenos a hello@motherverdeny.com.";
+translations.en.dsErrTardeMonto = "That transaction doesn’t exactly match the amount of your reservation. Check that it’s the code of your transfer and try again, or write to hello@motherverdeny.com.";
+translations.de.dsErrTardeMonto = "Diese Transaktion stimmt nicht genau mit dem Betrag deiner Reservierung überein. Prüfe, ob es der Code deiner Überweisung ist, und versuch es noch einmal, oder schreib an hello@motherverdeny.com.";
+translations.fr.dsErrTardeMonto = "Cette transaction ne correspond pas exactement au montant de ta réservation. Vérifie que c’est bien le code de ton envoi et réessaie, ou écris à hello@motherverdeny.com.";
+translations.es.dsErrTardeNoEncontrada = "Todavía no encontramos esa transacción en la red Base. Revisa el código o vuelve a intentarlo en unos minutos. Si sigue sin aparecer, escríbenos a hello@motherverdeny.com.";
+translations.en.dsErrTardeNoEncontrada = "We can’t find that transaction on the Base network yet. Check the code or try again in a few minutes. If it still doesn’t show up, write to hello@motherverdeny.com.";
+translations.de.dsErrTardeNoEncontrada = "Wir finden diese Transaktion im Base-Netzwerk noch nicht. Prüfe den Code oder versuch es in ein paar Minuten noch einmal. Wenn sie weiterhin nicht erscheint, schreib an hello@motherverdeny.com.";
+translations.fr.dsErrTardeNoEncontrada = "Nous ne trouvons pas encore cette transaction sur le réseau Base. Vérifie le code ou réessaie dans quelques minutes. Si elle n’apparaît toujours pas, écris à hello@motherverdeny.com.";
+translations.es.dsRevisionManual = "Lo revisaremos manualmente y te escribiremos.";
+translations.en.dsRevisionManual = "We’ll review it manually and write to you.";
+translations.de.dsRevisionManual = "Wir prüfen es manuell und schreiben dir.";
+translations.fr.dsRevisionManual = "Nous le vérifierons manuellement et nous t’écrirons.";
+translations.es.accRevocadoH = "Esta cuenta no tiene acceso";
+translations.en.accRevocadoH = "This account has no access";
+translations.de.accRevocadoH = "Dieses Konto hat keinen Zugang";
+translations.fr.accRevocadoH = "Ce compte n’a pas d’accès";
+translations.es.accRevocadoP = "El acceso de esta cuenta fue retirado. Si crees que es un error, escríbenos a hello@motherverdeny.com.";
+translations.en.accRevocadoP = "Access for this account was withdrawn. If you think this is a mistake, write to hello@motherverdeny.com.";
+translations.de.accRevocadoP = "Der Zugang dieses Kontos wurde entzogen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com.";
+translations.fr.accRevocadoP = "L’accès de ce compte a été retiré. Si tu penses que c’est une erreur, écris à hello@motherverdeny.com.";
+translations.es.accCuentaGranted = "Acceso completo activo hasta el {d}.";
+translations.en.accCuentaGranted = "Full access active until {d}.";
+translations.de.accCuentaGranted = "Vollzugriff aktiv bis {d}.";
+translations.fr.accCuentaGranted = "Accès complet actif jusqu’au {d}.";
+translations.es.accCuentaRevoked = "El acceso de esta cuenta fue retirado. Si crees que es un error, escríbenos a hello@motherverdeny.com.";
+translations.en.accCuentaRevoked = "Access for this account was withdrawn. If you think this is a mistake, write to hello@motherverdeny.com.";
+translations.de.accCuentaRevoked = "Der Zugang dieses Kontos wurde entzogen. Wenn du glaubst, dass das ein Fehler ist, schreib an hello@motherverdeny.com.";
+translations.fr.accCuentaRevoked = "L’accès de ce compte a été retiré. Si tu penses que c’est une erreur, écris à hello@motherverdeny.com.";
+translations.es.giftTengo = "Tengo un código de regalo";
+translations.en.giftTengo = "I have a gift code";
+translations.de.giftTengo = "Ich habe einen Geschenkcode";
+translations.fr.giftTengo = "J’ai un code cadeau";
+translations.es.giftLabel = "Tu código de regalo";
+translations.en.giftLabel = "Your gift code";
+translations.de.giftLabel = "Dein Geschenkcode";
+translations.fr.giftLabel = "Ton code cadeau";
+translations.es.giftCanjear = "Canjear";
+translations.en.giftCanjear = "Redeem";
+translations.de.giftCanjear = "Einlösen";
+translations.fr.giftCanjear = "Utiliser";
+translations.es.giftOk = "¡Listo! Tienes acceso completo hasta el {d}.";
+translations.en.giftOk = "Done! You have full access until {d}.";
+translations.de.giftOk = "Fertig! Du hast Vollzugriff bis {d}.";
+translations.fr.giftOk = "C’est fait ! Tu as un accès complet jusqu’au {d}.";
+translations.es.giftErrInvalid = "Ese código no es válido o ya no se puede usar.";
+translations.en.giftErrInvalid = "That code isn’t valid or can no longer be used.";
+translations.de.giftErrInvalid = "Dieser Code ist ungültig oder kann nicht mehr verwendet werden.";
+translations.fr.giftErrInvalid = "Ce code n’est pas valide ou ne peut plus être utilisé.";
+translations.es.giftErrTooMany = "Demasiados intentos. Vuelve a intentarlo dentro de 24 horas.";
+translations.en.giftErrTooMany = "Too many attempts. Try again in 24 hours.";
+translations.de.giftErrTooMany = "Zu viele Versuche. Versuch es in 24 Stunden noch einmal.";
+translations.fr.giftErrTooMany = "Trop de tentatives. Réessaie dans 24 heures.";
+translations.es.giftErrConfirm = "Primero confirma tu correo.";
+translations.en.giftErrConfirm = "Confirm your e-mail first.";
+translations.de.giftErrConfirm = "Bestätige zuerst deine E-Mail-Adresse.";
+translations.fr.giftErrConfirm = "Confirme d’abord ton adresse e-mail.";
+translations.es.giftErrYaTienes = "Ya tienes acceso completo, así que no usamos el código: puedes regalárselo a otra persona.";
+translations.en.giftErrYaTienes = "You already have full access, so we didn’t use the code: you can give it to someone else.";
+translations.de.giftErrYaTienes = "Du hast bereits Vollzugriff, deshalb haben wir den Code nicht verwendet: Du kannst ihn weiterschenken.";
+translations.fr.giftErrYaTienes = "Tu as déjà un accès complet, nous n’avons donc pas utilisé le code : tu peux l’offrir à quelqu’un d’autre.";
+translations.es.giftErrGeneric = "No pudimos comprobar el código ahora. Inténtalo de nuevo en unos minutos.";
+translations.en.giftErrGeneric = "We couldn’t check the code right now. Try again in a few minutes.";
+translations.de.giftErrGeneric = "Wir konnten den Code gerade nicht prüfen. Versuch es in ein paar Minuten noch einmal.";
+translations.fr.giftErrGeneric = "Nous n’avons pas pu vérifier le code pour le moment. Réessaie dans quelques minutes.";
+
+function t(key){ return translations[currentLang][key] || translations['en'][key] || translations['es'][key] || ''; }
 
 function statusLabel(s){
   const labels = {
@@ -6037,7 +7170,7 @@ function renderGrid(filter){
         <div><h4>${flagImg(c.flag)} ${countryDisplayName(c)}</h4><div class="region">${regionNames[c.region][currentLang]}</div></div>
         <div class="badge">${statusLabel(c.status)}</div>
       </div>
-      <div class="desc">${c.desc[currentLang] || c.desc.es}</div>`;
+      <div class="desc">${c.desc[currentLang] || c.desc.en}</div>`;
     grid.appendChild(el);
   });
   if(!isPremium && filtered.length>3){
@@ -6074,11 +7207,11 @@ function showDetail(c){
     </div>
     <div class="detail-grid">
       <div>
-        <div class="card-block"><h3>${t('detailEstado')}</h3><p>${c.desc[currentLang] || c.desc.es}</p><div class="note-box">${t('detailNote')}</div></div>
+        <div class="card-block"><h3>${t('detailEstado')}</h3><p>${c.desc[currentLang] || c.desc.en}</p><div class="note-box">${t('detailNote')}</div></div>
         <div class="card-block"><h3>${t('detailTimeline')}</h3><div class="timeline">${c.history.map(h=>`<div class="tl-item"><div class="yr">${h[0]}</div><div class="tx">${h[1][currentLang] || h[1].es}</div></div>`).join('')}</div></div>
       </div>
       <div>
-        <div class="card-block"><h3>${t('detailTraveler')}</h3><p>${c.portar[currentLang] || c.portar.es}</p></div>
+        <div class="card-block"><h3>${t('detailTraveler')}</h3><p>${c.portar[currentLang] || c.portar.en}</p></div>
         <div class="card-block"><h3>${t('detailSources')}</h3>${c.sources.map(s=>{
           const label = typeof s === 'string' ? s : s.label;
           const link = (typeof s === 'object' && s.url && isPremium) ? ` <a href="${s.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">→</a>` : '';
@@ -6089,17 +7222,33 @@ function showDetail(c){
   showScreen('detail');
 }
 
+// The language saved in the profile is a choice too: on sign-in, if THIS browser has no
+// language saved yet (new device), use the profile's. A language chosen here always wins.
+window.mvApplyProfileLang = function(lang){
+  let saved = null; try { saved = localStorage.getItem('mv-lang'); } catch(e){}
+  if(saved || !MV_LANGS.includes(lang) || lang === currentLang) return;
+  document.querySelector('#langSwitch button[data-lang="' + lang + '"]')?.click();
+};
 function applyLang(){
   document.documentElement.lang = currentLang;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', t('metaDescription'));
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     if(translations[currentLang][key] !== undefined) el.innerHTML = translations[currentLang][key];
   });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el=>{ const v = translations[currentLang][el.getAttribute('data-i18n-aria')]; if(v !== undefined) el.setAttribute('aria-label', v); });
+  document.querySelectorAll('[data-i18n-title]').forEach(el=>{ const v = translations[currentLang][el.getAttribute('data-i18n-title')]; if(v !== undefined) el.setAttribute('title', v); });
+  document.querySelectorAll('[data-cc]').forEach(el=>{ const n = countryNamesI18n[el.dataset.cc]; if(n) el.textContent = n[currentLang] || n.en; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
     const key = el.getAttribute('data-i18n-ph');
     if(translations[currentLang][key] !== undefined) el.setAttribute('placeholder', translations[currentLang][key]);
   });
+  const acctBtn = document.getElementById('accountBtn');
+  if(acctBtn){ const lbl = t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut'); acctBtn.setAttribute('aria-label', lbl); acctBtn.title = lbl; }
   if(document.getElementById('harvestChecklist')) renderHarvestChecklist();
+  if(window.mvSelectsReady) rebuildLocalizedSelects(); // community selects follow the language (set up at the end of this file)
+  if(document.getElementById('travelChecklist')?.children.length) renderTravelChecklist();
+  if(document.getElementById('searchModal')?.classList.contains('active')) runSearch();
   if(document.getElementById('glosarioList')) renderGlosario(document.getElementById('glSearchInput')?.value || '');
   if(comparadorOpen && isPremium) renderComparador();
   if(document.getElementById('vpdTemp')){ updateVPD(); updateDLI(); updateDose(); }
@@ -6128,9 +7277,12 @@ function applyLang(){
 document.querySelectorAll('#langSwitch button').forEach(b=>{
   b.onclick = ()=>{
     currentLang = b.dataset.lang;
-    document.querySelectorAll('#langSwitch button').forEach(x=>x.classList.remove('lang-on'));
-    b.classList.add('lang-on');
+    try { localStorage.setItem('mv-lang', currentLang); } catch(e){}
+    mvSyncLangButtons();
     applyLang();
+    // Access texts (lock screen, pending-contribution notice, 24 h strip, Cuenta
+    // "Tu acceso" + gift code) are built in JavaScript, not data-i18n: redraw them.
+    mvRedrawAccessTexts();
     // applyLang() only re-applies data-i18n text; it doesn't touch the community
     // feed, which bakes localized post/comment text straight into HTML at render
     // time. Re-render it so posts, "Eliminar"/etc., and any comment thread
@@ -6146,13 +7298,32 @@ document.querySelectorAll('#langSwitch button').forEach(b=>{
     }
     if(document.getElementById('perfil')?.classList.contains('active')) renderProfileScreen();
     if(document.getElementById('cuenta')?.classList.contains('active')) renderCuenta();
+    if(document.getElementById('desbloquear')?.classList.contains('active')) window.mvRenderDesbloquear?.();
+    if(document.getElementById('juego')?.classList.contains('active')) window.mvRenderJuego?.();
     // Médico condition-picker result is built in JS — re-run it if one is showing.
     if(document.getElementById('mdBuscarResultado')?.innerHTML.trim()) buscarEspecialista();
   };
 });
 
+// Marks the current language in the top switch and in the age-gate switch.
+function mvSyncLangButtons(){
+  document.querySelectorAll('#langSwitch button').forEach(x => x.classList.toggle('lang-on', x.dataset.lang === currentLang));
+  document.querySelectorAll('.ag-lang').forEach(x => {
+    const on = x.textContent.trim().toLowerCase() === currentLang;
+    x.classList.toggle('on', on);
+    x.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+function mvRedrawAccessTexts(){
+  if(ACCESS_MODEL !== 'support') return;
+  if(document.getElementById('acceso')?.classList.contains('active')) mvRenderAcceso();
+  mvRenderTrialStrip();
+  mvRenderCuentaAcceso();
+  window.mvRedrawAuthTexts?.();
+}
+
 // Screens reachable only from the "Más ▾" menu (not their own top-bar tab).
-const MORE_SCREENS = ['comunidad', 'seguridad', 'historia', 'glosario', 'calculadoras', 'bitacora', 'variedades', 'negocio'];
+const MORE_SCREENS = ['comunidad', 'seguridad', 'historia', 'glosario', 'calculadoras', 'bitacora', 'variedades', 'negocio', 'juego'];
 function toggleMoreMenu(e){
   if(e) e.stopPropagation();
   const menu = document.getElementById('tabsMoreMenu');
@@ -6167,6 +7338,13 @@ document.addEventListener('click', e => { if(!e.target.closest('#tabsMore')) clo
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMoreMenu(); });
 
 function showScreen(id){
+  // Access model "support": a visitor or an account without active access can
+  // only open the allowed screens (see mvScreenAllowedLocked); anything else
+  // shows the access screen. Visual only — see the ACCESS STATE block.
+  if(ACCESS_MODEL === 'support' && mvIsLockedState(mvAccessState())){
+    if(id === 'perfil') id = 'cuenta';
+    if(!mvScreenAllowedLocked(id)) id = 'acceso';
+  }
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>b.classList.remove('active'));
@@ -6177,11 +7355,14 @@ function showScreen(id){
   closeMoreMenu();
   if(id === 'bitacora') loadBitEntries();
   if(id === 'cuenta') renderCuenta();
+  if(id === 'desbloquear') window.mvRenderDesbloquear?.();
+  if(id === 'acceso') mvRenderAcceso();
+  if(id === 'seguridad') mvEnsureSeguridadSub();
   if(id === 'glosario') renderGlosario('');
   if(id === 'comunidad') renderComunidadScreen();
   if(id === 'perfil') renderProfileScreen();
   if(id === 'legal') renderLegalMap();
-  if(typeof syncTrialBanners === 'function') syncTrialBanners();
+  if(id === 'juego') window.mvRenderJuego?.();
   window.scrollTo(0,0);
 }
 document.querySelectorAll('nav.tabs button[data-screen]').forEach(b=>{
@@ -6193,8 +7374,8 @@ function renderGlosario(query){
   if(!el) return;
   const q = (query||'').toLowerCase().trim();
   const filtered = glossary.filter(g=>{
-    const termText = (g.term[currentLang]||g.term.es).toLowerCase();
-    const defText = (g.def[currentLang]||g.def.es).toLowerCase();
+    const termText = (g.term[currentLang]||g.term.en).toLowerCase();
+    const defText = (g.def[currentLang]||g.def.en).toLowerCase();
     return !q || termText.includes(q) || defText.includes(q);
   });
   if(filtered.length === 0){
@@ -6203,8 +7384,8 @@ function renderGlosario(query){
   }
   el.innerHTML = filtered.map(g=>`
     <div class="card-block" style="padding:14px 18px;">
-      <h4 style="margin:0 0 6px; font-family:'Manrope',sans-serif; font-size:15px; color:var(--moss-deep);">${g.term[currentLang]||g.term.es}</h4>
-      <p style="margin:0; font-size:13px; color:var(--ink-soft);">${g.def[currentLang]||g.def.es}</p>
+      <h4 style="margin:0 0 6px; font-family:'Manrope',sans-serif; font-size:15px; color:var(--moss-deep);">${g.term[currentLang]||g.term.en}</h4>
+      <p style="margin:0; font-size:13px; color:var(--ink-soft);">${g.def[currentLang]||g.def.en}</p>
     </div>`).join('');
 }
 
@@ -6220,17 +7401,460 @@ function showSub(screen, sub){
 }
 
 /* ===================== PAYWALL / GATING ===================== */
+// Which access model is live:
+//   'support'      — 24 h free trial for new accounts, then full access through a
+//                    one-time support contribution (the Desbloquear screen).
+// The previous paid model and its code were removed on 2026-10-11; 'support'
+// is the only model.
+const ACCESS_MODEL = 'support';
+window.MV_ACCESS_MODEL = ACCESS_MODEL;
+document.documentElement.dataset.accessModel = ACCESS_MODEL;
+
 let isPremium = false;
 const MV_IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+// Preview mode (fake access states and sample data, never writes anything):
+// on localhost, and in builds made with the dev-preview flag (the Vercel build
+// of branch dev marks <html data-mv-preview="1">). The production build
+// REMOVES every block between the @mv-preview markers (vite.config.js), so
+// there mvPreviewOn is always false and the preview functions don't exist.
+let mvPreviewOn = false;
+/* @mv-preview-start */
+mvPreviewOn = MV_IS_LOCAL || document.documentElement.dataset.mvPreview === '1';
+/* @mv-preview-end */
+window.mvPreviewOn = function(){ return mvPreviewOn; };
+
+/* ===================== ACCESS STATE (ACCESS_MODEL 'support') =====================
+   One place decides what a person may see:
+     visitor     – no session                                  -> entry screen
+     unconfirmed – signed up, e-mail not confirmed yet         -> "confirm your e-mail"
+     trial       – 24 h trial running                          -> everything + countdown strip
+     supporter   – verified contribution (or old full access)  -> everything
+     granted     – days from a gift code or an admin (access_until) -> everything
+     revoked     – access taken away by an admin               -> lock screen, own text
+     expired     – trial used up, no verified contribution     -> lock screen
+     no_trial    – account that existed before and never had a trial -> lock screen, other text
+     loading     – signed in, profile not loaded yet           -> treated as locked (fails closed)
+   Lock mode only HIDES things in the browser (html.mv-locked). The educational
+   content still ships in the page and can be revealed from the console; the
+   Community is closed on the server (RLS + publish functions). */
+var mvAccessPreviewState = null;   // preview mode only (always null in the production build)
+var mvPreviewTrialEnd = 0;
+var mvPreviewGrantedEnd = 0;
+var mvLastAccessState = null;
+
+function mvPendingConfirmEmail(){
+  try { return sessionStorage.getItem('mv-pending-confirm') || ''; } catch(e){ return ''; }
+}
+window.mvSetPendingConfirm = function(email){
+  try {
+    if(email) sessionStorage.setItem('mv-pending-confirm', email);
+    else sessionStorage.removeItem('mv-pending-confirm');
+  } catch(e){}
+  mvApplyAccessState();
+};
+
+function mvAccessState(){
+  if(ACCESS_MODEL !== 'support') return 'supporter';
+  if(mvPreviewOn && mvAccessPreviewState){
+    // A previewed trial runs out like a real one (to test locking with the app open).
+    if(mvAccessPreviewState === 'trial' && Date.now() >= mvPreviewTrialEnd) return 'expired';
+    return mvAccessPreviewState;
+  }
+  // ONE rule, in the database (access_info, migration 20261014140000): auth.js
+  // asks my_access() and this only reads the answer. The only thing checked
+  // here is whether "until" has passed, against the SERVER clock.
+  const user = window.mvCurrentUser, p = window.mvCurrentProfile, a = window.mvCurrentAccess;
+  if(!user) return mvPendingConfirmEmail() ? 'unconfirmed' : 'visitor';
+  if(!p || !a) return 'loading';
+  const ended = !!a.until && new Date(a.until).getTime() <= mvNow();
+  const after = a.trial_started ? 'expired' : 'no_trial';
+  switch(a.state){
+    case 'supporter': return 'supporter';
+    case 'legacy': return ended ? after : 'supporter';
+    case 'revoked': return 'revoked';
+    case 'granted': return ended ? after : 'granted';
+    case 'trial': return ended ? 'expired' : 'trial';
+    case 'expired': return 'expired';
+    default: return 'no_trial';
+  }
+}
+// "Now" for every access countdown: the server clock when known (auth.js).
+function mvNow(){ return window.mvServerNow ? window.mvServerNow() : Date.now(); }
+function mvIsLockedState(st){
+  return st === 'visitor' || st === 'unconfirmed' || st === 'expired' || st === 'no_trial' || st === 'revoked' || st === 'loading';
+}
+// Screens that stay open without access.
+function mvScreenAllowedLocked(id){
+  if(['acceso', 'desbloquear', 'terminos', 'privacidad', 'seguridad', 'cuenta'].includes(id)) return true;
+  if(id === 'bitacora') return !!window.mvCurrentUser;   // own log, read-only + PDF
+  return false;
+}
+window.mvAccessStateNow = function(){ return mvAccessState(); };
+// Localhost previews pretend to be signed in for these states.
+window.mvIsPreviewSignedIn = function(){
+  return mvPreviewOn && ['trial', 'expired', 'no_trial', 'supporter', 'granted', 'revoked'].includes(mvAccessPreviewState);
+};
+// A support-contribution claim waiting for the owner's manual check.
+// 'submitted' = transaction code given; 'manual_review' = being checked by hand.
+function mvClaimPending(){ return !!(window.mvLatestClaim && ['submitted', 'manual_review'].includes(window.mvLatestClaim.status)); }
+// End of gift / admin-granted days ('granted' state).
+function mvGrantedUntilMs(){
+  if(mvPreviewOn && mvAccessPreviewState === 'granted') return mvPreviewGrantedEnd;
+  const a = window.mvCurrentAccess;
+  return a && a.state === 'granted' && a.until ? new Date(a.until).getTime() : 0;
+}
+// USDC amounts: TEXT built from the integer base units (6 decimals), always
+// with 4 decimals (10.0420, never 10.042) — never a JavaScript float.
+// Shown with the language's decimal separator; copied with a dot (wallets).
+const MV_DEC_SEP = { es: ',', en: '.', de: ',', fr: ',' };
+// (Not named mvUsdcText: a top-level function in this classic script IS
+// window.<name>, so reassigning window.mvUsdcText would call itself.)
+function mvUsdcFormat(units, sep){
+  const s = String(units == null ? '' : units).trim();
+  if(!/^\d+$/.test(s)) return '';
+  const p = s.padStart(7, '0');
+  return p.slice(0, -6).replace(/^0+(?=\d)/, '') + (sep || '.') + p.slice(-6, -2);
+}
+window.mvUsdcText = function(units, forDisplay){ return mvUsdcFormat(units, forDisplay ? (MV_DEC_SEP[currentLang] || '.') : '.'); };
+function mvPendingNoteHtml(){
+  const c = window.mvLatestClaim;
+  return mvClaimPending()
+    ? '<div class="ds-claim-pending acc-pending"><b>' + t('dsPendingH') + '</b><br>' + (window.mvPendingLine ? window.mvPendingLine(c) : '')
+      + (c && c.amount_units ? '<br>' + t('dsMontoPendiente').replace('{a}', '<b class="ds-amount-inline">' + window.mvUsdcText(c.amount_units, true) + '</b>') : '') + '</div>'
+    : '';
+}
+
+function mvTrialEndMs(){
+  if(mvPreviewOn && mvAccessPreviewState === 'trial') return mvPreviewTrialEnd;
+  const a = window.mvCurrentAccess;
+  return a && a.state === 'trial' && a.until ? new Date(a.until).getTime() : 0;
+}
+function mvFmtLeft(ms){
+  const mins = Math.max(0, Math.floor(ms / 60000));
+  const h = Math.floor(mins / 60), m = mins % 60;
+  if(h > 0) return t('accFmtHM').replace('{h}', h).replace('{m}', m);
+  if(mins > 0) return t('accFmtM').replace('{m}', mins);
+  return t('accFmtLess1');
+}
+
+// «Cargando…» never stays forever: when the profile or the access did not load
+// (auth.js, window.mvAuthLoad) — at once if it failed, after 12 s if it hangs —
+// the lock screen and Cuenta offer «Reintentar», «Cerrar sesión» and hello@.
+const MV_STUCK_MS = 12000;
+function mvLoadStuck(){
+  const l = window.mvAuthLoad;
+  return !!l && (l.failed || Date.now() - l.since >= MV_STUCK_MS);
+}
+function mvStuckHtml(){
+  return '<div class="mv-stuck" role="alert">'
+    + '<h2 class="acc-title">' + t('stuckH') + '</h2>'
+    + '<p class="acc-text">' + t('stuckP') + '</p>'
+    + '<div class="acc-actions"><button type="button" class="btn btn-primary" id="mvStuckRetry" onclick="window.mvRefreshAuth && window.mvRefreshAuth()">' + t('stuckRetry') + '</button>'
+    + '<button type="button" class="btn btn-ghost" id="mvStuckOut" onclick="window.mvSignOutLocal && window.mvSignOutLocal()">' + t('stuckSignOut') + '</button></div>'
+    + '<p class="acc-note">' + t('stuckMail').replace('{mail}', '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>') + '</p>'
+    + '</div>';
+}
+let mvStuckTimer = 0;
+function mvArmStuckTimer(st){
+  clearTimeout(mvStuckTimer);
+  if(st !== 'loading' || mvLoadStuck()) return;
+  const left = MV_STUCK_MS - (Date.now() - (window.mvAuthLoad?.since || Date.now()));
+  mvStuckTimer = setTimeout(mvApplyAccessState, Math.max(0, left) + 50);
+}
+// (main.js is a classic script: mvArmStuckTimer is already a global, so the alias needs its own name)
+window.mvArmStuck = () => mvArmStuckTimer(mvAccessState());
+
+function mvApplyAccessState(){
+  if(ACCESS_MODEL !== 'support') return;
+  const st = mvAccessState();
+  mvArmStuckTimer(st);
+  const locked = mvIsLockedState(st);
+  const changed = st !== mvLastAccessState;
+  mvLastAccessState = st;
+  document.documentElement.classList.toggle('mv-locked', locked);
+  document.documentElement.dataset.access = st;
+  if(changed && typeof window.setIsPremium === 'function') window.setIsPremium(!locked);
+  const active = document.querySelector('.screen.active');
+  const activeId = active ? active.id : 'home';
+  if(locked && !mvScreenAllowedLocked(activeId)) showScreen('acceso');
+  else if(!locked && activeId === 'acceso') showScreen('home');
+  else if(activeId === 'acceso') mvRenderAcceso();
+  if(locked && activeId === 'seguridad') mvEnsureSeguridadSub();
+  mvRenderTrialStrip();
+  mvRenderCuentaAcceso();
+  if(document.getElementById('desbloquear')?.classList.contains('active')) window.mvRenderDesbloquear?.();
+  if(typeof renderBitacoraGate === 'function') renderBitacoraGate();
+}
+window.mvApplyAccessState = mvApplyAccessState;
+
+// Locked Seguridad shows only Mascotas and Manejo; make sure one of them is open.
+function mvEnsureSeguridadSub(){
+  if(!mvIsLockedState(mvAccessState())) return;
+  const open = document.querySelector('#seguridad .subview.active');
+  if(!open || (open.id !== 'seguridad-mascotas' && open.id !== 'seguridad-manejo')) showSub('seguridad', 'mascotas');
+}
+
+function mvGoAuth(mode){
+  showScreen('cuenta');
+  window.mvSetAuthMode?.(mode);
+  document.getElementById('cuentaAuthCard')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function mvRenderAcceso(){
+  const root = document.getElementById('accesoContent');
+  if(!root) return;
+  const st = mvAccessState();
+  const esc = (x) => String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const links = '<div class="acc-links">'
+    + '<a onclick="showScreen(\'seguridad\')">' + t('accLinkSeguridad') + '</a>'
+    + '<a onclick="showScreen(\'desbloquear\')">' + t('accLinkDesbloquear') + '</a>'
+    + '<a href="#terminos" onclick="event.preventDefault(); mvOpenLegal(\'terminos\', \'acceso\')">' + t('cuentaTerminosLabel') + '</a>'
+    + '<a href="#privacidad" onclick="event.preventDefault(); mvOpenLegal(\'privacidad\', \'acceso\')">' + t('cuentaPrivacidadLabel') + '</a>'
+    + '</div>';
+  const keep = '<p class="acc-keep">' + t('accKeepP')
+    .replace('{bit}', '<a onclick="showScreen(\'bitacora\')">')
+    .replace('{/bit}', '</a>')
+    .replace('{del}', '<a onclick="showScreen(\'cuenta\'); document.getElementById(\'cuentaBorrarCard\')?.scrollIntoView({behavior:\'smooth\'})">')
+    .replace('{/del}', '</a>') + '</p>';
+  let html = '';
+  if(st === 'visitor'){
+    html = '<h2 class="acc-title">' + t('accEntradaH') + '</h2>'
+      + '<p class="acc-text">' + t('accEntradaP') + '</p>'
+      + '<div class="acc-actions"><button class="btn btn-primary" onclick="mvGoAuth(\'signup\')">' + t('accCrearCuenta') + '</button>'
+      + '<button class="btn btn-ghost" onclick="mvGoAuth(\'login\')">' + t('accEntrar') + '</button></div>';
+  } else if(st === 'unconfirmed'){
+    const email = mvPendingConfirmEmail() || (mvPreviewOn ? 'tu@correo.com' : '');
+    const tip = mvMailboxTip(email);
+    html = '<h2 class="acc-title">' + t('accConfirmaH') + '</h2>'
+      + '<p class="acc-text">' + t('accConfirmaP').replace('{email}', '<b>' + esc(email) + '</b>') + '</p>'
+      + '<p class="acc-text">' + t('accSpamTip') + '</p>'
+      + (tip ? '<p class="acc-note acc-tip">' + t(tip) + '</p>' : '')
+      + '<div class="acc-actions"><button class="btn btn-primary" id="accResendBtn" onclick="mvResendClick()">' + t('accReenviar') + '</button>'
+      + '<button class="btn btn-ghost" onclick="window.mvSetPendingConfirm(\'\'); mvGoAuth(\'login\')">' + t('accYaConfirme') + '</button></div>'
+      + '<p class="acc-note" id="accResendMsg" role="status"></p>'
+      + '<p class="acc-note"><a onclick="mvToggleFixEmail()">' + t('accCorregirBtn') + '</a></p>'
+      + '<form id="accFixForm" class="auth-mini-form acc-fix" hidden onsubmit="mvFixEmailSubmit(event)">'
+      +   '<p class="acc-note">' + t('accCorregirP') + '</p>'
+      +   '<label for="accFixEmail">' + t('accCorregirNuevo') + '</label><input type="email" id="accFixEmail" required autocomplete="email">'
+      +   '<label for="accFixPass">' + t('authPasswordLabel') + '</label><input type="password" id="accFixPass" required autocomplete="current-password">'
+      +   '<button type="submit" class="btn btn-ghost" id="accFixBtn">' + t('accCorregirGuardar') + '</button>'
+      +   '<p class="acc-note" id="accFixMsg" role="status"></p>'
+      + '</form>'
+      + '<p class="acc-note">' + t('accContacto').replace('{mail}', '<a href="mailto:hello@motherverdeny.com">hello@motherverdeny.com</a>') + '</p>';
+  } else if(st === 'expired' || st === 'no_trial'){
+    const h = st === 'expired' ? 'accTerminoH' : 'accSinAccesoH';
+    const p = st === 'expired' ? 'accTerminoP' : 'accSinAccesoP';
+    html = '<h2 class="acc-title">' + t(h) + '</h2>'
+      + '<p class="acc-text">' + t(p) + '</p>'
+      + '<p class="acc-aviso" id="accAvisoCorto">' + t('dsAvisoCorto') + '</p>'
+      + mvPendingNoteHtml()
+      + (mvClaimPending() ? '' : '<div class="acc-actions"><button class="btn btn-primary" onclick="showScreen(\'desbloquear\')">' + t('accDesbloquearBtn') + '</button></div>')
+      + '<p class="acc-note"><a onclick="mvOpenGiftForm()">' + t('giftTengo') + '</a></p>'
+      + keep;
+  } else if(st === 'revoked'){
+    html = '<h2 class="acc-title">' + t('accRevocadoH') + '</h2>'
+      + '<p class="acc-text">' + t('accRevocadoP') + '</p>'
+      + keep;
+  } else if(st === 'loading'){
+    html = mvLoadStuck() ? mvStuckHtml() : '<p class="acc-text">' + t('subLoading') + '</p>';
+  }
+  root.innerHTML = '<div class="acc-wrap">' + html + links + '</div>';
+  mvUpdateResendCooldown();
+}
+
+// Extra, discreet hint for the big webmail providers.
+function mvMailboxTip(email){
+  const d = String(email || '').toLowerCase().split('@')[1] || '';
+  if(/^(gmail|googlemail)\.com$/.test(d)) return 'accGmailTip';
+  if(/^(hotmail|outlook|live)\.[a-z.]+$/.test(d) || d === 'msn.com') return 'accOutlookTip';
+  return '';
+}
+
+// "Resend confirmation e-mail": 60 s between two and at most 3 an hour from
+// this browser (limits in src/auth.js; Supabase also limits on its side).
+function mvResendWaitMs(){ return window.mvMailWaitMs ? window.mvMailWaitMs('signup') : 0; }
+function mvUpdateResendCooldown(){
+  const btn = document.getElementById('accResendBtn');
+  if(!btn) return;
+  const wait = mvResendWaitMs();
+  btn.disabled = wait > 0;
+  if(wait > 0){
+    const msg = document.getElementById('accResendMsg');
+    const capped = window.mvMailSendsLeft && window.mvMailSendsLeft('signup') === 0;
+    if(msg && !msg.dataset.sticky) msg.textContent = capped
+      ? t('accReenviarMax').replace('{m}', Math.ceil(wait / 60000))
+      : t('accReenviarEspera').replace('{s}', Math.ceil(wait / 1000));
+    clearTimeout(mvUpdateResendCooldown.timer);
+    mvUpdateResendCooldown.timer = setTimeout(mvUpdateResendCooldown, 1000);
+  } else {
+    const msg = document.getElementById('accResendMsg');
+    if(msg && !msg.dataset.sticky && /\d/.test(msg.textContent)) msg.textContent = '';
+  }
+}
+async function mvResendClick(){
+  const msg = document.getElementById('accResendMsg');
+  const email = mvPendingConfirmEmail();
+  if(!email || mvResendWaitMs() > 0 || !window.mvResendConfirmation) return;
+  const err = await window.mvResendConfirmation(email);
+  // null = sent; authErrRate / authErrSend = Supabase said no, with the reason.
+  const key = !err ? 'accReenviarOk' : (err === 'authErrRate' || err === 'authErrSend') ? err : 'accReenviarError';
+  if(msg){ msg.dataset.sticky = '1'; msg.textContent = t(key); setTimeout(() => { delete msg.dataset.sticky; }, 4000); }
+  mvUpdateResendCooldown();
+}
+
+// "Typed your e-mail wrong?": fixes THIS unconfirmed account (function
+// signup-fix-email, which checks the password), then sends the confirmation
+// to the corrected address. No second account.
+function mvToggleFixEmail(){
+  const f = document.getElementById('accFixForm');
+  if(!f) return;
+  f.hidden = !f.hidden;
+  if(!f.hidden) document.getElementById('accFixEmail')?.focus();
+}
+async function mvFixEmailSubmit(e){
+  e.preventDefault();
+  const msg = document.getElementById('accFixMsg'), btn = document.getElementById('accFixBtn');
+  const oldEmail = mvPendingConfirmEmail();
+  const newEmail = document.getElementById('accFixEmail').value.trim().toLowerCase();
+  const password = document.getElementById('accFixPass').value;
+  if(!oldEmail || !window.mvFixSignupEmail) return;
+  if(newEmail === oldEmail.toLowerCase()){ msg.textContent = t('accCorregirIgual'); return; }
+  btn.disabled = true;
+  msg.textContent = t('authLoading');
+  const r = await window.mvFixSignupEmail(oldEmail, newEmail, password);
+  btn.disabled = false;
+  if(r.ok){
+    window.mvSetPendingConfirm(newEmail);   // redraws this screen with the new address
+    const m = document.getElementById('accResendMsg');
+    const esc = (x) => String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    if(m){ m.dataset.sticky = '1'; m.innerHTML = r.sendError ? t(r.sendError) : t('accCorregirOk').replace('{email}', '<b>' + esc(newEmail) + '</b>'); setTimeout(() => { delete m.dataset.sticky; }, 8000); }
+    return;
+  }
+  msg.textContent = t({ wrong_password: 'accCorregirClave', already_confirmed: 'accCorregirYa', not_allowed: 'accCorregirNo', bad_email: 'authErrInvalidEmail', same_email: 'accCorregirIgual', too_many_attempts: 'accCorregirMuchos', too_old: 'accCorregirViejo', limit_reached: 'accCorregirLimite' }[r.error] || 'authErrSend');
+}
+
+// Countdown strip (trial only). Can be closed for this browser session.
+function mvRenderTrialStrip(){
+  const el = document.getElementById('trialCountdown');
+  if(!el) return;
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem('mv-strip-dismissed') === '1'; } catch(e){}
+  if(mvAccessState() !== 'trial' || dismissed){ el.hidden = true; return; }
+  const txt = document.getElementById('trialCountdownText');
+  if(txt) txt.innerHTML = t('accStripText').replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>');
+  el.hidden = false;
+}
+document.getElementById('trialCountdownClose')?.addEventListener('click', () => {
+  try { sessionStorage.setItem('mv-strip-dismissed', '1'); } catch(e){}
+  mvRenderTrialStrip();
+});
+
+// Cuenta -> "Tu acceso".
+function mvRenderCuentaAcceso(){
+  const card = document.getElementById('cuentaAccesoCard');
+  if(!card) return;
+  if(ACCESS_MODEL !== 'support' || (!window.mvCurrentUser && !window.mvIsPreviewSignedIn())){ card.hidden = true; return; }
+  const st = mvAccessState();
+  const txt = document.getElementById('cuentaAccesoTexto');
+  const btn = document.getElementById('cuentaAccesoBtn');
+  const key = { trial: 'accCuentaTrial', supporter: 'accCuentaSupporter', expired: 'accCuentaExpired', no_trial: 'accCuentaNoTrial', granted: 'accCuentaGranted', revoked: 'accCuentaRevoked' }[st] || 'subLoading';
+  if(txt && st === 'loading' && mvLoadStuck()) txt.innerHTML = mvStuckHtml();
+  else if(txt) txt.innerHTML = t(key).replace('{t}', '<b>' + mvFmtLeft(mvTrialEndMs() - mvNow()) + '</b>').replace('{d}', '<b>' + mvFmtDate(mvGrantedUntilMs()) + '</b>')
+    + (st !== 'supporter' && mvClaimPending() ? '<br><br>' + mvPendingNoteHtml() : '');
+  if(btn) btn.hidden = st === 'supporter' || st === 'revoked' || st === 'loading' || mvClaimPending();
+  mvRenderGiftBox(st);
+  card.hidden = false;
+}
+
+// «Tengo un código de regalo» (Cuenta). The database decides everything
+// (redeem_gift_code): confirmed e-mail, single use, expiry, 5 failed tries
+// per 24 h, never uses up a code on an account that already has full access.
+function mvRenderGiftBox(st){
+  const box = document.getElementById('cuentaRegaloBox');
+  if(!box) return;
+  const show = ['trial', 'granted', 'expired', 'no_trial'].includes(st);
+  box.hidden = !show;
+  if(!show || box.dataset.lang === getCurrentLang()) return;
+  const wasOpen = !!document.getElementById('giftForm') && !document.getElementById('giftForm').hidden;
+  const typed = document.getElementById('giftCode')?.value || '';
+  box.dataset.lang = getCurrentLang();
+  box.innerHTML = '<button type="button" class="btn btn-ghost" id="giftToggle" onclick="mvOpenGiftForm()">' + t('giftTengo') + '</button>'
+    + '<form id="giftForm" class="gift-form" hidden onsubmit="mvRedeemGift(event)">'
+    + '<label for="giftCode">' + t('giftLabel') + '</label>'
+    + '<input type="text" id="giftCode" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX">'
+    + '<button type="submit" class="btn btn-primary" id="giftBtn">' + t('giftCanjear') + '</button>'
+    + '<p class="acc-note" id="giftMsg" aria-live="polite"></p></form>';
+  if(wasOpen){
+    document.getElementById('giftForm').hidden = false;
+    document.getElementById('giftCode').value = typed;
+  }
+}
+function mvOpenGiftForm(){
+  if(document.getElementById('cuenta') && !document.getElementById('cuenta').classList.contains('active')) showScreen('cuenta');
+  const f = document.getElementById('giftForm');
+  if(!f) return;
+  f.hidden = false;
+  document.getElementById('cuentaRegaloBox')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  document.getElementById('giftCode')?.focus();
+}
+async function mvRedeemGift(ev){
+  ev.preventDefault();
+  const msg = document.getElementById('giftMsg'), btn = document.getElementById('giftBtn');
+  const code = (document.getElementById('giftCode').value || '').trim();
+  if(code.replace(/[^A-Za-z0-9]/g, '').length < 12){ msg.textContent = t('giftErrInvalid'); return; }
+  if(mvPreviewOn && mvAccessPreviewState){ msg.textContent = t('giftOk').replace('{d}', mvFmtDate(Date.now() + 7 * 86400000)); return; }
+  if(!window.mvSupabase || !window.mvCurrentUser){ msg.textContent = t('giftErrGeneric'); return; }
+  btn.disabled = true; msg.textContent = '…';
+  const { data, error } = await window.mvSupabase.rpc('redeem_gift_code', { p_code: code });
+  btn.disabled = false;
+  if(error){
+    const m = error.message || '';
+    msg.textContent = t(m.includes('too_many_attempts') ? 'giftErrTooMany' : m.includes('email_not_confirmed') ? 'giftErrConfirm' : 'giftErrGeneric');
+    return;
+  }
+  if(!data || !data.ok){
+    msg.textContent = t(data && data.error === 'already_full_access' ? 'giftErrYaTienes' : 'giftErrInvalid');
+    return;
+  }
+  document.getElementById('giftCode').value = '';
+  msg.textContent = t('giftOk').replace('{d}', mvFmtDate(new Date(data.access_until).getTime()));
+  window.mvRefreshAuth?.();
+}
+
+// When the trial runs out with the app open, lock without reloading.
+setInterval(() => {
+  if(ACCESS_MODEL !== 'support') return;
+  const st = mvAccessState();
+  if(st !== mvLastAccessState) mvApplyAccessState();
+  else if(st === 'trial'){ mvRenderTrialStrip(); mvRenderCuentaAcceso(); }
+}, 15000);
+
+// Preview mode only: show every state without touching the database, e.g.
+// mvAccessPreview('expired'), mvAccessPreview('trial', 0.5) (minutes left), mvAccessPreview(null).
+/* @mv-preview-start */
+if(mvPreviewOn){
+  window.mvClaimPreview = function(status){
+    window.mvLatestClaim = status ? { id: 0, status: status, flowers: 2, amount_units: 20004000, expires_at: new Date(Date.now() + (status === 'expired' ? -1 : 72) * 3600000).toISOString() } : null;
+    mvApplyAccessState();
+  };
+  window.mvAccessPreview = function(st, minutesLeft){
+    mvAccessPreviewState = st || null;
+    if(st === 'trial') mvPreviewTrialEnd = Date.now() + (minutesLeft != null ? minutesLeft : 17 * 60 + 32) * 60000 + 20000;
+    if(st === 'granted') mvPreviewGrantedEnd = Date.now() + 7 * 86400000;
+    mvApplyAccessState();
+  };
+}
+/* @mv-preview-end */
+
 // window.setIsPremium(true) used to flip isPremium directly, so any visitor
 // could open devtools in production and unlock every Premium gate for free.
 // The real source of truth is the profile row auth.js already fetched from
-// Supabase (billing columns aren't client-writable, see the subscription_trial
-// migration) via computeIsPremium(). Off localhost we ignore whatever value a
+// Supabase: the server's own access answer (my_access, see auth.js), never a
+// value computed in the browser. Off localhost we ignore whatever value a
 // caller passes and recompute from that profile ourselves; only on localhost
 // (QA / the #tierSwitch preview) do we still trust an explicit override.
 window.setIsPremium = function(value){
-  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvComputeIsPremium && window.mvComputeIsPremium(window.mvCurrentProfile));
+  isPremium = MV_IS_LOCAL ? !!value : !!(window.mvHasFullAccess && window.mvHasFullAccess());
   applyTier();
 };
 const LOCK_SVG = '<svg class="lock-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>';
@@ -6267,12 +7891,10 @@ const FULL_GATES = [
   {id:'ciencia-cientificos', titleKey:'gtCientTitle', descKey:'gtCientDesc'},
   {id:'ciencia-medico', titleKey:'gtMedTitle', descKey:'gtMedDesc'},
   {id:'ciencia-ecs', titleKey:'gtEcsTitle', descKey:'gtEcsDesc'},
-  {id:'seg-pm-prevencion', titleKey:'pmPrevencionH3', descKey:'gtSeguridadDesc'},
-  {id:'seg-pm-mecanismo', titleKey:'pmMecanismoH3', descKey:'gtSeguridadDesc'},
-  {id:'seg-pm-vet', titleKey:'pmVetH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pi-categorias', titleKey:'piCategoriasH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pi-revision', titleKey:'piRevisionH3', descKey:'gtSeguridadDesc'},
-  {id:'seg-pd-estadistica', titleKey:'pdEstadisticaH3', descKey:'gtSeguridadDesc'},
+  // seg-pm-* (Mascotas) and seg-pd-estadistica (Manejo) are open to everyone
+  // under the support model: safety content for visitors and blocked accounts.
   {id:'seg-pe-mecanismo', titleKey:'peMecanismoH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pe-matiz', titleKey:'peMatizH3', descKey:'gtSeguridadDesc'},
   {id:'seg-pk-cud', titleKey:'pkCudH3', descKey:'gtSeguridadDesc'},
@@ -6407,6 +8029,9 @@ const sourceLinks = {
   hcThcCbdNote: 'https://www.ahajournals.org/doi/10.1161/JAHA.124.037731',
   alSmokabilityP2: 'https://www.cannabissciencetech.com/view/impact-of-water-activity-on-the-chemical-composition-and-smoking-quality-of-cannabis-flower-the-science-of-smokability-phase-i-results',
   skPenetraP1: 'https://doi.org/10.1159/000526769',
+  pp11desc: 'https://doi.org/10.32712/2446-4775.2025.1817',
+  pp17desc: 'https://doi.org/10.1016/j.healthpol.2022.12.007',
+  pp22desc: 'https://doi.org/10.1016/j.drugpo.2025.104796',
   pp10desc: 'https://doi.org/10.58731/2965-0771.2025.106',
   pp12desc: 'https://doi.org/10.55563/clinexprheumatol/o23y55',
   pp13desc: 'https://doi.org/10.1016/j.lanepe.2026.101593',
@@ -6464,7 +8089,6 @@ function applyTier(){
   if(currentDetailCountry && document.getElementById('detail')?.classList.contains('active')) showDetail(currentDetailCountry);
   renderBitacoraGate();
   renderGrid(document.querySelector('.chip.on')?.dataset.f || 'all');
-  if(typeof syncTrialBanners === 'function') syncTrialBanners();
 }
 
 // The preview tier switch flips isPremium directly, bypassing every gate, so
@@ -6485,17 +8109,13 @@ document.querySelectorAll('#tierSwitch button').forEach(b=>{
 });
 applyTier();
 
-/* ===================== PREMIUM MODAL ===================== */
-function openPremium(){ syncPremiumModal(); document.getElementById('premiumModal').classList.add('active'); }
-function closePremium(){ document.getElementById('premiumModal').classList.remove('active'); }
+/* ===================== UNLOCK ===================== */
+function openPremium(){
+  // Every lock / "unlock" button calls this: it leads to the Desbloquear screen.
+  showScreen('desbloquear');
+}
 
-/* ===================== TRIAL / SUBSCRIPTION FLOW =====================
-   Data model + RPCs: supabase/migrations/20260905180000_subscription_trial.sql
-   Client logic:      src/subscription.js  (window.mvSub)
-   Payment processor:  Payment Nerds — NOT connected yet. Charge points are
-   stubbed and marked TODO(payment-nerds). Day-2 reminder email is designed
-   only (docs/trial-reminder-email.md + api/subscription-cron.js).           */
-
+/* ===================== DATES ===================== */
 const MV_LOCALE = { es: 'es-ES', en: 'en-US', de: 'de-DE', fr: 'fr-FR' };
 function mvFmtDate(d){
   try { return new Date(d).toLocaleDateString(MV_LOCALE[currentLang] || 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' }); }
@@ -6505,188 +8125,6 @@ function mvFmtDateTime(d){
   try { return new Date(d).toLocaleString(MV_LOCALE[currentLang] || 'es-ES', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }); }
   catch(e){ return new Date(d).toISOString().slice(0, 16).replace('T', ' '); }
 }
-function mapSubError(e){
-  // Always log the raw error — the mapped strings below are deliberately vague.
-  console.error('[subscription]', e);
-  const m = ((e && (e.message || e.error_description || e.msg)) || '').toLowerCase();
-  if(m.includes('trial already used')) return t('subErrTrialUsed');
-  if(m.includes('already subscribed')) return t('subErrAlready');
-  if(m.includes('payments-not-live')) return t('subErrNotLive');
-  if(m.includes('not-authenticated') || m.includes('not authenticated')) return t('subErrAuth');
-  return t('subErrGeneric');
-}
-function subMsg(txt, kind){
-  const el = document.getElementById('cuentaSubMsg');
-  if(!el) return;
-  el.textContent = txt || '';
-  el.style.color = kind === 'err' ? 'var(--clay)' : 'var(--moss-deep)';
-}
-
-/* ---- Premium offer modal ---- */
-function syncPremiumModal(){
-  const st = window.mvSub ? window.mvSub.getState() : null;
-  const trialEnd = new Date(Date.now() + 3 * 86400000);
-  const endEl = document.getElementById('pmTrialEnds');
-  const chargeEl = document.getElementById('pmFirstCharge');
-  if(endEl) endEl.textContent = mvFmtDate(trialEnd);
-  if(chargeEl) chargeEl.textContent = mvFmtDateTime(trialEnd);
-  const btn = document.getElementById('pmStartTrialBtn');
-  const consentWrap = document.getElementById('pmConsent') ? document.getElementById('pmConsent').closest('label') : null;
-  const card = document.getElementById('pmCardElement');
-  const msg = document.getElementById('pmMsg');
-  const consent = document.getElementById('pmConsent');
-  if(consent) consent.checked = false;
-  if(msg){ msg.textContent = ''; msg.style.color = 'var(--ink-soft)'; }
-  const signedIn = !!window.mvCurrentUser;
-  const allowed = !st || st.trialStartAllowed;
-  const alreadyOn = st && (st.status === 'trialing' || st.status === 'active');
-  if(alreadyOn){
-    if(btn){ btn.disabled = false; btn.textContent = t('pmManageBtn'); btn.onclick = () => { closePremium(); showScreen('cuenta'); }; }
-    if(consentWrap) consentWrap.style.display = 'none';
-    if(card) card.style.display = 'none';
-    return;
-  }
-  if(btn) btn.onclick = startTrialFlow;
-  if(!signedIn){
-    if(btn){ btn.disabled = false; btn.textContent = t('pmSignInFirst'); btn.onclick = () => { closePremium(); showScreen('cuenta'); }; }
-    if(consentWrap) consentWrap.style.display = 'none';
-    if(card) card.style.display = allowed ? '' : 'none';
-    return;
-  }
-  if(!allowed){
-    if(btn){ btn.disabled = true; btn.textContent = t('pmComingSoonBtn'); }
-    if(consentWrap) consentWrap.style.display = 'none';
-    if(card) card.style.display = 'none';
-    if(msg){ msg.textContent = t('pmComingSoonMsg'); }
-    return;
-  }
-  if(btn){ btn.disabled = false; btn.textContent = t('pmStartTrialBtn'); }
-  if(consentWrap) consentWrap.style.display = 'flex';
-  if(card) card.style.display = '';
-}
-
-async function startTrialFlow(){
-  const msg = document.getElementById('pmMsg');
-  const setMsg = (txt, err) => { if(msg){ msg.textContent = txt || ''; msg.style.color = err ? 'var(--clay)' : 'var(--ink-soft)'; } };
-  if(!window.mvCurrentUser){ closePremium(); showScreen('cuenta'); return; }
-  const st = window.mvSub ? window.mvSub.getState() : {};
-  if(!st.trialStartAllowed){ setMsg(t('pmNotLiveMsg'), true); return; }
-  const consent = document.getElementById('pmConsent');
-  if(!consent || !consent.checked){ setMsg(t('pmConsentRequired'), true); return; }
-  const btn = document.getElementById('pmStartTrialBtn');
-  if(btn) btn.disabled = true;
-  setMsg(t('pmStarting'));
-  try {
-    await window.mvSub.startTrial();
-    if(consent) consent.checked = false;
-    closePremium();
-    openTrialStarted();
-  } catch(e){
-    setMsg(mapSubError(e), true);
-  } finally {
-    if(btn) btn.disabled = false;
-  }
-}
-
-/* ---- Trial started confirmation ---- */
-function openTrialStarted(){
-  const st = window.mvSub ? window.mvSub.getState() : {};
-  const end = st.trialEnds || new Date(Date.now() + 3 * 86400000);
-  const e1 = document.getElementById('tsEndsValue');
-  const e2 = document.getElementById('tsChargeValue');
-  if(e1) e1.textContent = mvFmtDate(end);
-  if(e2) e2.textContent = mvFmtDateTime(end);
-  const m = document.getElementById('trialStartedModal');
-  if(m) m.classList.add('active');
-}
-function closeTrialStarted(){
-  const m = document.getElementById('trialStartedModal');
-  if(m) m.classList.remove('active');
-}
-
-/* ---- Cancel / reactivate (Cuenta) ---- */
-let cancelConfirmKind = null;
-function showCancelConfirm(kind){
-  cancelConfirmKind = kind;
-  const box = document.getElementById('cuentaCancelConfirm');
-  const txt = document.getElementById('cuentaCancelConfirmText');
-  if(txt) txt.textContent = kind === 'trial' ? t('subCancelConfirmTrial') : t('subCancelConfirmSub');
-  if(box) box.hidden = false;
-  const yes = document.getElementById('cuentaCancelConfirmYes');
-  if(yes) yes.onclick = doCancel;
-}
-function hideCancelConfirm(){
-  const box = document.getElementById('cuentaCancelConfirm');
-  if(box) box.hidden = true;
-  cancelConfirmKind = null;
-}
-async function doCancel(){
-  const yes = document.getElementById('cuentaCancelConfirmYes');
-  if(yes) yes.disabled = true;
-  try {
-    await window.mvSub.cancelSubscription();
-    hideCancelConfirm();
-    subMsg(t('subCancelDone'));
-    renderCuenta();
-  } catch(e){
-    subMsg(mapSubError(e), 'err');
-  } finally {
-    if(yes) yes.disabled = false;
-  }
-}
-async function doReactivate(){
-  subMsg(t('subWorking'));
-  try {
-    await window.mvSub.reactivate();
-    subMsg(t('subReactivateDone'));
-    renderCuenta();
-  } catch(e){
-    subMsg(mapSubError(e), 'err');
-  }
-}
-function doUpdateCard(){
-  // TODO(payment-nerds): open hosted card fields to replace the card + retry the outstanding charge.
-  subMsg(t('subUpdateCardPending'), 'err');
-}
-function doResubscribe(){
-  // TODO(payment-nerds): canceled users already used their trial -> direct paid
-  // re-subscribe (card + immediate charge), no second trial.
-  subMsg(t('subResubscribePending'), 'err');
-}
-
-/* ---- Day-2 reminder + blocked banners ---- */
-function syncTrialBanners(){
-  const rem = document.getElementById('trialReminderBanner');
-  const blk = document.getElementById('trialBlockedBanner');
-  if(!rem || !blk) return;
-  const st = window.mvSub ? window.mvSub.getState() : null;
-  const showBlocked = !!st && st.status === 'blocked';
-  blk.hidden = !showBlocked;
-  if(showBlocked){
-    const el = document.getElementById('trialBlockedText');
-    if(el) el.textContent = t('trialBlockedBannerText').split('{price}').join(st.price);
-  }
-  let dismissedKey = '';
-  try { dismissedKey = sessionStorage.getItem('trial-reminder-dismissed') || ''; } catch(e){}
-  const stamp = st && st.trialEnds ? String(st.trialEnds.getTime()) : '1';
-  const showReminder = !!st && st.status === 'trialing' && !st.cancelAtPeriodEnd
-    && st.hoursLeft != null && st.hoursLeft > 0 && st.hoursLeft <= 24 && dismissedKey !== stamp;
-  rem.hidden = !showReminder;
-  if(showReminder){
-    const el = document.getElementById('trialReminderText');
-    if(el) el.textContent = t('trialReminderBannerText')
-      .split('{charge}').join(mvFmtDateTime(st.firstChargeDate))
-      .split('{price}').join(st.price);
-  }
-}
-function dismissTrialReminder(){
-  const st = window.mvSub ? window.mvSub.getState() : null;
-  const stamp = st && st.trialEnds ? String(st.trialEnds.getTime()) : '1';
-  try { sessionStorage.setItem('trial-reminder-dismissed', stamp); } catch(e){}
-  const rem = document.getElementById('trialReminderBanner');
-  if(rem) rem.hidden = true;
-}
-window.syncTrialBanners = syncTrialBanners;
 window.renderCuenta = renderCuenta;
 
 /* ===================== ESPACIO PUBLICITARIO (formulario de contacto) ===================== */
@@ -6738,10 +8176,17 @@ document.getElementById('adInquiryForm')?.addEventListener('submit', async (e) =
 });
 
 /* ===================== BÚSQUEDA GLOBAL ===================== */
+// Search in the 4 languages (2026-11-06): each entry has its title and category in
+// es/en/de/fr; a match in ANY language counts (so «Germany», «Deutschland» and
+// «Alemania» find the same country) and the result is shown in the current one.
+const SEARCH_T = {"Oídio (mildiu polvoso)":["Powdery mildew","Echter Mehltau","Oïdium (blanc)"],"Botrytis (bud rot)":["Botrytis (bud rot)","Botrytis (Knospenfäule)","Botrytis (pourriture des têtes)"],"Ácaros / araña roja":["Spider mites","Spinnmilben","Acariens / araignée rouge"],"Viroide latente del lúpulo (HLVd)":["Hop latent viroid (HLVd)","Hopfen-Latent-Viroid (HLVd)","Viroïde latent du houblon (HLVd)"],"Pulgones (áfidos)":["Aphids","Blattläuse","Pucerons"],"Trips":["Thrips","Thripse","Thrips"],"Mosca blanca":["Whitefly","Weiße Fliege","Aleurodes (mouche blanche)"],"Pythium (pudrición de raíz)":["Pythium (root rot)","Pythium (Wurzelfäule)","Pythium (pourriture des racines)"],"Deficiencia de nitrógeno":["Nitrogen deficiency","Stickstoffmangel","Carence en azote"],"Deficiencia de magnesio":["Magnesium deficiency","Magnesiummangel","Carence en magnésium"],"Predictor de cruces genéticos":["Genetic cross predictor","Kreuzungsrechner","Prédicteur de croisements génétiques"],"PPFD y DLI":["PPFD and DLI","PPFD und DLI","PPFD et DLI"],"Feminización de semillas":["Seed feminisation","Feminisierung von Samen","Féminisation des graines"],"Injertos":["Grafting","Veredelung","Greffes"],"Decarboxilación":["Decarboxylation","Decarboxylierung","Décarboxylation"],"Tinturas sublinguales":["Sublingual tinctures","Sublinguale Tinkturen","Teintures sublinguales"],"Mirceno":["Myrcene","Myrcen","Myrcène"],"Cariofileno":["Caryophyllene","Caryophyllen","Caryophyllène"],"Cannflavina A y B":["Cannflavin A and B","Cannflavin A und B","Cannflavine A et B"],"Dra. Daniela Vergara":["Dr. Daniela Vergara","Dr. Daniela Vergara","Dre Daniela Vergara"],"Química de la raíz":["Root chemistry","Chemie der Wurzel","Chimie de la racine"],"Mito indica vs. sativa":["The indica vs. sativa myth","Mythos Indica vs. Sativa","Le mythe indica vs sativa"],"Mito del flushing":["The flushing myth","Mythos Flushing","Le mythe du rinçage (flushing)"],"Calculadora de VPD":["VPD calculator","VPD-Rechner","Calculateur de VPD"],"Calculadora de DLI":["DLI calculator","DLI-Rechner","Calculateur de DLI"],"Bitácora de cultivo":["Grow log","Anbau-Logbuch","Journal de culture"],"Licencias":["Licences","Lizenzen","Licences"],"Trazabilidad semilla-a-venta":["Seed-to-sale traceability","Rückverfolgbarkeit vom Samen bis zum Verkauf","Traçabilité de la graine à la vente"],"Interacciones con medicamentos":["Drug interactions","Wechselwirkungen mit Medikamenten","Interactions médicamenteuses"],"Warfarina y anticoagulantes":["Warfarin and anticoagulants","Warfarin und Gerinnungshemmer","Warfarine et anticoagulants"],"Embarazo y lactancia":["Pregnancy and breastfeeding","Schwangerschaft und Stillzeit","Grossesse et allaitement"],"Manejo y conducción":["Driving","Autofahren","Conduite"],"Salud mental y psicosis":["Mental health and psychosis","Psychische Gesundheit und Psychose","Santé mentale et psychose"],"Cannabis y mascotas":["Cannabis and pets","Cannabis und Haustiere","Cannabis et animaux de compagnie"],"Cannabis y deporte":["Cannabis and sport","Cannabis und Sport","Cannabis et sport"],"Corazón y presión arterial":["Heart and blood pressure","Herz und Blutdruck","Cœur et tension artérielle"],"Personas mayores":["Older adults","Ältere Menschen","Personnes âgées"],"Seguridad ocupacional":["Occupational safety","Arbeitssicherheit","Sécurité au travail"]};
+const SEARCH_CAT = {"Diagnóstico":["Diagnosis","Diagnose","Diagnostic"],"Landrace":["Landrace","Landrasse","Landrace"],"Herramienta":["Tool","Werkzeug","Outil"],"Iluminación":["Lighting","Beleuchtung","Éclairage"],"Nutrición":["Nutrition","Ernährung","Nutrition"],"Entrenamiento":["Training","Pflanzentraining","Palissage"],"Propagación":["Propagation","Vermehrung","Multiplication"],"Concentrado":["Concentrate","Konzentrat","Concentré"],"Seguridad":["Safety","Sicherheit","Sécurité"],"Comestibles":["Edibles","Esswaren","Comestibles"],"Dosis medida":["Measured dose","Abgemessene Dosis","Dose mesurée"],"Terpeno":["Terpene","Terpen","Terpène"],"Flavonoide":["Flavonoid","Flavonoid","Flavonoïde"],"Cannabinoide menor":["Minor cannabinoid","Nebencannabinoid","Cannabinoïde mineur"],"Científico":["Scientist","Wissenschaftler·in","Scientifique"],"Médico":["Medical","Medizinisch","Médical"],"Mito":["Myth","Mythos","Mythe"],"Negocio":["Business","Geschäft","Entreprise"],"País":["Country","Land","Pays"],"Cultivar":["Cultivar","Sorte","Cultivar"]};
+const searchL = (es, map) => { const t = map[es]; return { es, en: t ? t[0] : es, de: t ? t[1] : es, fr: t ? t[2] : es }; };
 function buildSearchIndex(){
-  const fromCountries = countries.map(c=>({title:c.name, cat:'País', screen:'legal', countryRef:c.name}));
-  const fromCultivars = cultivars.map(c=>({title:c.name, cat:'Cultivar', screen:'variedades'}));
-  return [...searchIndexStatic, ...fromCountries, ...fromCultivars];
+  const fromStatic = searchIndexStatic.map(e => ({ ...e, titles: searchL(e.title, SEARCH_T), cats: searchL(e.cat, SEARCH_CAT) }));
+  const fromCountries = countries.map(c=>{ const iso = isoFromFlag(c.flag); const n = iso && countryNamesI18n[iso]; return { titles: n ? { es: n.es, en: n.en, de: n.de, fr: n.fr } : searchL(c.name, {}), alt: [c.name], cats: searchL('País', SEARCH_CAT), screen:'legal', countryRef:c.name }; });
+  const fromCultivars = cultivars.map(c=>({ titles: searchL(c.name, {}), cats: searchL('Cultivar', SEARCH_CAT), screen:'variedades' }));
+  return [...fromStatic, ...fromCountries, ...fromCultivars];
 }
 function openSearch(){
   document.getElementById('searchModal').classList.add('active');
@@ -6761,6 +8206,8 @@ async function ageGateConfirm(isAdult){
       modal.classList.remove('active');
       modal.style.opacity = '';
       modal.style.transition = '';
+      // «Nuestra historia», once, right after the age confirmation (src/story.js)
+      window.mvMaybeOpenStory && window.mvMaybeOpenStory();
     }, 350);
   } else {
     document.getElementById('ageGateQuestion').style.display = 'none';
@@ -6776,18 +8223,43 @@ async function checkAgeGate(){
   else modal.classList.add('active');
 }
 checkAgeGate();
+
+// Legal pages (Términos, Privacidad) — independent review 2026-11-04: they have
+// a real address (#terminos, #privacidad), so a new tab, a long press on the
+// phone or a copied link also opens them (the old links went to «#», i.e. the
+// home page). Every link opens them through mvOpenLegal(page, from), and
+// «← Volver» goes back to the screen the person came from.
+const MV_LEGAL_PAGES = ['terminos', 'privacidad'];
+const MV_LEGAL_BACK = { cuenta: 'backToCuenta', desbloquear: 'backToDesbloquear', home: 'backToHome' };
+let mvLegalFrom = 'cuenta';
+function mvSetLegalBack(){
+  const key = MV_LEGAL_BACK[mvLegalFrom] || 'legalBack';
+  document.querySelectorAll('.legal-back').forEach(b => { b.dataset.i18n = key; b.textContent = t(key); });
+}
+function mvOpenLegal(page, from){
+  mvLegalFrom = from && from !== page && !MV_LEGAL_PAGES.includes(from) ? from : 'cuenta';
+  mvSetLegalBack();
+  showScreen(page);
+}
+function mvLegalBack(){ showScreen(mvLegalFrom); }
+window.mvOpenLegal = mvOpenLegal;
+window.mvLegalBack = mvLegalBack;
+function mvLegalFromAddress(){
+  const page = location.hash.replace(/^#/, '');
+  if(!MV_LEGAL_PAGES.includes(page)) return;
+  mvOpenLegal(page, 'cuenta');
+  try { history.replaceState(null, '', location.pathname + location.search); } catch(e){}
+}
+mvLegalFromAddress();
+window.addEventListener('hashchange', mvLegalFromAddress);
 populateBuscarPaisSelect();
 populateBuscarVetSelect();
 
 function renderCuenta(){
   renderAccountIcon();
+  mvRenderCuentaAcceso();
   const authCard = document.getElementById('cuentaAuthCard');
   const loggedInWrap = document.getElementById('cuentaLoggedInOnly');
-  const estadoEl = document.getElementById('cuentaEstadoTexto');
-  const detalleEl = document.getElementById('cuentaSubDetalle');
-  const btnEl = document.getElementById('cuentaBtnAccion');
-  const btn2El = document.getElementById('cuentaBtnSecundaria');
-  if(!estadoEl) return;
   const user = window.mvCurrentUser;
   if(authCard) authCard.style.display = user ? 'none' : '';
   if(loggedInWrap) loggedInWrap.style.display = user ? '' : 'none';
@@ -6798,63 +8270,6 @@ function renderCuenta(){
   }
   if(!user) return;
 
-  hideCancelConfirm();
-  const st = window.mvSub ? window.mvSub.getState() : { status: isPremium ? 'active' : 'none', price: '$7.10' };
-  const hide = el => { if(el){ el.style.display = 'none'; el.onclick = null; } };
-  const prim = (txt, fn) => { if(btnEl){ btnEl.style.display = ''; btnEl.textContent = txt; btnEl.onclick = fn; } };
-  hide(btnEl); hide(btn2El);
-  const endStr = st.periodEnd ? mvFmtDate(st.periodEnd) : '';
-  const chargeStr = st.firstChargeDate ? mvFmtDateTime(st.firstChargeDate) : '';
-  const fill = (k, map) => { let v = t(k); for(const p in map) v = v.split('{' + p + '}').join(map[p]); return v; };
-  let head = '', detail = '';
-  switch(st.status){
-    case 'trialing':
-      if(st.cancelAtPeriodEnd){
-        head = `<b style="color:var(--resin);">${t('subTrialCanceledHead')}</b>`;
-        detail = fill('subTrialCanceledDetail', { date: endStr });
-        prim(t('subReactivateTrialBtn'), doReactivate);
-      } else {
-        head = `<b style="color:var(--moss-deep);">${fill('subTrialActiveHead', { n: st.trialDayNumber || 1 })}</b>`;
-        detail = fill('subTrialActiveDetail', { date: endStr, charge: chargeStr, price: st.price });
-        prim(t('subCancelTrialBtn'), () => showCancelConfirm('trial'));
-      }
-      break;
-    case 'active':
-      if(st.cancelAtPeriodEnd){
-        head = `<b style="color:var(--resin);">${t('subActiveCanceledHead')}</b>`;
-        detail = fill('subActiveCanceledDetail', { date: endStr });
-        prim(t('subReactivateBtn'), doReactivate);
-      } else {
-        head = `<b style="color:var(--moss-deep);">${t('subActiveHead')}</b>`;
-        detail = fill('subActiveDetail', { date: endStr, price: st.price });
-        prim(t('subCancelBtn'), () => showCancelConfirm('sub'));
-      }
-      break;
-    case 'past_due':
-      head = `<b style="color:var(--clay);">${t('subPastDueHead')}</b>`;
-      detail = t('subPastDueDetail');
-      prim(t('subUpdateCardBtn'), doUpdateCard);
-      break;
-    case 'blocked':
-      head = `<b style="color:var(--clay);">${t('subBlockedHead')}</b>`;
-      detail = t('subBlockedDetail');
-      prim(t('subUpdateCardBtn'), doUpdateCard);
-      break;
-    case 'canceled':
-      head = `<b style="color:var(--resin);">${t('subCanceledHead')}</b>`;
-      detail = t('subCanceledDetail');
-      prim(fill('subResubscribeBtn', { price: st.price }), doResubscribe);
-      break;
-    case 'loading':
-      head = t('subLoading');
-      break;
-    default:
-      head = `<b style="color:var(--resin);">${t('cuentaPlanGratis')}</b>`;
-      detail = fill('subNoneDetail', { price: st.price });
-      prim(t('subStartTrialBtn'), openPremium);
-  }
-  estadoEl.innerHTML = head;
-  if(detalleEl) detalleEl.textContent = detail;
   const profile = window.mvCurrentProfile;
   const correoEl = document.getElementById('cuentaCorreoInput');
   if(correoEl && document.activeElement !== correoEl) correoEl.value = profile?.contact_email || '';
@@ -6884,9 +8299,46 @@ function mvAvatarHtml(member, sizePx){
 // and uploaded one; the original generic icon otherwise (logged out, no
 // directory profile yet, or no avatar set).
 const accountIconDefaultSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>';
+// Person icon (top bar): signed out -> «Entrar»; signed in -> a small menu
+// with «Mi cuenta», «Mi perfil en la Comunidad» and «Cerrar sesión» (2026-11-03:
+// «Cuenta» was hard to find from the icon).
+function mvCloseAcctMenu(){
+  const m = document.getElementById('acctMenu'), b = document.getElementById('accountBtn');
+  if(m) m.hidden = true;
+  if(b) b.setAttribute('aria-expanded', 'false');
+}
+function mvAccountBtn(e){
+  if(e) e.stopPropagation();
+  if(!window.mvCurrentUser){ mvCloseAcctMenu(); showScreen('cuenta'); window.mvSetAuthMode && window.mvSetAuthMode('login'); return; }
+  const m = document.getElementById('acctMenu'), b = document.getElementById('accountBtn');
+  if(!m || !b) return;
+  const open = m.hidden;
+  closeMoreMenu();
+  m.hidden = !open;
+  b.setAttribute('aria-expanded', String(open));
+  if(open) m.querySelector('[role=menuitem]')?.focus();
+}
+function mvAcctGo(where){
+  mvCloseAcctMenu();
+  if(where === 'cuenta') showScreen('cuenta');
+  else if(where === 'perfil') showProfile();
+  else if(where === 'salir') document.getElementById('authLogoutBtn')?.click();
+}
+document.addEventListener('click', e => { if(!e.target.closest('#acctWrap')) mvCloseAcctMenu(); });
+document.addEventListener('keydown', e => {
+  const m = document.getElementById('acctMenu');
+  if(!m || m.hidden) return;
+  const items = [...m.querySelectorAll('[role=menuitem]')];
+  const i = items.indexOf(document.activeElement);
+  if(e.key === 'Escape'){ mvCloseAcctMenu(); document.getElementById('accountBtn')?.focus(); }
+  else if(e.key === 'ArrowDown'){ e.preventDefault(); items[(i + 1) % items.length].focus(); }
+  else if(e.key === 'ArrowUp'){ e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+});
 async function renderAccountIcon(){
   const btn = document.getElementById('accountBtn');
   if(!btn) return;
+  btn.setAttribute('aria-label', t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut'));
+  btn.title = t(window.mvCurrentUser ? 'acctBtnIn' : 'acctBtnOut');
   if(!window.mvCurrentUser || !window.mvCommunity){ btn.innerHTML = accountIconDefaultSvg; return; }
   try{
     const mine = await window.mvCommunity.getMyMemberProfile();
@@ -7036,12 +8488,12 @@ function buscarVeterinario(){
   let html = '';
   const exact = researchedVets[selectedName];
   if(exact){
-    html += `<div class="note-box" style="margin-bottom:8px;"><b>${exact.flag} ${t('mdBuscarTuPais')}</b><br><b>${exact.name}</b> — ${exact.role[currentLang] || exact.role.es}<br><a href="${exact.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">${exact.org}</a></div>`;
+    html += `<div class="note-box" style="margin-bottom:8px;"><b>${exact.flag} ${t('mdBuscarTuPais')}</b><br><b>${exact.name}</b> — ${exact.role[currentLang] || exact.role.en}<br><a href="${exact.url}" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">${exact.org}</a></div>`;
   }
   const cercanos = Object.entries(researchedVets).filter(([name, d]) => name !== selectedName && d.region === selectedRegion);
   if(cercanos.length > 0){
     html += `<div class="note-box" style="margin-bottom:8px;"><b>${t('mdBuscarCerca')}</b><br>` +
-      cercanos.map(([name, d]) => `${d.flag} <b>${name} — ${d.name}:</b> ${d.role[currentLang] || d.role.es}`).join('<br><br>') + `</div>`;
+      cercanos.map(([name, d]) => `${d.flag} <b>${name} — ${d.name}:</b> ${d.role[currentLang] || d.role.en}`).join('<br><br>') + `</div>`;
   }
   html += `<div class="note-box"><b>${t('mdBuscarGlobal')}</b><br><a href="https://veterinarycannabissociety.org/directory-of-practitioners/" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600;">Veterinary Cannabis Society →</a></div>`;
   resultEl.innerHTML = html;
@@ -7068,7 +8520,7 @@ function populateCondicionSelect(){
     html += `<optgroup label="${t(MED_GROUP_KEY[lvl])}">`;
     items.forEach(c => {
       const T = MED_CONDITION_TEXT[c.id];
-      const label = (T && (T.label[currentLang] || T.label.es)) || c.id;
+      const label = (T && (T.label[currentLang] || T.label.en)) || c.id;
       html += `<option value="${c.id}">${label}</option>`;
     });
     html += `</optgroup>`;
@@ -7110,8 +8562,8 @@ function mdLocationOutputHtml(matched){
 // The evidence block shown when a condition is picked from the dropdown.
 function mdConditionResultHtml(cond){
   const T = MED_CONDITION_TEXT[cond.id];
-  const label = (T.label[currentLang] || T.label.es);
-  const note = (T.note[currentLang] || T.note.es);
+  const label = (T.label[currentLang] || T.label.en);
+  const note = (T.note[currentLang] || T.note.en);
   const specLabel = cond.spec && specialtyLabels[cond.spec] ? (specialtyLabels[cond.spec][currentLang] || specialtyLabels[cond.spec].es) : null;
   let h = `<div class="note-box" style="margin-bottom:10px;">`;
   h += `<div style="margin-bottom:8px;"><span class="md-evlevel ${cond.level}">${t(MED_LEVEL_KEY[cond.level])}</span></div>`;
@@ -7436,8 +8888,38 @@ async function submitPost(){
     setTimeout(() => { msgEl.style.display = 'none'; }, 3000);
     renderFeed();
   }catch(e){
-    show(t('authErrGeneric'), false);
+    if(cmyHandleNoAccess(e)) return;
+    show(t(cmyPublishErrorKey(e)), false);
   }
+}
+
+// The server said "no full access" (trial ended while the page was open, or a
+// contribution not verified yet): reload the profile and show the lock screen.
+function cmyHandleNoAccess(e){
+  if(!e || e.message !== 'no_access') return false;
+  Promise.resolve(window.mvRefreshAuth && window.mvRefreshAuth()).finally(() => {
+    mvApplyAccessState();
+    showScreen('acceso');
+  });
+  return true;
+}
+
+// Shown under a post/comment published without translation (budget or cap
+// reached, or DeepL failed): translation_status 'failed', reader's language
+// differs from the original. The text shown is the original.
+function cmyPendingTranslationNote(row){
+  if(!row || row.translation_status !== 'failed' || !row.source_lang || row.source_lang === currentLang) return '';
+  return '<span class="cmy-pending-tr">' + t('cmyTraduccionPendiente') + '</span>';
+}
+
+// Error codes the community-publish-* functions return -> i18n key.
+function cmyPublishErrorKey(e){
+  const m = (e && e.message) || '';
+  if(m === 'no_access') return 'cmyErrNoAccess';
+  if(m === 'daily_post_limit') return 'cmyErrLimitPosts';
+  if(m === 'daily_comment_limit') return 'cmyErrLimitComments';
+  if(m === 'daily_char_limit') return 'cmyErrLimitChars';
+  return 'authErrGeneric';
 }
 
 async function renderFeed(){
@@ -7490,7 +8972,7 @@ function renderPostCard(post){
     ? `<img class="cmy-post-photo" src="${esc(post.photo_url)}" alt="" loading="lazy">` : '';
   const bodyBlock = localized
     ? `<p class="cmy-post-body" id="cmyBody-${post.id}" data-localized="${esc(localized)}" data-original="${esc(post.body || localized)}">${esc(localized)}</p>
-       ${translated ? `<button class="cmy-translated" onclick="togglePostOriginal('${post.id}')" data-orig="0">${t('cmyVerOriginal')}</button>` : ''}`
+       ${translated ? `<button class="cmy-translated" onclick="togglePostOriginal('${post.id}')" data-orig="0">${t('cmyVerOriginal')}</button>` : ''}${cmyPendingTranslationNote(post)}`
     : '';
   const del = post.user_id === myId
     ? `<button class="cmy-del" onclick="deletePostStep(this,'${post.id}')">${t('cmyEliminar')}</button>` : '';
@@ -7566,12 +9048,15 @@ async function loadCommentThread(postId){
     ? `<p class="bit-empty" style="margin:8px 0;">${t('cmyComentariosVacio')}</p>`
     : comments.map(c => {
         const author = feedAuthors[c.user_id] || { display_name: t('cmyMiembroDesconocido'), user_id: c.user_id };
-        const body = window.mvCommunity.localizeBody(c, currentLang);
-        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b>${verifiedBadgeHtml(author)} <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}</div></div>`;
+        const body = window.mvCommunity.localizeBody(c, currentLang) + '';
+        const pendingNote = cmyPendingTranslationNote(c);
+        return `<div class="cmy-comment" style="display:flex; gap:8px;"><span style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${mvAvatarHtml(author, 24)}</span><div><b style="cursor:pointer;" onclick="showProfile('${author.user_id}')">${esc(author.display_name)}</b>${verifiedBadgeHtml(author)} <span class="cmy-post-time">${cmyFmtDate(c.created_at)}</span><br>${esc(body)}${pendingNote}</div></div>`;
       }).join('');
   const composer = canComment
     ? `<div class="cmy-comment-composer">
          <textarea id="cmyCommentInput-${postId}" maxlength="500" rows="2" data-i18n-ph="cmyComentarioPh" placeholder="Escribe un comentario…" style="width:100%; padding:8px; border:1px solid var(--line-strong); border-radius:4px; font-family:'Manrope',sans-serif; background:var(--paper); resize:vertical;"></textarea>
+         <p class="cmy-privacy-note">${t('cmyAvisoTraduccion')}</p>
+         <p class="cmy-comment-msg" id="cmyCommentMsg-${postId}" aria-live="polite"></p>
          <button class="btn-pill sm" onclick="submitComment('${postId}')">${t('cmyComentarBtn')}</button>
        </div>`
     : `<div class="note-box" style="margin-top:8px;">${t('cmyComentarioBloqueado')}</div>`;
@@ -7588,7 +9073,10 @@ async function submitComment(postId){
     inputEl.value = '';
     loadCommentThread(postId);
   }catch(e){
+    if(cmyHandleNoAccess(e)) return;
     inputEl.style.borderColor = 'var(--clay)';
+    const cMsg = document.getElementById('cmyCommentMsg-' + postId);
+    if(cMsg) cMsg.textContent = t(cmyPublishErrorKey(e));
   }
 }
 
@@ -7794,15 +9282,17 @@ function runSearch(){
   const resultsEl = document.getElementById('searchResults');
   if(q.length < 2){ resultsEl.innerHTML = ''; return; }
   const index = buildSearchIndex();
-  const matches = index.filter(item => norm(item.title.toLowerCase()).includes(q) || (item.cat && norm(item.cat.toLowerCase()).includes(q))).slice(0,20);
+  const has = (s) => s && norm(String(s).toLowerCase()).includes(q);
+  const matches = index.filter(item => Object.values(item.titles).some(has) || (item.alt || []).some(has) || has(item.cats[currentLang])).slice(0,20);
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   if(matches.length===0){
-    resultsEl.innerHTML = '<div class="search-empty">Sin resultados para "'+q+'"</div>';
+    resultsEl.innerHTML = '<div class="search-empty">' + esc(t('searchNone').replace('{q}', q)) + '</div>';
     return;
   }
   resultsEl.innerHTML = matches.map((m,i)=>`
     <div class="search-result" data-idx="${i}">
-      <span class="search-result-title">${m.title}</span>
-      <span class="search-result-cat">${m.cat}</span>
+      <span class="search-result-title">${esc(m.titles[currentLang] || m.titles.en)}</span>
+      <span class="search-result-cat">${esc(m.cats[currentLang] || m.cats.en)}</span>
     </div>`).join('');
   resultsEl.querySelectorAll('.search-result').forEach((row,i)=>{
     row.onclick = ()=>{
@@ -7823,9 +9313,6 @@ document.getElementById('searchModal')?.addEventListener('click', (e)=>{ if(e.ta
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape') closeSearch();
   if((e.ctrlKey||e.metaKey) && e.key==='k'){ e.preventDefault(); openSearch(); }
-});
-document.getElementById('premiumModal').addEventListener('click', (e)=>{
-  if(e.target.id === 'premiumModal') closePremium();
 });
 document.addEventListener('click', (e)=>{
   if(e.target.classList && e.target.classList.contains('gate-btn')) openPremium();
@@ -7877,13 +9364,13 @@ function renderCultivars(filter){
   visible.forEach(c=>{
     const el = document.createElement('div');
     el.className = 'specimen';
-    el.innerHTML = `<h4>${c.name}</h4><div class="sci">${c.tipo[currentLang] || c.tipo.es} — ${t('vrTipoPrefix')} ${c.quimiotipo}</div>
+    el.innerHTML = `<h4>${c.name}</h4><div class="sci">${c.tipo[currentLang] || c.tipo.en} — ${t('vrTipoPrefix')} ${c.quimiotipo}</div>
       <div class="spec-row"><span>THC</span><span>${c.thc}</span></div>
       <div class="spec-row"><span>CBD</span><span>${c.cbd}</span></div>
-      <div class="spec-row"><span>${t('vrFloracion')}</span><span>${c.floracion[currentLang] || c.floracion.es}</span></div>
-      <div class="spec-row"><span>${t('vrLinaje')}</span><span>${c.linaje[currentLang] || c.linaje.es}</span></div>
-      <div class="spec-row"><span>${t('vrTerpenos')}</span><span>${c.terpenos[currentLang] || c.terpenos.es}</span></div>
-      <div class="spec-row"><span>${t('vrDificultad')}</span><span>${c.dificultad[currentLang] || c.dificultad.es}</span></div>
+      <div class="spec-row"><span>${t('vrFloracion')}</span><span>${c.floracion[currentLang] || c.floracion.en}</span></div>
+      <div class="spec-row"><span>${t('vrLinaje')}</span><span>${c.linaje[currentLang] || c.linaje.en}</span></div>
+      <div class="spec-row"><span>${t('vrTerpenos')}</span><span>${c.terpenos[currentLang] || c.terpenos.en}</span></div>
+      <div class="spec-row"><span>${t('vrDificultad')}</span><span>${c.dificultad[currentLang] || c.dificultad.en}</span></div>
       ${c.parents ? buildLineageTree(c.parents, c.name) : ''}`;
     cvGrid.appendChild(el);
   });
@@ -7936,10 +9423,10 @@ function renderComparador(){
     [t('vrTipoPrefix'), `${t('vrTipoPrefix')} ${a.quimiotipo}`, `${t('vrTipoPrefix')} ${b.quimiotipo}`],
     ['THC', a.thc, b.thc],
     ['CBD', a.cbd, b.cbd],
-    [t('vrFloracion'), a.floracion[currentLang]||a.floracion.es, b.floracion[currentLang]||b.floracion.es],
-    [t('vrDificultad'), a.dificultad[currentLang]||a.dificultad.es, b.dificultad[currentLang]||b.dificultad.es],
-    [t('vrTerpenos'), a.terpenos[currentLang]||a.terpenos.es, b.terpenos[currentLang]||b.terpenos.es],
-    [t('vrLinaje'), a.linaje[currentLang]||a.linaje.es, b.linaje[currentLang]||b.linaje.es],
+    [t('vrFloracion'), a.floracion[currentLang]||a.floracion.en, b.floracion[currentLang]||b.floracion.en],
+    [t('vrDificultad'), a.dificultad[currentLang]||a.dificultad.en, b.dificultad[currentLang]||b.dificultad.en],
+    [t('vrTerpenos'), a.terpenos[currentLang]||a.terpenos.en, b.terpenos[currentLang]||b.terpenos.en],
+    [t('vrLinaje'), a.linaje[currentLang]||a.linaje.en, b.linaje[currentLang]||b.linaje.en],
   ];
   el.innerHTML = `<div class="cp-table">
     <div class="cp-row cp-header"><span>—</span><span>${a.name}</span><span>${b.name}</span></div>
@@ -7957,23 +9444,23 @@ document.querySelectorAll('.chip[data-cf]').forEach(chip=>{
 /* ===================== CALCULADORAS ===================== */
 function svp(t){ return 0.6108 * Math.exp(17.27*t/(t+237.3)); }
 function updateVPD(){
-  const t = parseFloat(document.getElementById('vpdTemp').value) || 0;
+  const airT = parseFloat(document.getElementById('vpdTemp').value) || 0; // not «t»: t() is the translator
   const rh = parseFloat(document.getElementById('vpdRH').value) || 0;
   const leafOffset = -2;
-  const leafT = t + leafOffset;
-  const vpd = svp(leafT) - (rh/100)*svp(t);
+  const leafT = airT + leafOffset;
+  const vpd = svp(leafT) - (rh/100)*svp(airT);
   const target = parseFloat(document.getElementById('vpdStage').value);
   document.getElementById('vpdResult').textContent = vpd.toFixed(2) + ' kPa';
   const diff = Math.abs(vpd - target);
   const verdictEl = document.getElementById('vpdVerdict');
-  if(diff < 0.15){ verdictEl.textContent = '✓ Dentro del rango objetivo'; verdictEl.style.color = 'var(--moss-deep)'; }
-  else { verdictEl.textContent = vpd > target ? '⚠ Más alto que el objetivo — ambiente muy seco' : '⚠ Más bajo que el objetivo — ambiente muy húmedo'; verdictEl.style.color = 'var(--resin)'; }
+  if(diff < 0.15){ verdictEl.textContent = t('calcVpdOk'); verdictEl.style.color = 'var(--moss-deep)'; }
+  else { verdictEl.textContent = vpd > target ? t('calcVpdHigh') : t('calcVpdLow'); verdictEl.style.color = 'var(--resin)'; }
 }
 function updateDLI(){
   const ppfd = parseFloat(document.getElementById('dliPPFD').value) || 0;
   const hours = parseFloat(document.getElementById('dliHours').value) || 0;
   const dli = ppfd * hours * 0.0036;
-  document.getElementById('dliResult').textContent = dli.toFixed(1) + ' mol/m²/día';
+  document.getElementById('dliResult').textContent = dli.toFixed(1) + ' ' + t('calcDliUnit');
 }
 // Guidance context under the per-serving result, from official government
 // sources only (Health Canada "Lower your risks" + Colorado cannabis.gov):
@@ -7998,26 +9485,32 @@ function edibleSafetyRefHtml(){
 }
 function renderEdibleSafetyCards(){
   const html = edibleSafetyRefHtml();
-  ['edibleDoseSafetyCard', 'edibleDoseSafetyCardCm'].forEach(id => {
+  ['edibleDoseSafetyCard', 'edibleDoseSafetyCardCm', 'edibleDoseSafetyCardSeg'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.innerHTML = html;
   });
 }
+// Dose per serving: both numbers must be greater than 0 (2nd review, 2026-11-06).
+// Before, 0 servings silently counted as 1 and negative numbers gave negative doses.
+function doseText(mg, servings){
+  if(!(mg > 0) || !(servings > 0)) return { ok: false, text: t('calcDoseInvalid') };
+  return { ok: true, text: (mg / servings).toFixed(1) + ' ' + t('calcPerServing') };
+}
+function showDose(el, mg, servings){
+  const d = doseText(mg, servings);
+  el.textContent = d.text;
+  el.classList.toggle('calc-invalid', !d.ok);
+  el.setAttribute('role', 'status');
+}
 function updateDose(){
-  const mg = parseFloat(document.getElementById('doseMg').value) || 0;
-  const servings = parseFloat(document.getElementById('doseServings').value) || 1;
-  const dose = mg / servings;
-  document.getElementById('doseResult').textContent = dose.toFixed(1) + ' mg / porción';
+  showDose(document.getElementById('doseResult'), parseFloat(document.getElementById('doseMg').value), parseFloat(document.getElementById('doseServings').value));
 }
 function updateDoseComestibles(){
   const mgEl = document.getElementById('cmDoseMg');
   const servingsEl = document.getElementById('cmDoseServings');
   const resultEl = document.getElementById('cmDoseResult');
   if(!mgEl || !servingsEl || !resultEl) return;
-  const mg = parseFloat(mgEl.value) || 0;
-  const servings = parseFloat(servingsEl.value) || 1;
-  const dose = mg / servings;
-  resultEl.textContent = dose.toFixed(1) + ' mg / porción';
+  showDose(resultEl, parseFloat(mgEl.value), parseFloat(servingsEl.value));
 }
 function updateDecarbCalc(){
   const gramosEl = document.getElementById('cmDecarbGramos');
@@ -8028,7 +9521,7 @@ function updateDecarbCalc(){
   const pct = parseFloat(pctEl.value) || 0;
   const mgThca = gramos * 1000 * (pct / 100);
   const mgThc = mgThca * 0.877;
-  resultEl.textContent = mgThc.toFixed(0) + ' mg de THC';
+  resultEl.textContent = mgThc.toFixed(0) + ' ' + t('calcMgThc');
 }
 ['cmDecarbGramos','cmDecarbPct'].forEach(id=>{
   const el = document.getElementById(id);
@@ -8508,7 +10001,7 @@ function computeCross(){
     counts[classifyPair(x,y)]++;
   });});
   const colors = {I:'var(--moss-deep)', II:'var(--resin)', III:'var(--teal)', IV:'var(--clay)'};
-  const labels = {I:'Tipo I', II:'Tipo II', III:'Tipo III', IV:'Tipo IV'};
+  const labels = {I:t('gnRatioI'), II:t('gnRatioII'), III:t('gnRatioIII'), IV:t('gnRatioIV')};
   const resultEl = document.getElementById('breedResult');
   resultEl.innerHTML = '';
   ['I','II','III','IV'].forEach(t=>{
@@ -8539,8 +10032,10 @@ function renderBitacoraGate(){
   loggedInEl.style.display = user ? '' : 'none';
   const pdfBtn = document.getElementById('bitPdfBtn');
   const pdfLocked = document.getElementById('bitPdfLocked');
-  if(pdfBtn) pdfBtn.style.display = (user && isPremium) ? 'inline-block' : 'none';
-  if(pdfLocked) pdfLocked.style.display = (user && !isPremium) ? 'inline-flex' : 'none';
+  // Support model: your own log can always be downloaded, even without access.
+  const pdfOk = user && (isPremium || ACCESS_MODEL === 'support');
+  if(pdfBtn) pdfBtn.style.display = pdfOk ? 'inline-block' : 'none';
+  if(pdfLocked) pdfLocked.style.display = (user && !pdfOk) ? 'inline-flex' : 'none';
 }
 window.renderBitacoraGate = renderBitacoraGate;
 // Bitácora notes are free text rendered via innerHTML below; escape them so a
@@ -8797,23 +10292,17 @@ window.loadTrichLog = loadTrichLog;
 if(document.getElementById('trichLogGate')){ renderTrichLogGate(); loadTrichLog(); }
 
 /* ===================== CHECKLIST PRE-VIAJE ===================== */
-const travelChecklistItems = [
-  'Verifiqué el estatus legal de mi destino en el explorador',
-  'Verifiqué el estatus del CBD por separado — no asumo que va incluido',
-  'Revisé si mi vuelo tiene escala en un país con ley distinta',
-  'No llevo ningún producto conmigo, ni de ida ni de vuelta',
-  'Guardé copia de mi documentación médica, si mi viaje es por uso medicinal',
-  'Verifiqué también el estatus del país al que regreso'
-];
+const travelChecklistItems = ['tcItem1', 'tcItem2', 'tcItem3', 'tcItem4', 'tcItem5', 'tcItem6'];
 function renderTravelChecklist(){
   const el = document.getElementById('travelChecklist');
-  if(!el || el.dataset.built) { updateChecklistProgress(); return; }
-  el.innerHTML = travelChecklistItems.map((item,i)=>`
+  if(!el) return;
+  // rebuilt on every call (language change); the ticks already made are kept
+  const ticked = new Set([...el.querySelectorAll('.tc-item:checked')].map((b) => b.dataset.idx));
+  el.innerHTML = travelChecklistItems.map((key,i)=>`
     <label style="display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-top:1px solid var(--line); font-size:13px; color:var(--ink-soft); cursor:pointer;">
-      <input type="checkbox" class="tc-item" data-idx="${i}" style="margin-top:3px;">
-      <span>${item}</span>
+      <input type="checkbox" class="tc-item" data-idx="${i}" style="margin-top:3px;"${ticked.has(String(i)) ? ' checked' : ''}>
+      <span>${t(key)}</span>
     </label>`).join('');
-  el.dataset.built = '1';
   el.querySelectorAll('.tc-item').forEach(cb=> cb.addEventListener('change', updateChecklistProgress));
   updateChecklistProgress();
 }
@@ -8821,7 +10310,7 @@ function updateChecklistProgress(){
   const boxes = document.querySelectorAll('.tc-item');
   const checked = document.querySelectorAll('.tc-item:checked').length;
   const progEl = document.getElementById('travelChecklistProgress');
-  if(progEl) progEl.textContent = `${checked} de ${boxes.length} verificados` + (checked===boxes.length && boxes.length>0 ? ' — ✓ listo para viajar' : '');
+  if(progEl) progEl.textContent = t('tcProgress').replace('{n}', checked).replace('{total}', boxes.length) + (checked===boxes.length && boxes.length>0 ? t('tcReady') : '');
 }
 
 /* ===================== CHECKLIST DE COSECHA (tricomas) ===================== */
@@ -8882,6 +10371,7 @@ function renderSymptomPicker(){
 /* Run once on load so the initial render always matches translations[currentLang],
    not just index.html's inline Spanish — keeps static/dynamic content from drifting
    apart again like it did earlier in this project. */
+mvSyncLangButtons();
 applyLang();
 
 /* ===================== BRILLO NEÓN: CURSOR (escritorio) ===================== */
@@ -9004,3 +10494,11 @@ applyLang();
     saveState(state);
   }, TICK_MS);
 })();
+
+// Support model: lock / unlock the UI as soon as the script has run (fails closed:
+// visitor until auth.js reports a session and profile).
+mvApplyAccessState();
+
+// Community selects in the current language from the first paint (2026-11-06). Here, at the
+// very end, every list they use already exists; applyLang() keeps them in step afterwards.
+try { rebuildLocalizedSelects(); window.mvSelectsReady = true; } catch(e){ console.error('rebuildLocalizedSelects', e); }

@@ -1,0 +1,18 @@
+# Line endings: LF in the repository AND in the working copy, on every machine.
+# (On Windows, core.autocrlf=true was checking some files out as CRLF and
+# others as LF or mixed, which broke text comparisons in the tests — fn-e2e.)
+* text=auto eol=lf
+
+# Binary files: never touched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.xlsx binary
+*.docx binary

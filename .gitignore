@@ -8,3 +8,6 @@ dist/
 
 .vercel
 .env*
+
+# Bertha's original photos (the compressed copies go to public/historia/ after her «APRUEBO»)
+fotos-historia/

@@ -12,14 +12,14 @@ function formatDatos(e, L){
   if(e.ph) parts.push(`pH ${e.ph}`);
   if(e.ec) parts.push(`EC ${e.ec}`);
   if(e.temp) parts.push(`${e.temp}°C`);
-  if(e.hum) parts.push(`${e.hum}% HR`);
+  if(e.hum) parts.push(`${e.hum}% ${({ es: 'HR', en: 'RH', de: 'rF', fr: 'HR' })[window.getCurrentLang?.() || 'en'] || 'RH'}`);
   return parts.join('  ·  ');
 }
 
 window.exportBitacoraPDF = function(){
   const entries = (window.getBitEntries?.() || []).slice().sort((a,b)=> new Date(a.fecha) - new Date(b.fecha));
-  const lang = window.getCurrentLang?.() || 'es';
-  const L = LABELS[lang] || LABELS.es;
+  const lang = window.getCurrentLang?.() || 'en';
+  const L = LABELS[lang] || LABELS.en;
   const doc = new jsPDF({ unit: 'pt', format: 'a4' });
   const pageW = doc.internal.pageSize.getWidth();
   const marginX = 48;

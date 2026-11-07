@@ -1,0 +1,4 @@
+node_modules/
+out/
+fnbuild/
+nodemailer-mock.mjs

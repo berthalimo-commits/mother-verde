@@ -1,9 +1,39 @@
 const TO_EMAIL = 'hello@motherverdeny.com';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Limits (independent review): the whole request at most 10 KB, each field
+// its own maximum (the form has the same maxlength), at most 5 sends per IP
+// every 10 minutes. The counter lives in this server instance's memory:
+// Vercel may run several instances, so it stops simple floods, not a
+// determined attacker. The form falls back to a mailto link on any error.
+const MAX_BODY = 10 * 1024;
+const MAX = { nombre: 100, empresa: 150, correo: 254, mensaje: 3000, lang: 5 };
+const WINDOW_MS = 10 * 60 * 1000, PER_WINDOW = 5;
+const hits = new Map(); // ip -> [timestamps]
+function limited(ip, now = Date.now()) {
+  const list = (hits.get(ip) || []).filter((t) => now - t < WINDOW_MS);
+  if (list.length >= PER_WINDOW) { hits.set(ip, list); return true; }
+  list.push(now); hits.set(ip, list);
+  if (hits.size > 5000) for (const [k, v] of hits) if (!v.some((t) => now - t < WINDOW_MS)) hits.delete(k);
+  return false;
+}
+export const _test = { hits, MAX, MAX_BODY, PER_WINDOW };
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'method not allowed' });
+    return;
+  }
+
+  const declared = Number(req.headers?.['content-length'] || 0);
+  const raw = typeof req.body === 'string' ? req.body : JSON.stringify(req.body || {});
+  if (declared > MAX_BODY || Buffer.byteLength(raw) > MAX_BODY) {
+    res.status(413).json({ error: 'too large' });
+    return;
+  }
+  const ip = String(req.headers?.['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim() || 'unknown';
+  if (limited(ip)) {
+    res.status(429).json({ error: 'too many requests' });
     return;
   }
 
@@ -20,7 +50,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (!nombre || !correo || !mensaje || !EMAIL_RE.test(correo)) {
+  const badField = Object.entries(MAX).some(([k, m]) => body[k] != null && body[k] !== '' && (typeof body[k] !== 'string' || body[k].length > m));
+  if (badField || !nombre || !correo || !mensaje || !EMAIL_RE.test(correo)) {
     res.status(400).json({ error: 'invalid input' });
     return;
   }

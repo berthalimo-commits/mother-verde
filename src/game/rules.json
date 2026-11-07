@@ -1,0 +1,1446 @@
+{
+  "_leeme": "Reglas del juego de cultivo (fase 1). Cada valor viene de un texto que la plataforma YA enseña (campo 'fuente'). Revisión 2026-11: cada valor lleva en 'verificar' su nivel (estudio, guía, práctica, comunidad, criterio de la autora o regla del juego) y sus códigos de docs/juego-fuentes.md. 'null' = la plataforma no da ese dato: el juego no puntúa esa decisión en esa etapa (no se inventa). 'VALOR DE JUEGO' = ritmo del juego, no un dato de cultivo.",
+  "estado_revision": "REVISADO 2026-11 (docs/juego-fuentes.md, «Revisión 2026-11»). Bertha no tiene que validar nada hasta que juegue.",
+  "turno": {
+    "dura": "1 semana",
+    "fuente": "VALOR DE JUEGO",
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: un turno = una semana, porque en una semana real ya se ven los cambios de la planta y la partida entera cabe en unos minutos."
+  },
+  "opciones": {
+    "fotoperiodo": [
+      "18/6",
+      "12/12"
+    ],
+    "intensidad": [
+      "baja",
+      "media",
+      "alta"
+    ],
+    "riego": [
+      "poco",
+      "moderado",
+      "mucho"
+    ],
+    "nutrientes": [
+      "bajo",
+      "medio",
+      "alto"
+    ],
+    "temperatura": [
+      "fresca",
+      "templada",
+      "calida"
+    ],
+    "humedad": [
+      "baja",
+      "media_alta",
+      "alta"
+    ]
+  },
+  "equivalencias": {
+    "_nota": "Qué significa cada nivel, con las cifras de la plataforma. Son cifras de cultivo en ambiente controlado (no de extracción).",
+    "intensidad": {
+      "baja": {
+        "texto": "PPFD 100–300 µmol/m²/s",
+        "fuente": "Cultivo → Iluminación (Plántula)",
+        "verificar": "REVISADO 2026-11 · práctica de cultivadores: no encontré un estudio comprobable sobre la luz de las plántulas."
+      },
+      "media": {
+        "texto": "PPFD 300–600 µmol/m²/s · DLI 20–40 mol/m²/día",
+        "fuente": "Cultivo → Iluminación (Vegetativo)",
+        "verificar": "REVISADO 2026-11 · práctica de cultivadores. Pendiente de verificar: Moher et al. 2022 (Guelph, Industrial Crops and Products), que según resúmenes recomienda 600–900 en vegetativo; si se confirma, el rango del juego se queda corto."
+      },
+      "alta": {
+        "texto": "PPFD 600–1.000 µmol/m²/s · DLI 30–50 mol/m²/día",
+        "fuente": "Cultivo → Iluminación (Floración)",
+        "verificar": "REVISADO 2026-11 · estudio (F1; F29, Guelph 2022: 600, 800 y 1.000 µmol; cada 100 más subió la cosecha). El DLI 30–50 no lo pude comprobar."
+      }
+    },
+    "nutrientes": {
+      "bajo": {
+        "texto": "EC por debajo de 1,2 mS/cm",
+        "fuente": "Cultivo → Sistemas (Sustrato y riego: EC 1,2–2,2)",
+        "verificar": "REVISADO 2026-11 · estudio (F15, Volcani / Universidad Hebrea 2020: con poco nitrógeno amarillean primero las hojas viejas) + guía (F2). El corte «EC por debajo de 1,2» es REGLA DEL JUEGO: la EC sola no dice si falta nitrógeno (en F15 hubo carencia con EC 1,6–1,7)."
+      },
+      "medio": {
+        "texto": "EC 1,2–2,2 mS/cm · pH 5,8–6,2",
+        "fuente": "Cultivo → Sistemas (Sustrato y riego)",
+        "verificar": "REVISADO 2026-11 · estudio (F14, Utah State University 2025: pH 5,8–6,2 y EC 2 bastaron para el mejor rendimiento; F15: el óptimo de N en vegetativo cayó en EC ≈ 2,1; F16 McGill 2024 y F17 Guelph 2021: el óptimo de N es parecido en vegetativo y floración)."
+      },
+      "alto": {
+        "texto": "EC por encima de 2,2 mS/cm",
+        "fuente": "Cultivo → Sistemas (Sustrato y riego)",
+        "verificar": "REVISADO 2026-11 · estudio (F15: el exceso de N, con EC 2,5–2,8, frenó el desarrollo en vegetativo; F14: en floración EC 4 no dio más cosecha ni la bajó). Por eso en floración «Alto» resta menos (2) que en vegetativo (4)."
+      }
+    },
+    "temperatura": {
+      "fresca": {
+        "texto": "por debajo de 24 °C",
+        "fuente": "Cultivo → Sistemas (Vegetativo: 24–28 °C diurna)",
+        "verificar": "REVISADO 2026-11 · estudio (F12): la fotosíntesis del cannabis rinde más entre 25 y 30 °C; por debajo, menos."
+      },
+      "templada": {
+        "texto": "24–30 °C de día en vegetativo; 24–28 °C en floración",
+        "fuente": "F12 (óptimo de fotosíntesis 25–30 °C) · decisión de Bertha 2026-11-03: en floración, lo más fresco por calidad",
+        "verificar": "REVISADO 2026-11 · estudio (F12) en vegetativo; en floración 24–28 °C = práctica de cultivadores (más fresco por calidad), decisión de Bertha 2026-11-03."
+      },
+      "calida": {
+        "texto": "por encima de 30 °C en vegetativo; por encima de 28 °C en floración",
+        "fuente": "Cultivo → Sistemas (Vegetativo)",
+        "verificar": "REVISADO 2026-11 · estudio (F12: por encima de 30 °C empeora) en vegetativo; en floración el corte de 28 °C es práctica de cultivadores (decisión de Bertha 2026-11-03)."
+      }
+    },
+    "humedad": {
+      "baja": {
+        "texto": "HR 40–50 %",
+        "fuente": "Cultivo → Sistemas (Floración: HR 40–50 %)",
+        "verificar": "REVISADO 2026-11 · guía (F4: por debajo de 50 % en floración) + estudio (F13: 37–58 % de HR dio flor y cannabinoides normales)."
+      },
+      "media_alta": {
+        "texto": "HR ≈ 65–75 % (equivale a VPD 0,8–1,0 kPa a 24–25 °C)",
+        "fuente": "Indicación de la dueña (14-10-2026) a partir de Cultivo → Sistemas (Vegetativo: VPD 0,8–1,0 kPa)",
+        "verificar": "REVISADO 2026-11 · práctica de cultivadores. Guía universitaria pendiente de verificar (Michigan State University Extension sobre el VPD: la página bloquea a los programas)."
+      },
+      "alta": {
+        "texto": "por encima de ≈ 75 % (la plataforma asocia la humedad alta a oídio y botrytis)",
+        "fuente": "Cultivo → Diagnóstico",
+        "verificar": "REVISADO 2026-11 · estudio (F13, 2025: HR 78–98 % retrasó la floración 3 semanas, −71 % de flor y muchos menos cannabinoides) + guía (F4, F5)."
+      }
+    },
+    "riego": {
+      "poco": {
+        "texto": "el sustrato se queda seco",
+        "fuente": "VALOR DE JUEGO",
+        "verificar": "REVISADO 2026-11 · estudio (F18, Universidad de Tasmania 2025: el cáñamo sufrió con sequía). Matiz: F19 (2019) vio que una sequía corta y controlada al final de la floración puede subir los cannabinoides; el juego castiga el sustrato seco todo el tiempo, no eso."
+      },
+      "moderado": {
+        "texto": "dejar secar el sustrato entre riegos",
+        "fuente": "Cultivo → Diagnóstico (Exceso de riego: tratamiento)",
+        "verificar": "REVISADO 2026-11 · estudio indirecto (F18: los dos extremos dañan) + guía (F3: buen drenaje). «Dejar secar entre riegos» en sí es práctica de cultivadores."
+      },
+      "mucho": {
+        "texto": "sustrato saturado todo el tiempo",
+        "fuente": "Cultivo → Diagnóstico (Exceso de riego: causa)",
+        "verificar": "REVISADO 2026-11 · estudio (F18: el encharcamiento dañó el cáñamo; los autores dicen que hasta ahora era sobre todo anecdótico) + guía (F3)."
+      }
+    }
+  },
+  "etapas": {
+    "plantula": {
+      "semanas": {
+        "valor": 2,
+        "fuente": "Cultivo → Ciclo (Germinación días 1–10; vegetativo desde la semana 3)",
+        "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: 2 semanas de plántula, redondeo de lo que enseña la plataforma (germinación de 1 a 10 días; vegetativo desde la semana 3)."
+      },
+      "ideal": {
+        "fotoperiodo": {
+          "valor": "18/6",
+          "fuente": "Cultivo → Iluminación (Plántula)",
+          "verificar": "REVISADO 2026-11 · estudio indirecto (F28: con días largos no florece) + práctica (18/6 en plántula)."
+        },
+        "intensidad": {
+          "valor": "baja",
+          "fuente": "Cultivo → Iluminación (Plántula: PPFD 100–300)",
+          "verificar": "REVISADO 2026-11 · práctica de cultivadores."
+        },
+        "riego": {
+          "valor": "moderado",
+          "fuente": "Cultivo → Diagnóstico (Exceso de riego)",
+          "verificar": "REVISADO 2026-11 · estudio indirecto (F18) + guía (F3)."
+        },
+        "nutrientes": null,
+        "temperatura": null,
+        "humedad": null
+      },
+      "leccion": [
+        "cultivo",
+        "propagacion"
+      ]
+    },
+    "vegetativo": {
+      "semanas": {
+        "min": 3,
+        "max": 6,
+        "fuente": "Cultivo → Ciclo (Vegetativo: semanas 3–8 del ciclo = hasta 6 semanas)",
+        "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: de 3 a 6 semanas, porque en la vida real el cultivador decide cuándo pasar a floración; el juego deja elegir dentro de lo que enseña la plataforma."
+      },
+      "ideal": {
+        "fotoperiodo": {
+          "valor": "18/6",
+          "fuente": "Cultivo → Sistemas y Ciclo (18/6)",
+          "verificar": "REVISADO 2026-11 · estudio (F1 usa 18/6; F28: con días largos la planta sigue en vegetativo)."
+        },
+        "intensidad": {
+          "valor": "media",
+          "fuente": "Cultivo → Iluminación (Vegetativo: PPFD 300–600)",
+          "verificar": "REVISADO 2026-11 · práctica de cultivadores (Moher 2022 pendiente de verificar)."
+        },
+        "riego": {
+          "valor": "moderado",
+          "fuente": "Cultivo → Diagnóstico (Exceso de riego)",
+          "verificar": "REVISADO 2026-11 · estudio indirecto (F18) + guía (F3)."
+        },
+        "nutrientes": {
+          "valor": "medio",
+          "fuente": "Cultivo → Sistemas (EC 1,2–2,2) y Diagnóstico (Deficiencia de nitrógeno en vegetativo)",
+          "verificar": "REVISADO 2026-11 · estudio (F15, F16)."
+        },
+        "temperatura": {
+          "valor": "templada",
+          "fuente": "Cultivo → Sistemas (Temp. diurna 24–28 °C)",
+          "verificar": "REVISADO 2026-11 · estudio (F12, óptimo de fotosíntesis 25–30 °C)."
+        },
+        "humedad": {
+          "valor": "media_alta",
+          "fuente": "Indicación de la dueña (14-10-2026): «media-alta», ≈ 65–75 % HR (VPD 0,8–1,0 kPa a 24–25 °C)",
+          "verificar": "REVISADO 2026-11 · práctica de cultivadores (F13 solo prueba que 78–98 % es dañino; 65–75 % sin estudio). Guía MSU pendiente de verificar."
+        }
+      },
+      "leccion": [
+        "cultivo",
+        "sistemas"
+      ]
+    },
+    "floracion": {
+      "semanas": {
+        "valor": "la decide el jugador según los tricomas",
+        "fuente": "Cultivo → Cosecha (punto de cosecha por tricomas)",
+        "verificar": "REVISADO 2026-11 · práctica de cultivadores: se cosecha mirando los tricomas (no encontré un estudio comprobado que fije las semanas)."
+      },
+      "ideal": {
+        "fotoperiodo": {
+          "valor": "12/12",
+          "fuente": "Cultivo → Sistemas y Ciclo (12/12 induce la floración)",
+          "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO (decisión de Bertha 2026-11-03): 12/12 es el estándar seguro para florecer; los estudios F26–F28 muestran que muchas variedades ya florecen con 13–14 h de luz, y el «¿Por qué?» lo dice."
+        },
+        "intensidad": {
+          "valor": "alta",
+          "fuente": "Cultivo → Iluminación (Floración: PPFD 600–1.000)",
+          "verificar": "REVISADO 2026-11 · estudio (F1, F29)."
+        },
+        "riego": {
+          "valor": "moderado",
+          "fuente": "Cultivo → Diagnóstico (Exceso de riego)",
+          "verificar": "REVISADO 2026-11 · estudio indirecto (F18) + guía (F3)."
+        },
+        "nutrientes": {
+          "valor": "medio",
+          "fuente": "Cultivo → Sistemas (EC 1,2–2,2)",
+          "verificar": "REVISADO 2026-11 · estudio (F14, F17). «Alto» en floración resta solo 2 (decisión de Bertha 2026-11-03): en F14 doblar la nutrición en floración no dio más cosecha, pero tampoco la bajó. En vegetativo se mantiene la resta normal (F15: el exceso de N frenó el desarrollo).",
+          "resta_por_opcion": {
+            "alto": 2
+          }
+        },
+        "temperatura": null,
+        "humedad": {
+          "valor": "baja",
+          "fuente": "Cultivo → Sistemas (Floración: HR 40–50 %) y Diagnóstico (Botrytis)",
+          "verificar": "REVISADO 2026-11 · guía (F4) + estudio (F13)."
+        }
+      },
+      "leccion": [
+        "cultivo",
+        "iluminacion"
+      ]
+    }
+  },
+  "tricomas": {
+    "_nota": "Semanas de floración en que la plantita del juego muestra cada estado: VALOR DE JUEGO. El significado de cada estado viene de Cultivo → Cosecha.",
+    "fuente": "Cultivo → Cosecha (checklist de tricomas)",
+    "verificar": "REVISADO 2026-11 · práctica de cultivadores (color de los tricomas como punto de cosecha) + REGLA DEL JUEGO (las semanas 6, 8 y 10 en que cambia el color y sus puntos).",
+    "estados": [
+      {
+        "id": "transparentes",
+        "desde_semana": 1,
+        "puntos": -15,
+        "significado": "Todavía no — el THC sigue desarrollándose."
+      },
+      {
+        "id": "lechosas",
+        "desde_semana": 6,
+        "puntos": 15,
+        "significado": "Pico de THC."
+      },
+      {
+        "id": "mezcla",
+        "desde_semana": 8,
+        "puntos": 20,
+        "significado": "Lechosas + algo de ámbar (10–30 %): el punto más buscado."
+      },
+      {
+        "id": "ambar",
+        "desde_semana": 10,
+        "puntos": 5,
+        "significado": "Pasado el pico — el THC se degrada hacia CBN."
+      }
+    ],
+    "max_semanas_floracion": {
+      "valor": 12,
+      "fuente": "VALOR DE JUEGO (la cosecha se hace sola si nadie cosecha)"
+    }
+  },
+  "eventos": {
+    "_nota": "Un evento aparece cuando su condición se repite 2 semanas seguidas (sin azar: nada de sorpresas). Causas y respuestas copiadas de Cultivo → Diagnóstico.",
+    "semanas_para_aparecer": {
+      "valor": 2,
+      "fuente": "VALOR DE JUEGO"
+    },
+    "lista": {
+      "oidio": {
+        "si": {
+          "humedad": "alta"
+        },
+        "etapas": [
+          "plantula",
+          "vegetativo",
+          "floracion"
+        ],
+        "respuesta_correcta": "ventilar",
+        "fuente": "Cultivo → Diagnóstico (Oídio: alta humedad + poca circulación; mejorar ventilación)",
+        "verificar": "REVISADO 2026-11 · guía (F5, Utah State University Extension): espaciar y mover el aire; menos humedad, menos infección."
+      },
+      "botrytis": {
+        "si": {
+          "humedad": "alta"
+        },
+        "etapas": [
+          "floracion"
+        ],
+        "respuesta_correcta": "bajar_humedad",
+        "fuente": "Cultivo → Diagnóstico (Botrytis: humedad alta en floración; bajar la HR y retirar tejido)",
+        "verificar": "REVISADO 2026-11 · guía (F4, Utah State: humedad por debajo de 50 % en floración) + estudio (F13: la humedad alta daña la floración)."
+      },
+      "acaros": {
+        "si": {
+          "temperatura": "calida",
+          "humedad": "baja"
+        },
+        "etapas": [
+          "vegetativo",
+          "floracion"
+        ],
+        "respuesta_correcta": "depredadores",
+        "fuente": "Cultivo → Diagnóstico (Ácaros: ambiente seco y caluroso; depredadores naturales)",
+        "verificar": "REVISADO 2026-11 · guía (F6, NC State Extension: calor y humedad baja; prefieren plantas con estrés de agua). La respuesta «depredadores» es práctica de cultivadores."
+      },
+      "carencia_n": {
+        "si": {
+          "nutrientes": "bajo"
+        },
+        "etapas": [
+          "vegetativo"
+        ],
+        "respuesta_correcta": "ajustar_nutricion",
+        "fuente": "Cultivo → Diagnóstico (Deficiencia de nitrógeno: falta de N en vegetativo; ajustar EC y fuente de N)",
+        "verificar": "REVISADO 2026-11 · guía (F2, Utah State Extension) + estudio (F15: clorosis en las hojas viejas de abajo)."
+      },
+      "exceso_riego": {
+        "si": {
+          "riego": "mucho"
+        },
+        "etapas": [
+          "plantula",
+          "vegetativo",
+          "floracion"
+        ],
+        "respuesta_correcta": "dejar_secar",
+        "fuente": "Cultivo → Diagnóstico (Exceso de riego: dejar secar entre riegos)",
+        "verificar": "REVISADO 2026-11 · guía (F3) + estudio (F18)."
+      },
+      "pudricion_raiz": {
+        "si": {
+          "temperatura": "calida"
+        },
+        "etapas": [
+          "plantula",
+          "vegetativo",
+          "floracion"
+        ],
+        "solo": {
+          "sistema": [
+            "dwc",
+            "nft",
+            "aeroponia",
+            "acuaponia"
+          ]
+        },
+        "respuesta_correcta": "enfriar_agua",
+        "fuente": "F9 (raíz podrida con la solución a 24–27 °C y no a 16–17 °C; en lechuga) + F3 (Pythium)",
+        "respaldo": "estudio",
+        "verificar": "REVISADO 2026-11 · estudio (F20, revisión Guelph / Embrapa 2006: la pudrición por Pythium en hidroponía empeora con la solución caliente y con poco oxígeno, y se maneja enfriándola; F21, Simon Fraser 2019: Pythium y Fusarium atacan raíces de cannabis en hidroponía; F9)."
+      },
+      "quemadura_luz": {
+        "si": {
+          "intensidad": "alta"
+        },
+        "etapas": [
+          "floracion"
+        ],
+        "solo": {
+          "carpa": [
+            "pequena"
+          ]
+        },
+        "semanas_vegetativo_min": 5,
+        "respuesta_correcta": "alejar_luz",
+        "fuente": "Criterio de la autora: en una carpa pequeña, una planta alta queda muy cerca de una lámpara fuerte",
+        "respaldo": "autora",
+        "verificar": "REVISADO 2026-11 · estudio débil (F30, Wageningen 2024: con luz muy fuerte se decoloraron las puntas de los cogollos más altos) + criterio de la autora (carpa pequeña, planta alta)."
+      }
+    },
+    "respuestas": [
+      "ventilar",
+      "bajar_humedad",
+      "depredadores",
+      "ajustar_nutricion",
+      "dejar_secar",
+      "esperar",
+      "enfriar_agua",
+      "alejar_luz"
+    ]
+  },
+  "puntuacion": {
+    "_nota": "VALOR DE JUEGO. Salud de 0 a 100. Una decisión ideal no resta; un nivel de distancia resta 4; dos niveles, 8; fotoperiodo equivocado, 8. Un evento sin resolver resta 6 por semana; resolverlo bien devuelve 4.",
+    "salud_inicial": 100,
+    "resta_un_nivel": 4,
+    "resta_dos_niveles": 8,
+    "resta_fotoperiodo": 8,
+    "evento_por_semana": 6,
+    "evento_resuelto": 4,
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: −4 / −8 por distancia, −6 por semana con un problema y +4 al resolverlo, para que un error suelto no arruine la partida y dejar un problema sin atender cueste más que equivocarse una vez."
+  },
+  "post": {
+    "_nota": "Fase 8 (catálogo aprobado por Bertha el 2026-10-28, docs/juego-decisiones.md). Una pantalla por etapa. ideal = una opción, varias (cualquiera vale) o null (no puntúa, solo enseña). respaldo = nivel de docs/juego-fuentes.md. Cifras SOLO en el rosin, siempre «orientativo» (fuentes P1/P2); el laboratorio de solventes y CO₂ no lleva ninguna.",
+    "resta_un_nivel": 4,
+    "resta_dos_niveles": 8,
+    "resta_nota": "VALOR DE JUEGO: lo que resta de la nota de la cosecha cada decisión fuera de lo ideal (igual que en el cultivo).",
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: la poscosecha resta con la misma escala que el cultivo (−4 / −8), para que la nota se lea igual en todo el juego.",
+    "orden": [
+      "secado",
+      "curado",
+      "material",
+      "rosin"
+    ],
+    "secado": {
+      "leccion": [
+        "elaboracion",
+        "procesos"
+      ],
+      "decisiones": {
+        "metodo": {
+          "opciones": [
+            "entera",
+            "ramas",
+            "rejilla"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "entera",
+              "ramas"
+            ],
+            "fuente": "Criterio de la autora (catálogo aprobado 2026-10-28)",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · estudio (F31, Volcani 2024: en rejilla hay más riesgo de moho). Matiz: F32 (revisión, Saskatchewan 2022) critica el colgado industrial por lento e irregular."
+          }
+        },
+        "temperatura": {
+          "opciones": [
+            "fresca",
+            "templada",
+            "calida"
+          ],
+          "ideal": {
+            "valor": "fresca",
+            "fuente": "F22 (15–20 °C), F32 (18–21 °C), F31 (15 °C) · decisión de Bertha 2026-11-03: ideal 15–21 °C",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · estudio y revisión (F22, F31, F32; F34: por encima de 40 °C se pierden terpenos). Ideal ampliado a 15–21 °C (decisión de Bertha 2026-11-03)."
+          }
+        },
+        "humedad": {
+          "opciones": [
+            "baja",
+            "media",
+            "alta"
+          ],
+          "ideal": {
+            "valor": "media",
+            "fuente": "Elaboración → Procesos & SOP (SOP-01 Secado: HR 55–60 %)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · estudio y revisión (F22: 50–60 %; F33 Ferrara 2024 secó a 55 %; F32: 50–55 %). El 60 % del juego es el borde alto."
+          }
+        },
+        "aire": {
+          "opciones": [
+            "pared",
+            "directo",
+            "sin_aire"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": "pared",
+            "fuente": "Equipamiento → 5. Secado (ventilador a la pared, nunca directo a las flores)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · práctica de cultivadores: F22 y F32 piden sala ventilada, pero ningún estudio habla de hacia dónde apuntar el ventilador."
+          }
+        },
+        "luz": {
+          "opciones": [
+            "oscuro",
+            "con_luz"
+          ],
+          "ideal": {
+            "valor": "oscuro",
+            "fuente": "F8 (la luz degrada los cannabinoides) y Equipamiento → 5. Secado",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · estudio (F8; F32: la luz a 22 °C daña mucho más que la oscuridad a 4 °C)."
+          }
+        },
+        "duracion": {
+          "opciones": [
+            "pocos_dias",
+            "chasquido",
+            "muchas_semanas"
+          ],
+          "ideal": {
+            "valor": "chasquido",
+            "fuente": "F22 (1–2 semanas), F32 y F33 (5–6 días) · decisión de Bertha 2026-11-03: 5–14 días; la prueba del chasquido es práctica",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · revisión y estudio (F22, F32, F33): de 5 a 14 días (decisión de Bertha 2026-11-03). La prueba del chasquido es práctica de cultivadores (F32: no hay un estándar para el final del secado)."
+          }
+        }
+      }
+    },
+    "curado": {
+      "leccion": [
+        "elaboracion",
+        "procesos"
+      ],
+      "decisiones": {
+        "envase": {
+          "opciones": [
+            "vidrio",
+            "plastico",
+            "lata",
+            "bolsa_curado"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "vidrio",
+              "bolsa_curado"
+            ],
+            "fuente": "Equipamiento → 6. Curado (vidrio) · criterio de la autora (los demás)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · estudio (F22: vidrio y bolsa dieron resultados parecidos). El plástico (guarda la humedad y trae moho en el juego) resta fuerte (8): decisión de Bertha 2026-11-03; que sea peor es práctica de cultivadores.",
+            "resta_por_opcion": {
+              "plastico": 8
+            }
+          }
+        },
+        "control": {
+          "opciones": [
+            "sin_control",
+            "higrometro",
+            "sobre"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "higrometro",
+              "sobre"
+            ],
+            "fuente": "Criterio de la autora; la plataforma pide 58–62 % en el frasco (SOP-02)",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · práctica de cultivadores: el 58–62 % no tiene estudio comprobado (F22 solo ve que más humedad en el envase deja la flor más húmeda)."
+          }
+        },
+        "abrir": {
+          "opciones": [
+            "nunca",
+            "diario",
+            "siempre"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": "diario",
+            "fuente": "Herramientas → Temporizador de secado (burping diario la primera semana)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · práctica de cultivadores: abrir a diario no tiene estudio. Nunca abrir (la humedad se queda dentro y llega el moho) resta fuerte (8): decisión de Bertha 2026-11-03.",
+            "resta_por_opcion": {
+              "nunca": 8
+            }
+          }
+        },
+        "tiempo": {
+          "opciones": [
+            "dias",
+            "semanas",
+            "meses"
+          ],
+          "ideal": {
+            "valor": [
+              "semanas",
+              "meses"
+            ],
+            "fuente": "SOP-02 (mínimo 2–4 semanas) · criterio de la autora (meses)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · práctica de cultivadores. F22 (Cornell 2025) curó 3 semanas sin cambio en los cannabinoides ni más moho: por eso curar pocos días resta poco (2). Decisión de Bertha 2026-11-03.",
+            "resta_por_opcion": {
+              "dias": 2
+            }
+          }
+        },
+        "g_luz": {
+          "opciones": [
+            "oscuro",
+            "indirecta",
+            "sol"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": "oscuro",
+            "fuente": "F8 (degradación mayor con luz)",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · estudio (F8; F24, Universidad de Graz 2015: el calor y la luz UV descomponen el THCA)."
+          }
+        },
+        "g_temp": {
+          "opciones": [
+            "fresco",
+            "calido",
+            "nevera",
+            "congelador"
+          ],
+          "grupo": "guardar",
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "fresco",
+              "nevera"
+            ],
+            "fuente": "F8 (25 °C, los mayores cambios; 4 °C a oscuras, menos; bajo −20 °C, lo peor para los terpenos)",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · estudio (F8, F24). Congelador = dos caras (decisión de Bertha 2026-11-03): conserva los cannabinoides (F24), pierde terpenos (F8) y puede condensar agua al descongelar (práctica de cultivadores). Resta poco (2).",
+            "resta_por_opcion": {
+              "congelador": 2
+            }
+          }
+        },
+        "g_aire": {
+          "opciones": [
+            "lleno",
+            "medio",
+            "abierto"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": "lleno",
+            "fuente": "F8 (más superficie al aire = más oxidación) · criterio de la autora (medio vacío)",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · estudio (F8; F23, Volcani 2024: al vacío se perdió menos THCA)."
+          }
+        },
+        "g_forma": {
+          "opciones": [
+            "entera",
+            "molida"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": "entera",
+            "fuente": "F8 (molida: lo menos favorable)",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · estudio (F8: molida, lo menos favorable)."
+          }
+        },
+        "g_tiempo": {
+          "opciones": [
+            "semanas",
+            "meses",
+            "anos"
+          ],
+          "grupo": "guardar",
+          "ideal": {
+            "valor": [
+              "semanas",
+              "meses"
+            ],
+            "fuente": "F8 (los terpenos bajan rápido en cualquier condición) · criterio de la autora (el corte meses / años)",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · estudio (F8; F23: hasta 23 % menos THCA en 4 meses; F25, 2020: los terpenos se pierden con el tiempo). El corte meses / años es regla del juego."
+          }
+        }
+      }
+    },
+    "rosin": {
+      "opcional": true,
+      "leccion": [
+        "elaboracion",
+        "concentrados"
+      ],
+      "decisiones": {
+        "material": {
+          "opciones": [
+            "flor",
+            "hachis",
+            "kief",
+            "congelado",
+            "fresco"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "flor",
+              "hachis",
+              "kief",
+              "congelado"
+            ],
+            "fuente": "Glosario (Hash rosin, Live rosin) · criterio de la autora (flor fresca sin congelar)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "malla": {
+          "opciones": [
+            "sin_bolsa",
+            "fina",
+            "estandar",
+            "flor_fresca"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "fina",
+              "estandar"
+            ],
+            "fuente": "P1 y P2 (rangos de malla, orientativo) · criterio de la autora (sin bolsa) · C2 (malla para flor fresca, práctica de la comunidad, orientativo)",
+            "respaldo": "patente",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): documento técnico (patente), orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          },
+          "ideal_por_material": {
+            "congelado": [
+              "flor_fresca",
+              "estandar"
+            ],
+            "_fuente": "C2 (manual de NugSmasher, práctica de la comunidad, orientativo): 160 µm para flor fresca, 90 µm para flor seca · decisión de Bertha 2026-10-30",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): undefined. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          },
+          "cifras": "fina 5–25 µm (25 µm habitual para hachís de agua, C1); estándar 25–220 µm (90 µm para flor seca, C2); flor fresca 160 µm (C2); todo orientativo · validado por Bertha (2026-11-02)"
+        },
+        "humedad_fresca": {
+          "cuando": {
+            "material": [
+              "congelado"
+            ]
+          },
+          "opciones": [
+            "escarcha",
+            "bolsa_cerrada",
+            "descongelada"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": "bolsa_cerrada",
+            "fuente": "Criterio de la autora (decisión de Bertha 2026-10-30): la flor fresca congelada trae mucha agua; si la escarcha o la condensación llegan a la bolsa, el rosin sale húmedo o aguado",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "calor": {
+          "opciones": [
+            "bajo",
+            "medio",
+            "alto"
+          ],
+          "ideal": {
+            "valor": "medio",
+            "fuente": "Elaboración → Concentrados («a temperatura media») · rango orientativo P2",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          },
+          "cifras": "bajo 49–80 · medio 80–95 · alto 95–116 °C, orientativo (rango de P2; cortes: criterio de la autora) · validado por Bertha (2026-11-02)"
+        },
+        "presion": {
+          "opciones": [
+            "baja",
+            "media",
+            "alta"
+          ],
+          "ideal": {
+            "valor": null,
+            "fuente": "[CIFRA: BERTHA] — no hay fuente con valores: no puntúa",
+            "respaldo": "sin",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): sin fuente: no puntúa. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "tiempo": {
+          "opciones": [
+            "corto",
+            "medio",
+            "largo"
+          ],
+          "ideal": {
+            "valor": null,
+            "fuente": "[CIFRA: BERTHA] — ninguna fuente da tiempos: no puntúa",
+            "respaldo": "sin",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): sin fuente: no puntúa. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          },
+          "cifras": "medio: 90–120 s, orientativo (C2, práctica de la comunidad) · validado por Bertha (2026-11-02)"
+        },
+        "prensa": {
+          "opciones": [
+            "manual",
+            "hidraulica",
+            "neumatica",
+            "electrica"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: cambia el control, no la nota",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "papel": {
+          "opciones": [
+            "pergamino",
+            "comun",
+            "sin_papel"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": "pergamino",
+            "fuente": "Elaboración → Concentrados (papel pergamino)",
+            "respaldo": "practica",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de cultivadores. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "enfriado": {
+          "opciones": [
+            "enfriar",
+            "aire",
+            "caliente"
+          ],
+          "ideal": {
+            "valor": [
+              "enfriar",
+              "aire"
+            ],
+            "fuente": "Criterio de la autora",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "guardar": {
+          "opciones": [
+            "frio",
+            "ambiente",
+            "luz"
+          ],
+          "ideal": {
+            "valor": "frio",
+            "fuente": "F8 (frío y oscuridad conservan; 25 °C y luz degradan)",
+            "respaldo": "estudio",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): estudio publicado. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "prioridad": {
+          "opciones": [
+            "sabor",
+            "rendimiento"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: más calor = más rendimiento y menos terpenos (sin estudio)",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "proteccion": {
+          "opciones": [
+            "guantes",
+            "sin_proteccion"
+          ],
+          "ideal": {
+            "valor": "guantes",
+            "fuente": "Diseño aprobado de la fase 2: seguridad (superficies calientes, quemaduras)",
+            "respaldo": "simple",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): regla de seguridad del juego. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        }
+      }
+    },
+    "material": {
+      "opcional": true,
+      "leccion": [
+        "elaboracion",
+        "concentrados"
+      ],
+      "_nota": "Sub-fase 8b: preparar el material de partida, solo métodos sin solventes. Lo que sale de aquí decide el material del rosin (da_material). Los errores cuentan en el veredicto del rosin. C1–C4 = práctica de la comunidad (docs/juego-fuentes.md).",
+      "da_material": {
+        "ninguna": "flor",
+        "tamiz_seco": "kief",
+        "agua_hielo": "hachis",
+        "_congelada_sin_separar": "congelado"
+      },
+      "decisiones": {
+        "partida": {
+          "opciones": [
+            "flor_curada",
+            "flor_congelada",
+            "flor_liofilizada",
+            "recortes"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: cada material da su resultado; C3 recomienda congelado para agua y hielo",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "separacion": {
+          "opciones": [
+            "ninguna",
+            "tamiz_seco",
+            "agua_hielo"
+          ],
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "Criterio de la autora: cambia lo que llega a la prensa",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "tamiz_frio": {
+          "opciones": [
+            "congelado",
+            "ambiente"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": "congelado",
+            "fuente": "C4 (congelar unas dos horas antes de tamizar)",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "tamiz_malla": {
+          "opciones": [
+            "fina",
+            "media",
+            "gruesa"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": [
+              "fina",
+              "media"
+            ],
+            "fuente": "[CIFRA: BERTHA] micras · criterio de la autora (la gruesa deja pasar restos)",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "tamiz_frotar": {
+          "opciones": [
+            "suave",
+            "fuerte"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": "suave",
+            "fuente": "Criterio de la autora (frotar fuerte arranca restos de planta)",
+            "respaldo": "autora",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): criterio de la autora (validado por Bertha cuando lo dice la fuente). Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "tamiz_tiempo": {
+          "opciones": [
+            "corto",
+            "largo"
+          ],
+          "cuando": {
+            "separacion": [
+              "tamiz_seco"
+            ]
+          },
+          "ideal": {
+            "valor": "corto",
+            "fuente": "C4 (la primera vuelta corta da la resina más pura)",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "agua_temp": {
+          "opciones": [
+            "helada",
+            "fria",
+            "templada"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "ideal": {
+            "valor": "helada",
+            "fuente": "C3 (agua apenas sobre 0 °C; ideal 3–5 °C)",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "agua_agitar": {
+          "opciones": [
+            "suave",
+            "fuerte"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "escala": false,
+          "ideal": {
+            "valor": "suave",
+            "fuente": "C3 (velocidad baja, por tandas con pausas)",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "agua_lavados": {
+          "opciones": [
+            "uno",
+            "varios"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "escala": false,
+          "ideal": {
+            "valor": null,
+            "fuente": "C3 (el agua fría se reutiliza) · criterio de la autora: no puntúa",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        },
+        "agua_bolsa": {
+          "opciones": [
+            "fina",
+            "media",
+            "gruesa"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "ideal": {
+            "valor": [
+              "fina",
+              "media"
+            ],
+            "fuente": "C1 (25 µm, lo habitual para prensar hachís de agua) · [CIFRA: BERTHA] micras",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          },
+          "cifras": "fina: 25 µm, orientativo (C1); media y gruesa sin micras (ninguna fuente) · validado por Bertha (2026-11-02)"
+        },
+        "agua_secado": {
+          "opciones": [
+            "aire",
+            "liofilizado",
+            "deshumidificador",
+            "bola_humeda"
+          ],
+          "cuando": {
+            "separacion": [
+              "agua_hielo"
+            ]
+          },
+          "escala": false,
+          "ideal": {
+            "valor": [
+              "aire",
+              "liofilizado",
+              "deshumidificador"
+            ],
+            "fuente": "C3 (secar enseguida o se enmohece) · criterio de la autora (liofilizado, deshumidificador)",
+            "respaldo": "comunidad",
+            "verificar": "REVISADO 2026-11 · B (rosin y separación en seco o con agua y hielo): práctica de la comunidad, orientativo. Sin estudios revisados por pares sobre este paso; se queda orientativo."
+          }
+        }
+      }
+    }
+  },
+  "setup": {
+    "_nota": "Fase 6: se elige una vez, antes de plantar. No hay opción «correcta»: cada equipo cambia las reglas de las semanas (efectos). respaldo = nivel de docs/juego-fuentes.md.",
+    "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: el equipo no puntúa por sí solo; cambia las reglas de las semanas porque en la vida real no hay un equipo correcto, solo consecuencias distintas (cada efecto lleva su propia fuente).",
+    "decisiones": {
+      "carpa": {
+        "opciones": [
+          "pequena",
+          "mediana",
+          "grande"
+        ],
+        "fuente": "Criterio de la autora",
+        "respaldo": "autora"
+      },
+      "luz": {
+        "opciones": [
+          "led",
+          "hps",
+          "cmh"
+        ],
+        "fuente": "Glosario (HPS: «genera más calor»)",
+        "respaldo": "practica"
+      },
+      "sistema": {
+        "opciones": [
+          "maceta",
+          "dwc",
+          "nft",
+          "aeroponia",
+          "acuaponia"
+        ],
+        "fuente": "Cultivo → Sistemas (hidroponía, NFT, acuaponía) · F9",
+        "respaldo": "estudio"
+      },
+      "sustrato": {
+        "opciones": [
+          "tierra",
+          "coco",
+          "lana_roca",
+          "tierra_viva"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "Glosario (Fibra de coco) · criterio de la autora",
+        "respaldo": "practica"
+      },
+      "maceta": {
+        "opciones": [
+          "plastico",
+          "tela",
+          "aire",
+          "barro"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "F10 · criterio de la autora (barro)",
+        "respaldo": "estudio"
+      },
+      "maceta_tam": {
+        "opciones": [
+          "pequena",
+          "grande"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "Criterio de la autora (Glosario: trasplante)",
+        "respaldo": "autora"
+      },
+      "riego_tipo": {
+        "opciones": [
+          "mano",
+          "goteo"
+        ],
+        "cuando": {
+          "sistema": [
+            "maceta"
+          ]
+        },
+        "fuente": "F5 (el goteo baja la humedad)",
+        "respaldo": "guia"
+      },
+      "medir": {
+        "opciones": [
+          "si",
+          "no"
+        ],
+        "fuente": "Simplificación del juego",
+        "respaldo": "simple"
+      },
+      "semilla": {
+        "opciones": [
+          "feminizada",
+          "regular",
+          "autofloreciente"
+        ],
+        "fuente": "Cultivo → Genética (autofloración: florece por edad, sin 12/12) · Propagación (feminizadas) · Glosario (planta macho)",
+        "respaldo": "practica"
+      },
+      "plantas": {
+        "opciones": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "max_por_carpa": {
+          "pequena": 2,
+          "mediana": 4,
+          "grande": 6
+        },
+        "fuente": "Criterio de la autora (cuántas caben en cada carpa)",
+        "respaldo": "autora",
+        "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
+      }
+    },
+    "efectos": {
+      "fijos": {
+        "dwc": {
+          "riego": "moderado"
+        },
+        "nft": {
+          "riego": "moderado"
+        },
+        "aeroponia": {
+          "riego": "moderado"
+        },
+        "acuaponia": {
+          "riego": "moderado",
+          "nutrientes": "medio"
+        },
+        "_fuente": "Hidroponía: la raíz está en el agua (Cultivo → Sistemas). Acuaponía: los nutrientes vienen de los peces (criterio de la autora)."
+      },
+      "sube": {
+        "luz": {
+          "hps": {
+            "temperatura": 1
+          }
+        },
+        "_fuente": "Glosario (HPS: «genera más calor») · simplificación",
+        "respaldo": "practica"
+      },
+      "semanas_extra": {
+        "maceta": {
+          "tela": {
+            "exceso_riego": 1
+          },
+          "aire": {
+            "exceso_riego": 1
+          },
+          "barro": {
+            "exceso_riego": 1
+          }
+        },
+        "sustrato": {
+          "tierra": {
+            "carencia_n": 1
+          },
+          "tierra_viva": {
+            "carencia_n": 1
+          }
+        },
+        "riego_tipo": {
+          "goteo": {
+            "oidio": 1
+          }
+        },
+        "_fuente": "F10 + F3 (macetas porosas secan antes) · F5 (goteo) · criterio de la autora (tierra)"
+      },
+      "poco_doble": {
+        "maceta": [
+          "tela",
+          "aire",
+          "barro"
+        ],
+        "_fuente": "F10 («greater water requirements… in porous containers»)",
+        "respaldo": "estudio"
+      },
+      "ideal_extra": {
+        "coco": {
+          "plantula": {
+            "nutrientes": "medio"
+          }
+        },
+        "lana_roca": {
+          "plantula": {
+            "nutrientes": "medio"
+          }
+        },
+        "tierra_viva": {
+          "vegetativo": {
+            "nutrientes": [
+              "bajo",
+              "medio"
+            ]
+          },
+          "floracion": {
+            "nutrientes": [
+              "bajo",
+              "medio"
+            ]
+          }
+        },
+        "_fuente": "Glosario (coco: «requiere fertirriego») · criterio de la autora (lana de roca, tierra viva)"
+      },
+      "carpa_grande": {
+        "resta_extra": {
+          "temperatura": 1,
+          "humedad": 1
+        },
+        "bonus_cosecha": 5,
+        "_fuente": "Criterio de la autora",
+        "respaldo": "autora"
+      },
+      "trasplante": {
+        "maceta_tam": "pequena",
+        "desde_semana_vegetativo": 3,
+        "resta": 4,
+        "_fuente": "Criterio de la autora (Glosario: trasplante)",
+        "respaldo": "autora"
+      },
+      "carpa_llena": {
+        "_nota": "Carpa llena (todas las plantas que caben, contando solo las que siguen en la carpa): la humedad cuenta un nivel más alta, como el HPS con la temperatura; en floración, «baja» se queda en «baja» (el deshumidificador alcanza). Así siempre hay una opción sin pérdida: en vegetativo, «baja» cuenta como «media-alta» (lo ideal); en floración, «baja». Más humedad trae antes el oídio y la botrytis por las reglas de siempre.",
+        "sube": {
+          "humedad": 1
+        },
+        "salvo": {
+          "floracion": [
+            "baja"
+          ]
+        },
+        "fuente": "Criterio de la autora (docs/juego-validacion.md, respuesta 6; regla final elegida por el dueño el 2026-11-02)",
+        "respaldo": "autora",
+        "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
+      }
+    }
+  },
+  "germinacion": {
+    "_nota": "Fase 7: una pantalla antes de la plántula. Los errores restan salud al empezar.",
+    "leccion": [
+      "cultivo",
+      "propagacion"
+    ],
+    "resta_un_nivel": 4,
+    "resta_dos_niveles": 8,
+    "decisiones": {
+      "metodo": {
+        "opciones": [
+          "papel",
+          "taco",
+          "tierra",
+          "coco",
+          "vaso",
+          "lana_roca"
+        ],
+        "escala": false,
+        "ideal": {
+          "valor": null,
+          "fuente": "Criterio de la autora: cada método tiene su riesgo, ninguno puntúa por sí solo",
+          "respaldo": "autora",
+          "verificar": "REVISADO 2026-11 · REGLA DEL JUEGO: no puntúa; cada método tiene su riesgo y el juego enseña el riesgo en vez de premiar uno."
+        }
+      },
+      "temperatura": {
+        "opciones": [
+          "fria",
+          "templada",
+          "calurosa"
+        ],
+        "ideal": {
+          "valor": "templada",
+          "fuente": "F11 (óptimo entre 19 y 30 °C)",
+          "respaldo": "estudio",
+          "verificar": "REVISADO 2026-11 · estudio (F11, University of Kentucky 2022: germinación óptima entre 19 y 30 °C)."
+        }
+      },
+      "humedad": {
+        "opciones": [
+          "seco",
+          "humedo",
+          "empapado"
+        ],
+        "ideal": {
+          "valor": "humedo",
+          "fuente": "Criterio de la autora",
+          "respaldo": "autora",
+          "verificar": "REVISADO 2026-11 · criterio de la autora (húmedo sin encharcar); sin fuente comprobada."
+        }
+      },
+      "tiempo": {
+        "opciones": [
+          "menos_dia",
+          "varios_dias"
+        ],
+        "cuando": {
+          "metodo": [
+            "vaso"
+          ]
+        },
+        "escala": false,
+        "ideal": {
+          "valor": "menos_dia",
+          "fuente": "Criterio de la autora (la semilla se ahoga)",
+          "respaldo": "autora",
+          "verificar": "REVISADO 2026-11 · criterio de la autora (remojo de menos de un día: la semilla se ahoga); sin fuente comprobada."
+        }
+      }
+    }
+  },
+  "semillas": {
+    "_nota": "Fase «varias plantas y autofloreciente». REVISADO 2026-11 · REGLA DEL JUEGO (simplifica el reparto de machos y el calendario de la autofloreciente), criterio de la autora validado por Bertha el 2026-11-02. Sin semilla elegida (partidas de antes) = feminizada y 1 planta.",
+    "regular": {
+      "_nota": "Con semillas regulares parte de las plantas sale macho: el juego saca la mitad (redondeada hacia arriba o abajo según la partida) y deja siempre al menos una hembra (simplificación). Los machos se ven desde la 1.ª semana de floración (sacos de polen) y, si siguen en la carpa al pasar la 2.ª semana, sueltan polen: los cogollos se llenan de semillas y la cosecha pierde puntos.",
+      "visibles_desde_semana_floracion": 1,
+      "polinizan_al_pasar_semana_floracion": 2,
+      "resta_polinizacion": 25,
+      "fuente": "Glosario (planta macho: «produce polen… se elimina para evitar polinización no deseada») · criterio de la autora (la mitad, las semanas y la resta)",
+      "respaldo": "practica",
+      "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
+    },
+    "autofloreciente": {
+      "_nota": "Florece por edad: tras 2 semanas de vegetativo pasa sola a floración (el 12/12 no la hace florecer antes). En floración da igual 18/6 o 12/12. Tricomas más rápidos: el punto (mezcla) llega a las 9 semanas desde la semilla, dentro de las 8–10 de la plataforma.",
+      "vegetativo_semanas": 2,
+      "ideal": {
+        "floracion": {
+          "fotoperiodo": [
+            "18/6",
+            "12/12"
+          ]
+        }
+      },
+      "tricomas_desde_semana": {
+        "transparentes": 1,
+        "lechosas": 3,
+        "mezcla": 5,
+        "ambar": 7
+      },
+      "max_semanas_floracion": 8,
+      "fuente": "Cultivo → Genética («florecen automáticamente según su edad, sin importar las horas de luz… 8–10 semanas desde la semilla») · VALOR DE JUEGO (semanas exactas)",
+      "respaldo": "practica",
+      "verificar": "Criterio de la autora, validado por Bertha (2026-11-02)"
+    }
+  }
+}
