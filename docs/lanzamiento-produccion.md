@@ -181,7 +181,7 @@ borra `support-claims`, `admin-send-gift-code`, `community-retranslate` y `signu
 3b. ☑ **Hecho (2026-11-06)**: producción y staging tienen las **claves nuevas** (`sb_publishable_…` / `sb_secret_…`).
    Las antiguas (`eyJ…`) siguen activas hasta el paso 23, después del lanzamiento. Se comprobó sin abrir ningún valor.
    Código listo en `dev`: las 7 Edge Functions leen primero las claves nuevas, y la tarea diaria manda la publicable
-   solo en «apikey». Prueba `fn-e2e-newkeys`. Funciones publicadas en staging el 2026-11-06.
+   solo en «apikey». Prueba `fn-e2e-newkeys`. Funciones publicadas en staging el 2026-11-07 (las 7, verificadas con su huella SHA-256 y con «Verify JWT» igual que en el plan).
 4. ☐ **Yo** (si me lo pides): terminar los bloques «icono» y «velocidad y privacidad» y volver a pasar las pruebas.
 
 **El día, en una sola sesión.** Todos los archivos SQL están numerados en `supabase/produccion/` (`00-LEEME.md`).
